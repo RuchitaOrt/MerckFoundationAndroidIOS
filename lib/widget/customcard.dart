@@ -8,6 +8,8 @@ class CustomeCard extends StatefulWidget {
   final String subTitle;
   final String btnTitle;
   final Color titleColor;
+  final String titleImg;
+  final int index;
 
   const CustomeCard(
       {Key key,
@@ -15,7 +17,9 @@ class CustomeCard extends StatefulWidget {
       this.cardImage,
       this.subTitle,
       this.btnTitle,
-      this.titleColor})
+      this.titleColor,
+      this.titleImg,
+      this.index})
       : super(key: key);
 
   @override
@@ -33,22 +37,45 @@ class CustomCardState extends State<CustomeCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FormLabel(
-            text: widget.cardTitle,
-            labelColor: widget.titleColor,
-            fontSize: 18,
-            fontweight: FontWeight.w400,
+          Row(
+            children: [
+              widget.index == 1
+                  ? Container(
+                      width: SizeConfig.blockSizeHorizontal * 70,
+                      child: FormLabel(
+                        text: widget.cardTitle,
+                        labelColor: widget.titleColor,
+                        fontSize: 18,
+                        fontweight: FontWeight.w600,
+                        maxLines: 2,
+                      ),
+                    )
+                  : FormLabel(
+                      text: widget.cardTitle,
+                      labelColor: widget.titleColor,
+                      fontSize: 18,
+                      fontweight: FontWeight.w600,
+                      maxLines: 2,
+                    ),
+              SizedBox(
+                width: 7,
+              ),
+              Image.asset(
+                widget.titleImg,
+                width: 40,
+                height: 40,
+              )
+            ],
           ),
           SizedBox(
             height: 10,
           ),
           Container(
-            height: SizeConfig.blockSizeVertical * 20,
+            height: SizeConfig.blockSizeVertical * 30,
             width: SizeConfig.blockSizeHorizontal * 100,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/images/covid-bg.png"),
-                    fit: BoxFit.cover)),
+                    image: AssetImage(widget.cardImage), fit: BoxFit.cover)),
             child: Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
               child: Row(
@@ -58,7 +85,9 @@ class CustomCardState extends State<CustomeCard> {
                   Expanded(
                     child: FormLabel(
                       text: widget.subTitle,
-                      fontSize: 19,
+                      fontSize: 17,
+                      labelColor: Colors.white,
+                      fontweight: FontWeight.w500,
                     ),
                   ),
                   Container(

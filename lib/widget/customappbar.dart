@@ -55,7 +55,7 @@ class CustomAppBar extends PreferredSize {
                   padding: const EdgeInsets.only(left: 30),
                   child: Container(
                     child: Image.asset(
-                      "assets/images/logo_nav1.png",
+                      "assets/newImages/top_bar_logo.png",
                       width: 100,
                       height: 50,
                     ),
@@ -73,23 +73,25 @@ class CustomAppBar extends PreferredSize {
               SizedBox(
                 width: 10,
               ),
-              Image.asset(
+            index != 1
+                  ?   Image.asset(
                 "assets/images/search_icon@2x.png",
                 width: 20,
                 height: 20,
-              )
+              ):Container()
             ],
           ),
           SizedBox(
-            height: 5,
+            height: 8,
           ),
           FormLabel(
             text: 'The Philanthropic arm of Merck KGaA',
-            fontSize: ResponsiveFlutter.of(context).fontSize(1.4),
-            labelColor: Customcolor.colorBlue,
+            fontSize: ResponsiveFlutter.of(context).fontSize(1.5),
+            fontweight: FontWeight.w800,
+            labelColor: Customcolor.text_blue,
           ),
           SizedBox(
-            height: 10,
+            height: 5,
           ),
         ],
       ),

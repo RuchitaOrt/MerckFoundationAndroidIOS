@@ -2,6 +2,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -55,7 +56,7 @@ class _DashboardState extends State<Dashboard>
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             Home(),
-            // Ourprogram(),
+             Ourprogram(),
             // Stories(),
             // NewsPage(),
             // CallforApplication()

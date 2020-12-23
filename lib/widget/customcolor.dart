@@ -27,6 +27,28 @@ class Customcolor {
   static const covid_19_tile = const Color(0xff503291);
   static const baby_blue = const Color(0xff89cff0);
   static const background = const Color(0xfff7f7f6);
+
+
+
+
+
+  //home page list color code
+  static const pink_col = const Color(0xffEF3997);
+  static const green_col = const Color(0xffEF3997);
+  static const yello_col = const Color(0xffEF3997);
+  static const violet_col = const Color(0xffEF3997);
+  static const blue_col = const Color(0xffEF3997);
+  static const lightblue_col = const Color(0xffEF3997);
+  static const darkblue_col = const Color(0xffEF3997);
+  static const orange_col = const Color(0xffEF3997);
+
+
+  //new colo®
+static const text_blue = const Color(0xff135CAB);
+
+
+  
+  
 }
 
 class AppFonts {
