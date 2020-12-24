@@ -6,6 +6,7 @@ class Customcolor {
   static const yellow_transparent = const Color(0x10FFFFFF);
   static const colorAccent = const Color(0xff532E92);
   static const colorPink = const Color(0xffE43799);
+  static const colorblack = const Color(0xff000000);
 
   static const colorBlue = const Color(0xff2467B6);
   static const colorSkyBlue = const Color(0xff32BCC5);
@@ -26,7 +27,7 @@ class Customcolor {
   static const gallery_blue = const Color(0xff072ECC);
   static const covid_19_tile = const Color(0xff503291);
   static const baby_blue = const Color(0xff89cff0);
-  static const background = const Color(0xfff7f7f6);
+  static const background = const Color(0xffEBF9FF);
 
   //home page list color code
   static const pink_col = const Color(0xffEF3997);

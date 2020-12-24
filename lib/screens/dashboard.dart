@@ -1,10 +1,13 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/stories.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
+import 'package:merckfoundation22dec/widget/drawer.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 class Dashboard extends StatefulWidget {
@@ -44,21 +47,21 @@ class _DashboardState extends State<Dashboard>
         1,
         height: 120,
       ),
-      // drawer: Theme(
-      //   data: Theme.of(context).copyWith(
-      //     canvasColor: Colors.transparent,
-      //   ),
-      //   child: null,
-      //   //  child: AppDrawer(),
-      // ),
+      drawer: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: Colors.transparent,
+        ),
+        //child: null,
+        child: AppDrawer(),
+      ),
       body: PageView(
           controller: tabBarController,
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             Home(),
-             Ourprogram(),
-            // Stories(),
-            // NewsPage(),
+            Ourprogram(),
+            Stories(),
+            NewsPage(),
             // CallforApplication()
           ]),
       bottomNavigationBar: BottomNavyBar(
