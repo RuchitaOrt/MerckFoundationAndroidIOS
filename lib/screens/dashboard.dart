@@ -23,6 +23,8 @@ class _DashboardState extends State<Dashboard>
   PageController tabBarController;
   int currentIndex;
 
+  var style = TextStyle(color: Customcolor.colorBlue, fontWeight: FontWeight.w800, fontSize: 12);
+
   @override
   void initState() {
     super.initState();
@@ -68,34 +70,40 @@ class _DashboardState extends State<Dashboard>
         items: [
           BottomNavyBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
-            activeColor: Colors.blue,
+            title: Text('Home', style: style,),
+            activeColor: Customcolor.colorBlue,
+                        inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.apps),
-            title: Text('Our Program'),
+            title: Text('Our Program',style: style,),
             activeColor: Colors.blue,
+                        inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.video_call),
-            title: Text('Our Stories'),
+            title: Text('Our Stories',style: style,),
+            
             activeColor: Colors.blue,
+                        inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.new_releases),
             title: Text(
-              'News',
+              'News',style: style,
             ),
             activeColor: Colors.blue,
+            inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.call),
-            title: Text('Call for application'),
+            title: Text('Call for application',style: style,),
             activeColor: Colors.blue,
+                        inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
           ),
           // BottomNavyBarItem(

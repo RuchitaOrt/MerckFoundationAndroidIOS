@@ -28,27 +28,19 @@ class Customcolor {
   static const baby_blue = const Color(0xff89cff0);
   static const background = const Color(0xfff7f7f6);
 
-
-
-
-
   //home page list color code
   static const pink_col = const Color(0xffEF3997);
-  static const green_col = const Color(0xffEF3997);
-  static const yello_col = const Color(0xffEF3997);
-  static const violet_col = const Color(0xffEF3997);
-  static const blue_col = const Color(0xffEF3997);
-  static const lightblue_col = const Color(0xffEF3997);
-  static const darkblue_col = const Color(0xffEF3997);
-  static const orange_col = const Color(0xffEF3997);
+  static const green_col = const Color(0xff299B5D);
 
+  static const violet_col = const Color(0xff532F8F);
+  static const darkblue_col = const Color(0xff2D3091);
+  static const lightblue_col = const Color(0xff2368B3);
+  static const lightgreen_col = const Color(0xffA6CC38);
+  static const orange_col = const Color(0xffD79541);
+  static const skyblue_col = const Color(0xff9CD4D1);
 
   //new colo®
-static const text_blue = const Color(0xff135CAB);
-
-
-  
-  
+  static const text_blue = const Color(0xff135CAB);
 }
 
 class AppFonts {

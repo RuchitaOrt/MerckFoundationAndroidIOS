@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramDetails.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -63,15 +65,16 @@ class _OurProgramState extends State<Ourprogram> {
     return Scaffold(
         appBar: InnerCustomAppBar(
         onTapval: (){
-          Navigator.pop(context);
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
         },
-        index: 1,
+        index: 2,
         title: "Our Programs",
         titleImg: "assets/newImages/flowers-1.png",
-        trallingImg1: "assets/images/search_icon@2x.png",
+        trallingImg1: "assets/newImages/share.png",
+       trallingImg2: "assets/newImages/search.png",
 
        
-        height: 80,
+        height: 85,
       ),
       body: ListView(
         shrinkWrap: true,
@@ -114,7 +117,11 @@ class _OurProgramState extends State<Ourprogram> {
                 verticalOffset: -50.0,
                 child: FadeInAnimation(
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (BuildContext context) => OurProgramDetails()
+                      ));
+                    },
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 8, right: 8, top: 8, bottom: 8),
@@ -211,7 +218,7 @@ class _OurProgramState extends State<Ourprogram> {
                               padding:
                                   const EdgeInsets.only(right: 0, bottom: 10),
                               child: Container(
-                                color: Colors.white.withOpacity(0.3),
+                                color: Colors.white.withOpacity(0.5),
                                 width: SizeConfig.blockSizeHorizontal * 100,
                                 child: Padding(
                                   padding: const EdgeInsets.only(
