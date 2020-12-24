@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:marquee/marquee.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/widget/customcard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
@@ -53,15 +54,21 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     "assets/images/slider2.jpg",
   ];
 
-  List<OurListModel> _ourlist = <OurListModel>[
-    OurListModel(bgCol: Customcolor.green_col, title: "Our \nVision"),
-    OurListModel(bgCol: Customcolor.green_col, title: "Our \nPrograms"),
-    OurListModel(bgCol: Customcolor.yello_col, title: "News \nArticles"),
-    OurListModel(bgCol: Customcolor.violet_col, title: "Our \nAwards"),
-    OurListModel(bgCol: Customcolor.blue_col, title: "Our \nMission"),
-    OurListModel(bgCol: Customcolor.lightblue_col, title: "Media \n& Events"),
-    OurListModel(bgCol: Customcolor.darkblue_col, title: "Covid \nResponse"),
-    OurListModel(bgCol: Customcolor.orange_col, title: "Our \nPolicies"),
+  List<programclass> _ourlist = [
+    //     programclass(
+    // programname: "Our \nVision", colors: Customcolor.colorBlue),
+    programclass(colors: Customcolor.pink_col, programname: "Our \nVision"),
+    programclass(colors: Customcolor.green_col, programname: "Our \nPrograms"),
+    programclass(
+        colors: Customcolor.lightgreen_col, programname: "News \nArticles"),
+    programclass(colors: Customcolor.violet_col, programname: "Our \nAwards"),
+    programclass(
+        colors: Customcolor.lightblue_col, programname: "Our \nMission"),
+    programclass(
+        colors: Customcolor.skyblue_col, programname: "Media \n& Events"),
+    programclass(
+        colors: Customcolor.darkblue_col, programname: "Covid \nResponse"),
+    programclass(colors: Customcolor.orange_col, programname: "Our \nPolicies"),
   ];
 
   AnimationController _controller;
@@ -94,14 +101,17 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             shrinkWrap: true,
             children: [
               slider(context),
-                SizedBox(
+              SizedBox(
                 height: 10,
               ),
               _buildComplexMarquee(),
               SizedBox(
                 height: 5,
               ),
-              ourlist(),
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: ourlist(),
+              ),
               followUs(),
               //  newSlider(context),
 
@@ -612,37 +622,40 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                 image: AssetImage(product), fit: BoxFit.cover)),
                         width: SizeConfig.blockSizeHorizontal * 100,
                         child: Column(
-                           mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.only(right: 0,bottom: 15 ),
+                              padding:
+                                  const EdgeInsets.only(right: 0, bottom: 15),
                               child: Container(
                                 color: Colors.white.withOpacity(0.3),
                                 width: SizeConfig.blockSizeHorizontal * 100,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(left: 10,right: 10, top: 5,bottom: 5),
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10, top: 5, bottom: 5),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                       FormLabel(
-                                          text: "Merck Capacity Advancement & Diabetes Blue Point Program",
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize: ResponsiveFlutter.of(context)
-                                              .fontSize(1.5),
-                                              maxLines: 2,
-                                          fontweight: FontWeight.w600,
-                                        ),
-                                        SizedBox(
-                                          height: 2,
-                                        ),
-                                        FormLabel(
-                                          text:
-                                              "Building nationwide Diabetes Care Capacity",
-                                          labelColor:  Customcolor.pink_col,
-                                          fontSize: ResponsiveFlutter.of(context)
-                                              .fontSize(1.2),
-                                          fontweight: FontWeight.w500,
-                                        ),
+                                      FormLabel(
+                                        text:
+                                            "Merck Capacity Advancement & Diabetes Blue Point Program",
+                                        labelColor: Customcolor.pink_col,
+                                        fontSize: ResponsiveFlutter.of(context)
+                                            .fontSize(1.5),
+                                        maxLines: 2,
+                                        fontweight: FontWeight.w600,
+                                      ),
+                                      SizedBox(
+                                        height: 2,
+                                      ),
+                                      FormLabel(
+                                        text:
+                                            "Building nationwide Diabetes Care Capacity",
+                                        labelColor: Customcolor.pink_col,
+                                        fontSize: ResponsiveFlutter.of(context)
+                                            .fontSize(1.2),
+                                        fontweight: FontWeight.w500,
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -861,7 +874,6 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
     return Container(
         height: 100,
-      
         child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
@@ -910,11 +922,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       width: 100,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: _ourlist[index].bgCol,
+                        color: _ourlist[index].colors,
                       ),
                       child: Center(
                           child: Text(
-                        _ourlist[index].title,
+                        _ourlist[index].programname,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
