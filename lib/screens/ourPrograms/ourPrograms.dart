@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
+import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
@@ -23,6 +24,7 @@ class _OurProgramState extends State<Ourprogram> {
   TextStyle style = TextStyle(fontFamily: 'Roboto', fontSize: 16.0);
   bool checkedValue = false;
   CarouselSlider carouselSlider;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int _current = 0;
   List _productsAvailable = [
     "assets/images/slider1.jpg",
@@ -59,6 +61,18 @@ class _OurProgramState extends State<Ourprogram> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+        appBar: InnerCustomAppBar(
+        onTapval: (){
+          Navigator.pop(context);
+        },
+        index: 1,
+        title: "Our Programs",
+        titleImg: "assets/newImages/flowers-1.png",
+        trallingImg1: "assets/images/search_icon@2x.png",
+
+       
+        height: 80,
+      ),
       body: ListView(
         shrinkWrap: true,
         children: [

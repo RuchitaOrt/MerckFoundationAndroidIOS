@@ -37,13 +37,7 @@ class _DashboardState extends State<Dashboard>
     return Scaffold(
       backgroundColor: Customcolor.background,
       key: _scaffoldKey,
-      appBar: CustomAppBar(
-        () {
-          _scaffoldKey.currentState.openDrawer();
-        },
-        1,
-        height: 120,
-      ),
+    
       // drawer: Theme(
       //   data: Theme.of(context).copyWith(
       //     canvasColor: Colors.transparent,
@@ -62,6 +56,7 @@ class _DashboardState extends State<Dashboard>
             // CallforApplication()
           ]),
       bottomNavigationBar: BottomNavyBar(
+      
         selectedIndex: currentIndex,
         showElevation: true,
         itemCornerRadius: 8,
