@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/newReleases.dart';
+import 'package:merckfoundation22dec/screens/ceomessage/messageFromLeadership.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
@@ -185,11 +186,11 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Message from Leadership\n Team',
                           onTapfun: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (BuildContext context) =>
-                            //             MessagefromLeadership()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        MessagefromLeadership()));
                           },
                         ),
                         SizedBox(

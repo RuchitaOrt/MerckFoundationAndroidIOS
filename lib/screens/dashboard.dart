@@ -1,6 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/callforApplication.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/stories.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
@@ -62,7 +63,7 @@ class _DashboardState extends State<Dashboard>
             Ourprogram(),
             Stories(),
             NewsPage(),
-            // CallforApplication()
+            CallforApplication()
           ]),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: currentIndex,
