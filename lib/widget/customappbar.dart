@@ -36,7 +36,7 @@ class CustomAppBar extends PreferredSize {
                   ? GestureDetector(
                       onTap: onTapval,
                       child: Image.asset(
-                        "assets/images/menu_icon.png",
+                        "assets/newImages/menu.png",
                         width: 30,
                         height: 30,
                       ),
@@ -73,12 +73,13 @@ class CustomAppBar extends PreferredSize {
               SizedBox(
                 width: 10,
               ),
-            index != 1
-                  ?   Image.asset(
-                "assets/images/search_icon@2x.png",
-                width: 20,
-                height: 20,
-              ):Container()
+              index != 1
+                  ? Image.asset(
+                      "assets/images/search_icon@2x.png",
+                      width: 20,
+                      height: 20,
+                    )
+                  : Container()
             ],
           ),
           SizedBox(
