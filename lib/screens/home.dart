@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:marquee/marquee.dart';
+import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/widget/customcard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
+import 'package:merckfoundation22dec/widget/drawer.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -75,6 +77,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   bool iscall = true;
   bool islibrary = false;
   bool ismeck = false;
+  double imgHeight = 50;
   @override
   void initState() {
     super.initState();
@@ -93,6 +96,20 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             context, "Exit", "Are you sure, want to exit?");
       },
       child: Scaffold(
+         appBar: CustomAppBar(
+        () {
+          _scaffoldKey.currentState.openDrawer();
+        },
+        1,
+        height: 120,
+      ),
+       drawer: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: Colors.transparent,
+        ),
+        //child: null,
+        child: AppDrawer(),
+      ),
         body: Container(
           width: double.infinity,
           height: double.infinity,
@@ -492,7 +509,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                           children: [
                                             Container(
                                                 margin: EdgeInsets.only(
-                                                  right: 40.0,
+                                                  right: 40.0, 
                                                   left: 30,
                                                 ),
                                                 child: ClipRRect(
@@ -628,7 +645,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               padding:
                                   const EdgeInsets.only(right: 0, bottom: 15),
                               child: Container(
-                                color: Colors.white.withOpacity(0.3),
+                                color: Colors.white.withOpacity(0.5),
                                 width: SizeConfig.blockSizeHorizontal * 100,
                                 child: Padding(
                                   padding: const EdgeInsets.only(
@@ -722,40 +739,40 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             children: [
               Image.asset(
                 "assets/newImages/instagram.png",
-                height: 60,
-                width: 60,
+                height: imgHeight,
+                width: imgHeight,
               ),
               SizedBox(
                 width: 7,
               ),
               Image.asset(
                 "assets/newImages/facebook.png",
-                height: 60,
-                width: 60,
+                height: imgHeight,
+                width: imgHeight,
               ),
               SizedBox(
                 width: 7,
               ),
               Image.asset(
                 "assets/newImages/twitter.png",
-                height: 60,
-                width: 60,
+                height: imgHeight,
+                width: imgHeight,
               ),
               SizedBox(
                 width: 7,
               ),
               Image.asset(
                 "assets/newImages/youtube.png",
-                height: 60,
-                width: 60,
+                height: imgHeight,
+                width: imgHeight,
               ),
               SizedBox(
                 width: 7,
               ),
               Image.asset(
                 "assets/newImages/flickr.png",
-                height: 60,
-                width: 60,
+                height: imgHeight,
+                width: imgHeight,
               ),
               SizedBox(
                 width: 7,

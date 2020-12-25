@@ -2,8 +2,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramDetails.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
+import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
@@ -23,6 +26,7 @@ class _OurProgramState extends State<Ourprogram> {
   TextStyle style = TextStyle(fontFamily: 'Roboto', fontSize: 16.0);
   bool checkedValue = false;
   CarouselSlider carouselSlider;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int _current = 0;
   List _productsAvailable = [
     "assets/images/slider1.jpg",
@@ -59,6 +63,19 @@ class _OurProgramState extends State<Ourprogram> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+        appBar: InnerCustomAppBar(
+        onTapval: (){
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
+        },
+        index: 2,
+        title: "Our Programs",
+        titleImg: "assets/newImages/flowers-1.png",
+        trallingImg1: "assets/newImages/share.png",
+       trallingImg2: "assets/newImages/search.png",
+
+       
+        height: 85,
+      ),
       body: ListView(
         shrinkWrap: true,
         children: [
@@ -100,7 +117,11 @@ class _OurProgramState extends State<Ourprogram> {
                 verticalOffset: -50.0,
                 child: FadeInAnimation(
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (BuildContext context) => OurProgramDetails()
+                      ));
+                    },
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 8, right: 8, top: 8, bottom: 8),
@@ -197,7 +218,7 @@ class _OurProgramState extends State<Ourprogram> {
                               padding:
                                   const EdgeInsets.only(right: 0, bottom: 10),
                               child: Container(
-                                color: Colors.white.withOpacity(0.3),
+                                color: Colors.white.withOpacity(0.5),
                                 width: SizeConfig.blockSizeHorizontal * 100,
                                 child: Padding(
                                   padding: const EdgeInsets.only(

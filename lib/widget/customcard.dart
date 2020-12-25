@@ -71,7 +71,7 @@ class CustomCardState extends State<CustomeCard> {
             height: 10,
           ),
           Container(
-            height: SizeConfig.blockSizeVertical * 30,
+            height: SizeConfig.blockSizeVertical * 25,
             width: SizeConfig.blockSizeHorizontal * 100,
             decoration: BoxDecoration(
                 image: DecorationImage(
