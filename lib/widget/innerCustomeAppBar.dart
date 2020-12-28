@@ -32,9 +32,10 @@ class InnerCustomAppBar extends PreferredSize {
       color: Customcolor.baby_blue,
       alignment: Alignment.center,
       child: Padding(
-        padding: const EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: 25),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
               width: 10,
@@ -49,41 +50,44 @@ class InnerCustomAppBar extends PreferredSize {
                   ),
                 )),
             Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FormLabel(
-                    text: title,
-                    fontSize: 20,
-                    fontweight: FontWeight.w600,
-                    labelColor: Customcolor.text_blue,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Image.asset(titleImg)
-                ],
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    FormLabel(
+                      text: title,
+                      fontSize: 20,
+                      fontweight: FontWeight.w600,
+                      labelColor: Customcolor.text_blue,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Image.asset(titleImg)
+                  ],
+                ),
               ),
             ),
             SizedBox(
               width: 30,
             ),
-            Image.asset(
-              trallingImg1,
-              // "assets/images/search_icon@2x.png",
-              width: 23,
-              height: 23,
-            ),
-            SizedBox(
-              width: 15,
-            ),
             index != 1
                 ? Image.asset(
-                    trallingImg2,
+                    trallingImg1,
+                    // "assets/images/search_icon@2x.png",
                     width: 23,
                     height: 23,
                   )
                 : Container(),
+            SizedBox(
+              width: 15,
+            ),
+            Image.asset(
+              trallingImg2,
+              width: 23,
+              height: 23,
+            ),
             SizedBox(
               width: 10,
             ),

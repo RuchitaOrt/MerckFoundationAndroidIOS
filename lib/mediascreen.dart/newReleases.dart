@@ -4,6 +4,8 @@ import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
 
 class NewsRelease extends StatefulWidget {
   @override
@@ -17,16 +19,19 @@ class NewsReleaseState extends State<NewsRelease> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Customcolor.background,
-        appBar: CustomAppBar(
-          () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(index: 0)));
-          },
-          2,
-          height: 160,
-        ),
+          appBar: InnerCustomAppBar(
+        onTapval: (){
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
+        },
+        index: 1,
+        title: "News Releases",
+        titleImg: "assets/newImages/flowers-1.png",
+        trallingImg1: "assets/newImages/share.png",
+       trallingImg2: "assets/newImages/search.png",
+
+       
+        height: 85,
+      ),
         body: Column(
           children: [
             Expanded(

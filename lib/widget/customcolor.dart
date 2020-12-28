@@ -32,6 +32,7 @@ class Customcolor {
   //home page list color code
   static const pink_col = const Color(0xffEF3997);
   static const green_col = const Color(0xff299B5D);
+  static const ligthpink = const Color(0xffFFA4D3);
 
   static const violet_col = const Color(0xff532F8F);
   static const darkblue_col = const Color(0xff2D3091);
@@ -42,6 +43,10 @@ class Customcolor {
 
   //new colo®
   static const text_blue = const Color(0xff135CAB);
+  static const text_grey = const Color(0xff888888);
+  static const text_darkblue = const Color(0xff115CAB);
+  static const text_darkgrey = const Color(0xff333333);
+  static const pinkbg = const Color(0xffFFA4D3);
 }
 
 class AppFonts {

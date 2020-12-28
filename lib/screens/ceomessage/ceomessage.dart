@@ -16,14 +16,14 @@ class CeomessageState extends State<Ceomessage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Customcolor.background,
-        appBar: CustomAppBar(
-          () {
-            //_scaffoldKey.currentState.openDrawer();
-            Navigator.pop(context);
-          },
-          2,
-          height: 160,
-        ),
+        // appBar: CustomAppBar(
+        //   () {
+        //     //_scaffoldKey.currentState.openDrawer();
+        //     Navigator.pop(context);
+        //   },
+        //   2,
+        //   height: 160,
+        // ),
         body: Column(
           children: [
             FormLabel(

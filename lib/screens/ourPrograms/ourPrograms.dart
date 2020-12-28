@@ -3,7 +3,10 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramDetails.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Merckmorethanamother.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Merckstemprogram.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/motherambassadar.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/strategy.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -63,17 +66,21 @@ class _OurProgramState extends State<Ourprogram> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-        appBar: InnerCustomAppBar(
-        onTapval: (){
-          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
+      backgroundColor: Customcolor.background,
+      appBar: InnerCustomAppBar(
+        onTapval: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => Dashboard(
+                        index: 0,
+                      )));
         },
         index: 2,
         title: "Our Programs",
         titleImg: "assets/newImages/flowers-1.png",
         trallingImg1: "assets/newImages/share.png",
-       trallingImg2: "assets/newImages/search.png",
-
-       
+        trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
       body: ListView(
@@ -118,9 +125,11 @@ class _OurProgramState extends State<Ourprogram> {
                 child: FadeInAnimation(
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (BuildContext context) => OurProgramDetails()
-                      ));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  MotherAmbassadarDetails()));
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(

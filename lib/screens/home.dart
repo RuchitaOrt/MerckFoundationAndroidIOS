@@ -96,20 +96,21 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             context, "Exit", "Are you sure, want to exit?");
       },
       child: Scaffold(
-         appBar: CustomAppBar(
-        () {
-          _scaffoldKey.currentState.openDrawer();
-        },
-        1,
-        height: 120,
-      ),
-       drawer: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Colors.transparent,
+        key: _scaffoldKey,
+        appBar: CustomAppBar(
+          () {
+            _scaffoldKey.currentState.openDrawer();
+          },
+          1,
+          height: 120,
         ),
-        //child: null,
-        child: AppDrawer(),
-      ),
+        drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+          //child: null,
+          child: AppDrawer(),
+        ),
         body: Container(
           width: double.infinity,
           height: double.infinity,
@@ -193,16 +194,22 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               });
                             },
                             child: Chip(
-                              backgroundColor: iscall
-                                  ? Customcolor.colorPink
-                                  : Colors.transparent,
-                              label: Text("Call for Application",
-                                  style: TextStyle(
-                                      color:
-                                          iscall ? Colors.white : Colors.grey,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16)),
-                            ),
+                                backgroundColor: iscall
+                                    ? Customcolor.pinkbg.withOpacity(0.2)
+                                    : Colors.transparent,
+                                label: Text("Call for Application",
+                                    style: TextStyle(
+                                        color:
+                                            iscall ? Colors.black : Colors.grey,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14)),
+                                shape: iscall
+                                    ? RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            color: Customcolor.pink_col),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)))
+                                    : null),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -213,17 +220,23 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               });
                             },
                             child: Chip(
-                              backgroundColor: islibrary
-                                  ? Customcolor.colorPink
-                                  : Colors.transparent,
-                              label: Text("Digital Library",
-                                  style: TextStyle(
-                                      color: islibrary
-                                          ? Colors.white
-                                          : Colors.grey,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16)),
-                            ),
+                                backgroundColor: islibrary
+                                    ? Customcolor.pinkbg.withOpacity(0.2)
+                                    : Colors.transparent,
+                                label: Text("Digital Library",
+                                    style: TextStyle(
+                                        color: islibrary
+                                            ? Colors.black
+                                            : Colors.grey,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14)),
+                                shape: islibrary
+                                    ? RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            color: Customcolor.pink_col),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)))
+                                    : null),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -234,17 +247,23 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               });
                             },
                             child: Chip(
-                              backgroundColor: ismeck
-                                  ? Customcolor.colorPink
-                                  : Colors.transparent,
-                              label: Text(
-                                  "Merck More Than A Mother Ambassadors",
-                                  style: TextStyle(
-                                      color:
-                                          ismeck ? Colors.white : Colors.grey,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16)),
-                            ),
+                                backgroundColor: ismeck
+                                    ? Customcolor.pinkbg.withOpacity(0.2)
+                                    : Colors.transparent,
+                                label: Text(
+                                    "Merck More Than A Mother Ambassadors",
+                                    style: TextStyle(
+                                        color:
+                                            ismeck ? Colors.black : Colors.grey,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14)),
+                                shape: ismeck
+                                    ? RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            color: Customcolor.pink_col),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)))
+                                    : null),
                           ),
                         ],
                       )
@@ -300,9 +319,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                   //       color: Colors.grey),
                                   // ),
                                   control: SwiperControl(
-                                    iconNext: Icons.arrow_forward_ios,
-                                    iconPrevious: Icons.arrow_back_ios,
-                                  ),
+                                      iconNext: Icons.arrow_forward_ios,
+                                      iconPrevious: Icons.arrow_back_ios,
+                                      size: 20),
                                   children: <Widget>[
                                     Column(
                                       children: [
@@ -509,7 +528,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                           children: [
                                             Container(
                                                 margin: EdgeInsets.only(
-                                                  right: 40.0, 
+                                                  right: 40.0,
                                                   left: 30,
                                                 ),
                                                 child: ClipRRect(

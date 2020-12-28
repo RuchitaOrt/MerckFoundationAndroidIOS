@@ -3,6 +3,9 @@ import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
+
 
 class VideoPlayer extends StatefulWidget {
   @override
@@ -36,12 +39,18 @@ class WebPageState extends State<VideoPlayer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWebview(
-        () {
-          Navigator.pop(context);
+        appBar: InnerCustomAppBar(
+        onTapval: (){
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
         },
-        2,
-        height: 160,
+        index: 1,
+        title: "Our Programs",
+        titleImg: "assets/newImages/flowers-1.png",
+        trallingImg1: "assets/newImages/share.png",
+       trallingImg2: "assets/newImages/search.png",
+
+       
+        height: 85,
       ),
       body: WebView(
         initialUrl: 'https://youtu.be/1l3oLvJXnIA',

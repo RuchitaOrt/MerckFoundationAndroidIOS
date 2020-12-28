@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
+
 
 class NewsPage extends StatefulWidget {
   @override
@@ -14,6 +17,19 @@ class NewsState extends State<NewsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Customcolor.background,
+          appBar: InnerCustomAppBar(
+        onTapval: (){
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
+        },
+        index: 1,
+        title: "News Article",
+        titleImg: "assets/newImages/flowers-1.png",
+        trallingImg1: "assets/newImages/share.png",
+       trallingImg2: "assets/newImages/search.png",
+
+       
+        height: 85,
+      ),
         body: Column(
           children: [
             Expanded(

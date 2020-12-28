@@ -9,14 +9,14 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
-class OurProgramDetails extends StatefulWidget {
+class Merckstemprogram extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return OurProgramsDetailsState();
+    return MerckstemprogramState();
   }
 }
 
-class OurProgramsDetailsState extends State<OurProgramDetails> {
+class MerckstemprogramState extends State<Merckstemprogram> {
   int _current = 0;
   List _productsAvailable = [
     "assets/images/slider1.jpg",
@@ -66,7 +66,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                 right: 15,
               ),
               child: FormLabel(
-                text: "Merck More Than a Mother",
+                text: "Merck Stem Program",
                 labelColor: Customcolor.colorPink,
                 fontweight: FontWeight.w700,
                 fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
@@ -81,159 +81,69 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                 right: 15,
               ),
               child: FormLabel(
-                text: "No to Infertility Stigma",
+                text:
+                    "Together we empower women and youth in science and technology",
                 labelColor: Customcolor.text_blue,
-                fontweight: FontWeight.w700,
-                fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                fontweight: FontWeight.w500,
+                fontSize: ResponsiveFlutter.of(context).fontSize(2),
               ),
             ),
             SizedBox(
               height: 9,
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 15,
-                right: 15,
-              ),
-              child: RichText(
-                text: TextSpan(
-                    text: "Merck More Than a Mother",
-                    style: TextStyle(
-                      color: Customcolor.colorPink,
-                      fontWeight: FontWeight.w700,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text:
-                              " is a strong movement that aims to empower infertile women through access to information, education and change of mind-sets. This powerful campaign supports governments in defining policies to enhance access to regulated, safe and effective fertility care. It defines interventions to break the stigma around infertile women and raises awareness about infertility prevention, management and male infertility. In partnership with African First Ladies, Ministries of Health, Information, Education & Gender, academia, policymakers, International fertility societies, media and art, the initiative also provides training for fertility specialists and embryologists to build and advance fertility care capacity in Africa and developing countries.",
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.0),
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ]),
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
+                padding: const EdgeInsets.only(
+                  left: 15,
+                  right: 20,
+                ),
+                child: FormLabel(
+                  text:
+                      "We believe that empowering women through education is an important factor in promoting the economic well-being of Africans. Many literatures have shown that there are strong links between educating women and girls and positive outcomes for economic empowerment, social mobility and maternal health. It is also believed that women’s unemployment in a nation’s workforce is a waste of valuable human capital that has a negative impact on economic prosperity and national development.",
+                  labelColor: Customcolor.text_darkgrey,
+                  fontSize: ResponsiveFlutter.of(context).fontSize(2.0),
+                )),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 15,
-                right: 15,
-              ),
-              child: RichText(
-                text: TextSpan(
-                    text: "Merck More Than a Mother",
-                    style: TextStyle(
-                      color: Customcolor.colorPink,
-                      fontWeight: FontWeight.w700,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.4),
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text:
-                              " we have initiated a cultural shift to de-stigmatize infertility on all levels: By improving awareness, training local experts in the fields of fertility care and media, building advocacy in cooperation with African First Ladies and women leaders and by supporting childless women in starting their own small businesses. It’s all about giving every woman the respect and the help she deserves to live a fulfilling life, with or without a child.",
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.0),
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ]),
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
+                padding: const EdgeInsets.only(left: 15, right: 20, top: 18),
+                child: FormLabel(
+                  text:
+                      "Our STEM program (Science, Technology, Engineering and Mathematics) partners with global and local institutions and organizations to empower women and young people in the areas of science and technology. We see education as an important factor in promoting economic well-being in Africa.",
+                  labelColor: Customcolor.text_darkgrey,
+                  fontSize: ResponsiveFlutter.of(context).fontSize(2.0),
+                )),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 15,
-                right: 15,
-              ),
+              padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
               child: FormLabel(
-                text: "The Ambassadors of" +
-                    "${"Merck More Than a Mother"}" +
-                    "are :",
-                labelColor: Customcolor.colorPink,
-                fontweight: FontWeight.w700,
-                fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                text:
+                    "As a part of Merck Foundation STEM Program for women and youth",
+                labelColor: Customcolor.text_blue,
+                fontweight: FontWeight.w500,
+                fontSize: ResponsiveFlutter.of(context).fontSize(2),
               ),
             ),
             SizedBox(
-              height: 7,
+              height: 9,
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 15,
-                right: 15,
-              ),
-              child: Image.asset(
-                "assets/newImages/cfa1.png",
-                height: 300,
-              ),
-            ),
-            SizedBox(
-              height: 7,
-            ),
+                padding: const EdgeInsets.only(
+                  left: 15,
+                  right: 20,
+                ),
+                child: FormLabel(
+                  text:
+                      "We believe that empowering women through education is an important factor in promoting the economic well-being of Africans. Many literatures have shown that there are strong links between educating women and girls and positive outcomes for economic empowerment, social mobility and maternal health. It is also believed that women’s unemployment in a nation’s workforce is a waste of valuable human capital that has a negative impact on economic prosperity and national development.",
+                  labelColor: Customcolor.text_darkgrey,
+                  fontSize: ResponsiveFlutter.of(context).fontSize(2.0),
+                )),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 15,
-                right: 15,
-              ),
-              child: RichText(
-                text: TextSpan(
-                    text: "Merck More Than a Mother",
-                    style: TextStyle(
-                      color: Customcolor.colorPink,
-                      fontWeight: FontWeight.w700,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.4),
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text:
-                              " we have initiated a cultural shift to de-stigmatize infertility on all levels: By improving awareness, training local experts in the fields of fertility care and media, building advocacy in cooperation with African First Ladies and women leaders and by supporting childless women in starting their own small businesses. ",
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.0),
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ]),
-              ),
-            ),
-            SizedBox(
-              height: 18,
-            ),
+                padding: const EdgeInsets.only(left: 15, right: 20, top: 18),
+                child: FormLabel(
+                  text:
+                      "Our STEM program (Science, Technology, Engineering and Mathematics) partners with global and local institutions and organizations to empower women and young people in the areas of science and technology. We see education as an important factor in promoting economic well-being in Africa.",
+                  labelColor: Customcolor.text_darkgrey,
+                  fontSize: ResponsiveFlutter.of(context).fontSize(2.0),
+                )),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 15,
-                right: 15,
-              ),
-              child: FormLabel(
-                text: "Our Impact",
-                labelColor: Customcolor.colorPink,
-                fontweight: FontWeight.w700,
-                fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
-              ),
-            ),
-            SizedBox(
-              height: 7,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 15,
-                right: 15,
-              ),
-              child: Image.asset(
-                "assets/newImages/cfa1.png",
-                height: 300,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
+              padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -254,13 +164,17 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                           },
                           child: Chip(
                             backgroundColor: iscall
-                                ? Customcolor.colorPink
+                                ? Customcolor.pinkbg.withOpacity(0.2)
                                 : Colors.transparent,
                             label: Text("Call for Application",
                                 style: TextStyle(
-                                    color: iscall ? Colors.white : Colors.grey,
+                                    color: iscall ? Colors.black : Colors.grey,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 16)),
+                                    fontSize: 14)),
+                            shape: RoundedRectangleBorder(
+                                side: BorderSide(color: Customcolor.pink_col),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5))),
                           ),
                         ),
                         GestureDetector(
@@ -272,16 +186,23 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                             });
                           },
                           child: Chip(
-                            backgroundColor: islibrary
-                                ? Customcolor.colorPink
-                                : Colors.transparent,
-                            label: Text("Digital Library",
-                                style: TextStyle(
-                                    color:
-                                        islibrary ? Colors.white : Colors.grey,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16)),
-                          ),
+                              backgroundColor: islibrary
+                                  ? Customcolor.pinkbg.withOpacity(0.2)
+                                  : Colors.transparent,
+                              label: Text("Digital Library",
+                                  style: TextStyle(
+                                      color: islibrary
+                                          ? Colors.black
+                                          : Colors.grey,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14)),
+                              shape: islibrary
+                                  ? RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          color: Customcolor.pink_col),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)))
+                                  : null),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -292,15 +213,23 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                             });
                           },
                           child: Chip(
-                            backgroundColor: ismeck
-                                ? Customcolor.colorPink
-                                : Colors.transparent,
-                            label: Text("Merck More Than A Mother Ambassadors",
-                                style: TextStyle(
-                                    color: ismeck ? Colors.white : Colors.grey,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16)),
-                          ),
+                              backgroundColor: ismeck
+                                  ? Customcolor.pinkbg.withOpacity(0.2)
+                                  : Colors.transparent,
+                              label: Text(
+                                  "Merck More Than A Mother Ambassadors",
+                                  style: TextStyle(
+                                      color:
+                                          ismeck ? Colors.black : Colors.grey,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14)),
+                              shape: ismeck
+                                  ? RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          color: Customcolor.pink_col),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)))
+                                  : null),
                         ),
                       ],
                     )
@@ -355,9 +284,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                                 //       color: Colors.grey),
                                 // ),
                                 control: SwiperControl(
-                                  iconNext: Icons.arrow_forward_ios,
-                                  iconPrevious: Icons.arrow_back_ios,
-                                ),
+                                    iconNext: Icons.arrow_forward_ios,
+                                    iconPrevious: Icons.arrow_back_ios,
+                                    size: 20),
                                 children: <Widget>[
                                   Column(
                                     children: [
@@ -556,9 +485,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                                     autoplay: false,
                                     loop: true,
                                     control: SwiperControl(
-                                      iconNext: Icons.arrow_forward_ios,
-                                      iconPrevious: Icons.arrow_back_ios,
-                                    ),
+                                        iconNext: Icons.arrow_forward_ios,
+                                        iconPrevious: Icons.arrow_back_ios,
+                                        size: 20),
                                     children: <Widget>[
                                       Column(
                                         children: [
@@ -647,7 +576,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 15),
               child: CustomHorizontalCard(
                   index: 1,
                   cardImage: "assets/newImages/gallery.png",
@@ -661,11 +590,11 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 15),
               child: CustomHorizontalCard(
                   index: 1,
                   cardImage: "assets/newImages/gallery.png",
-                  cardTitle: "Latest Updates",
+                  cardTitle: "Photo Gallery",
                   titleColor: Customcolor.text_blue,
                   titleImg: "assets/newImages/flowers-3.png",
                   subTitle:
@@ -675,11 +604,11 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 15),
               child: CustomHorizontalCard(
                   index: 1,
                   cardImage: "assets/newImages/gallery.png",
-                  cardTitle: "Merck Foundation In Media",
+                  cardTitle: "Our Newsletters",
                   titleColor: Customcolor.text_blue,
                   titleImg: "assets/newImages/flowers-3.png",
                   subTitle:
@@ -810,7 +739,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                         borderRadius: BorderRadius.circular(5)),
                     child: Center(
                       child: Text(
-                        "Watch More",
+                        "Read All",
                         style: TextStyle(
                             color: Customcolor.colorBlue,
                             fontSize: 15,

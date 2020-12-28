@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
+import 'package:merckfoundation22dec/widget/formLabel.dart';
+import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 class CallforApplication extends StatefulWidget {
   @override
@@ -36,45 +40,75 @@ class CallApplicationState extends State<CallforApplication>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Customcolor.background,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0),
-        child: AppBar(
-          backgroundColor: Customcolor.background,
-          elevation: 0.0,
-          bottom: new TabBar(
-            isScrollable: false,
-            unselectedLabelColor: Customcolor.colorGrey,
-            indicatorSize: TabBarIndicatorSize.label,
-            tabs: <Tab>[
-              new Tab(
-                //text: "Upcoming Events" ,
-                child: Text(
-                  "Upcoming Call for Application",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Customcolor.colorBlue,
+      appBar: InnerCustomAppBar(
+        onTapval: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => Dashboard(
+                        index: 0,
+                      )));
+        },
+        index: 1,
+        title: "Call For Application",
+        titleImg: "assets/newImages/flowers-1.png",
+        trallingImg1: "assets/newImages/share.png",
+        trallingImg2: "assets/newImages/search.png",
+        height: 85,
+      ),
+      body: Column(
+        // Column
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(top: 15),
+            color: Customcolor.background, // Tab Bar color change
+            child: TabBar(
+              // TabBar
+              controller: _tabController,
+              labelColor: Customcolor.text_darkblue,
+              unselectedLabelColor: Customcolor.text_grey,
+              indicatorSize: TabBarIndicatorSize.label,
+
+              indicatorWeight: 3,
+              indicatorColor: Customcolor.text_darkblue,
+
+              tabs: <Widget>[
+                Tab(
+                  child: Text(
+                    "Upcoming Call for Application",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        //   color: Customcolor.colorBlue,
+                        fontSize: 15),
                   ),
                 ),
-              ),
-              new Tab(
-                //  text: "Past Events",
-                child: Text(
-                  "Past Call \nfor Application",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Customcolor.colorBlue),
+                Tab(
+                  child: Text(
+                    "Past Call \nfor Application",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15),
+                  ),
                 ),
-              ),
-            ],
-            controller: _tabController,
-            indicatorColor: Customcolor.colorBlue,
+              ],
+            ),
           ),
-        ),
-      ),
-      body: new TabBarView(
-        children: <Widget>[upcomingEvents(), pastEvents()],
-        controller: _tabController,
+          Expanded(
+            flex: 3,
+            child: TabBarView(
+              // Tab Bar View
+              physics: BouncingScrollPhysics(),
+              controller: _tabController,
+              children: <Widget>[upcomingEvents(), pastEvents()],
+            ),
+          ),
+        ],
       ),
     );
+
+    //  new TabBarView(
+    //   children: <Widget>[upcomingEvents(), pastEvents()],
+    //   controller: _tabController,
+    // ),
   }
 
   Widget upcomingEvents() {
@@ -137,7 +171,9 @@ class CallApplicationState extends State<CallforApplication>
               itemHeight: 400,
               pagination: SwiperPagination(
                 builder: new DotSwiperPaginationBuilder(
-                    color: Colors.grey, activeColor: Customcolor.pink_col),
+                  color: Customcolor.ligthpink,
+                  activeColor: Customcolor.pink_col,
+                ),
               ),
             ),
           ),
@@ -146,6 +182,7 @@ class CallApplicationState extends State<CallforApplication>
             title: Text(
               "UNESCO-MARS 2020",
               textAlign: TextAlign.center,
+              style: TextStyle(color: Customcolor.text_darkgrey),
             ),
           )
         ],
@@ -205,7 +242,8 @@ class CallApplicationState extends State<CallforApplication>
               itemHeight: 400,
               pagination: SwiperPagination(
                 builder: new DotSwiperPaginationBuilder(
-                    color: Colors.grey, activeColor: Customcolor.pink_col),
+                    color: Customcolor.ligthpink,
+                    activeColor: Customcolor.pink_col),
               ),
             ),
           ),
@@ -214,6 +252,7 @@ class CallApplicationState extends State<CallforApplication>
             title: Text(
               "UNESCO-MARS 2020",
               textAlign: TextAlign.center,
+              style: TextStyle(color: Customcolor.text_darkgrey),
             ),
           )
         ],
