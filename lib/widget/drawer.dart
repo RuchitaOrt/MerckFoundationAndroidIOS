@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/newReleases.dart';
+import 'package:merckfoundation22dec/screens/ceomessage/messageFromLeadership.dart';
+import 'package:merckfoundation22dec/screens/contactus/contactUs.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/ourpartner/ourPartners.dart';
+import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
 
@@ -161,11 +165,11 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Vision',
                           onTapfun: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (BuildContext context) =>
-                            //             OurVision()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        OurVision()));
                           },
                         ),
                         SizedBox(
@@ -185,11 +189,11 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Message from Leadership\n Team',
                           onTapfun: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (BuildContext context) =>
-                            //             MessagefromLeadership()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        Messs()));
                           },
                         ),
                         SizedBox(
@@ -209,11 +213,11 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Contact Us',
                           onTapfun: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (BuildContext context) =>
-                            //             ContactUs()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        ContactUs()));
                           },
                         ),
                         SizedBox(
@@ -233,7 +237,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         child: new Row(
                           children: <Widget>[
                             new Image.asset(
-                              'assets/images/help_sidemenu_icon@2x.png',
+                              '',
                               height: 20.0,
                               width: 20.0,
                             ),
@@ -253,7 +257,7 @@ class _AppDrawerState extends State<AppDrawer> {
                           height: 2,
                         ),
                         DrawerWidget(
-                          image: 'assets/images/searchquote_icon.png',
+                          image: '',
                           value: 'Mission',
                           onTapfun: () {
                             print('ontap');
@@ -263,7 +267,7 @@ class _AppDrawerState extends State<AppDrawer> {
                           height: 2,
                         ),
                         DrawerWidget(
-                          image: 'assets/images/breakin.png',
+                          image: '',
                           value: 'Our Policies',
                           onTapfun: () {
                             print('ontap');
@@ -273,7 +277,7 @@ class _AppDrawerState extends State<AppDrawer> {
                           height: 2,
                         ),
                         DrawerWidget(
-                          image: 'assets/images/lapsedpolicy.png',
+                          image: '',
                           value: 'Our Activities',
                           onTapfun: () {
                             // Navigator.push(
@@ -287,7 +291,7 @@ class _AppDrawerState extends State<AppDrawer> {
                           height: 2,
                         ),
                         DrawerWidget(
-                          image: 'assets/images/renewedpolicy.png',
+                          image: '',
                           value: 'Legal Disclaimer',
                           onTapfun: () {
                             print('ontap');
@@ -297,7 +301,7 @@ class _AppDrawerState extends State<AppDrawer> {
                           height: 2,
                         ),
                         DrawerWidget(
-                          image: 'assets/images/iMixNMake.png',
+                          image: '',
                           value: 'Data Privacy',
                           onTapfun: () {
                             print('ontap');
@@ -319,10 +323,10 @@ class _AppDrawerState extends State<AppDrawer> {
                         transform: Matrix4.translationValues(-18, 0.0, 0.0),
                         child: Text("Our Partners", style: headingTextStyle)),
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (BuildContext context) => Ourpatner()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Ourpatner()));
                     },
                   ),
                   SizedBox(
@@ -421,7 +425,7 @@ class _AppDrawerState extends State<AppDrawer> {
                           height: 4,
                         ),
                         DrawerWidget(
-                          image: 'assets/images/icon_track_claim.png',
+                          image: '',
                           value: 'Merck Foundation Sustainability\n Initiative',
                           onTapfun: () {
                             print('ontap');
@@ -431,7 +435,7 @@ class _AppDrawerState extends State<AppDrawer> {
                           height: 4,
                         ),
                         DrawerWidget(
-                          image: 'assets/images/icon_track_claim.png',
+                          image: '',
                           value: 'Merck Africa Asia Luminary',
                           onTapfun: () {
                             print('ontap');
@@ -604,10 +608,10 @@ class _AppDrawerState extends State<AppDrawer> {
                         transform: Matrix4.translationValues(-18, 0.0, 0.0),
                         child: Text("Contact Us", style: headingTextStyle)),
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (BuildContext context) => ContactUs()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => ContactUs()));
                       // Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => Profile()));
                     },
                   ),

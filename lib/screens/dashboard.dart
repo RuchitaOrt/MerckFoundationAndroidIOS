@@ -1,6 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/callforApplication.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/stories.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
@@ -58,7 +59,7 @@ class _DashboardState extends State<Dashboard>
             Ourprogram(),
             Stories(),
             NewsPage(),
-            // CallforApplication()
+            CallforApplication()
           ]),
       bottomNavigationBar: BottomNavyBar(
       
@@ -72,42 +73,47 @@ class _DashboardState extends State<Dashboard>
         }),
         items: [
           BottomNavyBarItem(
-            icon: Icon(Icons.home),
+            icon: Image.asset("assets/newImages/home_unselect.png", height: 25,),
             title: Text('Home', style: style,),
             activeColor: Customcolor.colorBlue,
                         inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
+            selectedIcon: Image.asset("assets/newImages/home_bottom.png", height: 25,),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.apps),
+            icon: Image.asset("assets/newImages/programs_unselect.png", height: 25,),
             title: Text('Our Program',style: style,),
             activeColor: Colors.blue,
                         inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
+              selectedIcon: Image.asset("assets/newImages/programs_bottom.png", height: 25,),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.video_call),
+            icon: Image.asset("assets/newImages/media_events_unselect.png",height: 25,),
             title: Text('Our Stories',style: style,),
             
             activeColor: Colors.blue,
                         inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
+              selectedIcon: Image.asset("assets/newImages/media_bottom.png",height: 25,),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.new_releases),
+            icon: Image.asset("assets/newImages/news_bottom_unselect.png",height: 25,),
             title: Text(
               'News',style: style,
             ),
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
+              selectedIcon: Image.asset("assets/newImages/news_selected-bottom.png",height: 25,),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.call),
+            icon: Image.asset("assets/newImages/call_for_application_unselect.png",height: 25,),
             title: Text('Call for application',style: style,),
             activeColor: Colors.blue,
                         inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
+              selectedIcon: Image.asset("assets/newImages/call_for_application_bottom.png", height: 25,),
           ),
           // BottomNavyBarItem(
           //   icon: Icon(Icons.perm_media),

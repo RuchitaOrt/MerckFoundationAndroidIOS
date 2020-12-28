@@ -74,6 +74,7 @@ class CustomCardState extends State<CustomeCard> {
             height: SizeConfig.blockSizeVertical * 25,
             width: SizeConfig.blockSizeHorizontal * 100,
             decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
                     image: AssetImage(widget.cardImage), fit: BoxFit.cover)),
             child: Padding(

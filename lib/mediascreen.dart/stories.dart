@@ -5,6 +5,8 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
 
 class Stories extends StatefulWidget {
   @override
@@ -31,18 +33,19 @@ class StoriesState extends State<Stories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: CustomAppBar(
-        //   () {
-        //     Navigator.push(
-        //         context,
-        //         MaterialPageRoute(
-        //             builder: (BuildContext context) => Dashboard(
-        //                   index: 0,
-        //                 )));
-        //   },
-        //   2,
-        //   height: 160,
-        // ),
+      appBar:  InnerCustomAppBar(
+        onTapval: (){
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
+        },
+        index: 1,
+        title: "Video Library",
+        titleImg: "assets/newImages/flowers-1.png",
+        trallingImg1: "assets/newImages/share.png",
+       trallingImg2: "assets/newImages/search.png",
+
+       
+        height: 85,
+      ),
         backgroundColor: Customcolor.background,
         body: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),

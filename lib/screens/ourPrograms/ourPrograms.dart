@@ -1,9 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramDetails.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/motherambassadar.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -63,17 +62,21 @@ class _OurProgramState extends State<Ourprogram> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-        appBar: InnerCustomAppBar(
-        onTapval: (){
-          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
+      backgroundColor: Customcolor.background,
+      appBar: InnerCustomAppBar(
+        onTapval: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => Dashboard(
+                        index: 0,
+                      )));
         },
         index: 2,
         title: "Our Programs",
         titleImg: "assets/newImages/flowers-1.png",
         trallingImg1: "assets/newImages/share.png",
-       trallingImg2: "assets/newImages/search.png",
-
-       
+        trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
       body: ListView(
@@ -118,9 +121,11 @@ class _OurProgramState extends State<Ourprogram> {
                 child: FadeInAnimation(
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (BuildContext context) => OurProgramDetails()
-                      ));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  MotherAmbassadarDetails()));
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(
@@ -129,7 +134,7 @@ class _OurProgramState extends State<Ourprogram> {
                         // padding: EdgeInsets.all(10),
 
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(7),
                           color: _productsAvailable1[index].colors,
                           boxShadow: [
                             BoxShadow(
@@ -182,86 +187,87 @@ class _OurProgramState extends State<Ourprogram> {
   }
 
   Widget slider(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Column(
-          children: <Widget>[
-            Container(
-              child: carouselSlider = CarouselSlider(
-                options: CarouselOptions(
-                  viewportFraction: 1.0,
-                  height: 200,
-                  autoPlay: true,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _current = index;
-                    });
-                  },
-                ),
-                items: _productsAvailable.map((product) {
-                  return new Builder(
-                    builder: (BuildContext context) {
-                      return new Container(
-                        decoration: BoxDecoration(
-                            // borderRadius: BorderRadius.circular(15),
-                            // border: Border.all(
-                            //   width: 1,
-                            // ),
-                            image: DecorationImage(
-                                image: AssetImage(product), fit: BoxFit.cover)),
-                        width: SizeConfig.blockSizeHorizontal * 100,
-                        child: Column(
-                          // crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 0, bottom: 10),
-                              child: Container(
-                                color: Colors.white.withOpacity(0.5),
-                                width: SizeConfig.blockSizeHorizontal * 100,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 10, top: 5, bottom: 5),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      FormLabel(
-                                        text:
-                                            "Merck Capacity Advancement & Diabetes Blue Point Program",
-                                        labelColor: Colors.black,
-                                        fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(1.5),
-                                        maxLines: 2,
-                                        fontweight: FontWeight.w600,
-                                      ),
-                                      SizedBox(
-                                        height: 2,
-                                      ),
-                                      FormLabel(
-                                        text:
-                                            "Building nationwide Diabetes Care Capacity",
-                                        labelColor: Colors.black,
-                                        fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(1.2),
-                                        fontweight: FontWeight.w500,
-                                      ),
-                                    ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 25, left: 10,right: 10, bottom: 10),
+      child: Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Container(
+                child: carouselSlider = CarouselSlider(
+                  options: CarouselOptions(
+                    viewportFraction: 1.0,
+                    height: 180,
+                    autoPlay: true,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _current = index;
+                      });
+                    },
+                  ),
+                  items: _productsAvailable.map((product) {
+                    return new Builder(
+                      builder: (BuildContext context) {
+                        return new Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7),
+
+                              image: DecorationImage(
+                                  image: AssetImage(product), fit: BoxFit.cover)),
+                          width: SizeConfig.blockSizeHorizontal * 100,
+                          child: Column(
+                            // crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 0, bottom: 10),
+                                child: Container(
+                                  color: Colors.white.withOpacity(0.5),
+                                  width: SizeConfig.blockSizeHorizontal * 100,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10, top: 5, bottom: 5),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        FormLabel(
+                                          text:
+                                              "Merck Capacity Advancement & Diabetes Blue Point Program",
+                                          labelColor: Colors.black,
+                                          fontSize: ResponsiveFlutter.of(context)
+                                              .fontSize(1.5),
+                                          maxLines: 2,
+                                          fontweight: FontWeight.w600,
+                                        ),
+                                        SizedBox(
+                                          height: 2,
+                                        ),
+                                        FormLabel(
+                                          text:
+                                              "Building nationwide Diabetes Care Capacity",
+                                          labelColor: Colors.black,
+                                          fontSize: ResponsiveFlutter.of(context)
+                                              .fontSize(1.2),
+                                          fontweight: FontWeight.w500,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                }).toList(),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
@@ -35,6 +36,12 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
     return Scaffold(
       appBar: InnerCustomAppBar(
         onTapval: () {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //       builder: (BuildContext context) => Dashboard(
+          //             index: 1,
+          //           )));
           Navigator.pop(context);
         },
         index: 2,
@@ -253,15 +260,22 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                             });
                           },
                           child: Chip(
-                            backgroundColor: iscall
-                                ? Customcolor.colorPink
-                                : Colors.transparent,
-                            label: Text("Call for Application",
-                                style: TextStyle(
-                                    color: iscall ? Colors.white : Colors.grey,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16)),
-                          ),
+                              backgroundColor: iscall
+                                  ? Customcolor.pinkbg.withOpacity(0.2)
+                                  : Colors.transparent,
+                              label: Text("Call for Application",
+                                  style: TextStyle(
+                                      color:
+                                          iscall ? Colors.black : Colors.grey,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14)),
+                              shape: iscall
+                                  ? RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          color: Customcolor.pink_col),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)))
+                                  : null),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -272,16 +286,23 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                             });
                           },
                           child: Chip(
-                            backgroundColor: islibrary
-                                ? Customcolor.colorPink
-                                : Colors.transparent,
-                            label: Text("Digital Library",
-                                style: TextStyle(
-                                    color:
-                                        islibrary ? Colors.white : Colors.grey,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16)),
-                          ),
+                              backgroundColor: islibrary
+                                  ? Customcolor.pinkbg.withOpacity(0.2)
+                                  : Colors.transparent,
+                              label: Text("Digital Library",
+                                  style: TextStyle(
+                                      color: islibrary
+                                          ? Colors.black
+                                          : Colors.grey,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14)),
+                              shape: islibrary
+                                  ? RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          color: Customcolor.pink_col),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)))
+                                  : null),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -292,15 +313,23 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                             });
                           },
                           child: Chip(
-                            backgroundColor: ismeck
-                                ? Customcolor.colorPink
-                                : Colors.transparent,
-                            label: Text("Merck More Than A Mother Ambassadors",
-                                style: TextStyle(
-                                    color: ismeck ? Colors.white : Colors.grey,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16)),
-                          ),
+                              backgroundColor: ismeck
+                                  ? Customcolor.pinkbg.withOpacity(0.2)
+                                  : Colors.transparent,
+                              label: Text(
+                                  "Merck More Than A Mother Ambassadors",
+                                  style: TextStyle(
+                                      color:
+                                          ismeck ? Colors.black : Colors.grey,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14)),
+                              shape: ismeck
+                                  ? RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          color: Customcolor.pink_col),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)))
+                                  : null),
                         ),
                       ],
                     )
@@ -556,9 +585,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
                                     autoplay: false,
                                     loop: true,
                                     control: SwiperControl(
-                                      iconNext: Icons.arrow_forward_ios,
-                                      iconPrevious: Icons.arrow_back_ios,
-                                    ),
+                                        iconNext: Icons.arrow_forward_ios,
+                                        iconPrevious: Icons.arrow_back_ios,
+                                        size: 20),
                                     children: <Widget>[
                                       Column(
                                         children: [
