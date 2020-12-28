@@ -3,6 +3,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/newReleases.dart';
 import 'package:merckfoundation22dec/screens/ceomessage/messageFromLeadership.dart';
 import 'package:merckfoundation22dec/screens/contactus/contactUs.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourprogramdetail.dart';
 import 'package:merckfoundation22dec/screens/ourpartner/ourPartners.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -366,7 +367,13 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Merck More Than A Mother',
                           onTapfun: () {
-                            print('ontap');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        OurProgram(
+                                          indexpass: 0,
+                                        )));
                           },
                         ),
                         SizedBox(
@@ -408,7 +415,13 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Merck STEM Program',
                           onTapfun: () {
-                            print('ontap');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        OurProgram(
+                                          indexpass: 4,
+                                        )));
                           },
                         ),
                         SizedBox(
