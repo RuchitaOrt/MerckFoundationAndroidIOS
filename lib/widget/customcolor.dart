@@ -47,6 +47,7 @@ class Customcolor {
   static const text_darkblue = const Color(0xff115CAB);
   static const text_darkgrey = const Color(0xff333333);
   static const pinkbg = const Color(0xffFFA4D3);
+  static const cardbg = const Color(0xffCEF5FF);
 }
 
 class AppFonts {

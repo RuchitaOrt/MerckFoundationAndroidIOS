@@ -33,16 +33,17 @@ class OurProgramsDetailsState extends State<OurProgramDetails> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       appBar: InnerCustomAppBar(
         onTapval: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //       builder: (BuildContext context) => Dashboard(
-          //             index: 1,
-          //           )));
-          Navigator.pop(context);
+          // Navigator.pop(context);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => Dashboard(
+                        index: 1,
+                      )));
         },
         index: 2,
         title: "Our Programs",

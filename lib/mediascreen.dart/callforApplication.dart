@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 class CallforApplication extends StatefulWidget {
   @override
@@ -64,6 +62,7 @@ class CallApplicationState extends State<CallforApplication>
             color: Customcolor.background, // Tab Bar color change
             child: TabBar(
               // TabBar
+              
               controller: _tabController,
               labelColor: Customcolor.text_darkblue,
               unselectedLabelColor: Customcolor.text_grey,
@@ -184,6 +183,19 @@ class CallApplicationState extends State<CallforApplication>
               textAlign: TextAlign.center,
               style: TextStyle(color: Customcolor.text_darkgrey),
             ),
+          ),
+
+              SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 60, left: 60),
+            child: Image.asset(
+              "assets/newImages/flowers_footer.png",
+            ),
+          ),
+          SizedBox(
+            height: 10,
           )
         ],
       ),
@@ -254,6 +266,19 @@ class CallApplicationState extends State<CallforApplication>
               textAlign: TextAlign.center,
               style: TextStyle(color: Customcolor.text_darkgrey),
             ),
+          ),
+
+              SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 60, left: 60),
+            child: Image.asset(
+              "assets/newImages/flowers_footer.png",
+            ),
+          ),
+          SizedBox(
+            height: 10,
           )
         ],
       ),

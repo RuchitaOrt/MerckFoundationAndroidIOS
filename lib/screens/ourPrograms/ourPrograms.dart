@@ -2,7 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/screens/ourPrograms/motherambassadar.dart';
+
+import 'package:merckfoundation22dec/screens/ourPrograms/ourprogramdetail.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -85,7 +86,7 @@ class _OurProgramState extends State<Ourprogram> {
           slider(context),
           oorprogram(),
           SizedBox(
-            height: 10,
+            height: 15,
           ),
           Padding(
             padding: const EdgeInsets.only(right: 60, left: 60),
@@ -103,7 +104,7 @@ class _OurProgramState extends State<Ourprogram> {
 
   Widget oorprogram() {
     return Container(
-      height: SizeConfig.blockSizeVertical * 100,
+   //   height: SizeConfig.blockSizeVertical * 100,
       child: AnimationLimiter(
         child: ListView.builder(
           shrinkWrap: true,
@@ -121,11 +122,21 @@ class _OurProgramState extends State<Ourprogram> {
                 child: FadeInAnimation(
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  MotherAmbassadarDetails()));
+                      if (index == 0) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => OurProgram(
+                                      indexpass: 0,
+                                    )));
+                      } else if (index == 4) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => OurProgram(
+                                      indexpass: 4,
+                                    )));
+                      }
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(

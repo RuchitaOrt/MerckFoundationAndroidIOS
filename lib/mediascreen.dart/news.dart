@@ -32,70 +32,87 @@ class NewsState extends State<NewsPage> {
       ),
         body: Column(
           children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: 7,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.only(left: 8, right: 8, bottom: 6),
-                    child: Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 8, left: 10, right: 10, top: 8),
-                        child: Column(
-                          children: [
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              //crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ClipRect(
-                                  child: Image.asset(
-                                    "assets/images/slider1.jpg",
-                                    height: 80,
-                                    width: 80,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            color: Customcolor.colorblack,
-                                            fontSize:
-                                                ResponsiveFlutter.of(context)
-                                                    .fontSize(1.8),
-                                            fontWeight: FontWeight.w500),
-                                        maxLines: 4,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+            newsList(),
+
+                SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 60, left: 60),
+            child: Image.asset(
+              "assets/newImages/flowers_footer.png",
             ),
+          ),
+          SizedBox(
+            height: 10,
+          )
           ],
         ));
   }
+}
+
+Widget newsList(){
+  return Expanded(
+      child: ListView.builder(
+                  itemCount: 7,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 6),
+                      child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: 8, left: 10, right: 10, top: 8),
+                          child: Column(
+                            children: [
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                //crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRect(
+                                    child: Image.asset(
+                                      "assets/images/slider1.jpg",
+                                      height: 80,
+                                      width: 80,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Customcolor.colorblack,
+                                              fontSize:
+                                                  ResponsiveFlutter.of(context)
+                                                      .fontSize(1.8),
+                                              fontWeight: FontWeight.w500),
+                                          maxLines: 4,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+  );
 }
 
 // Padding(
