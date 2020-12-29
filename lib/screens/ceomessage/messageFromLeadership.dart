@@ -55,9 +55,8 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                   return Container(
                     //   color: Colors.amber,
                     width: SizeConfig.blockSizeHorizontal * 100,
-                    child: ListView(
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
@@ -73,67 +72,75 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                 )),
                           ),
                         ),
-                        Container(
-                          // margin:
-                          //     EdgeInsets.fromLTRB(16.0, 250.0, 16.0, 16.0),
-                          decoration: BoxDecoration(
-                              color: Customcolor.background,
-                              borderRadius: BorderRadius.circular(5.0)),
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text("Prof. Dr. Frank Stangenberg-Haverkamp",
-                                  //textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Customcolor.pink_col,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700)),
-                              SizedBox(height: 10.0),
-                              Center(
-                                child: Text(
-                                    "Chairman of Board of Trustees of Merck Foundation",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Customcolor.colorBlue,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Center(
-                                child: Text(
-                                    "Chairman of Executive Board and Family Board, E. Merck KG",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Customcolor.colorBlue,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              SizedBox(height: 10.0),
-                              Divider(),
-                              SizedBox(
-                                height: 15.0,
-                              ),
-                              Text(
-                                  "We at Merck, the world’s oldest pharmaceutical and chemical company, know that acting responsibly is key for long-time entrepreneurial success. Therefore, we do a lot for the communities in which we operate in.\n\nI strongly believe that it is crucial to have a real economic transformation with a social dimension that will ensure not only all basic needs but quality of life for everyone. This can never be achieved except with capacity building and the empowerment of women and youth.\n\nThe size and complexity of the task is so large that no single organization can manage on its own, so integration of effort is necessary to realize our vision for a world where everyone can lead healthy and fulﬁlling lives. The private sector has an important role as partner with governments, academia and communities; it is time to take an action now.\n\nTherefore, we will consolidate many of our centrally driven corporate responsibility activities under one single roof: the Merck Foundation. This new philanthropic organization will allow us to considerably expand the scope, reach and effectiveness of our projects. It puts us in a better position to address some of the most pressing health, social and economic challenges of the 21st century.\n\nWe strongly believe that together we can make a signiﬁcant contribution towards the Sustainable Development Goals. With Merck Foundation, our long term commitment to the communities in which we operate will remain strong and consistent as it was throughout generations.",
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(
-                                      color: Customcolor.colorblack,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400)),
-                              SizedBox(height: 10.0),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 60, left: 60),
-                                child: Image.asset(
-                                  "assets/newImages/flowers_footer.png",
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text("Prof. Dr. Frank Stangenberg-Haverkamp",
+                            //textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Customcolor.pink_col,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700)),
+                        SizedBox(height: 10.0),
+                        Center(
+                          child: Text(
+                              "Chairman of Board of Trustees of Merck Foundation",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Customcolor.colorBlue,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400)),
+                        ),
+                        Center(
+                          child: Text(
+                              "Chairman of Executive Board and Family Board, E. Merck KG",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Customcolor.colorBlue,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400)),
+                        ),
+                        Expanded(
+                          child: ListView(
+                            children: [
+                              Container(
+                                // margin:
+                                //     EdgeInsets.fromLTRB(16.0, 250.0, 16.0, 16.0),
+                                decoration: BoxDecoration(
+                                    color: Customcolor.background,
+                                    borderRadius: BorderRadius.circular(5.0)),
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Divider(),
+                                    SizedBox(
+                                      height: 15.0,
+                                    ),
+                                    Text(
+                                        "We at Merck, the world’s oldest pharmaceutical and chemical company, know that acting responsibly is key for long-time entrepreneurial success. Therefore, we do a lot for the communities in which we operate in.\n\nI strongly believe that it is crucial to have a real economic transformation with a social dimension that will ensure not only all basic needs but quality of life for everyone. This can never be achieved except with capacity building and the empowerment of women and youth.\n\nThe size and complexity of the task is so large that no single organization can manage on its own, so integration of effort is necessary to realize our vision for a world where everyone can lead healthy and fulﬁlling lives. The private sector has an important role as partner with governments, academia and communities; it is time to take an action now.\n\nTherefore, we will consolidate many of our centrally driven corporate responsibility activities under one single roof: the Merck Foundation. This new philanthropic organization will allow us to considerably expand the scope, reach and effectiveness of our projects. It puts us in a better position to address some of the most pressing health, social and economic challenges of the 21st century.\n\nWe strongly believe that together we can make a signiﬁcant contribution towards the Sustainable Development Goals. With Merck Foundation, our long term commitment to the communities in which we operate will remain strong and consistent as it was throughout generations.",
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(
+                                            color: Customcolor.colorblack,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400)),
+                                    SizedBox(height: 10.0),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 60, left: 60),
+                                      child: Image.asset(
+                                        "assets/newImages/flowers_footer.png",
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    )
+                                  ],
                                 ),
                               ),
-                              SizedBox(
-                                height: 10,
-                              )
                             ],
                           ),
                         ),

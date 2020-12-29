@@ -120,6 +120,7 @@ class CallApplicationState extends State<CallforApplication>
           Expanded(
             child: Swiper(
               fade: 0.0,
+            
               itemBuilder: (BuildContext context, int index) {
                 return Column(
                   children: [

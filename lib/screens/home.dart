@@ -213,8 +213,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       flex: 3,
                       child: TabBarView(controller: _tabController, children: [
                         callforApplication(),
-                        callforApplication(),
-                        callforApplication()
+                        digitalLibrary(),
+                        merckmorethanmother()
                       ]),
                     ),
                   ],
@@ -489,13 +489,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               //                         ? Swiper.children(
               //                             autoplay: false,
               //                             loop: true,
-              //                             // pagination: SwiperPagination(
-              //                             //   margin: EdgeInsets.only(
-              //                             //     right: 25.0,
-              //                             //   ),
-              //                             //   builder: DotSwiperPaginationBuilder(
-              //                             //       color: Colors.grey),
-              //                             // ),
+
               //                             control: SwiperControl(
               //                               iconNext: Icons.arrow_forward_ios,
               //                               iconPrevious: Icons.arrow_back_ios,
@@ -668,228 +662,415 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   Widget callforApplication() {
-    return Container(
-      // height: 1800,
-      color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 10,
+        right: 10,
+        top: 10,
+      ),
+      child: Card(
+        elevation: 5,
+        // height: 1800,
+        color: Colors.white,
+
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 12,
+            right: 12,
+            top: 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                      child: Text(
+                    "Upcoming Events",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
+                  )),
+                  GestureDetector(
+                    onTap: () {
+                      print("in tap");
+                      setState(() {
+                        expandClick = !expandClick;
+                      });
+                    },
+                    child: Image.asset(
+                      "assets/newImages/expand_more.png",
+                      width: 30,
+                      height: 30,
+                    ),
+                  )
+                ],
+              ),
               Expanded(
-                  child: Text(
-                "Upcoming Events",
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black),
-              )),
-              GestureDetector(
-                onTap: () {
-                  print("in tap");
-                  setState(() {
-                    expandClick = !expandClick;
-                  });
-                },
-                child: Image.asset(
-                  "assets/newImages/expand_more.png",
-                  width: 30,
-                  height: 30,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Swiper.children(
+                        autoplay: false,
+                        loop: true,
+                        // pagination: SwiperPagination(
+                        //   margin: EdgeInsets.only(
+                        //     right: 25.0,
+                        //   ),
+                        //   builder: DotSwiperPaginationBuilder(
+                        //       color: Colors.grey),
+                        // ),
+                        control: SwiperControl(
+                            iconNext: Icons.arrow_forward_ios,
+                            iconPrevious: Icons.arrow_back_ios,
+                            size: 20),
+                        children: <Widget>[
+                          Column(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    right: 40.0,
+                                    left: 30,
+                                  ),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      child: Image.asset(
+                                        "assets/newImages/cfa1.png",
+                                        height: 300,
+                                        fit: BoxFit.fill,
+                                      ))),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text("UNESCO-MARS 2020",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                  ))
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    right: 40.0,
+                                    left: 30,
+                                  ),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      child: Image.asset(
+                                        "assets/newImages/cfa1.png",
+                                        height: 300,
+                                        fit: BoxFit.fill,
+                                      ))),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text("UNESCO-MARS 2020",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                  ))
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    right: 40.0,
+                                    left: 30,
+                                  ),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      child: Image.asset(
+                                        "assets/newImages/cfa1.png",
+                                        height: 300,
+                                        fit: BoxFit.fill,
+                                      ))),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text("UNESCO-MARS 2020",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                  ))
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    right: 40.0,
+                                    left: 30,
+                                  ),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      child: Image.asset(
+                                        "assets/newImages/cfa1.png",
+                                        height: 300,
+                                        fit: BoxFit.fill,
+                                      ))),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text("UNESCO-MARS 2020",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                  ))
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    right: 40.0,
+                                    left: 30,
+                                  ),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      child: Image.asset(
+                                        "assets/newImages/cfa1.png",
+                                        height: 300,
+                                        fit: BoxFit.fill,
+                                      ))),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text("UNESCO-MARS 2020",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                  ))
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    expandClick
+                        ? Container(
+                            height: 130,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Card(
+                              elevation: 5,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    top: 20, left: 10, right: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Upcoming Events",
+                                      style: TextStyle(
+                                        color: Customcolor.colorblack,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Container(
+                                      height: 1,
+                                      color: Customcolor.colorblack
+                                          .withOpacity(0.4),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      "Past Events",
+                                      style: TextStyle(
+                                        color: Customcolor.colorblack,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          )
+                        : Container()
+                  ],
                 ),
               )
             ],
           ),
-          Expanded(
-            child: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Swiper.children(
-                    autoplay: false,
-                    loop: true,
-                    // pagination: SwiperPagination(
-                    //   margin: EdgeInsets.only(
-                    //     right: 25.0,
-                    //   ),
-                    //   builder: DotSwiperPaginationBuilder(
-                    //       color: Colors.grey),
-                    // ),
-                    control: SwiperControl(
-                        iconNext: Icons.arrow_forward_ios,
-                        iconPrevious: Icons.arrow_back_ios,
-                        size: 20),
-                    children: <Widget>[
-                      Column(
-                        children: [
-                          Container(
-                              margin: EdgeInsets.only(
-                                right: 40.0,
-                                left: 30,
-                              ),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  child: Image.asset(
-                                    "assets/newImages/cfa1.png",
-                                    height: 300,
-                                    fit: BoxFit.fill,
-                                  ))),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text("UNESCO-MARS 2020",
-                              style: TextStyle(
-                                fontSize: 17,
-                              ))
-                        ],
+        ),
+      ),
+    );
+  }
+
+  Widget digitalLibrary() {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 10,
+        right: 10,
+        top: 10,
+      ),
+      child: Card(
+        elevation: 5,
+        // height: 1800,
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 12,right: 12,top: 12),
+          child: Swiper.children(
+            autoplay: false,
+            loop: true,
+            control: SwiperControl(
+                iconNext: Icons.arrow_forward_ios,
+                iconPrevious: Icons.arrow_back_ios,
+                size: 20),
+            children: <Widget>[
+              Column(
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(
+                        right: 40.0,
+                        left: 30,
                       ),
-                      Column(
-                        children: [
-                          Container(
-                              margin: EdgeInsets.only(
-                                right: 40.0,
-                                left: 30,
-                              ),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  child: Image.asset(
-                                    "assets/newImages/cfa1.png",
-                                    height: 300,
-                                    fit: BoxFit.fill,
-                                  ))),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text("UNESCO-MARS 2020",
-                              style: TextStyle(
-                                fontSize: 17,
-                              ))
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                              margin: EdgeInsets.only(
-                                right: 40.0,
-                                left: 30,
-                              ),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  child: Image.asset(
-                                    "assets/newImages/cfa1.png",
-                                    height: 300,
-                                    fit: BoxFit.fill,
-                                  ))),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text("UNESCO-MARS 2020",
-                              style: TextStyle(
-                                fontSize: 17,
-                              ))
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                              margin: EdgeInsets.only(
-                                right: 40.0,
-                                left: 30,
-                              ),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  child: Image.asset(
-                                    "assets/newImages/cfa1.png",
-                                    height: 300,
-                                    fit: BoxFit.fill,
-                                  ))),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text("UNESCO-MARS 2020",
-                              style: TextStyle(
-                                fontSize: 17,
-                              ))
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                              margin: EdgeInsets.only(
-                                right: 40.0,
-                                left: 30,
-                              ),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  child: Image.asset(
-                                    "assets/newImages/cfa1.png",
-                                    height: 300,
-                                    fit: BoxFit.fill,
-                                  ))),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text("UNESCO-MARS 2020",
-                              style: TextStyle(
-                                fontSize: 17,
-                              ))
-                        ],
-                      ),
-                    ],
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: Image.asset(
+                            "assets/newImages/cfa1.png",
+                            height: 300,
+                            fit: BoxFit.fill,
+                          ))),
+                  SizedBox(
+                    height: 8,
                   ),
-                ),
-                expandClick
-                    ? Container(
-                        height: 130,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Card(
-                          elevation: 5,
-                          child: Padding(
-                            padding:
-                                EdgeInsets.only(top: 20, left: 10, right: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Upcoming Events",
-                                  style: TextStyle(
-                                    color: Customcolor.colorblack,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Container(
-                                  height: 1,
-                                  color:
-                                      Customcolor.colorblack.withOpacity(0.4),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Text(
-                                  "Past Events",
-                                  style: TextStyle(
-                                    color: Customcolor.colorblack,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                    : Container()
-              ],
-            ),
-          )
-        ],
+                  Text("UNESCO-MARS 2020",
+                      style: TextStyle(
+                        fontSize: 17,
+                      ))
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(
+                        right: 40.0,
+                        left: 30,
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: Image.asset(
+                            "assets/newImages/cfa1.png",
+                            height: 300,
+                            fit: BoxFit.fill,
+                          ))),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text("UNESCO-MARS 2020",
+                      style: TextStyle(
+                        fontSize: 17,
+                      ))
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget merckmorethanmother() {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 10,
+        right: 10,
+        top: 10,
+      ),
+      child: Card(
+        elevation: 5,
+        // height: 1800,
+        color: Colors.white,
+        child: Padding(
+            padding: const EdgeInsets.only(left: 12,right: 12,top: 12),
+          child: Swiper.children(
+            autoplay: false,
+            loop: true,
+            control: SwiperControl(
+                iconNext: Icons.arrow_forward_ios,
+                iconPrevious: Icons.arrow_back_ios,
+                size: 20),
+            children: <Widget>[
+              Column(
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(
+                        right: 40.0,
+                        left: 30,
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: Image.asset(
+                            "assets/newImages/cfa1.png",
+                            height: 300,
+                            fit: BoxFit.fill,
+                          ))),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text("UNESCO-MARS 2020",
+                      style: TextStyle(
+                        fontSize: 17,
+                      ))
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(
+                        right: 40.0,
+                        left: 30,
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: Image.asset(
+                            "assets/newImages/cfa1.png",
+                            height: 300,
+                            fit: BoxFit.fill,
+                          ))),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text("UNESCO-MARS 2020",
+                      style: TextStyle(
+                        fontSize: 17,
+                      ))
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(
+                        right: 40.0,
+                        left: 30,
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: Image.asset(
+                            "assets/newImages/cfa1.png",
+                            height: 300,
+                            fit: BoxFit.fill,
+                          ))),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text("UNESCO-MARS 2020",
+                      style: TextStyle(
+                        fontSize: 17,
+                      ))
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -945,9 +1126,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                           labelColor: Customcolor.pink_col,
                                           fontSize:
                                               ResponsiveFlutter.of(context)
-                                                  .fontSize(1.5),
+                                                  .fontSize(1.4),
                                           maxLines: 2,
-                                          fontweight: FontWeight.w600,
+                                          fontweight: FontWeight.w700,
                                         ),
                                         SizedBox(
                                           height: 2,

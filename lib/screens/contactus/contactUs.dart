@@ -103,7 +103,7 @@ class ContactusState extends State<ContactUs> {
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 25,
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 15, bottom: 10),

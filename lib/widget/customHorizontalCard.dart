@@ -34,16 +34,14 @@ class CustomHorizontalCard extends StatelessWidget {
             SizedBox(
               width: 15,
             ),
-            Expanded(
-              child: FormLabel(
-                text: cardTitle,
-                labelColor: Customcolor.colorPink,
-                fontSize: 17,
-                fontweight: FontWeight.w500,
-              ),
+            FormLabel(
+              text: cardTitle,
+              labelColor: Customcolor.colorPink,
+              fontSize: 17,
+              fontweight: FontWeight.w500,
             ),
             SizedBox(
-              width: 7,
+              width: 10,
             ),
             Image.asset(
               titleImg,

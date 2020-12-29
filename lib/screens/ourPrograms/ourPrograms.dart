@@ -80,23 +80,32 @@ class _OurProgramState extends State<Ourprogram> {
         trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
-      body: ListView(
-        shrinkWrap: true,
+      body: Column(
+      //  shrinkWrap: true,
         children: [
           slider(context),
-          oorprogram(),
-          SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 60, left: 60),
-            child: Image.asset(
-              "assets/newImages/flowers_footer.png",
+          Expanded(
+                      child: ListView(
+              shrinkWrap: true,
+              children: [
+                oorprogram(),
+
+                  SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 60, left: 60),
+              child: Image.asset(
+                "assets/newImages/flowers_footer.png",
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            )
+              ],
             ),
           ),
-          SizedBox(
-            height: 10,
-          )
+        
         ],
       ),
     );
