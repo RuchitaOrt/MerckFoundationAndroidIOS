@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/widget/customappbar.dart';
+
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
+
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
 
 class NewsRelease extends StatefulWidget {
   @override
@@ -19,77 +18,100 @@ class NewsReleaseState extends State<NewsRelease> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Customcolor.background,
-          appBar: InnerCustomAppBar(
-        onTapval: (){
-          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
-        },
-        index: 1,
-        title: "News Releases",
-        titleImg: "assets/newImages/flowers-1.png",
-        trallingImg1: "assets/newImages/share.png",
-       trallingImg2: "assets/newImages/search.png",
+        appBar: InnerCustomAppBar(
+          onTapval: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Dashboard(
+                          index: 0,
+                        )));
+          },
+          index: 1,
+          title: "News Releases",
+          titleImg: "assets/newImages/flowers-1.png",
+          trallingImg1: "assets/newImages/share.png",
+          trallingImg2: "assets/newImages/search.png",
+          height: 85,
+        ),
+        bottomNavigationBar: FlatButton(
+          // color: Colors.amber,
+          shape: RoundedRectangleBorder(
+              side: BorderSide(color: Customcolor.colorBlue)),
 
-       
-        height: 85,
-      ),
-        body: Column(
+          child: Text(
+            "Media Enquiries",
+            style: TextStyle(color: Customcolor.colorBlue),
+          ),
+          minWidth: 80,
+
+          onPressed: () {},
+        ),
+        body: ListView(
+          shrinkWrap: true,
+          physics: ScrollPhysics(),
           children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: 7,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.only(left: 8, right: 8, bottom: 6),
-                    child: Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5),
-                        ),
-                      ),
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(left: 10, right: 10, top: 8),
-                        child: Column(
-                          children: [
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              //crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ClipRect(
-                                  child: Image.asset(
-                                    "assets/newImages/pdf.png",
-                                    height: 80,
-                                    width: 80,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
-                                        fontWeight: FontWeight.w500),
-                                    maxLines: 4,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+            ListView.builder(
+              itemCount: 7,
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 8, right: 8, bottom: 6),
+                  child: Card(
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
                       ),
                     ),
-                  );
-                },
-              ),
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 10, right: 10, top: 8),
+                      child: Column(
+                        children: [
+                          Row(
+                            // mainAxisAlignment: MainAxisAlignment.start,
+                            //crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRect(
+                                child: Image.asset(
+                                  "assets/newImages/pdf.png",
+                                  height: 80,
+                                  width: 80,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: ResponsiveFlutter.of(context)
+                                          .fontSize(1.8),
+                                      fontWeight: FontWeight.w500),
+                                  maxLines: 4,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
+            Image.asset(
+              "assets/newImages/flowers_footer.png",
+            ),
+            SizedBox(
+              height: 10,
+            )
           ],
         ));
   }

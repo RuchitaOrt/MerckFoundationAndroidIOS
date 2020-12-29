@@ -96,7 +96,7 @@ class CallApplicationState extends State<CallforApplication>
             flex: 3,
             child: TabBarView(
               // Tab Bar View
-              physics: BouncingScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               controller: _tabController,
               children: <Widget>[upcomingEvents(), pastEvents()],
             ),

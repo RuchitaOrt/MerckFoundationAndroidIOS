@@ -141,7 +141,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   cardImage: "assets/newImages/message.png",
                   cardTitle:
                       "Message Form Dr.Rasha Kelej, CEO of Merck Foundation",
-                  titleColor: Customcolor.text_blue,
+                  titleColor: Customcolor.text_darkblue,
                   titleImg: "assets/newImages/flowers-1.png",
                   subTitle:
                       "Message Form Dr.Rasha Kelej, on the inauguration..."),
@@ -152,7 +152,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   index: 2,
                   cardImage: "assets/newImages/mqdefault.png",
                   cardTitle: "Our Stories",
-                  titleColor: Customcolor.text_blue,
+                  titleColor: Customcolor.text_darkblue,
                   titleImg: "assets/newImages/flowers-2.png",
                   subTitle:
                       "Message Form Dr.Rasha Kelej, on the inauguration..."),
@@ -164,7 +164,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   index: 3,
                   cardImage: "assets/newImages/gallery.png",
                   cardTitle: "Photo Gallery",
-                  titleColor: Customcolor.text_blue,
+                  titleColor: Customcolor.text_darkblue,
                   titleImg: "assets/newImages/flowers-3.png",
                   subTitle:
                       "Message Form Dr.Rasha Kelej, on the inauguration..."),

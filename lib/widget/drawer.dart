@@ -86,13 +86,24 @@ class _AppDrawerState extends State<AppDrawer> {
                               width: 200,
                               height: 140,
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 40, right: 20),
-                              child: Image.asset(
-                                'assets/newImages/arrow_forward.png',
-                                width: 20,
-                                height: 20,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            Dashboard(
+                                              index: 0,
+                                            )));
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 40, right: 20),
+                                child: Image.asset(
+                                  'assets/newImages/arrow_forward.png',
+                                  width: 20,
+                                  height: 20,
+                                ),
                               ),
                             ),
                           ],

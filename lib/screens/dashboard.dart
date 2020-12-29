@@ -27,7 +27,8 @@ class _DashboardState extends State<Dashboard>
   PageController tabBarController;
   int currentIndex;
 
-  var style = TextStyle(color: Customcolor.colorBlue, fontWeight: FontWeight.w800, fontSize: 12);
+  var style = TextStyle(
+      color: Customcolor.colorBlue, fontWeight: FontWeight.w800, fontSize: 12);
 
   @override
   void initState() {
@@ -50,7 +51,7 @@ class _DashboardState extends State<Dashboard>
       //   1,
       //   height: 120,
       // ),
-     
+
       body: PageView(
           controller: tabBarController,
           physics: NeverScrollableScrollPhysics(),
@@ -62,7 +63,6 @@ class _DashboardState extends State<Dashboard>
             CallforApplication()
           ]),
       bottomNavigationBar: BottomNavyBar(
-      
         selectedIndex: currentIndex,
         showElevation: true,
         itemCornerRadius: 8,
@@ -74,30 +74,39 @@ class _DashboardState extends State<Dashboard>
         items: [
           BottomNavyBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home', style: style,),
+            title: Text(
+              'Home',
+              style: style,
+            ),
             activeColor: Customcolor.colorBlue,
-                        inactiveColor: Colors.grey,
+            inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.apps),
-            title: Text('Our Program',style: style,),
+            title: Text(
+              'Our Program',
+              style: style,
+            ),
             activeColor: Colors.blue,
-                        inactiveColor: Colors.grey,
+            inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.video_call),
-            title: Text('Our Stories',style: style,),
-            
+            title: Text(
+              'Our Stories',
+              style: style,
+            ),
             activeColor: Colors.blue,
-                        inactiveColor: Colors.grey,
+            inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.new_releases),
             title: Text(
-              'News',style: style,
+              'News',
+              style: style,
             ),
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,
@@ -105,9 +114,14 @@ class _DashboardState extends State<Dashboard>
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.call),
-            title: Text('Call for application',style: style,),
+            title: Expanded(
+                child: Text(
+              'Call for Application',
+              style: style,
+              maxLines: 2,
+            )),
             activeColor: Colors.blue,
-                        inactiveColor: Colors.grey,
+            inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
           ),
           // BottomNavyBarItem(
