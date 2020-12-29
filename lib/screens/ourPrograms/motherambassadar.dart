@@ -42,7 +42,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
         height: 85,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
+        padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
         child: ListView(
           shrinkWrap: true,
           //  crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,26 +195,44 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: CustomHorizontalCard(
-                  index: 1,
-                  cardImage: "assets/newImages/gallery.png",
-                  cardTitle:
-                      "Watch below some of the latest videos of Dr. Rasha kelej and first ladies of Africa. Ambassadars of Merck More than a Mother",
-                  titleColor: Customcolor.text_blue,
-                  titleImg: "assets/newImages/flowers-3.png",
-                  subTitle:
-                      "Message Form Dr.Rasha Kelej, on the inauguration..."),
+            Center(
+              child: Container(
+                width: 120,
+                height: 40,
+                decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(5)),
+                child: Center(
+                  child: Text(
+                    "Watch More",
+                    style: TextStyle(
+                        color: Customcolor.colorBlue,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            CustomHorizontalCard(
+                index: 1,
+                cardImage: "assets/newImages/gallery.png",
+                cardTitle:
+                    "Watch below some of the latest videos of Dr. Rasha kelej and first ladies of Africa. Ambassadars of Merck More than a Mother",
+                titleColor: Customcolor.pink_col,
+                titleImg: "assets/newImages/flowers-3.png",
+                subTitle:
+                    "Message Form Dr.Rasha Kelej, on the inauguration..."),
             Padding(
-              padding: const EdgeInsets.only(left: 10, top: 20),
+              padding: const EdgeInsets.only(top: 20),
               child: CustomHorizontalCard(
                   index: 1,
                   cardImage: "assets/newImages/gallery.png",
                   cardTitle:
                       "Acknowledging the efforts of first ladies as Ambassadars of Merck More than a Mother",
-                  titleColor: Customcolor.text_blue,
+                  titleColor: Customcolor.pink_col,
                   titleImg: "assets/newImages/flowers-3.png",
                   subTitle:
                       "Message Form Dr.Rasha Kelej, on the inauguration..."),

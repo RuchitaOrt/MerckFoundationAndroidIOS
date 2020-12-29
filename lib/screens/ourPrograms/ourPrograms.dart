@@ -36,7 +36,7 @@ class _OurProgramState extends State<Ourprogram> {
   ];
   List<programclass> _productsAvailable1 = [
     programclass(
-        programname: "Merck More Than A Mother", colors: Customcolor.colorBlue),
+        programname: "Merck More Than A Mother", colors: Customcolor.text_blue),
     programclass(
         programname: "Merck Cancer Access Program",
         colors: Customcolor.colorLightGreen),
@@ -46,7 +46,7 @@ class _OurProgramState extends State<Ourprogram> {
         colors: Customcolor.baby_blue),
     programclass(
         programname: "Merck Foundation First Ladies Initiative Summit",
-        colors: Customcolor.colorPink),
+        colors: Customcolor.pink_col),
     programclass(
         programname: "Merck STEM Program", colors: Customcolor.colorVoilet),
     programclass(
@@ -104,7 +104,7 @@ class _OurProgramState extends State<Ourprogram> {
 
   Widget oorprogram() {
     return Container(
-   //   height: SizeConfig.blockSizeVertical * 100,
+      //   height: SizeConfig.blockSizeVertical * 100,
       child: AnimationLimiter(
         child: ListView.builder(
           shrinkWrap: true,
@@ -199,7 +199,7 @@ class _OurProgramState extends State<Ourprogram> {
 
   Widget slider(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 25, left: 10,right: 10, bottom: 10),
+      padding: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
       child: Stack(
         children: <Widget>[
           Column(
@@ -222,9 +222,9 @@ class _OurProgramState extends State<Ourprogram> {
                         return new Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(7),
-
                               image: DecorationImage(
-                                  image: AssetImage(product), fit: BoxFit.cover)),
+                                  image: AssetImage(product),
+                                  fit: BoxFit.cover)),
                           width: SizeConfig.blockSizeHorizontal * 100,
                           child: Column(
                             // crossAxisAlignment: CrossAxisAlignment.end,
@@ -240,14 +240,16 @@ class _OurProgramState extends State<Ourprogram> {
                                     padding: const EdgeInsets.only(
                                         left: 10, right: 10, top: 5, bottom: 5),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
                                         FormLabel(
                                           text:
                                               "Merck Capacity Advancement & Diabetes Blue Point Program",
                                           labelColor: Colors.black,
-                                          fontSize: ResponsiveFlutter.of(context)
-                                              .fontSize(1.5),
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(1.6),
                                           maxLines: 2,
                                           fontweight: FontWeight.w600,
                                         ),
@@ -258,9 +260,10 @@ class _OurProgramState extends State<Ourprogram> {
                                           text:
                                               "Building nationwide Diabetes Care Capacity",
                                           labelColor: Colors.black,
-                                          fontSize: ResponsiveFlutter.of(context)
-                                              .fontSize(1.2),
-                                          fontweight: FontWeight.w500,
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(1.5),
+                                          fontweight: FontWeight.w600,
                                         ),
                                       ],
                                     ),

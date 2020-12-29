@@ -587,7 +587,7 @@ class MerckstemprogramState extends State<Merckstemprogram> {
                   index: 1,
                   cardImage: "assets/newImages/gallery.png",
                   cardTitle: "Our Videos",
-                  titleColor: Customcolor.text_blue,
+                  titleColor: Customcolor.pink_col,
                   titleImg: "assets/newImages/flowers-3.png",
                   subTitle:
                       "Message Form Dr.Rasha Kelej, on the inauguration..."),
@@ -601,7 +601,7 @@ class MerckstemprogramState extends State<Merckstemprogram> {
                   index: 1,
                   cardImage: "assets/newImages/gallery.png",
                   cardTitle: "Photo Gallery",
-                  titleColor: Customcolor.text_blue,
+                  titleColor: Customcolor.pink_col,
                   titleImg: "assets/newImages/flowers-3.png",
                   subTitle:
                       "Message Form Dr.Rasha Kelej, on the inauguration..."),
@@ -615,7 +615,7 @@ class MerckstemprogramState extends State<Merckstemprogram> {
                   index: 1,
                   cardImage: "assets/newImages/gallery.png",
                   cardTitle: "Our Newsletters",
-                  titleColor: Customcolor.text_blue,
+                  titleColor: Customcolor.pink_col,
                   titleImg: "assets/newImages/flowers-3.png",
                   subTitle:
                       "Message Form Dr.Rasha Kelej, on the inauguration..."),
@@ -633,9 +633,9 @@ class MerckstemprogramState extends State<Merckstemprogram> {
                     ),
                     FormLabel(
                       text: "Alumini Testimonials",
-                      labelColor: Customcolor.colorPink,
+                      labelColor: Customcolor.pink_col,
                       fontSize: 18,
-                      fontweight: FontWeight.w700,
+                      fontweight: FontWeight.w500,
                       maxLines: 2,
                     ),
                     SizedBox(

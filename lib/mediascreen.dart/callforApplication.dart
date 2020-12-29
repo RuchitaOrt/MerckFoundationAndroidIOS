@@ -62,7 +62,7 @@ class CallApplicationState extends State<CallforApplication>
             color: Customcolor.background, // Tab Bar color change
             child: TabBar(
               // TabBar
-              
+
               controller: _tabController,
               labelColor: Customcolor.text_darkblue,
               unselectedLabelColor: Customcolor.text_grey,
@@ -78,14 +78,15 @@ class CallApplicationState extends State<CallforApplication>
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         //   color: Customcolor.colorBlue,
-                        fontSize: 15),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w900),
                   ),
                 ),
                 Tab(
                   child: Text(
                     "Past Call \nfor Application",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900),
                   ),
                 ),
               ],
@@ -184,8 +185,7 @@ class CallApplicationState extends State<CallforApplication>
               style: TextStyle(color: Customcolor.text_darkgrey),
             ),
           ),
-
-              SizedBox(
+          SizedBox(
             height: 15,
           ),
           Padding(
@@ -267,8 +267,7 @@ class CallApplicationState extends State<CallforApplication>
               style: TextStyle(color: Customcolor.text_darkgrey),
             ),
           ),
-
-              SizedBox(
+          SizedBox(
             height: 15,
           ),
           Padding(

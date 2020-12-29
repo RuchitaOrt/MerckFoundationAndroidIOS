@@ -27,7 +27,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                       )));
         },
         index: 2,
-        title: "Message from\n LeadershipTeam",
+        title: "Message from\nLeadershipTeam",
         titleImg: "assets/newImages/flowers-1.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -83,20 +83,23 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text("Prof. Dr. Frank Stangenberg-Haverkamp",
-                                  //textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Customcolor.pink_col,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700)),
+                              Center(
+                                child: Text(
+                                    "Prof. Dr. Frank Stangenberg-Haverkamp",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Customcolor.pink_col,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500)),
+                              ),
                               SizedBox(height: 10.0),
                               Center(
                                 child: Text(
                                     "Chairman of Board of Trustees of Merck Foundation",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: Customcolor.colorBlue,
-                                        fontSize: 14,
+                                        color: Customcolor.text_darkblue,
+                                        fontSize: 12,
                                         fontWeight: FontWeight.w400)),
                               ),
                               Center(
@@ -104,8 +107,8 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                     "Chairman of Executive Board and Family Board, E. Merck KG",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: Customcolor.colorBlue,
-                                        fontSize: 14,
+                                        color: Customcolor.text_darkblue,
+                                        fontSize: 12,
                                         fontWeight: FontWeight.w400)),
                               ),
                               SizedBox(height: 10.0),

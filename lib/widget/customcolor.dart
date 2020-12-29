@@ -20,7 +20,7 @@ class Customcolor {
   static const twitter_blue = const Color(0xff1DA1F2);
   static const youtube_red = const Color(0xffbb0000);
 
-  static const colorLightGreen = const Color(0xffA9CE2E);
+  static const colorLightGreen = const Color(0xffAACE2E);
   static const colorGrey = const Color(0xff7AA2BC);
   static const colorBrown = const Color(0xffD69345);
   static const colorAfricanVoilet = const Color(0xffb284be);
