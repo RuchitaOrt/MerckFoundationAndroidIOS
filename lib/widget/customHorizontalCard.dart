@@ -29,27 +29,51 @@ class CustomHorizontalCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            SizedBox(
-              width: 15,
-            ),
-            FormLabel(
-              text: cardTitle,
-              labelColor: Customcolor.colorPink,
-              fontSize: 17,
-              fontweight: FontWeight.w500,
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Image.asset(
-              titleImg,
-              width: 40,
-              height: 40,
-            )
-          ],
+        RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: cardTitle,
+                style: TextStyle(
+                  color: titleColor,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              WidgetSpan(
+                alignment: PlaceholderAlignment.bottom,
+                child: Image.asset(
+                  titleImg,
+                  width: 40,
+                  height: 25,
+                ),
+              ),
+            ],
+          ),
         ),
+        // Row(
+        //   children: [
+        //     SizedBox(
+        //       width: 15,
+        //     ),
+        //     Expanded(
+        //       child: FormLabel(
+        //         text: cardTitle,
+        //         labelColor: Customcolor.colorPink,
+        //         fontSize: 17,
+        //         fontweight: FontWeight.w500,
+        //       ),
+        //     ),
+        //     SizedBox(
+        //       width: 7,
+        //     ),
+        //     Image.asset(
+        //       titleImg,
+        //       width: 40,
+        //       height: 40,
+        //     )
+        //   ],
+        // ),
         SizedBox(
           height: 10,
         ),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+
 import 'package:merckfoundation22dec/widget/customcolor.dart';
+
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
 
 class NewsRelease extends StatefulWidget {
   @override
@@ -17,75 +18,109 @@ class NewsReleaseState extends State<NewsRelease> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Customcolor.background,
-          appBar: InnerCustomAppBar(
-        onTapval: (){
-          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
-        },
-        index: 1,
-        title: "News Releases",
-        titleImg: "assets/newImages/flowers-1.png",
-        trallingImg1: "assets/newImages/share.png",
-       trallingImg2: "assets/newImages/search.png",
-
-       
-        height: 85,
-      ),
-        body: Column(
+        appBar: InnerCustomAppBar(
+          onTapval: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Dashboard(
+                          index: 0,
+                        )));
+          },
+          index: 1,
+          title: "News Releases",
+          titleImg: "assets/newImages/flowers-1.png",
+          trallingImg1: "assets/newImages/share.png",
+          trallingImg2: "assets/newImages/search.png",
+          height: 85,
+        ),
+        body: Stack(
           children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: 7,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.only(left: 8, right: 8, bottom: 6),
-                    child: Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5),
+            ListView(
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              children: [
+                ListView.builder(
+                  itemCount: 7,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 6),
+                      child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10, top: 8),
+                          child: Column(
+                            children: [
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                //crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRect(
+                                    child: Image.asset(
+                                      "assets/newImages/pdf.png",
+                                      height: 80,
+                                      width: 80,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(1.8),
+                                          fontWeight: FontWeight.w500),
+                                      maxLines: 4,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(left: 10, right: 10, top: 8),
-                        child: Column(
-                          children: [
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              //crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ClipRect(
-                                  child: Image.asset(
-                                    "assets/newImages/pdf.png",
-                                    height: 80,
-                                    width: 80,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
-                                        fontWeight: FontWeight.w500),
-                                    maxLines: 4,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 60, right: 60, top: 20, bottom: 10),
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                  ),
+                ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 90, right: 90, bottom: 20),
+                child: FlatButton(
+                  color: Customcolor.text_blue,
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Customcolor.text_blue)),
+                  child: Text(
+                    "Media Enquiries",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  minWidth: 40,
+                  onPressed: () {},
+                ),
               ),
             ),
           ],

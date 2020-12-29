@@ -155,37 +155,56 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 height: 12,
               ),
               CustomeCard(
-                  index: 1,
-                  cardImage: "assets/newImages/message.png",
-                  cardTitle:
-                      "Message Form Dr.Rasha Kelej, CEO of Merck Foundation",
-                  titleColor: Customcolor.text_blue,
-                  titleImg: "assets/newImages/flowers-1.png",
-                  subTitle:
-                      "Message Form Dr.Rasha Kelej, on the inauguration..."),
+                index: 1,
+                cardImage: "assets/newImages/message.png",
+                cardTitle:
+                    "Message Form Dr.Rasha Kelej, CEO of Merck Foundation",
+                titleColor: Customcolor.text_darkblue,
+                titleImg: "assets/newImages/flowers-1.png",
+                subTitle: "Message Form Dr.Rasha Kelej, on the inauguration...",
+                buttontitle: "Read More ",
+                buttontitlecolor: Customcolor.text_darkblue,
+              ),
               SizedBox(
                 height: 12,
               ),
               CustomeCard(
-                  index: 2,
-                  cardImage: "assets/newImages/mqdefault.png",
-                  cardTitle: "Our Stories",
-                  titleColor: Customcolor.text_blue,
-                  titleImg: "assets/newImages/flowers-2.png",
-                  subTitle:
-                      "Message Form Dr.Rasha Kelej, on the inauguration..."),
+                index: 2,
+                cardImage: "assets/newImages/mqdefault.png",
+                cardTitle: "Our Stories",
+                titleColor: Customcolor.text_darkblue,
+                titleImg: "assets/newImages/flowers-2.png",
+                subTitle: "Message Form Dr.Rasha Kelej, on the inauguration...",
+                buttontitle: "Watch More ",
+                buttontitlecolor: Customcolor.text_darkblue,
+              ),
 
               SizedBox(
                 height: 8,
               ),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text:
+                          "Message Form Dr.Rasha Kelej, on the inauguration Message Form Dr.Rasha Kelej, on the inauguration...",
+                    ),
+                    WidgetSpan(
+                      child: Icon(Icons.add, size: 14),
+                    ),
+                  ],
+                ),
+              ),
               CustomeCard(
-                  index: 3,
-                  cardImage: "assets/newImages/gallery.png",
-                  cardTitle: "Photo Gallery",
-                  titleColor: Customcolor.text_blue,
-                  titleImg: "assets/newImages/flowers-3.png",
-                  subTitle:
-                      "Message Form Dr.Rasha Kelej, on the inauguration..."),
+                index: 3,
+                cardImage: "assets/newImages/gallery.png",
+                cardTitle: "Photo Gallery",
+                titleColor: Customcolor.text_darkblue,
+                titleImg: "assets/newImages/flowers-3.png",
+                subTitle: "Message Form Dr.Rasha Kelej, on the inauguration...",
+                buttontitle: "View More ",
+                buttontitlecolor: Customcolor.text_darkblue,
+              ),
 
               SizedBox(
                 height: 8,
@@ -203,7 +222,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       indicator: new BubbleTabIndicator(
                         indicatorHeight: 35.0,
                         indicatorRadius: 5,
-                        indicatorColor: Customcolor.pinkbg,
+                        indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
                         tabBarIndicatorSize: TabBarIndicatorSize.tab,
                       ),
                       tabs: tabs,

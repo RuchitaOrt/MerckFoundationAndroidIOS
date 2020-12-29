@@ -218,7 +218,7 @@ class _MyHomePageState extends State<OurProgram> {
                                         labelColor: Customcolor.text_blue,
                                         fontweight: FontWeight.w500,
                                         fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
+                                            .fontSize(1.6),
                                       ),
                                       Divider(
                                         color: Customcolor.colorBlue,
@@ -252,7 +252,7 @@ class _MyHomePageState extends State<OurProgram> {
           useAsFloatingActionButton: useAsFloatingActionButton,
           //useAsNavigationBar: useNavigationBar,
           controller: mabialaFABController,
-          animationDuration: Duration(milliseconds: 350),
+          animationDuration: Duration(milliseconds: 150),
         )
         // This trailing comma makes auto-formatting nicer for build methods.
         );

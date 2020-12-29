@@ -44,9 +44,7 @@ class OurpatnerState extends State<Ourpatner> {
             left: 10,
             right: 10,
           ),
-          child: ListView(
-            shrinkWrap: true,
-            // crossAxisAlignment: CrossAxisAlignment.center,
+          child: Column(
             children: [
               Container(
                 height: 250,
@@ -102,7 +100,7 @@ class OurpatnerState extends State<Ourpatner> {
                         viewportFraction: 0.9,
                         layout: SwiperLayout.TINDER,
                         //  autoplay: true,
-                        scale: 0.6,
+                        scale: 0.8,
                         //outer: true,
                         itemWidth: 300.0,
                         //itemHeight: 400,
@@ -112,54 +110,61 @@ class OurpatnerState extends State<Ourpatner> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 10, right: 10, top: 8, bottom: 15),
-                child: Text(
-                  "We know we can make a greater difference in people’s lives when working together with others. We cooperate with governments, academic institutions, global and local communities, donors, patient associations, international organizations and NGOs.",
-                  style: TextStyle(
-                      color: Customcolor.colorPink,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-              ListView.builder(
+              ListView(
                 shrinkWrap: true,
-                physics: ScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                itemCount: paravalue.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.only(top: 20, left: 10, right: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Expanded(
-                          child: Text(
-                            paravalue[index],
-                            style: TextStyle(
-                              color: Customcolor.text_darkgrey,
-                              fontSize:
-                                  ResponsiveFlutter.of(context).fontSize(1.9),
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        )
-                      ],
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10, right: 10, top: 8, bottom: 15),
+                    child: Text(
+                      "We know we can make a greater difference in people’s lives when working together with others. We cooperate with governments, academic institutions, global and local communities, donors, patient associations, international organizations and NGOs.",
+                      style: TextStyle(
+                          color: Customcolor.colorPink,
+                          fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                          fontWeight: FontWeight.w500),
                     ),
-                  );
-                },
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemCount: paravalue.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding:
+                            const EdgeInsets.only(top: 20, left: 10, right: 10),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                paravalue[index],
+                                style: TextStyle(
+                                  color: Customcolor.text_darkgrey,
+                                  fontSize: ResponsiveFlutter.of(context)
+                                      .fontSize(1.9),
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(right: 60, left: 60, top: 20),
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  )
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 60, left: 60, top: 20),
-                child: Image.asset(
-                  "assets/newImages/flowers_footer.png",
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              )
             ],
           ),
         ));

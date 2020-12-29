@@ -27,7 +27,8 @@ class _DashboardState extends State<Dashboard>
   PageController tabBarController;
   int currentIndex;
 
-  var style = TextStyle(color: Customcolor.colorBlue, fontWeight: FontWeight.w800, fontSize: 12);
+  var style = TextStyle(
+      color: Customcolor.colorBlue, fontWeight: FontWeight.w800, fontSize: 12);
 
   @override
   void initState() {
@@ -50,7 +51,7 @@ class _DashboardState extends State<Dashboard>
       //   1,
       //   height: 120,
       // ),
-     
+
       body: PageView(
           controller: tabBarController,
           physics: NeverScrollableScrollPhysics(),
@@ -62,7 +63,6 @@ class _DashboardState extends State<Dashboard>
             CallforApplication()
           ]),
       bottomNavigationBar: BottomNavyBar(
-      
         selectedIndex: currentIndex,
         showElevation: true,
         itemCornerRadius: 8,
@@ -73,47 +73,99 @@ class _DashboardState extends State<Dashboard>
         }),
         items: [
           BottomNavyBarItem(
-            icon: Image.asset("assets/newImages/home_unselect.png", height: 25,),
-            title: Text('Home', style: style,),
-            activeColor: Customcolor.colorBlue,
-                        inactiveColor: Colors.grey,
-            textAlign: TextAlign.center,
-            selectedIcon: Image.asset("assets/newImages/home_bottom.png", height: 25,),
-          ),
-          BottomNavyBarItem(
-            icon: Image.asset("assets/newImages/programs_unselect.png", height: 25,),
-            title: Text('Our Program',style: style,),
-            activeColor: Colors.blue,
-                        inactiveColor: Colors.grey,
-            textAlign: TextAlign.center,
-              selectedIcon: Image.asset("assets/newImages/programs_bottom.png", height: 25,),
-          ),
-          BottomNavyBarItem(
-            icon: Image.asset("assets/newImages/media_events_unselect.png",height: 25,),
-            title: Text('Our Stories',style: style,),
-            
-            activeColor: Colors.blue,
-                        inactiveColor: Colors.grey,
-            textAlign: TextAlign.center,
-              selectedIcon: Image.asset("assets/newImages/media_bottom.png",height: 25,),
-          ),
-          BottomNavyBarItem(
-            icon: Image.asset("assets/newImages/news_bottom_unselect.png",height: 25,),
+            icon: Image.asset(
+              "assets/newImages/home_unselect.png",
+              height: 25,
+            ),
             title: Text(
-              'News',style: style,
+              'Home',
+              style: style,
+            ),
+            activeColor: Customcolor.colorBlue,
+            inactiveColor: Colors.grey,
+            textAlign: TextAlign.center,
+            selectedIcon: Image.asset(
+              "assets/newImages/home_bottom.png",
+              height: 25,
+            ),
+          ),
+          BottomNavyBarItem(
+            icon: Image.asset(
+              "assets/newImages/programs_unselect.png",
+              height: 25,
+            ),
+            title: Text(
+              'Our Program',
+              style: style,
             ),
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
-              selectedIcon: Image.asset("assets/newImages/news_selected-bottom.png",height: 25,),
+            selectedIcon: Image.asset(
+              "assets/newImages/programs_bottom.png",
+              height: 25,
+            ),
           ),
           BottomNavyBarItem(
-            icon: Image.asset("assets/newImages/call_for_application_unselect.png",height: 25,),
-            title: Text('Call for application',style: style,),
+            icon: Image.asset(
+              "assets/newImages/media_events_unselect.png",
+              height: 25,
+            ),
+            title: Text(
+              'Our Stories',
+              style: style,
+            ),
             activeColor: Colors.blue,
-                        inactiveColor: Colors.grey,
+            inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
-              selectedIcon: Image.asset("assets/newImages/call_for_application_bottom.png", height: 25,),
+            selectedIcon: Image.asset(
+              "assets/newImages/media_bottom.png",
+              height: 25,
+            ),
+          ),
+          BottomNavyBarItem(
+            icon: Image.asset(
+              "assets/newImages/news_bottom_unselect.png",
+              height: 25,
+            ),
+            title: Text(
+              'News',
+              style: style,
+            ),
+            activeColor: Colors.blue,
+            inactiveColor: Colors.grey,
+            textAlign: TextAlign.center,
+            selectedIcon: Image.asset(
+              "assets/newImages/news_selected-bottom.png",
+              height: 25,
+            ),
+          ),
+          BottomNavyBarItem(
+            // icon: Icon(Icons.call),
+            // title: Expanded(
+            //     child: Text(
+            //   'Call for Application',
+            //   style: style,
+            //   maxLines: 2,
+            // )),
+            icon: Image.asset(
+              "assets/newImages/call_for_application_unselect.png",
+              height: 25,
+            ),
+            title: Expanded(
+              child: Text(
+                'Call for application',
+                style: style,
+                maxLines: 2,
+              ),
+            ),
+            activeColor: Colors.blue,
+            inactiveColor: Colors.grey,
+            textAlign: TextAlign.center,
+            selectedIcon: Image.asset(
+              "assets/newImages/call_for_application_bottom.png",
+              height: 25,
+            ),
           ),
           // BottomNavyBarItem(
           //   icon: Icon(Icons.perm_media),

@@ -10,6 +10,8 @@ class CustomeCard extends StatefulWidget {
   final Color titleColor;
   final String titleImg;
   final int index;
+  final String buttontitle;
+  final Color buttontitlecolor;
 
   const CustomeCard(
       {Key key,
@@ -19,7 +21,9 @@ class CustomeCard extends StatefulWidget {
       this.btnTitle,
       this.titleColor,
       this.titleImg,
-      this.index})
+      this.index,
+      this.buttontitle,
+      this.buttontitlecolor})
       : super(key: key);
 
   @override
@@ -37,35 +41,27 @@ class CustomCardState extends State<CustomeCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              widget.index == 1
-                  ? Container(
-                      width: SizeConfig.blockSizeHorizontal * 70,
-                      child: FormLabel(
-                        text: widget.cardTitle,
-                        labelColor: widget.titleColor,
-                        fontSize: 18,
-                        fontweight: FontWeight.w600,
-                        maxLines: 2,
-                      ),
-                    )
-                  : FormLabel(
-                      text: widget.cardTitle,
-                      labelColor: widget.titleColor,
-                      fontSize: 18,
-                      fontweight: FontWeight.w600,
-                      maxLines: 2,
-                    ),
-              SizedBox(
-                width: 7,
-              ),
-              Image.asset(
-                widget.titleImg,
-                width: 40,
-                height: 40,
-              )
-            ],
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: widget.cardTitle,
+                  style: TextStyle(
+                    color: widget.titleColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.bottom,
+                  child: Image.asset(
+                    widget.titleImg,
+                    width: 40,
+                    height: 25,
+                  ),
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: 10,
@@ -99,7 +95,10 @@ class CustomCardState extends State<CustomeCard> {
                         borderRadius: BorderRadius.circular(5)),
                     child: Center(
                       child: Text(
-                        "Read More",
+                        widget.buttontitle,
+                        style: TextStyle(
+                            color: widget.buttontitlecolor,
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
                   ),

@@ -20,7 +20,7 @@ class Customcolor {
   static const twitter_blue = const Color(0xff1DA1F2);
   static const youtube_red = const Color(0xffbb0000);
 
-  static const colorLightGreen = const Color(0xffA9CE2E);
+  static const colorLightGreen = const Color(0xffAACE2E);
   static const colorGrey = const Color(0xff7AA2BC);
   static const colorBrown = const Color(0xffD69345);
   static const colorAfricanVoilet = const Color(0xffb284be);
@@ -42,7 +42,7 @@ class Customcolor {
   static const skyblue_col = const Color(0xff9CD4D1);
 
   //new colo®
-  static const text_blue = const Color(0xff135CAB);
+  static const text_blue = const Color(0xff115CAB);
   static const text_grey = const Color(0xff888888);
   static const text_darkblue = const Color(0xff115CAB);
   static const text_darkgrey = const Color(0xff333333);

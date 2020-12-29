@@ -27,7 +27,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                       )));
         },
         index: 2,
-        title: "Message from\n LeadershipTeam",
+        title: "Message from\nLeadershipTeam",
         titleImg: "assets/newImages/flowers-1.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
