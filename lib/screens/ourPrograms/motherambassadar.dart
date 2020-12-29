@@ -132,6 +132,9 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
               // fontweight: FontWeight.w500,
               fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
             ),
+            SizedBox(
+              height: 10,
+            ),
             Container(
               height: 340,
               // color: Colors.grey.shade800,
@@ -147,7 +150,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                             Expanded(
                               child: Card(
                                 elevation: 5,
-                                // color: Colors.red,
+                                color: Colors.transparent,
                                 child: Column(
                                   children: <Widget>[
                                     Expanded(
@@ -155,10 +158,8 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                         // height: SizeConfig.blockSizeVertical * 40,
                                         width: double.infinity,
                                         decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(10.0),
-                                                topRight:
-                                                    Radius.circular(10.0)),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                             image: DecorationImage(
                                                 image: AssetImage(
                                                   images[index],
@@ -182,10 +183,10 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                         );
                       },
                       itemCount: images.length,
-                      viewportFraction: 0.9,
-                      layout: SwiperLayout.STACK,
+                      viewportFraction: 0.7,
+                      layout: SwiperLayout.DEFAULT,
 
-                      scale: 0.6,
+                      scale: 0.9,
                       //outer: true,
                       itemWidth: 300.0,
                       //itemHeight: 400,
@@ -194,6 +195,9 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             Center(
               child: Container(

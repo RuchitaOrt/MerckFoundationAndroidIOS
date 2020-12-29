@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforStem.dart';
 
 import 'package:merckfoundation22dec/screens/ourPrograms/ourprogramdetail.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -142,9 +143,7 @@ class _OurProgramState extends State<Ourprogram> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => OurProgram(
-                                      indexpass: 4,
-                                    )));
+                                builder: (BuildContext context) => OurProgramStem()));
                       }
                     },
                     child: Padding(

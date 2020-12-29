@@ -121,14 +121,14 @@ class CallApplicationState extends State<CallforApplication>
           Expanded(
             child: Swiper(
               fade: 0.0,
-            
+
               itemBuilder: (BuildContext context, int index) {
                 return Column(
                   children: [
                     Expanded(
                       child: Card(
                         elevation: 5,
-                        // color: Colors.red,
+                         color: Colors.transparent,
                         child: Column(
                           children: <Widget>[
                             Expanded(
@@ -136,9 +136,7 @@ class CallApplicationState extends State<CallforApplication>
                                 // height: SizeConfig.blockSizeVertical * 40,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10.0),
-                                        topRight: Radius.circular(10.0)),
+                                    borderRadius: BorderRadius.circular(10),
                                     image: DecorationImage(
                                         image: AssetImage(
                                           images[index],
@@ -162,10 +160,9 @@ class CallApplicationState extends State<CallforApplication>
                 );
               },
               itemCount: images.length,
-              viewportFraction: 0.9,
-              layout: SwiperLayout.STACK,
-
-              scale: 2,
+              viewportFraction: 0.7,
+              layout: SwiperLayout.DEFAULT,
+              scale: 0.9,
               //outer: true,
               itemWidth: 300.0,
               //itemHeight: 400,
@@ -220,9 +217,7 @@ class CallApplicationState extends State<CallforApplication>
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10.0),
-                                topRight: Radius.circular(10.0)),
+                              borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
                                 image: AssetImage(
                                   "assets/images/slider1.jpg",
@@ -246,9 +241,9 @@ class CallApplicationState extends State<CallforApplication>
                 );
               },
               itemCount: 10,
-              viewportFraction: 0.9,
-              layout: SwiperLayout.STACK,
-              scale: 2,
+              viewportFraction: 0.7,
+              layout: SwiperLayout.DEFAULT,
+              scale: 0.9,
               //outer: true,
               itemWidth: 300.0,
               //itemHeight: 400,

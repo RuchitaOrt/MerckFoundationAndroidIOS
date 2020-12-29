@@ -42,6 +42,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
   ];
 
   TabController _tabController;
+  String expandedName = "Upcoming Events";
 
   @override
   void initState() {
@@ -446,7 +447,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                 children: [
                   Expanded(
                       child: Text(
-                    "Upcoming Events",
+                    expandedName,
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
@@ -619,11 +620,24 @@ class MerckstemprogramState extends State<Merckstemprogram>
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Upcoming Events",
-                                      style: TextStyle(
-                                        color: Customcolor.colorblack,
-                                        fontSize: 20,
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          expandClick = false;
+                                          expandedName = "Upcoming Events";
+                                        });
+                                      },
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            100,
+                                        child: Text(
+                                          "Upcoming Events",
+                                          style: TextStyle(
+                                            color: Customcolor.colorblack,
+                                            fontSize: 20,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
@@ -637,11 +651,24 @@ class MerckstemprogramState extends State<Merckstemprogram>
                                     SizedBox(
                                       height: 15,
                                     ),
-                                    Text(
-                                      "Past Events",
-                                      style: TextStyle(
-                                        color: Customcolor.colorblack,
-                                        fontSize: 20,
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          expandClick = false;
+                                          expandedName = "Past Events";
+                                        });
+                                      },
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            100,
+                                        child: Text(
+                                          "Past Events",
+                                          style: TextStyle(
+                                            color: Customcolor.colorblack,
+                                            fontSize: 20,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(

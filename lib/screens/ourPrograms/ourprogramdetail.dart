@@ -8,15 +8,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
-// class OurProgram extends StatelessWidget {
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: MyProgramPage(title: 'Advanced Fab demo'),
-//     );
-//   }
-// }
+
 
 class OurProgram extends StatefulWidget {
   OurProgram({Key key, this.title, this.indexpass}) : super(key: key);
@@ -43,6 +35,18 @@ class _MyHomePageState extends State<OurProgram> {
     "Local Songs and Children Stories",
     "Videos"
   ];
+
+   List programvalueforStem = [
+    "About Merck More Than A Mother",
+    "Strategy",
+    "Merck More Than a Mother Ambassadors",
+    "Merck Fertility and Embryology Training Program",
+    "Community Awareness and Awards Program",
+    "Empowering Berna",
+    "Local Songs and Children Stories",
+    "Videos"
+  ];
+
 
   _MyHomePageState(this.indexpass);
   @override

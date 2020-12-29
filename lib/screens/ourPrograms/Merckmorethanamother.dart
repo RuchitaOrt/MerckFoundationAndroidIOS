@@ -18,7 +18,8 @@ class OurProgramDetails extends StatefulWidget {
   }
 }
 
-class OurProgramsDetailsState extends State<OurProgramDetails> with TickerProviderStateMixin{
+class OurProgramsDetailsState extends State<OurProgramDetails>
+    with TickerProviderStateMixin {
   int _current = 0;
   List _productsAvailable = [
     "assets/images/slider1.jpg",
@@ -32,8 +33,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails> with TickerProvid
   bool islibrary = false;
   bool ismeck = false;
   bool expandClick = false;
+  String expandedName = "Upcoming Events";
 
-final List<Tab> tabs = <Tab>[
+  final List<Tab> tabs = <Tab>[
     new Tab(text: "Call for Application"),
     new Tab(text: "Digital Library"),
     new Tab(text: "Merck More Than A Mother Ambassadors")
@@ -45,7 +47,6 @@ final List<Tab> tabs = <Tab>[
   void initState() {
     super.initState();
     _tabController = new TabController(vsync: this, length: tabs.length);
-  
   }
 
   @override
@@ -78,8 +79,8 @@ final List<Tab> tabs = <Tab>[
       body: Padding(
         padding: const EdgeInsets.only(top: 15),
         child: Column(
-         // shrinkWrap: true,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          // shrinkWrap: true,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.only(
@@ -92,7 +93,7 @@ final List<Tab> tabs = <Tab>[
               height: 9,
             ),
             Expanded(
-                          child: ListView(
+              child: ListView(
                 shrinkWrap: true,
                 children: [
                   Padding(
@@ -107,401 +108,406 @@ final List<Tab> tabs = <Tab>[
                       fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
                     ),
                   ),
-
-
-                    SizedBox(
-                height: 25,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                child: FormLabel(
-                  text: "No to Infertility Stigma",
-                  labelColor: Customcolor.text_blue,
-                  fontweight: FontWeight.w700,
-                  fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
-                ),
-              ),
-              SizedBox(
-                height: 9,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                child: RichText(
-                  text: TextSpan(
-                      text: "Merck More Than a Mother",
-                      style: TextStyle(
-                        color: Customcolor.colorPink,
-                        fontWeight: FontWeight.w700,
-                        fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text:
-                                " is a strong movement that aims to empower infertile women through access to information, education and change of mind-sets. This powerful campaign supports governments in defining policies to enhance access to regulated, safe and effective fertility care. It defines interventions to break the stigma around infertile women and raises awareness about infertility prevention, management and male infertility. In partnership with African First Ladies, Ministries of Health, Information, Education & Gender, academia, policymakers, International fertility societies, media and art, the initiative also provides training for fertility specialists and embryologists to build and advance fertility care capacity in Africa and developing countries.",
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize:
-                                  ResponsiveFlutter.of(context).fontSize(2.0),
-                              fontWeight: FontWeight.w500,
-                            )),
-                      ]),
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                child: RichText(
-                  text: TextSpan(
-                      text: "Merck More Than a Mother",
-                      style: TextStyle(
-                        color: Customcolor.colorPink,
-                        fontWeight: FontWeight.w700,
-                        fontSize: ResponsiveFlutter.of(context).fontSize(2.4),
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text:
-                                " we have initiated a cultural shift to de-stigmatize infertility on all levels: By improving awareness, training local experts in the fields of fertility care and media, building advocacy in cooperation with African First Ladies and women leaders and by supporting childless women in starting their own small businesses. It’s all about giving every woman the respect and the help she deserves to live a fulfilling life, with or without a child.",
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize:
-                                  ResponsiveFlutter.of(context).fontSize(2.0),
-                              fontWeight: FontWeight.w500,
-                            )),
-                      ]),
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                child: FormLabel(
-                  text: "The Ambassadors of" +
-                      "${"Merck More Than a Mother"}" +
-                      "are :",
-                  labelColor: Customcolor.colorPink,
-                  fontweight: FontWeight.w700,
-                  fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
-                ),
-              ),
-              SizedBox(
-                height: 7,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                child: Image.asset(
-                  "assets/newImages/cfa1.png",
-                  height: 300,
-                ),
-              ),
-              SizedBox(
-                height: 7,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                child: RichText(
-                  text: TextSpan(
-                      text: "Merck More Than a Mother",
-                      style: TextStyle(
-                        color: Customcolor.colorPink,
-                        fontWeight: FontWeight.w700,
-                        fontSize: ResponsiveFlutter.of(context).fontSize(2.4),
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text:
-                                " we have initiated a cultural shift to de-stigmatize infertility on all levels: By improving awareness, training local experts in the fields of fertility care and media, building advocacy in cooperation with African First Ladies and women leaders and by supporting childless women in starting their own small businesses. ",
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize:
-                                  ResponsiveFlutter.of(context).fontSize(2.0),
-                              fontWeight: FontWeight.w500,
-                            )),
-                      ]),
-                ),
-              ),
-              SizedBox(
-                height: 18,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                child: FormLabel(
-                  text: "Our Impact",
-                  labelColor: Customcolor.colorPink,
-                  fontweight: FontWeight.w700,
-                  fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
-                ),
-              ),
-              SizedBox(
-                height: 7,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                child: Image.asset(
-                  "assets/newImages/cfa1.png",
-                  height: 300,
-                ),
-              ),
-
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                  height: 450,
-                  child: Column(
-                    children: [
-                      TabBar(
-                        isScrollable: true,
-                        unselectedLabelColor: Colors.grey,
-                        labelColor: Colors.black,
-                        indicatorSize: TabBarIndicatorSize.tab,
-                        indicator: new BubbleTabIndicator(
-                          indicatorHeight: 35.0,
-                          indicatorRadius: 5,
-                          indicatorColor: Customcolor.pinkbg,
-                          tabBarIndicatorSize: TabBarIndicatorSize.tab,
-                        ),
-                        tabs: tabs,
-                        controller: _tabController,
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: TabBarView(controller: _tabController, children: [
-                          callforApplication(),
-                          digitalLibrary(),
-                          merckmorethanmother()
-                        ]),
-                      ),
-                    ],
-                  ),
-                ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: CustomHorizontalCard(
-                    index: 1,
-                    cardImage: "assets/newImages/gallery.png",
-                    cardTitle: "Our Videos",
-                    titleColor: Customcolor.text_blue,
-                    titleImg: "assets/newImages/flowers-3.png",
-                    subTitle:
-                        "Message Form Dr.Rasha Kelej, on the inauguration..."),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: CustomHorizontalCard(
-                    index: 1,
-                    cardImage: "assets/newImages/gallery.png",
-                    cardTitle: "Latest Updates",
-                    titleColor: Customcolor.text_blue,
-                    titleImg: "assets/newImages/flowers-3.png",
-                    subTitle:
-                        "Message Form Dr.Rasha Kelej, on the inauguration..."),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: CustomHorizontalCard(
-                    index: 1,
-                    cardImage: "assets/newImages/gallery.png",
-                    cardTitle: "Merck Foundation In Media",
-                    titleColor: Customcolor.text_blue,
-                    titleImg: "assets/newImages/flowers-3.png",
-                    subTitle:
-                        "Message Form Dr.Rasha Kelej, on the inauguration..."),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 25,
-                      ),
-                      FormLabel(
-                        text: "Alumini Testimonials",
-                        labelColor: Customcolor.colorPink,
-                        fontSize: 18,
-                        fontweight: FontWeight.w700,
-                        maxLines: 2,
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Image.asset(
-                        'assets/newImages/flowers-3.png',
-                        width: 40,
-                        height: 40,
-                      )
-                    ],
-                  ),
                   SizedBox(
-                    height: 10,
+                    height: 25,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Container(
-                      height: 140,
-                      child: ListView.builder(
-                        itemCount: 4,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(left: 8, right: 8),
-                            child: Container(
-                              height: SizeConfig.blockSizeVertical * 15,
-                              width: SizeConfig.blockSizeHorizontal * 80,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Colors.white),
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 5, bottom: 3, left: 8, right: 8),
-                                    child: Container(
-                                      // height: 220,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        //color: Colors.amber,
-                                        borderRadius: BorderRadius.circular(10),
-                                        image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: AssetImage(
-                                              "assets/newImages/message.png",
-                                            )),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          height: 12,
-                                        ),
-                                        FormLabel(
-                                          text: "Dr.Nihad Salifu",
-                                          labelColor: Customcolor.colorPink,
-                                          fontSize: 17,
-                                          fontweight: FontWeight.w700,
-                                        ),
-                                        SizedBox(
-                                          height: 4,
-                                        ),
-                                        FormLabel(
-                                          text:
-                                              "Paediatric Medical Oncology Fellow",
-                                          labelColor: Colors.black87,
-                                          fontSize: 13,
-                                          fontweight: FontWeight.w600,
-                                          maxLines: 2,
-                                        ),
-                                        SizedBox(
-                                          height: 7,
-                                        ),
-                                        FormLabel(
-                                          text:
-                                              "We believe that empowering women through education is an important factor in promoting the economic well-being of Africans.",
-                                          labelColor: Colors.black54,
-                                          fontSize: 13,
-                                          fontweight: FontWeight.w500,
-                                          maxLines: 5,
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: FormLabel(
+                      text: "No to Infertility Stigma",
+                      labelColor: Customcolor.text_blue,
+                      fontweight: FontWeight.w700,
+                      fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
                     ),
                   ),
                   SizedBox(
                     height: 9,
                   ),
-                  Center(
-                    child: Container(
-                      width: 120,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Center(
-                        child: Text(
-                          "Watch More",
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: RichText(
+                      text: TextSpan(
+                          text: "Merck More Than a Mother",
                           style: TextStyle(
-                              color: Customcolor.colorBlue,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
+                            color: Customcolor.colorPink,
+                            fontWeight: FontWeight.w700,
+                            fontSize:
+                                ResponsiveFlutter.of(context).fontSize(2.2),
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text:
+                                    " is a strong movement that aims to empower infertile women through access to information, education and change of mind-sets. This powerful campaign supports governments in defining policies to enhance access to regulated, safe and effective fertility care. It defines interventions to break the stigma around infertile women and raises awareness about infertility prevention, management and male infertility. In partnership with African First Ladies, Ministries of Health, Information, Education & Gender, academia, policymakers, International fertility societies, media and art, the initiative also provides training for fertility specialists and embryologists to build and advance fertility care capacity in Africa and developing countries.",
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: ResponsiveFlutter.of(context)
+                                      .fontSize(2.0),
+                                  fontWeight: FontWeight.w500,
+                                )),
+                          ]),
                     ),
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 60, left: 60),
-                child: Image.asset(
-                  "assets/newImages/flowers_footer.png",
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              )
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: RichText(
+                      text: TextSpan(
+                          text: "Merck More Than a Mother",
+                          style: TextStyle(
+                            color: Customcolor.colorPink,
+                            fontWeight: FontWeight.w700,
+                            fontSize:
+                                ResponsiveFlutter.of(context).fontSize(2.4),
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text:
+                                    " we have initiated a cultural shift to de-stigmatize infertility on all levels: By improving awareness, training local experts in the fields of fertility care and media, building advocacy in cooperation with African First Ladies and women leaders and by supporting childless women in starting their own small businesses. It’s all about giving every woman the respect and the help she deserves to live a fulfilling life, with or without a child.",
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: ResponsiveFlutter.of(context)
+                                      .fontSize(2.0),
+                                  fontWeight: FontWeight.w500,
+                                )),
+                          ]),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: FormLabel(
+                      text: "The Ambassadors of" +
+                          "${"Merck More Than a Mother"}" +
+                          "are :",
+                      labelColor: Customcolor.colorPink,
+                      fontweight: FontWeight.w700,
+                      fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 7,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: Image.asset(
+                      "assets/newImages/cfa1.png",
+                      height: 300,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 7,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: RichText(
+                      text: TextSpan(
+                          text: "Merck More Than a Mother",
+                          style: TextStyle(
+                            color: Customcolor.colorPink,
+                            fontWeight: FontWeight.w700,
+                            fontSize:
+                                ResponsiveFlutter.of(context).fontSize(2.4),
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text:
+                                    " we have initiated a cultural shift to de-stigmatize infertility on all levels: By improving awareness, training local experts in the fields of fertility care and media, building advocacy in cooperation with African First Ladies and women leaders and by supporting childless women in starting their own small businesses. ",
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: ResponsiveFlutter.of(context)
+                                      .fontSize(2.0),
+                                  fontWeight: FontWeight.w500,
+                                )),
+                          ]),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 18,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: FormLabel(
+                      text: "Our Impact",
+                      labelColor: Customcolor.colorPink,
+                      fontweight: FontWeight.w700,
+                      fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 7,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: Image.asset(
+                      "assets/newImages/cfa1.png",
+                      height: 300,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: 450,
+                    child: Column(
+                      children: [
+                        TabBar(
+                          isScrollable: true,
+                          unselectedLabelColor: Colors.grey,
+                          labelColor: Colors.black,
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          indicator: new BubbleTabIndicator(
+                            indicatorHeight: 35.0,
+                            indicatorRadius: 5,
+                            indicatorColor: Customcolor.pinkbg,
+                            tabBarIndicatorSize: TabBarIndicatorSize.tab,
+                          ),
+                          tabs: tabs,
+                          controller: _tabController,
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: TabBarView(
+                              controller: _tabController,
+                              children: [
+                                callforApplication(),
+                                digitalLibrary(),
+                                merckmorethanmother()
+                              ]),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: CustomHorizontalCard(
+                        index: 1,
+                        cardImage: "assets/newImages/gallery.png",
+                        cardTitle: "Our Videos",
+                        titleColor: Customcolor.text_blue,
+                        titleImg: "assets/newImages/flowers-3.png",
+                        subTitle:
+                            "Message Form Dr.Rasha Kelej, on the inauguration..."),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: CustomHorizontalCard(
+                        index: 1,
+                        cardImage: "assets/newImages/gallery.png",
+                        cardTitle: "Latest Updates",
+                        titleColor: Customcolor.text_blue,
+                        titleImg: "assets/newImages/flowers-3.png",
+                        subTitle:
+                            "Message Form Dr.Rasha Kelej, on the inauguration..."),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: CustomHorizontalCard(
+                        index: 1,
+                        cardImage: "assets/newImages/gallery.png",
+                        cardTitle: "Merck Foundation In Media",
+                        titleColor: Customcolor.text_blue,
+                        titleImg: "assets/newImages/flowers-3.png",
+                        subTitle:
+                            "Message Form Dr.Rasha Kelej, on the inauguration..."),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 25,
+                          ),
+                          FormLabel(
+                            text: "Alumini Testimonials",
+                            labelColor: Customcolor.colorPink,
+                            fontSize: 18,
+                            fontweight: FontWeight.w700,
+                            maxLines: 2,
+                          ),
+                          SizedBox(
+                            width: 7,
+                          ),
+                          Image.asset(
+                            'assets/newImages/flowers-3.png',
+                            width: 40,
+                            height: 40,
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Container(
+                          height: 140,
+                          child: ListView.builder(
+                            itemCount: 4,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 8, right: 8),
+                                child: Container(
+                                  height: SizeConfig.blockSizeVertical * 15,
+                                  width: SizeConfig.blockSizeHorizontal * 80,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: Colors.white),
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 5,
+                                            bottom: 3,
+                                            left: 8,
+                                            right: 8),
+                                        child: Container(
+                                          // height: 220,
+                                          width: 100,
+                                          decoration: BoxDecoration(
+                                            //color: Colors.amber,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: AssetImage(
+                                                  "assets/newImages/message.png",
+                                                )),
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: 12,
+                                            ),
+                                            FormLabel(
+                                              text: "Dr.Nihad Salifu",
+                                              labelColor: Customcolor.colorPink,
+                                              fontSize: 17,
+                                              fontweight: FontWeight.w700,
+                                            ),
+                                            SizedBox(
+                                              height: 4,
+                                            ),
+                                            FormLabel(
+                                              text:
+                                                  "Paediatric Medical Oncology Fellow",
+                                              labelColor: Colors.black87,
+                                              fontSize: 13,
+                                              fontweight: FontWeight.w600,
+                                              maxLines: 2,
+                                            ),
+                                            SizedBox(
+                                              height: 7,
+                                            ),
+                                            FormLabel(
+                                              text:
+                                                  "We believe that empowering women through education is an important factor in promoting the economic well-being of Africans.",
+                                              labelColor: Colors.black54,
+                                              fontSize: 13,
+                                              fontweight: FontWeight.w500,
+                                              maxLines: 5,
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 9,
+                      ),
+                      Center(
+                        child: Container(
+                          width: 120,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.amber,
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Center(
+                            child: Text(
+                              "Watch More",
+                              style: TextStyle(
+                                  color: Customcolor.colorBlue,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60, left: 60),
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  )
                 ],
               ),
             ),
-          
           ],
         ),
       ),
     );
   }
-
 
   Widget callforApplication() {
     return Padding(
@@ -529,7 +535,7 @@ final List<Tab> tabs = <Tab>[
                 children: [
                   Expanded(
                       child: Text(
-                    "Upcoming Events",
+                    expandedName,
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
@@ -702,11 +708,24 @@ final List<Tab> tabs = <Tab>[
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Upcoming Events",
-                                      style: TextStyle(
-                                        color: Customcolor.colorblack,
-                                        fontSize: 20,
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          expandClick = false;
+                                          expandedName = "Upcoming Events";
+                                        });
+                                      },
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            100,
+                                        child: Text(
+                                          "Upcoming Events",
+                                          style: TextStyle(
+                                            color: Customcolor.colorblack,
+                                            fontSize: 20,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
@@ -720,11 +739,24 @@ final List<Tab> tabs = <Tab>[
                                     SizedBox(
                                       height: 15,
                                     ),
-                                    Text(
-                                      "Past Events",
-                                      style: TextStyle(
-                                        color: Customcolor.colorblack,
-                                        fontSize: 20,
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          expandClick = false;
+                                          expandedName = "Past Events";
+                                        });
+                                      },
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            100,
+                                        child: Text(
+                                          "Past Events",
+                                          style: TextStyle(
+                                            color: Customcolor.colorblack,
+                                            fontSize: 20,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
@@ -758,7 +790,7 @@ final List<Tab> tabs = <Tab>[
         // height: 1800,
         color: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.only(left: 12,right: 12,top: 12),
+          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
           child: Swiper.children(
             autoplay: false,
             loop: true,
@@ -832,7 +864,7 @@ final List<Tab> tabs = <Tab>[
         // height: 1800,
         color: Colors.white,
         child: Padding(
-            padding: const EdgeInsets.only(left: 12,right: 12,top: 12),
+          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
           child: Swiper.children(
             autoplay: false,
             loop: true,
@@ -916,7 +948,6 @@ final List<Tab> tabs = <Tab>[
       ),
     );
   }
-
 
   Widget slider(BuildContext context) {
     return Stack(

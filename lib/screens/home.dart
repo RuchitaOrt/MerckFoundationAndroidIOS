@@ -80,6 +80,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   bool ismeck = false;
   double imgHeight = 50;
   bool expandClick = false;
+  String expandedName = "Upcoming Events";
 
   final List<Tab> tabs = <Tab>[
     new Tab(text: "Call for Application"),
@@ -706,7 +707,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 children: [
                   Expanded(
                       child: Text(
-                    "Upcoming Events",
+                    expandedName,
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
@@ -879,11 +880,24 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Upcoming Events",
-                                      style: TextStyle(
-                                        color: Customcolor.colorblack,
-                                        fontSize: 20,
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          expandClick = false;
+                                          expandedName = "Upcoming Events";
+                                        });
+                                      },
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            100,
+                                        child: Text(
+                                          "Upcoming Events",
+                                          style: TextStyle(
+                                            color: Customcolor.colorblack,
+                                            fontSize: 20,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
@@ -897,11 +911,24 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                     SizedBox(
                                       height: 15,
                                     ),
-                                    Text(
-                                      "Past Events",
-                                      style: TextStyle(
-                                        color: Customcolor.colorblack,
-                                        fontSize: 20,
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          expandClick = false;
+                                          expandedName = "Past Events";
+                                        });
+                                      },
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            100,
+                                        child: Text(
+                                          "Past Events",
+                                          style: TextStyle(
+                                            color: Customcolor.colorblack,
+                                            fontSize: 20,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
@@ -935,7 +962,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         // height: 1800,
         color: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.only(left: 12,right: 12,top: 12),
+          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
           child: Swiper.children(
             autoplay: false,
             loop: true,
@@ -1009,7 +1036,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         // height: 1800,
         color: Colors.white,
         child: Padding(
-            padding: const EdgeInsets.only(left: 12,right: 12,top: 12),
+          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
           child: Swiper.children(
             autoplay: false,
             loop: true,
