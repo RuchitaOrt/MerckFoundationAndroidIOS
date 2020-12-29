@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/dummy.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/newReleases.dart';
 import 'package:merckfoundation22dec/screens/ceomessage/messageFromLeadership.dart';
 import 'package:merckfoundation22dec/screens/contactus/contactUs.dart';
@@ -191,7 +192,11 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Leadership',
                           onTapfun: () {
-                            print('ontap');
+                            // Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //           builder: (BuildContext context) =>
+                            //               Check()));
                           },
                         ),
                         SizedBox(
@@ -205,7 +210,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        Messs()));
+                                        MessageFromLeadership()));
                           },
                         ),
                         SizedBox(

@@ -44,7 +44,7 @@ dependencies:
   flutter_pagewise: ^1.2.3
   http: ^0.12.2
   adv_fab: ^1.0.5
-  tab_indicator_styler: ^1.0.0
+  bubble_tab_indicator: ^0.1.4
   
 
 

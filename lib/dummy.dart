@@ -5,14 +5,14 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
-class MessageFromLeadership extends StatefulWidget {
+class Check extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MessageFromLeadershipState();
+    return CheckState();
   }
 }
 
-class MessageFromLeadershipState extends State<MessageFromLeadership> {
+class CheckState extends State<Check> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

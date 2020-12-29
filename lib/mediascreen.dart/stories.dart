@@ -134,8 +134,12 @@ class StoriesState extends State<Stories> {
                   );
                 }),
               ),
-              Image.asset(
-                "assets/newImages/flowers_footer.png",
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 60, right: 60, top: 20, bottom: 10),
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                ),
               ),
               SizedBox(
                 height: 10,

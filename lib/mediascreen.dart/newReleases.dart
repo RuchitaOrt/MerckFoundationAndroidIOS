@@ -34,84 +34,95 @@ class NewsReleaseState extends State<NewsRelease> {
           trallingImg2: "assets/newImages/search.png",
           height: 85,
         ),
-        bottomNavigationBar: FlatButton(
-          // color: Colors.amber,
-          shape: RoundedRectangleBorder(
-              side: BorderSide(color: Customcolor.colorBlue)),
-
-          child: Text(
-            "Media Enquiries",
-            style: TextStyle(color: Customcolor.colorBlue),
-          ),
-          minWidth: 80,
-
-          onPressed: () {},
-        ),
-        body: ListView(
-          shrinkWrap: true,
-          physics: ScrollPhysics(),
+        body: Stack(
           children: [
-            ListView.builder(
-              itemCount: 7,
+            ListView(
               shrinkWrap: true,
               physics: ScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8, bottom: 6),
-                  child: Card(
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(5),
-                      ),
-                    ),
-                    child: Padding(
+              children: [
+                ListView.builder(
+                  itemCount: 7,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
                       padding:
-                          const EdgeInsets.only(left: 10, right: 10, top: 8),
-                      child: Column(
-                        children: [
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.start,
-                            //crossAxisAlignment: CrossAxisAlignment.start,
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 6),
+                      child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10, top: 8),
+                          child: Column(
                             children: [
-                              ClipRect(
-                                child: Image.asset(
-                                  "assets/newImages/pdf.png",
-                                  height: 80,
-                                  width: 80,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: Text(
-                                  "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: ResponsiveFlutter.of(context)
-                                          .fontSize(1.8),
-                                      fontWeight: FontWeight.w500),
-                                  maxLines: 4,
-                                ),
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                //crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRect(
+                                    child: Image.asset(
+                                      "assets/newImages/pdf.png",
+                                      height: 80,
+                                      width: 80,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(1.8),
+                                          fontWeight: FontWeight.w500),
+                                      maxLines: 4,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                    );
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 60, right: 60, top: 20, bottom: 10),
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
                   ),
-                );
-              },
+                ),
+              ],
             ),
-            Image.asset(
-              "assets/newImages/flowers_footer.png",
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 90, right: 90, bottom: 20),
+                child: FlatButton(
+                  color: Customcolor.text_blue,
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Customcolor.text_blue)),
+                  child: Text(
+                    "Media Enquiries",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  minWidth: 40,
+                  onPressed: () {},
+                ),
+              ),
             ),
-            SizedBox(
-              height: 10,
-            )
           ],
         ));
   }

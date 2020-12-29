@@ -36,6 +36,9 @@ class NewsState extends State<NewsPage> {
           shrinkWrap: true,
           physics: ScrollPhysics(),
           children: [
+            SizedBox(
+              height: 10,
+            ),
             ListView.builder(
               itemCount: 7,
               shrinkWrap: true,
@@ -96,12 +99,13 @@ class NewsState extends State<NewsPage> {
                 );
               },
             ),
-            Image.asset(
-              "assets/newImages/flowers_footer.png",
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 60, right: 60, top: 20, bottom: 10),
+              child: Image.asset(
+                "assets/newImages/flowers_footer.png",
+              ),
             ),
-            SizedBox(
-              height: 10,
-            )
           ],
         ));
   }

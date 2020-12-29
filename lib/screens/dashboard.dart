@@ -73,7 +73,10 @@ class _DashboardState extends State<Dashboard>
         }),
         items: [
           BottomNavyBarItem(
-            icon: Icon(Icons.home),
+            icon: Image.asset(
+              "assets/newImages/home_unselect.png",
+              height: 25,
+            ),
             title: Text(
               'Home',
               style: style,
@@ -81,9 +84,16 @@ class _DashboardState extends State<Dashboard>
             activeColor: Customcolor.colorBlue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
+            selectedIcon: Image.asset(
+              "assets/newImages/home_bottom.png",
+              height: 25,
+            ),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.apps),
+            icon: Image.asset(
+              "assets/newImages/programs_unselect.png",
+              height: 25,
+            ),
             title: Text(
               'Our Program',
               style: style,
@@ -91,9 +101,16 @@ class _DashboardState extends State<Dashboard>
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
+            selectedIcon: Image.asset(
+              "assets/newImages/programs_bottom.png",
+              height: 25,
+            ),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.video_call),
+            icon: Image.asset(
+              "assets/newImages/media_events_unselect.png",
+              height: 25,
+            ),
             title: Text(
               'Our Stories',
               style: style,
@@ -101,9 +118,16 @@ class _DashboardState extends State<Dashboard>
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
+            selectedIcon: Image.asset(
+              "assets/newImages/media_bottom.png",
+              height: 25,
+            ),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.new_releases),
+            icon: Image.asset(
+              "assets/newImages/news_bottom_unselect.png",
+              height: 25,
+            ),
             title: Text(
               'News',
               style: style,
@@ -111,18 +135,37 @@ class _DashboardState extends State<Dashboard>
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
+            selectedIcon: Image.asset(
+              "assets/newImages/news_selected-bottom.png",
+              height: 25,
+            ),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.call),
+            // icon: Icon(Icons.call),
+            // title: Expanded(
+            //     child: Text(
+            //   'Call for Application',
+            //   style: style,
+            //   maxLines: 2,
+            // )),
+            icon: Image.asset(
+              "assets/newImages/call_for_application_unselect.png",
+              height: 25,
+            ),
             title: Expanded(
-                child: Text(
-              'Call for Application',
-              style: style,
-              maxLines: 2,
-            )),
+              child: Text(
+                'Call for application',
+                style: style,
+                maxLines: 2,
+              ),
+            ),
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
+            selectedIcon: Image.asset(
+              "assets/newImages/call_for_application_bottom.png",
+              height: 25,
+            ),
           ),
           // BottomNavyBarItem(
           //   icon: Icon(Icons.perm_media),
