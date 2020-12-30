@@ -17,8 +17,8 @@ class CallApplicationState extends State<CallforApplication>
   TabController _tabController;
   List images = [
     "assets/newImages/cfa1.png",
-    "assets/newImages/cfa1.png",
-    "assets/newImagess/cfa1.png"
+    "assets/newImages/m3.png",
+    "assets/newImages/cfa1.png"
   ];
   @override
   void initState() {
@@ -127,8 +127,10 @@ class CallApplicationState extends State<CallforApplication>
                   children: [
                     Expanded(
                       child: Card(
-                        elevation: 5,
-                        color: Colors.transparent,
+                        //elevation: 5,
+                        //color: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           children: <Widget>[
                             Expanded(
@@ -141,17 +143,9 @@ class CallApplicationState extends State<CallforApplication>
                                         image: AssetImage(
                                           images[index],
                                         ),
-                                        fit: BoxFit.contain)),
+                                        fit: BoxFit.fill)),
                               ),
                             ),
-                            // Container(
-                            //     padding: EdgeInsets.only(bottom: 20),
-                            //     decoration: BoxDecoration(
-                            //         color: Colors.white,
-                            //         borderRadius: BorderRadius.only(
-                            //             bottomLeft: Radius.circular(10.0),
-                            //             bottomRight: Radius.circular(10.0))),
-                            //     child: )
                           ],
                         ),
                       ),
@@ -164,9 +158,9 @@ class CallApplicationState extends State<CallforApplication>
               layout: SwiperLayout.DEFAULT,
               scale: 0.9,
               //outer: true,
-              itemWidth: 300.0,
+              //itemWidth: 300.0,
               //itemHeight: 400,
-              itemHeight: 400,
+              //itemHeight: 400,
               pagination: SwiperPagination(
                 builder: new DotSwiperPaginationBuilder(
                   color: Customcolor.ligthpink,
@@ -220,7 +214,7 @@ class CallApplicationState extends State<CallforApplication>
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
                                 image: AssetImage(
-                                  "assets/images/slider1.jpg",
+                                  images[index],
                                 ),
                                 fit: BoxFit.fill)),
                       ),
@@ -240,14 +234,14 @@ class CallApplicationState extends State<CallforApplication>
                   ],
                 );
               },
-              itemCount: 10,
+              itemCount: images.length,
               viewportFraction: 0.7,
               layout: SwiperLayout.DEFAULT,
               scale: 0.9,
               //outer: true,
-              itemWidth: 300.0,
-              //itemHeight: 400,
-              itemHeight: 400,
+              // itemWidth: 300.0,
+              // //itemHeight: 400,
+              // itemHeight: 400,
               pagination: SwiperPagination(
                 builder: new DotSwiperPaginationBuilder(
                     color: Customcolor.ligthpink,
