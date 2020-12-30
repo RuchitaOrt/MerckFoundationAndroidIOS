@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:marquee/marquee.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/widget/customcard.dart';
@@ -1415,41 +1417,44 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 padding: const EdgeInsets.only(right: 0.0, left: 8),
                 child: GestureDetector(
                     onTap: () {
-                      // if (index == 0) {
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) => OurVision()));
-                      // } else if (index == 1) {
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) => Dashboard(
-                      //                 index: 1,
-                      //               )));
-                      // } else if (index == 2) {
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) => Ceomessage()));
-                      // } else if (index == 4) {
-                      //   Navigator.pushReplacement(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (context) => Dashboard(index: 3)));
-                      // } else if (index == 5) {
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) => Media()));
-                      // } else if (index == 7) {
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) => Dashboard(
-                      //                 index: 4,
-                      //               )));
-                      // }
+                      if (index == 0) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    OurVision()));
+                      } else if (index == 1) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Dashboard(
+                                      index: 1,
+                                    )));
+                      } else if (index == 2) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Dashboard(
+                                      index: 3,
+                                    )));
+                      } else if (index == 4) {
+                        // Navigator.pushReplacement(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => Dashboard(index: 3)));
+                      } else if (index == 5) {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) => Media()));
+                      } else if (index == 7) {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) => Dashboard(
+                        //               index: 4,
+                        //             )));
+                      } else if (index == 8) {}
                     },
                     child: Container(
                       width: 100,

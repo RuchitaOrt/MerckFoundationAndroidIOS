@@ -527,11 +527,13 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Video Library',
                           onTapfun: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (BuildContext context) =>
-                            //             OurStories()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        Dashboard(
+                                          index: 2,
+                                        )));
                           },
                         ),
                         SizedBox(

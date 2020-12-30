@@ -16,9 +16,9 @@ class CallApplicationState extends State<CallforApplication>
   ScrollController _scrollViewController;
   TabController _tabController;
   List images = [
-    "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg",
-    "assets/images/slider1.jpg"
+    "assets/newImages/cfa1.png",
+    "assets/newImages/cfa1.png",
+    "assets/newImagess/cfa1.png"
   ];
   @override
   void initState() {
@@ -128,7 +128,7 @@ class CallApplicationState extends State<CallforApplication>
                     Expanded(
                       child: Card(
                         elevation: 5,
-                         color: Colors.transparent,
+                        color: Colors.transparent,
                         child: Column(
                           children: <Widget>[
                             Expanded(
@@ -141,7 +141,7 @@ class CallApplicationState extends State<CallforApplication>
                                         image: AssetImage(
                                           images[index],
                                         ),
-                                        fit: BoxFit.fill)),
+                                        fit: BoxFit.contain)),
                               ),
                             ),
                             // Container(
@@ -217,7 +217,7 @@ class CallApplicationState extends State<CallforApplication>
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
                                 image: AssetImage(
                                   "assets/images/slider1.jpg",
