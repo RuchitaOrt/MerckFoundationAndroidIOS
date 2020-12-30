@@ -60,7 +60,7 @@ class _DashboardState extends State<Dashboard>
             Ourprogram(),
             Stories(),
             NewsPage(),
-            CallforApplication()
+            //CallforApplication()
           ]),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: currentIndex,
