@@ -5,6 +5,15 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
+class leaderclass {
+  final String programname;
+  final String image;
+  final String title;
+  final String subtitle;
+
+  leaderclass({this.programname, this.image, this.title, this.subtitle});
+}
+
 class MessageFromLeadership extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -13,8 +22,24 @@ class MessageFromLeadership extends StatefulWidget {
 }
 
 class MessageFromLeadershipState extends State<MessageFromLeadership> {
+  List<leaderclass> _messageAvailable = [
+    leaderclass(
+        programname:
+            "We at Merck, the world’s oldest pharmaceutical and chemical company, know that acting responsibly is key for long-time entrepreneurial success. Therefore, we do a lot for the communities in which we operate in.\n\nI strongly believe that it is crucial to have a real economic transformation with a social dimension that will ensure not only all basic needs but quality of life for everyone. This can never be achieved except with capacity building and the empowerment of women and youth.\n\nThe size and complexity of the task is so large that no single organization can manage on its own, so integration of effort is necessary to realize our vision for a world where everyone can lead healthy and fulﬁlling lives. The private sector has an important role as partner with governments, academia and communities; it is time to take an action now.\n\nTherefore, we will consolidate many of our centrally driven corporate responsibility activities under one single roof: the Merck Foundation. This new philanthropic organization will allow us to considerably expand the scope, reach and effectiveness of our projects. It puts us in a better position to address some of the most pressing health, social and economic challenges of the 21st century.\n\nWe strongly believe that together we can make a signiﬁcant contribution towards the Sustainable Development Goals. With Merck Foundation, our long term commitment to the communities in which we operate will remain strong and consistent as it was throughout generations.",
+        image: "assets/newImages/leader1.png",
+        title: "Prof. Dr. Frank Stangenberg-Haverkamp",
+        subtitle: "Chairman of Board of Trustees of Merck Foundation"),
+    leaderclass(
+        programname:
+            "We at Merck, the world’s oldest pharmaceutical and chemical company, know that acting responsibly is key for long-time entrepreneurial success. Therefore, we do a lot for the communities in which we operate in.\n\nI strongly believe that it is crucial to have a real economic transformation with a social dimension that will ensure not only all basic needs but quality of life for everyone. This can never be achieved except with capacity building and the empowerment of women and youth.\n\nThe size and complexity of the task is so large that no single organization can manage on its own, so integration of effort is necessary to realize our vision for a world where everyone can lead healthy and fulﬁlling lives. The private sector has an important role as partner with governments, academia and communities; it is time to take an action now.\n\nTherefore, we will consolidate many of our centrally driven corporate responsibility activities under one single roof: the Merck Foundation. This new philanthropic organization will allow us to considerably expand the scope, reach and effectiveness of our projects. It puts us in a better position to address some of the most pressing health, social and economic challenges of the 21st century.\n\nWe strongly believe that together we can make a signiﬁcant contribution towards the Sustainable Development Goals. With Merck Foundation, our long term commitment to the communities in which we operate will remain strong and consistent as it was throughout generations.",
+        image: "assets/newImages/leader2.png",
+        title: "Dr. Rasha Keleji",
+        subtitle: "Chairman of Board of Trustees of Merck Foundation")
+  ];
+
   @override
   Widget build(BuildContext context) {
+    print(_messageAvailable.length);
     return Scaffold(
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
@@ -50,7 +75,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
               ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
+                itemCount: _messageAvailable.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     //   color: Colors.amber,
@@ -67,7 +92,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Image.asset(
-                                  "assets/images/slider1.jpg",
+                                  _messageAvailable[index].image,
                                   fit: BoxFit.cover,
                                 )),
                           ),
@@ -75,7 +100,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                         SizedBox(
                           height: 20,
                         ),
-                        Text("Prof. Dr. Frank Stangenberg-Haverkamp",
+                        Text(_messageAvailable[index].title,
                             //textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Customcolor.pink_col,
@@ -83,8 +108,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                 fontWeight: FontWeight.w700)),
                         SizedBox(height: 10.0),
                         Center(
-                          child: Text(
-                              "Chairman of Board of Trustees of Merck Foundation",
+                          child: Text(_messageAvailable[index].subtitle,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Customcolor.colorBlue,
@@ -117,8 +141,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                     SizedBox(
                                       height: 15.0,
                                     ),
-                                    Text(
-                                        "We at Merck, the world’s oldest pharmaceutical and chemical company, know that acting responsibly is key for long-time entrepreneurial success. Therefore, we do a lot for the communities in which we operate in.\n\nI strongly believe that it is crucial to have a real economic transformation with a social dimension that will ensure not only all basic needs but quality of life for everyone. This can never be achieved except with capacity building and the empowerment of women and youth.\n\nThe size and complexity of the task is so large that no single organization can manage on its own, so integration of effort is necessary to realize our vision for a world where everyone can lead healthy and fulﬁlling lives. The private sector has an important role as partner with governments, academia and communities; it is time to take an action now.\n\nTherefore, we will consolidate many of our centrally driven corporate responsibility activities under one single roof: the Merck Foundation. This new philanthropic organization will allow us to considerably expand the scope, reach and effectiveness of our projects. It puts us in a better position to address some of the most pressing health, social and economic challenges of the 21st century.\n\nWe strongly believe that together we can make a signiﬁcant contribution towards the Sustainable Development Goals. With Merck Foundation, our long term commitment to the communities in which we operate will remain strong and consistent as it was throughout generations.",
+                                    Text(_messageAvailable[index].programname,
                                         textAlign: TextAlign.justify,
                                         style: TextStyle(
                                             color: Customcolor.colorblack,
