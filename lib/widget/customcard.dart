@@ -52,6 +52,8 @@ class CustomCardState extends State<CustomeCard> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+
+                
                 WidgetSpan(
                   alignment: PlaceholderAlignment.bottom,
                   child: Image.asset(

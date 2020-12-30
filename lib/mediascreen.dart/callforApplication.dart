@@ -49,7 +49,7 @@ class CallApplicationState extends State<CallforApplication>
         },
         index: 1,
         title: "Call For Application",
-        titleImg: "assets/newImages/flowers-1.png",
+        titleImg: "assets/newImages/application_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
         height: 85,

@@ -71,7 +71,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
         },
         index: 2,
         title: "Our Programs",
-        titleImg: "assets/newImages/flowers-1.png",
+        titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
         height: 85,
@@ -148,7 +148,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                   color: Colors.black87,
                                   fontSize: ResponsiveFlutter.of(context)
                                       .fontSize(2.0),
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w400,
                                 )),
                           ]),
                     ),
@@ -178,7 +178,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                   color: Colors.black87,
                                   fontSize: ResponsiveFlutter.of(context)
                                       .fontSize(2.0),
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w400,
                                 )),
                           ]),
                     ),
@@ -238,7 +238,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                   color: Colors.black87,
                                   fontSize: ResponsiveFlutter.of(context)
                                       .fontSize(2.0),
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w400,
                                 )),
                           ]),
                     ),
@@ -574,7 +574,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                         control: SwiperControl(
                             iconNext: Icons.arrow_forward_ios,
                             iconPrevious: Icons.arrow_back_ios,
-                            size: 20),
+                            size: 20, color: Customcolor.darkblue_col),
                         children: <Widget>[
                           Column(
                             children: [
@@ -609,7 +609,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(5.0),
                                       child: Image.asset(
-                                        "assets/newImages/cfa1.png",
+                                        "assets/newImages/poster_4.png",
                                         height: 300,
                                         fit: BoxFit.fill,
                                       ))),
@@ -632,7 +632,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(5.0),
                                       child: Image.asset(
-                                        "assets/newImages/cfa1.png",
+                                        "assets/newImages/poster_6.png",
                                         height: 300,
                                         fit: BoxFit.fill,
                                       ))),
@@ -655,7 +655,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(5.0),
                                       child: Image.asset(
-                                        "assets/newImages/cfa1.png",
+                                        "assets/newImages/poster_4.png",
                                         height: 300,
                                         fit: BoxFit.fill,
                                       ))),
@@ -797,7 +797,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             control: SwiperControl(
                 iconNext: Icons.arrow_forward_ios,
                 iconPrevious: Icons.arrow_back_ios,
-                size: 20),
+                size: 20,color: Customcolor.darkblue_col),
             children: <Widget>[
               Column(
                 children: [
@@ -832,7 +832,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_4.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),
@@ -871,7 +871,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             control: SwiperControl(
                 iconNext: Icons.arrow_forward_ios,
                 iconPrevious: Icons.arrow_back_ios,
-                size: 20),
+                size: 20,color: Customcolor.darkblue_col),
             children: <Widget>[
               Column(
                 children: [
@@ -906,7 +906,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_4.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),
@@ -929,7 +929,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_6.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),

@@ -161,9 +161,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 index: 1,
                 cardImage: "assets/newImages/message.png",
                 cardTitle:
-                    "Message Form Dr.Rasha Kelej, CEO of Merck Foundation",
+                    "Message Form Dr.Rasha Kelej, CEO of Merck Foundation   ",
                 titleColor: Customcolor.text_darkblue,
-                titleImg: "assets/newImages/flowers-1.png",
+                titleImg: "assets/newImages/flowers-2.png",
                 subTitle: "Message Form Dr.Rasha Kelej, on the inauguration...",
                 buttontitle: "Read More ",
                 buttontitlecolor: Customcolor.text_darkblue,
@@ -174,7 +174,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               CustomeCard(
                 index: 2,
                 cardImage: "assets/newImages/mqdefault.png",
-                cardTitle: "Our Stories",
+                cardTitle: "Our Stories   ",
                 titleColor: Customcolor.text_darkblue,
                 titleImg: "assets/newImages/flowers-2.png",
                 subTitle: "Message Form Dr.Rasha Kelej, on the inauguration...",
@@ -185,26 +185,26 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               SizedBox(
                 height: 8,
               ),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text:
-                          "Message Form Dr.Rasha Kelej, on the inauguration Message Form Dr.Rasha Kelej, on the inauguration...",
-                    ),
-                    WidgetSpan(
-                      child: Icon(Icons.add, size: 14),
-                    ),
-                  ],
-                ),
-              ),
+              // RichText(
+              //   text: TextSpan(
+              //     children: [
+              //       TextSpan(
+              //         text:
+              //             "Message Form Dr.Rasha Kelej, on the inauguration Message Form Dr.Rasha Kelej, on the inauguration...",
+              //       ),
+              //       WidgetSpan(
+              //         child: Icon(Icons.add, size: 14),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               CustomeCard(
                 index: 3,
                 cardImage: "assets/newImages/gallery.png",
-                cardTitle: "Photo Gallery",
+                cardTitle: "Photo Gallery   ",
                 titleColor: Customcolor.text_darkblue,
                 titleImg: "assets/newImages/flowers-3.png",
-                subTitle: "Message Form Dr.Rasha Kelej, on the inauguration...",
+                subTitle: "",
                 buttontitle: "View More ",
                 buttontitlecolor: Customcolor.text_darkblue,
               ),
@@ -243,425 +243,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 ),
               ),
 
-              // Container(
-              //   padding: EdgeInsets.all(20.0),
-              //   child: Material(
-              //     elevation: 5.0,
-              //     child: Stack(
-              //       children: [
-              //         Container(
-              //           padding: EdgeInsets.all(16.0),
-              //           child: Column(
-              //             crossAxisAlignment: CrossAxisAlignment.start,
-              //             children: <Widget>[
-              //               iscall
-              //                   ? Row(
-              //                       mainAxisAlignment:
-              //                           MainAxisAlignment.spaceBetween,
-              //                       children: [
-              //                         Expanded(
-              //                             child: Text(
-              //                           "Upcoming Events",
-              //                           style: TextStyle(
-              //                               fontSize: 18,
-              //                               fontWeight: FontWeight.w700,
-              //                               color: Colors.black),
-              //                         )),
-              //                         GestureDetector(
-              //                           onTap: () {
-              //                             print("in tap");
-              //                             setState(() {
-              //                               expandClick = !expandClick;
-              //                             });
-              //                           },
-              //                           child: Image.asset(
-              //                             "assets/newImages/expand_more.png",
-              //                             width: 30,
-              //                             height: 30,
-              //                           ),
-              //                         )
-              //                       ],
-              //                     )
-              //                   : Container(),
-              //               // SizedBox(
-              //               //   height: 20.0,
-              //               // ),
-              //               Container(
-              //                 margin: EdgeInsets.all(10.0),
-              //                 height: 360,
-              //                 child: iscall
-              //                     ? Stack(
-              //                         children: [
-              //                           Padding(
-              //                             padding:
-              //                                 const EdgeInsets.only(top: 10),
-              //                             child: Swiper.children(
-              //                               autoplay: false,
-              //                               loop: true,
-              //                               // pagination: SwiperPagination(
-              //                               //   margin: EdgeInsets.only(
-              //                               //     right: 25.0,
-              //                               //   ),
-              //                               //   builder: DotSwiperPaginationBuilder(
-              //                               //       color: Colors.grey),
-              //                               // ),
-              //                               control: SwiperControl(
-              //                                   iconNext:
-              //                                       Icons.arrow_forward_ios,
-              //                                   iconPrevious:
-              //                                       Icons.arrow_back_ios,
-              //                                   size: 20),
-              //                               children: <Widget>[
-              //                                 Column(
-              //                                   children: [
-              //                                     Container(
-              //                                         margin: EdgeInsets.only(
-              //                                           right: 40.0,
-              //                                           left: 30,
-              //                                         ),
-              //                                         child: ClipRRect(
-              //                                             borderRadius:
-              //                                                 BorderRadius
-              //                                                     .circular(
-              //                                                         5.0),
-              //                                             child: Image.asset(
-              //                                               "assets/newImages/cfa1.png",
-              //                                               height: 300,
-              //                                               fit: BoxFit.fill,
-              //                                             ))),
-              //                                     SizedBox(
-              //                                       height: 8,
-              //                                     ),
-              //                                     Text("UNESCO-MARS 2020",
-              //                                         style: TextStyle(
-              //                                           fontSize: 17,
-              //                                         ))
-              //                                   ],
-              //                                 ),
-              //                                 Column(
-              //                                   children: [
-              //                                     Container(
-              //                                         margin: EdgeInsets.only(
-              //                                           right: 40.0,
-              //                                           left: 30,
-              //                                         ),
-              //                                         child: ClipRRect(
-              //                                             borderRadius:
-              //                                                 BorderRadius
-              //                                                     .circular(
-              //                                                         5.0),
-              //                                             child: Image.asset(
-              //                                               "assets/newImages/cfa1.png",
-              //                                               height: 300,
-              //                                               fit: BoxFit.fill,
-              //                                             ))),
-              //                                     SizedBox(
-              //                                       height: 8,
-              //                                     ),
-              //                                     Text("UNESCO-MARS 2020",
-              //                                         style: TextStyle(
-              //                                           fontSize: 17,
-              //                                         ))
-              //                                   ],
-              //                                 ),
-              //                                 Column(
-              //                                   children: [
-              //                                     Container(
-              //                                         margin: EdgeInsets.only(
-              //                                           right: 40.0,
-              //                                           left: 30,
-              //                                         ),
-              //                                         child: ClipRRect(
-              //                                             borderRadius:
-              //                                                 BorderRadius
-              //                                                     .circular(
-              //                                                         5.0),
-              //                                             child: Image.asset(
-              //                                               "assets/newImages/cfa1.png",
-              //                                               height: 300,
-              //                                               fit: BoxFit.fill,
-              //                                             ))),
-              //                                     SizedBox(
-              //                                       height: 8,
-              //                                     ),
-              //                                     Text("UNESCO-MARS 2020",
-              //                                         style: TextStyle(
-              //                                           fontSize: 17,
-              //                                         ))
-              //                                   ],
-              //                                 ),
-              //                                 Column(
-              //                                   children: [
-              //                                     Container(
-              //                                         margin: EdgeInsets.only(
-              //                                           right: 40.0,
-              //                                           left: 30,
-              //                                         ),
-              //                                         child: ClipRRect(
-              //                                             borderRadius:
-              //                                                 BorderRadius
-              //                                                     .circular(
-              //                                                         5.0),
-              //                                             child: Image.asset(
-              //                                               "assets/newImages/cfa1.png",
-              //                                               height: 300,
-              //                                               fit: BoxFit.fill,
-              //                                             ))),
-              //                                     SizedBox(
-              //                                       height: 8,
-              //                                     ),
-              //                                     Text("UNESCO-MARS 2020",
-              //                                         style: TextStyle(
-              //                                           fontSize: 17,
-              //                                         ))
-              //                                   ],
-              //                                 ),
-              //                                 Column(
-              //                                   children: [
-              //                                     Container(
-              //                                         margin: EdgeInsets.only(
-              //                                           right: 40.0,
-              //                                           left: 30,
-              //                                         ),
-              //                                         child: ClipRRect(
-              //                                             borderRadius:
-              //                                                 BorderRadius
-              //                                                     .circular(
-              //                                                         5.0),
-              //                                             child: Image.asset(
-              //                                               "assets/newImages/cfa1.png",
-              //                                               height: 300,
-              //                                               fit: BoxFit.fill,
-              //                                             ))),
-              //                                     SizedBox(
-              //                                       height: 8,
-              //                                     ),
-              //                                     Text("UNESCO-MARS 2020",
-              //                                         style: TextStyle(
-              //                                           fontSize: 17,
-              //                                         ))
-              //                                   ],
-              //                                 ),
-              //                               ],
-              //                             ),
-              //                           ),
-              //                           expandClick
-              //                               ? Container(
-              //                                   height: 130,
-              //                                   decoration: BoxDecoration(
-              //                                       color: Colors.white,
-              //                                       borderRadius:
-              //                                           BorderRadius.circular(
-              //                                               10)),
-              //                                   child: Card(
-              //                                     elevation: 5,
-              //                                     child: Padding(
-              //                                       padding: EdgeInsets.only(
-              //                                           top: 20,
-              //                                           left: 10,
-              //                                           right: 10),
-              //                                       child: Column(
-              //                                         crossAxisAlignment:
-              //                                             CrossAxisAlignment
-              //                                                 .start,
-              //                                         children: [
-              //                                           Text(
-              //                                             "Upcoming Events",
-              //                                             style: TextStyle(
-              //                                               color: Customcolor
-              //                                                   .colorblack,
-              //                                               fontSize: 20,
-              //                                             ),
-              //                                           ),
-              //                                           SizedBox(
-              //                                             height: 15,
-              //                                           ),
-              //                                           Container(
-              //                                             height: 1,
-              //                                             color: Customcolor
-              //                                                 .colorblack
-              //                                                 .withOpacity(0.4),
-              //                                           ),
-              //                                           SizedBox(
-              //                                             height: 15,
-              //                                           ),
-              //                                           Text(
-              //                                             "Past Events",
-              //                                             style: TextStyle(
-              //                                               color: Customcolor
-              //                                                   .colorblack,
-              //                                               fontSize: 20,
-              //                                             ),
-              //                                           ),
-              //                                           SizedBox(
-              //                                             height: 15,
-              //                                           ),
-              //                                         ],
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                 )
-              //                               : Container()
-              //                         ],
-              //                       )
-              //                     :
-              //                     //http://ortlx.com/demo/merck-foundation/demo1/img/cta1.jpg
-
-              //                     islibrary
-              //                         ? Swiper.children(
-              //                             autoplay: false,
-              //                             loop: true,
-
-              //                             control: SwiperControl(
-              //                               iconNext: Icons.arrow_forward_ios,
-              //                               iconPrevious: Icons.arrow_back_ios,
-              //                             ),
-              //                             children: <Widget>[
-              //                               Column(
-              //                                 children: [
-              //                                   Container(
-              //                                       margin: EdgeInsets.only(
-              //                                         right: 40.0,
-              //                                         left: 30,
-              //                                       ),
-              //                                       child: ClipRRect(
-              //                                           borderRadius:
-              //                                               BorderRadius
-              //                                                   .circular(5.0),
-              //                                           child: Image.asset(
-              //                                             "assets/newImages/cfa1.png",
-              //                                             height: 300,
-              //                                             fit: BoxFit.fill,
-              //                                           ))),
-              //                                   SizedBox(
-              //                                     height: 8,
-              //                                   ),
-              //                                   Text("UNESCO-MARS 2020",
-              //                                       style: TextStyle(
-              //                                         fontSize: 17,
-              //                                       ))
-              //                                 ],
-              //                               ),
-              //                               Column(
-              //                                 children: [
-              //                                   Container(
-              //                                       margin: EdgeInsets.only(
-              //                                         right: 40.0,
-              //                                         left: 30,
-              //                                       ),
-              //                                       child: ClipRRect(
-              //                                           borderRadius:
-              //                                               BorderRadius
-              //                                                   .circular(5.0),
-              //                                           child: Image.asset(
-              //                                             "assets/newImages/cfa1.png",
-              //                                             height: 300,
-              //                                             fit: BoxFit.fill,
-              //                                           ))),
-              //                                   SizedBox(
-              //                                     height: 8,
-              //                                   ),
-              //                                   Text("UNESCO-MARS 2020",
-              //                                       style: TextStyle(
-              //                                         fontSize: 17,
-              //                                       ))
-              //                                 ],
-              //                               ),
-              //                             ],
-              //                           )
-              //                         : Swiper.children(
-              //                             autoplay: false,
-              //                             loop: true,
-              //                             control: SwiperControl(
-              //                               iconNext: Icons.arrow_forward_ios,
-              //                               iconPrevious: Icons.arrow_back_ios,
-              //                             ),
-              //                             children: <Widget>[
-              //                               Column(
-              //                                 children: [
-              //                                   Container(
-              //                                       margin: EdgeInsets.only(
-              //                                         right: 40.0,
-              //                                         left: 30,
-              //                                       ),
-              //                                       child: ClipRRect(
-              //                                           borderRadius:
-              //                                               BorderRadius
-              //                                                   .circular(5.0),
-              //                                           child: Image.asset(
-              //                                             "assets/newImages/cfa1.png",
-              //                                             height: 300,
-              //                                             fit: BoxFit.fill,
-              //                                           ))),
-              //                                   SizedBox(
-              //                                     height: 8,
-              //                                   ),
-              //                                   Text("UNESCO-MARS 2020",
-              //                                       style: TextStyle(
-              //                                         fontSize: 17,
-              //                                       ))
-              //                                 ],
-              //                               ),
-              //                               Column(
-              //                                 children: [
-              //                                   Container(
-              //                                       margin: EdgeInsets.only(
-              //                                         right: 40.0,
-              //                                         left: 30,
-              //                                       ),
-              //                                       child: ClipRRect(
-              //                                           borderRadius:
-              //                                               BorderRadius
-              //                                                   .circular(5.0),
-              //                                           child: Image.asset(
-              //                                             "assets/newImages/cfa1.png",
-              //                                             height: 300,
-              //                                             fit: BoxFit.fill,
-              //                                           ))),
-              //                                   SizedBox(
-              //                                     height: 8,
-              //                                   ),
-              //                                   Text("UNESCO-MARS 2020",
-              //                                       style: TextStyle(
-              //                                         fontSize: 17,
-              //                                       ))
-              //                                 ],
-              //                               ),
-              //                               Column(
-              //                                 children: [
-              //                                   Container(
-              //                                       margin: EdgeInsets.only(
-              //                                         right: 40.0,
-              //                                         left: 30,
-              //                                       ),
-              //                                       child: ClipRRect(
-              //                                           borderRadius:
-              //                                               BorderRadius
-              //                                                   .circular(5.0),
-              //                                           child: Image.asset(
-              //                                             "assets/newImages/cfa1.png",
-              //                                             height: 300,
-              //                                             fit: BoxFit.fill,
-              //                                           ))),
-              //                                   SizedBox(
-              //                                     height: 8,
-              //                                   ),
-              //                                   Text("UNESCO-MARS 2020",
-              //                                       style: TextStyle(
-              //                                         fontSize: 17,
-              //                                       ))
-              //                                 ],
-              //                               ),
-              //                             ],
-              //                           ),
-              //               )
-              //             ],
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
+            
 
               SizedBox(
                 height: 10,
@@ -748,7 +330,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                         control: SwiperControl(
                             iconNext: Icons.arrow_forward_ios,
                             iconPrevious: Icons.arrow_back_ios,
-                            size: 20),
+                            size: 20, color: Customcolor.darkblue_col),
                         children: <Widget>[
                           Column(
                             children: [
@@ -761,6 +343,52 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                       borderRadius: BorderRadius.circular(5.0),
                                       child: Image.asset(
                                         "assets/newImages/cfa1.png",
+                                        height: 270,
+                                        fit: BoxFit.fill,
+                                      ))),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("UNESCO-MARS 2020",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                  ))
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    right: 40.0,
+                                    left: 30,
+                                  ),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      child: Image.asset(
+                                        "assets/newImages/poster_4.png",
+                                        height: 300,
+                                        fit: BoxFit.fill,
+                                      ))),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text("UNESCO-MARS 2020",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                  ))
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    right: 40.0,
+                                    left: 30,
+                                  ),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      child: Image.asset(
+                                        "assets/newImages/poster_6.png",
                                         height: 300,
                                         fit: BoxFit.fill,
                                       ))),
@@ -806,53 +434,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(5.0),
                                       child: Image.asset(
-                                        "assets/newImages/cfa1.png",
-                                        height: 300,
-                                        fit: BoxFit.fill,
-                                      ))),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text("UNESCO-MARS 2020",
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                  ))
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                  margin: EdgeInsets.only(
-                                    right: 40.0,
-                                    left: 30,
-                                  ),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                      child: Image.asset(
-                                        "assets/newImages/cfa1.png",
-                                        height: 300,
-                                        fit: BoxFit.fill,
-                                      ))),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text("UNESCO-MARS 2020",
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                  ))
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                  margin: EdgeInsets.only(
-                                    right: 40.0,
-                                    left: 30,
-                                  ),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                      child: Image.asset(
-                                        "assets/newImages/cfa1.png",
+                                        "assets/newImages/poster_4.png",
                                         height: 300,
                                         fit: BoxFit.fill,
                                       ))),
@@ -971,7 +553,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             control: SwiperControl(
                 iconNext: Icons.arrow_forward_ios,
                 iconPrevious: Icons.arrow_back_ios,
-                size: 20),
+                size: 20,color: Customcolor.darkblue_col),
             children: <Widget>[
               Column(
                 children: [
@@ -1006,7 +588,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_4.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),
@@ -1045,7 +627,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             control: SwiperControl(
                 iconNext: Icons.arrow_forward_ios,
                 iconPrevious: Icons.arrow_back_ios,
-                size: 20),
+                size: 20,color: Customcolor.darkblue_col),
             children: <Widget>[
               Column(
                 children: [
@@ -1080,7 +662,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_4.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),
@@ -1103,7 +685,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_6.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),

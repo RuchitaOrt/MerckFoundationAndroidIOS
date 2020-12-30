@@ -11,6 +11,7 @@ import 'package:merckfoundation22dec/whatwedo/ouractivities.dart';
 import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
+import 'package:responsive_flutter/responsive_flutter.dart';
 
 Map<String, bool> expansionState = Map();
 
@@ -37,9 +38,6 @@ class _AppDrawerState extends State<AppDrawer> {
     });
   }
 
-  var headingTextStyle = TextStyle(
-      color: Customcolor.colorBlue, fontSize: 16, fontWeight: FontWeight.w600);
-
   @override
   void initState() {
     // TODO: implement initState
@@ -55,6 +53,11 @@ class _AppDrawerState extends State<AppDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    var headingTextStyle = TextStyle(
+        color: Customcolor.text_darkblue,
+        fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+        fontWeight: FontWeight.w700);
+
     return Drawer(
       //  ScaffoldState().openDrawer() ,
       child: Container(
@@ -173,7 +176,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       children: <Widget>[
                         DrawerWidget(
                           image: '',
-                          value: 'Vision',
+                          value: 'Our Vision',
                           onTapfun: () {
                             Navigator.push(
                                 context,
@@ -201,7 +204,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Message from Leadership\n Team',
+                          value: 'Message from Leadership\nTeam',
                           onTapfun: () {
                             Navigator.push(
                                 context,
@@ -218,20 +221,6 @@ class _AppDrawerState extends State<AppDrawer> {
                           value: 'Merck Foundation Overview',
                           onTapfun: () {
                             print('ontap');
-                          },
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        DrawerWidget(
-                          image: '',
-                          value: 'Contact Us',
-                          onTapfun: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        ContactUs()));
                           },
                         ),
                         SizedBox(
@@ -272,7 +261,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Mission',
+                          value: 'Our Mission',
                           onTapfun: () {
                             print('ontap');
                             // Navigator.push(
@@ -359,7 +348,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     title: Transform(
                         transform: Matrix4.translationValues(-18, 0.0, 0.0),
-                        child: Text("Our Program", style: headingTextStyle)),
+                        child: Text("Our Programs", style: headingTextStyle)),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -542,7 +531,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Stories',
+                          value: 'Our Stories',
                           onTapfun: () {
                             Navigator.push(
                                 context,
@@ -581,7 +570,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
                                         Dashboard(
-                                          index: 4,
+                                          index: 3,
                                         )));
                           },
                         ),

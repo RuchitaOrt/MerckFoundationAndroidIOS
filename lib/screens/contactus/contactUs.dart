@@ -31,7 +31,7 @@ class ContactusState extends State<ContactUs> {
         },
         index: 1,
         title: "Contact Us",
-        titleImg: "assets/newImages/flowers-1.png",
+        titleImg: "assets/newImages/contactus_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
         height: 85,

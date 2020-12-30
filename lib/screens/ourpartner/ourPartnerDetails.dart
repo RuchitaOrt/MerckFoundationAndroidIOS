@@ -44,7 +44,7 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
           },
           index: 2,
           title: "Our Partners",
-          titleImg: "assets/newImages/flowers-1.png",
+          titleImg: "assets/newImages/ourPartner_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
           height: 85,

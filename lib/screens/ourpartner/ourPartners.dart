@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/ourpartner/ourPartnerDetails.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -31,11 +32,11 @@ class OurpatnerState extends State<Ourpatner> {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
           },
           index: 2,
           title: "Our Partners",
-          titleImg: "assets/newImages/flowers-1.png",
+          titleImg: "assets/newImages/ourPartner_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
           height: 85,

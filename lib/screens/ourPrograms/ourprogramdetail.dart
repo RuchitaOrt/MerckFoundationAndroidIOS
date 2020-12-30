@@ -2,6 +2,7 @@ import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckmorethanamother.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckstemprogram.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/fertilityPrograms.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/motherambassadar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/strategy.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -68,7 +69,7 @@ class _MyHomePageState extends State<OurProgram> {
                         ? StrategyDetails()
                         : indexpass == 10
                             ? MotherAmbassadarDetails()
-                            : Container()
+                            : indexpass == 11? MerckFertility():Container()
           ],
           controller: mabialaFABController,
         ),
@@ -209,7 +210,16 @@ class _MyHomePageState extends State<OurProgram> {
                                                 OurProgram(
                                                   indexpass: 10,
                                                 )));
-                                  } else {}
+                                  } else if (index == 3){
+
+  Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                OurProgram(
+                                                  indexpass: 11,
+                                                )));
+                                  }
                                 },
                                 child: Container(
                                   color: Colors.transparent,
