@@ -609,7 +609,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(5.0),
                                       child: Image.asset(
-                                        "assets/newImages/cfa1.png",
+                                        "assets/newImages/poster_4.png",
                                         height: 300,
                                         fit: BoxFit.fill,
                                       ))),
@@ -632,7 +632,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(5.0),
                                       child: Image.asset(
-                                        "assets/newImages/cfa1.png",
+                                        "assets/newImages/poster_6.png",
                                         height: 300,
                                         fit: BoxFit.fill,
                                       ))),
@@ -655,7 +655,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(5.0),
                                       child: Image.asset(
-                                        "assets/newImages/cfa1.png",
+                                        "assets/newImages/poster_4.png",
                                         height: 300,
                                         fit: BoxFit.fill,
                                       ))),
@@ -832,7 +832,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_4.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),
@@ -906,7 +906,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_4.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),
@@ -929,7 +929,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_6.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),

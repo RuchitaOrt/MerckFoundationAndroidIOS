@@ -161,7 +161,7 @@ class CallApplicationState extends State<CallforApplication>
               },
               itemCount: images.length,
               viewportFraction: 0.7,
-              layout: SwiperLayout.DEFAULT,
+              layout: SwiperLayout.STACK,
               scale: 0.9,
               //outer: true,
               itemWidth: 300.0,

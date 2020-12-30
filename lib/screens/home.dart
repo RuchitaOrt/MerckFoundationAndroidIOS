@@ -183,19 +183,19 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               SizedBox(
                 height: 8,
               ),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text:
-                          "Message Form Dr.Rasha Kelej, on the inauguration Message Form Dr.Rasha Kelej, on the inauguration...",
-                    ),
-                    WidgetSpan(
-                      child: Icon(Icons.add, size: 14),
-                    ),
-                  ],
-                ),
-              ),
+              // RichText(
+              //   text: TextSpan(
+              //     children: [
+              //       TextSpan(
+              //         text:
+              //             "Message Form Dr.Rasha Kelej, on the inauguration Message Form Dr.Rasha Kelej, on the inauguration...",
+              //       ),
+              //       WidgetSpan(
+              //         child: Icon(Icons.add, size: 14),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               CustomeCard(
                 index: 3,
                 cardImage: "assets/newImages/gallery.png",
@@ -781,7 +781,30 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(5.0),
                                       child: Image.asset(
-                                        "assets/newImages/cfa1.png",
+                                        "assets/newImages/poster_4.png",
+                                        height: 300,
+                                        fit: BoxFit.fill,
+                                      ))),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text("UNESCO-MARS 2020",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                  ))
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    right: 40.0,
+                                    left: 30,
+                                  ),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      child: Image.asset(
+                                        "assets/newImages/poster_6.png",
                                         height: 300,
                                         fit: BoxFit.fill,
                                       ))),
@@ -827,30 +850,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(5.0),
                                       child: Image.asset(
-                                        "assets/newImages/cfa1.png",
-                                        height: 300,
-                                        fit: BoxFit.fill,
-                                      ))),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text("UNESCO-MARS 2020",
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                  ))
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                  margin: EdgeInsets.only(
-                                    right: 40.0,
-                                    left: 30,
-                                  ),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                      child: Image.asset(
-                                        "assets/newImages/cfa1.png",
+                                        "assets/newImages/poster_4.png",
                                         height: 300,
                                         fit: BoxFit.fill,
                                       ))),
@@ -1004,7 +1004,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_4.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),
@@ -1078,7 +1078,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_4.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),
@@ -1101,7 +1101,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Image.asset(
-                            "assets/newImages/cfa1.png",
+                            "assets/newImages/poster_6.png",
                             height: 300,
                             fit: BoxFit.fill,
                           ))),
