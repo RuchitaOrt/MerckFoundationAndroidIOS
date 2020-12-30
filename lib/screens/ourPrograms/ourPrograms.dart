@@ -76,10 +76,10 @@ class _OurProgramState extends State<Ourprogram> {
         },
         index: 2,
         title: "Our Programs",
-        titleImg: "assets/newImages/flowers-1.png",
+        titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
-        height: 85,
+        height: 90,
       ),
       body: Column(
       //  shrinkWrap: true,

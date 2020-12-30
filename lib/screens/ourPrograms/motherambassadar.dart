@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -32,11 +33,11 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.pop(context);
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 1,)));
         },
         index: 2,
         title: "Our Programs",
-        titleImg: "assets/newImages/flowers-1.png",
+        titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
         height: 85,

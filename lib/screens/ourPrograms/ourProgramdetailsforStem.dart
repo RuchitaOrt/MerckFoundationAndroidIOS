@@ -75,7 +75,7 @@ class _MyHomePageState extends State<OurProgramStem> {
 
                   ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                   ///in the next line we use 20%
-                  height: 400,
+                  height: 350,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

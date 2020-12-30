@@ -35,8 +35,8 @@ class DrawerWidget extends StatelessWidget {
             Text(value,
                 style: TextStyle(
                     color: Customcolor.text_darkblue,
-                    fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
-                    fontWeight: FontWeight.w400)),
+                    fontSize: ResponsiveFlutter.of(context).fontSize(2),
+                    fontWeight: FontWeight.w700)),
           ],
         ),
       ),

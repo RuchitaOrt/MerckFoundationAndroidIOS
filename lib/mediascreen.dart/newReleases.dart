@@ -29,7 +29,7 @@ class NewsReleaseState extends State<NewsRelease> {
           },
           index: 1,
           title: "News Releases",
-          titleImg: "assets/newImages/flowers-1.png",
+          titleImg: "assets/newImages/newsarticle_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
           height: 85,

@@ -46,7 +46,7 @@ class StoriesState extends State<Stories> {
           },
           index: 1,
           title: "Video Library",
-          titleImg: "assets/newImages/flowers-1.png",
+          titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
           height: 85,

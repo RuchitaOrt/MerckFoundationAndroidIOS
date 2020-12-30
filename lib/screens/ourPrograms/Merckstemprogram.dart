@@ -65,12 +65,12 @@ class MerckstemprogramState extends State<Merckstemprogram>
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) => Dashboard(
-                        index: 0,
+                        index: 1,
                       )));
         },
         index: 2,
         title: "Our Programs",
-        titleImg: "assets/newImages/flowers-1.png",
+        titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
         height: 85,

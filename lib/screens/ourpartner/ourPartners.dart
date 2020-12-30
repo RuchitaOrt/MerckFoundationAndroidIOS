@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/ourpartner/ourPartnerDetails.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
@@ -30,11 +32,11 @@ class OurpatnerState extends State<Ourpatner> {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
           },
           index: 2,
           title: "Our Partners",
-          titleImg: "assets/newImages/flowers-1.png",
+          titleImg: "assets/newImages/ourPartner_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
           height: 85,
@@ -46,70 +48,70 @@ class OurpatnerState extends State<Ourpatner> {
           ),
           child: Column(
             children: [
-              Container(
-                height: 250,
-                // color: Colors.grey.shade800,
-                padding: EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Swiper(
-                        fade: 0.0,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            children: [
-                              Expanded(
-                                child: Card(
-                                  elevation: 5,
-                                  // color: Colors.red,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Container(
-                                          // height: SizeConfig.blockSizeVertical * 40,
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft:
-                                                      Radius.circular(10.0),
-                                                  topRight:
-                                                      Radius.circular(10.0)),
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                    imageAvailable[index],
-                                                  ),
-                                                  fit: BoxFit.fill)),
-                                        ),
-                                      ),
-                                      // Container(
-                                      //     padding: EdgeInsets.only(bottom: 20),
-                                      //     decoration: BoxDecoration(
-                                      //         color: Colors.white,
-                                      //         borderRadius: BorderRadius.only(
-                                      //             bottomLeft: Radius.circular(10.0),
-                                      //             bottomRight: Radius.circular(10.0))),
-                                      //     child: )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                        itemCount: imageAvailable.length,
-                        viewportFraction: 0.9,
-                        layout: SwiperLayout.TINDER,
-                        //  autoplay: true,
-                        scale: 0.8,
-                        //outer: true,
-                        itemWidth: 300.0,
-                        //itemHeight: 400,
-                        itemHeight: 250,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   height: 250,
+              //   // color: Colors.grey.shade800,
+              //   padding: EdgeInsets.all(16.0),
+              //   child: Column(
+              //     children: [
+              //       Expanded(
+              //         child: Swiper(
+              //           fade: 0.0,
+              //           itemBuilder: (BuildContext context, int index) {
+              //             return Column(
+              //               children: [
+              //                 Expanded(
+              //                   child: Card(
+              //                     elevation: 5,
+              //                     // color: Colors.red,
+              //                     child: Column(
+              //                       children: <Widget>[
+              //                         Expanded(
+              //                           child: Container(
+              //                             // height: SizeConfig.blockSizeVertical * 40,
+              //                             width: double.infinity,
+              //                             decoration: BoxDecoration(
+              //                                 borderRadius: BorderRadius.only(
+              //                                     topLeft:
+              //                                         Radius.circular(10.0),
+              //                                     topRight:
+              //                                         Radius.circular(10.0)),
+              //                                 image: DecorationImage(
+              //                                     image: AssetImage(
+              //                                       imageAvailable[index],
+              //                                     ),
+              //                                     fit: BoxFit.fill)),
+              //                           ),
+              //                         ),
+              //                         // Container(
+              //                         //     padding: EdgeInsets.only(bottom: 20),
+              //                         //     decoration: BoxDecoration(
+              //                         //         color: Colors.white,
+              //                         //         borderRadius: BorderRadius.only(
+              //                         //             bottomLeft: Radius.circular(10.0),
+              //                         //             bottomRight: Radius.circular(10.0))),
+              //                         //     child: )
+              //                       ],
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ],
+              //             );
+              //           },
+              //           itemCount: imageAvailable.length,
+              //           viewportFraction: 0.9,
+              //           layout: SwiperLayout.TINDER,
+              //           //  autoplay: true,
+              //           scale: 0.8,
+              //           //outer: true,
+              //           itemWidth: 300.0,
+              //           //itemHeight: 400,
+              //           itemHeight: 250,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               ListView(
                 shrinkWrap: true,
                 // crossAxisAlignment: CrossAxisAlignment.center,
@@ -152,6 +154,29 @@ class OurpatnerState extends State<Ourpatner> {
                         ),
                       );
                     },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 90, right: 90, bottom: 20, top: 20),
+                    child: FlatButton(
+                      color: Customcolor.text_blue,
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Customcolor.text_blue),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Text(
+                        "View Partners",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      minWidth: 38,
+                      height: 40,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    Ourpatnerdetail()));
+                      },
+                    ),
                   ),
                   Padding(
                     padding:

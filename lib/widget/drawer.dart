@@ -7,8 +7,10 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourprogramdetail.dart';
 import 'package:merckfoundation22dec/screens/ourpartner/ourPartners.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
+import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
+import 'package:responsive_flutter/responsive_flutter.dart';
 
 Map<String, bool> expansionState = Map();
 
@@ -21,12 +23,7 @@ class AppDrawer extends StatefulWidget {
 
 class _AppDrawerState extends State<AppDrawer> {
 //  var expansionList = ["Who We Are", "What We Do", "Our Programs", "Media & Events"];
-  var expansionList = [
-    "Who We Are",
-    "What We Do",
-    "Our Programs",
-    "Media & Events"
-  ];
+  var expansionList = ["Who We Are", "What We Do", "Media & Events"];
 
   bool isLoggedIn = false;
   // static final FacebookLogin facebookSignIn = new FacebookLogin();
@@ -39,9 +36,6 @@ class _AppDrawerState extends State<AppDrawer> {
       if (!expansionState[expansionName]) expansionState[expansionName] = true;
     });
   }
-
-  var headingTextStyle = TextStyle(
-      color: Customcolor.colorBlue, fontSize: 16, fontWeight: FontWeight.w600);
 
   @override
   void initState() {
@@ -58,6 +52,11 @@ class _AppDrawerState extends State<AppDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    var headingTextStyle = TextStyle(
+        color: Customcolor.text_darkblue,
+        fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+        fontWeight: FontWeight.w700);
+
     return Drawer(
       //  ScaffoldState().openDrawer() ,
       child: Container(
@@ -176,7 +175,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       children: <Widget>[
                         DrawerWidget(
                           image: '',
-                          value: 'Vision',
+                          value: 'Our Vision',
                           onTapfun: () {
                             Navigator.push(
                                 context,
@@ -204,7 +203,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Message from Leadership\n Team',
+                          value: 'Message from Leadership\nTeam',
                           onTapfun: () {
                             Navigator.push(
                                 context,
@@ -226,20 +225,6 @@ class _AppDrawerState extends State<AppDrawer> {
                         SizedBox(
                           height: 4,
                         ),
-                        DrawerWidget(
-                          image: '',
-                          value: 'Contact Us',
-                          onTapfun: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        ContactUs()));
-                          },
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
                       ],
                     ),
                   ),
@@ -254,7 +239,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         child: new Row(
                           children: <Widget>[
                             new Image.asset(
-                              '',
+                              'assets/newImages/whatwedo.png',
                               height: 20.0,
                               width: 20.0,
                             ),
@@ -275,9 +260,14 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Mission',
+                          value: 'Our Mission',
                           onTapfun: () {
                             print('ontap');
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (BuildContext context) =>
+                            //             OurMission()));
                           },
                         ),
                         SizedBox(
@@ -349,133 +339,149 @@ class _AppDrawerState extends State<AppDrawer> {
                   SizedBox(
                     height: 4,
                   ),
-                  Theme(
-                    data: Theme.of(context)
-                        .copyWith(dividerColor: Colors.transparent),
-                    child: ExpansionTile(
-                      key: GlobalKey(),
-                      initiallyExpanded: expansionState['Our Programs'],
-                      title: Container(
-                        padding: EdgeInsets.all(2),
-                        child: new Row(
-                          children: <Widget>[
-                            new Image.asset(
-                              'assets/newImages/programs.png',
-                              height: 14.0,
-                              width: 16.0,
-                            ),
-                            SizedBox(
-                              width: 18,
-                            ),
-                            Text('Our Programs', style: headingTextStyle),
-                          ],
-                        ),
-                      ),
-                      onExpansionChanged: ((newState) {
-                        expansionState['Our Programs'] = newState;
-                        if (newState) closeOpenExpansionList('Our Programs');
-                      }),
-                      children: <Widget>[
-                        SizedBox(
-                          height: 4,
-                        ),
-                        DrawerWidget(
-                          image: '',
-                          value: 'Merck More Than A Mother',
-                          onTapfun: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        OurProgram(
-                                          indexpass: 0,
-                                        )));
-                          },
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        DrawerWidget(
-                          image: '',
-                          value: 'Merck Cancer Access\n Program',
-                          onTapfun: () {
-                            print('ontap');
-                          },
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        DrawerWidget(
-                          image: '',
-                          value:
-                              'Merck Capacity Advancement \n& Diabetes Blue Point Program',
-                          onTapfun: () {
-                            print('ontap');
-                          },
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        DrawerWidget(
-                          image: '',
-                          value:
-                              'Merck Foundation First Ladies\n Initiative Summit',
-                          onTapfun: () {
-                            print('ontap');
-                          },
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        DrawerWidget(
-                          image: '',
-                          value: 'Merck STEM Program',
-                          onTapfun: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        OurProgram(
-                                          indexpass: 4,
-                                        )));
-                          },
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        DrawerWidget(
-                          image: '',
-                          value: 'Educating Linda Program',
-                          onTapfun: () {
-                            print('ontap');
-                          },
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        DrawerWidget(
-                          image: '',
-                          value: 'Merck Foundation Sustainability\n Initiative',
-                          onTapfun: () {
-                            print('ontap');
-                          },
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        DrawerWidget(
-                          image: '',
-                          value: 'Merck Africa Asia Luminary',
-                          onTapfun: () {
-                            print('ontap');
-                          },
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                      ],
+                  ListTile(
+                    leading: Image.asset(
+                      'assets/newImages/programs.png',
+                      width: 20,
+                      height: 20,
                     ),
+                    title: Transform(
+                        transform: Matrix4.translationValues(-18, 0.0, 0.0),
+                        child: Text("Our Programs", style: headingTextStyle)),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Dashboard(
+                                    index: 1,
+                                  )));
+                    },
                   ),
+                  // Theme(
+                  //   data: Theme.of(context)
+                  //       .copyWith(dividerColor: Colors.transparent),
+                  //   child: ExpansionTile(
+                  //     key: GlobalKey(),
+                  //     initiallyExpanded: expansionState['Our Programs'],
+                  //     title: Container(
+                  //       padding: EdgeInsets.all(2),
+                  //       child: new Row(
+                  //         children: <Widget>[
+                  //           new Image.asset(
+                  //             'assets/newImages/programs.png',
+                  //             height: 14.0,
+                  //             width: 16.0,
+                  //           ),
+                  //           SizedBox(
+                  //             width: 18,
+                  //           ),
+                  //           Text('Our Programs', style: headingTextStyle),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //     onExpansionChanged: ((newState) {
+                  //       expansionState['Our Programs'] = newState;
+                  //       if (newState) closeOpenExpansionList('Our Programs');
+                  //     }),
+                  //     children: <Widget>[
+                  //       SizedBox(
+                  //         height: 4,
+                  //       ),
+                  //       DrawerWidget(
+                  //         image: '',
+                  //         value: 'Merck More Than A Mother',
+                  //         onTapfun: () {
+                  //           Navigator.push(
+                  //               context,
+                  //               MaterialPageRoute(
+                  //                   builder: (BuildContext context) =>
+                  //                       OurProgram(
+                  //                         indexpass: 0,
+                  //                       )));
+                  //         },
+                  //       ),
+                  //       SizedBox(
+                  //         height: 4,
+                  //       ),
+                  //       DrawerWidget(
+                  //         image: '',
+                  //         value: 'Merck Cancer Access\n Program',
+                  //         onTapfun: () {
+                  //           print('ontap');
+                  //         },
+                  //       ),
+                  //       SizedBox(
+                  //         height: 4,
+                  //       ),
+                  //       DrawerWidget(
+                  //         image: '',
+                  //         value:
+                  //             'Merck Capacity Advancement \n& Diabetes Blue Point Program',
+                  //         onTapfun: () {
+                  //           print('ontap');
+                  //         },
+                  //       ),
+                  //       SizedBox(
+                  //         height: 4,
+                  //       ),
+                  //       DrawerWidget(
+                  //         image: '',
+                  //         value:
+                  //             'Merck Foundation First Ladies\n Initiative Summit',
+                  //         onTapfun: () {
+                  //           print('ontap');
+                  //         },
+                  //       ),
+                  //       SizedBox(
+                  //         height: 4,
+                  //       ),
+                  //       DrawerWidget(
+                  //         image: '',
+                  //         value: 'Merck STEM Program',
+                  //         onTapfun: () {
+                  //           // Navigator.push(
+                  //           //     context,
+                  //           //     MaterialPageRoute(
+                  //           //         builder: (BuildContext context) =>
+                  //           //             OurProgramStem()));
+                  //         },
+                  //       ),
+                  //       SizedBox(
+                  //         height: 4,
+                  //       ),
+                  //       DrawerWidget(
+                  //         image: '',
+                  //         value: 'Educating Linda Program',
+                  //         onTapfun: () {
+                  //           print('ontap');
+                  //         },
+                  //       ),
+                  //       SizedBox(
+                  //         height: 4,
+                  //       ),
+                  //       DrawerWidget(
+                  //         image: '',
+                  //         value: 'Merck Foundation Sustainability\n Initiative',
+                  //         onTapfun: () {
+                  //           print('ontap');
+                  //         },
+                  //       ),
+                  //       SizedBox(
+                  //         height: 4,
+                  //       ),
+                  //       DrawerWidget(
+                  //         image: '',
+                  //         value: 'Merck Africa Asia Luminary',
+                  //         onTapfun: () {
+                  //           print('ontap');
+                  //         },
+                  //       ),
+                  //       SizedBox(
+                  //         height: 4,
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   Theme(
                     data: Theme.of(context)
                         .copyWith(dividerColor: Colors.transparent),
@@ -510,11 +516,13 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Video Library',
                           onTapfun: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (BuildContext context) =>
-                            //             OurStories()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        Dashboard(
+                                          index: 2,
+                                        )));
                           },
                         ),
                         SizedBox(
@@ -522,7 +530,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Stories',
+                          value: 'Our Stories',
                           onTapfun: () {
                             Navigator.push(
                                 context,
@@ -561,7 +569,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
                                         Dashboard(
-                                          index: 4,
+                                          index: 3,
                                         )));
                           },
                         ),
