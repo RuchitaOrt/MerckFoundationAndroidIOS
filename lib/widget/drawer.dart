@@ -75,14 +75,14 @@ class _AppDrawerState extends State<AppDrawer> {
                     child: new Column(
                       children: <Widget>[
                         SizedBox(
-                          height: 6,
+                          height: 35,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.asset(
-                              'assets/newImages/logo_nav.png',
+                              'assets/newImages/logo_menu.png',
                               width: 200,
                               height: 140,
                             ),
@@ -111,14 +111,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         SizedBox(
                           height: 6,
                         ),
-                        Text(
-                          "The Philanthropic arm of Merck KGaA",
-                          style: TextStyle(
-                            color: Customcolor.colorBlue,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
-                          ),
-                        ),
+                       
                         SizedBox(
                           height: 10,
                         ),
