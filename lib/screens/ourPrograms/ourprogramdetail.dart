@@ -125,6 +125,7 @@ class _MyHomePageState extends State<OurProgram> {
                                         child: ListView.builder(
                                           physics: BouncingScrollPhysics(),
                                           itemCount: programvalue.length,
+                                          padding: EdgeInsets.zero,
                                           scrollDirection: Axis.vertical,
                                           itemBuilder: (BuildContext context,
                                               int index) {
@@ -179,6 +180,7 @@ class _MyHomePageState extends State<OurProgram> {
                           physics: BouncingScrollPhysics(),
                           itemCount: programvalue.length,
                           scrollDirection: Axis.vertical,
+                          padding: EdgeInsets.zero,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),

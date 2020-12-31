@@ -52,12 +52,12 @@ class CustomAppBar extends PreferredSize {
                       )),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 30),
+                  padding: const EdgeInsets.only(left: 18, top: 14),
                   child: Container(
                     child: Image.asset(
                       "assets/newImages/top_bar_logo.png",
-                      width: 100,
-                      height: 50,
+                      width: 140,
+                      height: 58,
                     ),
                   ),
                 ),
