@@ -18,9 +18,9 @@ class MotherAmbassadarDetails extends StatefulWidget {
 
 class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
   List images = [
-    "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg",
-    "assets/images/slider1.jpg"
+    "assets/newImages/img1.png",
+    "assets/newImages/m3.png",
+    "assets/newImages/cfa1.png"
   ];
   List paravalue = [
     "Breaking the Stigma around infertile couples in general and infertile women in particular.",
@@ -60,8 +60,8 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
             FormLabel(
               text: "Merck More Than a Mother Ambassadors",
               labelColor: Customcolor.text_blue,
-              fontweight: FontWeight.w500,
-              fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
+              fontweight: FontWeight.w700,
+              fontSize: ResponsiveFlutter.of(context).fontSize(1.9),
             ),
             SizedBox(
               height: 10,
@@ -182,16 +182,16 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                             ),
                           ],
                         );
-                      },
+                      },    
                       itemCount: images.length,
                       viewportFraction: 0.7,
                       layout: SwiperLayout.DEFAULT,
 
                       scale: 0.9,
                       //outer: true,
-                      itemWidth: 300.0,
+                    //  itemWidth: 300.0,
                       //itemHeight: 400,
-                      itemHeight: 300,
+                      //itemHeight: 300,
                     ),
                   ),
                 ],
@@ -219,31 +219,31 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 30,
             ),
             CustomHorizontalCard(
                 index: 1,
-                cardImage: "assets/newImages/gallery.png",
+                cardImage: "assets/newImages/mqdefault1.png",
                 cardTitle:
-                    "Watch below some of the latest videos of Dr. Rasha kelej and first ladies of Africa. Ambassadars of Merck More than a Mother",
+                    "Watch below some of the latest videos of Dr. Rasha kelej and first ladies of Africa. Ambassadars of Merck More than a Mother.  ",
                 titleColor: Customcolor.pink_col,
-                titleImg: "assets/newImages/flowers-3.png",
+                titleImg: "assets/newImages/flowers-2.png",
                 subTitle:
                     "Message Form Dr.Rasha Kelej, on the inauguration..."),
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: CustomHorizontalCard(
                   index: 1,
-                  cardImage: "assets/newImages/gallery.png",
+                  cardImage: "assets/newImages/award1.png",
                   cardTitle:
-                      "Acknowledging the efforts of first ladies as Ambassadars of Merck More than a Mother",
+                      "Acknowledging the efforts of first ladies as Ambassadars of Merck More than a Mother.  ",
                   titleColor: Customcolor.pink_col,
-                  titleImg: "assets/newImages/flowers-3.png",
+                  titleImg: "assets/newImages/flowers-1.png",
                   subTitle:
                       "Message Form Dr.Rasha Kelej, on the inauguration..."),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 60, left: 60),
+              padding: const EdgeInsets.only(right: 60, left: 60, top: 20),
               child: Image.asset(
                 "assets/newImages/flowers_footer.png",
               ),

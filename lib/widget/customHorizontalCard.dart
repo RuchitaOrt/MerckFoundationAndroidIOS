@@ -29,27 +29,38 @@ class CustomHorizontalCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RichText(
-          text: TextSpan(
-            children: [
-              TextSpan(
-                text: cardTitle,
-                style: TextStyle(
-                  color: titleColor,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w500,
+        Row(
+          children: [
+
+            SizedBox(
+              width: 15,
+
+            ),
+            Expanded(
+                          child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: cardTitle,
+                      style: TextStyle(
+                        color: titleColor,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.bottom,
+                      child: Image.asset(
+                        titleImg,
+                        width: 40,
+                        height: 25,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              WidgetSpan(
-                alignment: PlaceholderAlignment.bottom,
-                child: Image.asset(
-                  titleImg,
-                  width: 40,
-                  height: 25,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         // Row(
         //   children: [
@@ -84,7 +95,7 @@ class CustomHorizontalCard extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
-                padding: const EdgeInsets.only(right: 8),
+                padding: const EdgeInsets.only(right: 8,left: 10),
                 child: Container(
                   height: SizeConfig.blockSizeVertical * 25,
                   width: SizeConfig.blockSizeHorizontal * 80,

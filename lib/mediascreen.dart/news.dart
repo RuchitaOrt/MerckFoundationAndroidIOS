@@ -12,6 +12,20 @@ class NewsPage extends StatefulWidget {
 }
 
 class NewsState extends State<NewsPage> {
+
+  List _productsAvailable = [
+    "assets/newImages/img3.jpg",
+    "assets/newImages/img4.jpg",
+     "assets/newImages/leader1.png",
+
+    "assets/newImages/leader2.png",
+    "assets/newImages/img3.jpg",
+     "assets/newImages/leader1.png",
+      "assets/newImages/leader2.png",
+
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +54,7 @@ class NewsState extends State<NewsPage> {
               height: 10,
             ),
             ListView.builder(
-              itemCount: 7,
+              itemCount: _productsAvailable.length,
               shrinkWrap: true,
               physics: ScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
@@ -64,7 +78,7 @@ class NewsState extends State<NewsPage> {
                             children: [
                               ClipRect(
                                 child: Image.asset(
-                                  "assets/images/slider1.jpg",
+                                 _productsAvailable[index],
                                   height: 80,
                                   width: 80,
                                   fit: BoxFit.fill,

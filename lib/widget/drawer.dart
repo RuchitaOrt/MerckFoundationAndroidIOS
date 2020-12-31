@@ -144,7 +144,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       key: GlobalKey(),
                       initiallyExpanded: expansionState['Who We Are'],
                       title: Container(
-                        padding: EdgeInsets.all(2),
+                        padding: EdgeInsets.all(0),
                         child: new Row(
                           children: <Widget>[
                             Divider(
@@ -178,9 +178,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                         OurVision()));
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                      
                         DrawerWidget(
                           image: '',
                           value: 'Leadership',
@@ -192,9 +190,7 @@ class _AppDrawerState extends State<AppDrawer> {
                             //               Check()));
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                       
                         DrawerWidget(
                           image: '',
                           value: 'Message from Leadership\nTeam',
@@ -206,9 +202,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                         MessageFromLeadership()));
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                      
                         DrawerWidget(
                           image: '',
                           value: 'Merck Foundation Overview',
@@ -216,9 +210,7 @@ class _AppDrawerState extends State<AppDrawer> {
                             print('ontap');
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                      
                       ],
                     ),
                   ),
@@ -249,9 +241,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         if (newState) closeOpenExpansionList('What We Do');
                       }),
                       children: <Widget>[
-                        SizedBox(
-                          height: 2,
-                        ),
+                      
                         DrawerWidget(
                           image: '',
                           value: 'Our Mission',
@@ -264,9 +254,7 @@ class _AppDrawerState extends State<AppDrawer> {
                             //             OurMission()));
                           },
                         ),
-                        SizedBox(
-                          height: 2,
-                        ),
+                      
                         DrawerWidget(
                           image: '',
                           value: 'Our Policies',
@@ -274,9 +262,7 @@ class _AppDrawerState extends State<AppDrawer> {
                             print('ontap');
                           },
                         ),
-                        SizedBox(
-                          height: 2,
-                        ),
+                       
                         DrawerWidget(
                           image: '',
                           value: 'Our Activities',
@@ -288,9 +274,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                         OurActivity()));
                           },
                         ),
-                        SizedBox(
-                          height: 2,
-                        ),
+                       
                         DrawerWidget(
                           image: '',
                           value: 'Legal Disclaimer',
@@ -298,9 +282,7 @@ class _AppDrawerState extends State<AppDrawer> {
                             print('ontap');
                           },
                         ),
-                        SizedBox(
-                          height: 2,
-                        ),
+                       
                         DrawerWidget(
                           image: '',
                           value: 'Data Privacy',
@@ -308,9 +290,7 @@ class _AppDrawerState extends State<AppDrawer> {
                             print('ontap');
                           },
                         ),
-                        SizedBox(
-                          height: 2,
-                        ),
+                      
                       ],
                     ),
                   ),
@@ -503,9 +483,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         if (newState) closeOpenExpansionList('Media & Events');
                       }),
                       children: <Widget>[
-                        SizedBox(
-                          height: 4,
-                        ),
+                       
                         DrawerWidget(
                           image: '',
                           value: 'Video Library',
@@ -519,9 +497,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                         )));
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                       
                         DrawerWidget(
                           image: '',
                           value: 'Our Stories',
@@ -535,9 +511,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                         )));
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                       
                         DrawerWidget(
                           image: '',
                           value: 'Merck Foundation Alumnis \nTestimonies',
@@ -550,9 +524,7 @@ class _AppDrawerState extends State<AppDrawer> {
                             //             MerckfoundationTestmonial()));
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                       
                         DrawerWidget(
                           image: '',
                           value: 'Newsletters And Articles',
@@ -567,9 +539,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                         )));
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                       
                         DrawerWidget(
                           image: '',
                           value: 'Call For Application',
@@ -584,9 +554,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                         )));
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                       
                         DrawerWidget(
                           image: '',
                           value: 'News Releases',
@@ -598,9 +566,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                         NewsRelease()));
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                       
                         DrawerWidget(
                           image: '',
                           value: 'Merck foundation in Media',
@@ -613,9 +579,7 @@ class _AppDrawerState extends State<AppDrawer> {
                             // print('ontap');
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                        
                         DrawerWidget(
                           image: '',
                           value: 'Annual Report',
@@ -623,9 +587,7 @@ class _AppDrawerState extends State<AppDrawer> {
                             print('ontap');
                           },
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
+                        
                       ],
                     ),
                   ),

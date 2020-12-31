@@ -25,7 +25,19 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
     "assets/images/slider1.jpg",
     "assets/images/slider2.jpg",
     "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg"
+    "assets/images/slider2.jpg"  
+  ];
+
+  List _imgarray = [
+    "assets/newImages/img3.jpg",
+    "assets/newImages/img4.jpg",
+     "assets/newImages/leader1.png",
+
+    "assets/newImages/leader2.png",
+    "assets/newImages/img3.jpg",
+     "assets/newImages/leader1.png",
+      "assets/newImages/leader2.png",
+
   ];
   CarouselSlider carouselSlider;
 
@@ -59,6 +71,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
           // Navigator.pop(context);
@@ -105,7 +118,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       text: "Merck More Than a Mother",
                       labelColor: Customcolor.colorPink,
                       fontweight: FontWeight.w700,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                      fontSize: ResponsiveFlutter.of(context).fontSize(2.0),
                     ),
                   ),
                   SizedBox(
@@ -120,7 +133,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       text: "No to Infertility Stigma",
                       labelColor: Customcolor.text_blue,
                       fontweight: FontWeight.w700,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                      fontSize: ResponsiveFlutter.of(context).fontSize(2.0),
                     ),
                   ),
                   SizedBox(
@@ -138,7 +151,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                             color: Customcolor.colorPink,
                             fontWeight: FontWeight.w700,
                             fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.2),
+                                ResponsiveFlutter.of(context).fontSize(2.0),
                           ),
                           children: <TextSpan>[
                             TextSpan(
@@ -147,7 +160,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                 style: TextStyle(
                                   color: Colors.black87,
                                   fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(2.0),
+                                      .fontSize(1.9),
                                   fontWeight: FontWeight.w400,
                                 )),
                           ]),
@@ -168,7 +181,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                             color: Customcolor.colorPink,
                             fontWeight: FontWeight.w700,
                             fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.4),
+                                ResponsiveFlutter.of(context).fontSize(2.2),
                           ),
                           children: <TextSpan>[
                             TextSpan(
@@ -194,10 +207,10 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                     child: FormLabel(
                       text: "The Ambassadors of" +
                           "${"Merck More Than a Mother"}" +
-                          "are :",
+                          " are :",
                       labelColor: Customcolor.colorPink,
                       fontweight: FontWeight.w700,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                      fontSize: ResponsiveFlutter.of(context).fontSize(2.0),
                     ),
                   ),
                   SizedBox(
@@ -209,7 +222,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       right: 15,
                     ),
                     child: Image.asset(
-                      "assets/newImages/cfa1.png",
+                      "assets/newImages/rtaImage1.png",
                       height: 300,
                     ),
                   ),
@@ -228,7 +241,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                             color: Customcolor.colorPink,
                             fontWeight: FontWeight.w700,
                             fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.4),
+                                ResponsiveFlutter.of(context).fontSize(2.0),
                           ),
                           children: <TextSpan>[
                             TextSpan(
@@ -237,7 +250,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                 style: TextStyle(
                                   color: Colors.black87,
                                   fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(2.0),
+                                      .fontSize(1.9),
                                   fontWeight: FontWeight.w400,
                                 )),
                           ]),
@@ -257,7 +270,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       fontweight: FontWeight.w700,
                       fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
                     ),
-                  ),
+                  ),   
                   SizedBox(
                     height: 7,
                   ),
@@ -267,7 +280,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       right: 15,
                     ),
                     child: Image.asset(
-                      "assets/newImages/cfa1.png",
+                      "assets/newImages/rtaImage.png",
                       height: 300,
                     ),
                   ),
@@ -286,7 +299,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                           indicator: new BubbleTabIndicator(
                             indicatorHeight: 35.0,
                             indicatorRadius: 5,
-                            indicatorColor: Customcolor.pinkbg,
+                           indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
                             tabBarIndicatorSize: TabBarIndicatorSize.tab,
                           ),
                           tabs: tabs,
@@ -313,8 +326,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                     child: CustomHorizontalCard(
                         index: 1,
                         cardImage: "assets/newImages/gallery.png",
-                        cardTitle: "Our Videos",
-                        titleColor: Customcolor.text_blue,
+                        cardTitle: "Our Videos  ",
+                        titleColor: Customcolor.pink_col,
                         titleImg: "assets/newImages/flowers-3.png",
                         subTitle:
                             "Message Form Dr.Rasha Kelej, on the inauguration..."),
@@ -326,9 +339,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                     padding: const EdgeInsets.only(left: 10),
                     child: CustomHorizontalCard(
                         index: 1,
-                        cardImage: "assets/newImages/gallery.png",
-                        cardTitle: "Latest Updates",
-                        titleColor: Customcolor.text_blue,
+                        cardImage: "assets/newImages/ourvison.png",
+                        cardTitle: "Latest Updates  ",
+                          titleColor: Customcolor.pink_col,
                         titleImg: "assets/newImages/flowers-3.png",
                         subTitle:
                             "Message Form Dr.Rasha Kelej, on the inauguration..."),
@@ -340,9 +353,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                     padding: const EdgeInsets.only(left: 10),
                     child: CustomHorizontalCard(
                         index: 1,
-                        cardImage: "assets/newImages/gallery.png",
-                        cardTitle: "Merck Foundation In Media",
-                        titleColor: Customcolor.text_blue,
+                        cardImage: "assets/newImages/mqdefault.png",
+                        cardTitle: "Merck Foundation In Media  ",
+                           titleColor: Customcolor.pink_col,
                         titleImg: "assets/newImages/flowers-3.png",
                         subTitle:
                             "Message Form Dr.Rasha Kelej, on the inauguration..."),
@@ -383,7 +396,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                         child: Container(
                           height: 140,
                           child: ListView.builder(
-                            itemCount: 4,
+                            itemCount: _imgarray.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int index) {
                               return Padding(
@@ -413,7 +426,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
                                                 image: AssetImage(
-                                                  "assets/newImages/message.png",
+                                                 _imgarray[index],
                                                 )),
                                           ),
                                         ),
@@ -477,7 +490,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               borderRadius: BorderRadius.circular(5)),
                           child: Center(
                             child: Text(
-                              "Watch More",
+                              "Read All",
                               style: TextStyle(
                                   color: Customcolor.colorBlue,
                                   fontSize: 15,

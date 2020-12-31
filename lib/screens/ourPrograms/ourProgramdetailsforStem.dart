@@ -54,6 +54,7 @@ class _MyHomePageState extends State<OurProgramStem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+   
         body: AdvFabBottomBarBody(
           screens: <Widget>[Merckstemprogram()],
           controller: mabialaFABController,
@@ -62,11 +63,11 @@ class _MyHomePageState extends State<OurProgramStem> {
         ///[SEtting up the floating action button]
         floatingActionButton: AdvFab(
           showLogs: true,
-          floatingActionButtonExpendedWidth: 70,
+          floatingActionButtonExpendedWidth: 80,
           onFloatingActionButtonTapped: () {
             mabialaFABController.setExpandedWidgetConfiguration(
               showLogs: true,
-              heightToExpandTo: 50,
+              heightToExpandTo: 42,
               expendedBackgroundColor: Customcolor.cardbg,
               withChild: Padding(
                 padding: const EdgeInsets.all(0.0),
@@ -90,7 +91,7 @@ class _MyHomePageState extends State<OurProgramStem> {
 
                                 ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                                 ///in the next line we use 20%
-                                // height: 350,
+                                 height: 350,
                                 child: ListView(
                                   shrinkWrap: true,
                                   // crossAxisAlignment:
@@ -107,7 +108,7 @@ class _MyHomePageState extends State<OurProgramStem> {
                                     Expanded(
                                         flex: 5,
                                         child: Padding(
-                                          padding: const EdgeInsets.all(18.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -119,8 +120,8 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                 text:
                                                     "About 5th Edition of UNESCO-Merck Africa Research Summit",
                                                 labelColor:
-                                                    Customcolor.text_blue,
-                                                fontweight: FontWeight.w500,
+                                                    Customcolor.text_darkblue,
+                                                fontweight: FontWeight.w600,
                                                 fontSize: ResponsiveFlutter.of(
                                                         context)
                                                     .fontSize(1.8),
@@ -135,8 +136,8 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                 text:
                                                     "Call for Application - Apply Now",
                                                 labelColor:
-                                                    Customcolor.text_blue,
-                                                fontweight: FontWeight.w500,
+                                                    Customcolor.text_darkblue,
+                                                fontweight: FontWeight.w600,
                                                 fontSize: ResponsiveFlutter.of(
                                                         context)
                                                     .fontSize(1.8),
@@ -151,8 +152,8 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                 text:
                                                     "Scientific & Steering Committee ",
                                                 labelColor:
-                                                    Customcolor.text_blue,
-                                                fontweight: FontWeight.w500,
+                                                    Customcolor.text_darkblue,
+                                                fontweight: FontWeight.w600,
                                                 fontSize: ResponsiveFlutter.of(
                                                         context)
                                                     .fontSize(1.8),
@@ -186,9 +187,9 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                         text:
                                                             "4th Edition of UNESCO-MARS",
                                                         labelColor: Customcolor
-                                                            .text_blue,
+                                                            .text_darkblue,
                                                         fontweight:
-                                                            FontWeight.w500,
+                                                            FontWeight.w600,
                                                         fontSize:
                                                             ResponsiveFlutter
                                                                     .of(context)
@@ -209,9 +210,9 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                         text:
                                                             "4th Edition- UNESCO MARS Scientific book",
                                                         labelColor: Customcolor
-                                                            .text_blue,
+                                                            .text_darkblue,
                                                         fontweight:
-                                                            FontWeight.w500,
+                                                            FontWeight.w600,
                                                         fontSize:
                                                             ResponsiveFlutter
                                                                     .of(context)
@@ -231,9 +232,9 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                         text:
                                                             "Scientific & Steering Committee        ",
                                                         labelColor: Customcolor
-                                                            .text_blue,
+                                                            .text_darkblue,
                                                         fontweight:
-                                                            FontWeight.w500,
+                                                            FontWeight.w600,
                                                         fontSize:
                                                             ResponsiveFlutter
                                                                     .of(context)
@@ -253,9 +254,9 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                         text:
                                                             "About 4th Edition of UNESCO Merck Africa Research Summit",
                                                         labelColor: Customcolor
-                                                            .text_blue,
+                                                            .text_darkblue,
                                                         fontweight:
-                                                            FontWeight.w500,
+                                                            FontWeight.w600,
                                                         fontSize:
                                                             ResponsiveFlutter
                                                                     .of(context)
@@ -282,8 +283,8 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                   text:
                                                       "3rd Edition of UNESCO-MARS",
                                                   labelColor:
-                                                      Customcolor.text_blue,
-                                                  fontweight: FontWeight.w500,
+                                                      Customcolor.text_darkblue,
+                                                  fontweight: FontWeight.w600,
                                                   fontSize:
                                                       ResponsiveFlutter.of(
                                                               context)
@@ -304,8 +305,8 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                   text:
                                                       "5th Edition of UNESCO-Merck Africa Research Summit",
                                                   labelColor:
-                                                      Customcolor.text_blue,
-                                                  fontweight: FontWeight.w500,
+                                                      Customcolor.text_darkblue,
+                                                  fontweight: FontWeight.w600,
                                                   fontSize:
                                                       ResponsiveFlutter.of(
                                                               context)
@@ -334,166 +335,169 @@ class _MyHomePageState extends State<OurProgramStem> {
                               ))),
                       Expanded(
                           flex: 5,
-                          child: ListView(
-                            shrinkWrap: true,
-                            //  crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 5,
-                              ),
-                              FormLabel(
-                                text:
-                                    "About 5th Edition of UNESCO-Merck Africa Research Summit",
-                                labelColor: Customcolor.text_blue,
-                                fontweight: FontWeight.w500,
-                                fontSize:
-                                    ResponsiveFlutter.of(context).fontSize(1.8),
-                              ),
-                              Divider(
-                                color: Customcolor.colorBlue,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              FormLabel(
-                                text: "Call for Application - Apply Now",
-                                labelColor: Customcolor.text_blue,
-                                fontweight: FontWeight.w500,
-                                fontSize:
-                                    ResponsiveFlutter.of(context).fontSize(1.8),
-                              ),
-                              Divider(
-                                color: Customcolor.colorBlue,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              FormLabel(
-                                text: "Scientific & Steering Committee",
-                                labelColor: Customcolor.text_blue,
-                                fontweight: FontWeight.w500,
-                                fontSize:
-                                    ResponsiveFlutter.of(context).fontSize(1.8),
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Container(
-                                width: SizeConfig.blockSizeHorizontal * 100,
-                                color: Color(0xffC1DEA4),
-                                child: Theme(
-                                  data: Theme.of(context).copyWith(
-                                    dividerColor: Colors.transparent,
-                                  ),
-                                  child: ExpansionTile(
-                                    backgroundColor: Color(0xffC1DEA4),
-                                    tilePadding: EdgeInsets.all(0.0),
-                                    key: GlobalKey(),
-                                    initiallyExpanded: expansionState[
-                                        '4th Edition of UNESCO-MARS'],
-                                    title: Container(
-                                      // color: Color(0xffC1DEA4),
-                                      child: FormLabel(
-                                        text: "4th Edition of UNESCO-MARS",
-                                        labelColor: Customcolor.text_blue,
-                                        fontweight: FontWeight.w500,
-                                        fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
-                                      ),
-                                    ),
-                                    onExpansionChanged: ((newState) {
-                                      expansionState[
-                                              '4th Edition of UNESCO-MARS'] =
-                                          newState;
-                                      if (newState)
-                                        closeOpenExpansionList(
-                                            '4th Edition of UNESCO-MARS');
-                                    }),
-                                    children: <Widget>[
-                                      FormLabel(
-                                        text:
-                                            "4th Edition- UNESCO MARS Scientific book",
-                                        labelColor: Customcolor.text_blue,
-                                        fontweight: FontWeight.w500,
-                                        fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      Divider(
-                                        color: Color(0xff83A23B),
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      FormLabel(
-                                        text:
-                                            "Scientific & Steering Committee       ",
-                                        labelColor: Customcolor.text_blue,
-                                        fontweight: FontWeight.w500,
-                                        fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      Divider(
-                                        color: Color(0xff83A23B),
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      FormLabel(
-                                        text:
-                                            "About 4th Edition of UNESCO Merck Africa Research Summit",
-                                        labelColor: Customcolor.text_blue,
-                                        fontweight: FontWeight.w500,
-                                        fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
-                                      ),
-                                      SizedBox(
-                                        height: 6,
-                                      ),
-                                    ],
-                                  ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListView(
+                              shrinkWrap: true,
+                              //  crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 5,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 2,
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(bottom: 8, top: 8),
-                                width: SizeConfig.blockSizeHorizontal * 100,
-                                color: Color(0xffFEDBB3),
-                                child: FormLabel(
-                                  text: "3rd Edition of UNESCO-MARS",
-                                  labelColor: Customcolor.text_blue,
-                                  fontweight: FontWeight.w500,
-                                  fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(1.8),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 2,
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(bottom: 8, top: 8),
-                                width: SizeConfig.blockSizeHorizontal * 100,
-                                color: Color(0xffE0C0CB),
-                                child: FormLabel(
+                                FormLabel(
                                   text:
-                                      "5th Edition of UNESCO-Merck Africa Research Summit",
-                                  labelColor: Customcolor.text_blue,
-                                  fontweight: FontWeight.w500,
-                                  fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(1.8),
+                                      "About 5th Edition of UNESCO-Merck Africa Research Summit",
+                                  labelColor: Customcolor.text_darkblue,
+                                  fontweight: FontWeight.w600,
+                                  fontSize:
+                                      ResponsiveFlutter.of(context).fontSize(1.8),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                            ],
+                                Divider(
+                                  color: Customcolor.colorBlue,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                FormLabel(
+                                  text: "Call for Application - Apply Now",
+                                  labelColor: Customcolor.text_darkblue,
+                                  fontweight: FontWeight.w600,
+                                  fontSize:
+                                      ResponsiveFlutter.of(context).fontSize(1.8),
+                                ),
+                                Divider(
+                                  color: Customcolor.colorBlue,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                FormLabel(
+                                  text: "Scientific & Steering Committee",
+                                  labelColor: Customcolor.text_darkblue,
+                                  fontweight: FontWeight.w600,
+                                  fontSize:
+                                      ResponsiveFlutter.of(context).fontSize(1.8),
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Container(
+                                  width: SizeConfig.blockSizeHorizontal * 100,
+                                  color: Color(0xffC1DEA4),
+                                  child: Theme(
+                                    data: Theme.of(context).copyWith(
+                                      dividerColor: Colors.transparent,
+                                    ),
+                                    child: ExpansionTile(
+                                      backgroundColor: Color(0xffC1DEA4),
+                                      tilePadding: EdgeInsets.all(0.0),
+                                      key: GlobalKey(),
+                                      initiallyExpanded: expansionState[
+                                          '4th Edition of UNESCO-MARS'],
+                                      title: Container(
+                                        // color: Color(0xffC1DEA4),
+                                        child: FormLabel(
+                                          text: "4th Edition of UNESCO-MARS",
+                                          labelColor: Customcolor.text_darkblue,
+                                          fontweight: FontWeight.w600,
+                                          fontSize: ResponsiveFlutter.of(context)
+                                              .fontSize(1.8),
+                                        ),
+                                      ),
+                                      onExpansionChanged: ((newState) {
+                                        expansionState[
+                                                '4th Edition of UNESCO-MARS'] =
+                                            newState;
+                                        if (newState)
+                                          closeOpenExpansionList(
+                                              '4th Edition of UNESCO-MARS');
+                                      }),
+                                      children: <Widget>[
+                                        FormLabel(
+                                          text:
+                                              "4th Edition- UNESCO MARS Scientific book",
+                                          labelColor: Customcolor.text_darkblue,
+                                          fontweight: FontWeight.w600,
+                                          fontSize: ResponsiveFlutter.of(context)
+                                              .fontSize(1.8),
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        Divider(
+                                          color: Color(0xff83A23B),
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        FormLabel(
+                                          text:
+                                              "Scientific & Steering Committee       ",
+                                          labelColor: Customcolor.text_darkblue,
+                                          fontweight: FontWeight.w600,
+                                          fontSize: ResponsiveFlutter.of(context)
+                                              .fontSize(1.8),
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        Divider(
+                                          color: Color(0xff83A23B),
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        FormLabel(
+                                          text:
+                                              "About 4th Edition of UNESCO Merck Africa Research Summit",
+                                          labelColor: Customcolor.text_darkblue,
+                                          fontweight: FontWeight.w600,
+                                          fontSize: ResponsiveFlutter.of(context)
+                                              .fontSize(1.8),
+                                        ),
+                                        SizedBox(
+                                          height: 6,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 2,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(bottom: 8, top: 8),
+                                  width: SizeConfig.blockSizeHorizontal * 100,
+                                  color: Color(0xffFEDBB3),
+                                  child: FormLabel(
+                                    text: "3rd Edition of UNESCO-MARS",
+                                    labelColor: Customcolor.text_darkblue,
+                                    fontweight: FontWeight.w600,
+                                    fontSize: ResponsiveFlutter.of(context)
+                                        .fontSize(1.8),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 2,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(bottom: 8, top: 8),
+                                  width: SizeConfig.blockSizeHorizontal * 100,
+                                  color: Color(0xffE0C0CB),
+                                  child: FormLabel(
+                                    text:
+                                        "5th Edition of UNESCO-Merck Africa Research Summit",
+                                    labelColor: Customcolor.text_darkblue,
+                                    fontweight: FontWeight.w600,
+                                    fontSize: ResponsiveFlutter.of(context)
+                                        .fontSize(1.8),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                              ],
+                            ),
                           ))
                     ],
                   ),

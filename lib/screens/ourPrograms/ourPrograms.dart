@@ -246,7 +246,7 @@ class _OurProgramState extends State<Ourprogram> {
                                   width: SizeConfig.blockSizeHorizontal * 100,
                                   child: Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
+                                        left: 5, right: 5, top: 5, bottom: 5),
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -257,7 +257,7 @@ class _OurProgramState extends State<Ourprogram> {
                                           labelColor: Colors.black,
                                           fontSize:
                                               ResponsiveFlutter.of(context)
-                                                  .fontSize(1.6),
+                                                  .fontSize(1.5),
                                           maxLines: 2,
                                           fontweight: FontWeight.w600,
                                         ),

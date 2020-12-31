@@ -7,6 +7,7 @@ import 'package:merckfoundation22dec/screens/ourPrograms/motherambassadar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/strategy.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
+import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
 class OurProgram extends StatefulWidget {
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<OurProgram> {
         ///[SEtting up the floating action button]
         floatingActionButton: AdvFab(
           showLogs: true,
-          floatingActionButtonExpendedWidth: 70,
+          floatingActionButtonExpendedWidth: 80,
           onFloatingActionButtonTapped: () {
             mabialaFABController.setExpandedWidgetConfiguration(
               showLogs: true,
@@ -85,11 +86,11 @@ class _MyHomePageState extends State<OurProgram> {
               withChild: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  width: (MediaQuery.of(context).size.width) * 50,
+                  width: (MediaQuery.of(context).size.width) * 70,
 
                   ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                   ///in the next line we use 20%
-                  height: 300,
+                  height: 400,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -102,12 +103,12 @@ class _MyHomePageState extends State<OurProgram> {
                               withChild: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
-                                  width:
-                                      (MediaQuery.of(context).size.width) * 50,
+                                  width: 
+                                     (MediaQuery.of(context).size.width) * 70,
 
                                   ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                                   ///in the next line we use 20%
-                                  height: 350,
+                                  height: 400,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -121,39 +122,46 @@ class _MyHomePageState extends State<OurProgram> {
                                                 color: Customcolor.colorBlue,
                                               ))),
                                       Expanded(
-                                        flex: 5,
+                                     //   flex: 5,
                                         child: ListView.builder(
+                                          padding: EdgeInsets.all(0),
                                           physics: BouncingScrollPhysics(),
                                           itemCount: programvalue.length,
                                           scrollDirection: Axis.vertical,
                                           itemBuilder: (BuildContext context,
                                               int index) {
-                                            return Padding(
-                                              padding:
-                                                  const EdgeInsets.all(0.0),
-                                              child: Container(
-                                                child: Column(
-                                                  children: [
-                                                    FormLabel(
-                                                      text: programvalue[index],
-                                                      labelColor:
-                                                          Customcolor.text_blue,
-                                                      fontweight:
-                                                          FontWeight.w500,
-                                                      fontSize:
-                                                          ResponsiveFlutter.of(
-                                                                  context)
-                                                              .fontSize(1.8),
-                                                    ),
-                                                    Divider(
-                                                      color:
-                                                          Customcolor.colorBlue,
-                                                    )
-                                                  ],
-                                                ),
+                                            return Container(
+                                              child: Column(
+                                                children: [
+                                                  FormLabel(
+                                                    text: programvalue[index],
+                                                    labelColor:
+                                                        Customcolor.text_darkblue,
+                                                    fontweight:
+                                                        FontWeight.w600,
+                                                    fontSize:
+                                                        ResponsiveFlutter.of(
+                                                                context)
+                                                            .fontSize(1.8),
+                                                  ),
 
-                                                //height: (MediaQuery.of(context).size.height/100)*9,
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+
+                                                   Container(
+                                        width: SizeConfig.blockSizeHorizontal * 80,
+                                        height: 1.0,
+                                        color: Customcolor.text_darkblue,
+                                      )
+                                                  // Divider(
+                                                  //   color:
+                                                  //       Customcolor.colorBlue,
+                                                  // )
+                                                ],
                                               ),
+
+                                              //height: (MediaQuery.of(context).size.height/100)*9,
                                             );
                                           },
                                         ),
@@ -227,13 +235,23 @@ class _MyHomePageState extends State<OurProgram> {
                                     children: [
                                       FormLabel(
                                         text: programvalue[index],
-                                        labelColor: Customcolor.text_blue,
-                                        fontweight: FontWeight.w500,
+                                        labelColor:
+                                                        Customcolor.text_darkblue,
+                                                    fontweight:
+                                                        FontWeight.w600,
                                         fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(1.6),
+                                            .fontSize(1.8),
                                       ),
-                                      Divider(
-                                        color: Customcolor.colorBlue,
+
+                                    
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+
+                                                   Container(
+                                        width: SizeConfig.blockSizeHorizontal * 80,
+                                        height: 1.0,
+                                        color: Customcolor.text_darkblue,
                                       )
                                     ],
                                   ),

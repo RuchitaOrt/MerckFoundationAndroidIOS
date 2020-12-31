@@ -27,6 +27,19 @@ class MerckstemprogramState extends State<Merckstemprogram>
     "assets/images/slider1.jpg",
     "assets/images/slider2.jpg"
   ];
+
+    List _imgarray = [
+    "assets/newImages/img3.jpg",
+    "assets/newImages/img4.jpg",
+     "assets/newImages/leader1.png",
+
+    "assets/newImages/leader2.png",
+    "assets/newImages/img3.jpg",
+     "assets/newImages/leader1.png",
+      "assets/newImages/leader2.png",
+
+  ];
+
   CarouselSlider carouselSlider;
 
   bool iscall = true;
@@ -59,6 +72,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+         backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
           Navigator.push(
@@ -195,7 +209,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                           indicator: new BubbleTabIndicator(
                             indicatorHeight: 35.0,
                             indicatorRadius: 5,
-                            indicatorColor: Customcolor.pinkbg,
+                            indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
                             tabBarIndicatorSize: TabBarIndicatorSize.tab,
                           ),
                           tabs: tabs,
@@ -225,8 +239,22 @@ class MerckstemprogramState extends State<Merckstemprogram>
                     child: CustomHorizontalCard(
                         index: 1,
                         cardImage: "assets/newImages/gallery.png",
-                        cardTitle: "Our Videos",
-                        titleColor: Customcolor.text_blue,
+                        cardTitle: "Our Videos  ",
+                        titleColor: Customcolor.pink_col,
+                        titleImg: "assets/newImages/flowers-1.png",
+                        subTitle:
+                            "Message Form Dr.Rasha Kelej, on the inauguration..."),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: CustomHorizontalCard(
+                        index: 1,
+                        cardImage: "assets/newImages/ourvison.png",
+                        cardTitle: "Photo Gallery  ",
+                        titleColor: Customcolor.pink_col,
                         titleImg: "assets/newImages/flowers-3.png",
                         subTitle:
                             "Message Form Dr.Rasha Kelej, on the inauguration..."),
@@ -238,24 +266,10 @@ class MerckstemprogramState extends State<Merckstemprogram>
                     padding: const EdgeInsets.only(left: 15),
                     child: CustomHorizontalCard(
                         index: 1,
-                        cardImage: "assets/newImages/gallery.png",
-                        cardTitle: "Photo Gallery",
-                        titleColor: Customcolor.text_blue,
-                        titleImg: "assets/newImages/flowers-3.png",
-                        subTitle:
-                            "Message Form Dr.Rasha Kelej, on the inauguration..."),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: CustomHorizontalCard(
-                        index: 1,
-                        cardImage: "assets/newImages/gallery.png",
-                        cardTitle: "Our Newsletters",
-                        titleColor: Customcolor.text_blue,
-                        titleImg: "assets/newImages/flowers-3.png",
+                        cardImage: "assets/newImages/mqdefault1.png",
+                        cardTitle: "Our Newsletters  ",
+                        titleColor: Customcolor.pink_col,
+                        titleImg: "assets/newImages/flowers-2.png",
                         subTitle:
                             "Message Form Dr.Rasha Kelej, on the inauguration..."),
                   ),
@@ -295,7 +309,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                         child: Container(
                           height: 140,
                           child: ListView.builder(
-                            itemCount: 4,
+                            itemCount: _imgarray.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int index) {
                               return Padding(
@@ -325,7 +339,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
                                                 image: AssetImage(
-                                                  "assets/newImages/message.png",
+                                                 _imgarray[index],
                                                 )),
                                           ),
                                         ),
