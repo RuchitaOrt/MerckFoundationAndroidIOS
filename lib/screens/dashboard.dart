@@ -152,12 +152,10 @@ class _DashboardState extends State<Dashboard>
               "assets/newImages/call_for_application_unselect.png",
               height: 25,
             ),
-            title: Expanded(
-              child: Text(
-                'Call for application',
-                style: style,
-                maxLines: 2,
-              ),
+            title: Text(
+              'Call for application',
+              style: style,
+              maxLines: 2,
             ),
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,

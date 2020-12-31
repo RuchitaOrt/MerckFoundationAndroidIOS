@@ -23,6 +23,7 @@ class CallApplicationState extends State<CallforApplication>
     "assets/newImages/cfa1.png"
   ];
   int _current1 = 0;
+  int _current = 0;
   @override
   void initState() {
     super.initState();
@@ -186,7 +187,9 @@ class CallApplicationState extends State<CallforApplication>
               position: double.parse("$_current1"),
               decorator: DotsDecorator(
                 size: const Size.square(9.0),
-                activeSize: const Size(18.0, 9.0),
+                activeSize: const Size(25.0, 9.0),
+                color: Customcolor.ligthpink,
+                spacing: EdgeInsets.only(right: 3),
                 activeColor: Customcolor.pink_col,
                 activeShape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0)),
@@ -230,6 +233,11 @@ class CallApplicationState extends State<CallforApplication>
         children: [
           Expanded(
             child: Swiper(
+              onIndexChanged: (val) {
+                setState(() {
+                  _current = val;
+                });
+              },
               fade: 0.0,
               itemBuilder: (BuildContext context, int index) {
                 return Column(
@@ -265,10 +273,26 @@ class CallApplicationState extends State<CallforApplication>
               viewportFraction: 0.7,
               layout: SwiperLayout.DEFAULT,
               scale: 0.9,
-              pagination: SwiperPagination(
-                builder: new DotSwiperPaginationBuilder(
-                    color: Customcolor.ligthpink,
-                    activeColor: Customcolor.pink_col),
+              // pagination: SwiperPagination(
+              //   builder: new DotSwiperPaginationBuilder(
+              //       color: Customcolor.ligthpink,
+              //       activeColor: Customcolor.pink_col),
+              // ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20, bottom: 20),
+            child: new DotsIndicator(
+              dotsCount: images.length,
+              position: double.parse("$_current"),
+              decorator: DotsDecorator(
+                size: const Size.square(9.0),
+                activeSize: const Size(25.0, 9.0),
+                color: Customcolor.ligthpink,
+                spacing: EdgeInsets.only(right: 3),
+                activeColor: Customcolor.pink_col,
+                activeShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
               ),
             ),
           ),
