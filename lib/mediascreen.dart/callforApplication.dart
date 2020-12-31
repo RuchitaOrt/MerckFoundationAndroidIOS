@@ -1,3 +1,5 @@
+import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -20,6 +22,7 @@ class CallApplicationState extends State<CallforApplication>
     "assets/newImages/m3.png",
     "assets/newImages/cfa1.png"
   ];
+  int _current1 = 0;
   @override
   void initState() {
     super.initState();
@@ -68,29 +71,32 @@ class CallApplicationState extends State<CallforApplication>
               unselectedLabelColor: Customcolor.text_grey,
               indicatorSize: TabBarIndicatorSize.label,
 
-              indicatorWeight: 3,
+              indicatorWeight: 2,
               indicatorColor: Customcolor.text_darkblue,
 
               tabs: <Widget>[
                 Tab(
                   child: Text(
-                    "Upcoming Call for Application",
+                    "Upcoming Call for \nApplication",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         //   color: Customcolor.colorBlue,
                         fontSize: 15,
-                        fontWeight: FontWeight.w900),
+                        fontWeight: FontWeight.w700),
                   ),
                 ),
                 Tab(
                   child: Text(
-                    "Past Call \nfor Application",
+                    "Past Call for \nApplication",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                   ),
                 ),
               ],
             ),
+          ),
+          SizedBox(
+            height: 20,
           ),
           Expanded(
             flex: 3,
@@ -121,7 +127,11 @@ class CallApplicationState extends State<CallforApplication>
           Expanded(
             child: Swiper(
               fade: 0.0,
-
+              onIndexChanged: (val) {
+                setState(() {
+                  _current1 = val;
+                });
+              },
               itemBuilder: (BuildContext context, int index) {
                 return Column(
                   children: [
@@ -161,11 +171,25 @@ class CallApplicationState extends State<CallforApplication>
               //itemWidth: 300.0,
               //itemHeight: 400,
               //itemHeight: 400,
-              pagination: SwiperPagination(
-                builder: new DotSwiperPaginationBuilder(
-                  color: Customcolor.ligthpink,
-                  activeColor: Customcolor.pink_col,
-                ),
+              // pagination: SwiperPagination(
+              //   builder: new DotSwiperPaginationBuilder(
+              //     color: Customcolor.ligthpink,
+              //     activeColor: Customcolor.pink_col,
+              //   ),
+              // ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20, bottom: 20),
+            child: new DotsIndicator(
+              dotsCount: images.length,
+              position: double.parse("$_current1"),
+              decorator: DotsDecorator(
+                size: const Size.square(9.0),
+                activeSize: const Size(18.0, 9.0),
+                activeColor: Customcolor.pink_col,
+                activeShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
               ),
             ),
           ),
@@ -174,7 +198,10 @@ class CallApplicationState extends State<CallforApplication>
             title: Text(
               "UNESCO-MARS 2020",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Customcolor.text_darkgrey),
+              style: TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 17),
             ),
           ),
           SizedBox(
@@ -238,10 +265,6 @@ class CallApplicationState extends State<CallforApplication>
               viewportFraction: 0.7,
               layout: SwiperLayout.DEFAULT,
               scale: 0.9,
-              //outer: true,
-              // itemWidth: 300.0,
-              // //itemHeight: 400,
-              // itemHeight: 400,
               pagination: SwiperPagination(
                 builder: new DotSwiperPaginationBuilder(
                     color: Customcolor.ligthpink,
@@ -254,7 +277,10 @@ class CallApplicationState extends State<CallforApplication>
             title: Text(
               "UNESCO-MARS 2020",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Customcolor.text_darkgrey),
+              style: TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 17),
             ),
           ),
           SizedBox(

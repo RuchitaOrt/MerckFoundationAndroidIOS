@@ -40,7 +40,7 @@ class OurActivityState extends State<OurActivity> {
         },
         index: 2,
         title: "Our Activities",
-        titleImg: "assets/newImages/flowers-1.png",
+        titleImg: "assets/newImages/vision_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
         height: 85,
@@ -109,6 +109,16 @@ class OurActivityState extends State<OurActivity> {
                       ),
                     );
                   },
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                FormLabel(
+                  text:
+                      "The Merck Foundation focuses on activities that will contribute towards the Sustainable Development Goals (SDGs) as outlined by the United Nations.",
+                  labelColor: Customcolor.text_darkgrey,
+                  fontweight: FontWeight.w400,
+                  fontSize: ResponsiveFlutter.of(context).fontSize(1.9),
                 ),
               ],
             ),
@@ -197,12 +207,14 @@ class OurActivityState extends State<OurActivity> {
                                             fontSize:
                                                 ResponsiveFlutter.of(context)
                                                     .fontSize(1.8),
-                                            labelColor: Customcolor.colorBlue,
+                                            labelColor:
+                                                Customcolor.text_darkblue,
+                                            fontweight: FontWeight.w400,
                                           ),
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 3,
+                                        width: 4,
                                       ),
                                       Container(
                                         width: 60,
@@ -217,12 +229,14 @@ class OurActivityState extends State<OurActivity> {
                                             fontSize:
                                                 ResponsiveFlutter.of(context)
                                                     .fontSize(1.8),
-                                            labelColor: Customcolor.colorBlue,
+                                            labelColor:
+                                                Customcolor.text_darkblue,
+                                            fontweight: FontWeight.w400,
                                           ),
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 3,
+                                        width: 4,
                                       ),
                                       Container(
                                         width: 70,
@@ -237,7 +251,9 @@ class OurActivityState extends State<OurActivity> {
                                             fontSize:
                                                 ResponsiveFlutter.of(context)
                                                     .fontSize(1.8),
-                                            labelColor: Customcolor.colorBlue,
+                                            labelColor:
+                                                Customcolor.text_darkblue,
+                                            fontweight: FontWeight.w400,
                                           ),
                                         ),
                                       ),

@@ -9,8 +9,6 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
-
-
 class OurProgram extends StatefulWidget {
   OurProgram({Key key, this.title, this.indexpass}) : super(key: key);
 
@@ -37,7 +35,7 @@ class _MyHomePageState extends State<OurProgram> {
     "Videos"
   ];
 
-   List programvalueforStem = [
+  List programvalueforStem = [
     "About Merck More Than A Mother",
     "Strategy",
     "Merck More Than a Mother Ambassadors",
@@ -47,7 +45,6 @@ class _MyHomePageState extends State<OurProgram> {
     "Local Songs and Children Stories",
     "Videos"
   ];
-
 
   _MyHomePageState(this.indexpass);
   @override
@@ -69,7 +66,9 @@ class _MyHomePageState extends State<OurProgram> {
                         ? StrategyDetails()
                         : indexpass == 10
                             ? MotherAmbassadarDetails()
-                            : indexpass == 11? MerckFertility():Container()
+                            : indexpass == 11
+                                ? MerckFertility()
+                                : Container()
           ],
           controller: mabialaFABController,
         ),
@@ -131,7 +130,7 @@ class _MyHomePageState extends State<OurProgram> {
                                               int index) {
                                             return Padding(
                                               padding:
-                                                  const EdgeInsets.all(8.0),
+                                                  const EdgeInsets.all(0.0),
                                               child: Container(
                                                 child: Column(
                                                   children: [
@@ -210,9 +209,8 @@ class _MyHomePageState extends State<OurProgram> {
                                                 OurProgram(
                                                   indexpass: 10,
                                                 )));
-                                  } else if (index == 3){
-
-  Navigator.push(
+                                  } else if (index == 3) {
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>

@@ -58,13 +58,16 @@ class InnerCustomAppBar extends PreferredSize {
                     FormLabel(
                       text: title,
                       fontSize: 20,
-                      fontweight: FontWeight.w600,
+                      fontweight: FontWeight.w700,
                       labelColor: Customcolor.text_blue,
                     ),
                     SizedBox(
                       width: 7,
                     ),
-                    Image.asset(titleImg, height: 35,)
+                    Image.asset(
+                      titleImg,
+                      height: 35,
+                    )
                   ],
                 ),
               ),
