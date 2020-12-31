@@ -62,7 +62,7 @@ class InnerCustomAppBar extends PreferredSize {
                       labelColor: Customcolor.text_blue,
                     ),
                     SizedBox(
-                      width: 7,
+                      width: 10,
                     ),
                     Image.asset(
                       titleImg,

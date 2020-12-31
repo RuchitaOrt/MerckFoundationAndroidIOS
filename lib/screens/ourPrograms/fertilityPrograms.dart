@@ -26,6 +26,18 @@ class MerckFertilityState extends State<MerckFertility> {
     "Empowering Girls and Women in Education in general and in STEM in particular.",
     "Improving access to quality & equitable healthcare solutions.",
   ];
+
+  List _imgarray = [
+    "assets/newImages/img3.jpg",
+    "assets/newImages/img4.jpg",
+     "assets/newImages/leader1.png",
+
+    "assets/newImages/leader2.png",
+    "assets/newImages/img3.jpg",
+     "assets/newImages/leader1.png",
+      "assets/newImages/leader2.png",
+
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +76,7 @@ class MerckFertilityState extends State<MerckFertility> {
             FormLabel(
               text: "Merck Embryology & Fertility Training",
               labelColor: Customcolor.text_blue,
-              fontweight: FontWeight.w600,
+              fontweight: FontWeight.w700,
               fontSize: ResponsiveFlutter.of(context).fontSize(2),
             ),
             SizedBox(
@@ -183,13 +195,13 @@ class MerckFertilityState extends State<MerckFertility> {
               height: 10,
             ),
             Image.asset(
-              "assets/newImages/poster_4.png",
+              "assets/newImages/rtaImage2.jpg",fit: BoxFit.fill,
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Image.asset(
-              "assets/newImages/poster_6.png",
+              "assets/newImages/rtaImage.png",
             ),
             SizedBox(
               height: 20,
@@ -205,7 +217,7 @@ class MerckFertilityState extends State<MerckFertility> {
               height: 10,
             ),
             Image.asset(
-              "assets/newImages/poster_6.png",
+              "assets/newImages/rtaImage2.jpg",
             ),
             SizedBox(
               height: 20,
@@ -221,18 +233,18 @@ class MerckFertilityState extends State<MerckFertility> {
               height: 10,
             ),
             Image.asset(
-              "assets/newImages/poster_6.png",
+              "assets/newImages/rtaImage.png",
             ),
             SizedBox(
               height: 20,
             ),
             CustomHorizontalCard(
                 index: 1,
-                cardImage: "assets/newImages/gallery.png",
+                cardImage: "assets/newImages/mqdefault1.png",
                 cardTitle:
-                    "Watch below some of the latest videos of Dr. Rasha kelej and first ladies of Africa. Ambassadars of Merck More than a Mother",
+                    "Watch below some of the latest videos of Dr. Rasha kelej and first ladies of Africa. Ambassadars of Merck More than a Mother.",
                 titleColor: Customcolor.colorPink,
-                titleImg: "assets/newImages/flowers-3.png",
+                titleImg: "",
                 subTitle:
                     "Message Form Dr.Rasha Kelej, on the inauguration..."),
             SizedBox(
@@ -262,7 +274,7 @@ class MerckFertilityState extends State<MerckFertility> {
               child: Container(
                 height: 140,
                 child: ListView.builder(
-                  itemCount: 4,
+                  itemCount: _imgarray.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
@@ -287,7 +299,7 @@ class MerckFertilityState extends State<MerckFertility> {
                                   image: DecorationImage(
                                       fit: BoxFit.cover,
                                       image: AssetImage(
-                                        "assets/newImages/message.png",
+                                      _imgarray[index]
                                       )),
                                 ),
                               ),
@@ -337,11 +349,33 @@ class MerckFertilityState extends State<MerckFertility> {
                 ),
               ),
             ),
+
+
+
             SizedBox(
               height: 9,
             ),
+
+              Center(
+              child: Container(
+                width: 120,
+                height: 40,
+                decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(5)),
+                child: Center(
+                  child: Text(
+                    "Read All",
+                    style: TextStyle(
+                        color: Customcolor.colorBlue,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.only(right: 60, left: 60),
+              padding: const EdgeInsets.only(right: 60, left: 60,top: 20),
               child: Image.asset(
                 "assets/newImages/flowers_footer.png",
               ),
