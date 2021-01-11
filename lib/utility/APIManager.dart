@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:merckfoundation22dec/model/legaldisclaimerResponse.dart';
+import 'package:merckfoundation22dec/model/ourmissionResponse.dart';
 import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/utility/AppEror.dart';
 
-enum API { vision, legaldisclaimer }
+enum API { vision, legaldisclaimer, ourmission }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
 
@@ -54,7 +55,12 @@ class APIManager {
       case API.vision:
         apiPathString = "show/vision/13";
         break;
-
+      case API.legaldisclaimer:
+        apiPathString = "show/legal-disclaimer/13";
+        break;
+      case API.ourmission:
+        apiPathString = "show/mission/13";
+        break;
       default:
         apiPathString = "";
     }
@@ -67,6 +73,7 @@ class APIManager {
     switch (api) {
       case API.vision:
       case API.legaldisclaimer:
+      case API.ourmission:
         method = HTTPMethod.GET;
         break;
 
@@ -85,6 +92,9 @@ class APIManager {
       case API.legaldisclaimer:
         className = "LegaldisclaimerResponse";
         break;
+      case API.ourmission:
+        className = "OurmissionResponse";
+        break;
 
       default:
         className = 'CommonResponse';
@@ -100,7 +110,9 @@ class APIManager {
     if (className == 'LegaldisclaimerResponse') {
       responseObj = LegaldisclaimerResponse.fromJson(json);
     }
-
+    if (className == 'OurmissionResponse') {
+      responseObj = OurmissionResponse.fromJson(json);
+    }
     return responseObj;
   }
 

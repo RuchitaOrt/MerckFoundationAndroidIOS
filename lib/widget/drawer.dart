@@ -7,7 +7,9 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 
 import 'package:merckfoundation22dec/screens/ourpartner/ourPartners.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
+import 'package:merckfoundation22dec/whatwedo/legaldisclaimer.dart';
 import 'package:merckfoundation22dec/whatwedo/ouractivities.dart';
+import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
@@ -241,11 +243,11 @@ class _AppDrawerState extends State<AppDrawer> {
                           value: 'Our Mission',
                           onTapfun: () {
                             print('ontap');
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (BuildContext context) =>
-                            //             OurMission()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        OurMission()));
                           },
                         ),
                         DrawerWidget(
@@ -270,7 +272,11 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Legal Disclaimer',
                           onTapfun: () {
-                            print('ontap');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        Ourlegaldisclimer()));
                           },
                         ),
                         DrawerWidget(

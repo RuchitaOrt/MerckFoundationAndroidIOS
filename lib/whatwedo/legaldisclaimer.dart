@@ -58,46 +58,48 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 1),
-              child: ListView(
-                shrinkWrap: true,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 15, right: 8, top: 8, bottom: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              child: GlobalLists.legaldisclaimer.length <= 0
+                  ? Container()
+                  : ListView(
+                      shrinkWrap: true,
+                      // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Html(
-                          data:
-                              """${GlobalLists.legaldisclaimer[0].pageContent} """,
-                          onLinkTap: (url) {
-                            print("Opening $url...");
-                          },
-                          // style: {
-                          //   "body": Style(
-                          //     fontSize: FontSize(
-                          //         ResponsiveFlutter.of(context).fontSize(2.2)),
-                          //     fontWeight: FontWeight.w600,
-                          //     color: Customcolor.pink_col,
-                          //   ),
-                          // },
-                        ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              right: 60, left: 60, top: 20),
-                          child: Image.asset(
-                            "assets/newImages/flowers_footer.png",
+                              left: 15, right: 8, top: 8, bottom: 15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Html(
+                                data:
+                                    """${GlobalLists.legaldisclaimer[0].pageContent} """,
+                                onLinkTap: (url) {
+                                  print("Opening $url...");
+                                },
+                                // style: {
+                                //   "body": Style(
+                                //     fontSize: FontSize(
+                                //         ResponsiveFlutter.of(context).fontSize(2.2)),
+                                //     fontWeight: FontWeight.w600,
+                                //     color: Customcolor.pink_col,
+                                //   ),
+                                // },
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 60, left: 60, top: 20),
+                                child: Image.asset(
+                                  "assets/newImages/flowers_footer.png",
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              )
+                            ],
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        )
                       ],
                     ),
-                  ),
-                ],
-              ),
             ),
 
             // TextSpan(
@@ -120,7 +122,9 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
           LegaldisclaimerResponse resp = response;
           print(response);
           print('Resp : $resp');
-          GlobalLists.legaldisclaimer = resp.the27;
+          setState(() {
+            GlobalLists.legaldisclaimer = resp.the27;
+          });
 
           Navigator.of(_keyLoader.currentContext).pop();
         },
