@@ -90,7 +90,7 @@ class _MyHomePageState extends State<OurProgram> {
 
                   ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                   ///in the next line we use 20%
-                  height: 400,
+                  height: 360,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -103,12 +103,12 @@ class _MyHomePageState extends State<OurProgram> {
                               withChild: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
-                                  width: 
-                                     (MediaQuery.of(context).size.width) * 70,
+                                  width:
+                                      (MediaQuery.of(context).size.width) * 70,
 
                                   ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                                   ///in the next line we use 20%
-                                  height: 400,
+                                  height: 360,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -122,12 +122,11 @@ class _MyHomePageState extends State<OurProgram> {
                                                 color: Customcolor.colorBlue,
                                               ))),
                                       Expanded(
-                                     //   flex: 5,
+                                        //   flex: 5,
                                         child: ListView.builder(
                                           padding: EdgeInsets.all(0),
                                           physics: BouncingScrollPhysics(),
                                           itemCount: programvalue.length,
-                                          padding: EdgeInsets.zero,
                                           scrollDirection: Axis.vertical,
                                           itemBuilder: (BuildContext context,
                                               int index) {
@@ -136,10 +135,9 @@ class _MyHomePageState extends State<OurProgram> {
                                                 children: [
                                                   FormLabel(
                                                     text: programvalue[index],
-                                                    labelColor:
-                                                        Customcolor.text_darkblue,
-                                                    fontweight:
-                                                        FontWeight.w600,
+                                                    labelColor: Customcolor
+                                                        .text_darkblue,
+                                                    fontweight: FontWeight.w600,
                                                     fontSize:
                                                         ResponsiveFlutter.of(
                                                                 context)
@@ -150,11 +148,14 @@ class _MyHomePageState extends State<OurProgram> {
                                                     height: 5,
                                                   ),
 
-                                                   Container(
-                                        width: SizeConfig.blockSizeHorizontal * 80,
-                                        height: 1.0,
-                                        color: Customcolor.text_darkblue,
-                                      )
+                                                  Container(
+                                                    width: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        80,
+                                                    height: 1.0,
+                                                    color: Customcolor
+                                                        .text_darkblue,
+                                                  )
                                                   // Divider(
                                                   //   color:
                                                   //       Customcolor.colorBlue,
@@ -237,21 +238,17 @@ class _MyHomePageState extends State<OurProgram> {
                                     children: [
                                       FormLabel(
                                         text: programvalue[index],
-                                        labelColor:
-                                                        Customcolor.text_darkblue,
-                                                    fontweight:
-                                                        FontWeight.w600,
+                                        labelColor: Customcolor.text_darkblue,
+                                        fontweight: FontWeight.w600,
                                         fontSize: ResponsiveFlutter.of(context)
                                             .fontSize(1.8),
                                       ),
-
-                                    
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-
-                                                   Container(
-                                        width: SizeConfig.blockSizeHorizontal * 80,
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Container(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 80,
                                         height: 1.0,
                                         color: Customcolor.text_darkblue,
                                       )

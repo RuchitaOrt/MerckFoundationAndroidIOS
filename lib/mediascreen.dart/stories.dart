@@ -73,6 +73,7 @@ class StoriesState extends State<Stories> {
                 shrinkWrap: true,
                 physics: ScrollPhysics(),
                 crossAxisCount: 2,
+                childAspectRatio: 0.9,
                 children: List.generate(_productsAvailable.length, (index) {
                   return Padding(
                     padding: const EdgeInsets.only(right: 2.0),
@@ -118,15 +119,16 @@ class StoriesState extends State<Stories> {
                                   padding: const EdgeInsets.all(4.0),
                                   child: Text(
                                     "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
-                                    overflow: TextOverflow.ellipsis,
+                                    // overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontSize: ResponsiveFlutter.of(context)
                                             .fontSize(1.4),
                                         fontWeight: FontWeight.w500),
-                                    maxLines: 2,
+                                    maxLines: 4,
                                   ),
                                 ),
+                                SizedBox(height: 5),
                               ],
                             ),
                           ),

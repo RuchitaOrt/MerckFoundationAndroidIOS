@@ -54,7 +54,6 @@ class _MyHomePageState extends State<OurProgramStem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   
         body: AdvFabBottomBarBody(
           screens: <Widget>[Merckstemprogram()],
           controller: mabialaFABController,
@@ -67,7 +66,7 @@ class _MyHomePageState extends State<OurProgramStem> {
           onFloatingActionButtonTapped: () {
             mabialaFABController.setExpandedWidgetConfiguration(
               showLogs: true,
-              heightToExpandTo: 42,
+              heightToExpandTo: 44,
               expendedBackgroundColor: Customcolor.cardbg,
               withChild: Padding(
                 padding: const EdgeInsets.all(0.0),
@@ -76,7 +75,7 @@ class _MyHomePageState extends State<OurProgramStem> {
 
                   ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                   ///in the next line we use 20%
-                  height: 350,
+                  height: 330,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -84,14 +83,14 @@ class _MyHomePageState extends State<OurProgramStem> {
                           onTap: () {
                             mabialaFABController.setExpandedWidgetConfiguration(
                               showLogs: true,
-                              heightToExpandTo: 50,
+                              heightToExpandTo: 60,
                               expendedBackgroundColor: Customcolor.cardbg,
                               withChild: Container(
                                 width: (MediaQuery.of(context).size.width) * 50,
 
                                 ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                                 ///in the next line we use 20%
-                                 height: 350,
+                                height: 330,
                                 child: ListView(
                                   shrinkWrap: true,
                                   // crossAxisAlignment:
@@ -349,8 +348,8 @@ class _MyHomePageState extends State<OurProgramStem> {
                                       "About 5th Edition of UNESCO-Merck Africa Research Summit",
                                   labelColor: Customcolor.text_darkblue,
                                   fontweight: FontWeight.w600,
-                                  fontSize:
-                                      ResponsiveFlutter.of(context).fontSize(1.8),
+                                  fontSize: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                 ),
                                 Divider(
                                   color: Customcolor.colorBlue,
@@ -362,8 +361,8 @@ class _MyHomePageState extends State<OurProgramStem> {
                                   text: "Call for Application - Apply Now",
                                   labelColor: Customcolor.text_darkblue,
                                   fontweight: FontWeight.w600,
-                                  fontSize:
-                                      ResponsiveFlutter.of(context).fontSize(1.8),
+                                  fontSize: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                 ),
                                 Divider(
                                   color: Customcolor.colorBlue,
@@ -375,8 +374,8 @@ class _MyHomePageState extends State<OurProgramStem> {
                                   text: "Scientific & Steering Committee",
                                   labelColor: Customcolor.text_darkblue,
                                   fontweight: FontWeight.w600,
-                                  fontSize:
-                                      ResponsiveFlutter.of(context).fontSize(1.8),
+                                  fontSize: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                 ),
                                 SizedBox(
                                   height: 8,
@@ -400,8 +399,9 @@ class _MyHomePageState extends State<OurProgramStem> {
                                           text: "4th Edition of UNESCO-MARS",
                                           labelColor: Customcolor.text_darkblue,
                                           fontweight: FontWeight.w600,
-                                          fontSize: ResponsiveFlutter.of(context)
-                                              .fontSize(1.8),
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(1.8),
                                         ),
                                       ),
                                       onExpansionChanged: ((newState) {
@@ -418,8 +418,9 @@ class _MyHomePageState extends State<OurProgramStem> {
                                               "4th Edition- UNESCO MARS Scientific book",
                                           labelColor: Customcolor.text_darkblue,
                                           fontweight: FontWeight.w600,
-                                          fontSize: ResponsiveFlutter.of(context)
-                                              .fontSize(1.8),
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(1.8),
                                         ),
                                         SizedBox(
                                           height: 4,
@@ -435,8 +436,9 @@ class _MyHomePageState extends State<OurProgramStem> {
                                               "Scientific & Steering Committee       ",
                                           labelColor: Customcolor.text_darkblue,
                                           fontweight: FontWeight.w600,
-                                          fontSize: ResponsiveFlutter.of(context)
-                                              .fontSize(1.8),
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(1.8),
                                         ),
                                         SizedBox(
                                           height: 4,
@@ -452,8 +454,9 @@ class _MyHomePageState extends State<OurProgramStem> {
                                               "About 4th Edition of UNESCO Merck Africa Research Summit",
                                           labelColor: Customcolor.text_darkblue,
                                           fontweight: FontWeight.w600,
-                                          fontSize: ResponsiveFlutter.of(context)
-                                              .fontSize(1.8),
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(1.8),
                                         ),
                                         SizedBox(
                                           height: 6,
