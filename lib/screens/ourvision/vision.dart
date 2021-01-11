@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/style.dart';
+import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'dart:math' as math;
@@ -15,11 +22,12 @@ class OurVision extends StatefulWidget {
 
 class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
   AnimationController _controller;
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
   void initState() {
     super.initState();
-
+    getvision();
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -32,7 +40,12 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Dashboard(
+                          index: 0,
+                        )));
           },
           index: 2,
           title: "Our Vision",
@@ -50,62 +63,89 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                 shrinkWrap: true,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(right: 10, left: 10, top: 10),
-                    child: Image.asset(
-                      "assets/newImages/ourvison.png",
-                    ),
-                  ),
+                  // Padding(
+                  //   padding:
+                  //       const EdgeInsets.only(right: 10, left: 10, top: 10),
+                  //   child: Image.asset(
+                  //     "assets/newImages/ourvison.png",
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 15, right: 8, top: 8, bottom: 15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "A world where everyone can lead a Healthy and Fulfilling Life.",
-                          style: TextStyle(
-                              color: Customcolor.pink_col,
-                              fontFamily: AppFonts.normal,
-                              fontSize:
-                                  ResponsiveFlutter.of(context).fontSize(2.2),
-                              fontWeight: FontWeight.w600),
+                        // Text(
+                        //   GlobalLists.vision[0].title,
+                        //   style: TextStyle(
+                        //       color: Customcolor.pink_col,
+                        //       fontFamily: AppFonts.normal,
+                        //       fontSize:
+                        //           ResponsiveFlutter.of(context).fontSize(2.2),
+                        //       fontWeight: FontWeight.w600),
+                        // ),
+                        Html(
+                          data: """${GlobalLists.vision[0].title} """,
+                          onLinkTap: (url) {
+                            print("Opening $url...");
+                          },
+                          // style: {
+                          //   "body": Style(
+                          //     fontSize: FontSize(
+                          //         ResponsiveFlutter.of(context).fontSize(2.2)),
+                          //     fontWeight: FontWeight.w600,
+                          //     color: Customcolor.pink_col,
+                          //   ),
+                          // },
                         ),
                         SizedBox(
                           height: 15,
                         ),
-                        Text(
-                            "The Merck Foundation is the philanthropic arm of Merck KGaA Germany that aims to improve the health and wellbeing of people and advance their lives through science and technology.\n\nOur efforts are primarily focused on improving access to quality & equitable healthcare solutions, building healthcare, scientiﬁc research & media capacity and empowering people in STEM* with a special focus on women and youth in under-served communities.\n\n*STEM: Science, Technology, Engineering and Mathematics",
-                            style: TextStyle(
-                              color: Customcolor.text_darkgrey,
-                              fontSize:
-                                  ResponsiveFlutter.of(context).fontSize(2),
-                            )
-                            //fontWeight: FontWeight.w300),
-                            ),
-                        SizedBox(
-                          height: 15,
+                        Html(
+                          data: """${GlobalLists.vision[0].pageContent} """,
+                          onLinkTap: (url) {
+                            print("Opening $url...");
+                          },
+                          // style: {
+                          //   "body": Style(
+                          //     fontSize: FontSize(
+                          //         ResponsiveFlutter.of(context).fontSize(2)),
+                          //     fontWeight: FontWeight.w300,
+                          //   ),
+                          // },
                         ),
-                        Text(
-                          "Merck Foundation Strives to",
-                          style: TextStyle(
-                              color: Customcolor.pink_col,
-                              fontFamily: AppFonts.normal,
-                              fontSize:
-                                  ResponsiveFlutter.of(context).fontSize(2.2),
-                              fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(height: 15),
-                        Text(
-                            "Work closely with partners that are African First Ladies, Ministries of Health, Education, Information & Communication, Gender, Academia, Research Institutions, Media and Art in building healthcare capacity and addressing health, social & economic challenges in developing countries and under-served communities.",
-                            style: TextStyle(
-                              color: Customcolor.text_darkgrey,
-                              fontSize:
-                                  ResponsiveFlutter.of(context).fontSize(2),
-                            )
-                            //fontWeight: FontWeight.w300),
-                            ),
+                        // Text(
+                        //     "The Merck Foundation is the philanthropic arm of Merck KGaA Germany that aims to improve the health and wellbeing of people and advance their lives through science and technology.\n\nOur efforts are primarily focused on improving access to quality & equitable healthcare solutions, building healthcare, scientiﬁc research & media capacity and empowering people in STEM* with a special focus on women and youth in under-served communities.\n\n*STEM: Science, Technology, Engineering and Mathematics",
+                        //     style: TextStyle(
+                        //       color: Customcolor.text_darkgrey,
+                        //       fontSize:
+                        //           ResponsiveFlutter.of(context).fontSize(2),
+                        //     )
+                        //     //fontWeight: FontWeight.w300),
+                        //     ),
+                        // SizedBox(
+                        //   height: 15,
+                        // ),
+                        // Text(
+                        //   "Merck Foundation Strives to",
+                        //   style: TextStyle(
+                        //       color: Customcolor.pink_col,
+                        //       fontFamily: AppFonts.normal,
+                        //       fontSize:
+                        //           ResponsiveFlutter.of(context).fontSize(2.2),
+                        //       fontWeight: FontWeight.w600),
+                        // ),
+                        // SizedBox(height: 15),
+                        // Text(
+                        //     "Work closely with partners that are African First Ladies, Ministries of Health, Education, Information & Communication, Gender, Academia, Research Institutions, Media and Art in building healthcare capacity and addressing health, social & economic challenges in developing countries and under-served communities.",
+                        //     style: TextStyle(
+                        //       color: Customcolor.text_darkgrey,
+                        //       fontSize:
+                        //           ResponsiveFlutter.of(context).fontSize(2),
+                        //     )
+                        //     //fontWeight: FontWeight.w300),
+                        //     ),
                         Padding(
                           padding: const EdgeInsets.only(
                               right: 60, left: 60, top: 20),
@@ -128,5 +168,33 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
             // ),
           ],
         ));
+  }
+
+  getvision() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.vision,
+        (response) async {
+          VisionResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+          GlobalLists.vision = resp.the12;
+          print(GlobalLists.vision[0].title);
+
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 }

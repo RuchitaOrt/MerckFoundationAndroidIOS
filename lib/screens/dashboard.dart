@@ -6,6 +6,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/stories.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
+import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawer.dart';
@@ -33,6 +34,7 @@ class _DashboardState extends State<Dashboard>
   @override
   void initState() {
     super.initState();
+    Utility().loadAPIConfig(context);
     currentIndex = widget.index;
     tabBarController = new PageController(initialPage: widget.index);
   }

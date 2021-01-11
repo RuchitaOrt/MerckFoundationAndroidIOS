@@ -1,8 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 
 class ShowDialogs {
+  static Future<void> showLoadingDialog(BuildContext context, GlobalKey key,
+      {String message = "Loading, please wait...",
+      bool setForLightScreen = false}) async {
+    Future.delayed(
+      Duration(microseconds: 300),
+      () {
+        showLoadingDialogWithDelay(context, key, message, setForLightScreen);
+      },
+    );
+  }
+
+  static Future<void> showLoadingDialogWithDelay(BuildContext context,
+      GlobalKey key, String message, bool setForLightScreen) async {
+    return showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return Material(
+            key: key,
+            type: MaterialType.transparency,
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SpinKitCircle(
+                    color: setForLightScreen ? Colors.black : Colors.white),
+                SizedBox(height: 15),
+                Text(message,
+                    style: TextStyle(
+                        color: setForLightScreen ? Colors.black : Colors.white))
+              ],
+            )),
+          );
+        });
+  }
+
+  static void showToast(String message) {
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        textColor: Customcolor.colorBlue,
+        backgroundColor: Customcolor.colorGrey,
+        fontSize: 16.0);
+  }
+
   static void showSimpleDialog(
       BuildContext context, String dialogTitle, String dialogMessage) {
     showDialog(

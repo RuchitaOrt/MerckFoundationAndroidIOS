@@ -5,8 +5,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:marquee/marquee.dart';
+import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/widget/customcard.dart';
@@ -47,7 +51,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   int _current = 0;
   int _current1 = 0;
   int currentIndex = 0;
-
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   List _productsAvailable = [
     "assets/images/slider1.jpg",
     "assets/images/slider2.jpg",
@@ -100,6 +104,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       vsync: this,
       duration: const Duration(milliseconds: 250),
     );
+    getvision();
   }
 
   @override
@@ -243,8 +248,6 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 ),
               ),
 
-            
-
               SizedBox(
                 height: 10,
               ),
@@ -330,7 +333,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                         control: SwiperControl(
                             iconNext: Icons.arrow_forward_ios,
                             iconPrevious: Icons.arrow_back_ios,
-                            size: 20, color: Customcolor.darkblue_col),
+                            size: 20,
+                            color: Customcolor.darkblue_col),
                         children: <Widget>[
                           Column(
                             children: [
@@ -553,7 +557,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             control: SwiperControl(
                 iconNext: Icons.arrow_forward_ios,
                 iconPrevious: Icons.arrow_back_ios,
-                size: 20,color: Customcolor.darkblue_col),
+                size: 20,
+                color: Customcolor.darkblue_col),
             children: <Widget>[
               Column(
                 children: [
@@ -627,7 +632,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             control: SwiperControl(
                 iconNext: Icons.arrow_forward_ios,
                 iconPrevious: Icons.arrow_back_ios,
-                size: 20,color: Customcolor.darkblue_col),
+                size: 20,
+                color: Customcolor.darkblue_col),
             children: <Widget>[
               Column(
                 children: [
@@ -1055,5 +1061,33 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                         ),
                       )),
                     )))));
+  }
+
+  getvision() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.vision,
+        (response) async {
+          VisionResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+          GlobalLists.vision = resp.the12;
+          print(GlobalLists.vision[0].title);
+
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 }
