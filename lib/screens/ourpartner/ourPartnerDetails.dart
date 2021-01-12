@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
@@ -60,7 +60,8 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                 crossAxisCount: 2,
                 childAspectRatio: 0.9,
                 shrinkWrap: true,
-                children: List.generate(_productsAvailable.length, (index) {
+                children:
+                    List.generate(GlobalLists.ourPartnerList.length, (index) {
                   return Padding(
                     padding: const EdgeInsets.only(right: 2.0),
                     child: Card(
@@ -76,20 +77,28 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Container(
-                                width: SizeConfig.blockSizeHorizontal * 100,
+                                width: SizeConfig.blockSizeHorizontal * 90,
                                 height: 130,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            _productsAvailable[index].image),
-                                        fit: BoxFit.cover)),
+                                  borderRadius: BorderRadius.circular(5),
+                                  // image: DecorationImage(
+                                  //     image: AssetImage(
+                                  //         _productsAvailable[index].image),
+                                  //     fit: BoxFit.cover),
+                                ),
+                                child: FadeInImage.assetNetwork(
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
+                                  image:
+                                      GlobalLists.ourPartnerList[index].image,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                               Center(
                                 child: Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: Text(
-                                    _productsAvailable[index].title,
+                                    GlobalLists.ourPartnerList[index].title,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Customcolor.text_darkblue,

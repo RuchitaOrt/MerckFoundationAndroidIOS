@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/model/ourPartnerObjectivesResp.dart';
+import 'package:merckfoundation22dec/model/ourPartnerResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/ourpartner/ourPartnerDetails.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -10,7 +10,6 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
 
 class Ourpatner extends StatefulWidget {
   @override
@@ -99,11 +98,8 @@ class OurpatnerState extends State<Ourpatner> {
                       minWidth: 38,
                       height: 40,
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    Ourpatnerdetail()));
+                        getOurPartnerData();
+                       
                       },
                     ),
                   ),
@@ -144,6 +140,47 @@ class OurpatnerState extends State<Ourpatner> {
             setState(() {
               GlobalLists.ourPartnerObjectives = resp.data.list;
             });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+
+    getOurPartnerData() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.ourPartner,
+        (response) async {
+          OurpartnerResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+          GlobalLists.ourPartnerList.clear();
+          Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.ourPartnerList = resp.data.list;
+            });
+
+             Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    Ourpatnerdetail()));
           } else {
             ShowDialogs.showToast(resp.msg);
           }

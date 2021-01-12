@@ -71,9 +71,9 @@ class ListElement {
 
     factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
-        title: json["title"],
+        title: json["title"] == null? "": json["title"],
         webUrl: json["web_url"],
-        image: json["image"],
+        image: json["image"] == null? "": json["image"],
         altText: json["alt_text"],
         status: json["status"],
         createdAt: DateTime.parse(json["created_at"]),
