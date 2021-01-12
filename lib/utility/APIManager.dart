@@ -9,27 +9,20 @@ import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/utility/AppEror.dart';
 
 enum API {
-   vision, 
-   legaldisclaimer,
-   ourmission,
-   ourActivities,
+  vision,
+  legaldisclaimer,
+  ourmission,
+  ourActivities,
   ourPolicies,
   dataPrivacy,
 
   //////
-newsRelease,
-newsletters,
-merckfoundationinmedia,
-callforapplication,
-videoLibrary,
-
-
-
-
-
-
-
-    }
+  newsRelease,
+  newsletters,
+  merckfoundationinmedia,
+  callforapplication,
+  videoLibrary,
+}
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
 
@@ -78,41 +71,39 @@ class APIManager {
 
       case API.legaldisclaimer:
         apiPathString = "show/legal-disclaimer/13";
-        break;  
+        break;
 
-       case API.ourmission:
+      case API.ourmission:
         apiPathString = "show/mission/13";
-        break;  
+        break;
 
-         case API.ourActivities:
+      case API.ourActivities:
         apiPathString = "show/our-activities/13";
-        break;  
+        break;
 
-         case API.ourPolicies:
+      case API.ourPolicies:
         apiPathString = "show/our-policies/13";
-        break;  
+        break;
 
-         case API.dataPrivacy:
+      case API.dataPrivacy:
         apiPathString = "show/data-privacy/13";
-        break;  
+        break;
 
-
-           case API.newsRelease:
+      case API.newsRelease:
         apiPathString = "show/news-releases/16";
-        break;  
-           case API.newsletters:
-        apiPathString = "show/newsletters-and-articles/23";
-        break;  
-           case API.merckfoundationinmedia:
+        break;
+      case API.newsletters:
+        apiPathString = "mobile_api/newsletters-and-articles/23";
+        break;
+      case API.merckfoundationinmedia:
         apiPathString = "show/merck-foundation-in-media/20";
-        break;  
-           case API.callforapplication:
+        break;
+      case API.callforapplication:
         apiPathString = "show/call-for-application/9";
-        break;  
-           case API.videoLibrary:
+        break;
+      case API.videoLibrary:
         apiPathString = "/show/Video-Library/14";
-        break;  
-
+        break;
 
       default:
         apiPathString = "";
@@ -151,35 +142,33 @@ class APIManager {
         break;
       case API.ourActivities:
         className = "OurActivitiesResponse";
-        break;  
+        break;
       case API.ourPolicies:
         className = "OurPoliciesResponse";
-        break;  
+        break;
 
-        case API.dataPrivacy:
+      case API.dataPrivacy:
         className = "DataPrivacyResponse";
-        break; 
+        break;
 
-
-         case API.newsRelease:
+      case API.newsRelease:
         className = "NewsReleaseResponse";
-        break; 
-         case API.newsletters:
+        break;
+      case API.newsletters:
         className = "NewsLetterseResponse";
-        break; 
+        break;
 
-         case API.merckfoundationinmedia:
+      case API.merckfoundationinmedia:
         className = "merckFoundationMediaResponse";
-        break; 
+        break;
 
-         case API.callforapplication:
+      case API.callforapplication:
         className = "callforapplicationResponse";
-        break; 
+        break;
 
-         case API.videoLibrary:
+      case API.videoLibrary:
         className = "VidepLibraryResponse";
-        break; 
-
+        break;
 
       default:
         className = 'CommonResponse';
@@ -195,35 +184,35 @@ class APIManager {
     if (className == 'LegaldisclaimerResponse') {
       responseObj = LegaldisclaimerResponse.fromJson(json);
     }
-     if (className == 'OurActivitiesResponse') {
-     // responseObj = LegaldisclaimerResponse.fromJson(json);
-    } if (className == 'OurPoliciesResponse') {
-     // responseObj = LegaldisclaimerResponse.fromJson(json);
+    if (className == 'OurActivitiesResponse') {
+      // responseObj = LegaldisclaimerResponse.fromJson(json);
     }
-     if (className == 'DataPrivacyResponse') {
-     // responseObj = LegaldisclaimerResponse.fromJson(json);
+    if (className == 'OurPoliciesResponse') {
+      // responseObj = LegaldisclaimerResponse.fromJson(json);
     }
-
-     if (className == 'NewsReleaseResponse') {
-     // responseObj = LegaldisclaimerResponse.fromJson(json);
+    if (className == 'DataPrivacyResponse') {
+      // responseObj = LegaldisclaimerResponse.fromJson(json);
     }
 
-     if (className == 'NewsLetterseResponse') {
-     // responseObj = LegaldisclaimerResponse.fromJson(json);
+    if (className == 'NewsReleaseResponse') {
+      // responseObj = LegaldisclaimerResponse.fromJson(json);
     }
 
-     if (className == 'merckFoundationMediaResponse') {
-     // responseObj = LegaldisclaimerResponse.fromJson(json);
-    }
-      if (className == 'callforapplicationResponse') {
-     // responseObj = LegaldisclaimerResponse.fromJson(json);
+    if (className == 'NewsLetterseResponse') {
+      // responseObj = LegaldisclaimerResponse.fromJson(json);
     }
 
-     if (className == 'VidepLibraryResponse') {
-     // responseObj = LegaldisclaimerResponse.fromJson(json);
+    if (className == 'merckFoundationMediaResponse') {
+      // responseObj = LegaldisclaimerResponse.fromJson(json);
+    }
+    if (className == 'callforapplicationResponse') {
+      // responseObj = LegaldisclaimerResponse.fromJson(json);
     }
 
-    
+    if (className == 'VidepLibraryResponse') {
+      // responseObj = LegaldisclaimerResponse.fromJson(json);
+    }
+
     return responseObj;
   }
 
