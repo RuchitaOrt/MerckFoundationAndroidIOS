@@ -1,10 +1,18 @@
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:merckfoundation22dec/model/dataprivacy.dart';
+import 'package:merckfoundation22dec/model/leadershipTeamResponse.dart';
 import 'package:merckfoundation22dec/model/legaldisclaimerResponse.dart';
+import 'package:merckfoundation22dec/model/ourActivitiesObjectiveResp.dart';
+import 'package:merckfoundation22dec/model/ourActivitiesResponse.dart';
+import 'package:merckfoundation22dec/model/ourPartnerObjectivesResp.dart';
+import 'package:merckfoundation22dec/model/ourPartnerResponse.dart';
+import 'package:merckfoundation22dec/model/ourmissionResponse.dart';
+import 'package:merckfoundation22dec/model/ourpolicy.dart';
 import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/utility/AppEror.dart';
 
@@ -13,6 +21,7 @@ enum API {
   legaldisclaimer,
   ourmission,
   ourActivities,
+  ourActivitiesObjectives,
   ourPolicies,
   dataPrivacy,
 
@@ -22,6 +31,15 @@ enum API {
   merckfoundationinmedia,
   callforapplication,
   videoLibrary,
+
+  leadershipTeam,
+  leadership,
+
+  ourPartner,
+  ourPartnerObjectives,
+
+
+
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -66,34 +84,48 @@ class APIManager {
 
     switch (api) {
       case API.vision:
-        apiPathString = "show/vision/13";
+        apiPathString = "mobile_api/vision/13";
         break;
 
       case API.legaldisclaimer:
-        apiPathString = "show/legal-disclaimer/13";
+        apiPathString = "mobile_api/legal-disclaimer/13";
         break;
 
       case API.ourmission:
-        apiPathString = "show/mission/13";
+        apiPathString = "mobile_api/mission/13";
         break;
 
       case API.ourActivities:
-        apiPathString = "show/our-activities/13";
+        apiPathString = "mobile_api/our-activities/23";
         break;
 
+        case API.ourActivitiesObjectives:
+        apiPathString = "mobile_api/our-activities/13";
+        break; 
+
+
+
       case API.ourPolicies:
-        apiPathString = "show/our-policies/13";
+        apiPathString = "mobile_api/our-policies/13";
+        break;
+
+          case API.leadershipTeam:
+        apiPathString = "mobile_api/message-from-leadership-team/13";
+        break;
+
+          case API.leadership:
+        apiPathString = "mobile_api/leadership/19";
         break;
 
       case API.dataPrivacy:
-        apiPathString = "show/data-privacy/13";
+        apiPathString = "mobile_api/data-privacy/13";
         break;
 
       case API.newsRelease:
         apiPathString = "show/news-releases/16";
         break;
       case API.newsletters:
-        apiPathString = "mobile_api/newsletters-and-articles/23";
+        apiPathString = "show/newsletters-and-articles/23";
         break;
       case API.merckfoundationinmedia:
         apiPathString = "show/merck-foundation-in-media/20";
@@ -104,6 +136,16 @@ class APIManager {
       case API.videoLibrary:
         apiPathString = "/show/Video-Library/14";
         break;
+
+          case API.ourPartner:
+        apiPathString = "mobile_api/our-partners/17";
+        break;
+
+          case API.ourPartnerObjectives:
+        apiPathString = "mobile_api/our-partners/13";
+        break;
+
+
 
       default:
         apiPathString = "";
@@ -140,9 +182,18 @@ class APIManager {
       case API.legaldisclaimer:
         className = "LegaldisclaimerResponse";
         break;
+      case API.ourmission:
+        className = "OurmissionResponse";
+        break;
       case API.ourActivities:
         className = "OurActivitiesResponse";
         break;
+
+         case API.ourActivitiesObjectives:
+        className = "OurActivitiesObjectivesResponse";
+        break;
+
+
       case API.ourPolicies:
         className = "OurPoliciesResponse";
         break;
@@ -170,6 +221,26 @@ class APIManager {
         className = "VidepLibraryResponse";
         break;
 
+       case API.leadershipTeam:
+        className = "LeadershipTeamResponse";
+        break;
+
+         case API.ourPartnerObjectives:
+        className = "OurPartnerObjectivesResp";
+        break;
+
+
+
+ case API.ourPartner:
+        className = "OurPartnerResp";
+        break;
+
+
+
+        case API.leadership:
+        className = "";
+        break; 
+
       default:
         className = 'CommonResponse';
     }
@@ -184,14 +255,23 @@ class APIManager {
     if (className == 'LegaldisclaimerResponse') {
       responseObj = LegaldisclaimerResponse.fromJson(json);
     }
+    if (className == 'OurmissionResponse') {
+      responseObj = OurmissionResponse.fromJson(json);
+    }
     if (className == 'OurActivitiesResponse') {
-      // responseObj = LegaldisclaimerResponse.fromJson(json);
+       responseObj = OurActivityResponse.fromJson(json);
+    }
+     if (className == 'OurActivitiesObjectivesResponse') {
+       responseObj = OurActivityObjectiveResponse.fromJson(json);
     }
     if (className == 'OurPoliciesResponse') {
-      // responseObj = LegaldisclaimerResponse.fromJson(json);
+      responseObj = OurpolicyResponse.fromJson(json);
     }
     if (className == 'DataPrivacyResponse') {
-      // responseObj = LegaldisclaimerResponse.fromJson(json);
+      responseObj = DataprivacyResponse.fromJson(json);
+    }
+     if (className == 'LeadershipTeamResponse') {
+      responseObj = MessageFromleadershipResponse.fromJson(json);
     }
 
     if (className == 'NewsReleaseResponse') {
@@ -211,6 +291,14 @@ class APIManager {
 
     if (className == 'VidepLibraryResponse') {
       // responseObj = LegaldisclaimerResponse.fromJson(json);
+    }
+
+    if (className == 'OurPartnerObjectivesResp') {
+       responseObj = OurpartnerobjectiveResponse.fromJson(json);
+    }
+
+    if (className == 'OurPartnerResp') {
+       responseObj = OurpartnerResponse.fromJson(json);
     }
 
     return responseObj;

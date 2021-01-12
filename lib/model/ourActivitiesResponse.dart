@@ -1,29 +1,43 @@
 // To parse this JSON data, do
 //
-//     final legaldisclaimerResponse = legaldisclaimerResponseFromJson(jsonString);
+//     final ourActivityResponse = ourActivityResponseFromJson(jsonString);
+
+ 
 
 import 'dart:convert';
 
-LegaldisclaimerResponse legaldisclaimerResponseFromJson(String str) => LegaldisclaimerResponse.fromJson(json.decode(str));
+ 
 
-String legaldisclaimerResponseToJson(LegaldisclaimerResponse data) => json.encode(data.toJson());
+OurActivityResponse ourActivityResponseFromJson(String str) => OurActivityResponse.fromJson(json.decode(str));
 
-class LegaldisclaimerResponse {
-    LegaldisclaimerResponse({
+ 
+
+String ourActivityResponseToJson(OurActivityResponse data) => json.encode(data.toJson());
+
+ 
+
+class OurActivityResponse {
+    OurActivityResponse({
         this.success,
         this.msg,
         this.data,
     });
 
+ 
+
     String success;
     String msg;
     Data data;
 
-    factory LegaldisclaimerResponse.fromJson(Map<String, dynamic> json) => LegaldisclaimerResponse(
+ 
+
+    factory OurActivityResponse.fromJson(Map<String, dynamic> json) => OurActivityResponse(
         success: json["success"],
         msg: json["msg"],
         data: Data.fromJson(json["data"]),
     );
+
+ 
 
     Map<String, dynamic> toJson() => {
         "success": success,
@@ -32,33 +46,41 @@ class LegaldisclaimerResponse {
     };
 }
 
+ 
+
 class Data {
     Data({
         this.list,
     });
 
+ 
+
     List<ListElement> list;
+
+ 
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
         list: List<ListElement>.from(json["list"].map((x) => ListElement.fromJson(x))),
     );
+
+ 
 
     Map<String, dynamic> toJson() => {
         "list": List<dynamic>.from(list.map((x) => x.toJson())),
     };
 }
 
+ 
+
 class ListElement {
     ListElement({
         this.id,
-        this.contentType,
-        this.pageContent,
         this.title,
         this.shortDescription,
+        this.details,
+        this.detailPageUrl,
         this.image,
-        this.altText,
-        this.url,
-        this.utubeUrl,
+        this.altTag,
         this.metaKeyword,
         this.metaDescription,
         this.status,
@@ -66,31 +88,31 @@ class ListElement {
         this.updatedAt,
     });
 
+ 
+
     String id;
-    String contentType;
-    String pageContent;
     String title;
     String shortDescription;
+    String details;
+    String detailPageUrl;
     String image;
-    String altText;
-    String url;
-    String utubeUrl;
+    String altTag;
     String metaKeyword;
     String metaDescription;
     String status;
     DateTime createdAt;
     DateTime updatedAt;
 
+ 
+
     factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
-        contentType: json["content_type"],
-        pageContent: json["page_content"],
         title: json["title"],
         shortDescription: json["short_description"],
+        details: json["details"],
+        detailPageUrl: json["detail_page_url"],
         image: json["image"],
-        altText: json["alt_text"],
-        url: json["url"],
-        utubeUrl: json["utube_url"],
+        altTag: json["alt_tag"],
         metaKeyword: json["meta_keyword"],
         metaDescription: json["meta_description"],
         status: json["status"],
@@ -98,16 +120,16 @@ class ListElement {
         updatedAt: DateTime.parse(json["updated_at"]),
     );
 
+ 
+
     Map<String, dynamic> toJson() => {
         "id": id,
-        "content_type": contentType,
-        "page_content": pageContent,
         "title": title,
         "short_description": shortDescription,
+        "details": details,
+        "detail_page_url": detailPageUrl,
         "image": image,
-        "alt_text": altText,
-        "url": url,
-        "utube_url": utubeUrl,
+        "alt_tag": altTag,
         "meta_keyword": metaKeyword,
         "meta_description": metaDescription,
         "status": status,

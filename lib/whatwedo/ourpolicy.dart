@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:merckfoundation22dec/model/legaldisclaimerResponse.dart';
+import 'package:merckfoundation22dec/model/ourmissionResponse.dart';
+import 'package:merckfoundation22dec/model/ourpolicy.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
-class Ourlegaldisclimer extends StatefulWidget {
+class OurPolicy extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return OurlegaldisclimerState();
+    return OurPolicyState();
   }
 }
 
-class OurlegaldisclimerState extends State<Ourlegaldisclimer>
-    with TickerProviderStateMixin {
+class OurPolicyState extends State<OurPolicy> with TickerProviderStateMixin {
   AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
   void initState() {
-      getlegalDisclaimer();
+    getpolicy();
     super.initState();
-  
+
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -46,7 +47,7 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
                         )));
           },
           index: 2,
-          title: "Legal Disclaimer",
+          title: "Our Policy",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -57,7 +58,7 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 1),
-              child: GlobalLists.legaldisclaimer.length <= 0
+              child: GlobalLists.ourpolicy.length <= 0
                   ? Container(child: Center(
       child: Text(Constantstring.emptyData)
     ),)
@@ -73,7 +74,7 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
                             children: [
                               Html(
                                 data:
-                                    """${GlobalLists.legaldisclaimer[0].pageContent} """,
+                                    """${GlobalLists.ourpolicy[0].pageContent} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
                                 },
@@ -110,7 +111,7 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
         ));
   }
 
-  getlegalDisclaimer() async {
+  getpolicy() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -118,23 +119,19 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
 
       APIManager().apiRequest(
         context,
-        API.legaldisclaimer,
+        API.ourPolicies,
         (response) async {
-          LegaldisclaimerResponse resp = response;
+          OurpolicyResponse resp = response;
           print(response);
+          Navigator.of(_keyLoader.currentContext).pop();
           print('Resp : $resp');
-  Navigator.of(_keyLoader.currentContext).pop();
-         
-
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.legaldisclaimer = resp.data.list;
+              GlobalLists.ourpolicy = resp.data.list;
             });
           } else {
             ShowDialogs.showToast(resp.msg);
           }
-
-        
         },
         (error) {
           print('ERR msg is $error');

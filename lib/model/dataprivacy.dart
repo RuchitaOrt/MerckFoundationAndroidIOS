@@ -1,15 +1,15 @@
 // To parse this JSON data, do
 //
-//     final legaldisclaimerResponse = legaldisclaimerResponseFromJson(jsonString);
+//     final dataprivacyResponse = dataprivacyResponseFromJson(jsonString);
 
 import 'dart:convert';
 
-LegaldisclaimerResponse legaldisclaimerResponseFromJson(String str) => LegaldisclaimerResponse.fromJson(json.decode(str));
+DataprivacyResponse dataprivacyResponseFromJson(String str) => DataprivacyResponse.fromJson(json.decode(str));
 
-String legaldisclaimerResponseToJson(LegaldisclaimerResponse data) => json.encode(data.toJson());
+String dataprivacyResponseToJson(DataprivacyResponse data) => json.encode(data.toJson());
 
-class LegaldisclaimerResponse {
-    LegaldisclaimerResponse({
+class DataprivacyResponse {
+    DataprivacyResponse({
         this.success,
         this.msg,
         this.data,
@@ -19,7 +19,7 @@ class LegaldisclaimerResponse {
     String msg;
     Data data;
 
-    factory LegaldisclaimerResponse.fromJson(Map<String, dynamic> json) => LegaldisclaimerResponse(
+    factory DataprivacyResponse.fromJson(Map<String, dynamic> json) => DataprivacyResponse(
         success: json["success"],
         msg: json["msg"],
         data: Data.fromJson(json["data"]),

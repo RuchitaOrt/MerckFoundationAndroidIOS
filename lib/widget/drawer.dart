@@ -7,7 +7,11 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 
 import 'package:merckfoundation22dec/screens/ourpartner/ourPartners.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
+import 'package:merckfoundation22dec/whatwedo/dataprivacy.dart';
+import 'package:merckfoundation22dec/whatwedo/legaldisclaimer.dart';
 import 'package:merckfoundation22dec/whatwedo/ouractivities.dart';
+import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
+import 'package:merckfoundation22dec/whatwedo/ourpolicy.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
@@ -241,18 +245,22 @@ class _AppDrawerState extends State<AppDrawer> {
                           value: 'Our Mission',
                           onTapfun: () {
                             print('ontap');
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (BuildContext context) =>
-                            //             OurMission()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        OurMission()));
                           },
                         ),
                         DrawerWidget(
                           image: '',
                           value: 'Our Policies',
                           onTapfun: () {
-                            print('ontap');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        OurPolicy()));
                           },
                         ),
                         DrawerWidget(
@@ -270,14 +278,22 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Legal Disclaimer',
                           onTapfun: () {
-                            print('ontap');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        Ourlegaldisclimer()));
                           },
                         ),
                         DrawerWidget(
                           image: '',
                           value: 'Data Privacy',
                           onTapfun: () {
-                            print('ontap');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        OurDataprivacy()));
                           },
                         ),
                       ],
