@@ -91,7 +91,7 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                                       'assets/newImages/placeholder_3.jpg',
                                   image:
                                       GlobalLists.ourPartnerList[index].image,
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.fill,
                                 ),
                               ),
                               Center(

@@ -7,15 +7,16 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 
-class Stories extends StatefulWidget {
+class Videolibrary extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return StoriesState();
+    return VideolibraryState();
   }
 }
 
-class StoriesState extends State<Stories> {
+class VideolibraryState extends State<Videolibrary> {
   List _productsAvailable = [
     "assets/images/slider1.jpg",
     "assets/images/slider1.jpg",
@@ -29,6 +30,8 @@ class StoriesState extends State<Stories> {
   @override
   void initState() {
     // TODO: implement initState
+
+    getvideolibray();
     super.initState();
   }
 
@@ -45,7 +48,7 @@ class StoriesState extends State<Stories> {
                         )));
           },
           index: 1,
-          title: "Our Stories",
+          title: "Video Library",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -149,5 +152,39 @@ class StoriesState extends State<Stories> {
             ],
           ),
         ));
+  }
+
+  getvideolibray() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.videoLibrarys,
+        (response) async {
+          GetVideoLibraryResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.videolibrary = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 }

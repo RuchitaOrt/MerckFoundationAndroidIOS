@@ -2,7 +2,7 @@
     "environment": "development",
     "version": "1",
     "development": {
-        "hostUrl": "https://smitlalai.com/demo/mfindia/web/public/api/",
+        "hostUrl": "https://smitlalai.com/demo/mfindia/web/public/Api/",
         "timeout": 120,
         "retry": 3
     },

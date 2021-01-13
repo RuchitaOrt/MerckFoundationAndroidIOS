@@ -4,6 +4,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/newReleases.dart';
 import 'package:merckfoundation22dec/screens/ceomessage/messageFromLeadership.dart';
 import 'package:merckfoundation22dec/screens/contactus/contactUs.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 
 import 'package:merckfoundation22dec/screens/ourpartner/ourPartners.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
@@ -336,131 +337,6 @@ class _AppDrawerState extends State<AppDrawer> {
                                   )));
                     },
                   ),
-                  // Theme(
-                  //   data: Theme.of(context)
-                  //       .copyWith(dividerColor: Colors.transparent),
-                  //   child: ExpansionTile(
-                  //     key: GlobalKey(),
-                  //     initiallyExpanded: expansionState['Our Programs'],
-                  //     title: Container(
-                  //       padding: EdgeInsets.all(2),
-                  //       child: new Row(
-                  //         children: <Widget>[
-                  //           new Image.asset(
-                  //             'assets/newImages/programs.png',
-                  //             height: 14.0,
-                  //             width: 16.0,
-                  //           ),
-                  //           SizedBox(
-                  //             width: 18,
-                  //           ),
-                  //           Text('Our Programs', style: headingTextStyle),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //     onExpansionChanged: ((newState) {
-                  //       expansionState['Our Programs'] = newState;
-                  //       if (newState) closeOpenExpansionList('Our Programs');
-                  //     }),
-                  //     children: <Widget>[
-                  //       SizedBox(
-                  //         height: 4,
-                  //       ),
-                  //       DrawerWidget(
-                  //         image: '',
-                  //         value: 'Merck More Than A Mother',
-                  //         onTapfun: () {
-                  //           Navigator.push(
-                  //               context,
-                  //               MaterialPageRoute(
-                  //                   builder: (BuildContext context) =>
-                  //                       OurProgram(
-                  //                         indexpass: 0,
-                  //                       )));
-                  //         },
-                  //       ),
-                  //       SizedBox(
-                  //         height: 4,
-                  //       ),
-                  //       DrawerWidget(
-                  //         image: '',
-                  //         value: 'Merck Cancer Access\n Program',
-                  //         onTapfun: () {
-                  //           print('ontap');
-                  //         },
-                  //       ),
-                  //       SizedBox(
-                  //         height: 4,
-                  //       ),
-                  //       DrawerWidget(
-                  //         image: '',
-                  //         value:
-                  //             'Merck Capacity Advancement \n& Diabetes Blue Point Program',
-                  //         onTapfun: () {
-                  //           print('ontap');
-                  //         },
-                  //       ),
-                  //       SizedBox(
-                  //         height: 4,
-                  //       ),
-                  //       DrawerWidget(
-                  //         image: '',
-                  //         value:
-                  //             'Merck Foundation First Ladies\n Initiative Summit',
-                  //         onTapfun: () {
-                  //           print('ontap');
-                  //         },
-                  //       ),
-                  //       SizedBox(
-                  //         height: 4,
-                  //       ),
-                  //       DrawerWidget(
-                  //         image: '',
-                  //         value: 'Merck STEM Program',
-                  //         onTapfun: () {
-                  //           // Navigator.push(
-                  //           //     context,
-                  //           //     MaterialPageRoute(
-                  //           //         builder: (BuildContext context) =>
-                  //           //             OurProgramStem()));
-                  //         },
-                  //       ),
-                  //       SizedBox(
-                  //         height: 4,
-                  //       ),
-                  //       DrawerWidget(
-                  //         image: '',
-                  //         value: 'Educating Linda Program',
-                  //         onTapfun: () {
-                  //           print('ontap');
-                  //         },
-                  //       ),
-                  //       SizedBox(
-                  //         height: 4,
-                  //       ),
-                  //       DrawerWidget(
-                  //         image: '',
-                  //         value: 'Merck Foundation Sustainability\n Initiative',
-                  //         onTapfun: () {
-                  //           print('ontap');
-                  //         },
-                  //       ),
-                  //       SizedBox(
-                  //         height: 4,
-                  //       ),
-                  //       DrawerWidget(
-                  //         image: '',
-                  //         value: 'Merck Africa Asia Luminary',
-                  //         onTapfun: () {
-                  //           print('ontap');
-                  //         },
-                  //       ),
-                  //       SizedBox(
-                  //         height: 4,
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                   Theme(
                     data: Theme.of(context)
                         .copyWith(dividerColor: Colors.transparent),
@@ -496,9 +372,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        Dashboard(
-                                          index: 2,
-                                        )));
+                                        Videolibrary()));
                           },
                         ),
                         DrawerWidget(
