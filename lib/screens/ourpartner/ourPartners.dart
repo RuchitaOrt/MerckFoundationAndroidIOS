@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:merckfoundation22dec/model/ourPartnerObjectivesResp.dart';
+import 'package:merckfoundation22dec/model/ourPartnerResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/ourpartner/ourPartnerDetails.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class Ourpatner extends StatefulWidget {
   @override
@@ -14,6 +19,17 @@ class Ourpatner extends StatefulWidget {
 }
 
 class OurpatnerState extends State<Ourpatner> {
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+
+
+@override
+  void initState() {
+    getOurPartnerObjectives();
+    super.initState();
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     List paravalue = [
@@ -48,113 +64,25 @@ class OurpatnerState extends State<Ourpatner> {
           ),
           child: Column(
             children: [
-              // Container(
-              //   height: 250,
-              //   // color: Colors.grey.shade800,
-              //   padding: EdgeInsets.all(16.0),
-              //   child: Column(
-              //     children: [
-              //       Expanded(
-              //         child: Swiper(
-              //           fade: 0.0,
-              //           itemBuilder: (BuildContext context, int index) {
-              //             return Column(
-              //               children: [
-              //                 Expanded(
-              //                   child: Card(
-              //                     elevation: 5,
-              //                     // color: Colors.red,
-              //                     child: Column(
-              //                       children: <Widget>[
-              //                         Expanded(
-              //                           child: Container(
-              //                             // height: SizeConfig.blockSizeVertical * 40,
-              //                             width: double.infinity,
-              //                             decoration: BoxDecoration(
-              //                                 borderRadius: BorderRadius.only(
-              //                                     topLeft:
-              //                                         Radius.circular(10.0),
-              //                                     topRight:
-              //                                         Radius.circular(10.0)),
-              //                                 image: DecorationImage(
-              //                                     image: AssetImage(
-              //                                       imageAvailable[index],
-              //                                     ),
-              //                                     fit: BoxFit.fill)),
-              //                           ),
-              //                         ),
-              //                         // Container(
-              //                         //     padding: EdgeInsets.only(bottom: 20),
-              //                         //     decoration: BoxDecoration(
-              //                         //         color: Colors.white,
-              //                         //         borderRadius: BorderRadius.only(
-              //                         //             bottomLeft: Radius.circular(10.0),
-              //                         //             bottomRight: Radius.circular(10.0))),
-              //                         //     child: )
-              //                       ],
-              //                     ),
-              //                   ),
-              //                 ),
-              //               ],
-              //             );
-              //           },
-              //           itemCount: imageAvailable.length,
-              //           viewportFraction: 0.9,
-              //           layout: SwiperLayout.TINDER,
-              //           //  autoplay: true,
-              //           scale: 0.8,
-              //           //outer: true,
-              //           itemWidth: 300.0,
-              //           //itemHeight: 400,
-              //           itemHeight: 250,
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              ListView(
+            
+         GlobalLists.ourPartnerObjectives.length <=0?Container(
+                      child: Center(child: Text(Constantstring.emptyData)),
+                    ):     ListView(
                 shrinkWrap: true,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 10, right: 10, top: 8, bottom: 15),
-                    child: Text(
-                      "We know we can make a greater difference in people’s lives when working together with others. We cooperate with governments, academic institutions, global and local communities, donors, patient associations, international organizations and NGOs.",
-                      style: TextStyle(
-                          color: Customcolor.colorPink,
-                          fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: ScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    itemCount: paravalue.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding:
-                            const EdgeInsets.only(top: 20, left: 10, right: 10),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                paravalue[index],
-                                style: TextStyle(
-                                  color: Customcolor.text_darkgrey,
-                                  fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(1.9),
-                                  fontWeight: FontWeight.w400,
-                                ),
+                    child: Html(
+                                data: """${GlobalLists.ourPartnerObjectives[0].pageContent} """,
+                                onLinkTap: (url) {
+                                  print("Opening $url...");
+                                },
+                                
                               ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
                   ),
+                  
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 90, right: 90, bottom: 20, top: 20),
@@ -170,11 +98,8 @@ class OurpatnerState extends State<Ourpatner> {
                       minWidth: 38,
                       height: 40,
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    Ourpatnerdetail()));
+                        getOurPartnerData();
+                       
                       },
                     ),
                   ),
@@ -193,5 +118,80 @@ class OurpatnerState extends State<Ourpatner> {
             ],
           ),
         ));
+  }
+
+    getOurPartnerObjectives() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.ourPartnerObjectives,
+        (response) async {
+          OurpartnerobjectiveResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+          GlobalLists.ourPartnerObjectives.clear();
+          Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.ourPartnerObjectives = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+
+    getOurPartnerData() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.ourPartner,
+        (response) async {
+          OurpartnerResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+          GlobalLists.ourPartnerList.clear();
+          Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.ourPartnerList = resp.data.list;
+            });
+
+             Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    Ourpatnerdetail()));
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 }

@@ -58,7 +58,9 @@ class OurDataprivacyState extends State<OurDataprivacy>
             Padding(
               padding: const EdgeInsets.only(bottom: 1),
               child: GlobalLists.dataprivacy.length <= 0
-                  ? Container()
+                  ? Container(
+                      child: Center(child: Text(Constantstring.emptyData)),
+                    )
                   : ListView(
                       shrinkWrap: true,
                       // crossAxisAlignment: CrossAxisAlignment.center,
@@ -121,11 +123,16 @@ class OurDataprivacyState extends State<OurDataprivacy>
           DataprivacyResponse resp = response;
           print(response);
           print('Resp : $resp');
-          setState(() {
-            GlobalLists.dataprivacy = resp.the30;
-          });
 
           Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.dataprivacy = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
         },
         (error) {
           print('ERR msg is $error');

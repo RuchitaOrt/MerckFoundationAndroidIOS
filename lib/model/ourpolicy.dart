@@ -12,23 +12,48 @@ String ourpolicyResponseToJson(OurpolicyResponse data) =>
 
 class OurpolicyResponse {
   OurpolicyResponse({
-    this.the29,
+    this.success,
+    this.msg,
+    this.data,
   });
 
-  List<The29> the29;
+  String success;
+  String msg;
+  Data data;
 
   factory OurpolicyResponse.fromJson(Map<String, dynamic> json) =>
       OurpolicyResponse(
-        the29: List<The29>.from(json["29"].map((x) => The29.fromJson(x))),
+        success: json["success"],
+        msg: json["msg"],
+        data: Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "29": List<dynamic>.from(the29.map((x) => x.toJson())),
+        "success": success,
+        "msg": msg,
+        "data": data.toJson(),
       };
 }
 
-class The29 {
-  The29({
+class Data {
+  Data({
+    this.list,
+  });
+
+  List<ListElement> list;
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        list: List<ListElement>.from(
+            json["list"].map((x) => ListElement.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+      };
+}
+
+class ListElement {
+  ListElement({
     this.id,
     this.contentType,
     this.pageContent,
@@ -50,17 +75,17 @@ class The29 {
   String pageContent;
   String title;
   String shortDescription;
-  dynamic image;
+  String image;
   String altText;
   String url;
   String utubeUrl;
   String metaKeyword;
-  dynamic metaDescription;
+  String metaDescription;
   String status;
   DateTime createdAt;
   DateTime updatedAt;
 
-  factory The29.fromJson(Map<String, dynamic> json) => The29(
+  factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
         contentType: json["content_type"],
         pageContent: json["page_content"],

@@ -24,8 +24,9 @@ class OurMissionState extends State<OurMission> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    super.initState();
     getmission();
+    super.initState();
+
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -58,7 +59,9 @@ class OurMissionState extends State<OurMission> with TickerProviderStateMixin {
             Padding(
               padding: const EdgeInsets.only(bottom: 1),
               child: GlobalLists.ourmission.length <= 0
-                  ? Container()
+                  ? Container(
+                      child: Center(child: Text(Constantstring.emptyData)),
+                    )
                   : ListView(
                       shrinkWrap: true,
                       // crossAxisAlignment: CrossAxisAlignment.center,
@@ -121,11 +124,16 @@ class OurMissionState extends State<OurMission> with TickerProviderStateMixin {
           OurmissionResponse resp = response;
           print(response);
           print('Resp : $resp');
-          setState(() {
-            GlobalLists.ourmission = resp.the28;
-          });
 
           Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.ourmission = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
         },
         (error) {
           print('ERR msg is $error');

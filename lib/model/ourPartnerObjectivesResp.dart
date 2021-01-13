@@ -1,15 +1,15 @@
 // To parse this JSON data, do
 //
-//     final legaldisclaimerResponse = legaldisclaimerResponseFromJson(jsonString);
+//     final ourpartnerobjectiveResponse = ourpartnerobjectiveResponseFromJson(jsonString);
 
 import 'dart:convert';
 
-LegaldisclaimerResponse legaldisclaimerResponseFromJson(String str) => LegaldisclaimerResponse.fromJson(json.decode(str));
+OurpartnerobjectiveResponse ourpartnerobjectiveResponseFromJson(String str) => OurpartnerobjectiveResponse.fromJson(json.decode(str));
 
-String legaldisclaimerResponseToJson(LegaldisclaimerResponse data) => json.encode(data.toJson());
+String ourpartnerobjectiveResponseToJson(OurpartnerobjectiveResponse data) => json.encode(data.toJson());
 
-class LegaldisclaimerResponse {
-    LegaldisclaimerResponse({
+class OurpartnerobjectiveResponse {
+    OurpartnerobjectiveResponse({
         this.success,
         this.msg,
         this.data,
@@ -19,7 +19,7 @@ class LegaldisclaimerResponse {
     String msg;
     Data data;
 
-    factory LegaldisclaimerResponse.fromJson(Map<String, dynamic> json) => LegaldisclaimerResponse(
+    factory OurpartnerobjectiveResponse.fromJson(Map<String, dynamic> json) => OurpartnerobjectiveResponse(
         success: json["success"],
         msg: json["msg"],
         data: Data.fromJson(json["data"]),
@@ -71,12 +71,12 @@ class ListElement {
     String pageContent;
     String title;
     String shortDescription;
-    String image;
+    dynamic image;
     String altText;
     String url;
     String utubeUrl;
     String metaKeyword;
-    String metaDescription;
+    dynamic metaDescription;
     String status;
     DateTime createdAt;
     DateTime updatedAt;

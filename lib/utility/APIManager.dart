@@ -1,21 +1,28 @@
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:merckfoundation22dec/model/dataprivacy.dart';
+import 'package:merckfoundation22dec/model/leadershipTeamResponse.dart';
 import 'package:merckfoundation22dec/model/legaldisclaimerResponse.dart';
+import 'package:merckfoundation22dec/model/ourActivitiesObjectiveResp.dart';
+import 'package:merckfoundation22dec/model/ourActivitiesResponse.dart';
+import 'package:merckfoundation22dec/model/ourPartnerObjectivesResp.dart';
+import 'package:merckfoundation22dec/model/ourPartnerResponse.dart';
 import 'package:merckfoundation22dec/model/ourmissionResponse.dart';
 import 'package:merckfoundation22dec/model/ourpolicy.dart';
 import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/utility/AppEror.dart';
+import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 
 enum API {
   vision,
   legaldisclaimer,
   ourmission,
   ourActivities,
+  ourActivitiesObjectives,
   ourPolicies,
   dataPrivacy,
 
@@ -25,6 +32,12 @@ enum API {
   merckfoundationinmedia,
   callforapplication,
   videoLibrary,
+
+  leadershipTeam,
+  leadership,
+
+  ourPartner,
+  ourPartnerObjectives,
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -66,52 +79,144 @@ class APIManager {
 
   Future<String> apiEndPoint(API api) async {
     var apiPathString = "";
+    if (Platform.isAndroid) {
+      // Android-specific code
+      print("This is android");
+      switch (api) {
+        case API.vision:
+          apiPathString = "show/vision/13/Android/1";
+          break;
 
-    switch (api) {
-      case API.vision:
-        apiPathString = "show/vision/13";
-        break;
+        case API.legaldisclaimer:
+          apiPathString = "show/legal-disclaimer/13/Android/1";
+          break;
 
-      case API.legaldisclaimer:
-        apiPathString = "show/legal-disclaimer/13";
-        break;
+        case API.ourmission:
+          apiPathString = "show/mission/13/Android/1";
+          break;
 
-      case API.ourmission:
-        apiPathString = "show/mission/13";
-        break;
+        case API.ourActivities:
+          apiPathString = "show/our-activities/23/Android/1";
+          break;
 
-      case API.ourActivities:
-        apiPathString = "show/our-activities/13";
-        break;
+        case API.ourActivitiesObjectives:
+          apiPathString = "show/our-activities/13/Android/1";
+          break;
 
-      case API.ourPolicies:
-        apiPathString = "show/our-policies/13";
-        break;
+        case API.ourPolicies:
+          apiPathString = "show/our-policies/13/Android/1";
+          break;
 
-      case API.dataPrivacy:
-        apiPathString = "show/data-privacy/13";
-        break;
+        case API.leadershipTeam:
+          apiPathString = "show/message-from-leadership-team/13/Android/1";
+          break;
 
-      case API.newsRelease:
-        apiPathString = "show/news-releases/16";
-        break;
-      case API.newsletters:
-        apiPathString = "show/newsletters-and-articles/23";
-        break;
-      case API.merckfoundationinmedia:
-        apiPathString = "show/merck-foundation-in-media/20";
-        break;
-      case API.callforapplication:
-        apiPathString = "show/call-for-application/9";
-        break;
-      case API.videoLibrary:
-        apiPathString = "/show/Video-Library/14";
-        break;
+        case API.leadership:
+          apiPathString = "show/leadership/19/Android/1";
+          break;
 
-      default:
-        apiPathString = "";
+        case API.dataPrivacy:
+          apiPathString = "show/data-privacy/13/Android/1";
+          break;
+
+        case API.newsRelease:
+          apiPathString = "show/news-releases/16/Android/1";
+          break;
+        case API.newsletters:
+          apiPathString = "show/newsletters-and-articles/23/Android/1";
+          break;
+        case API.merckfoundationinmedia:
+          apiPathString = "show/merck-foundation-in-media/20/Android/1";
+          break;
+        // case API.callforapplication:
+        //   apiPathString = "show/call-for-application/9";
+        //   break;
+        case API.videoLibrary:
+          apiPathString = "show/Video-Library/14/Android/1";
+          break;
+
+        case API.ourPartner:
+          apiPathString = "show/our-partners/17/Android/1";
+          break;
+
+        case API.ourPartnerObjectives:
+          apiPathString = "show/our-partners/13/Android/1";
+          break;
+
+        default:
+          apiPathString = "";
+      }
+      print(apiBaseURL());
+    } else if (Platform.isIOS) {
+      // iOS-specific code
+      print("This is ios");
+      switch (api) {
+        case API.vision:
+          apiPathString = "show/vision/13/IOS/1";
+          break;
+
+        case API.legaldisclaimer:
+          apiPathString = "show/legal-disclaimer/13/IOS/1";
+          break;
+
+        case API.ourmission:
+          apiPathString = "show/mission/13/IOS/1";
+          break;
+
+        case API.ourActivities:
+          apiPathString = "show/our-activities/23/IOS/1";
+          break;
+
+        case API.ourActivitiesObjectives:
+          apiPathString = "show/our-activities/13/IOS/1";
+          break;
+
+        case API.ourPolicies:
+          apiPathString = "show/our-policies/13/IOS/1";
+          break;
+
+        case API.leadershipTeam:
+          apiPathString = "show/message-from-leadership-team/13/IOS/1";
+          break;
+
+        case API.leadership:
+          apiPathString = "show/leadership/19/IOS/1";
+          break;
+
+        case API.dataPrivacy:
+          apiPathString = "show/data-privacy/13/IOS/1";
+          break;
+
+        case API.newsRelease:
+          apiPathString = "show/news-releases/16/IOS/1";
+          break;
+        case API.newsletters:
+          apiPathString = "show/newsletters-and-articles/23/IOS/1";
+          break;
+        case API.merckfoundationinmedia:
+          apiPathString = "show/merck-foundation-in-media/20/IOS/1";
+          break;
+        // case API.callforapplication:
+        //   apiPathString = "show/call-for-application/9";
+        //   break;
+        case API.videoLibrary:
+          apiPathString = "show/Video-Library/14/IOS/1";
+          break;
+
+        case API.ourPartner:
+          apiPathString = "show/our-partners/17/IOS/1";
+          break;
+
+        case API.ourPartnerObjectives:
+          apiPathString = "show/our-partners/13/IOS/1";
+          break;
+
+        default:
+          apiPathString = "";
+      }
+      print(apiBaseURL());
     }
-    print(apiBaseURL());
+
     return this.apiBaseURL() + apiPathString;
   }
 
@@ -149,6 +254,11 @@ class APIManager {
       case API.ourActivities:
         className = "OurActivitiesResponse";
         break;
+
+      case API.ourActivitiesObjectives:
+        className = "OurActivitiesObjectivesResponse";
+        break;
+
       case API.ourPolicies:
         className = "OurPoliciesResponse";
         break;
@@ -176,6 +286,22 @@ class APIManager {
         className = "VidepLibraryResponse";
         break;
 
+      case API.leadershipTeam:
+        className = "LeadershipTeamResponse";
+        break;
+
+      case API.ourPartnerObjectives:
+        className = "OurPartnerObjectivesResp";
+        break;
+
+      case API.ourPartner:
+        className = "OurPartnerResp";
+        break;
+
+      case API.leadership:
+        className = "";
+        break;
+
       default:
         className = 'CommonResponse';
     }
@@ -194,13 +320,19 @@ class APIManager {
       responseObj = OurmissionResponse.fromJson(json);
     }
     if (className == 'OurActivitiesResponse') {
-      // responseObj = LegaldisclaimerResponse.fromJson(json);
+      responseObj = OurActivityResponse.fromJson(json);
+    }
+    if (className == 'OurActivitiesObjectivesResponse') {
+      responseObj = OurActivityObjectiveResponse.fromJson(json);
     }
     if (className == 'OurPoliciesResponse') {
       responseObj = OurpolicyResponse.fromJson(json);
     }
     if (className == 'DataPrivacyResponse') {
       responseObj = DataprivacyResponse.fromJson(json);
+    }
+    if (className == 'LeadershipTeamResponse') {
+      responseObj = MessageFromleadershipResponse.fromJson(json);
     }
 
     if (className == 'NewsReleaseResponse') {
@@ -219,7 +351,15 @@ class APIManager {
     }
 
     if (className == 'VidepLibraryResponse') {
-      // responseObj = LegaldisclaimerResponse.fromJson(json);
+      responseObj = GetVideoLibraryResponse.fromJson(json);
+    }
+
+    if (className == 'OurPartnerObjectivesResp') {
+      responseObj = OurpartnerobjectiveResponse.fromJson(json);
+    }
+
+    if (className == 'OurPartnerResp') {
+      responseObj = OurpartnerResponse.fromJson(json);
     }
 
     return responseObj;

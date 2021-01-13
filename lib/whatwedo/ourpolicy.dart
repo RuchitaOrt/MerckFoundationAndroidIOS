@@ -5,6 +5,7 @@ import 'package:merckfoundation22dec/model/ourpolicy.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -23,8 +24,9 @@ class OurPolicyState extends State<OurPolicy> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    super.initState();
     getpolicy();
+    super.initState();
+
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -57,7 +59,9 @@ class OurPolicyState extends State<OurPolicy> with TickerProviderStateMixin {
             Padding(
               padding: const EdgeInsets.only(bottom: 1),
               child: GlobalLists.ourpolicy.length <= 0
-                  ? Container()
+                  ? Container(
+                      child: Center(child: Text(Constantstring.emptyData)),
+                    )
                   : ListView(
                       shrinkWrap: true,
                       // crossAxisAlignment: CrossAxisAlignment.center,
@@ -119,12 +123,15 @@ class OurPolicyState extends State<OurPolicy> with TickerProviderStateMixin {
         (response) async {
           OurpolicyResponse resp = response;
           print(response);
-          print('Resp : $resp');
-          setState(() {
-            GlobalLists.ourpolicy = resp.the29;
-          });
-
           Navigator.of(_keyLoader.currentContext).pop();
+          print('Resp : $resp');
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.ourpolicy = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
         },
         (error) {
           print('ERR msg is $error');

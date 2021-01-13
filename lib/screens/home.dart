@@ -104,7 +104,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       vsync: this,
       duration: const Duration(milliseconds: 250),
     );
-    getvision();
+   
   }
 
   @override
@@ -1063,31 +1063,5 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     )))));
   }
 
-  getvision() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.vision,
-        (response) async {
-          VisionResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-          GlobalLists.vision = resp.the12;
-          print(GlobalLists.vision[0].title);
-
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
+ 
 }

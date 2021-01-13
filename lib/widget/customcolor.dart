@@ -53,3 +53,7 @@ class Customcolor {
 class AppFonts {
   static String normal = "Verdana";
 }
+
+class Constantstring {
+  static String emptyData = "No Data Found";
+}

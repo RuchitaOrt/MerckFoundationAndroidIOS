@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
 import 'package:merckfoundation22dec/model/legaldisclaimerResponse.dart';
-import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -25,8 +23,9 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
 
   @override
   void initState() {
-    super.initState();
     getlegalDisclaimer();
+    super.initState();
+
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -59,7 +58,9 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
             Padding(
               padding: const EdgeInsets.only(bottom: 1),
               child: GlobalLists.legaldisclaimer.length <= 0
-                  ? Container()
+                  ? Container(
+                      child: Center(child: Text(Constantstring.emptyData)),
+                    )
                   : ListView(
                       shrinkWrap: true,
                       // crossAxisAlignment: CrossAxisAlignment.center,
@@ -122,11 +123,15 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
           LegaldisclaimerResponse resp = response;
           print(response);
           print('Resp : $resp');
-          setState(() {
-            GlobalLists.legaldisclaimer = resp.the27;
-          });
-
           Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.legaldisclaimer = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
         },
         (error) {
           print('ERR msg is $error');

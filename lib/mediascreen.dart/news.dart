@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
@@ -12,6 +13,7 @@ class NewsPage extends StatefulWidget {
 }
 
 class NewsState extends State<NewsPage> {
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   List _productsAvailable = [
     "assets/newImages/img3.jpg",
@@ -24,6 +26,13 @@ class NewsState extends State<NewsPage> {
       "assets/newImages/leader2.png",
 
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  
+  }
 
 
   @override
@@ -38,7 +47,7 @@ class NewsState extends State<NewsPage> {
                     builder: (BuildContext context) => Dashboard(
                           index: 0,
                         )));
-          },
+          },   
           index: 1,
           title: "News Article",
           titleImg: "assets/newImages/news_logo.png",
@@ -123,88 +132,42 @@ class NewsState extends State<NewsPage> {
           ],
         ));
   }
+
+
+
+  //  getNewsLetteranArticles() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
+
+  //   if (status1) {
+  //     ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.newsletters,
+  //       (response) async {
+       
+  //        List<GetNewsReleaseanArticlesResponse> resp = response;
+  //         print(resp);
+  //       setState(() {
+  //           // GlobalLists.newsLetteranArticles = resp.;
+  //       });
+        
+  //      //   print( GlobalLists.newsLetteranArticles.title);
+
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
+
+
+
+
 }
 
-// Padding(
-//                 padding: const EdgeInsets.only(top: 15, left: 8, right: 8),
-//                 child: Stack(
-//                   children: [
-//                     Padding(
-//                       padding: const EdgeInsets.only(
-//                         left: 30,
-//                       ),
-//                       child: Card(
-//                        // height: 100,
-//                         // decoration: BoxDecoration(
-//                         //     color: Colors.grey[100],
-//                         //     border:
-//                         //         Border.all(width: 1, color: Colors.grey[200])),
-
-//                         shape: RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.circular(5)
-//                         ),
-//                         elevation: 5,
-//                         child: Container(
-//                           height: 100,
-//                           child: Padding(
-//                             padding: const EdgeInsets.only(left: 50),
-//                             child: Center(
-//                               child: Text(
-//                                 "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story Jackline Mwende, Merck More Than A Mother Heroine",
-//                                 overflow: TextOverflow.ellipsis,
-//                                 style: TextStyle(
-//                                     color: Colors.black,
-//                                     fontSize: ResponsiveFlutter.of(context)
-//                                         .fontSize(1.8),
-//                                     fontWeight: FontWeight.w300),
-//                                 maxLines: 4,
-//                               ),
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                     Padding(
-//                       padding: const EdgeInsets.only(top: 17),
-//                       child: Container(
-//                         height: 70,
-//                         width: 70,
-
-//                         decoration: BoxDecoration(
-//                             borderRadius: BorderRadius.circular(0),
-//                             image: DecorationImage(
-//                                 image: AssetImage("assets/images/g1.jpg"))),
-//                         // child: Image.asset("assets/images/g.png", ),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-
-//                 // Row(
-//                 //   children: [
-//                 //     Image.asset(
-//                 //         "assets/images/g1.jpg",
-//                 //         height: 80,width: 80,
-//                 //         fit: BoxFit.fill,
-//                 //       ),
-
-//                 //       SizedBox(
-//                 //         width: 20,
-//                 //       ),
-
-//                 //    Expanded(
-//                 //                     child: Text(
-//                 //                       "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
-//                 //                       overflow: TextOverflow.ellipsis,
-//                 //                       style: TextStyle(
-//                 //                           color: Colors.black54,
-//                 //                           fontSize: ResponsiveFlutter.of(context)
-//                 //                               .fontSize(1.8),
-//                 //                           fontWeight: FontWeight.w500),
-//                 //                       maxLines: 2,
-//                 //                     ),
-//                 //    ),
-
-//                 //   ],
-//                 // ),
-//              // );

@@ -12,23 +12,48 @@ String dataprivacyResponseToJson(DataprivacyResponse data) =>
 
 class DataprivacyResponse {
   DataprivacyResponse({
-    this.the30,
+    this.success,
+    this.msg,
+    this.data,
   });
 
-  List<The30> the30;
+  String success;
+  String msg;
+  Data data;
 
   factory DataprivacyResponse.fromJson(Map<String, dynamic> json) =>
       DataprivacyResponse(
-        the30: List<The30>.from(json["30"].map((x) => The30.fromJson(x))),
+        success: json["success"],
+        msg: json["msg"],
+        data: Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "30": List<dynamic>.from(the30.map((x) => x.toJson())),
+        "success": success,
+        "msg": msg,
+        "data": data.toJson(),
       };
 }
 
-class The30 {
-  The30({
+class Data {
+  Data({
+    this.list,
+  });
+
+  List<ListElement> list;
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        list: List<ListElement>.from(
+            json["list"].map((x) => ListElement.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+      };
+}
+
+class ListElement {
+  ListElement({
     this.id,
     this.contentType,
     this.pageContent,
@@ -50,17 +75,17 @@ class The30 {
   String pageContent;
   String title;
   String shortDescription;
-  dynamic image;
+  String image;
   String altText;
   String url;
   String utubeUrl;
   String metaKeyword;
-  dynamic metaDescription;
+  String metaDescription;
   String status;
   DateTime createdAt;
   DateTime updatedAt;
 
-  factory The30.fromJson(Map<String, dynamic> json) => The30(
+  factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
         contentType: json["content_type"],
         pageContent: json["page_content"],
