@@ -8,6 +8,10 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 
 
 class VideoPlayer extends StatefulWidget {
+  final String videoUrl ;
+
+  const VideoPlayer({Key key, this.videoUrl}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return WebPageState();
@@ -44,7 +48,7 @@ class WebPageState extends State<VideoPlayer> {
           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
         },
         index: 1,
-        title: "Our Programs",
+        title: widget.videoUrl,
         titleImg: "assets/newImages/flowers-1.png",
         trallingImg1: "assets/newImages/share.png",
        trallingImg2: "assets/newImages/search.png",
@@ -53,7 +57,7 @@ class WebPageState extends State<VideoPlayer> {
         height: 85,
       ),
       body: WebView(
-        initialUrl: 'https://youtu.be/1l3oLvJXnIA',
+        initialUrl: widget.videoUrl,
         javascriptMode: JavascriptMode.unrestricted,
         navigationDelegate: (NavigationRequest request) {
           return NavigationDecision.navigate;

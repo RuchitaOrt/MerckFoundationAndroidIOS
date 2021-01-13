@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/model/getNewsRelease.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -14,6 +19,15 @@ class NewsRelease extends StatefulWidget {
 }
 
 class NewsReleaseState extends State<NewsRelease> {
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getNewsRelease();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,97 +48,105 @@ class NewsReleaseState extends State<NewsRelease> {
           trallingImg2: "assets/newImages/search.png",
           height: 85,
         ),
-        body: Stack(
-          children: [
-            ListView(
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              children: [
-                ListView.builder(
-                  itemCount: 7,
-                  shrinkWrap: true,
-                  physics: ScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding:
-                          const EdgeInsets.only(left: 8, right: 8, bottom: 6),
-                      child: Card(
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(5),
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 8),
-                          child: Column(
-                            children: [
-                              Row(
-                                // mainAxisAlignment: MainAxisAlignment.start,
-                                //crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ClipRect(
-                                    child: Image.asset(
-                                      "assets/newImages/pdf.png",
-                                      height: 80,
-                                      width: 80,
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.8),
-                                          fontWeight: FontWeight.w500),
-                                      maxLines: 4,
-                                    ),
-                                  ),
-                                ],
+        body: GlobalLists.newsReleaseList.length <= 0
+            ? Container(
+                child: Center(child: Text(Constantstring.emptyData)),
+              )
+            : Stack(
+                children: [
+                  ListView(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    children: [
+                      ListView.builder(
+                        itemCount: GlobalLists.newsReleaseList.length,
+                        shrinkWrap: true,
+                        physics: ScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                left: 8, right: 8, bottom: 6),
+                            child: Card(
+                              elevation: 2,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(5),
+                                ),
                               ),
-                            ],
-                          ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 10, right: 10, top: 8, bottom: 8),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      // mainAxisAlignment: MainAxisAlignment.start,
+                                      //crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        ClipRect(
+                                          child: FadeInImage.assetNetwork(
+                                            placeholder:
+                                                'assets/newImages/placeholder_3.jpg',
+                                            image: GlobalLists
+                                                .newsLettersList[index].image,
+                                            fit: BoxFit.fill,
+                                            height: 80,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            GlobalLists
+                                                .newsReleaseList[index].title,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: ResponsiveFlutter.of(
+                                                        context)
+                                                    .fontSize(1.8),
+                                                fontWeight: FontWeight.w500),
+                                            maxLines: 4,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 60, right: 60, top: 20, bottom: 10),
+                        child: Image.asset(
+                          "assets/newImages/flowers_footer.png",
                         ),
                       ),
-                    );
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 60, right: 60, top: 20, bottom: 10),
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
+                    ],
                   ),
-                ),
-              ],
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 90, right: 90, bottom: 20),
-                child: FlatButton(
-                  color: Customcolor.text_blue,
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Customcolor.text_blue)),
-                  child: Text(
-                    "Media Enquiries",
-                    style: TextStyle(color: Colors.white),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 90, right: 90, bottom: 20),
+                      child: FlatButton(
+                        color: Customcolor.text_blue,
+                        shape: RoundedRectangleBorder(
+                            side: BorderSide(color: Customcolor.text_blue)),
+                        child: Text(
+                          "Media Enquiries",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        minWidth: 40,
+                        onPressed: () {},
+                      ),
+                    ),
                   ),
-                  minWidth: 40,
-                  onPressed: () {},
-                ),
-              ),
-            ),
-          ],
-        ));
+                ],
+              ));
   }
 
   static Future<bool> enquirySMDialog(BuildContext context) async {
@@ -301,5 +323,38 @@ class NewsReleaseState extends State<NewsRelease> {
     );
 
     return status;
+  }
+
+  getNewsRelease() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.newsRelease,
+        (response) async {
+          NewsreleaseResponse resp = response;
+          print(resp);
+
+          Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.newsReleaseList = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
 
 import 'package:merckfoundation22dec/mediascreen.dart/newReleases.dart';
 import 'package:merckfoundation22dec/screens/ceomessage/messageFromLeadership.dart';
@@ -393,11 +395,11 @@ class _AppDrawerState extends State<AppDrawer> {
                           value: 'Merck Foundation Alumnis \nTestimonies',
                           onTapfun: () {
                             print('ontap1');
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (BuildContext context) =>
-                            //             MerckfoundationTestmonial()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        MerckFoundationTestimonial()));
                           },
                         ),
                         DrawerWidget(
@@ -443,10 +445,10 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Merck foundation in Media',
                           onTapfun: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (BuildContext context) => Media()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) => MerckFoundationMedia()));
 
                             // print('ontap');
                           },

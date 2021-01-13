@@ -5,8 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:merckfoundation22dec/model/dataprivacy.dart';
+import 'package:merckfoundation22dec/model/getMerckTestimonialResp.dart';
+import 'package:merckfoundation22dec/model/getNewsRelease.dart';
+import 'package:merckfoundation22dec/model/getStoriesResponse.dart';
 import 'package:merckfoundation22dec/model/leadershipTeamResponse.dart';
 import 'package:merckfoundation22dec/model/legaldisclaimerResponse.dart';
+import 'package:merckfoundation22dec/model/merckFoundationMediaResp.dart';
+import 'package:merckfoundation22dec/model/newsLettersArticlesResp.dart';
 import 'package:merckfoundation22dec/model/ourActivitiesObjectiveResp.dart';
 import 'package:merckfoundation22dec/model/ourActivitiesResponse.dart';
 import 'package:merckfoundation22dec/model/ourPartnerObjectivesResp.dart';
@@ -32,6 +37,8 @@ enum API {
   merckfoundationinmedia,
   callforapplication,
   videoLibrary,
+  getStories,
+  merckTestimonial,
 
   leadershipTeam,
   leadership,
@@ -142,6 +149,13 @@ class APIManager {
         case API.ourPartnerObjectives:
           apiPathString = "show/our-partners/13/Android/1";
           break;
+        case API.getStories:
+          apiPathString = "show/stories/14/Android/1";
+          break;
+
+         case API.merckTestimonial:
+          apiPathString = "show/merck-foundation-alumnis-testimonies/14/Android/1";
+          break;  
 
         default:
           apiPathString = "";
@@ -210,6 +224,14 @@ class APIManager {
         case API.ourPartnerObjectives:
           apiPathString = "show/our-partners/13/IOS/1";
           break;
+
+        case API.getStories:
+          apiPathString = "show/stories/14/IOS/1";
+          break;
+
+          case API.merckTestimonial:
+          apiPathString = "show/merck-foundation-alumnis-testimonies/14/IOS/1";
+          break;   
 
         default:
           apiPathString = "";
@@ -285,6 +307,9 @@ class APIManager {
       case API.videoLibrary:
         className = "VidepLibraryResponse";
         break;
+      case API.getStories:
+        className = "StoriesResponse";
+        break;
 
       case API.leadershipTeam:
         className = "LeadershipTeamResponse";
@@ -297,6 +322,10 @@ class APIManager {
       case API.ourPartner:
         className = "OurPartnerResp";
         break;
+
+       case API.merckTestimonial:
+        className = "MerckTestimonialResp";
+        break;  
 
       case API.leadership:
         className = "";
@@ -335,19 +364,23 @@ class APIManager {
       responseObj = MessageFromleadershipResponse.fromJson(json);
     }
 
-    if (className == 'NewsReleaseResponse') {
-      // responseObj = LegaldisclaimerResponse.fromJson(json);
+    if (className == 'StoriesResponse') {
+      responseObj = GetStoriesResponse.fromJson(json);
     }
 
     if (className == 'NewsLetterseResponse') {
-      // responseObj = LegaldisclaimerResponse.fromJson(json);
+      responseObj = NewsletterArticleResponse.fromJson(json);
+    }
+
+    if (className == 'NewsReleaseResponse') {
+      responseObj = NewsreleaseResponse.fromJson(json);
     }
 
     if (className == 'merckFoundationMediaResponse') {
-      // responseObj = LegaldisclaimerResponse.fromJson(json);
+      responseObj = MerckinMediaResponse.fromJson(json);
     }
-    if (className == 'callforapplicationResponse') {
-      // responseObj = LegaldisclaimerResponse.fromJson(json);
+    if (className == 'MerckTestimonialResp') {
+       responseObj = MerckTestimonialResponse.fromJson(json);
     }
 
     if (className == 'VidepLibraryResponse') {

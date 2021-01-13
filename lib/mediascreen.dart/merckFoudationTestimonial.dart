@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
+import 'package:merckfoundation22dec/model/getMerckTestimonialResp.dart';
 import 'package:merckfoundation22dec/model/getStoriesResponse.dart';
-import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -14,14 +13,14 @@ import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 
-class Stories extends StatefulWidget {
+class MerckFoundationTestimonial extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return StoriesState();
+    return MerckFoundationTestimonialState();
   }
 }
 
-class StoriesState extends State<Stories> {
+class MerckFoundationTestimonialState extends State<MerckFoundationTestimonial> {
   List _productsAvailable = [
     "assets/images/slider1.jpg",
     "assets/images/slider1.jpg",
@@ -36,7 +35,7 @@ class StoriesState extends State<Stories> {
   @override
   void initState() {
     // TODO: implement initState
-    getStories();
+    getMerckTestimonial();
     super.initState();
   }
 
@@ -53,7 +52,7 @@ class StoriesState extends State<Stories> {
                         )));
           },
           index: 1,
-          title: "Our Stories",
+          title: "Merck Foundation Alumini's Testimonial",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -70,14 +69,14 @@ class StoriesState extends State<Stories> {
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
                 child: FormLabel(
-                  text: "Our Stories",
+                  text: "Merck Foundation Alumini's Testimonial",
                   labelColor: Customcolor.colorblack,
                   fontSize: ResponsiveFlutter.of(context).fontSize(2),
                   maxLines: 2,
                   fontweight: FontWeight.w800,
                 ),
               ),
-              GlobalLists.storiesList.length <= 0
+              GlobalLists.merckTestimonialList.length <= 0
                   ? Container(
                       child: Center(child: Text(Constantstring.emptyData)),
                     )
@@ -86,7 +85,7 @@ class StoriesState extends State<Stories> {
                       physics: ScrollPhysics(),
                       crossAxisCount: 2,
                       childAspectRatio: 0.9,
-                      children: List.generate(GlobalLists.storiesList.length,
+                      children: List.generate(GlobalLists.merckTestimonialList.length,
                           (index) {
                         return Padding(
                           padding: const EdgeInsets.only(right: 2.0),
@@ -104,9 +103,8 @@ class StoriesState extends State<Stories> {
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
                                               VideoPlayer(
-                                                videoUrl: GlobalLists
-                                                    .storiesList[index]
-                                                    .videoLink,
+                                                videoUrl: GlobalLists.merckTestimonialList[index].videoLink,
+                                                    
                                               )));
                                 },
                                 child: Container(
@@ -132,7 +130,7 @@ class StoriesState extends State<Stories> {
                                             // ),
                                             image: new DecorationImage(
                                               image: new NetworkImage(
-                                                  'https://img.youtube.com/vi/${GlobalLists.storiesList[index].videoLink.substring(GlobalLists.storiesList[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                  'https://img.youtube.com/vi/${GlobalLists.merckTestimonialList[index].videoLink.substring(GlobalLists.merckTestimonialList[index].videoLink.length - 11)}/mqdefault.jpg'),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -141,8 +139,7 @@ class StoriesState extends State<Stories> {
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Text(
-                                          GlobalLists
-                                              .storiesList[index].videoDesc,
+                                         GlobalLists.merckTestimonialList[index].videoDesc,
                                           textAlign: TextAlign.center,
                                           // overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
@@ -177,7 +174,7 @@ class StoriesState extends State<Stories> {
         ));
   }
 
-  getStories() async {
+  getMerckTestimonial() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -185,9 +182,9 @@ class StoriesState extends State<Stories> {
 
       APIManager().apiRequest(
         context,
-        API.getStories,
+        API.merckTestimonial,
         (response) async {
-          GetStoriesResponse resp = response;
+          MerckTestimonialResponse resp = response;
           print(response);
           print('Resp : $resp');
 
@@ -195,7 +192,7 @@ class StoriesState extends State<Stories> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.storiesList = resp.data.list;
+              GlobalLists.merckTestimonialList = resp.data.list;
             });
           } else {
             ShowDialogs.showToast(resp.msg);
