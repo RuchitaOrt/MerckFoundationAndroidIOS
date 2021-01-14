@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -27,11 +30,15 @@ class VideolibraryState extends State<Videolibrary> {
     "assets/images/slider1.jpg",
   ];
 
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+
   @override
   void initState() {
     // TODO: implement initState
 
     getvideolibray();
+   
+   
     super.initState();
   }
 
@@ -65,19 +72,20 @@ class VideolibraryState extends State<Videolibrary> {
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
                 child: FormLabel(
-                  text: "Our Stories",
+                  text: "Video Library",
                   labelColor: Customcolor.colorblack,
                   fontSize: ResponsiveFlutter.of(context).fontSize(2),
                   maxLines: 2,
                   fontweight: FontWeight.w800,
                 ),
               ),
+              GlobalLists.videolibrary.length<=0?Container():
               GridView.count(
                 shrinkWrap: true,
                 physics: ScrollPhysics(),
                 crossAxisCount: 2,
                 childAspectRatio: 0.9,
-                children: List.generate(_productsAvailable.length, (index) {
+                children: List.generate(GlobalLists.videolibrary.length, (index) {
                   return Padding(
                     padding: const EdgeInsets.only(right: 2.0),
                     child: Card(
@@ -112,16 +120,17 @@ class VideolibraryState extends State<Videolibrary> {
                                         // border: Border.all(
                                         //   width: 1,
                                         // ),
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                _productsAvailable[index]),
-                                            fit: BoxFit.cover)),
-                                  ),
+                                         image: new DecorationImage(
+                                        image: new NetworkImage(
+                                            'https://img.youtube.com/vi/${GlobalLists.videolibrary.video_link.substring(GlobalLists.videolibrary.video_link.length - 11)}/mqdefault.jpg'),
+                                        // fit: BoxFit.cover,
+                                      ),
+                                    ),),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: Text(
-                                    "Jackline Mwende, Merck More Than A Mother Heroine from Kenya shares her story",
+                                   GlobalLists.videolibrary[index].video_desc,
                                     // overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -162,7 +171,7 @@ class VideolibraryState extends State<Videolibrary> {
 
       APIManager().apiRequest(
         context,
-        API.videoLibrarys,
+        API.videoLibrary,
         (response) async {
           GetVideoLibraryResponse resp = response;
           print(response);

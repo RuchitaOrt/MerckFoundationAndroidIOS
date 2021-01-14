@@ -99,5 +99,3 @@ class ListElement {
         "updated_at": updatedAt,
       };
 }
-
-}
