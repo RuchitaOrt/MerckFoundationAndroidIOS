@@ -225,17 +225,21 @@ class CallApplicationState extends State<CallforApplication>
           ListTile(
             // subtitle: Text("awesome image caption"),
             title: Text(
-              "UNESCO-MARS 2020",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 17),
-            ),
+                GlobalLists.upcomingevent[_current1].title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 17),
+              ),
+            
+           
           ),
-          SizedBox(
+
+        SizedBox(
             height: 15,
           ),
+          
           Padding(
             padding: const EdgeInsets.only(right: 60, left: 60),
             child: Image.asset(
@@ -320,7 +324,7 @@ class CallApplicationState extends State<CallforApplication>
           ListTile(
             // subtitle: Text("awesome image caption"),
             title: Text(
-              "UNESCO-MARS 2020",
+              GlobalLists.pastevent[_current].title,
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.black87,
