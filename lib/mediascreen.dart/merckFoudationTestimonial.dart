@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
+import 'package:merckfoundation22dec/model/getMerckTestimonialResp.dart';
+import 'package:merckfoundation22dec/model/getStoriesResponse.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -10,16 +12,15 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 
-class Videolibrary extends StatefulWidget {
+class MerckFoundationTestimonial extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return VideolibraryState();
+    return MerckFoundationTestimonialState();
   }
 }
 
-class VideolibraryState extends State<Videolibrary> {
+class MerckFoundationTestimonialState extends State<MerckFoundationTestimonial> {
   List _productsAvailable = [
     "assets/images/slider1.jpg",
     "assets/images/slider1.jpg",
@@ -29,15 +30,12 @@ class VideolibraryState extends State<Videolibrary> {
     "assets/images/slider1.jpg",
     "assets/images/slider1.jpg",
   ];
-
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
   void initState() {
     // TODO: implement initState
-
-    getvideolibray();
-
+    getMerckTestimonial();
     super.initState();
   }
 
@@ -54,7 +52,7 @@ class VideolibraryState extends State<Videolibrary> {
                         )));
           },
           index: 1,
-          title: "Video Library",
+          title: "Merck Foundation Alumini's Testimonial",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -71,14 +69,14 @@ class VideolibraryState extends State<Videolibrary> {
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
                 child: FormLabel(
-                  text: "Video Library",
+                  text: "Merck Foundation Alumini's Testimonial",
                   labelColor: Customcolor.colorblack,
                   fontSize: ResponsiveFlutter.of(context).fontSize(2),
                   maxLines: 2,
                   fontweight: FontWeight.w800,
                 ),
               ),
-              GlobalLists.videolibrary.length <= 0
+              GlobalLists.merckTestimonialList.length <= 0
                   ? Container(
                       child: Center(child: Text(Constantstring.emptyData)),
                     )
@@ -87,7 +85,7 @@ class VideolibraryState extends State<Videolibrary> {
                       physics: ScrollPhysics(),
                       crossAxisCount: 2,
                       childAspectRatio: 0.9,
-                      children: List.generate(GlobalLists.videolibrary.length,
+                      children: List.generate(GlobalLists.merckTestimonialList.length,
                           (index) {
                         return Padding(
                           padding: const EdgeInsets.only(right: 2.0),
@@ -105,9 +103,8 @@ class VideolibraryState extends State<Videolibrary> {
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
                                               VideoPlayer(
-                                                videoUrl: GlobalLists
-                                                    .videolibrary[index]
-                                                    .videoLink,
+                                                videoUrl: GlobalLists.merckTestimonialList[index].videoLink,
+                                                    
                                               )));
                                 },
                                 child: Container(
@@ -133,7 +130,7 @@ class VideolibraryState extends State<Videolibrary> {
                                             // ),
                                             image: new DecorationImage(
                                               image: new NetworkImage(
-                                                  'https://img.youtube.com/vi/${GlobalLists.videolibrary[index].videoLink.substring(GlobalLists.videolibrary[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                  'https://img.youtube.com/vi/${GlobalLists.merckTestimonialList[index].videoLink.substring(GlobalLists.merckTestimonialList[index].videoLink.length - 11)}/mqdefault.jpg'),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -142,9 +139,7 @@ class VideolibraryState extends State<Videolibrary> {
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Text(
-                                          GlobalLists
-                                              .videolibrary[index].videoDesc,
-
+                                         GlobalLists.merckTestimonialList[index].videoDesc,
                                           textAlign: TextAlign.center,
                                           // overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
@@ -179,7 +174,7 @@ class VideolibraryState extends State<Videolibrary> {
         ));
   }
 
-  getvideolibray() async {
+  getMerckTestimonial() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -187,9 +182,9 @@ class VideolibraryState extends State<Videolibrary> {
 
       APIManager().apiRequest(
         context,
-        API.videoLibrary,
+        API.merckTestimonial,
         (response) async {
-          GetVideoLibraryResponse resp = response;
+          MerckTestimonialResponse resp = response;
           print(response);
           print('Resp : $resp');
 
@@ -197,7 +192,7 @@ class VideolibraryState extends State<Videolibrary> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.videolibrary = resp.data.list;
+              GlobalLists.merckTestimonialList = resp.data.list;
             });
           } else {
             ShowDialogs.showToast(resp.msg);

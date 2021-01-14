@@ -5,6 +5,11 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/model/callforapplicationResponse.dart';
 
 class CallforApplication extends StatefulWidget {
   @override
@@ -24,8 +29,10 @@ class CallApplicationState extends State<CallforApplication>
   ];
   int _current1 = 0;
   int _current = 0;
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   @override
   void initState() {
+    getcallforapp();
     super.initState();
     _scrollViewController = new ScrollController();
     _tabController = new TabController(vsync: this, length: 2);
@@ -105,7 +112,18 @@ class CallApplicationState extends State<CallforApplication>
               // Tab Bar View
               physics: NeverScrollableScrollPhysics(),
               controller: _tabController,
-              children: <Widget>[upcomingEvents(), pastEvents()],
+              children: <Widget>[
+                GlobalLists.upcomingevent.length <= 0
+                    ? Container(
+                        child: Center(child: Text(Constantstring.emptyData)),
+                      )
+                    : upcomingEvents(),
+                GlobalLists.pastevent.length <= 0
+                    ? Container(
+                        child: Center(child: Text(Constantstring.emptyData)),
+                      )
+                    : pastEvents()
+              ],
             ),
           ),
         ],
@@ -148,13 +166,21 @@ class CallApplicationState extends State<CallforApplication>
                               child: Container(
                                 // height: SizeConfig.blockSizeVertical * 40,
                                 width: double.infinity,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                          images[index],
-                                        ),
-                                        fit: BoxFit.fill)),
+                                // decoration: BoxDecoration(
+                                //     borderRadius: BorderRadius.circular(10),
+                                //     image: DecorationImage(
+                                //         image: AssetImage(
+                                //           images[index],
+                                //         ),
+                                //         fit: BoxFit.fill)),
+                                child: FadeInImage.assetNetwork(
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
+                                  image:
+                                      GlobalLists.upcomingevent[index].appImg,
+                                  fit: BoxFit.fill,
+                                  height: 80,
+                                ),
                               ),
                             ),
                           ],
@@ -164,7 +190,7 @@ class CallApplicationState extends State<CallforApplication>
                   ],
                 );
               },
-              itemCount: images.length,
+              itemCount: GlobalLists.upcomingevent.length,
               viewportFraction: 0.7,
               layout: SwiperLayout.DEFAULT,
               scale: 0.9,
@@ -183,7 +209,7 @@ class CallApplicationState extends State<CallforApplication>
           Padding(
             padding: const EdgeInsets.only(top: 20, bottom: 20),
             child: new DotsIndicator(
-              dotsCount: images.length,
+              dotsCount: GlobalLists.upcomingevent.length,
               position: double.parse("$_current1"),
               decorator: DotsDecorator(
                 size: const Size.square(9.0),
@@ -245,31 +271,26 @@ class CallApplicationState extends State<CallforApplication>
                     Expanded(
                       child: Container(
                         width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                                image: AssetImage(
-                                  images[index],
-                                ),
-                                fit: BoxFit.fill)),
+                        // decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(10),
+                        //     image: DecorationImage(
+                        //         image: AssetImage(
+                        //           images[index],
+                        //         ),
+                        //         fit: BoxFit.fill)),
+
+                        child: FadeInImage.assetNetwork(
+                          placeholder: 'assets/newImages/placeholder_3.jpg',
+                          image: GlobalLists.pastevent[index].appImg,
+                          fit: BoxFit.fill,
+                          height: 80,
+                        ),
                       ),
                     ),
-                    // Container(
-                    //     padding: EdgeInsets.only(bottom: 20),
-                    //     decoration: BoxDecoration(
-                    //         color: Colors.white,
-                    //         borderRadius: BorderRadius.only(
-                    //             bottomLeft: Radius.circular(10.0),
-                    //             bottomRight: Radius.circular(10.0))),
-                    //     child: ListTile(
-                    //       // subtitle: Text("awesome image caption"),
-                    //       title: Text(
-                    //           "Online edition- Merck foundation Diabetes blue point program"),
-                    //     ))
                   ],
                 );
               },
-              itemCount: images.length,
+              itemCount: GlobalLists.pastevent.length,
               viewportFraction: 0.7,
               layout: SwiperLayout.DEFAULT,
               scale: 0.9,
@@ -283,7 +304,7 @@ class CallApplicationState extends State<CallforApplication>
           Padding(
             padding: const EdgeInsets.only(top: 20, bottom: 20),
             child: new DotsIndicator(
-              dotsCount: images.length,
+              dotsCount: GlobalLists.pastevent.length,
               position: double.parse("$_current"),
               decorator: DotsDecorator(
                 size: const Size.square(9.0),
@@ -322,5 +343,40 @@ class CallApplicationState extends State<CallforApplication>
         ],
       ),
     );
+  }
+
+  getcallforapp() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.callforapplication,
+        (response) async {
+          CallforApplicationResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.upcomingevent = resp.data.upcoming;
+              GlobalLists.pastevent = resp.data.past;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 }

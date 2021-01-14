@@ -19,6 +19,17 @@ import 'package:merckfoundation22dec/model/ourPartnerResponse.dart'
     as ourPartnerResp;
 import 'package:merckfoundation22dec/model/videoLibraryResponse.dart'
     as videolibrayResp;
+import 'package:merckfoundation22dec/model/getStoriesResponse.dart'
+    as storiesResp;
+import 'package:merckfoundation22dec/model/newsLettersArticlesResp.dart'
+    as newsArticles;
+import 'package:merckfoundation22dec/model/getNewsRelease.dart' as newsRelease;
+import 'package:merckfoundation22dec/model/merckFoundationMediaResp.dart'
+    as merckMediaresp;
+import 'package:merckfoundation22dec/model/getMerckTestimonialResp.dart'
+    as merckTestimonialResp;
+import 'package:merckfoundation22dec/model/callforapplicationResponse.dart'
+    as callforapp;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -35,4 +46,14 @@ class GlobalLists {
 
   //media event
   static List<videolibrayResp.ListElement> videolibrary = [];
+
+  static List<storiesResp.ListElement> storiesList = [];
+
+  static List<newsArticles.ListElement> newsLettersList = [];
+  static List<newsRelease.ListElement> newsReleaseList = [];
+  static List<merckMediaresp.ListElement> merckinMediaList = [];
+  static List<merckTestimonialResp.ListElement> merckTestimonialList = [];
+
+  static List<callforapp.Past> upcomingevent = [];
+  static List<callforapp.Past> pastevent = [];
 }

@@ -40,7 +40,6 @@ dependencies:
   photo_view: ^0.10.2
   youtube_player_flutter: ^7.0.0+7
   url_launcher: ^5.7.10
-  webview_flutter: ^1.0.7
   flutter_pagewise: ^1.2.3
   http: ^0.12.2
   adv_fab: ^1.0.5
