@@ -252,9 +252,9 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                 child: FadeInImage.assetNetwork(
                                               placeholder:
                                                   'assets/newImages/placeholder_3.jpg',
-                                              image: product
+                                              image: Constantstring.baseUrl+product
                                                   .image,
-                                              fit: BoxFit.fill,
+                                              fit: BoxFit.cover,
                                               height: 150,
                                             ),
                                 
@@ -437,6 +437,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
           if (resp.success == "True") {
             setState(() {
               GlobalLists.leadershipTeamResp = resp.data.list;
+              Constantstring.baseUrl = resp.baseUrl;
             });
           } else {
             ShowDialogs.showToast(resp.msg);

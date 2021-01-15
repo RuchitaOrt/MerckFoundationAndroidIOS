@@ -21,6 +21,7 @@ class OurActivityResponse {
         this.success,
         this.msg,
         this.data,
+        this.baseUrl
     });
 
  
@@ -28,12 +29,14 @@ class OurActivityResponse {
     String success;
     String msg;
     Data data;
+    String baseUrl;
 
  
 
     factory OurActivityResponse.fromJson(Map<String, dynamic> json) => OurActivityResponse(
         success: json["success"],
         msg: json["msg"],
+        baseUrl: json["base_url"],
         data: Data.fromJson(json["data"]),
     );
 
@@ -42,6 +45,7 @@ class OurActivityResponse {
     Map<String, dynamic> toJson() => {
         "success": success,
         "msg": msg,
+        "base_url": baseUrl,
         "data": data.toJson(),
     };
 }

@@ -12,22 +12,26 @@ class NewsreleaseResponse {
     NewsreleaseResponse({
         this.success,
         this.msg,
+        this.baseUrl,
         this.data,
     });
 
     String success;
     String msg;
     Data data;
+    String baseUrl;
 
     factory NewsreleaseResponse.fromJson(Map<String, dynamic> json) => NewsreleaseResponse(
         success: json["success"],
         msg: json["msg"],
+        baseUrl: json["base_url"],
         data: Data.fromJson(json["data"]),
     );
 
     Map<String, dynamic> toJson() => {
         "success": success,
         "msg": msg,
+        "base_url":baseUrl,
         "data": data.toJson(),
     };
 }
@@ -78,7 +82,7 @@ class ListElement {
         title: json["title"] == null ? "": json["title"],
         eventType: json["event_type"],
         eventYear: json["event_year"],
-        pdfFile: json["pdf_file"],
+        pdfFile: json["pdf_file"] == null? "": json["pdf_file"],
         appImg: json["app_img"]  == null ? "": json["app_img"],
         altText: json["alt_text"],
         status: json["status"],

@@ -56,7 +56,7 @@ class MerckFoundationTestimonialState extends State<MerckFoundationTestimonial> 
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
-          height: 85,
+          height: 95,
         ),
         backgroundColor: Customcolor.background,
         body: Padding(
@@ -84,7 +84,7 @@ class MerckFoundationTestimonialState extends State<MerckFoundationTestimonial> 
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
                       crossAxisCount: 2,
-                      childAspectRatio: 0.9,
+                      childAspectRatio: 0.8,
                       children: List.generate(GlobalLists.merckTestimonialList.length,
                           (index) {
                         return Padding(
@@ -141,14 +141,14 @@ class MerckFoundationTestimonialState extends State<MerckFoundationTestimonial> 
                                         child: Text(
                                          GlobalLists.merckTestimonialList[index].videoDesc,
                                           textAlign: TextAlign.center,
-                                          // overflow: TextOverflow.ellipsis,
+                                          overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize:
                                                   ResponsiveFlutter.of(context)
                                                       .fontSize(1.4),
                                               fontWeight: FontWeight.w500),
-                                          maxLines: 4,
+                                          maxLines: 3,
                                         ),
                                       ),
                                       SizedBox(height: 5),

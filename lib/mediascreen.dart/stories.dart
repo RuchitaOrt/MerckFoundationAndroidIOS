@@ -144,14 +144,14 @@ class StoriesState extends State<Stories> {
                                           GlobalLists
                                               .storiesList[index].videoDesc,
                                           textAlign: TextAlign.center,
-                                          // overflow: TextOverflow.ellipsis,
+                                          overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize:
                                                   ResponsiveFlutter.of(context)
                                                       .fontSize(1.4),
                                               fontWeight: FontWeight.w500),
-                                          maxLines: 4,
+                                          maxLines: 3,
                                         ),
                                       ),
                                       SizedBox(height: 5),

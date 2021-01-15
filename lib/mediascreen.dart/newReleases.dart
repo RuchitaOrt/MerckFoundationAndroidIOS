@@ -10,6 +10,7 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsRelease extends StatefulWidget {
   @override
@@ -27,6 +28,15 @@ class NewsReleaseState extends State<NewsRelease> {
     getNewsRelease();
     super.initState();
   }
+
+  _launchURL(String urlIs) async {
+  var url = urlIs;
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -78,38 +88,44 @@ class NewsReleaseState extends State<NewsRelease> {
                                     left: 10, right: 10, top: 8, bottom: 8),
                                 child: Column(
                                   children: [
-                                    Row(
-                                      // mainAxisAlignment: MainAxisAlignment.start,
-                                      //crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        ClipRect(
-                                          child: FadeInImage.assetNetwork(
-                                            placeholder:
-                                                'assets/newImages/placeholder_3.jpg',
-                                            image: GlobalLists
-                                                .newsLettersList[index].image,
-                                            fit: BoxFit.fill,
-                                            height: 80,
+                                    GestureDetector(
+                                                                      onTap: (){
+                                  _launchURL( Constantstring.baseUrl+  GlobalLists.newsReleaseList[index].pdfFile);
+                                },
+                                                                          child: Row(
+                                        // mainAxisAlignment: MainAxisAlignment.start,
+                                        //crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          ClipRect(
+                                            child: FadeInImage.assetNetwork(
+                                              placeholder:
+                                                  'assets/newImages/placeholder_3.jpg',
+                                              image:  Constantstring.baseUrl+GlobalLists
+                                                  .newsReleaseList[index].appImg,
+                                              fit: BoxFit.cover,
+                                              height: 80,
+                                              width: 80,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          child: Text(
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Expanded(
+                                            child: Text(
                                             GlobalLists
-                                                .newsReleaseList[index].title,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: ResponsiveFlutter.of(
-                                                        context)
-                                                    .fontSize(1.8),
-                                                fontWeight: FontWeight.w500),
-                                            maxLines: 4,
+                                                  .newsReleaseList[index].title,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: ResponsiveFlutter.of(
+                                                          context)
+                                                      .fontSize(1.8),
+                                                  fontWeight: FontWeight.w500),
+                                              maxLines: 4,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -343,6 +359,7 @@ class NewsReleaseState extends State<NewsRelease> {
           if (resp.success == "True") {
             setState(() {
               GlobalLists.newsReleaseList = resp.data.list;
+              Constantstring.baseUrl = resp.baseUrl;
             });
           } else {
             ShowDialogs.showToast(resp.msg);

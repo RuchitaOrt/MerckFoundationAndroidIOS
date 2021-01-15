@@ -184,6 +184,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 titleImg: "assets/newImages/flowers-2.png",
                 subTitle: "Message Form Dr.Rasha Kelej, on the inauguration...",
                 buttontitle: "Watch More ",
+                onBtnTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 2,)));
+                },
                 buttontitlecolor: Customcolor.text_darkblue,
               ),
 

@@ -56,4 +56,5 @@ class AppFonts {
 
 class Constantstring {
   static String emptyData = "No Data Found";
+  static String baseUrl = "";
 }

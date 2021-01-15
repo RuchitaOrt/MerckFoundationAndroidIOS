@@ -13,22 +13,26 @@ class NewsletterArticleResponse {
         this.success,
         this.msg,
         this.data,
+        this.baseUrl,
     });
 
     String success;
     String msg;
     Data data;
+    String baseUrl;
 
     factory NewsletterArticleResponse.fromJson(Map<String, dynamic> json) => NewsletterArticleResponse(
         success: json["success"],
         msg: json["msg"],
-        data: Data.fromJson(json["data"]),
+        baseUrl: json['base_url'],
+       data: Data.fromJson(json["data"]),
     );
 
     Map<String, dynamic> toJson() => {
         "success": success,
         "msg": msg,
         "data": data.toJson(),
+        "base_url": baseUrl
     };
 }
 

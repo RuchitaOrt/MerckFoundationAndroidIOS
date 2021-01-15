@@ -86,7 +86,7 @@ class VideolibraryState extends State<Videolibrary> {
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
                       crossAxisCount: 2,
-                      childAspectRatio: 0.9,
+                      childAspectRatio: 0.8,
                       children: List.generate(GlobalLists.videolibrary.length,
                           (index) {
                         return Padding(
@@ -146,14 +146,14 @@ class VideolibraryState extends State<Videolibrary> {
                                               .videolibrary[index].videoDesc,
 
                                           textAlign: TextAlign.center,
-                                          // overflow: TextOverflow.ellipsis,
+                                          overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize:
                                                   ResponsiveFlutter.of(context)
                                                       .fontSize(1.4),
                                               fontWeight: FontWeight.w500),
-                                          maxLines: 4,
+                                          maxLines: 3,
                                         ),
                                       ),
                                       SizedBox(height: 5),

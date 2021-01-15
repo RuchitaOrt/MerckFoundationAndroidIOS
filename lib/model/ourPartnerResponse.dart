@@ -12,22 +12,26 @@ class OurpartnerResponse {
     OurpartnerResponse({
         this.success,
         this.msg,
+        this.baseUrl,
         this.data,
     });
 
     String success;
     String msg;
+    String baseUrl;
     Data data;
 
     factory OurpartnerResponse.fromJson(Map<String, dynamic> json) => OurpartnerResponse(
         success: json["success"],
         msg: json["msg"],
+        baseUrl: json["base_url"],
         data: Data.fromJson(json["data"]),
     );
 
     Map<String, dynamic> toJson() => {
         "success": success,
         "msg": msg,
+        "base_url":baseUrl,
         "data": data.toJson(),
     };
 }
@@ -72,7 +76,7 @@ class ListElement {
     factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
         title: json["title"] == null? "": json["title"],
-        webUrl: json["web_url"],
+        webUrl: json["web_url"] == null ? "": json["web_url"],
         image: json["image"] == null? "": json["image"],
         altText: json["alt_text"],
         status: json["status"],
