@@ -85,7 +85,7 @@ class StoriesState extends State<Stories> {
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
                       crossAxisCount: 2,
-                      childAspectRatio: 0.9,
+                      childAspectRatio: 0.8,
                       children: List.generate(GlobalLists.storiesList.length,
                           (index) {
                         return Padding(
