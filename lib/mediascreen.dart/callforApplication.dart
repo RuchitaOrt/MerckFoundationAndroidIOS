@@ -10,6 +10,7 @@ import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/model/callforapplicationResponse.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CallforApplication extends StatefulWidget {
   @override
@@ -27,6 +28,7 @@ class CallApplicationState extends State<CallforApplication>
     "assets/newImages/m3.png",
     "assets/newImages/cfa1.png"
   ];
+
   int _current1 = 0;
   int _current = 0;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
@@ -44,6 +46,16 @@ class CallApplicationState extends State<CallforApplication>
     _tabController.dispose();
     super.dispose();
   }
+
+
+_launchURL(String urlIs) async {
+  var url = urlIs;
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -163,23 +175,22 @@ class CallApplicationState extends State<CallforApplication>
                         child: Column(
                           children: <Widget>[
                             Expanded(
-                              child: Container(
-                                // height: SizeConfig.blockSizeVertical * 40,
-                                width: double.infinity,
-                                // decoration: BoxDecoration(
-                                //     borderRadius: BorderRadius.circular(10),
-                                //     image: DecorationImage(
-                                //         image: AssetImage(
-                                //           images[index],
-                                //         ),
-                                //         fit: BoxFit.fill)),
-                                child: FadeInImage.assetNetwork(
-                                  placeholder:
-                                      'assets/newImages/placeholder_3.jpg',
-                                  image:
-                                      GlobalLists.upcomingevent[index].appImg,
-                                  fit: BoxFit.fill,
-                                  height: 80,
+                              child: GestureDetector(
+                                onTap: (){
+                                  _launchURL( Constantstring.baseUrl+  GlobalLists.upcomingevent[index].pdfFile);
+                                },
+                                                              child: Container(
+                                  
+                                  width: double.infinity,
+                                  
+                                  child: FadeInImage.assetNetwork(
+                                    placeholder:
+                                        'assets/newImages/placeholder_3.jpg',
+                                    image:
+                                      Constantstring.baseUrl+  GlobalLists.upcomingevent[index].appImg,
+                                    fit: BoxFit.cover,
+                                    height: 80,
+                                  ),
                                 ),
                               ),
                             ),
@@ -273,21 +284,19 @@ class CallApplicationState extends State<CallforApplication>
                 return Column(
                   children: <Widget>[
                     Expanded(
-                      child: Container(
-                        width: double.infinity,
-                        // decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(10),
-                        //     image: DecorationImage(
-                        //         image: AssetImage(
-                        //           images[index],
-                        //         ),
-                        //         fit: BoxFit.fill)),
-
-                        child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/newImages/placeholder_3.jpg',
-                          image: GlobalLists.pastevent[index].appImg,
-                          fit: BoxFit.fill,
-                          height: 80,
+                      child: GestureDetector(
+                          onTap: (){
+                                  _launchURL( Constantstring.baseUrl+  GlobalLists.pastevent[index].pdfFile);
+                                },
+                                              child: Container(
+                          width: double.infinity,
+                         
+                          child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/newImages/placeholder_3.jpg',
+                            image: Constantstring.baseUrl + GlobalLists.pastevent[index].appImg,
+                            fit: BoxFit.cover,
+                            height: 80,
+                          ),
                         ),
                       ),
                     ),
@@ -369,6 +378,8 @@ class CallApplicationState extends State<CallforApplication>
             setState(() {
               GlobalLists.upcomingevent = resp.data.upcoming;
               GlobalLists.pastevent = resp.data.past;
+              Constantstring.baseUrl = resp.baseurl;
+
             });
           } else {
             ShowDialogs.showToast(resp.msg);

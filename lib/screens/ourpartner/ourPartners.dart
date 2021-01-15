@@ -174,13 +174,15 @@ class OurpatnerState extends State<Ourpatner> {
           if (resp.success == "True") {
             setState(() {
               GlobalLists.ourPartnerList = resp.data.list;
-            });
-
-             Navigator.push(
+              Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    Ourpatnerdetail()));
+                                    Ourpatnerdetail(baseUrl: resp.baseUrl,)));
+
+            });
+
+            
           } else {
             ShowDialogs.showToast(resp.msg);
           }

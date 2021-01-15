@@ -17,22 +17,26 @@ class MessageFromleadershipResponse {
     this.success,
     this.msg,
     this.data,
+    this.baseUrl,
   });
 
   String success;
   String msg;
   Data data;
+  String baseUrl;
 
   factory MessageFromleadershipResponse.fromJson(Map<String, dynamic> json) =>
       MessageFromleadershipResponse(
         success: json["success"],
         msg: json["msg"],
+        baseUrl: json["base_url"],
         data: Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
         "success": success,
         "msg": msg,
+        "base_url":baseUrl,
         "data": data.toJson(),
       };
 }

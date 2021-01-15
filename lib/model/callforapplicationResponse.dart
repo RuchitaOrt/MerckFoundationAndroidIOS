@@ -11,26 +11,25 @@ String callforApplicationResponseToJson(CallforApplicationResponse data) =>
     json.encode(data.toJson());
 
 class CallforApplicationResponse {
-  CallforApplicationResponse({
-    this.success,
-    this.msg,
-    this.data,
-  });
+  CallforApplicationResponse({this.success, this.msg, this.data, this.baseurl});
 
   String success;
   String msg;
+  String baseurl;
   Data data;
 
   factory CallforApplicationResponse.fromJson(Map<String, dynamic> json) =>
       CallforApplicationResponse(
         success: json["success"],
         msg: json["msg"],
+        baseurl: json["base_url"] == null ? "" : json["base_url"],
         data: Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
         "success": success,
         "msg": msg,
+        "base_url": baseurl,
         "data": data.toJson(),
       };
 }
@@ -83,11 +82,11 @@ class Past {
 
   factory Past.fromJson(Map<String, dynamic> json) => Past(
         id: json["id"],
-        title: json["title"],
+        title: json["title"] == null ? "" : json["title"],
         eventType: json["event_type"],
         eventYear: DateTime.parse(json["event_year"]),
-        pdfFile: json["pdf_file"],
-        appImg: json["app_img"],
+        pdfFile: json["pdf_file"] == null? "":  json["pdf_file"],
+        appImg: json["app_img"] == null ? "" : json["app_img"],
         altText: json["alt_text"],
         status: json["status"],
         createdAt: DateTime.parse(json["created_at"]),

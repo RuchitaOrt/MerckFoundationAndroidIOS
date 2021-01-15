@@ -74,9 +74,9 @@ class OurActivityState extends State<OurActivity> {
                   height: 10,
                 ),
                 GlobalLists.ourActivitiesObjectives.length <= 0
-                    ?Container(child: Center(
-      child: Text(Constantstring.emptyData)
-    ),)
+                    ? Container(
+                        child: Center(child: Text(Constantstring.emptyData)),
+                      )
                     : Html(
                         data:
                             """${GlobalLists.ourActivitiesObjectives[0].pageContent} """,
@@ -114,9 +114,11 @@ class OurActivityState extends State<OurActivity> {
               fontweight: FontWeight.w500,
             ),
           ),
-        GlobalLists.ourActivitiesData.length<= 0? Container(child: Center(
-      child: Text(Constantstring.emptyData)
-    ),):  ouractivities(),
+          GlobalLists.ourActivitiesData.length <= 0
+              ? Container(
+                  child: Center(child: Text(Constantstring.emptyData)),
+                )
+              : ouractivities(),
           Padding(
             padding:
                 const EdgeInsets.only(right: 60, left: 60, top: 20, bottom: 20),
@@ -154,7 +156,8 @@ class OurActivityState extends State<OurActivity> {
                           width: SizeConfig.blockSizeHorizontal * 86,
                           child: FadeInImage.assetNetwork(
                             placeholder: 'assets/newImages/placeholder_3.jpg',
-                            image: GlobalLists.ourActivitiesData[index].image,
+                            image: Constantstring.baseUrl +
+                                GlobalLists.ourActivitiesData[index].image,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -323,6 +326,7 @@ class OurActivityState extends State<OurActivity> {
           if (resp.success == "True") {
             setState(() {
               GlobalLists.ourActivitiesData = resp.data.list;
+              Constantstring.baseUrl = resp.baseUrl;
             });
           } else {
             ShowDialogs.showToast(resp.msg);

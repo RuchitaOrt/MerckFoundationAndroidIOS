@@ -95,10 +95,11 @@ class NewsState extends State<NewsPage> {
                                       child: FadeInImage.assetNetwork(
                                         placeholder:
                                             'assets/newImages/placeholder_3.jpg',
-                                        image: GlobalLists
+                                        image:Constantstring.baseUrl+GlobalLists
                                             .newsLettersList[index].image,
-                                        fit: BoxFit.fill,
+                                        fit: BoxFit.cover,
                                         height: 80,
+                                        width: 80,
                                       ),
                                     ),
                                     SizedBox(
@@ -160,6 +161,7 @@ class NewsState extends State<NewsPage> {
           if (resp.success == "True") {
             setState(() {
               GlobalLists.newsLettersList = resp.data.list;
+              Constantstring.baseUrl = resp.baseUrl;
             });
           } else {
             ShowDialogs.showToast(resp.msg);

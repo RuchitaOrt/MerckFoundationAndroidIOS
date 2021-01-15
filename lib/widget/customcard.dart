@@ -12,6 +12,7 @@ class CustomeCard extends StatefulWidget {
   final int index;
   final String buttontitle;
   final Color buttontitlecolor;
+  final Function onBtnTap;
 
   const CustomeCard(
       {Key key,
@@ -23,6 +24,7 @@ class CustomeCard extends StatefulWidget {
       this.titleImg,
       this.index,
       this.buttontitle,
+      this.onBtnTap,
       this.buttontitlecolor})
       : super(key: key);
 
@@ -89,18 +91,21 @@ class CustomCardState extends State<CustomeCard> {
                       fontweight: FontWeight.w500,
                     ),
                   ),
-                  Container(
-                    width: 110,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                      child: Text(
-                        widget.buttontitle,
-                        style: TextStyle(
-                            color: widget.buttontitlecolor,
-                            fontWeight: FontWeight.w500),
+                  GestureDetector(
+                    onTap: widget.onBtnTap,
+                                      child: Container(
+                      width: 110,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Center(
+                        child: Text(
+                          widget.buttontitle,
+                          style: TextStyle(
+                              color: widget.buttontitlecolor,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
                     ),
                   ),

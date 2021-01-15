@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -13,6 +14,10 @@ class partnerclass {
 }
 
 class Ourpatnerdetail extends StatefulWidget {
+  final String baseUrl;
+
+  const Ourpatnerdetail({Key key, this.baseUrl}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return OurpatnerdetailState();
@@ -64,56 +69,73 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                     List.generate(GlobalLists.ourPartnerList.length, (index) {
                   return Padding(
                     padding: const EdgeInsets.only(right: 2.0),
-                    child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(5),
+                    child: GestureDetector(
+                      onTap: (){
+                         Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              VideoPlayer(
+                                                videoUrl: GlobalLists
+                                                    .ourPartnerList[index]
+                                                    .webUrl,
+                                              )));
+                      },
+                                          child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(5),
+                            ),
                           ),
-                        ),
-                        child: Container(
-                          width: SizeConfig.blockSizeHorizontal * 50,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                width: SizeConfig.blockSizeHorizontal * 90,
-                                height: 130,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  // image: DecorationImage(
-                                  //     image: AssetImage(
-                                  //         _productsAvailable[index].image),
-                                  //     fit: BoxFit.cover),
-                                ),
-                                child: FadeInImage.assetNetwork(
-                                  placeholder:
-                                      'assets/newImages/placeholder_3.jpg',
-                                  image:
-                                      GlobalLists.ourPartnerList[index].image,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                              Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Text(
-                                    GlobalLists.ourPartnerList[index].title,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Customcolor.text_darkblue,
-                                      fontSize: ResponsiveFlutter.of(context)
-                                          .fontSize(1.6),
-                                      fontWeight: FontWeight.w500,
+                          child: Container(
+                            width: SizeConfig.blockSizeHorizontal * 50,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  width: SizeConfig.blockSizeHorizontal * 90,
+                                  height: 130,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    // image: DecorationImage(
+                                    //     image: AssetImage(
+                                    //         _productsAvailable[index].image),
+                                    //     fit: BoxFit.cover),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(18.0),
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder:
+                                          'assets/newImages/placeholder_3.jpg',
+                                      image:
+                                         widget.baseUrl + GlobalLists.ourPartnerList[index].image,
+                                      fit: BoxFit.cover,
                                     ),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 3,
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        )),
+                                Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Text(
+                                      GlobalLists.ourPartnerList[index].title,
+                                      textAlign: TextAlign.center,
+                                      
+                                      style: TextStyle(
+                                        color: Customcolor.text_darkblue,
+                                        fontSize: ResponsiveFlutter.of(context)
+                                            .fontSize(1.6),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 3,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )),
+                    ),
                   );
                 }),
               ),

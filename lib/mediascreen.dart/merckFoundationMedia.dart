@@ -11,6 +11,7 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MerckFoundationMedia extends StatefulWidget {
   @override
@@ -28,6 +29,15 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
     getmerckfoundationmediaData();
     super.initState();
   }
+
+  _launchURL(String urlIs) async {
+  var url = urlIs;
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -85,10 +95,11 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                                           child: FadeInImage.assetNetwork(
                                             placeholder:
                                                 'assets/newImages/placeholder_3.jpg',
-                                            image: GlobalLists
+                                            image:  Constantstring.baseUrl + GlobalLists
                                                 .merckinMediaList[index].image,
-                                            fit: BoxFit.fill,
+                                            fit: BoxFit.cover,
                                             height: 80,
+                                            width: 80,
                                           ),
                                         ),
                                         SizedBox(
@@ -151,6 +162,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
           if (resp.success == "True") {
             setState(() {
               GlobalLists.merckinMediaList = resp.data.list;
+              Constantstring.baseUrl = resp.baseUrl;
             });
           } else {
             ShowDialogs.showToast(resp.msg);
