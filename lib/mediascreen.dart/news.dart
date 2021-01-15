@@ -8,6 +8,7 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 
 class NewsPage extends StatefulWidget {
   @override
@@ -75,7 +76,19 @@ class NewsState extends State<NewsPage> {
                       return Padding(
                         padding:
                             const EdgeInsets.only(left: 8, right: 8, bottom: 6),
-                        child: Card(
+                        child:
+                         GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              Detailpage(index:index
+                                                ));
+                                },
+                        
+                        
+                         Card(
                           elevation: 2,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
@@ -122,13 +135,16 @@ class NewsState extends State<NewsPage> {
                                           ),
                                         ],
                                       ),
-                                    ),
+                                  
+                                ),
                                   ],
                                 ),
                               ],
                             ),
                           ),
+                         
                         ),
+                                  ),
                       );
                     },
                   ),
