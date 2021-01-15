@@ -83,12 +83,12 @@ class NewsState extends State<NewsPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              Detailpage(index:index
-                                                ));
+                                              Detailpage(indexIs:index
+                                   ) ));
                                 },
                         
                         
-                         Card(
+                     child:    Card(
                           elevation: 2,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(

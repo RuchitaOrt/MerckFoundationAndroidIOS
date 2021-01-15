@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
-import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class Detailpage extends StatefulWidget {
-  final int index;
-   const Detailpage({Key key, this.index}) : super(key: key);
+  final int indexIs;
+   const Detailpage({Key key, this.indexIs}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return DetailpageState();
@@ -48,7 +44,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                         )));
           },
           index: 2,
-          title: "${GlobalLists.newsLettersList[index].details}",
+          title: "News Article",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -72,7 +68,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                             children: [
                              
                               Html(
-                                data: """${GlobalLists.newsLettersList[widget.index].details} """,
+                                data: """${GlobalLists.newsLettersList[widget.indexIs].details} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
                                 },
@@ -83,7 +79,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                               ),
                               Html(
                                 data:
-                                    """${GlobalLists.vision[widget.index].pageContent} """,
+                                    """${GlobalLists.newsLettersList[widget.indexIs].detailPageUrl} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
                                 },
