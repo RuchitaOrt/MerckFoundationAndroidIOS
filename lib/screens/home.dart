@@ -5,12 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:marquee/marquee.dart';
-import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
-import 'package:merckfoundation22dec/utility/APIManager.dart';
-import 'package:merckfoundation22dec/utility/GlobalLists.dart';
-import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/widget/customcard.dart';
@@ -22,7 +18,6 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 import 'package:responsive_flutter/responsive_flutter.dart';
 
-import 'dart:math' as math;
 
 class Home extends StatefulWidget {
   @override
@@ -116,7 +111,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
+      onWillPop: (){
         ShowDialogs.showConfirmDialog(
             context, "Exit", "Are you sure, want to exit?");
       },
