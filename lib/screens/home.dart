@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:marquee/marquee.dart';
-import 'package:merckfoundation22dec/model/visionResponse.dart';
+import 'package:merckfoundation22dec/ouraward.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
-import 'package:merckfoundation22dec/utility/APIManager.dart';
-import 'package:merckfoundation22dec/utility/GlobalLists.dart';
-import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
+import 'package:merckfoundation22dec/whatwedo/ourpolicy.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/widget/customcard.dart';
@@ -21,8 +20,6 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 import 'package:responsive_flutter/responsive_flutter.dart';
-
-import 'dart:math' as math;
 
 class Home extends StatefulWidget {
   @override
@@ -104,7 +101,6 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       vsync: this,
       duration: const Duration(milliseconds: 250),
     );
-   
   }
 
   @override
@@ -125,6 +121,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         key: _scaffoldKey,
         appBar: CustomAppBar(
           () {
+            print("kk");
             _scaffoldKey.currentState.openDrawer();
           },
           1,
@@ -184,8 +181,13 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 titleImg: "assets/newImages/flowers-2.png",
                 subTitle: "Message Form Dr.Rasha Kelej, on the inauguration...",
                 buttontitle: "Watch More ",
-                onBtnTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 2,)));
+                onBtnTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Dashboard(
+                                index: 2,
+                              )));
                 },
                 buttontitlecolor: Customcolor.text_darkblue,
               ),
@@ -1015,6 +1017,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                 builder: (BuildContext context) =>
                                     OurVision()));
                       } else if (index == 1) {
+                        //our program
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -1022,30 +1025,44 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                       index: 1,
                                     )));
                       } else if (index == 2) {
+                        //news article
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) => Dashboard(
                                       index: 3,
                                     )));
+                      } else if (index == 3) {
+                        //our award
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Ouraward()));
                       } else if (index == 4) {
-                        // Navigator.pushReplacement(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => Dashboard(index: 3)));
+                        //our mission
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    OurMission()));
                       } else if (index == 5) {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (BuildContext context) => Media()));
-                      } else if (index == 7) {
+                        //media & events
                         // Navigator.push(
                         //     context,
                         //     MaterialPageRoute(
                         //         builder: (BuildContext context) => Dashboard(
                         //               index: 4,
                         //             )));
-                      } else if (index == 8) {}
+                      } else if (index == 6) {
+                        //covid response
+                      } else if (index == 7) {
+                        //our polcies
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    OurPolicy()));
+                      }
                     },
                     child: Container(
                       width: 100,
@@ -1065,6 +1082,4 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       )),
                     )))));
   }
-
- 
 }
