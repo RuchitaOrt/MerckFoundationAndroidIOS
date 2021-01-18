@@ -3,13 +3,24 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:merckfoundation22dec/model/MMTMSlider.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/model/mmtmContentResponse.dart';
+import 'package:merckfoundation22dec/model/merckothervideo.dart';
+import 'package:merckfoundation22dec/model/MMTMlatestupdateResponse.dart';
+import 'package:merckfoundation22dec/model/mmtminmediaResponse.dart';
+
+import 'package:flutter_html/flutter_html.dart';
 
 class OurProgramDetails extends StatefulWidget {
   @override
@@ -20,24 +31,23 @@ class OurProgramDetails extends StatefulWidget {
 
 class OurProgramsDetailsState extends State<OurProgramDetails>
     with TickerProviderStateMixin {
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   int _current = 0;
   List _productsAvailable = [
     "assets/images/slider1.jpg",
     "assets/images/slider2.jpg",
     "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg"  
+    "assets/images/slider2.jpg"
   ];
 
   List _imgarray = [
     "assets/newImages/img3.jpg",
     "assets/newImages/img4.jpg",
-     "assets/newImages/leader1.png",
-
+    "assets/newImages/leader1.png",
     "assets/newImages/leader2.png",
     "assets/newImages/img3.jpg",
-     "assets/newImages/leader1.png",
-      "assets/newImages/leader2.png",
-
+    "assets/newImages/leader1.png",
+    "assets/newImages/leader2.png",
   ];
   CarouselSlider carouselSlider;
 
@@ -57,6 +67,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
 
   @override
   void initState() {
+    getmmtmslider();
     super.initState();
     _tabController = new TabController(vsync: this, length: tabs.length);
   }
@@ -100,7 +111,11 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                 left: 15,
                 right: 15,
               ),
-              child: slider(context),
+              child: GlobalLists.mmtmsliderlist.length <= 0
+                  ? Container(
+                      child: Center(child: Text(Constantstring.emptyData)),
+                    )
+                  : slider(context),
             ),
             SizedBox(
               height: 9,
@@ -109,181 +124,17 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
               child: ListView(
                 shrinkWrap: true,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: FormLabel(
-                      text: "Merck More Than a Mother",
-                      labelColor: Customcolor.colorPink,
-                      fontweight: FontWeight.w700,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.0),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: FormLabel(
-                      text: "No to Infertility Stigma",
-                      labelColor: Customcolor.text_blue,
-                      fontweight: FontWeight.w700,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.0),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 9,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: RichText(
-                      text: TextSpan(
-                          text: "Merck More Than a Mother",
-                          style: TextStyle(
-                            color: Customcolor.colorPink,
-                            fontWeight: FontWeight.w700,
-                            fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.0),
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text:
-                                    " is a strong movement that aims to empower infertile women through access to information, education and change of mind-sets. This powerful campaign supports governments in defining policies to enhance access to regulated, safe and effective fertility care. It defines interventions to break the stigma around infertile women and raises awareness about infertility prevention, management and male infertility. In partnership with African First Ladies, Ministries of Health, Information, Education & Gender, academia, policymakers, International fertility societies, media and art, the initiative also provides training for fertility specialists and embryologists to build and advance fertility care capacity in Africa and developing countries.",
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(1.9),
-                                  fontWeight: FontWeight.w400,
-                                )),
-                          ]),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: RichText(
-                      text: TextSpan(
-                          text: "Merck More Than a Mother",
-                          style: TextStyle(
-                            color: Customcolor.colorPink,
-                            fontWeight: FontWeight.w700,
-                            fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.2),
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text:
-                                    " we have initiated a cultural shift to de-stigmatize infertility on all levels: By improving awareness, training local experts in the fields of fertility care and media, building advocacy in cooperation with African First Ladies and women leaders and by supporting childless women in starting their own small businesses. It’s all about giving every woman the respect and the help she deserves to live a fulfilling life, with or without a child.",
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(2.0),
-                                  fontWeight: FontWeight.w400,
-                                )),
-                          ]),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: FormLabel(
-                      text: "The Ambassadors of" +
-                          "${"Merck More Than a Mother"}" +
-                          " are :",
-                      labelColor: Customcolor.colorPink,
-                      fontweight: FontWeight.w700,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.0),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: Image.asset(
-                      "assets/newImages/rtaImage1.png",
-                      height: 300,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: RichText(
-                      text: TextSpan(
-                          text: "Merck More Than a Mother",
-                          style: TextStyle(
-                            color: Customcolor.colorPink,
-                            fontWeight: FontWeight.w700,
-                            fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.0),
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text:
-                                    " we have initiated a cultural shift to de-stigmatize infertility on all levels: By improving awareness, training local experts in the fields of fertility care and media, building advocacy in cooperation with African First Ladies and women leaders and by supporting childless women in starting their own small businesses. ",
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(1.9),
-                                  fontWeight: FontWeight.w400,
-                                )),
-                          ]),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: FormLabel(
-                      text: "Our Impact",
-                      labelColor: Customcolor.colorPink,
-                      fontweight: FontWeight.w700,
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
-                    ),
-                  ),   
-                  SizedBox(
-                    height: 7,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: Image.asset(
-                      "assets/newImages/rtaImage.png",
-                      height: 300,
-                    ),
-                  ),
+                  GlobalLists.mmtmcontentlist.length <= 0
+                      ? Container(
+                          child: Center(child: Text(Constantstring.emptyData)),
+                        )
+                      : Html(
+                          data:
+                              """${GlobalLists.mmtmcontentlist[0].pageContent} """,
+                          onLinkTap: (url) {
+                            print("Opening $url...");
+                          },
+                        ),
                   SizedBox(
                     height: 20,
                   ),
@@ -299,7 +150,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                           indicator: new BubbleTabIndicator(
                             indicatorHeight: 35.0,
                             indicatorRadius: 5,
-                           indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
+                            indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
                             tabBarIndicatorSize: TabBarIndicatorSize.tab,
                           ),
                           tabs: tabs,
@@ -321,45 +172,262 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                   SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: CustomHorizontalCard(
-                        index: 1,
-                        cardImage: "assets/newImages/gallery.png",
-                        cardTitle: "Our Videos  ",
-                        titleColor: Customcolor.pink_col,
-                        titleImg: "assets/newImages/flowers-3.png",
-                        subTitle:
-                            "Message Form Dr.Rasha Kelej, on the inauguration..."),
-                  ),
+                  GlobalLists.mmtmvideoseclist.length <= 0
+                      ? Container(
+                          child: Center(child: Text(Constantstring.emptyData)),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: CustomHorizontalCard(
+                            index: 1,
+                            cardImage: "assets/newImages/gallery.png",
+                            cardTitle: "Our Videos  ",
+                            titleColor: Customcolor.pink_col,
+                            titleImg: "assets/newImages/flowers-3.png",
+                            list: ListView.builder(
+                              itemCount: GlobalLists.mmtmvideoseclist.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.only(right: 8, left: 10),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 86,
+                                        child: FadeInImage.assetNetwork(
+                                          placeholder:
+                                              'assets/newImages/placeholder_3.jpg',
+                                          image:
+                                              "https://img.youtube.com/vi/${GlobalLists.mmtmvideoseclist[index].videoLink.substring(GlobalLists.mmtmvideoseclist[index].videoLink.length - 11)}/mqdefault.jpg",
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 10, bottom: 10),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    width: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        80,
+                                                    child: Text(
+                                                      GlobalLists
+                                                          .mmtmvideoseclist[
+                                                              index]
+                                                          .videoDesc,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                      maxLines: 3,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 8,
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
                   SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: CustomHorizontalCard(
-                        index: 1,
-                        cardImage: "assets/newImages/ourvison.png",
-                        cardTitle: "Latest Updates  ",
-                          titleColor: Customcolor.pink_col,
-                        titleImg: "assets/newImages/flowers-3.png",
-                        subTitle:
-                            "Message Form Dr.Rasha Kelej, on the inauguration..."),
-                  ),
+                  GlobalLists.mmtmlatestupdatelist.length <= 0
+                      ? Container(
+                          child: Center(child: Text(Constantstring.emptyData)),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: CustomHorizontalCard(
+                            index: 1,
+                            cardImage: "assets/newImages/ourvison.png",
+                            cardTitle: "Latest Updates  ",
+                            titleColor: Customcolor.pink_col,
+                            titleImg: "assets/newImages/flowers-3.png",
+                            list: ListView.builder(
+                              itemCount:
+                                  GlobalLists.mmtmlatestupdatelist.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.only(right: 8, left: 10),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 86,
+                                        child: FadeInImage.assetNetwork(
+                                          placeholder:
+                                              'assets/newImages/placeholder_3.jpg',
+                                          image:
+                                              "${Constantstring.baseUrl + GlobalLists.mmtmlatestupdatelist[index].image}",
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 10, bottom: 10),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    width: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        80,
+                                                    child: Text(
+                                                      GlobalLists
+                                                          .mmtmlatestupdatelist[
+                                                              index]
+                                                          .title,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                      maxLines: 3,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 8,
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
                   SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: CustomHorizontalCard(
-                        index: 1,
-                        cardImage: "assets/newImages/mqdefault.png",
-                        cardTitle: "Merck Foundation In Media  ",
-                           titleColor: Customcolor.pink_col,
-                        titleImg: "assets/newImages/flowers-3.png",
-                        subTitle:
-                            "Message Form Dr.Rasha Kelej, on the inauguration..."),
-                  ),
+                  GlobalLists.mmtminmediaresp.length <= 0
+                      ? Container(
+                          child: Center(child: Text(Constantstring.emptyData)),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: CustomHorizontalCard(
+                            index: 1,
+                            cardImage: "assets/newImages/mqdefault.png",
+                            cardTitle: "Merck Foundation In Media  ",
+                            titleColor: Customcolor.pink_col,
+                            titleImg: "assets/newImages/flowers-3.png",
+                            list: ListView.builder(
+                              itemCount: GlobalLists.mmtminmediaresp.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.only(right: 8, left: 10),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 86,
+                                        child: FadeInImage.assetNetwork(
+                                          placeholder:
+                                              'assets/newImages/placeholder_3.jpg',
+                                          image:
+                                              "${Constantstring.baseUrl + GlobalLists.mmtminmediaresp[index].image}",
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 10, bottom: 10),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    width: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        80,
+                                                    child: Text(
+                                                      GlobalLists
+                                                          .mmtminmediaresp[
+                                                              index]
+                                                          .title,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                      maxLines: 3,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 8,
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
                   SizedBox(
                     height: 20,
                   ),
@@ -426,7 +494,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
                                                 image: AssetImage(
-                                                 _imgarray[index],
+                                                  _imgarray[index],
                                                 )),
                                           ),
                                         ),
@@ -587,7 +655,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                         control: SwiperControl(
                             iconNext: Icons.arrow_forward_ios,
                             iconPrevious: Icons.arrow_back_ios,
-                            size: 20, color: Customcolor.darkblue_col),
+                            size: 20,
+                            color: Customcolor.darkblue_col),
                         children: <Widget>[
                           Column(
                             children: [
@@ -810,7 +879,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             control: SwiperControl(
                 iconNext: Icons.arrow_forward_ios,
                 iconPrevious: Icons.arrow_back_ios,
-                size: 20,color: Customcolor.darkblue_col),
+                size: 20,
+                color: Customcolor.darkblue_col),
             children: <Widget>[
               Column(
                 children: [
@@ -884,7 +954,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             control: SwiperControl(
                 iconNext: Icons.arrow_forward_ios,
                 iconPrevious: Icons.arrow_back_ios,
-                size: 20,color: Customcolor.darkblue_col),
+                size: 20,
+                color: Customcolor.darkblue_col),
             children: <Widget>[
               Column(
                 children: [
@@ -979,15 +1050,19 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                     });
                   },
                 ),
-                items: _productsAvailable.map((product) {
+                items: GlobalLists.mmtmsliderlist.map((product) {
                   return new Builder(
                     builder: (BuildContext context) {
                       return new Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                                image: AssetImage(product), fit: BoxFit.cover)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         width: SizeConfig.blockSizeHorizontal * 100,
+                        child: FadeInImage.assetNetwork(
+                          placeholder: 'assets/newImages/placeholder_3.jpg',
+                          image: Constantstring.baseUrl + product.image,
+                          fit: BoxFit.cover,
+                        ),
                       );
                     },
                   );
@@ -995,7 +1070,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
               ),
             ),
             new DotsIndicator(
-              dotsCount: _productsAvailable.length,
+              dotsCount: GlobalLists.mmtmsliderlist.length,
               position: double.parse("$_current"),
               decorator: DotsDecorator(
                 size: const Size.square(9.0),
@@ -1009,5 +1084,179 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
         ),
       ],
     );
+  }
+
+  getmmtmslider() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.merckmotherSlider,
+        (response) async {
+          MmtmSliderResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          // Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.mmtmsliderlist = resp.data.list;
+              Constantstring.baseUrl = resp.baseUrl;
+              getmmtmcontent();
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+            Navigator.of(_keyLoader.currentContext).pop();
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  getmmtmcontent() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      APIManager().apiRequest(
+        context,
+        API.merckmotherContent,
+        (response) async {
+          MmtmContentResponce resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.mmtmcontentlist = resp.data.list;
+              getVideosection();
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+            Navigator.of(_keyLoader.currentContext).pop();
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  getVideosection() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.merckmotherVideos,
+        (response) async {
+          MerckMotherVideosResponce resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.mmtmvideoseclist = resp.data.list;
+              getlatestupdate();
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+
+            Navigator.of(_keyLoader.currentContext).pop();
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  getlatestupdate() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.merckmotherLatestUpdates,
+        (response) async {
+          MmtMlatestupdateResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.mmtmlatestupdatelist = resp.data.list;
+              Constantstring.baseUrl = resp.baseUrl;
+              getmmtminmedia();
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+            Navigator.of(_keyLoader.currentContext).pop();
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  getmmtminmedia() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.merckmotherMedia,
+        (response) async {
+          MmtMinmediaResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.mmtminmediaresp = resp.data.list;
+              Constantstring.baseUrl = resp.baseUrl;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 }

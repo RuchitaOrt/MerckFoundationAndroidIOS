@@ -1,36 +1,38 @@
 // To parse this JSON data, do
 //
-//     final empoweingbernacontentResponse = empoweingbernacontentResponseFromJson(jsonString);
+//     final mmtMlatestupdateResponse = mmtMlatestupdateResponseFromJson(jsonString);
 
 import 'dart:convert';
 
-EmpoweingbernacontentResponse empoweingbernacontentResponseFromJson(
-        String str) =>
-    EmpoweingbernacontentResponse.fromJson(json.decode(str));
+MmtMlatestupdateResponse mmtMlatestupdateResponseFromJson(String str) =>
+    MmtMlatestupdateResponse.fromJson(json.decode(str));
 
-String empoweingbernacontentResponseToJson(
-        EmpoweingbernacontentResponse data) =>
+String mmtMlatestupdateResponseToJson(MmtMlatestupdateResponse data) =>
     json.encode(data.toJson());
 
-class EmpoweingbernacontentResponse {
-  EmpoweingbernacontentResponse({
+class MmtMlatestupdateResponse {
+  MmtMlatestupdateResponse({
+    this.baseUrl,
     this.success,
     this.msg,
     this.data,
   });
 
+  String baseUrl;
   String success;
   String msg;
   Data data;
 
-  factory EmpoweingbernacontentResponse.fromJson(Map<String, dynamic> json) =>
-      EmpoweingbernacontentResponse(
+  factory MmtMlatestupdateResponse.fromJson(Map<String, dynamic> json) =>
+      MmtMlatestupdateResponse(
+        baseUrl: json["base_url"],
         success: json["success"],
         msg: json["msg"],
         data: Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
+        "base_url": baseUrl,
         "success": success,
         "msg": msg,
         "data": data.toJson(),
@@ -57,14 +59,12 @@ class Data {
 class ListElement {
   ListElement({
     this.id,
-    this.contentType,
-    this.pageContent,
     this.title,
     this.shortDescription,
+    this.details,
+    this.detailPageUrl,
     this.image,
-    this.altText,
-    this.url,
-    this.utubeUrl,
+    this.altTag,
     this.metaKeyword,
     this.metaDescription,
     this.status,
@@ -73,14 +73,12 @@ class ListElement {
   });
 
   String id;
-  String contentType;
-  String pageContent;
   String title;
   String shortDescription;
+  String details;
+  String detailPageUrl;
   String image;
-  String altText;
-  String url;
-  String utubeUrl;
+  String altTag;
   String metaKeyword;
   String metaDescription;
   String status;
@@ -89,14 +87,12 @@ class ListElement {
 
   factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
-        contentType: json["content_type"],
-        pageContent: json["page_content"] == null ? "" : json["page_content"],
         title: json["title"],
         shortDescription: json["short_description"],
+        details: json["details"],
+        detailPageUrl: json["detail_page_url"],
         image: json["image"],
-        altText: json["alt_text"],
-        url: json["url"],
-        utubeUrl: json["utube_url"],
+        altTag: json["alt_tag"],
         metaKeyword: json["meta_keyword"],
         metaDescription: json["meta_description"],
         status: json["status"],
@@ -106,14 +102,12 @@ class ListElement {
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "content_type": contentType,
-        "page_content": pageContent,
         "title": title,
         "short_description": shortDescription,
+        "details": details,
+        "detail_page_url": detailPageUrl,
         "image": image,
-        "alt_text": altText,
-        "url": url,
-        "utube_url": utubeUrl,
+        "alt_tag": altTag,
         "meta_keyword": metaKeyword,
         "meta_description": metaDescription,
         "status": status,

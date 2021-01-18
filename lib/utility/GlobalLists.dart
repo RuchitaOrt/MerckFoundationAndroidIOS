@@ -38,6 +38,14 @@ import 'package:merckfoundation22dec/model/empoweringbernacontentResponse.dart'
     as empowerbernacontent;
 import 'package:merckfoundation22dec/model/empoweingbernavideo.dart'
     as empowerbernavideo;
+import 'package:merckfoundation22dec/model/MMTMSlider.dart' as mmtmslider;
+import 'package:merckfoundation22dec/model/mmtmContentResponse.dart'
+    as mmtmcontent;
+import 'package:merckfoundation22dec/model/merckothervideo.dart' as merckvideo;
+import 'package:merckfoundation22dec/model/MMTMlatestupdateResponse.dart'
+    as mmtmlatestupdate;
+import 'package:merckfoundation22dec/model/mmtminmediaResponse.dart'
+    as mmtminmedia;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -72,4 +80,11 @@ class GlobalLists {
 
   static List<empowerbernacontent.ListElement> empowercontentlist = [];
   static List<empowerbernavideo.ListElement> empowervideotlist = [];
+//MMTM
+  static List<mmtmslider.ListElement> mmtmsliderlist = [];
+  static List<mmtmcontent.ListElement> mmtmcontentlist = [];
+
+  static List<merckvideo.ListElement> mmtmvideoseclist = [];
+  static List<mmtmlatestupdate.ListElement> mmtmlatestupdatelist = [];
+  static List<mmtminmedia.ListElement> mmtminmediaresp = [];
 }

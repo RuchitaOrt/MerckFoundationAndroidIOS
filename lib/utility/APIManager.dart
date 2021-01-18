@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:merckfoundation22dec/model/GetFirstLadiesInitaiveResponse.dart';
+import 'package:merckfoundation22dec/model/MMTMSlider.dart';
 import 'package:merckfoundation22dec/model/StrategyResponse.dart';
 import 'package:merckfoundation22dec/model/dataprivacy.dart';
 import 'package:merckfoundation22dec/model/empoweingbernavideo.dart';
@@ -27,6 +28,10 @@ import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/utility/AppEror.dart';
 import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 import 'package:merckfoundation22dec/model/callforapplicationResponse.dart';
+import 'package:merckfoundation22dec/model/mmtmContentResponse.dart';
+import 'package:merckfoundation22dec/model/merckothervideo.dart';
+import 'package:merckfoundation22dec/model/MMTMlatestupdateResponse.dart';
+import 'package:merckfoundation22dec/model/mmtminmediaResponse.dart';
 
 enum API {
   vision,
@@ -57,7 +62,18 @@ enum API {
   firstladiesinitiative,
   mmtmprogram,
   empoweringbernacontent,
-  empoweringbernavideo
+  empoweringbernavideo,
+
+  //ourprogram - merck more than mother
+  merckmotherSlider,
+  merckmotherContent,
+  merckmotherVideos,
+  merckmotherLatestUpdates,
+
+  merckmotherCallApplication,
+  merckmotherDigitalLib,
+  merckmotherMedia,
+  merckmotherTestimonial,
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -187,6 +203,38 @@ class APIManager {
           apiPathString = "show/empowering-berna/14/Android/1";
           break;
 
+        case API.merckmotherSlider:
+          apiPathString = "show/merck-more-than-a-mother/5/Android/1";
+          break;
+
+        case API.merckmotherContent:
+          apiPathString = "show/merck-more-than-a-mother/13/Android/1";
+          break;
+
+        case API.merckmotherVideos:
+          apiPathString = "show/merck-more-than-a-mother/14/Android/1";
+          break;
+
+        case API.merckmotherLatestUpdates:
+          apiPathString = "show/merck-more-than-a-mother/23/Android/1";
+          break;
+
+        case API.merckmotherCallApplication:
+          apiPathString = "show/merck-more-than-a-mother/9/Android/1";
+          break;
+
+        case API.merckmotherDigitalLib:
+          apiPathString = "show/merck-more-than-a-mother/22/Android/1";
+          break;
+
+        case API.merckmotherMedia:
+          apiPathString = "show/merck-more-than-a-mother/20/Android/1";
+          break;
+
+        case API.merckmotherTestimonial:
+          apiPathString = "show/merck-more-than-a-mother/18/Android/1";
+          break;
+
         default:
           apiPathString = "";
       }
@@ -279,6 +327,38 @@ class APIManager {
           break;
         case API.empoweringbernavideo:
           apiPathString = "show/empowering-berna/14/IOS/1";
+          break;
+
+        case API.merckmotherSlider:
+          apiPathString = "show/merck-more-than-a-mother/5/IOS/1";
+          break;
+
+        case API.merckmotherContent:
+          apiPathString = "show/merck-more-than-a-mother/13/IOS/1";
+          break;
+
+        case API.merckmotherVideos:
+          apiPathString = "show/merck-more-than-a-mother/14/IOS/1";
+          break;
+
+        case API.merckmotherLatestUpdates:
+          apiPathString = "show/merck-more-than-a-mother/23/IOS/1";
+          break;
+
+        case API.merckmotherCallApplication:
+          apiPathString = "show/merck-more-than-a-mother/9/IOS/1";
+          break;
+
+        case API.merckmotherDigitalLib:
+          apiPathString = "show/merck-more-than-a-mother/22/IOS/1";
+          break;
+
+        case API.merckmotherMedia:
+          apiPathString = "show/merck-more-than-a-mother/20/IOS/1";
+          break;
+
+        case API.merckmotherTestimonial:
+          apiPathString = "show/merck-more-than-a-mother/18/IOS/1";
           break;
 
         default:
@@ -390,6 +470,39 @@ class APIManager {
       case API.empoweringbernavideo:
         className = "empoweringbernavideoResponse";
         break;
+
+      case API.merckmotherSlider:
+        className = "getMerckmotherSliderResp";
+
+        break;
+
+      case API.merckmotherContent:
+        className = "getMerckmotherContentResp";
+        break;
+
+      case API.merckmotherVideos:
+        className = "getMerckmotherVideosResp";
+        break;
+      case API.merckmotherLatestUpdates:
+        className = "getMerckmotherLatestUpdatesResp";
+        break;
+
+      case API.merckmotherCallApplication:
+        className = "getMerckmotherCallAppliResp";
+        break;
+
+      case API.merckmotherDigitalLib:
+        className = "getMerckmotherDigitalLibResp";
+        break;
+
+      case API.merckmotherMedia:
+        className = "getMerckmotherMediaResp";
+        break;
+
+      case API.merckmotherTestimonial:
+        className = "getMerckmotherTestimonialResp";
+        break;
+
       case API.leadership:
         className = "";
         break;
@@ -475,6 +588,38 @@ class APIManager {
     if (className == "empoweringbernacontentResponse") {
       responseObj = EmpoweingbernacontentResponse.fromJson(json);
     }
+
+    if (className == "getMerckmotherSliderResp") {
+      responseObj = MmtmSliderResponse.fromJson(json);
+    }
+
+    if (className == "getMerckmotherContentResp") {
+      responseObj = MmtmContentResponce.fromJson(json);
+    }
+
+    if (className == "getMerckmotherVideosResp") {
+      responseObj = MerckMotherVideosResponce.fromJson(json);
+    }
+
+    if (className == "getMerckmotherLatestUpdatesResp") {
+      responseObj = MmtMlatestupdateResponse.fromJson(json);
+    }
+
+    if (className == "getMerckmotherCallAppliResp") {
+      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+    }
+
+    if (className == "getMerckmotherDigitalLibResp") {
+      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+    }
+
+    if (className == "getMerckmotherMediaResp") {
+      responseObj = MmtMinmediaResponse.fromJson(json);
+    }
+    if (className == "getMerckmotherTestimonialResp") {
+      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+    }
+
     return responseObj;
   }
 
