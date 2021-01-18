@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
+import 'package:merckfoundation22dec/model/getStoriesResponse.dart';
+import 'package:merckfoundation22dec/model/mmtmResponse.dart';
+import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -10,17 +14,15 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
-import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 
-class Videolibrary extends StatefulWidget {
+class MMTMProgram extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return VideolibraryState();
+    return MMTMProgramState();
   }
 }
 
-class VideolibraryState extends State<Videolibrary> {
+class MMTMProgramState extends State<MMTMProgram> {
   List _productsAvailable = [
     "assets/images/slider1.jpg",
     "assets/images/slider1.jpg",
@@ -30,34 +32,19 @@ class VideolibraryState extends State<Videolibrary> {
     "assets/images/slider1.jpg",
     "assets/images/slider1.jpg",
   ];
-
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
-  final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
     // TODO: implement initState
-
-    getvideolibray();
-
+    getmmtm();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: _scaffoldKey1,
-        endDrawer: Theme(
-          data: Theme.of(context)
-              .copyWith(canvasColor: Colors.white, primaryColor: Colors.white),
-          child: AppDrawerfilter(),
-        ),
         appBar: InnerCustomAppBar(
-          onTapvalfilter: () {
-            print("videokk");
-            // _scaffoldKey1.currentState.openDrawer();
-            _scaffoldKey1.currentState.openEndDrawer();
-          },
           onTapval: () {
             Navigator.push(
                 context,
@@ -66,10 +53,10 @@ class VideolibraryState extends State<Videolibrary> {
                           index: 0,
                         )));
           },
-          index: 2,
-          title: "Video Library",
+          index: 1,
+          title: "Our Program",
           titleImg: "assets/newImages/ourstoriesLogo.png",
-          trallingImg1: "assets/newImages/filter.png",
+          trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
           height: 85,
         ),
@@ -81,17 +68,7 @@ class VideolibraryState extends State<Videolibrary> {
             shrinkWrap: true,
             //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
-                child: FormLabel(
-                  text: "Video Library",
-                  labelColor: Customcolor.colorblack,
-                  fontSize: ResponsiveFlutter.of(context).fontSize(2),
-                  maxLines: 2,
-                  fontweight: FontWeight.w800,
-                ),
-              ),
-              GlobalLists.videolibrary.length <= 0
+              GlobalLists.mmtmlist.length <= 0
                   ? Container(
                       child: Center(child: Text(Constantstring.emptyData)),
                     )
@@ -99,9 +76,9 @@ class VideolibraryState extends State<Videolibrary> {
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
                       crossAxisCount: 2,
-                      childAspectRatio: 0.8,
-                      children: List.generate(GlobalLists.videolibrary.length,
-                          (index) {
+                      childAspectRatio: 0.9,
+                      children:
+                          List.generate(GlobalLists.mmtmlist.length, (index) {
                         return Padding(
                           padding: const EdgeInsets.only(right: 2.0),
                           child: Card(
@@ -119,17 +96,18 @@ class VideolibraryState extends State<Videolibrary> {
                                           builder: (BuildContext context) =>
                                               VideoPlayer(
                                                 videoUrl: GlobalLists
-                                                    .videolibrary[index]
-                                                    .videoLink,
+                                                    .mmtmlist[index].videoLink,
                                               )));
                                 },
                                 child: Container(
                                   color: Colors.transparent,
                                   width: SizeConfig.blockSizeHorizontal * 50,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  child: ListView(
+                                    shrinkWrap: true,
+                                    physics: ScrollPhysics(),
+                                    // mainAxisAlignment: MainAxisAlignment.start,
+                                    // crossAxisAlignment:
+                                    //     CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
@@ -146,7 +124,7 @@ class VideolibraryState extends State<Videolibrary> {
                                             // ),
                                             image: new DecorationImage(
                                               image: new NetworkImage(
-                                                  'https://img.youtube.com/vi/${GlobalLists.videolibrary[index].videoLink.substring(GlobalLists.videolibrary[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                  'https://img.youtube.com/vi/${GlobalLists.mmtmlist[index].videoLink.substring(GlobalLists.mmtmlist[index].videoLink.length - 11)}/mqdefault.jpg'),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -155,8 +133,7 @@ class VideolibraryState extends State<Videolibrary> {
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Text(
-                                          GlobalLists
-                                              .videolibrary[index].videoDesc,
+                                          GlobalLists.mmtmlist[index].videoDesc,
                                           textAlign: TextAlign.center,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
@@ -191,7 +168,7 @@ class VideolibraryState extends State<Videolibrary> {
         ));
   }
 
-  getvideolibray() async {
+  getmmtm() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -199,9 +176,9 @@ class VideolibraryState extends State<Videolibrary> {
 
       APIManager().apiRequest(
         context,
-        API.videoLibrary,
+        API.mmtmprogram,
         (response) async {
-          GetVideoLibraryResponse resp = response;
+          GetMmtmResponse resp = response;
           print(response);
           print('Resp : $resp');
 
@@ -209,7 +186,7 @@ class VideolibraryState extends State<Videolibrary> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.videolibrary = resp.data.list;
+              GlobalLists.mmtmlist = resp.data;
             });
           } else {
             ShowDialogs.showToast(resp.msg);

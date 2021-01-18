@@ -56,7 +56,9 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
         ),
         body: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: Column(
+          child: ListView(
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
             children: [
               SizedBox(
                 height: 15,
@@ -64,24 +66,23 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
               GridView.count(
                 crossAxisCount: 2,
                 childAspectRatio: 0.9,
+                physics: ScrollPhysics(),
                 shrinkWrap: true,
                 children:
                     List.generate(GlobalLists.ourPartnerList.length, (index) {
                   return Padding(
                     padding: const EdgeInsets.only(right: 2.0),
                     child: GestureDetector(
-                      onTap: (){
-                         Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              VideoPlayer(
-                                                videoUrl: GlobalLists
-                                                    .ourPartnerList[index]
-                                                    .webUrl,
-                                              )));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => VideoPlayer(
+                                      videoUrl: GlobalLists
+                                          .ourPartnerList[index].webUrl,
+                                    )));
                       },
-                                          child: Card(
+                      child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(5),
@@ -108,8 +109,9 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                                     child: FadeInImage.assetNetwork(
                                       placeholder:
                                           'assets/newImages/placeholder_3.jpg',
-                                      image:
-                                         widget.baseUrl + GlobalLists.ourPartnerList[index].image,
+                                      image: widget.baseUrl +
+                                          GlobalLists
+                                              .ourPartnerList[index].image,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -120,7 +122,6 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                                     child: Text(
                                       GlobalLists.ourPartnerList[index].title,
                                       textAlign: TextAlign.center,
-                                      
                                       style: TextStyle(
                                         color: Customcolor.text_darkblue,
                                         fontSize: ResponsiveFlutter.of(context)

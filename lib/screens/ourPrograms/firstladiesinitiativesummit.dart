@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:merckfoundation22dec/model/GetFirstLadiesInitaiveResponse.dart';
 import 'package:merckfoundation22dec/model/StrategyResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -13,18 +14,20 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 import 'package:responsive_flutter/responsive_flutter.dart';
 
-class StrategyDetails extends StatefulWidget {
+class FirstLadiesInitiativeDetails extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return OurProgramstrategyState();
+    return FirstLadiesInitiativeDetailsState();
   }
 }
 
-class OurProgramstrategyState extends State<StrategyDetails> {
+class FirstLadiesInitiativeDetailsState
+    extends State<FirstLadiesInitiativeDetails> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   @override
   void initState() {
-    getStrategy();
+    // TODO: implement initState
+    getfirstinitiative();
     super.initState();
   }
 
@@ -50,7 +53,7 @@ class OurProgramstrategyState extends State<StrategyDetails> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-        child: GlobalLists.strategylist.length <= 0
+        child: GlobalLists.firstladieslist.length <= 0
             ? Container(
                 child: Center(child: Text(Constantstring.emptyData)),
               )
@@ -58,26 +61,8 @@ class OurProgramstrategyState extends State<StrategyDetails> {
                 shrinkWrap: true,
                 //  crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  FormLabel(
-                    text: "Merck More Than a Mother",
-                    labelColor: Customcolor.colorPink,
-                    fontweight: FontWeight.w700,
-                    fontSize: ResponsiveFlutter.of(context).fontSize(2.4),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  FormLabel(
-                    text: "Strategy",
-                    labelColor: Customcolor.text_blue,
-                    fontweight: FontWeight.w800,
-                    fontSize: ResponsiveFlutter.of(context).fontSize(2),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
                   Html(
-                    data: """${GlobalLists.strategylist[0].pageContent} """,
+                    data: """${GlobalLists.firstladieslist[0].pageContent} """,
                     onLinkTap: (url) {
                       print("Opening $url...");
                     },
@@ -97,7 +82,7 @@ class OurProgramstrategyState extends State<StrategyDetails> {
     );
   }
 
-  getStrategy() async {
+  getfirstinitiative() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -105,15 +90,15 @@ class OurProgramstrategyState extends State<StrategyDetails> {
 
       APIManager().apiRequest(
         context,
-        API.strategy,
+        API.firstladiesinitiative,
         (response) async {
-          GetStrategeryResponse resp = response;
+          GetFirstLadiesInitaiveResp resp = response;
           print(response);
           print('Resp : $resp');
           Navigator.of(_keyLoader.currentContext).pop();
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.strategylist = resp.data.list;
+              GlobalLists.firstladieslist = resp.data.list;
             });
           } else {
             ShowDialogs.showToast(resp.msg);

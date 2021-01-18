@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckmorethanamother.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckstemprogram.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/fertilityPrograms.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/firstladiesinitiativesummit.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/mmtmprogram.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/motherambassadar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/strategy.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -69,7 +71,11 @@ class _MyHomePageState extends State<OurProgram> {
                             ? MotherAmbassadarDetails()
                             : indexpass == 11
                                 ? MerckFertility()
-                                : Container()
+                                : indexpass == 12
+                                    ? FirstLadiesInitiativeDetails()
+                                    : indexpass == 7
+                                        ? MMTMProgram()
+                                        : Container()
           ],
           controller: mabialaFABController,
         ),
@@ -196,6 +202,7 @@ class _MyHomePageState extends State<OurProgram> {
                               child: GestureDetector(
                                 onTap: () {
                                   if (index == 0) {
+                                    //merckmorethanmother
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -213,6 +220,7 @@ class _MyHomePageState extends State<OurProgram> {
                                                   indexpass: 9,
                                                 )));
                                   } else if (index == 2) {
+                                    //MotherAmbassadarDetails
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -221,12 +229,22 @@ class _MyHomePageState extends State<OurProgram> {
                                                   indexpass: 10,
                                                 )));
                                   } else if (index == 3) {
+                                    //fertility
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
                                                 OurProgram(
                                                   indexpass: 11,
+                                                )));
+                                  } else if (index == 7) {
+                                    //video
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                OurProgram(
+                                                  indexpass: 7,
                                                 )));
                                   }
                                 },

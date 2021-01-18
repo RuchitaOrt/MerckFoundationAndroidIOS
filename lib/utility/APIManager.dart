@@ -4,13 +4,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:merckfoundation22dec/model/GetFirstLadiesInitaiveResponse.dart';
+import 'package:merckfoundation22dec/model/StrategyResponse.dart';
 import 'package:merckfoundation22dec/model/dataprivacy.dart';
+import 'package:merckfoundation22dec/model/empoweingbernavideo.dart';
+import 'package:merckfoundation22dec/model/empoweringbernacontentResponse.dart';
 import 'package:merckfoundation22dec/model/getMerckTestimonialResp.dart';
 import 'package:merckfoundation22dec/model/getNewsRelease.dart';
 import 'package:merckfoundation22dec/model/getStoriesResponse.dart';
 import 'package:merckfoundation22dec/model/leadershipTeamResponse.dart';
 import 'package:merckfoundation22dec/model/legaldisclaimerResponse.dart';
 import 'package:merckfoundation22dec/model/merckFoundationMediaResp.dart';
+import 'package:merckfoundation22dec/model/mmtmResponse.dart';
 import 'package:merckfoundation22dec/model/newsLettersArticlesResp.dart';
 import 'package:merckfoundation22dec/model/ourActivitiesObjectiveResp.dart';
 import 'package:merckfoundation22dec/model/ourActivitiesResponse.dart';
@@ -46,6 +51,13 @@ enum API {
 
   ourPartner,
   ourPartnerObjectives,
+
+  //ourprogram
+  strategy,
+  firstladiesinitiative,
+  mmtmprogram,
+  empoweringbernacontent,
+  empoweringbernavideo
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -158,6 +170,22 @@ class APIManager {
           apiPathString =
               "show/merck-foundation-alumnis-testimonies/14/Android/1";
           break;
+        case API.strategy:
+          apiPathString = "show/strategy/13/Android/1";
+          break;
+        case API.firstladiesinitiative:
+          apiPathString =
+              "show/merck-foundation-first-ladies-initiative-summit/13/Android/1";
+          break;
+        case API.mmtmprogram:
+          apiPathString = "MMTM_Videos_list/merck-more-than-a-mother/Android/1";
+          break;
+        case API.empoweringbernacontent:
+          apiPathString = "show/empowering-berna/13/Android/1";
+          break;
+        case API.empoweringbernavideo:
+          apiPathString = "show/empowering-berna/14/Android/1";
+          break;
 
         default:
           apiPathString = "";
@@ -233,6 +261,24 @@ class APIManager {
 
         case API.merckTestimonial:
           apiPathString = "show/merck-foundation-alumnis-testimonies/14/IOS/1";
+          break;
+
+        case API.strategy:
+          apiPathString = "show/strategy/13/IOS/1";
+          break;
+        case API.firstladiesinitiative:
+          apiPathString =
+              "show/merck-foundation-first-ladies-initiative-summit/13/IOS/1";
+          break;
+        case API.mmtmprogram:
+          apiPathString = "MMTM_Videos_list/merck-more-than-a-mother/IOS/1";
+          break;
+
+        case API.empoweringbernacontent:
+          apiPathString = "show/empowering-berna/13/IOS/1";
+          break;
+        case API.empoweringbernavideo:
+          apiPathString = "show/empowering-berna/14/IOS/1";
           break;
 
         default:
@@ -328,8 +374,22 @@ class APIManager {
       case API.merckTestimonial:
         className = "MerckTestimonialResp";
         break;
-        
+      case API.strategy:
+        className = "StrategyResponse";
+        break;
+      case API.firstladiesinitiative:
+        className = "FirstLadiesInitiativeResponse";
+        break;
+      case API.mmtmprogram:
+        className = "MMTMResponse";
+        break;
 
+      case API.empoweringbernacontent:
+        className = "empoweringbernacontentResponse";
+        break;
+      case API.empoweringbernavideo:
+        className = "empoweringbernavideoResponse";
+        break;
       case API.leadership:
         className = "";
         break;
@@ -399,6 +459,21 @@ class APIManager {
     }
     if (className == 'callforapplicationResponse') {
       responseObj = CallforApplicationResponse.fromJson(json);
+    }
+    if (className == "StrategyResponse") {
+      responseObj = GetStrategeryResponse.fromJson(json);
+    }
+    if (className == "FirstLadiesInitiativeResponse") {
+      responseObj = GetFirstLadiesInitaiveResp.fromJson(json);
+    }
+    if (className == "MMTMResponse") {
+      responseObj = GetMmtmResponse.fromJson(json);
+    }
+    if (className == "empoweringbernavideoResponse") {
+      responseObj = GetEmpowringbernaVideosResp.fromJson(json);
+    }
+    if (className == "empoweringbernacontentResponse") {
+      responseObj = EmpoweingbernacontentResponse.fromJson(json);
     }
     return responseObj;
   }
