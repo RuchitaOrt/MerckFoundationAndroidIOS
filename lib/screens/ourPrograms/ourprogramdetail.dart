@@ -2,6 +2,7 @@ import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckmorethanamother.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckstemprogram.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/empoweringberna.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/fertilityPrograms.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/firstladiesinitiativesummit.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/mmtmprogram.dart';
@@ -65,17 +66,19 @@ class _MyHomePageState extends State<OurProgram> {
                 ? OurProgramDetails()
                 : indexpass == 4
                     ? Merckstemprogram()
-                    : indexpass == 9
-                        ? StrategyDetails()
-                        : indexpass == 10
-                            ? MotherAmbassadarDetails()
-                            : indexpass == 11
-                                ? MerckFertility()
-                                : indexpass == 12
-                                    ? FirstLadiesInitiativeDetails()
-                                    : indexpass == 7
-                                        ? MMTMProgram()
-                                        : Container()
+                    : indexpass == 5
+                        ? EmpoweringBerna()
+                        : indexpass == 9
+                            ? StrategyDetails()
+                            : indexpass == 10
+                                ? MotherAmbassadarDetails()
+                                : indexpass == 11
+                                    ? MerckFertility()
+                                    : indexpass == 12
+                                        ? FirstLadiesInitiativeDetails()
+                                        : indexpass == 7
+                                            ? MMTMProgram()
+                                            : Container()
           ],
           controller: mabialaFABController,
         ),
@@ -96,7 +99,7 @@ class _MyHomePageState extends State<OurProgram> {
 
                   ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                   ///in the next line we use 20%
-                  height: 360,
+                  height: 330,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -114,7 +117,7 @@ class _MyHomePageState extends State<OurProgram> {
 
                                   ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                                   ///in the next line we use 20%
-                                  height: 360,
+                                  height: 330,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -236,6 +239,15 @@ class _MyHomePageState extends State<OurProgram> {
                                             builder: (BuildContext context) =>
                                                 OurProgram(
                                                   indexpass: 11,
+                                                )));
+                                  } else if (index == 5) {
+                                    //fertility
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                OurProgram(
+                                                  indexpass: 5,
                                                 )));
                                   } else if (index == 7) {
                                     //video

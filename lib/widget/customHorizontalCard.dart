@@ -11,7 +11,7 @@ class CustomHorizontalCard extends StatelessWidget {
   final Color titleColor;
   final String titleImg;
   final int index;
-  final List list;
+  final Widget list;
 
   const CustomHorizontalCard(
       {Key key,
@@ -21,9 +21,8 @@ class CustomHorizontalCard extends StatelessWidget {
       this.btnTitle,
       this.titleColor,
       this.titleImg,
-      this.index,
       this.list,
-      })
+      this.index})
       : super(key: key);
 
   @override
@@ -34,13 +33,11 @@ class CustomHorizontalCard extends StatelessWidget {
       children: [
         Row(
           children: [
-
             SizedBox(
               width: 15,
-
             ),
             Expanded(
-                          child: RichText(
+              child: RichText(
                 text: TextSpan(
                   children: [
                     TextSpan(
@@ -91,40 +88,7 @@ class CustomHorizontalCard extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Container(
-          height: SizeConfig.blockSizeVertical * 25,
-          child: ListView.builder(
-            itemCount: list.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 8,left: 10),
-                child: Container(
-                  height: SizeConfig.blockSizeVertical * 25,
-                  width: SizeConfig.blockSizeHorizontal * 80,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                          image: AssetImage(cardImage), fit: BoxFit.cover)),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 10, bottom: 8),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: FormLabel(
-                        textAlignment: TextAlign.start,
-                        text: list[index].title,
-                        fontSize: 17,
-                        labelColor: Colors.white,
-                        fontweight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
+        Container(height: SizeConfig.blockSizeVertical * 25, child: list),
         SizedBox(
           height: 9,
         ),

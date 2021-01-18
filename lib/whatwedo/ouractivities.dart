@@ -280,6 +280,7 @@ class OurActivityState extends State<OurActivity> {
             });
           } else {
             ShowDialogs.showToast(resp.msg);
+            Navigator.of(_keyLoader.currentContext).pop();
           }
         },
         (error) {

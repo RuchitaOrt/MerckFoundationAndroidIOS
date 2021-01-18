@@ -4,7 +4,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:merckfoundation22dec/model/GetFertilityContentResp.dart';
+import 'package:merckfoundation22dec/model/GetFertilityTestimonialResp.dart';
+import 'package:merckfoundation22dec/model/GetFertilityVideosResp.dart';
 import 'package:merckfoundation22dec/model/GetFirstLadiesInitaiveResponse.dart';
+import 'package:merckfoundation22dec/model/GetLocalSongsContentResp.dart';
+import 'package:merckfoundation22dec/model/GetLocalSongsDigitalResp.dart';
+import 'package:merckfoundation22dec/model/GetLocalSongsVideosResp.dart';
+import 'package:merckfoundation22dec/model/MMTMSlider.dart';
 import 'package:merckfoundation22dec/model/StrategyResponse.dart';
 import 'package:merckfoundation22dec/model/dataprivacy.dart';
 import 'package:merckfoundation22dec/model/empoweingbernavideo.dart';
@@ -27,6 +34,10 @@ import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/utility/AppEror.dart';
 import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 import 'package:merckfoundation22dec/model/callforapplicationResponse.dart';
+import 'package:merckfoundation22dec/model/mmtmContentResponse.dart';
+import 'package:merckfoundation22dec/model/merckothervideo.dart';
+import 'package:merckfoundation22dec/model/MMTMlatestupdateResponse.dart';
+import 'package:merckfoundation22dec/model/mmtminmediaResponse.dart';
 
 enum API {
   vision,
@@ -75,12 +86,17 @@ enum API {
   merckFertilityVideos,
   merckFertilityTestimonials,
 
+  //ourProgram - local-songs-and-children-stories
+
+  merckLocalSongsContent,
+  merckLocalSongsVideos,
+  merckLocalDigital,
 
 
+  //about-merck-more-than-a-mother
 
-
- 
-
+  merckAboutContent,
+  merckAboutVideos,
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -228,38 +244,54 @@ class APIManager {
 
         case API.merckmotherCallApplication:
           apiPathString = "show/merck-more-than-a-mother/9/Android/1";
+          break;
+
+        case API.merckmotherDigitalLib:
+          apiPathString = "show/merck-more-than-a-mother/22/Android/1";
+          break;
+
+        case API.merckmotherMedia:
+          apiPathString = "show/merck-more-than-a-mother/20/Android/1";
+          break;
+
+        case API.merckmotherTestimonial:
+          apiPathString = "show/merck-more-than-a-mother/18/Android/1";
+          break;
+
+        case API.merckFertilityContent:
+          apiPathString =
+              "show/merck-fertility-and-embryology-training-program/13/Android/1";
+          break;
+
+        case API.merckFertilityVideos:
+          apiPathString =
+              "show/merck-fertility-and-embryology-training-program/14/Android/1";
+          break;
+
+        case API.merckFertilityTestimonials:
+          apiPathString =
+              "show/merck-fertility-and-embryology-training-program/18/Android/1";
+          break;
+
+        case API.merckLocalSongsContent:
+          apiPathString = "show/local-songs-and-children-stories/13/Android/1";
+          break;
+
+        case API.merckLocalSongsVideos:
+          apiPathString = "show/local-songs-and-children-stories/14/Android/1";
+          break;
+
+        case API.merckLocalDigital:
+          apiPathString = "show/local-songs-and-children-stories/22/Android/1";
+          break;
+
+            case API.merckAboutContent:
+          apiPathString = "show/about-merck-more-than-a-mother/13/Android/1";
           break;  
 
-                case API.merckmotherDigitalLib:
-          apiPathString = "show/merck-more-than-a-mother/22/Android/1";
-          break; 
-
-           case API.merckmotherMedia:
-          apiPathString = "show/merck-more-than-a-mother/20/Android/1";
-          break; 
-
-           case API.merckmotherTestimonial:
-          apiPathString = "show/merck-more-than-a-mother/18/Android/1";
-          break; 
-
-           case API.merckFertilityContent:
-          apiPathString = "show/merck-fertility-and-embryology-training-program/13/Android/1";
+           case API.merckAboutVideos:
+          apiPathString = "show/about-merck-more-than-a-mother/14/Android/1";
           break;
-
-            case API.merckFertilityVideos:
-          apiPathString = "show/merck-fertility-and-embryology-training-program/14/Android/1";
-          break;   
-
-            case API.merckFertilityTestimonials:
-          apiPathString = "show/merck-fertility-and-embryology-training-program/18/Android/1";
-          break;
-
-
-
-
-          
-
-
 
         default:
           apiPathString = "";
@@ -371,37 +403,56 @@ class APIManager {
           apiPathString = "show/merck-more-than-a-mother/23/IOS/1";
           break;
 
-
-           case API.merckmotherCallApplication:
+        case API.merckmotherCallApplication:
           apiPathString = "show/merck-more-than-a-mother/9/IOS/1";
-          break;  
+          break;
 
-                case API.merckmotherDigitalLib:
+        case API.merckmotherDigitalLib:
           apiPathString = "show/merck-more-than-a-mother/22/IOS/1";
-          break; 
+          break;
 
-           case API.merckmotherMedia:
+        case API.merckmotherMedia:
           apiPathString = "show/merck-more-than-a-mother/20/IOS/1";
-          break; 
+          break;
 
-           case API.merckmotherTestimonial:
+        case API.merckmotherTestimonial:
           apiPathString = "show/merck-more-than-a-mother/18/IOS/1";
+          break;
+
+        case API.merckFertilityContent:
+          apiPathString =
+              "show/merck-fertility-and-embryology-training-program/13/IOS/1";
+          break;
+
+        case API.merckFertilityVideos:
+          apiPathString =
+              "show/merck-fertility-and-embryology-training-program/14/IOS/1";
+          break;
+
+        case API.merckFertilityTestimonials:
+          apiPathString =
+              "show/merck-fertility-and-embryology-training-program/18/IOS/1";
+          break;
+
+        case API.merckLocalSongsContent:
+          apiPathString = "show/local-songs-and-children-stories/13/IOS/1";
+          break;
+
+        case API.merckLocalSongsVideos:
+          apiPathString = "show/local-songs-and-children-stories/14/IOS/1";
+          break;
+
+        case API.merckLocalDigital:
+          apiPathString = "show/local-songs-and-children-stories/22/IOS/1";
+          break;
+
+         case API.merckAboutContent:
+          apiPathString = "show/about-merck-more-than-a-mother/13/IOS/1";
           break;  
 
-            case API.merckFertilityContent:
-          apiPathString = "show/merck-fertility-and-embryology-training-program/13/IOS/1";
+           case API.merckAboutVideos:
+          apiPathString = "show/about-merck-more-than-a-mother/14/IOS/1";
           break;
-
-            case API.merckFertilityVideos:
-          apiPathString = "show/merck-fertility-and-embryology-training-program/14/IOS/1";
-          break;   
-
-            case API.merckFertilityTestimonials:
-          apiPathString = "show/merck-fertility-and-embryology-training-program/18/IOS/1";
-          break;
-
-
-
 
         default:
           apiPathString = "";
@@ -529,36 +580,50 @@ class APIManager {
         className = "getMerckmotherLatestUpdatesResp";
         break;
 
-
-       case API.merckmotherCallApplication:
+      case API.merckmotherCallApplication:
         className = "getMerckmotherCallAppliResp";
-        break;  
+        break;
 
-         case API.merckmotherDigitalLib:
+      case API.merckmotherDigitalLib:
         className = "getMerckmotherDigitalLibResp";
         break;
 
- case API.merckmotherMedia:
+      case API.merckmotherMedia:
         className = "getMerckmotherMediaResp";
         break;
 
-
-         case API.merckmotherTestimonial:
+      case API.merckmotherTestimonial:
         className = "getMerckmotherTestimonialResp";
         break;
 
-         case API.merckFertilityContent:
+      case API.merckFertilityContent:
         className = "getMerckFertilityContentResp";
         break;
-          case API.merckFertilityVideos:
+      case API.merckFertilityVideos:
         className = "getMerckFertilityVideosResp";
         break;
-          case API.merckFertilityTestimonials:
+      case API.merckFertilityTestimonials:
         className = "getMerckFertilityTestimonialResp";
         break;
 
+      case API.merckLocalSongsContent:
+        className = "getLocalSongsContentResp";
+        break;
 
+      case API.merckLocalSongsVideos:
+        className = "getLocalSongsVidoesResp";
+        break;
 
+      case API.merckLocalDigital:
+        className = "getLocalSongsDigitalResp";
+        break;
+
+        case API.merckAboutContent:
+        className = "getMerckAboutContentResp";
+        break;  
+          case API.merckAboutVideos:
+        className = "getMerckAboutVideosResp";
+        break;  
 
       case API.leadership:
         className = "";
@@ -647,34 +712,64 @@ class APIManager {
     }
 
     if (className == "getMerckmotherSliderResp") {
-      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+      responseObj = MmtmSliderResponse.fromJson(json);
     }
 
     if (className == "getMerckmotherContentResp") {
-      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+      responseObj = MmtmContentResponce.fromJson(json);
     }
 
     if (className == "getMerckmotherVideosResp") {
-      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+      responseObj = MerckMotherVideosResponce.fromJson(json);
     }
 
     if (className == "getMerckmotherLatestUpdatesResp") {
+      responseObj = MmtMlatestupdateResponse.fromJson(json);
+    }
+
+    if (className == "getMerckmotherCallAppliResp") {
       // responseObj = EmpoweingbernacontentResponse.fromJson(json);
     }
 
-      if (className == "getMerckmotherCallAppliResp") {
+    if (className == "getMerckmotherDigitalLibResp") {
       // responseObj = EmpoweingbernacontentResponse.fromJson(json);
     }
 
-      if (className == "getMerckmotherDigitalLibResp") {
+    if (className == "getMerckmotherMediaResp") {
+      responseObj = MmtMinmediaResponse.fromJson(json);
+    }
+    if (className == "getMerckmotherTestimonialResp") {
       // responseObj = EmpoweingbernacontentResponse.fromJson(json);
     }
 
-      if (className == "getMerckmotherMediaResp") {
-      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+    if (className == "getMerckFertilityContentResp") {
+      responseObj = GetFertilityContentResp.fromJson(json);
     }
-      if (className == "getMerckmotherTestimonialResp") {
-      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+    if (className == "getMerckFertilityVideosResp") {
+      responseObj = GetFertilityVideosResp.fromJson(json);
+    }
+    if (className == "getMerckFertilityTestimonialResp") {
+      responseObj = GetFertilityTestimonialResp.fromJson(json);
+    }
+
+    if (className == "getLocalSongsContentResp") {
+      responseObj = GetLocalSongsContentResp.fromJson(json);
+    }
+
+    if (className == "getLocalSongsVidoesResp") {
+      responseObj = GetLocalSongsVidoesResp.fromJson(json);
+    }
+
+    if (className == "getLocalSongsDigitalResp") {
+      responseObj = GetLocalSongsDigitalLibResp.fromJson(json);
+    }
+
+      if (className == "getMerckAboutContentResp") {
+     // responseObj = GetLocalSongsDigitalLibResp.fromJson(json);
+    }
+
+      if (className == "getMerckAboutVideosResp") {
+     // responseObj = GetLocalSongsDigitalLibResp.fromJson(json);
     }
 
     return responseObj;

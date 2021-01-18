@@ -1,19 +1,17 @@
 // To parse this JSON data, do
 //
-//     final empoweingbernacontentResponse = empoweingbernacontentResponseFromJson(jsonString);
+//     final mmtmContentResponce = mmtmContentResponceFromJson(jsonString);
 
 import 'dart:convert';
 
-EmpoweingbernacontentResponse empoweingbernacontentResponseFromJson(
-        String str) =>
-    EmpoweingbernacontentResponse.fromJson(json.decode(str));
+MmtmContentResponce mmtmContentResponceFromJson(String str) =>
+    MmtmContentResponce.fromJson(json.decode(str));
 
-String empoweingbernacontentResponseToJson(
-        EmpoweingbernacontentResponse data) =>
+String mmtmContentResponceToJson(MmtmContentResponce data) =>
     json.encode(data.toJson());
 
-class EmpoweingbernacontentResponse {
-  EmpoweingbernacontentResponse({
+class MmtmContentResponce {
+  MmtmContentResponce({
     this.success,
     this.msg,
     this.data,
@@ -23,8 +21,8 @@ class EmpoweingbernacontentResponse {
   String msg;
   Data data;
 
-  factory EmpoweingbernacontentResponse.fromJson(Map<String, dynamic> json) =>
-      EmpoweingbernacontentResponse(
+  factory MmtmContentResponce.fromJson(Map<String, dynamic> json) =>
+      MmtmContentResponce(
         success: json["success"],
         msg: json["msg"],
         data: Data.fromJson(json["data"]),
@@ -77,12 +75,12 @@ class ListElement {
   String pageContent;
   String title;
   String shortDescription;
-  String image;
+  dynamic image;
   String altText;
   String url;
   String utubeUrl;
   String metaKeyword;
-  String metaDescription;
+  dynamic metaDescription;
   String status;
   DateTime createdAt;
   DateTime updatedAt;
@@ -90,7 +88,7 @@ class ListElement {
   factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
         contentType: json["content_type"],
-        pageContent: json["page_content"] == null ? "" : json["page_content"],
+        pageContent: json["page_content"],
         title: json["title"],
         shortDescription: json["short_description"],
         image: json["image"],

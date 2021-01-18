@@ -22,15 +22,6 @@ class Stories extends StatefulWidget {
 }
 
 class StoriesState extends State<Stories> {
-  List _productsAvailable = [
-    "assets/images/slider1.jpg",
-    "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg",
-    "assets/images/slider1.jpg",
-    "assets/images/slider1.jpg",
-    "assets/images/slider1.jpg",
-    "assets/images/slider1.jpg",
-  ];
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override

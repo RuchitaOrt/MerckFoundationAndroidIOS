@@ -1,17 +1,17 @@
 // To parse this JSON data, do
 //
-//     final getEmpowringbernaVideosResp = getEmpowringbernaVideosRespFromJson(jsonString);
+//     final merckMotherVideosResponce = merckMotherVideosResponceFromJson(jsonString);
 
 import 'dart:convert';
 
-GetEmpowringbernaVideosResp getEmpowringbernaVideosRespFromJson(String str) =>
-    GetEmpowringbernaVideosResp.fromJson(json.decode(str));
+MerckMotherVideosResponce merckMotherVideosResponceFromJson(String str) =>
+    MerckMotherVideosResponce.fromJson(json.decode(str));
 
-String getEmpowringbernaVideosRespToJson(GetEmpowringbernaVideosResp data) =>
+String merckMotherVideosResponceToJson(MerckMotherVideosResponce data) =>
     json.encode(data.toJson());
 
-class GetEmpowringbernaVideosResp {
-  GetEmpowringbernaVideosResp({
+class MerckMotherVideosResponce {
+  MerckMotherVideosResponce({
     this.success,
     this.msg,
     this.data,
@@ -21,8 +21,8 @@ class GetEmpowringbernaVideosResp {
   String msg;
   Data data;
 
-  factory GetEmpowringbernaVideosResp.fromJson(Map<String, dynamic> json) =>
-      GetEmpowringbernaVideosResp(
+  factory MerckMotherVideosResponce.fromJson(Map<String, dynamic> json) =>
+      MerckMotherVideosResponce(
         success: json["success"],
         msg: json["msg"],
         data: Data.fromJson(json["data"]),
@@ -77,8 +77,8 @@ class ListElement {
 
   factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
-        videoLink: json["video_link"] == null ? "" : json["video_link"],
-        videoDesc: json["video_desc"] == null ? "" : json["video_desc"],
+        videoLink: json["video_link"],
+        videoDesc: json["video_desc"],
         countryId: json["country_id"],
         categoryId: json["category_id"],
         year: json["year"],
