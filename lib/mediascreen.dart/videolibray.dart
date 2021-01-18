@@ -11,6 +11,7 @@ import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
+import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 
 class Videolibrary extends StatefulWidget {
   @override
@@ -32,6 +33,7 @@ class VideolibraryState extends State<Videolibrary> {
 
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
     // TODO: implement initState
@@ -44,6 +46,12 @@ class VideolibraryState extends State<Videolibrary> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
+        endDrawer: Theme(
+          data: Theme.of(context)
+              .copyWith(canvasColor: Colors.white, primaryColor: Colors.white),
+          child: AppDrawerfilter(),
+        ),
         appBar: InnerCustomAppBar(
           onTapval: () {
             Navigator.push(
@@ -144,7 +152,6 @@ class VideolibraryState extends State<Videolibrary> {
                                         child: Text(
                                           GlobalLists
                                               .videolibrary[index].videoDesc,
-
                                           textAlign: TextAlign.center,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(

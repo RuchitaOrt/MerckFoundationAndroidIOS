@@ -55,13 +55,11 @@ class InnerCustomAppBar extends PreferredSize {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Expanded(
-                                          child: FormLabel(
-                        text: title,
-                        fontSize: 18,
-                        fontweight: FontWeight.w700,
-                        labelColor: Customcolor.text_blue,
-                      ),
+                    FormLabel(
+                      text: title,
+                      fontSize: 18,
+                      fontweight: FontWeight.w700,
+                      labelColor: Customcolor.text_blue,
                     ),
                     SizedBox(
                       width: 10,

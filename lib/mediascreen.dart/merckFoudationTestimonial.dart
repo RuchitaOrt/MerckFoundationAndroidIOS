@@ -20,7 +20,8 @@ class MerckFoundationTestimonial extends StatefulWidget {
   }
 }
 
-class MerckFoundationTestimonialState extends State<MerckFoundationTestimonial> {
+class MerckFoundationTestimonialState
+    extends State<MerckFoundationTestimonial> {
   List _productsAvailable = [
     "assets/images/slider1.jpg",
     "assets/images/slider1.jpg",
@@ -52,7 +53,7 @@ class MerckFoundationTestimonialState extends State<MerckFoundationTestimonial> 
                         )));
           },
           index: 1,
-          title: "Merck Foundation Alumini's Testimonial",
+          title: "Merck Foundation \nAlumini's Testimonial",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -85,8 +86,8 @@ class MerckFoundationTestimonialState extends State<MerckFoundationTestimonial> 
                       physics: ScrollPhysics(),
                       crossAxisCount: 2,
                       childAspectRatio: 0.8,
-                      children: List.generate(GlobalLists.merckTestimonialList.length,
-                          (index) {
+                      children: List.generate(
+                          GlobalLists.merckTestimonialList.length, (index) {
                         return Padding(
                           padding: const EdgeInsets.only(right: 2.0),
                           child: Card(
@@ -103,8 +104,9 @@ class MerckFoundationTestimonialState extends State<MerckFoundationTestimonial> 
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
                                               VideoPlayer(
-                                                videoUrl: GlobalLists.merckTestimonialList[index].videoLink,
-                                                    
+                                                videoUrl: GlobalLists
+                                                    .merckTestimonialList[index]
+                                                    .videoLink,
                                               )));
                                 },
                                 child: Container(
@@ -139,7 +141,9 @@ class MerckFoundationTestimonialState extends State<MerckFoundationTestimonial> 
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Text(
-                                         GlobalLists.merckTestimonialList[index].videoDesc,
+                                          GlobalLists
+                                              .merckTestimonialList[index]
+                                              .videoDesc,
                                           textAlign: TextAlign.center,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
