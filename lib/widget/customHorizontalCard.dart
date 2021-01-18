@@ -11,6 +11,7 @@ class CustomHorizontalCard extends StatelessWidget {
   final Color titleColor;
   final String titleImg;
   final int index;
+  final List list;
 
   const CustomHorizontalCard(
       {Key key,
@@ -20,7 +21,9 @@ class CustomHorizontalCard extends StatelessWidget {
       this.btnTitle,
       this.titleColor,
       this.titleImg,
-      this.index})
+      this.index,
+      this.list,
+      })
       : super(key: key);
 
   @override
@@ -91,7 +94,7 @@ class CustomHorizontalCard extends StatelessWidget {
         Container(
           height: SizeConfig.blockSizeVertical * 25,
           child: ListView.builder(
-            itemCount: 4,
+            itemCount: list.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
@@ -110,7 +113,7 @@ class CustomHorizontalCard extends StatelessWidget {
                       alignment: Alignment.bottomCenter,
                       child: FormLabel(
                         textAlignment: TextAlign.start,
-                        text: subTitle,
+                        text: list[index].title,
                         fontSize: 17,
                         labelColor: Colors.white,
                         fontweight: FontWeight.w500,

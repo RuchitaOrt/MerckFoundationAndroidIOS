@@ -30,6 +30,14 @@ import 'package:merckfoundation22dec/model/getMerckTestimonialResp.dart'
     as merckTestimonialResp;
 import 'package:merckfoundation22dec/model/callforapplicationResponse.dart'
     as callforapp;
+import 'package:merckfoundation22dec/model/StrategyResponse.dart' as strategy;
+import 'package:merckfoundation22dec/model/GetFirstLadiesInitaiveResponse.dart'
+    as firstladies;
+import 'package:merckfoundation22dec/model/mmtmResponse.dart' as mmtm;
+import 'package:merckfoundation22dec/model/empoweringbernacontentResponse.dart'
+    as empowerbernacontent;
+import 'package:merckfoundation22dec/model/empoweingbernavideo.dart'
+    as empowerbernavideo;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -56,4 +64,12 @@ class GlobalLists {
 
   static List<callforapp.Past> upcomingevent = [];
   static List<callforapp.Past> pastevent = [];
+
+  //ourprogram
+  static List<strategy.ListElement> strategylist = [];
+  static List<firstladies.ListElement> firstladieslist = [];
+  static List<mmtm.Datum> mmtmlist = [];
+
+  static List<empowerbernacontent.ListElement> empowercontentlist = [];
+  static List<empowerbernavideo.ListElement> empowervideotlist = [];
 }

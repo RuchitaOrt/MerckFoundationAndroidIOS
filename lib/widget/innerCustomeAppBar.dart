@@ -12,9 +12,11 @@ class InnerCustomAppBar extends PreferredSize {
   final String titleImg;
   final String trallingImg1;
   final String trallingImg2;
+  final Function onTapvalfilter;
 
   InnerCustomAppBar(
-      {this.onTapval,
+      {this.onTapvalfilter,
+      this.onTapval,
       this.index,
       this.title,
       this.titleImg,
@@ -76,11 +78,14 @@ class InnerCustomAppBar extends PreferredSize {
               width: 30,
             ),
             index != 1
-                ? Image.asset(
-                    trallingImg1,
-                    // "assets/images/search_icon@2x.png",
-                    width: 23,
-                    height: 23,
+                ? GestureDetector(
+                    onTap: onTapvalfilter,
+                    child: Image.asset(
+                      trallingImg1,
+                      // "assets/images/search_icon@2x.png",
+                      width: 23,
+                      height: 23,
+                    ),
                   )
                 : Container(),
             SizedBox(

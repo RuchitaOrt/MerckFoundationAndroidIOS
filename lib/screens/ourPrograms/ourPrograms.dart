@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/firstladiesinitiativesummit.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforStem.dart';
 
 import 'package:merckfoundation22dec/screens/ourPrograms/ourprogramdetail.dart';
@@ -82,31 +83,29 @@ class _OurProgramState extends State<Ourprogram> {
         height: 90,
       ),
       body: Column(
-      //  shrinkWrap: true,
+        //  shrinkWrap: true,
         children: [
           slider(context),
           Expanded(
-                      child: ListView(
+            child: ListView(
               shrinkWrap: true,
               children: [
                 oorprogram(),
-
-                  SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 60, left: 60),
-              child: Image.asset(
-                "assets/newImages/flowers_footer.png",
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            )
+                SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 60, left: 60),
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                )
               ],
             ),
           ),
-        
         ],
       ),
     );
@@ -139,11 +138,19 @@ class _OurProgramState extends State<Ourprogram> {
                                 builder: (BuildContext context) => OurProgram(
                                       indexpass: 0,
                                     )));
+                      } else if (index == 3) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => OurProgram(
+                                      indexpass: 12,
+                                    )));
                       } else if (index == 4) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => OurProgramStem()));
+                                builder: (BuildContext context) =>
+                                    OurProgramStem()));
                       }
                     },
                     child: Padding(

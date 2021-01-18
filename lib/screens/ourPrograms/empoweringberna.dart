@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:merckfoundation22dec/model/empoweringbernacontentResponse.dart';
 import 'package:merckfoundation22dec/model/ourActivitiesObjectiveResp.dart';
 import 'package:merckfoundation22dec/model/ourActivitiesResponse.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -14,20 +15,35 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 import 'package:responsive_flutter/responsive_flutter.dart';
 
-class OurActivity extends StatefulWidget {
+class EmpoweringBerna extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return OurActivityState();
+    return EmpoweringBernaState();
   }
 }
 
-class OurActivityState extends State<OurActivity> {
+class EmpoweringBernaState extends State<EmpoweringBerna> {
+  List listourObjective = [
+    "expand professional capabilities in healthcare research and media.",
+    "improve access to innovative and equitable healthcare solutions",
+    "empower women and youth in education with a special focus on STEM (Science, Technology, Engineering and Mathematics).",
+    "build advocacy to address health, social and economic challenges.",
+    "raise awareness of disease prevention and early detection through access to information, health and change of mind-set."
+  ];
+  List _productsAvailable = [
+    "assets/newImages/img3.jpg",
+    "assets/newImages/img4.jpg",
+    "assets/newImages/img3.jpg",
+    "assets/newImages/img4.jpg",
+    "assets/newImages/img3.jpg"
+  ];
+
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
   void initState() {
     // TODO: implement initState
-    getActivitiesObjectives();
+    getempoweringbernacontent();
     super.initState();
   }
 
@@ -40,7 +56,7 @@ class OurActivityState extends State<OurActivity> {
           Navigator.pop(context);
         },
         index: 2,
-        title: "Our Activities",
+        title: "Our Program",
         titleImg: "assets/newImages/vision_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -68,14 +84,6 @@ class OurActivityState extends State<OurActivity> {
                         onLinkTap: (url) {
                           print("Opening $url...");
                         },
-                        // style: {
-                        //   "body": Style(
-                        //     fontSize: FontSize(
-                        //         ResponsiveFlutter.of(context).fontSize(2.2)),
-                        //     fontWeight: FontWeight.w600,
-                        //     color: Customcolor.pink_col,
-                        //   ),
-                        // },
                       ),
                 SizedBox(
                   height: 15,
@@ -258,7 +266,7 @@ class OurActivityState extends State<OurActivity> {
                 )));
   }
 
-  getActivitiesObjectives() async {
+  getempoweringbernacontent() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -266,17 +274,17 @@ class OurActivityState extends State<OurActivity> {
 
       APIManager().apiRequest(
         context,
-        API.ourActivitiesObjectives,
+        API.empoweringbernacontent,
         (response) async {
-          OurActivityObjectiveResponse resp = response;
+          EmpoweingbernacontentResponse resp = response;
           print(response);
           print('Resp : $resp');
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.ourActivitiesObjectives = resp.data.list;
+              GlobalLists.empowercontentlist = resp.data.list;
 
-              getActivitiesData();
+              // getActivitiesData();
             });
           } else {
             ShowDialogs.showToast(resp.msg);
@@ -292,38 +300,38 @@ class OurActivityState extends State<OurActivity> {
     }
   }
 
-  getActivitiesData() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
+  // getActivitiesData() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
 
-    if (status1) {
-      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+  //   if (status1) {
+  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
 
-      APIManager().apiRequest(
-        context,
-        API.ourActivities,
-        (response) async {
-          OurActivityResponse resp = response;
-          print(response);
-          print('Resp : $resp');
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.ourActivities,
+  //       (response) async {
+  //         OurActivityResponse resp = response;
+  //         print(response);
+  //         print('Resp : $resp');
 
-          Navigator.of(_keyLoader.currentContext).pop();
+  //         Navigator.of(_keyLoader.currentContext).pop();
 
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.ourActivitiesData = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
+  //         if (resp.success == "True") {
+  //           setState(() {
+  //             GlobalLists.ourActivitiesData = resp.data.list;
+  //             Constantstring.baseUrl = resp.baseUrl;
+  //           });
+  //         } else {
+  //           ShowDialogs.showToast(resp.msg);
+  //         }
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
 }
