@@ -32,6 +32,10 @@ import 'package:merckfoundation22dec/model/mmtmContentResponse.dart';
 import 'package:merckfoundation22dec/model/merckothervideo.dart';
 import 'package:merckfoundation22dec/model/MMTMlatestupdateResponse.dart';
 import 'package:merckfoundation22dec/model/mmtminmediaResponse.dart';
+import 'package:merckfoundation22dec/model/mmtmTestimonialResponse.dart'
+    as testimonial;
+import 'package:merckfoundation22dec/model/mmtmcallforappResponse.dart';
+import 'package:merckfoundation22dec/model/mmtmdigitallibrary.dart';
 
 enum API {
   vision,
@@ -606,18 +610,18 @@ class APIManager {
     }
 
     if (className == "getMerckmotherCallAppliResp") {
-      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+      responseObj = MmtmcallforappResponse.fromJson(json);
     }
 
     if (className == "getMerckmotherDigitalLibResp") {
-      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+      responseObj = MmtmdigitallibraryResponse.fromJson(json);
     }
 
     if (className == "getMerckmotherMediaResp") {
       responseObj = MmtMinmediaResponse.fromJson(json);
     }
     if (className == "getMerckmotherTestimonialResp") {
-      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+      responseObj = testimonial.MmtmTestimonialResponse.fromJson(json);
     }
 
     return responseObj;

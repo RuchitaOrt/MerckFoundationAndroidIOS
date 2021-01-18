@@ -20,6 +20,7 @@ class ShowDialogs {
       GlobalKey key, String message, bool setForLightScreen) async {
     return showDialog<void>(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return Material(
             key: key,

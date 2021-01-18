@@ -46,6 +46,12 @@ import 'package:merckfoundation22dec/model/MMTMlatestupdateResponse.dart'
     as mmtmlatestupdate;
 import 'package:merckfoundation22dec/model/mmtminmediaResponse.dart'
     as mmtminmedia;
+import 'package:merckfoundation22dec/model/mmtmTestimonialResponse.dart'
+    as mmtmtestimonial;
+import 'package:merckfoundation22dec/model/mmtmcallforappResponse.dart'
+    as mmtmcallforapp;
+import 'package:merckfoundation22dec/model/mmtmdigitallibrary.dart'
+    as mmtmdigitallibrary;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -87,4 +93,8 @@ class GlobalLists {
   static List<merckvideo.ListElement> mmtmvideoseclist = [];
   static List<mmtmlatestupdate.ListElement> mmtmlatestupdatelist = [];
   static List<mmtminmedia.ListElement> mmtminmediaresp = [];
+  static List<mmtmtestimonial.ListElement> mmtmtestimonialresp = [];
+  static List<mmtmcallforapp.ListElement> mmtmcallforappresp = [];
+
+  static List<mmtmdigitallibrary.ListElement> mmtmdigitallibresp = [];
 }
