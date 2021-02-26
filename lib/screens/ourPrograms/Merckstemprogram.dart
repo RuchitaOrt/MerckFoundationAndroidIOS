@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -240,6 +241,14 @@ class MerckstemprogramState extends State<Merckstemprogram>
                         index: 1,
                         cardImage: "assets/newImages/gallery.png",
                         cardTitle: "Our Videos  ",
+                         btnTitle: "Watch More",
+                          onbtnTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Videolibrary()));
+                            },
                         titleColor: Customcolor.pink_col,
                         titleImg: "assets/newImages/flowers-1.png",
                         subTitle:
@@ -254,6 +263,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                         index: 1,
                         cardImage: "assets/newImages/ourvison.png",
                         cardTitle: "Photo Gallery  ",
+                         btnTitle: "View More",
                         titleColor: Customcolor.pink_col,
                         titleImg: "assets/newImages/flowers-3.png",
                         subTitle:
@@ -268,6 +278,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                         index: 1,
                         cardImage: "assets/newImages/mqdefault1.png",
                         cardTitle: "Our Newsletters  ",
+                         btnTitle: "View More",
                         titleColor: Customcolor.pink_col,
                         titleImg: "assets/newImages/flowers-2.png",
                         subTitle:

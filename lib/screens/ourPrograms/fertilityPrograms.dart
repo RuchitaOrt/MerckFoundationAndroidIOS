@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/model/GetFertilityContentResp.dart';
 import 'package:merckfoundation22dec/model/GetFertilityTestimonialResp.dart';
 import 'package:merckfoundation22dec/model/GetFertilityVideosResp.dart';
@@ -100,61 +101,84 @@ class MerckFertilityState extends State<MerckFertility> {
               cardTitle:
                   "Watch below some of the latest videos of Dr. Rasha kelej and first ladies of Africa. Ambassadars of Merck More than a Mother.",
               titleColor: Customcolor.colorPink,
+               btnTitle: "Watch More",
               titleImg: "",
               list: ListView.builder(
                 itemCount: GlobalLists.fertilityVideosList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8, left: 10),
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: SizeConfig.blockSizeHorizontal * 86,
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/newImages/placeholder_3.jpg',
-                            image:
-                                "https://img.youtube.com/vi/${GlobalLists.fertilityVideosList[index].videoLink.substring(GlobalLists.fertilityVideosList[index].videoLink.length - 11)}/mqdefault.jpg",
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, right: 10, bottom: 10),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width:
-                                          SizeConfig.blockSizeHorizontal * 80,
-                                      child: Text(
-                                        GlobalLists.fertilityVideosList[index]
-                                            .videoDesc,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w700),
-                                        maxLines: 3,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    )
-                                  ],
-                                ),
-                              ],
+                  return GestureDetector(
+                    onTap: (){
+                        Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                VideoPlayer(
+                                                  videoUrl: GlobalLists.fertilityVideosList[index]
+                                                      .videoLink,
+                                                )));
+                    },
+                                      child: Padding(
+                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 86,
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/newImages/placeholder_3.jpg',
+                              image:
+                                  "https://img.youtube.com/vi/${GlobalLists.fertilityVideosList[index].videoLink.substring(GlobalLists.fertilityVideosList[index].videoLink.length - 11)}/mqdefault.jpg",
+                              fit: BoxFit.fill,
                             ),
                           ),
-                        ),
-                      ],
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 80,
+                                        child: Text(
+                                          GlobalLists.fertilityVideosList[index]
+                                              .videoDesc,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700),
+                                          maxLines: 3,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                    
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+
+
+                            Padding(
+                                            padding: EdgeInsets.only(left: 120,),
+                                            child: Center(
+                                              child: Image.asset(
+                                                  "assets/newImages/pause.png"),
+                                            ),
+                                          )
+                        ],
+                      ),
                     ),
                   );
                 },

@@ -97,15 +97,18 @@ class NewsReleaseState extends State<NewsRelease> {
                                         //crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           ClipRect(
-                                            child: FadeInImage.assetNetwork(
-                                              placeholder:
-                                                  'assets/newImages/placeholder_3.jpg',
-                                              image:  Constantstring.baseUrl+GlobalLists
-                                                  .newsReleaseList[index].appImg,
-                                              fit: BoxFit.cover,
-                                              height: 80,
-                                              width: 80,
-                                            ),
+                                            child: Image.asset("assets/newImages/pdf.png", height: 80,
+                                              width: 80, ),
+                                            
+                                            // FadeInImage.assetNetwork(
+                                            //   placeholder:
+                                            //       'assets/newImages/placeholder_3.jpg',
+                                            //   image:  Constantstring.baseUrl+GlobalLists
+                                            //       .newsReleaseList[index].appImg,
+                                            //   fit: BoxFit.cover,
+                                            //   height: 80,
+                                            //   width: 80,
+                                            // ),
                                           ),
                                           SizedBox(
                                             width: 10,

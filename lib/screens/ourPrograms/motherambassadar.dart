@@ -227,6 +227,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                 cardTitle:
                     "Watch below some of the latest videos of Dr. Rasha kelej and first ladies of Africa. Ambassadars of Merck More than a Mother.  ",
                 titleColor: Customcolor.pink_col,
+                btnTitle: "Read All",
                 titleImg: "assets/newImages/flowers-2.png",
                 subTitle:
                     "Message Form Dr.Rasha Kelej, on the inauguration..."),
@@ -237,6 +238,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                   cardImage: "assets/newImages/award1.png",
                   cardTitle:
                       "Acknowledging the efforts of first ladies as Ambassadars of Merck More than a Mother.  ",
+                   btnTitle: "Read More",    
                   titleColor: Customcolor.pink_col,
                   titleImg: "assets/newImages/flowers-1.png",
                   subTitle:

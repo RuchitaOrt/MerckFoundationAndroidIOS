@@ -2,9 +2,11 @@ import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckmorethanamother.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckstemprogram.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/aboutMerckMother.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/empoweringberna.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/fertilityPrograms.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/firstladiesinitiativesummit.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/localSogsandChildrenStories.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/mmtmprogram.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/motherambassadar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/strategy.dart';
@@ -78,7 +80,11 @@ class _MyHomePageState extends State<OurProgram> {
                                         ? FirstLadiesInitiativeDetails()
                                         : indexpass == 7
                                             ? MMTMProgram()
-                                            : Container()
+                                            : indexpass == 6
+                                                ? LocalSongsandChildrenStories()
+                                                : indexpass == 8
+                                                    ? AboutMerckMother()
+                                                    : Container()
           ],
           controller: mabialaFABController,
         ),
@@ -205,13 +211,13 @@ class _MyHomePageState extends State<OurProgram> {
                               child: GestureDetector(
                                 onTap: () {
                                   if (index == 0) {
-                                    //merckmorethanmother
+                                    //aboutmerckmorethanmother
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
                                                 OurProgram(
-                                                  indexpass: 0,
+                                                  indexpass: 8,
                                                 )));
                                   } else if (index == 1) {
                                     //strategy
@@ -241,13 +247,22 @@ class _MyHomePageState extends State<OurProgram> {
                                                   indexpass: 11,
                                                 )));
                                   } else if (index == 5) {
-                                    //fertility
+                                    //empowring berna
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
                                                 OurProgram(
                                                   indexpass: 5,
+                                                )));
+                                  } else if (index == 6) {
+                                    //Local songs
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                OurProgram(
+                                                  indexpass: 6,
                                                 )));
                                   } else if (index == 7) {
                                     //video

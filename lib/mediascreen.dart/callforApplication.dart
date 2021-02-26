@@ -47,15 +47,14 @@ class CallApplicationState extends State<CallforApplication>
     super.dispose();
   }
 
-
-_launchURL(String urlIs) async {
-  var url = urlIs;
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  _launchURL(String urlIs) async {
+    var url = urlIs;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -176,18 +175,17 @@ _launchURL(String urlIs) async {
                           children: <Widget>[
                             Expanded(
                               child: GestureDetector(
-                                onTap: (){
-                                  _launchURL( Constantstring.baseUrl+  GlobalLists.upcomingevent[index].pdfFile);
+                                onTap: () {
+                                  _launchURL(Constantstring.baseUrl +
+                                      GlobalLists.upcomingevent[index].pdfFile);
                                 },
-                                                              child: Container(
-                                  
+                                child: Container(
                                   width: double.infinity,
-                                  
                                   child: FadeInImage.assetNetwork(
                                     placeholder:
                                         'assets/newImages/placeholder_3.jpg',
-                                    image:
-                                      Constantstring.baseUrl+  GlobalLists.upcomingevent[index].appImg,
+                                    image: Constantstring.baseUrl +
+                                        GlobalLists.upcomingevent[index].appImg,
                                     fit: BoxFit.cover,
                                     height: 80,
                                   ),
@@ -205,16 +203,6 @@ _launchURL(String urlIs) async {
               viewportFraction: 0.7,
               layout: SwiperLayout.DEFAULT,
               scale: 0.9,
-              //outer: true,
-              //itemWidth: 300.0,
-              //itemHeight: 400,
-              //itemHeight: 400,
-              // pagination: SwiperPagination(
-              //   builder: new DotSwiperPaginationBuilder(
-              //     color: Customcolor.ligthpink,
-              //     activeColor: Customcolor.pink_col,
-              //   ),
-              // ),
             ),
           ),
           Padding(
@@ -236,21 +224,17 @@ _launchURL(String urlIs) async {
           ListTile(
             // subtitle: Text("awesome image caption"),
             title: Text(
-                GlobalLists.upcomingevent[_current1].title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17),
-              ),
-            
-           
+              GlobalLists.upcomingevent[_current1].title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 17),
+            ),
           ),
-
-        SizedBox(
+          SizedBox(
             height: 15,
           ),
-          
           Padding(
             padding: const EdgeInsets.only(right: 60, left: 60),
             child: Image.asset(
@@ -285,15 +269,16 @@ _launchURL(String urlIs) async {
                   children: <Widget>[
                     Expanded(
                       child: GestureDetector(
-                          onTap: (){
-                                  _launchURL( Constantstring.baseUrl+  GlobalLists.pastevent[index].pdfFile);
-                                },
-                                              child: Container(
+                        onTap: () {
+                          _launchURL(Constantstring.baseUrl +
+                              GlobalLists.pastevent[index].pdfFile);
+                        },
+                        child: Container(
                           width: double.infinity,
-                         
                           child: FadeInImage.assetNetwork(
                             placeholder: 'assets/newImages/placeholder_3.jpg',
-                            image: Constantstring.baseUrl + GlobalLists.pastevent[index].appImg,
+                            image: Constantstring.baseUrl +
+                                GlobalLists.pastevent[index].appImg,
                             fit: BoxFit.cover,
                             height: 80,
                           ),
@@ -379,7 +364,6 @@ _launchURL(String urlIs) async {
               GlobalLists.upcomingevent = resp.data.upcoming;
               GlobalLists.pastevent = resp.data.past;
               Constantstring.baseUrl = resp.baseurl;
-
             });
           } else {
             ShowDialogs.showToast(resp.msg);

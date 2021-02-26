@@ -57,7 +57,7 @@ class MerckFoundationTestimonialState
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
-          height: 95,
+          height: 100,
         ),
         backgroundColor: Customcolor.background,
         body: Padding(

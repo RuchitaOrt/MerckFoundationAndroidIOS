@@ -46,12 +46,32 @@ import 'package:merckfoundation22dec/model/MMTMlatestupdateResponse.dart'
     as mmtmlatestupdate;
 import 'package:merckfoundation22dec/model/mmtminmediaResponse.dart'
     as mmtminmedia;
+import 'package:merckfoundation22dec/model/mmtmTestimonialResponse.dart'
+    as mmtmtestimonial;
+import 'package:merckfoundation22dec/model/mmtmcallforappResponse.dart'
+    as mmtmcallforapp;
+import 'package:merckfoundation22dec/model/mmtmdigitallibrary.dart'
+    as mmtmdigitallibrary;
 
-import 'package:merckfoundation22dec/model/GetFertilityContentResp.dart' as fertilityContent;
-import 'package:merckfoundation22dec/model/GetFertilityTestimonialResp.dart' as fertilityTestimonial;
-import 'package:merckfoundation22dec/model/GetFertilityVideosResp.dart' as fertilityVideos;
+import 'package:merckfoundation22dec/model/GetFertilityContentResp.dart'
+    as fertilityContent;
+import 'package:merckfoundation22dec/model/GetFertilityTestimonialResp.dart'
+    as fertilityTestimonial;
+import 'package:merckfoundation22dec/model/GetFertilityVideosResp.dart'
+    as fertilityVideos;
 
+import 'package:merckfoundation22dec/model/GetLocalSongsContentResp.dart'
+    as localContet;
 
+import 'package:merckfoundation22dec/model/GetLocalSongsDigitalResp.dart'
+    as localDigitalLib;
+
+import 'package:merckfoundation22dec/model/GetLocalSongsVideosResp.dart'
+    as localVideos;
+import 'package:merckfoundation22dec/model/GetAboutMerckContentResp.dart'
+    as aboutContent;
+import 'package:merckfoundation22dec/model/GetAboutMerckVideosResp.dart'
+    as aboutVidoes;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -94,9 +114,21 @@ class GlobalLists {
   static List<mmtmlatestupdate.ListElement> mmtmlatestupdatelist = [];
   static List<mmtminmedia.ListElement> mmtminmediaresp = [];
 
+  static List<mmtmtestimonial.ListElement> mmtmtestimonialresp = [];
+  static List<mmtmcallforapp.ListElement> mmtmcallforappresp = [];
+
+  static List<mmtmdigitallibrary.ListElement> mmtmdigitallibresp = [];
+
   //Fertility program
   static List<fertilityContent.ListElement> fertilityContentList = [];
   static List<fertilityTestimonial.ListElement> fertilityTestimonialList = [];
- static List<fertilityVideos.ListElement> fertilityVideosList = [];
- 
+  static List<fertilityVideos.ListElement> fertilityVideosList = [];
+
+  static List<localContet.ListElement> localSongsContent = [];
+
+  static List<localDigitalLib.ListElement> localSongsDigitalList = [];
+  static List<localVideos.ListElement> localSongsVideosList = [];
+
+  static List<aboutContent.ListElement> merckAboutcontent = [];
+  static List<aboutVidoes.ListElement> merckAboutVideos = [];
 }

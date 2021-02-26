@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:merckfoundation22dec/model/GetAboutMerckContentResp.dart';
+import 'package:merckfoundation22dec/model/GetAboutMerckVideosResp.dart';
 import 'package:merckfoundation22dec/model/GetFertilityContentResp.dart';
 import 'package:merckfoundation22dec/model/GetFertilityTestimonialResp.dart';
 import 'package:merckfoundation22dec/model/GetFertilityVideosResp.dart';
@@ -38,6 +40,10 @@ import 'package:merckfoundation22dec/model/mmtmContentResponse.dart';
 import 'package:merckfoundation22dec/model/merckothervideo.dart';
 import 'package:merckfoundation22dec/model/MMTMlatestupdateResponse.dart';
 import 'package:merckfoundation22dec/model/mmtminmediaResponse.dart';
+import 'package:merckfoundation22dec/model/mmtmTestimonialResponse.dart'
+    as testimonial;
+import 'package:merckfoundation22dec/model/mmtmcallforappResponse.dart';
+import 'package:merckfoundation22dec/model/mmtmdigitallibrary.dart';
 
 enum API {
   vision,
@@ -91,7 +97,6 @@ enum API {
   merckLocalSongsContent,
   merckLocalSongsVideos,
   merckLocalDigital,
-
 
   //about-merck-more-than-a-mother
 
@@ -285,11 +290,11 @@ class APIManager {
           apiPathString = "show/local-songs-and-children-stories/22/Android/1";
           break;
 
-            case API.merckAboutContent:
+        case API.merckAboutContent:
           apiPathString = "show/about-merck-more-than-a-mother/13/Android/1";
-          break;  
+          break;
 
-           case API.merckAboutVideos:
+        case API.merckAboutVideos:
           apiPathString = "show/about-merck-more-than-a-mother/14/Android/1";
           break;
 
@@ -446,11 +451,11 @@ class APIManager {
           apiPathString = "show/local-songs-and-children-stories/22/IOS/1";
           break;
 
-         case API.merckAboutContent:
+        case API.merckAboutContent:
           apiPathString = "show/about-merck-more-than-a-mother/13/IOS/1";
-          break;  
+          break;
 
-           case API.merckAboutVideos:
+        case API.merckAboutVideos:
           apiPathString = "show/about-merck-more-than-a-mother/14/IOS/1";
           break;
 
@@ -618,12 +623,12 @@ class APIManager {
         className = "getLocalSongsDigitalResp";
         break;
 
-        case API.merckAboutContent:
+      case API.merckAboutContent:
         className = "getMerckAboutContentResp";
-        break;  
-          case API.merckAboutVideos:
+        break;
+      case API.merckAboutVideos:
         className = "getMerckAboutVideosResp";
-        break;  
+        break;
 
       case API.leadership:
         className = "";
@@ -728,18 +733,18 @@ class APIManager {
     }
 
     if (className == "getMerckmotherCallAppliResp") {
-      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+      responseObj = MmtmcallforappResponse.fromJson(json);
     }
 
     if (className == "getMerckmotherDigitalLibResp") {
-      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+      responseObj = MmtmdigitallibraryResponse.fromJson(json);
     }
 
     if (className == "getMerckmotherMediaResp") {
       responseObj = MmtMinmediaResponse.fromJson(json);
     }
     if (className == "getMerckmotherTestimonialResp") {
-      // responseObj = EmpoweingbernacontentResponse.fromJson(json);
+      responseObj = testimonial.MmtmTestimonialResponse.fromJson(json);
     }
 
     if (className == "getMerckFertilityContentResp") {
@@ -764,12 +769,12 @@ class APIManager {
       responseObj = GetLocalSongsDigitalLibResp.fromJson(json);
     }
 
-      if (className == "getMerckAboutContentResp") {
-     // responseObj = GetLocalSongsDigitalLibResp.fromJson(json);
+    if (className == "getMerckAboutContentResp") {
+      responseObj = GetAboutMerckContentResp.fromJson(json);
     }
 
-      if (className == "getMerckAboutVideosResp") {
-     // responseObj = GetLocalSongsDigitalLibResp.fromJson(json);
+    if (className == "getMerckAboutVideosResp") {
+      responseObj = GetAboutMerckVideosResp.fromJson(json);
     }
 
     return responseObj;

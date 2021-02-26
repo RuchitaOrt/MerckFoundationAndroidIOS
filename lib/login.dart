@@ -68,7 +68,9 @@ class _LoginPageState extends State<LoginPage> {
                       //   size: 60,
                       // ),
                       Image.asset(
-                        "assets/images/logo_nav.png",
+                        "assets/newImages/top_bar_logo.png",
+                        width: 140,
+                        height: 58,
                       ),
 
                       SizedBox(height: 10),

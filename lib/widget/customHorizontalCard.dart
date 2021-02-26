@@ -11,7 +11,9 @@ class CustomHorizontalCard extends StatelessWidget {
   final Color titleColor;
   final String titleImg;
   final int index;
+  final Function onbtnTap;
   final Widget list;
+
 
   const CustomHorizontalCard(
       {Key key,
@@ -22,7 +24,7 @@ class CustomHorizontalCard extends StatelessWidget {
       this.titleColor,
       this.titleImg,
       this.list,
-      this.index})
+      this.index, this.onbtnTap})
       : super(key: key);
 
   @override
@@ -93,18 +95,21 @@ class CustomHorizontalCard extends StatelessWidget {
           height: 9,
         ),
         Center(
-          child: Container(
-            width: 120,
-            height: 40,
-            decoration: BoxDecoration(
-                color: Colors.amber, borderRadius: BorderRadius.circular(5)),
-            child: Center(
-              child: Text(
-                "Watch More",
-                style: TextStyle(
-                    color: Customcolor.colorBlue,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500),
+          child: GestureDetector(
+            onTap: onbtnTap,
+                      child: Container(
+              width: 120,
+              height: 40,
+              decoration: BoxDecoration(
+                  color: Colors.amber, borderRadius: BorderRadius.circular(5)),
+              child: Center(
+                child: Text(
+                 btnTitle,
+                  style: TextStyle(
+                      color: Customcolor.colorBlue,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
             ),
           ),

@@ -5,6 +5,8 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
+import '../login.dart';
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -32,9 +34,9 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           Positioned(
             left: 8,
-            bottom: 10,
+            bottom: 20,
             child: Text(
-              "version 1.4",
+              "version 1.6",
               style: TextStyle(
                 color: Colors.black87,
               ),
@@ -51,6 +53,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   onDoneLoading() async {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Dashboard(index: 0)));
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 }

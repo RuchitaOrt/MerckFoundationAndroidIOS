@@ -392,7 +392,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Merck Foundation Alumnis \nTestimonies',
+                          value: 'Merck Foundation Aluminis \nTestimonies',
                           onTapfun: () {
                             print('ontap1');
                             Navigator.push(
@@ -448,7 +448,8 @@ class _AppDrawerState extends State<AppDrawer> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (BuildContext context) => MerckFoundationMedia()));
+                                    builder: (BuildContext context) =>
+                                        MerckFoundationMedia()));
 
                             // print('ontap');
                           },
