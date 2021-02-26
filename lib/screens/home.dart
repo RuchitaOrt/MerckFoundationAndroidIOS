@@ -112,7 +112,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: (){
+      onWillPop: () {
         ShowDialogs.showConfirmDialog(
             context, "Exit", "Are you sure, want to exit?");
       },
@@ -998,7 +998,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   Widget ourlist() {
-    print(_ourlist.length);
+    //print(_ourlist.length);
 
     return Container(
         height: 100,

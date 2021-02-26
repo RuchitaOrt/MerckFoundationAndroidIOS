@@ -85,7 +85,7 @@ class Past {
         title: json["title"] == null ? "" : json["title"],
         eventType: json["event_type"],
         eventYear: DateTime.parse(json["event_year"]),
-        pdfFile: json["pdf_file"] == null? "":  json["pdf_file"],
+        pdfFile: json["pdf_file"] == null ? "" : json["pdf_file"],
         appImg: json["app_img"] == null ? "" : json["app_img"],
         altText: json["alt_text"],
         status: json["status"],

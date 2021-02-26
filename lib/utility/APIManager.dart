@@ -184,27 +184,37 @@ class APIManager {
           break;
 
         case API.newsRelease:
-          apiPathString = "show/news-releases/16/Android/1";
+          apiPathString = "media_and_events_sorting/news-releases/16/Android/1";
+          // "show/news-releases/16/Android/1";
           break;
         case API.newsletters:
-          apiPathString = "show/newsletters-and-articles/23/Android/1";
+          apiPathString =
+              "media_and_events_sorting/newsletters-and-articles/23/Android/1";
+          // "show/newsletters-and-articles/23/Android/1";
           break;
         case API.merckfoundationinmedia:
-          apiPathString = "show/merck-foundation-in-media/20/Android/1";
+          apiPathString =
+              "media_and_events_sorting/merck-foundation-in-media/20/Android/1";
+          //"show/merck-foundation-in-media/20/Android/1";
           break;
         case API.callforapplication:
-          apiPathString = "call_for_app/call-for-application/9";
+          apiPathString =
+              "media_and_events_sorting/call-for-application/9/Android/1";
+          //"call_for_app/call-for-application/9";
           break;
         case API.videoLibrary:
-          apiPathString = "show/Video-Library/14/Android/1";
+          apiPathString = "media_and_events_sorting/video-library/14/Android/1";
+          // "show/Video-Library/14/Android/1";
           break;
 
         case API.ourPartner:
-          apiPathString = "show/our-partners/17/Android/1";
+          apiPathString = "media_and_events_sorting/our-partners/17/Android/1";
+          //"show/our-partners/17/Android/1";
           break;
 
         case API.ourPartnerObjectives:
-          apiPathString = "show/our-partners/13/Android/1";
+          apiPathString = "media_and_events_sorting/our-partners/13/Android/1";
+          //"show/our-partners/13/Android/1";
           break;
         case API.getStories:
           apiPathString = "show/stories/14/Android/1";
@@ -212,7 +222,8 @@ class APIManager {
 
         case API.merckTestimonial:
           apiPathString =
-              "show/merck-foundation-alumnis-testimonies/14/Android/1";
+              "media_and_events_sorting/merck-foundation-alumnis-testimonies/14/Android/1";
+          // "show/merck-foundation-alumnis-testimonies/14/Android/1";
           break;
         case API.strategy:
           apiPathString = "show/strategy/13/Android/1";
@@ -343,35 +354,47 @@ class APIManager {
           break;
 
         case API.newsRelease:
-          apiPathString = "show/news-releases/16/IOS/1";
+          apiPathString = "media_and_events_sorting/news-releases/16/IOS/1";
+          //"show/news-releases/16/IOS/1";
           break;
         case API.newsletters:
-          apiPathString = "show/newsletters-and-articles/23/IOS/1";
+          apiPathString =
+              "media_and_events_sorting/newsletters-and-articles/23/IOS/1";
+          // "show/newsletters-and-articles/23/IOS/1";
           break;
         case API.merckfoundationinmedia:
-          apiPathString = "show/merck-foundation-in-media/20/IOS/1";
+          apiPathString =
+              "media_and_events_sorting/merck-foundation-in-media/20/IOS/1";
+          //"show/merck-foundation-in-media/20/IOS/1";
           break;
         case API.callforapplication:
-          apiPathString = "call_for_app/call-for-application/9";
+          apiPathString =
+              "media_and_events_sorting/call-for-application/9/IOS/1";
+          //"call_for_app/call-for-application/9";
           break;
         case API.videoLibrary:
-          apiPathString = "show/Video-Library/14/IOS/1";
+          apiPathString = "/media_and_events_sorting/video-library/14/IOS/1";
+          //"show/Video-Library/14/IOS/1";
           break;
 
         case API.ourPartner:
-          apiPathString = "show/our-partners/17/IOS/1";
+          apiPathString = "media_and_events_sorting/our-partners/17/IOS/1";
+          //"show/our-partners/17/IOS/1";
           break;
 
         case API.ourPartnerObjectives:
-          apiPathString = "show/our-partners/13/IOS/1";
+          apiPathString = "media_and_events_sorting/our-partners/13/IOS/1";
+          // "show/our-partners/13/IOS/1";
           break;
 
         case API.getStories:
-          apiPathString = "show/stories/14/IOS/1";
+          apiPathString = "media_and_events_sorting/stories/14/Android/1";
+          //"show/stories/14/IOS/1";
           break;
 
         case API.merckTestimonial:
-          apiPathString = "show/merck-foundation-alumnis-testimonies/14/IOS/1";
+          apiPathString =
+              "media_and_events_sorting/merck-foundation-alumnis-testimonies/14/IOS/1";
           break;
 
         case API.strategy:
@@ -440,7 +463,8 @@ class APIManager {
           break;
 
         case API.merckLocalSongsContent:
-          apiPathString = "show/local-songs-and-children-stories/13/IOS/1";
+          apiPathString = "media_and_events_sorting/stories/14/IOS/1";
+          //"show/local-songs-and-children-stories/13/IOS/1";
           break;
 
         case API.merckLocalSongsVideos:
