@@ -72,6 +72,12 @@ import 'package:merckfoundation22dec/model/GetAboutMerckContentResp.dart'
     as aboutContent;
 import 'package:merckfoundation22dec/model/GetAboutMerckVideosResp.dart'
     as aboutVidoes;
+import 'package:merckfoundation22dec/model/CountrylistResponse.dart'
+    as countrylist;
+import 'package:merckfoundation22dec/model/CategorylistResponse.dart'
+    as categorylist;
+import 'package:merckfoundation22dec/model/LeadershipResponse.dart' as ceolist;
+import 'package:merckfoundation22dec/model/OurawardResponse.dart' as awardlist;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -131,4 +137,15 @@ class GlobalLists {
 
   static List<aboutContent.ListElement> merckAboutcontent = [];
   static List<aboutVidoes.ListElement> merckAboutVideos = [];
+
+  //filter
+  static List<countrylist.ListElement> countrylisting = [];
+  static List<categorylist.ListElement> categorylisting = [];
+
+  //leadership
+  static List<ceolist.BoardOfTrusteesOfMerckFoundation> ceolisting = [];
+  static List<ceolist.BoardOfTrusteesOfMerckFoundation> boardoftrust = [];
+
+  //ouraward
+  static List<awardlist.ListElement> awardlisting = [];
 }

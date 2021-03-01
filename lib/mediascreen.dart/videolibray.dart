@@ -12,6 +12,8 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
+import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
+import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
 
 class Videolibrary extends StatefulWidget {
   @override
@@ -39,7 +41,8 @@ class VideolibraryState extends State<Videolibrary> {
     // TODO: implement initState
 
     getvideolibray();
-
+    getcountrylist();
+    getcategorylist();
     super.initState();
   }
 
@@ -50,7 +53,9 @@ class VideolibraryState extends State<Videolibrary> {
         endDrawer: Theme(
           data: Theme.of(context)
               .copyWith(canvasColor: Colors.white, primaryColor: Colors.white),
-          child: AppDrawerfilter(),
+          child: AppDrawerfilter(
+            index: 1,
+          ),
         ),
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {
@@ -218,6 +223,74 @@ class VideolibraryState extends State<Videolibrary> {
         (error) {
           print('ERR msg is $error');
           Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  getcountrylist() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      // ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.countrylist,
+        (response) async {
+          CountrylistResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          //  Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.countrylisting = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          // Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  getcategorylist() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      // ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.categoryList,
+        (response) async {
+          CategorylistResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          //  Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.categorylisting = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          // Navigator.of(_keyLoader.currentContext).pop();
         },
       );
     } else {

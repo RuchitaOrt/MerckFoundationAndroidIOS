@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:marquee/marquee.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/ouraward.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
@@ -848,42 +849,97 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           ),
           Row(
             children: [
-              Image.asset(
-                "assets/newImages/instagram.png",
-                height: imgHeight,
-                width: imgHeight,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => VideoPlayer(
+                                videoUrl:
+                                    " https://www.instagram.com/merckfoundation/",
+                              )));
+                  //  https://www.instagram.com/merckfoundation/
+                },
+                child: Image.asset(
+                  "assets/newImages/instagram.png",
+                  height: imgHeight,
+                  width: imgHeight,
+                ),
               ),
               SizedBox(
                 width: 7,
               ),
-              Image.asset(
-                "assets/newImages/facebook.png",
-                height: imgHeight,
-                width: imgHeight,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => VideoPlayer(
+                                videoUrl:
+                                    "https://www.facebook.com/merckfoundation/",
+                              )));
+                },
+                child: Image.asset(
+                  "assets/newImages/facebook.png",
+                  height: imgHeight,
+                  width: imgHeight,
+                ),
               ),
               SizedBox(
                 width: 7,
               ),
-              Image.asset(
-                "assets/newImages/twitter.png",
-                height: imgHeight,
-                width: imgHeight,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => VideoPlayer(
+                                videoUrl: "https://twitter.com/MerckFoundation",
+                              )));
+                },
+                child: Image.asset(
+                  "assets/newImages/twitter.png",
+                  height: imgHeight,
+                  width: imgHeight,
+                ),
               ),
               SizedBox(
                 width: 7,
               ),
-              Image.asset(
-                "assets/newImages/youtube.png",
-                height: imgHeight,
-                width: imgHeight,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => VideoPlayer(
+                                videoUrl:
+                                    "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg",
+                              )));
+                },
+                child: Image.asset(
+                  "assets/newImages/youtube.png",
+                  height: imgHeight,
+                  width: imgHeight,
+                ),
               ),
               SizedBox(
                 width: 7,
               ),
-              Image.asset(
-                "assets/newImages/flickr.png",
-                height: imgHeight,
-                width: imgHeight,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => VideoPlayer(
+                                videoUrl:
+                                    "https://www.flickr.com/photos/163124125@N08/",
+                              )));
+                },
+                child: Image.asset(
+                  "assets/newImages/flickr.png",
+                  height: imgHeight,
+                  width: imgHeight,
+                ),
               ),
               SizedBox(
                 width: 7,
@@ -1046,13 +1102,13 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                 builder: (BuildContext context) =>
                                     OurMission()));
                       } else if (index == 5) {
-                        //media & events
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (BuildContext context) => Dashboard(
-                        //               index: 4,
-                        //             )));
+                        //  media & events
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Dashboard(
+                                      index: 3,
+                                    )));
                       } else if (index == 6) {
                         //covid response
                       } else if (index == 7) {

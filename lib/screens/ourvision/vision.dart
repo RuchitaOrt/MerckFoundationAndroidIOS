@@ -64,16 +64,19 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                       shrinkWrap: true,
                       // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              right: 10, left: 10, top: 10),
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/newImages/placeholder_3.jpg',
-                            image: GlobalLists.vision[0].image,
-                            fit: BoxFit.fill,
-                            height: 150,
-                          ),
-                        ),
+                        GlobalLists.vision[0].image == ""
+                            ? Container()
+                            : Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 10, left: 10, top: 10),
+                                child: FadeInImage.assetNetwork(
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
+                                  image: GlobalLists.vision[0].image,
+                                  fit: BoxFit.fill,
+                                  height: 150,
+                                ),
+                              ),
                         Padding(
                           padding: const EdgeInsets.only(
                               left: 15, right: 8, top: 8, bottom: 15),

@@ -3,6 +3,8 @@ import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
 
 import 'package:merckfoundation22dec/mediascreen.dart/newReleases.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
+import 'package:merckfoundation22dec/screens/ceomessage/ceomessage.dart';
 import 'package:merckfoundation22dec/screens/ceomessage/messageFromLeadership.dart';
 import 'package:merckfoundation22dec/screens/contactus/contactUs.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -188,11 +190,11 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Leadership',
                           onTapfun: () {
-                            // Navigator.push(
-                            //       context,
-                            //       MaterialPageRoute(
-                            //           builder: (BuildContext context) =>
-                            //               Check()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        Ceomessage()));
                           },
                         ),
                         DrawerWidget(
@@ -492,16 +494,35 @@ class _AppDrawerState extends State<AppDrawer> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Image.asset(
-                      "assets/newImages/instagram.png",
-                      width: 30,
-                      height: 30,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => VideoPlayer(
+                                      videoUrl:
+                                          " https://www.instagram.com/merckfoundation/",
+                                    )));
+                      },
+                      child: Image.asset(
+                        "assets/newImages/instagram.png",
+                        width: 30,
+                        height: 30,
+                      ),
                     ),
                     SizedBox(
                       width: 15,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => VideoPlayer(
+                                      videoUrl:
+                                          "https://www.facebook.com/merckfoundation/",
+                                    )));
+                      },
                       child: Image.asset(
                         "assets/newImages/facebook.png",
                         width: 30,
@@ -511,26 +532,59 @@ class _AppDrawerState extends State<AppDrawer> {
                     SizedBox(
                       width: 15,
                     ),
-                    Image.asset(
-                      "assets/newImages/twitter.png",
-                      width: 30,
-                      height: 30,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => VideoPlayer(
+                                      videoUrl:
+                                          "https://twitter.com/MerckFoundation",
+                                    )));
+                      },
+                      child: Image.asset(
+                        "assets/newImages/twitter.png",
+                        width: 30,
+                        height: 30,
+                      ),
                     ),
                     SizedBox(
                       width: 15,
                     ),
-                    Image.asset(
-                      "assets/newImages/youtube.png",
-                      width: 30,
-                      height: 30,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => VideoPlayer(
+                                      videoUrl:
+                                          "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg",
+                                    )));
+                      },
+                      child: Image.asset(
+                        "assets/newImages/youtube.png",
+                        width: 30,
+                        height: 30,
+                      ),
                     ),
                     SizedBox(
                       width: 15,
                     ),
-                    Image.asset(
-                      "assets/newImages/flickr.png",
-                      width: 30,
-                      height: 30,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => VideoPlayer(
+                                      videoUrl:
+                                          "https://www.flickr.com/photos/163124125@N08/",
+                                    )));
+                      },
+                      child: Image.asset(
+                        "assets/newImages/flickr.png",
+                        width: 30,
+                        height: 30,
+                      ),
                     ),
                   ],
                 ),

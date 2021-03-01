@@ -4,6 +4,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 
 class ContactUs extends StatefulWidget {
   @override
@@ -118,46 +119,142 @@ class ContactusState extends State<ContactUs> {
               ),
               Row(
                 children: [
-                  Image.asset(
-                    "assets/newImages/instagram.png",
-                    height: imgHeight,
-                    width: imgHeight,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl:
+                                        " https://www.instagram.com/merckfoundation/",
+                                  )));
+                      //  https://www.instagram.com/merckfoundation/
+                    },
+                    child: Image.asset(
+                      "assets/newImages/instagram.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
                   ),
                   SizedBox(
                     width: 7,
                   ),
-                  Image.asset(
-                    "assets/newImages/facebook.png",
-                    height: imgHeight,
-                    width: imgHeight,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl:
+                                        "https://www.facebook.com/merckfoundation/",
+                                  )));
+                    },
+                    child: Image.asset(
+                      "assets/newImages/facebook.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
                   ),
                   SizedBox(
                     width: 7,
                   ),
-                  Image.asset(
-                    "assets/newImages/twitter.png",
-                    height: imgHeight,
-                    width: imgHeight,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl:
+                                        "https://twitter.com/MerckFoundation",
+                                  )));
+                    },
+                    child: Image.asset(
+                      "assets/newImages/twitter.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
                   ),
                   SizedBox(
                     width: 7,
                   ),
-                  Image.asset(
-                    "assets/newImages/youtube.png",
-                    height: imgHeight,
-                    width: imgHeight,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl:
+                                        "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg",
+                                  )));
+                    },
+                    child: Image.asset(
+                      "assets/newImages/youtube.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
                   ),
                   SizedBox(
                     width: 7,
                   ),
-                  Image.asset(
-                    "assets/newImages/flickr.png",
-                    height: imgHeight,
-                    width: imgHeight,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl:
+                                        "https://www.flickr.com/photos/163124125@N08/",
+                                  )));
+                    },
+                    child: Image.asset(
+                      "assets/newImages/flickr.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
                   ),
                   SizedBox(
                     width: 7,
                   ),
+                  // Image.asset(
+                  //   "assets/newImages/instagram.png",
+                  //   height: imgHeight,
+                  //   width: imgHeight,
+                  // ),
+                  // SizedBox(
+                  //   width: 7,
+                  // ),
+                  // Image.asset(
+                  //   "assets/newImages/facebook.png",
+                  //   height: imgHeight,
+                  //   width: imgHeight,
+                  // ),
+                  // SizedBox(
+                  //   width: 7,
+                  // ),
+                  // Image.asset(
+                  //   "assets/newImages/twitter.png",
+                  //   height: imgHeight,
+                  //   width: imgHeight,
+                  // ),
+                  // SizedBox(
+                  //   width: 7,
+                  // ),
+                  // Image.asset(
+                  //   "assets/newImages/youtube.png",
+                  //   height: imgHeight,
+                  //   width: imgHeight,
+                  // ),
+                  // SizedBox(
+                  //   width: 7,
+                  // ),
+                  // Image.asset(
+                  //   "assets/newImages/flickr.png",
+                  //   height: imgHeight,
+                  //   width: imgHeight,
+                  // ),
+                  // SizedBox(
+                  //   width: 7,
+                  // ),
                 ],
               )
             ],

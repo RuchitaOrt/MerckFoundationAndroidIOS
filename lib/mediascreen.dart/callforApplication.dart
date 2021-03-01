@@ -301,17 +301,21 @@ class CallApplicationState extends State<CallforApplication>
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: new DotsIndicator(
-              dotsCount: GlobalLists.pastevent.length,
-              position: double.parse("$_current"),
-              decorator: DotsDecorator(
-                size: const Size.square(9.0),
-                activeSize: const Size(25.0, 9.0),
-                color: Customcolor.ligthpink,
-                spacing: EdgeInsets.only(right: 3),
-                activeColor: Customcolor.pink_col,
-                activeShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: ScrollPhysics(),
+              child: new DotsIndicator(
+                dotsCount: GlobalLists.pastevent.length,
+                position: double.parse("$_current"),
+                decorator: DotsDecorator(
+                  size: const Size.square(9.0),
+                  activeSize: const Size(25.0, 9.0),
+                  color: Customcolor.ligthpink,
+                  spacing: EdgeInsets.only(right: 3),
+                  activeColor: Customcolor.pink_col,
+                  activeShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0)),
+                ),
               ),
             ),
           ),
@@ -361,9 +365,14 @@ class CallApplicationState extends State<CallforApplication>
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.upcomingevent = resp.data.upcoming;
-              GlobalLists.pastevent = resp.data.past;
-              Constantstring.baseUrl = resp.baseurl;
+              if (resp.data.upcoming.length > 0) {
+                GlobalLists.upcomingevent = resp.data.upcoming;
+              }
+              if (resp.data.past.length > 0) {
+                GlobalLists.pastevent = resp.data.past;
+              }
+
+              Constantstring.baseUrl = resp.baseUrl;
             });
           } else {
             ShowDialogs.showToast(resp.msg);

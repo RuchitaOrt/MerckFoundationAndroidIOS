@@ -12,6 +12,9 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
+import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
+import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 
 class MerckFoundationTestimonial extends StatefulWidget {
   @override
@@ -32,18 +35,34 @@ class MerckFoundationTestimonialState
     "assets/images/slider1.jpg",
   ];
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+  final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     // TODO: implement initState
     getMerckTestimonial();
+    getcountrylist();
+    getcategorylist();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey1,
+        endDrawer: Theme(
+          data: Theme.of(context)
+              .copyWith(canvasColor: Colors.white, primaryColor: Colors.white),
+          child: AppDrawerfilter(
+            index: 3,
+          ),
+        ),
         appBar: InnerCustomAppBar(
+          onTapvalfilter: () {
+            print("videokk");
+            // _scaffoldKey1.currentState.openDrawer();
+            _scaffoldKey1.currentState.openEndDrawer();
+          },
           onTapval: () {
             Navigator.push(
                 context,
@@ -52,10 +71,10 @@ class MerckFoundationTestimonialState
                           index: 0,
                         )));
           },
-          index: 1,
+          index: 2,
           title: "Merck Foundation \nAlumini's Testimonial",
           titleImg: "assets/newImages/ourstoriesLogo.png",
-          trallingImg1: "assets/newImages/share.png",
+          trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",
           height: 100,
         ),
@@ -205,6 +224,74 @@ class MerckFoundationTestimonialState
         (error) {
           print('ERR msg is $error');
           Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  getcountrylist() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      // ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.countrylist,
+        (response) async {
+          CountrylistResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          //  Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.countrylisting = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          // Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  getcategorylist() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      // ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.categoryList,
+        (response) async {
+          CategorylistResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          //  Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.categorylisting = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          // Navigator.of(_keyLoader.currentContext).pop();
         },
       );
     } else {

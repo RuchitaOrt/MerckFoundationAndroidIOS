@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
             left: 8,
             bottom: 20,
             child: Text(
-              "version 1.6",
+              "version 1.7",
               style: TextStyle(
                 color: Colors.black87,
               ),

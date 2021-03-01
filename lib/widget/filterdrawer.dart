@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
+import 'package:merckfoundation22dec/model/FilterdataResponse.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 class AppDrawerfilter extends StatefulWidget {
+  final int index;
+
+  const AppDrawerfilter({Key key, this.index}) : super(key: key);
   @override
   _AppDrawerfilterState createState() => _AppDrawerfilterState();
 }
@@ -15,6 +25,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
   var videocategoryController = TextEditingController();
   bool isyearexpanded = false;
   var yearController = TextEditingController();
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
   void initState() {
@@ -23,6 +34,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Drawer(
       //  ScaffoldState().openDrawer() ,
 
@@ -31,110 +43,206 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 0),
-              child: ListView(
-                padding: const EdgeInsets.fromLTRB(20, 60, 20, 0),
-                shrinkWrap: true,
-                children: [
-                  Text("Country"),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 40,
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          print("in state");
-                          iscountryexpanded = !iscountryexpanded;
-                        });
-                      },
-                      child: TextField(
-                        enabled: false,
-                        controller: countryController,
-                        decoration: InputDecoration(
-                            // contentPadding:
-                            //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
-                            hintText: "Select Country",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0)),
-                            suffixIcon: Icon(Icons.arrow_drop_down)),
-                      ),
-                    ),
-                  ),
-                  iscountryexpanded == true ? coutryDropdown() : Container(),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text("Video Categories"),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 40,
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          print("in state");
-                          isvideocategoryexpanded = !isvideocategoryexpanded;
-                        });
-                      },
-                      child: TextField(
-                        enabled: false,
-                        controller: videocategoryController,
-                        decoration: InputDecoration(
-                            // contentPadding:
-                            //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
-                            hintText: "Select video category",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0)),
-                            suffixIcon: Icon(Icons.arrow_drop_down)),
-                      ),
-                    ),
-                  ),
-                  isvideocategoryexpanded == true
-                      ? videocategoriesDropdown()
-                      : Container(),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text("Year"),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 40,
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          print("in state");
-                          isyearexpanded = !isyearexpanded;
-                        });
-                      },
-                      child: TextField(
-                        enabled: false,
-                        controller: videocategoryController,
-                        decoration: InputDecoration(
-                            // contentPadding:
-                            //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
-                            hintText: "Select Year",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0)),
-                            suffixIcon: Icon(Icons.arrow_drop_down)),
-                      ),
-                    ),
-                  ),
-                  isyearexpanded == true ? yearDropdown() : Container(),
-                ],
-              ),
-            ),
+                padding: const EdgeInsets.only(bottom: 0),
+                child: widget.index == 1
+                    ? ListView(
+                        padding: const EdgeInsets.fromLTRB(20, 60, 20, 0),
+                        shrinkWrap: true,
+                        children: [
+                          Text("Country"),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 40,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  print("in state");
+                                  iscountryexpanded = !iscountryexpanded;
+                                });
+                              },
+                              child: TextField(
+                                enabled: false,
+                                controller: countryController,
+                                decoration: InputDecoration(
+                                    // contentPadding:
+                                    //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
+                                    hintText: "Select Country",
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0)),
+                                    suffixIcon: Icon(Icons.arrow_drop_down)),
+                              ),
+                            ),
+                          ),
+                          iscountryexpanded == true
+                              ? coutryDropdown()
+                              : Container(),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text("Video Categories"),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 40,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  print("in state");
+                                  isvideocategoryexpanded =
+                                      !isvideocategoryexpanded;
+                                });
+                              },
+                              child: TextField(
+                                enabled: false,
+                                controller: videocategoryController,
+                                decoration: InputDecoration(
+                                    // contentPadding:
+                                    //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
+                                    hintText: "Select video category",
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0)),
+                                    suffixIcon: Icon(Icons.arrow_drop_down)),
+                              ),
+                            ),
+                          ),
+                          isvideocategoryexpanded == true
+                              ? videocategoriesDropdown()
+                              : Container(),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          // Text("Year"),
+                          // SizedBox(
+                          //   height: 10,
+                          // ),
+                          // Container(
+                          //   height: 40,
+                          //   child: GestureDetector(
+                          //     onTap: () {
+                          //       setState(() {
+                          //         print("in state");
+                          //         isyearexpanded = !isyearexpanded;
+                          //       });
+                          //     },
+                          //     child: TextField(
+                          //       enabled: false,
+                          //       controller: videocategoryController,
+                          //       decoration: InputDecoration(
+                          //           // contentPadding:
+                          //           //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
+                          //           hintText: "Select Year",
+                          //           border: OutlineInputBorder(
+                          //               borderRadius: BorderRadius.circular(5.0)),
+                          //           suffixIcon: Icon(Icons.arrow_drop_down)),
+                          //     ),
+                          //   ),
+                          // ),
+                          // isyearexpanded == true ? yearDropdown() : Container(),
+                        ],
+                      )
+                    : widget.index == 2
+                        ? ListView(
+                            padding: const EdgeInsets.fromLTRB(20, 60, 20, 0),
+                            shrinkWrap: true,
+                            children: [
+                              Text("Country"),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                height: 40,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      print("in state");
+                                      iscountryexpanded = !iscountryexpanded;
+                                    });
+                                  },
+                                  child: TextField(
+                                    enabled: false,
+                                    controller: countryController,
+                                    decoration: InputDecoration(
+                                        // contentPadding:
+                                        //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
+                                        hintText: "Select Country",
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5.0)),
+                                        suffixIcon:
+                                            Icon(Icons.arrow_drop_down)),
+                                  ),
+                                ),
+                              ),
+                              iscountryexpanded == true
+                                  ? coutryDropdown()
+                                  : Container(),
+                              SizedBox(
+                                height: 15,
+                              ),
+                            ],
+                          )
+                        : widget.index == 3
+                            ? ListView(
+                                padding:
+                                    const EdgeInsets.fromLTRB(20, 60, 20, 0),
+                                shrinkWrap: true,
+                                children: [
+                                  Text("Video Categories"),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          print("in state");
+                                          isvideocategoryexpanded =
+                                              !isvideocategoryexpanded;
+                                        });
+                                      },
+                                      child: TextField(
+                                        enabled: false,
+                                        controller: videocategoryController,
+                                        decoration: InputDecoration(
+                                            // contentPadding:
+                                            //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
+                                            hintText: "Select video category",
+                                            border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0)),
+                                            suffixIcon:
+                                                Icon(Icons.arrow_drop_down)),
+                                      ),
+                                    ),
+                                  ),
+                                  isvideocategoryexpanded == true
+                                      ? videocategoriesDropdown()
+                                      : Container(),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                ],
+                              )
+                            : Container()),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
                 padding: EdgeInsets.only(bottom: 10, left: 15),
                 height: 60,
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    if (widget.index == 1) {
+                      //for video library
+
+                      //getfilterdata("2","" ,"");
+                    }
+                  },
                   child: Container(
                     width: 110,
                     height: 40,
@@ -161,7 +269,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
 
   Widget coutryDropdown() {
     return Container(
-      height: 130,
+      height: 200,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Card(
@@ -169,31 +277,36 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
         child: Padding(
             padding: EdgeInsets.only(left: 10, right: 10),
             child: ListView.builder(
-                itemCount: option.length,
+                itemCount: GlobalLists.countrylisting.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     children: [
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            countryController.text = option[index];
+                            countryController.text =
+                                GlobalLists.countrylisting[index].countryName;
                             iscountryexpanded = false;
                           });
                         },
                         child: Container(
                           color: Colors.white,
+                          width: SizeConfig.blockSizeHorizontal * 100,
                           child: Text(
-                            option[index],
+                            GlobalLists.countrylisting[index].countryName,
                             style: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 20,
+                              color: Colors.black,
+                              fontSize: 14,
                             ),
                           ),
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
                       Divider(
                         color: Customcolor.colorGrey,
                       )
@@ -206,7 +319,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
 
   Widget videocategoriesDropdown() {
     return Container(
-      height: 130,
+      height: 200,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Card(
@@ -214,30 +327,32 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
         child: Padding(
             padding: EdgeInsets.only(left: 10, right: 10),
             child: ListView.builder(
-                itemCount: option.length,
+                itemCount: GlobalLists.categorylisting.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     children: [
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            videocategoryController.text = option[index];
+                            videocategoryController.text =
+                                GlobalLists.categorylisting[index].categoryName;
                             isvideocategoryexpanded = false;
                           });
                         },
                         child: Container(
                           color: Colors.white,
+                          width: SizeConfig.blockSizeHorizontal * 100,
                           child: Text(
-                            option[index],
+                            GlobalLists.categorylisting[index].categoryName,
                             style: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 20,
+                              color: Colors.black,
+                              fontSize: 14,
                             ),
                           ),
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Divider(
                         color: Customcolor.colorGrey,
@@ -293,4 +408,53 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
       ),
     );
   }
+
+  // getfilterdata(String pagename, String countryid, String catid) async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
+  //   // var fcm_token = SPManager().getAuthToken();
+  //   if (status1) {
+  //     ShowDialogs.showLoadingDialog(context, _keyLoader);
+  //     if (pagename == "1") {
+  //       final json = {
+  //         'page_name': pagename,
+  //         'country_id': countryid,
+  //       };
+  //       print(json);
+  //     } else if (pagename == "2") {
+  //       final json = {
+  //         'page_name': pagename,
+  //         'country_id': countryid,
+  //         "catg_id": catid
+  //       };
+  //       print(json);
+  //     } else if (pagename == "3") {
+  //       final json = {'page_name': pagename, "catg_id": catid};
+  //       print(json);
+  //     }
+
+  //     APIManager().apiRequest(context, API.filterlist, (response) async {
+  //       FilterdataResponse resp = response;
+  //       print(response);
+  //       print('Resp : $resp');
+  //       Navigator.of(_keyLoader.currentContext).pop();
+  //       if (resp.success == "True") {
+  //         setState(() {
+  //           ShowDialogs.showToast(resp.msg);
+  //           Navigator.push(
+  //               context,
+  //               MaterialPageRoute(
+  //                   builder: (BuildContext context) => Videolibrary()));
+  //         });
+  //       } else {
+  //         ShowDialogs.showToast(resp.msg);
+  //       }
+  //     }, (error) {
+  //       print('ERR msg is $error');
+  //       ShowDialogs.showToast("Server Not Responding");
+  //       Navigator.of(_keyLoader.currentContext).pop();
+  //     }, jsonval: json);
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
 }

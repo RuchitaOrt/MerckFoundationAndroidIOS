@@ -83,7 +83,7 @@ class WebPageState extends State<VideoPlayer> {
                 Expanded(
                   child: FormLabel(
                     text: widget.videoUrl,
-                    fontSize: 18,
+                    fontSize: 17,
                     maxLines: 3,
                     fontweight: FontWeight.w700,
                     labelColor: Customcolor.text_blue,

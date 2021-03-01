@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/style.dart';
+import 'package:merckfoundation22dec/model/OurawardResponse.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -17,11 +24,13 @@ class ourawardState extends State<Ouraward> {
     "Merck more than a mother Recognization Awards",
     "Merck more than a mother Fashion Award"
   ];
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   @override
   void initState() {
     // TODO: implement initState
 
     super.initState();
+    getaward();
   }
 
   @override
@@ -52,7 +61,7 @@ class ourawardState extends State<Ouraward> {
               height: 10,
             ),
             ListView.builder(
-              itemCount: awardlist.length,
+              itemCount: GlobalLists.awardlisting.length,
               shrinkWrap: true,
               physics: ScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
@@ -73,16 +82,30 @@ class ourawardState extends State<Ouraward> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              awardlist[index],
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  color: Customcolor.pink_col,
-                                  fontSize:
-                                      ResponsiveFlutter.of(context).fontSize(2),
-                                  fontWeight: FontWeight.w500),
-                              maxLines: 4,
+                            Html(
+                              data:
+                                  """${GlobalLists.awardlisting[index].title} """,
+                              onLinkTap: (url) {
+                                print("Opening $url...");
+                              },
+                              style: {
+                                "body": Style(
+                                    textAlign: TextAlign.start,
+                                    color: Customcolor.pink_col,
+                                    fontSize: FontSize.large,
+                                    fontWeight: FontWeight.w500),
+                              },
                             ),
+                            // Text(
+                            //   GlobalLists.awardlisting[index].title,
+                            //   overflow: TextOverflow.ellipsis,
+                            //   style: TextStyle(
+                            //       color: Customcolor.pink_col,
+                            //       fontSize:
+                            //           ResponsiveFlutter.of(context).fontSize(2),
+                            //       fontWeight: FontWeight.w500),
+                            //   maxLines: 4,
+                            // ),
                             SizedBox(
                               height: 10,
                             ),
@@ -131,5 +154,39 @@ class ourawardState extends State<Ouraward> {
             ),
           ],
         ));
+  }
+
+  getaward() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.ouraward,
+        (response) async {
+          OurawardResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.awardlisting = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 }

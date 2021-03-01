@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:merckfoundation22dec/model/FilterdataResponse.dart';
 import 'package:merckfoundation22dec/model/GetAboutMerckContentResp.dart';
 import 'package:merckfoundation22dec/model/GetAboutMerckVideosResp.dart';
 import 'package:merckfoundation22dec/model/GetFertilityContentResp.dart';
@@ -14,6 +15,7 @@ import 'package:merckfoundation22dec/model/GetLocalSongsContentResp.dart';
 import 'package:merckfoundation22dec/model/GetLocalSongsDigitalResp.dart';
 import 'package:merckfoundation22dec/model/GetLocalSongsVideosResp.dart';
 import 'package:merckfoundation22dec/model/MMTMSlider.dart';
+import 'package:merckfoundation22dec/model/OurawardResponse.dart';
 import 'package:merckfoundation22dec/model/StrategyResponse.dart';
 import 'package:merckfoundation22dec/model/dataprivacy.dart';
 import 'package:merckfoundation22dec/model/empoweingbernavideo.dart';
@@ -44,6 +46,9 @@ import 'package:merckfoundation22dec/model/mmtmTestimonialResponse.dart'
     as testimonial;
 import 'package:merckfoundation22dec/model/mmtmcallforappResponse.dart';
 import 'package:merckfoundation22dec/model/mmtmdigitallibrary.dart';
+import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
+import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
+import 'package:merckfoundation22dec/model/LeadershipResponse.dart';
 
 enum API {
   vision,
@@ -102,6 +107,14 @@ enum API {
 
   merckAboutContent,
   merckAboutVideos,
+
+  //filter
+  countrylist,
+  categoryList,
+  filterlist,
+
+  //awardsection
+  ouraward
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -160,7 +173,9 @@ class APIManager {
           break;
 
         case API.ourActivities:
-          apiPathString = "show/our-activities/23/Android/1";
+          apiPathString =
+              "media_and_events_sorting/our-activities/23/Android/1";
+          //"show/our-activities/23/Android/1";
           break;
 
         case API.ourActivitiesObjectives:
@@ -176,7 +191,8 @@ class APIManager {
           break;
 
         case API.leadership:
-          apiPathString = "show/leadership/19/Android/1";
+          apiPathString = "leaders/leadership/19/Android/1";
+          //"show/leadership/19/Android/1";
           break;
 
         case API.dataPrivacy:
@@ -309,6 +325,19 @@ class APIManager {
           apiPathString = "show/about-merck-more-than-a-mother/14/Android/1";
           break;
 
+        case API.countrylist:
+          apiPathString = "getCountryList/1";
+          break;
+        case API.categoryList:
+          apiPathString = "getCategoryList/1";
+          break;
+        case API.ouraward:
+          apiPathString = "show/home/11/Android/1";
+          break;
+        case API.filterlist:
+          apiPathString = "filter_data";
+          break;
+
         default:
           apiPathString = "";
       }
@@ -330,7 +359,8 @@ class APIManager {
           break;
 
         case API.ourActivities:
-          apiPathString = "show/our-activities/23/IOS/1";
+          apiPathString = "media_and_events_sorting/our-activities/23/IOS/1";
+          //"show/our-activities/23/IOS/1";
           break;
 
         case API.ourActivitiesObjectives:
@@ -346,7 +376,8 @@ class APIManager {
           break;
 
         case API.leadership:
-          apiPathString = "show/leadership/19/IOS/1";
+          apiPathString = "leaders/leadership/19/IOS/1";
+          //"show/leadership/19/IOS/1";
           break;
 
         case API.dataPrivacy:
@@ -483,6 +514,18 @@ class APIManager {
           apiPathString = "show/about-merck-more-than-a-mother/14/IOS/1";
           break;
 
+        case API.countrylist:
+          apiPathString = "getCountryList/1";
+          break;
+        case API.categoryList:
+          apiPathString = "getCategoryList/1";
+          break;
+        case API.ouraward:
+          apiPathString = "show/home/11/IOS/1";
+          break;
+        case API.filterlist:
+          apiPathString = "filter_data";
+          break;
         default:
           apiPathString = "";
       }
@@ -495,15 +538,15 @@ class APIManager {
   HTTPMethod apiHTTPMethod(API api) {
     HTTPMethod method;
     switch (api) {
-      // case API.vision:
-      // case API.legaldisclaimer:
-      //  case API.mission:
-      //  case API.ourActivities:
-      //   case API.ourPolicies:
-      //    case API.dataPrivacy:
+      case API.filterlist:
+        // case API.legaldisclaimer:
+        //  case API.mission:
+        //  case API.ourActivities:
+        //   case API.ourPolicies:
+        //    case API.dataPrivacy:
 
-      //   method = HTTPMethod.POST;
-      //   break;
+        method = HTTPMethod.POST;
+        break;
 
       default:
         method = HTTPMethod.GET;
@@ -653,11 +696,23 @@ class APIManager {
       case API.merckAboutVideos:
         className = "getMerckAboutVideosResp";
         break;
-
-      case API.leadership:
-        className = "";
+      case API.countrylist:
+        className = "CountrylistResponse";
         break;
 
+      case API.categoryList:
+        className = "CategorylistResponse";
+        break;
+
+      case API.leadership:
+        className = "LeadershipResponse";
+        break;
+      case API.ouraward:
+        className = "OurawardResponse";
+        break;
+      case API.filterlist:
+        className = "FilterdataResponse";
+        break;
       default:
         className = 'CommonResponse';
     }
@@ -800,17 +855,35 @@ class APIManager {
     if (className == "getMerckAboutVideosResp") {
       responseObj = GetAboutMerckVideosResp.fromJson(json);
     }
+    if (className == "CountrylistResponse") {
+      responseObj = CountrylistResponse.fromJson(json);
+    }
+    if (className == "CategorylistResponse") {
+      responseObj = CategorylistResponse.fromJson(json);
+    }
+    if (className == "LeadershipResponse") {
+      responseObj = LeadershipResponse.fromJson(json);
+    }
+    if (className == "OurawardResponse") {
+      responseObj = OurawardResponse.fromJson(json);
+    }
+    if (className == "FilterdataResponse") {
+      responseObj = FilterdataResponse.fromJson(json);
+    }
 
     return responseObj;
   }
 
   Future<void> apiRequest(BuildContext context, API api,
       successCallback onSuccess, failureCallback onFailure,
-      {dynamic parameter, dynamic params, dynamic path}) async {
+      {dynamic parameter,
+      dynamic params,
+      dynamic path,
+      dynamic jsonval}) async {
     var jsonResponse;
     http.Response response;
 
-    var body = (parameter != null ? json.encode(parameter) : null);
+    var body = (parameter != null ? json.encode(parameter) : jsonval);
 
     var url = await this.apiEndPoint(api);
     if (path != null) {
@@ -819,7 +892,7 @@ class APIManager {
     print('URL is $url');
 
     Map<String, String> headers = {
-      HttpHeaders.contentTypeHeader: 'application/json',
+      // HttpHeaders.contentTypeHeader: 'application/json',
     };
 
     // headers = {
