@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/videofilter.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/model/FilterdataResponse.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -26,7 +27,8 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
   bool isyearexpanded = false;
   var yearController = TextEditingController();
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
-
+  String countryid = "";
+  String catid = "";
   @override
   void initState() {
     super.initState();
@@ -54,7 +56,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                             height: 10,
                           ),
                           Container(
-                            height: 40,
+                            height: 80,
                             child: GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -87,7 +89,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                             height: 10,
                           ),
                           Container(
-                            height: 40,
+                            height: 80,
                             child: GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -155,7 +157,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                                 height: 10,
                               ),
                               Container(
-                                height: 40,
+                                height: 80,
                                 child: GestureDetector(
                                   onTap: () {
                                     setState(() {
@@ -197,7 +199,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                                     height: 10,
                                   ),
                                   Container(
-                                    height: 40,
+                                    height: 80,
                                     child: GestureDetector(
                                       onTap: () {
                                         setState(() {
@@ -209,9 +211,12 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                                       child: TextField(
                                         enabled: false,
                                         controller: videocategoryController,
+                                        style: TextStyle(fontSize: 14),
+                                        //keyboardType: TextInputType.multiline,
                                         decoration: InputDecoration(
                                             // contentPadding:
                                             //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
+
                                             hintText: "Select video category",
                                             border: OutlineInputBorder(
                                                 borderRadius:
@@ -240,7 +245,13 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                     if (widget.index == 1) {
                       //for video library
 
-                      //getfilterdata("2","" ,"");
+                      getfilterdata("2", countryid, catid);
+                    } else if (widget.index == 2) {
+                      //for stories
+                      getfilterdata("1", countryid, catid);
+                    } else if (widget.index == 3) {
+                      //for alumina
+                      getfilterdata("3", countryid, catid);
                     }
                   },
                   child: Container(
@@ -286,6 +297,8 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                           setState(() {
                             countryController.text =
                                 GlobalLists.countrylisting[index].countryName;
+                            countryid =
+                                GlobalLists.countrylisting[index].countryId;
                             iscountryexpanded = false;
                           });
                         },
@@ -336,6 +349,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                           setState(() {
                             videocategoryController.text =
                                 GlobalLists.categorylisting[index].categoryName;
+                            catid = GlobalLists.categorylisting[index].id;
                             isvideocategoryexpanded = false;
                           });
                         },
@@ -409,52 +423,52 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
     );
   }
 
-  // getfilterdata(String pagename, String countryid, String catid) async {
-  //   var status1 = await ConnectionDetector.checkInternetConnection();
-  //   // var fcm_token = SPManager().getAuthToken();
-  //   if (status1) {
-  //     ShowDialogs.showLoadingDialog(context, _keyLoader);
-  //     if (pagename == "1") {
-  //       final json = {
-  //         'page_name': pagename,
-  //         'country_id': countryid,
-  //       };
-  //       print(json);
-  //     } else if (pagename == "2") {
-  //       final json = {
-  //         'page_name': pagename,
-  //         'country_id': countryid,
-  //         "catg_id": catid
-  //       };
-  //       print(json);
-  //     } else if (pagename == "3") {
-  //       final json = {'page_name': pagename, "catg_id": catid};
-  //       print(json);
-  //     }
-
-  //     APIManager().apiRequest(context, API.filterlist, (response) async {
-  //       FilterdataResponse resp = response;
-  //       print(response);
-  //       print('Resp : $resp');
-  //       Navigator.of(_keyLoader.currentContext).pop();
-  //       if (resp.success == "True") {
-  //         setState(() {
-  //           ShowDialogs.showToast(resp.msg);
-  //           Navigator.push(
-  //               context,
-  //               MaterialPageRoute(
-  //                   builder: (BuildContext context) => Videolibrary()));
-  //         });
-  //       } else {
-  //         ShowDialogs.showToast(resp.msg);
-  //       }
-  //     }, (error) {
-  //       print('ERR msg is $error');
-  //       ShowDialogs.showToast("Server Not Responding");
-  //       Navigator.of(_keyLoader.currentContext).pop();
-  //     }, jsonval: json);
-  //   } else {
-  //     ShowDialogs.showToast("Please check internet connection");
-  //   }
-  // }
+  getfilterdata(String pagename, String countryid, String catid) async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+    // var fcm_token = SPManager().getAuthToken();
+    var json;
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+      if (pagename == "1") {
+        json = {
+          'page_name': pagename,
+          'country_id': countryid,
+        };
+      } else if (pagename == "2") {
+        json = {
+          'page_name': pagename,
+          'country_id': countryid,
+          "catg_id": catid
+        };
+      } else if (pagename == "3") {
+        json = {'page_name': pagename, "catg_id": catid};
+      }
+      print("filter");
+      print(json);
+      APIManager().apiRequest(context, API.filterlist, (response) async {
+        FilterdataResponse resp = response;
+        print(response);
+        print('Resp : $resp');
+        Navigator.of(_keyLoader.currentContext).pop();
+        if (resp.success == "True") {
+          setState(() {
+            ShowDialogs.showToast(resp.msg);
+            GlobalLists.filterdatalisting = resp.data.list;
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Videofilter()));
+          });
+        } else {
+          ShowDialogs.showToast(resp.msg);
+        }
+      }, (error) {
+        print('ERR msg is $error');
+        ShowDialogs.showToast("Server Not Responding");
+        Navigator.of(_keyLoader.currentContext).pop();
+      }, jsonval: json);
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
 }

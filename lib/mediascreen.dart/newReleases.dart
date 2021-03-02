@@ -30,13 +30,13 @@ class NewsReleaseState extends State<NewsRelease> {
   }
 
   _launchURL(String urlIs) async {
-  var url = urlIs;
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+    var url = urlIs;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -89,17 +89,22 @@ class NewsReleaseState extends State<NewsRelease> {
                                 child: Column(
                                   children: [
                                     GestureDetector(
-                                                                      onTap: (){
-                                  _launchURL( Constantstring.baseUrl+  GlobalLists.newsReleaseList[index].pdfFile);
-                                },
-                                                                          child: Row(
+                                      onTap: () {
+                                        _launchURL(Constantstring.baseUrl +
+                                            GlobalLists.newsReleaseList[index]
+                                                .pdfFile);
+                                      },
+                                      child: Row(
                                         // mainAxisAlignment: MainAxisAlignment.start,
                                         //crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           ClipRect(
-                                            child: Image.asset("assets/newImages/pdf.png", height: 80,
-                                              width: 80, ),
-                                            
+                                            child: Image.asset(
+                                              "assets/newImages/pdf.png",
+                                              height: 80,
+                                              width: 80,
+                                            ),
+
                                             // FadeInImage.assetNetwork(
                                             //   placeholder:
                                             //       'assets/newImages/placeholder_3.jpg',
@@ -115,14 +120,15 @@ class NewsReleaseState extends State<NewsRelease> {
                                           ),
                                           Expanded(
                                             child: Text(
-                                            GlobalLists
+                                              GlobalLists
                                                   .newsReleaseList[index].title,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   color: Colors.black,
-                                                  fontSize: ResponsiveFlutter.of(
-                                                          context)
-                                                      .fontSize(1.8),
+                                                  fontSize:
+                                                      ResponsiveFlutter.of(
+                                                              context)
+                                                          .fontSize(1.8),
                                                   fontWeight: FontWeight.w500),
                                               maxLines: 4,
                                             ),
