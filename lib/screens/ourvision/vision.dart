@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/visionResponse.dart';
@@ -8,6 +10,8 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:social_share/social_share.dart';
+import 'package:screenshot/screenshot.dart';
 
 class OurVision extends StatefulWidget {
   @override
@@ -19,11 +23,14 @@ class OurVision extends StatefulWidget {
 class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
   AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+  double imgHeight = 50;
+  String _platformVersion = 'Unknown';
 
   @override
   void initState() {
     getvision();
     super.initState();
+    initPlatformState();
 
     _controller = new AnimationController(
       vsync: this,
@@ -31,6 +38,17 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
     );
   }
 
+  Future<void> initPlatformState() async {
+    String platformVersion;
+
+    if (!mounted) return;
+
+    setState(() {
+      _platformVersion = platformVersion;
+    });
+  }
+
+  ScreenshotController screenshotController = ScreenshotController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,19 +56,94 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {
             print("hi");
-            // showModalBottomSheet<void>(
-            //   shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.vertical(top: Radius.circular(24.0)),
-            //   ),
-            //   context: context,
-            //   builder: (BuildContext context) {
-            //     return Column(
-            //       children: [],
-            //     );
-            //   },
-            // ).whenComplete(() {
-            //   setState(() {});
-            // });
+            showModalBottomSheet<void>(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(24.0)),
+              ),
+              context: context,
+              builder: (BuildContext context) {
+                return Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //
+                      GestureDetector(
+                        onTap: () async {
+                          await screenshotController
+                              .capture()
+                              .then((image) async {
+                            //facebook appId is mandatory for andorid or else share won't work
+                            Platform.isAndroid
+                                ? SocialShare.shareFacebookStory(
+                                        image.path,
+                                        "#ffffff",
+                                        "#000000",
+                                        "https://google.com",
+                                        appId: "xxxxxxxxxxxxx")
+                                    .then((data) {
+                                    print(data);
+                                  })
+                                : SocialShare.shareFacebookStory(
+                                        image.path,
+                                        "#ffffff",
+                                        "#000000",
+                                        "https://google.com")
+                                    .then((data) {
+                                    print(data);
+                                  });
+                          });
+                        },
+                        child: Image.asset(
+                          "assets/newImages/facebook.png",
+                          height: imgHeight,
+                          width: imgHeight,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 7,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          SocialShare.shareTwitter(
+                                  "This is Social Share twitter example",
+                                  hashtags: ["hello", "world", "foo", "bar"],
+                                  url: "https://google.com/#/hello",
+                                  trailingText: "\nhello")
+                              .then((data) {
+                            print(data);
+                          });
+                        },
+                        child: Image.asset(
+                          "assets/newImages/twitter.png",
+                          height: imgHeight,
+                          width: imgHeight,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 7,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          SocialShare.shareLinkedin(
+                                  "Hello World \n https://google.com")
+                              .then((data) {
+                            print(data);
+                          });
+                        },
+                        child: Image.asset(
+                          "assets/newImages/linkedin.png",
+                          height: imgHeight,
+                          width: imgHeight,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ).whenComplete(() {
+              setState(() {});
+            });
           },
           onTapval: () {
             Navigator.push(
