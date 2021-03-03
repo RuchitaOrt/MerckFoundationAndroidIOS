@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/searchscreen/searchcategory.dart';
 
 class CustomAppBar extends PreferredSize {
   // final Widget child;
@@ -65,10 +66,18 @@ class CustomAppBar extends PreferredSize {
               SizedBox(
                 width: 30,
               ),
-              Image.asset(
-                "assets/images/search_icon@2x.png",
-                width: 20,
-                height: 20,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Searchcategory()));
+                },
+                child: Image.asset(
+                  "assets/images/search_icon@2x.png",
+                  width: 20,
+                  height: 20,
+                ),
               ),
               SizedBox(
                 width: 10,

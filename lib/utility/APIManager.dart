@@ -49,6 +49,7 @@ import 'package:merckfoundation22dec/model/mmtmdigitallibrary.dart';
 import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
 import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
 import 'package:merckfoundation22dec/model/LeadershipResponse.dart';
+import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
 
 enum API {
   vision,
@@ -114,7 +115,11 @@ enum API {
   filterlist,
 
   //awardsection
-  ouraward
+  ouraward,
+  ourawarddetail,
+
+  //mobilesearch
+  mobilesearch
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -154,6 +159,7 @@ class APIManager {
     return baseURL;
   }
 
+  static String searchapi = baseURL + "mobile_search";
   Future<String> apiEndPoint(API api) async {
     var apiPathString = "";
     if (Platform.isAndroid) {
@@ -337,7 +343,9 @@ class APIManager {
         case API.filterlist:
           apiPathString = "filter_data";
           break;
-
+        case API.ourawarddetail:
+          apiPathString = "merck_awards";
+          break;
         default:
           apiPathString = "";
       }
@@ -526,6 +534,9 @@ class APIManager {
         case API.filterlist:
           apiPathString = "filter_data";
           break;
+        case API.ourawarddetail:
+          apiPathString = "merck_awards";
+          break;
         default:
           apiPathString = "";
       }
@@ -539,6 +550,7 @@ class APIManager {
     HTTPMethod method;
     switch (api) {
       case API.filterlist:
+      case API.ourawarddetail:
         // case API.legaldisclaimer:
         //  case API.mission:
         //  case API.ourActivities:
@@ -713,6 +725,9 @@ class APIManager {
       case API.filterlist:
         className = "FilterdataResponse";
         break;
+      case API.ourawarddetail:
+        className = "OurawarddetailResponse";
+        break;
       default:
         className = 'CommonResponse';
     }
@@ -869,6 +884,9 @@ class APIManager {
     }
     if (className == "FilterdataResponse") {
       responseObj = FilterdataResponse.fromJson(json);
+    }
+    if (className == "OurawarddetailResponse") {
+      responseObj = OurawarddetailResponse.fromJson(json);
     }
 
     return responseObj;

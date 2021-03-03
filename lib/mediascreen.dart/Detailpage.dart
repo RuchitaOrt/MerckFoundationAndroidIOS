@@ -7,7 +7,8 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 
 class Detailpage extends StatefulWidget {
   final int indexIs;
-   const Detailpage({Key key, this.indexIs}) : super(key: key);
+  final int callfrom;
+  const Detailpage({Key key, this.indexIs, this.callfrom}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return DetailpageState();
@@ -18,10 +19,8 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
   AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
-
   @override
   void initState() {
-
     super.initState();
 
     _controller = new AnimationController(
@@ -56,23 +55,22 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
             Padding(
               padding: const EdgeInsets.only(bottom: 1),
               child: ListView(
-                      shrinkWrap: true,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                    
-                        Padding(
+                shrinkWrap: true,
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  widget.callfrom == 1
+                      ? Padding(
                           padding: const EdgeInsets.only(
                               left: 15, right: 8, top: 8, bottom: 15),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                             
                               Html(
-                                data: """${GlobalLists.newsLettersList[widget.indexIs].details} """,
+                                data:
+                                    """${GlobalLists.newsLettersList[widget.indexIs].details} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
                                 },
-                             
                               ),
                               SizedBox(
                                 height: 15,
@@ -83,9 +81,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                 onLinkTap: (url) {
                                   print("Opening $url...");
                                 },
-                             
                               ),
-                            
                               Padding(
                                 padding: const EdgeInsets.only(
                                     right: 60, left: 60, top: 20),
@@ -98,9 +94,45 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                               )
                             ],
                           ),
-                        ),
-                      ],
-                    ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(
+                              left: 15, right: 8, top: 8, bottom: 15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Html(
+                                data:
+                                    """${GlobalLists.searcharticlelisting[widget.indexIs]['detail_page_url']} """,
+                                onLinkTap: (url) {
+                                  print("Opening $url...");
+                                },
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              // Html(
+                              //   data:
+                              //       """${GlobalLists.newsLettersList[widget.indexIs].detailPageUrl} """,
+                              //   onLinkTap: (url) {
+                              //     print("Opening $url...");
+                              //   },
+                              // ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 60, left: 60, top: 20),
+                                child: Image.asset(
+                                  "assets/newImages/flowers_footer.png",
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              )
+                            ],
+                          ),
+                        )
+                ],
+              ),
             ),
 
             // TextSpan(
@@ -109,6 +141,4 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
           ],
         ));
   }
-
-  
 }

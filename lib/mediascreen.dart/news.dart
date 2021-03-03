@@ -76,75 +76,74 @@ class NewsState extends State<NewsPage> {
                       return Padding(
                         padding:
                             const EdgeInsets.only(left: 8, right: 8, bottom: 6),
-                        child:
-                         GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              Detailpage(indexIs:index
-                                   ) ));
-                                },
-                        
-                        
-                     child:    Card(
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        Detailpage(
+                                          indexIs: index,
+                                          callfrom: 1,
+                                        )));
+                          },
+                          child: Card(
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
                             ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: 8, left: 10, right: 10, top: 8),
-                            child: Column(
-                              children: [
-                                Row(
-                                  // mainAxisAlignment: MainAxisAlignment.start,
-                                  //crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    ClipRect(
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                            'assets/newImages/placeholder_3.jpg',
-                                        image:Constantstring.baseUrl+GlobalLists
-                                            .newsLettersList[index].image,
-                                        fit: BoxFit.cover,
-                                        height: 80,
-                                        width: 80,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  bottom: 8, left: 10, right: 10, top: 8),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    // mainAxisAlignment: MainAxisAlignment.start,
+                                    //crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      ClipRect(
+                                        child: FadeInImage.assetNetwork(
+                                          placeholder:
+                                              'assets/newImages/placeholder_3.jpg',
+                                          image: Constantstring.baseUrl +
+                                              GlobalLists
+                                                  .newsLettersList[index].image,
+                                          fit: BoxFit.cover,
+                                          height: 80,
+                                          width: 80,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            GlobalLists
-                                                .newsLettersList[index].title,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                color: Customcolor.colorblack,
-                                                fontSize: ResponsiveFlutter.of(
-                                                        context)
-                                                    .fontSize(1.8),
-                                                fontWeight: FontWeight.w500),
-                                            maxLines: 4,
-                                          ),
-                                        ],
+                                      SizedBox(
+                                        width: 10,
                                       ),
-                                  
-                                ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                         
-                        ),
+                                      Expanded(
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              GlobalLists
+                                                  .newsLettersList[index].title,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  color: Customcolor.colorblack,
+                                                  fontSize:
+                                                      ResponsiveFlutter.of(
+                                                              context)
+                                                          .fontSize(1.8),
+                                                  fontWeight: FontWeight.w500),
+                                              maxLines: 4,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       );
                     },
                   ),

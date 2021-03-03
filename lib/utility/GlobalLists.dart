@@ -80,6 +80,12 @@ import 'package:merckfoundation22dec/model/LeadershipResponse.dart' as ceolist;
 import 'package:merckfoundation22dec/model/OurawardResponse.dart' as awardlist;
 import 'package:merckfoundation22dec/model/FilterdataResponse.dart'
     as filterlist;
+import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart'
+    as awarddetail;
+import 'package:merckfoundation22dec/model/searchmodel/SearchvideocategoryResponse.dart'
+    as searchvideo;
+import 'package:merckfoundation22dec/model/searchmodel/SearchnewreleasecategoryResponse.dart'
+    as searchnewrelease;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -151,4 +157,10 @@ class GlobalLists {
 
   //ouraward
   static List<awardlist.ListElement> awardlisting = [];
+  static List<awarddetail.ListElement> awarddetallisting = [];
+
+  //search
+  static List<dynamic> searchvideollisting = [];
+  static List<dynamic> searchnewreleaselisting = [];
+  static List<dynamic> searcharticlelisting = [];
 }

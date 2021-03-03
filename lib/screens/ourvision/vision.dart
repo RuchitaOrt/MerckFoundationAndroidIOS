@@ -62,82 +62,108 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
               ),
               context: context,
               builder: (BuildContext context) {
-                return Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      //
-                      GestureDetector(
-                        onTap: () async {
-                          await screenshotController
-                              .capture()
-                              .then((image) async {
-                            //facebook appId is mandatory for andorid or else share won't work
+                return Screenshot(
+                  controller: screenshotController,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        //
+                        GestureDetector(
+                          onTap: () async {
+                            // await screenshotController
+                            //     .capture()
+                            //     .then((image) async {
+                            //   //facebook appId is mandatory for andorid or else share won't work
+
+                            // });
                             Platform.isAndroid
-                                ? SocialShare.shareFacebookStory(
-                                        image.path,
-                                        "#ffffff",
-                                        "#000000",
-                                        "https://google.com",
-                                        appId: "xxxxxxxxxxxxx")
+                                ? SocialShare.shareFacebookStory("#ffffff",
+                                        "#000000", "https://google.com",
+                                        appId: "870993726807583")
                                     .then((data) {
                                     print(data);
                                   })
-                                : SocialShare.shareFacebookStory(
-                                        image.path,
-                                        "#ffffff",
-                                        "#000000",
-                                        "https://google.com")
+                                : SocialShare.shareFacebookStory("#ffffff",
+                                        "#000000", "https://google.com")
                                     .then((data) {
                                     print(data);
                                   });
-                          });
-                        },
-                        child: Image.asset(
-                          "assets/newImages/facebook.png",
-                          height: imgHeight,
-                          width: imgHeight,
+                          },
+                          child: Image.asset(
+                            "assets/newImages/facebook.png",
+                            height: imgHeight,
+                            width: imgHeight,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          SocialShare.shareTwitter(
-                                  "This is Social Share twitter example",
-                                  hashtags: ["hello", "world", "foo", "bar"],
-                                  url: "https://google.com/#/hello",
-                                  trailingText: "\nhello")
-                              .then((data) {
-                            print(data);
-                          });
-                        },
-                        child: Image.asset(
-                          "assets/newImages/twitter.png",
-                          height: imgHeight,
-                          width: imgHeight,
+                        // RaisedButton(
+                        //   onPressed: () async {
+                        //     await screenshotController
+                        //         .capture()
+                        //         .then((image) async {
+                        //       //facebook appId is mandatory for andorid or else share won't work
+                        //       Platform.isAndroid
+                        //           ? SocialShare.shareFacebookStory(
+                        //                   image.path,
+                        //                   "#ffffff",
+                        //                   "#000000",
+                        //                   "https://google.com",
+                        //                   appId: "870993726807583")
+                        //               .then((data) {
+                        //               print(data);
+                        //             })
+                        //           : SocialShare.shareFacebookStory(
+                        //                   image.path,
+                        //                   "#ffffff",
+                        //                   "#000000",
+                        //                   "https://google.com")
+                        //               .then((data) {
+                        //               print(data);
+                        //             });
+                        //     });
+                        //   },
+                        //   child: Text("Share On Facebook Story"),
+                        // ),
+                        SizedBox(
+                          width: 7,
                         ),
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          SocialShare.shareLinkedin(
-                                  "Hello World \n https://google.com")
-                              .then((data) {
-                            print(data);
-                          });
-                        },
-                        child: Image.asset(
-                          "assets/newImages/linkedin.png",
-                          height: imgHeight,
-                          width: imgHeight,
+                        GestureDetector(
+                          onTap: () {
+                            SocialShare.shareTwitter(
+                                    "This is Social Share twitter example",
+                                    hashtags: ["hello", "world", "foo", "bar"],
+                                    url: "https://google.com/#/hello",
+                                    trailingText: "\nhello")
+                                .then((data) {
+                              print(data);
+                            });
+                          },
+                          child: Image.asset(
+                            "assets/newImages/twitter.png",
+                            height: imgHeight,
+                            width: imgHeight,
+                          ),
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          width: 7,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            SocialShare.shareLinkedin(
+                                    "Hello World \n https://google.com")
+                                .then((data) {
+                              print(data);
+                            });
+                          },
+                          child: Image.asset(
+                            "assets/newImages/linkedin.png",
+                            height: imgHeight,
+                            width: imgHeight,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
+import 'package:merckfoundation22dec/searchscreen/searchcategory.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
 class InnerCustomAppBar extends PreferredSize {
@@ -91,10 +92,20 @@ class InnerCustomAppBar extends PreferredSize {
             SizedBox(
               width: 15,
             ),
-            Image.asset(
-              trallingImg2,
-              width: 23,
-              height: 23,
+            GestureDetector(
+              onTap: () {
+                print("search");
+
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Searchcategory()));
+              },
+              child: Image.asset(
+                trallingImg2,
+                width: 23,
+                height: 23,
+              ),
             ),
             SizedBox(
               width: 10,

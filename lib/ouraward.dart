@@ -10,6 +10,8 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
+import 'package:merckfoundation22dec/ourawarddetail.dart';
 
 class Ouraward extends StatefulWidget {
   @override
@@ -113,7 +115,10 @@ class ourawardState extends State<Ouraward> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    getawarddetail(GlobalLists
+                                        .awardlisting[index].pageUrl);
+                                  },
                                   child: Container(
                                     width: 110,
                                     height: 40,
@@ -185,6 +190,45 @@ class ourawardState extends State<Ouraward> {
           Navigator.of(_keyLoader.currentContext).pop();
         },
       );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  getawarddetail(String pageurl) async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+      final json = {
+        'page_url': pageurl,
+      };
+      print(json);
+      APIManager().apiRequest(context, API.ourawarddetail, (response) async {
+        OurawarddetailResponse resp = response;
+        print(response);
+        print('Resp : $resp');
+
+        Navigator.of(_keyLoader.currentContext).pop();
+
+        if (resp.success == "True") {
+          setState(() {
+            GlobalLists.awarddetallisting = resp.data.list;
+            // GlobalLists.awarddetallisting[0].title
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => OurAwardDetail(
+                          detaill: GlobalLists.awarddetallisting,
+                        )));
+          });
+        } else {
+          ShowDialogs.showToast(resp.msg);
+        }
+      }, (error) {
+        print('ERR msg is $error');
+        Navigator.of(_keyLoader.currentContext).pop();
+      }, jsonval: json);
     } else {
       ShowDialogs.showToast("Please check internet connection");
     }
