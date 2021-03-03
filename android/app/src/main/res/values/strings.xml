@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="facebook_app_id">870993726807583</string>
-    <string name="fb_login_protocol_scheme">fb870993726807583</string>
-    <string name="app_name">Merck Foundation</string>
+    <string name="facebook_app_id">250032663370281</string>
+    <string name="fb_login_protocol_scheme">fb250032663370281</string>
 
 </resources>

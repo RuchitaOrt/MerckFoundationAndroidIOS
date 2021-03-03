@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -10,7 +11,6 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:social_share/social_share.dart';
 import 'package:screenshot/screenshot.dart';
 
 class OurVision extends StatefulWidget {
@@ -72,25 +72,28 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                         //
                         GestureDetector(
                           onTap: () async {
+                              FlutterShareMe().shareToFacebook(
+                      url: 'https://github.com/lizhuoyuan', msg: "msg");
+                },
                             // await screenshotController
                             //     .capture()
                             //     .then((image) async {
                             //   //facebook appId is mandatory for andorid or else share won't work
 
                             // });
-                            Platform.isAndroid
-                                ? SocialShare.shareFacebookStory("#ffffff",
-                                        "#000000", "https://google.com",
-                                        appId: "870993726807583")
-                                    .then((data) {
-                                    print(data);
-                                  })
-                                : SocialShare.shareFacebookStory("#ffffff",
-                                        "#000000", "https://google.com")
-                                    .then((data) {
-                                    print(data);
-                                  });
-                          },
+                            // Platform.isAndroid
+                            //     ? SocialShare.shareFacebookStory("#ffffff",
+                            //             "#000000", "https://google.com",
+                            //             appId: "870993726807583")
+                            //         .then((data) {
+                            //         print(data);
+                            //       })
+                            //     : SocialShare.shareFacebookStory("#ffffff",
+                            //             "#000000", "https://google.com")
+                            //         .then((data) {
+                            //         print(data);
+                            //       });
+                          
                           child: Image.asset(
                             "assets/newImages/facebook.png",
                             height: imgHeight,
@@ -130,14 +133,14 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                         ),
                         GestureDetector(
                           onTap: () {
-                            SocialShare.shareTwitter(
-                                    "This is Social Share twitter example",
-                                    hashtags: ["hello", "world", "foo", "bar"],
-                                    url: "https://google.com/#/hello",
-                                    trailingText: "\nhello")
-                                .then((data) {
-                              print(data);
-                            });
+                            // SocialShare.shareTwitter(
+                            //         "This is Social Share twitter example",
+                            //         hashtags: ["hello", "world", "foo", "bar"],
+                            //         url: "https://google.com/#/hello",
+                            //         trailingText: "\nhello")
+                            //     .then((data) {
+                            //   print(data);
+                            // });
                           },
                           child: Image.asset(
                             "assets/newImages/twitter.png",
@@ -150,11 +153,11 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                         ),
                         GestureDetector(
                           onTap: () {
-                            SocialShare.shareLinkedin(
-                                    "Hello World \n https://google.com")
-                                .then((data) {
-                              print(data);
-                            });
+                            // SocialShare.shareLinkedin(
+                            //         "Hello World \n https://google.com")
+                            //     .then((data) {
+                            //   print(data);
+                            // });
                           },
                           child: Image.asset(
                             "assets/newImages/linkedin.png",
