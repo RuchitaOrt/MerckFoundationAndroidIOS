@@ -12,6 +12,7 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 
 class MerckFoundationMedia extends StatefulWidget {
   @override
@@ -75,53 +76,68 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                     return Padding(
                       padding:
                           const EdgeInsets.only(left: 8, right: 8, bottom: 6),
-                      child: Card(
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(5),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      VideoPlayer(
+                                        videoUrl: GlobalLists
+                                            .merckinMediaList[index].mediaUrl,
+                                      )));
+                          // _launchURL(
+                          //     GlobalLists.merckinMediaList[index].mediaUrl);
+                        },
+                        child: Card(
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(5),
+                            ),
                           ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 8, bottom: 8),
-                          child: Column(
-                            children: [
-                              Row(
-                                // mainAxisAlignment: MainAxisAlignment.start,
-                                //crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ClipRect(
-                                    child: FadeInImage.assetNetwork(
-                                      placeholder:
-                                          'assets/newImages/placeholder_3.jpg',
-                                      image: Constantstring.baseUrl +
-                                          GlobalLists
-                                              .merckinMediaList[index].image,
-                                      fit: BoxFit.cover,
-                                      height: 80,
-                                      width: 80,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 8, bottom: 8),
+                            child: Column(
+                              children: [
+                                Row(
+                                  // mainAxisAlignment: MainAxisAlignment.start,
+                                  //crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ClipRect(
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder:
+                                            'assets/newImages/placeholder_3.jpg',
+                                        image: Constantstring.baseUrl +
+                                            GlobalLists
+                                                .merckinMediaList[index].image,
+                                        fit: BoxFit.cover,
+                                        height: 80,
+                                        width: 80,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      GlobalLists.merckinMediaList[index].title,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.8),
-                                          fontWeight: FontWeight.w500),
-                                      maxLines: 4,
+                                    SizedBox(
+                                      width: 10,
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    Expanded(
+                                      child: Text(
+                                        GlobalLists
+                                            .merckinMediaList[index].title,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize:
+                                                ResponsiveFlutter.of(context)
+                                                    .fontSize(1.8),
+                                            fontWeight: FontWeight.w500),
+                                        maxLines: 4,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
