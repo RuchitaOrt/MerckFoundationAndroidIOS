@@ -15,6 +15,8 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
+
+import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
 
 class Stories extends StatefulWidget {
@@ -108,15 +110,25 @@ class StoriesState extends State<Stories> {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              VideoPlayer(
-                                                videoUrl: GlobalLists
-                                                    .storiesList[index]
-                                                    .videoLink,
-                                              )));
+                                  // print("hiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+                                  // print(
+                                  //     GlobalLists.storiesList[index].videoLink);
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (BuildContext context) =>
+                                  //             VideoPlayer(
+                                  //               videoUrl: GlobalLists
+                                  //                   .storiesList[index]
+                                  //                   .videoLink,
+                                  //             )));
+                                  var storykey = GlobalLists
+                                      .storiesList[index].videoLink
+                                      .substring(GlobalLists.storiesList[index]
+                                              .videoLink.length -
+                                          11);
+                                  _launchInWebViewWithJavaScript(
+                                      "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                                 },
                                 child: Container(
                                   color: Colors.transparent,
@@ -251,6 +263,19 @@ class StoriesState extends State<Stories> {
       );
     } else {
       ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  Future<void> _launchInWebViewWithJavaScript(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
+    } else {
+      throw 'Could not launch $url';
     }
   }
 

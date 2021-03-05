@@ -152,24 +152,24 @@ class NewsReleaseState extends State<NewsRelease> {
                       ),
                     ],
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 90, right: 90, bottom: 20),
-                      child: FlatButton(
-                        color: Customcolor.text_blue,
-                        shape: RoundedRectangleBorder(
-                            side: BorderSide(color: Customcolor.text_blue)),
-                        child: Text(
-                          "Media Enquiries",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        minWidth: 40,
-                        onPressed: () {},
-                      ),
-                    ),
-                  ),
+                  // Align(
+                  //   alignment: Alignment.bottomCenter,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(
+                  //         left: 90, right: 90, bottom: 20),
+                  //     child: FlatButton(
+                  //       color: Customcolor.text_blue,
+                  //       shape: RoundedRectangleBorder(
+                  //           side: BorderSide(color: Customcolor.text_blue)),
+                  //       child: Text(
+                  //         "Media Enquiries",
+                  //         style: TextStyle(color: Colors.white),
+                  //       ),
+                  //       minWidth: 40,
+                  //       onPressed: () {},
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ));
   }

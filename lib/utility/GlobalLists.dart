@@ -163,4 +163,13 @@ class GlobalLists {
   static List<dynamic> searchvideollisting = [];
   static List<dynamic> searchnewreleaselisting = [];
   static List<dynamic> searcharticlelisting = [];
+  static List<dynamic> searcheventslisting = [];
+  static List<dynamic> searchtestimoniallisting = [];
+  static List<dynamic> searchphotolisting = [];
+  static List<dynamic> searchmedialisting = [];
+  static List<dynamic> searchceomeassagelisting = [];
+  static List<dynamic> searchawardlisting = [];
+
+  //ourprogram
+  static List<dynamic> programvideollisting = [];
 }

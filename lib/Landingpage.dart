@@ -1,4 +1,5 @@
 // import 'package:flutter/material.dart';
+// import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 // import 'package:merckfoundation22dec/screens/dashboard.dart';
 // import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 // import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -30,12 +31,18 @@
 //         shrinkWrap: true,
 //         physics: ScrollPhysics(),
 //         children: <Widget>[
+//           SizedBox(
+//             height: 20,
+//           ),
 //           Center(
 //             child: Image.asset(
 //               'assets/newImages/logo_menu.png',
 //               width: 200,
 //               height: 140,
 //             ),
+//           ),
+//           SizedBox(
+//             height: 20,
 //           ),
 //           Center(
 //             child: FormLabel(
@@ -60,26 +67,47 @@
 //               ),
 //             ),
 //           ),
-//           Stack(
-//             children: <Widget>[
-//               Align(
-//                 alignment: Alignment.center,
-//                 child: Container(
-//                     height: 200,
-//                     width: 200,
-//                     color: Customcolor.colorVoilet,
-//                     alignment: Alignment.bottomRight,
-//                     child: Center(
-//                       child: Text(
-//                         "",
-//                         style: TextStyle(color: Colors.black),
-//                       ),
-//                     )),
+//           // Stack(
+//           //   children: <Widget>[
+//           //     Align(
+//           //       alignment: Alignment.center,
+//           //       child: Container(
+//           //           height: 200,
+//           //           width: 200,
+//           //           color: Customcolor.colorVoilet,
+//           //           alignment: Alignment.bottomRight,
+//           //           child: Center(
+//           //             child: Text(
+//           //               "",
+//           //               style: TextStyle(color: Colors.black),
+//           //             ),
+//           //           )),
+//           //     ),
+//           //   ],
+//           // ),
+//           Padding(
+//             padding: const EdgeInsets.only(left: 20, right: 20),
+//             child: ClipPath(
+//               clipper: RoundedDiagonalPathClipper(),
+//               child: Container(
+//                 height: 340,
+//                 decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.all(Radius.circular(50.0)),
+//                   color: Customcolor.colorVoilet,
+//                 ),
+//                 child: Center(
+//                     child: Padding(
+//                   padding: const EdgeInsets.only(left: 25, right: 20, top: 50),
+//                   child: Text(
+//                     "The Merck Foundation is the philanthropic arm of Merck KGaA Germany that aims to improve the health and wekkbeing of people  and advance their lives throigh science and technology,Our efforts are primarily focused on improving access to quality & equitable healthcare solutions,building healthcare,scientific research & media capacity and empowering people in STEM* with a special focus on women and youth in under-served communites. \n\n*STEM:Science,Technology,Engineering and Mathematic",
+//                     style: TextStyle(color: Colors.white),
+//                   ),
+//                 )),
 //               ),
-//             ],
+//             ),
 //           ),
 //           Padding(
-//             padding: const EdgeInsets.only(left: 90, right: 90),
+//             padding: const EdgeInsets.only(left: 90, right: 90, top: 40),
 //             child: FlatButton(
 //               shape: RoundedRectangleBorder(
 //                   borderRadius: BorderRadius.circular(8.0),
@@ -87,12 +115,29 @@
 //               color: Customcolor.colorPink,
 //               textColor: Colors.white,
 //               padding: EdgeInsets.all(8.0),
-//               onPressed: () {},
-//               child: Text(
-//                 "Continue",
-//                 style: TextStyle(
-//                   fontSize: 14.0,
-//                 ),
+//               onPressed: () {
+//                 Navigator.pushReplacement(
+//                     context,
+//                     MaterialPageRoute(
+//                         builder: (context) => Dashboard(index: 0)));
+//               },
+//               child: Row(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   Text(
+//                     "Continue",
+//                     style: TextStyle(
+//                       fontSize: 14.0,
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     width: 20,
+//                   ),
+//                   Icon(
+//                     Icons.arrow_forward,
+//                     color: Colors.white,
+//                   )
+//                 ],
 //               ),
 //             ),
 //             // child: Container(

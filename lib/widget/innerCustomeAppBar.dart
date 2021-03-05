@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/searchscreen/searchcategory.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
 
 class InnerCustomAppBar extends PreferredSize {
   // final Widget child;
@@ -27,7 +26,7 @@ class InnerCustomAppBar extends PreferredSize {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Size get preferredSize => Size.fromHeight(height);
-
+  double imgHeight = 50;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -92,6 +91,102 @@ class InnerCustomAppBar extends PreferredSize {
             SizedBox(
               width: 15,
             ),
+            // GestureDetector(
+            //   onTap: () {
+            //     showModalBottomSheet<void>(
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius:
+            //             BorderRadius.vertical(top: Radius.circular(24.0)),
+            //       ),
+            //       context: context,
+            //       builder: (BuildContext context) {
+            //         return Padding(
+            //           padding: const EdgeInsets.all(10.0),
+            //           child: Row(
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             children: [
+            //               //
+            //               GestureDetector(
+            //                 onTap: () async {
+            //                   FlutterShareMe().shareToFacebook(
+            //                       url: 'https://github.com/lizhuoyuan',
+            //                       msg: "msg");
+            //                 },
+
+            //                 child: Image.asset(
+            //                   "assets/newImages/facebook.png",
+            //                   height: imgHeight,
+            //                   width: imgHeight,
+            //                 ),
+            //               ),
+
+            //               SizedBox(
+            //                 width: 7,
+            //               ),
+            //               GestureDetector(
+            //                 onTap: ()
+
+            //                     async {
+            //                   var response = await FlutterShareMe()
+            //                       .shareToTwitter(
+            //                           url: 'https://github.com/lizhuoyuan',
+            //                           msg: "Share");
+            //                   if (response == 'success') {
+            //                     print('navigate success');
+            //                   }
+            //                 },
+            //                 child: Image.asset(
+            //                   "assets/newImages/twitter.png",
+            //                   height: imgHeight,
+            //                   width: imgHeight,
+            //                 ),
+            //               ),
+            //               SizedBox(
+            //                 width: 7,
+            //               ),
+            //               GestureDetector(
+            //                 onTap: () async {
+            //                   // SocialShare.shareLinkedin(
+            //                   //         "Hello World \n https://google.com")
+            //                   //     .then((data) {
+            //                   //   print(data);
+            //                   // });
+            //                   var response = await FlutterShareMe()
+            //                       .shareToLinkedin(
+            //                           url: 'https://github.com/lizhuoyuan',
+            //                           msg: "Share");
+            //                 },
+            //                 child: Image.asset(
+            //                   "assets/newImages/linkedin.png",
+            //                   height: imgHeight,
+            //                   width: imgHeight,
+            //                 ),
+            //               ),
+            //               GestureDetector(
+            //                 onTap: () {
+            //                   FlutterShareMe().shareToWhatsApp(
+            //                       base64Image: "",
+            //                       msg: "msg \n https://google.com");
+            //                 },
+            //                 child: Image.asset(
+            //                   "assets/newImages/linkedin.png",
+            //                   height: imgHeight,
+            //                   width: imgHeight,
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         );
+            //       },
+            //     ).whenComplete(() {});
+            //   },
+            //   child: Image.asset(
+            //     trallingImg1,
+            //     // "assets/images/search_icon@2x.png",
+            //     width: 18,
+            //     height: 18,
+            //   ),
+            // ),
             GestureDetector(
               onTap: () {
                 print("search");

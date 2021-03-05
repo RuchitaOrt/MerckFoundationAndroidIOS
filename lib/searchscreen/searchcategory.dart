@@ -32,7 +32,7 @@ class SearchcategoryState extends State<Searchcategory>
     "Video",
     "News_Release",
     "Articles",
-    "Ceo Message",
+    "Ceo_Message",
     "Events",
     "Photo",
     "Media",
@@ -226,7 +226,7 @@ class SearchcategoryState extends State<Searchcategory>
       var res = json.decode(response.body);
       print("res");
       print(res);
-      //1-video 2-News_Release 3-Article
+      //1-video 2-News_Release 3-Article 4-Events 5-Testimonials 6-Photo  7-Media 8-ceomeaasage 9-award
       if (response.statusCode == 200) {
         if (res['success'] == "True") {
           if (categoryController.text == "Video") {
@@ -263,6 +263,78 @@ class SearchcategoryState extends State<Searchcategory>
                       builder: (BuildContext context) => Search(
                             categorytype: 3,
                           )));
+            });
+          } else if (categoryController.text == "Events") {
+            // SearchnewreleasecategoryResponse resp = res;
+            setState(() {
+              Constantstring.baseUrl = res['base_url'];
+              GlobalLists.searcheventslisting = res['data']['list'];
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Search(
+                            categorytype: 4,
+                          )));
+            });
+          } else if (categoryController.text == "Testimonials") {
+            // SearchnewreleasecategoryResponse resp = res;
+            setState(() {
+              Constantstring.baseUrl = res['base_url'];
+              GlobalLists.searchtestimoniallisting = res['data']['list'];
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Search(
+                            categorytype: 5,
+                          )));
+            });
+          } else if (categoryController.text == "Photo") {
+            // SearchnewreleasecategoryResponse resp = res;
+            setState(() {
+              Constantstring.baseUrl = res['base_url'];
+              GlobalLists.searchphotolisting = res['data']['list'];
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Search(
+                            categorytype: 6,
+                          )));
+            });
+          } else if (categoryController.text == "Media") {
+            // SearchnewreleasecategoryResponse resp = res;
+            setState(() {
+              Constantstring.baseUrl = res['base_url'];
+              GlobalLists.searchmedialisting = res['data']['list'];
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Search(
+                            categorytype: 7,
+                          )));
+            });
+          } else if (categoryController.text == "Ceo_Message") {
+            // SearchnewreleasecategoryResponse resp = res;
+            setState(() {
+              Constantstring.baseUrl = res['base_url'];
+              GlobalLists.searchceomeassagelisting = res['data']['list'];
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Search(
+                            categorytype: 8,
+                          )));
+            });
+          } else if (categoryController.text == "Award") {
+            // SearchnewreleasecategoryResponse resp = res;
+            setState(() {
+              // Constantstring.baseUrl = res['base_url'];
+              // GlobalLists.searchawardlisting = res['data']['list'];
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (BuildContext context) => Search(
+              //               categorytype: 9,
+              //             )));
             });
           }
         } else {

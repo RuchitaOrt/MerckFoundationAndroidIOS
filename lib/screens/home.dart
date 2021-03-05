@@ -1,9 +1,14 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:http/io_client.dart';
 import 'package:marquee/marquee.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/ouraward.dart';
@@ -19,6 +24,8 @@ import 'package:merckfoundation22dec/widget/drawer.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:merckfoundation22dec/model/programvideo.dart';
 
 import 'package:responsive_flutter/responsive_flutter.dart';
 
@@ -50,6 +57,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   int _current1 = 0;
   int currentIndex = 0;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+  Map<dynamic, dynamic> mapsection = {};
+  Map<dynamic, dynamic> slidersection = {};
+  Map<dynamic, dynamic> videosection = {};
   List _productsAvailable = [
     "assets/images/slider1.jpg",
     "assets/images/slider2.jpg",
@@ -60,7 +70,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     "assets/images/slider1.jpg",
     "assets/images/slider2.jpg",
   ];
-
+  List typewidet = [];
   List<programclass> _ourlist = [
     //     programclass(
     // programname: "Our \nVision", colors: Customcolor.colorBlue),
@@ -93,10 +103,13 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   ];
 
   TabController _tabController;
+  List<Widget> listofwiget = [];
 
   @override
   void initState() {
     super.initState();
+    print(mapsection);
+    //gethomeapi();
     _tabController = new TabController(vsync: this, length: tabs.length);
     _controller = new AnimationController(
       vsync: this,
@@ -135,7 +148,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           //child: null,
           child: AppDrawer(),
         ),
-        body: Container(
+        body:
+            //  Container(
+            //     padding: EdgeInsets.all(20.0), child: ListView(children: list()))
+            Container(
           width: double.infinity,
           height: double.infinity,
           child: ListView(
@@ -160,6 +176,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               SizedBox(
                 height: 12,
               ),
+
               CustomeCard(
                 index: 1,
                 cardImage: "assets/newImages/message.png",
@@ -828,123 +845,143 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
       child: Container(
-          child: Column(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Follow Us on",
-                  style: TextStyle(
-                      fontSize: ResponsiveFlutter.of(context).fontSize(2.5),
-                      fontWeight: FontWeight.w700,
-                      color: Customcolor.text_blue)),
-              SizedBox(
-                width: 8,
+              Row(
+                children: [
+                  Text("Follow Us on",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          fontSize: ResponsiveFlutter.of(context).fontSize(2.5),
+                          fontWeight: FontWeight.w700,
+                          color: Customcolor.text_blue)),
+                ],
               ),
-              Image.asset(
-                "assets/newImages/flowers-1.png",
-                height: 40,
-                width: 40,
+              SizedBox(
+                height: 18,
+              ),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+//                   var url = 'https://www.instagram.com/merckfoundation/';
+
+// if (await canLaunch(url)) {
+//   await launch(
+//     url,
+//     universalLinksOnly: true,
+//   );
+// } else {
+//   throw 'There was a problem to open the url: $url';
+// }
+                      _launchInWebViewWithJavaScript(
+                          "https://www.instagram.com/merckfoundation/");
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (BuildContext context) => VideoPlayer(
+                      //               videoUrl:
+                      //                   " https://www.instagram.com/merckfoundation/",
+                      //             )));
+                      //  https://www.instagram.com/merckfoundation/
+                    },
+                    child: Image.asset(
+                      "assets/newImages/instagram.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 7,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl:
+                                        "https://www.facebook.com/merckfoundation/",
+                                  )));
+                    },
+                    child: Image.asset(
+                      "assets/newImages/facebook.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 7,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl:
+                                        "https://twitter.com/MerckFoundation/",
+                                  )));
+                    },
+                    child: Image.asset(
+                      "assets/newImages/twitter.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 7,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl:
+                                        "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg",
+                                  )));
+                    },
+                    child: Image.asset(
+                      "assets/newImages/youtube.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 7,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl:
+                                        "https://www.flickr.com/photos/163124125@N08/",
+                                  )));
+                    },
+                    child: Image.asset(
+                      "assets/newImages/flickr.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 7,
+                  ),
+                ],
               )
             ],
           ),
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => VideoPlayer(
-                                videoUrl:
-                                    " https://www.instagram.com/merckfoundation/",
-                              )));
-                  //  https://www.instagram.com/merckfoundation/
-                },
-                child: Image.asset(
-                  "assets/newImages/instagram.png",
-                  height: imgHeight,
-                  width: imgHeight,
-                ),
-              ),
-              SizedBox(
-                width: 7,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => VideoPlayer(
-                                videoUrl:
-                                    "https://www.facebook.com/merckfoundation/",
-                              )));
-                },
-                child: Image.asset(
-                  "assets/newImages/facebook.png",
-                  height: imgHeight,
-                  width: imgHeight,
-                ),
-              ),
-              SizedBox(
-                width: 7,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => VideoPlayer(
-                                videoUrl: "https://twitter.com/MerckFoundation",
-                              )));
-                },
-                child: Image.asset(
-                  "assets/newImages/twitter.png",
-                  height: imgHeight,
-                  width: imgHeight,
-                ),
-              ),
-              SizedBox(
-                width: 7,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => VideoPlayer(
-                                videoUrl:
-                                    "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg",
-                              )));
-                },
-                child: Image.asset(
-                  "assets/newImages/youtube.png",
-                  height: imgHeight,
-                  width: imgHeight,
-                ),
-              ),
-              SizedBox(
-                width: 7,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => VideoPlayer(
-                                videoUrl:
-                                    "https://www.flickr.com/photos/163124125@N08/",
-                              )));
-                },
-                child: Image.asset(
-                  "assets/newImages/flickr.png",
-                  height: imgHeight,
-                  width: imgHeight,
-                ),
-              ),
-              SizedBox(
-                width: 7,
-              ),
-            ],
+          Image.asset(
+            "assets/newImages/hometoolbar.png",
+            height: 80,
+            width: 0,
           )
         ],
       )),
@@ -982,6 +1019,19 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       padding: EdgeInsets.all(16.0),
       child: Container(height: 50.0, color: Colors.white, child: child),
     );
+  }
+
+  Future<void> _launchInWebViewWithJavaScript(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   Widget newSlider(BuildContext context) {
@@ -1137,5 +1187,233 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                         ),
                       )),
                     )))));
+  }
+
+  ////////////////////////
+
+  Future<http.Response> gethomeapi() async {
+    var response = await fetchget(
+      encoding: "program_page_api/home/Android/1",
+    );
+    print("response");
+    print(response);
+    const JsonEncoder encoder = JsonEncoder.withIndent('  ');
+    var res = json.decode(response.body);
+    print("ff");
+
+    // slidersection = res['slider_area']['5'];
+    // print("slidersection");
+    // print(slidersection.length);
+
+    dynamic section1 = res['middle_area']['1'];
+    dynamic section2 = res['middle_area']['2'];
+    dynamic section3 = res['middle_area']['3'];
+    dynamic section4 = res['middle_area']['4'];
+    dynamic section5 = res['middle_area']['5'];
+
+    var section1key = section1.keys.first; //video
+    var section2key = section2.keys.first; //award
+    var section3key = section3.keys.first; //content
+    var section4key = section4.keys.first; //gallery
+    var section5key = section5.keys.first;
+    setState(() {
+      typewidet = [
+        section1key,
+        section2key,
+        section3key,
+        section4key,
+        section5key
+      ];
+
+      print(typewidet);
+    }); //ceo_msg
+
+    print(section1key);
+    print("section1key");
+
+    print(section2key);
+    print("section2key");
+    print(section3key);
+    print("section3key");
+    print(section4key);
+    print("section4key");
+    print(section5key);
+    print("section5key");
+    //section1
+    if (section1key == "videos") {
+      //videolist
+      setState(() {
+        videosection = res['middle_area']['1']['videos']['list'];
+
+        dynamic key = videosection.keys.elementAt(0);
+        print(key);
+//1st Video Preview
+        Programvideo video = Programvideo.fromJson(videosection[key]);
+
+        //List of all vidwoModels
+        List<Programvideo> programVidList = [];
+        videosection.forEach((key, value) {
+          programVidList.add(Programvideo.fromJson(value));
+        });
+
+        print(video.videoDesc);
+        print(programVidList.length);
+      });
+
+      //print(video.videoDesc);
+      print("here");
+    } else if (section1key == "11") {
+      //award
+      print("not here");
+    } else if (section1key == "13") {
+      //covid
+      print("not here");
+    } else if (section1key == "15") {
+      //album
+      print("not here");
+    } else if (section1key == "23") {
+      //article
+      print("not here");
+    }
+//section2
+    if (section2key == "videos") {
+      //videolist
+      videosection = res['middle_area']['1']['videos'];
+      // print(videosection[0]);
+      print("not here");
+    } else if (section2key == "11") {
+      //award
+      print("here");
+    } else if (section2key == "13") {
+      //covid
+      print("not here");
+    } else if (section2key == "15") {
+      //album
+      print("not here");
+    } else if (section2key == "23") {
+      //article
+      print("not here");
+    }
+//section3
+    if (section3key == "videos") {
+      //videolist
+      videosection = res['middle_area']['1']['videos'];
+
+      print("not here");
+    } else if (section3key == "11") {
+      //award
+      print("not here");
+    } else if (section3key == "13") {
+      //covid
+      print("should came here");
+    } else if (section3key == "15") {
+      //album
+      print("not here");
+    } else if (section3key == "23") {
+      //article
+      print("not here");
+    }
+
+    //section4
+    if (section4key == "videos") {
+      //videolist
+      videosection = res['middle_area']['1']['videos'];
+
+      print("not here");
+    } else if (section4key == "11") {
+      //award
+      print("not here");
+    } else if (section4key == "13") {
+      //covid
+      print("not here");
+    } else if (section4key == "15") {
+      //album
+      print("here");
+    } else if (section4key == "23") {
+      //article
+      print("not here");
+    }
+
+    //section5
+    if (section5key == "videos") {
+      //videolist
+      videosection = res['middle_area']['1']['videos'];
+
+      print("not here");
+    } else if (section5key == "11") {
+      //award
+      print("not here");
+    } else if (section5key == "13") {
+      //covid
+      print("not here");
+    } else if (section5key == "15") {
+      //album
+      print("not here");
+    } else if (section5key == "23") {
+      //article
+      print("here");
+    }
+    // print(res['middle_area']["1"]['14'].runtimeType);
+    // setState(() {
+    //   mapsection = res['middle_area']["1"]['14'];
+    // });
+
+    // print("ken");
+    // print(mapsection.length);
+    // print(mapsection);
+    // mapsection.forEach((key, value) {
+    //   print("Key : ${key} value ${value}");
+    // });
+
+    return response;
+  }
+
+  List<Widget> list() {
+    listofwiget.clear();
+    for (int i = 0; i < typewidet.length; i++) {
+      if (typewidet[i] == "videos") {
+        listofwiget.add(Text("vide"));
+      }
+      if (typewidet[i] == "awards") {
+        listofwiget.add(RaisedButton(onPressed: () {}, child: Text("award")));
+      }
+      if (typewidet[i] == "content") {
+        listofwiget.add(Text("content"));
+      }
+      if (typewidet[i] == "gallery") {
+        listofwiget.add(Text("gallery"));
+      }
+      if (typewidet[i] == "ceo_msg") {
+        listofwiget.add(Text("ceo_msg"));
+      }
+    }
+    return listofwiget;
+  }
+
+  static Future<http.Response> fetchget(
+      {@required String encoding, BuildContext context}) async {
+    IOClient ioClient = new IOClient();
+
+    HttpClient client = new HttpClient();
+
+    client.badCertificateCallback =
+        ((X509Certificate cert, String host, int port) => false);
+
+    ioClient = new IOClient(client);
+
+    //TODO: Use this URI for UATs
+    var uri = Uri.http(
+        'onerooftechnologiesllp.com', '/mfindia/web/public/api/$encoding');
+    final response = await ioClient.get(uri);
+
+    if (response.statusCode == 401) {
+    } else if (response.statusCode == 200) {
+      return response;
+    } else {
+      // throw AlertDialog(
+      //   title: Text("Invalid User"),
+      // );
+      return response;
+    }
   }
 }
