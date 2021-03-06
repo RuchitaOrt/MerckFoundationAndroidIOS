@@ -124,11 +124,22 @@ class CheckState extends State<Check> {
                               SizedBox(
                                 height: 15,
                               ),
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.only(right: 60, left: 60),
+                              //   child: Image.asset(
+                              //     "assets/newImages/flowers_footer.png",
+                              //   ),
+                              // ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(right: 60, left: 60),
-                                child: Image.asset(
-                                  "assets/newImages/flowers_footer.png",
+                                    const EdgeInsets.only(right: 0, left: 0),
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: Image.asset(
+                                    "assets/newImages/flowers_footer.png",
+                                    height: 170,
+                                  ),
                                 ),
                               ),
                               SizedBox(

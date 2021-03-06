@@ -17,94 +17,144 @@ class CustomAppBar extends PreferredSize {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: preferredSize.height,
-      color: Customcolor.baby_blue,
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+    return Stack(
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+          margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+          height: preferredSize.height,
+          color: Customcolor.baby_blue,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: 10,
+                height: 20,
               ),
-              index == 1
-                  ? GestureDetector(
-                      onTap: onTapval,
-                      child: Image.asset(
-                        "assets/newImages/menu.png",
-                        width: 30,
-                        height: 30,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  index == 1
+                      ? GestureDetector(
+                          onTap: onTapval,
+                          child: Image.asset(
+                            "assets/newImages/menu.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                        )
+                      : GestureDetector(
+                          onTap: onTapval,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              color: Customcolor.colorVoilet,
+                            ),
+                          )),
+                  Expanded(
+                    child: Center(
+                      child: Stack(
+                        children: [
+                          Column(
+                            //crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 18, top: 14),
+                                child: Container(
+                                  child: Image.asset(
+                                    "assets/newImages/logo.png",
+                                    width: 200,
+                                    height: 80,
+                                  ),
+                                ),
+                              ),
+                              // SizedBox(
+                              //   height: 8,
+                              // ),
+                              // FormLabel(
+                              //   text: 'The Philanthropic arm of Merck KGaA',
+                              //   fontSize: ResponsiveFlutter.of(context).fontSize(1.5),
+                              //   fontweight: FontWeight.w800,
+                              //   labelColor: Customcolor.text_blue,
+                              // ),
+                            ],
+                          ),
+                          // Positioned(
+                          //     top: 40.0,
+                          //     left: 150.0,
+                          //     right: 0.0,
+                          //     child: Image.asset(
+                          //       "assets/newImages/toolbarflower.png",
+                          //       height: 70,
+                          //     )),
+                        ],
                       ),
-                    )
-                  : GestureDetector(
-                      onTap: onTapval,
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: Customcolor.colorVoilet,
-                        ),
-                      )),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18, top: 14),
-                  child: Container(
-                    child: Image.asset(
-                      "assets/newImages/top_bar_logo.png",
-                      width: 140,
-                      height: 58,
                     ),
                   ),
-                ),
-              ),
-              SizedBox(
-                width: 30,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => Searchcategory()));
-                },
-                child: Image.asset(
-                  "assets/images/search_icon@2x.png",
-                  width: 20,
-                  height: 20,
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              index != 1
-                  ? Image.asset(
+                  SizedBox(
+                    width: 30,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  Searchcategory()));
+                    },
+                    child: Image.asset(
                       "assets/images/search_icon@2x.png",
                       width: 20,
                       height: 20,
-                    )
-                  : Container()
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  index != 1
+                      ? Image.asset(
+                          "assets/images/search_icon@2x.png",
+                          width: 20,
+                          height: 20,
+                        )
+                      : Container()
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              // Container(
+              //   height: 20,
+              //   decoration: BoxDecoration(
+              //       color: Customcolor.background,
+              //       // border: Border.all(
+              //       //   color: Colors.transparent,
+              //       // )),
+              //       border: Border(
+              //         bottom: BorderSide(
+              //           //                   <--- left side
+              //           color: Customcolor.background,
+              //         ),
+              //       )),
+              // )
             ],
           ),
-          SizedBox(
-            height: 8,
-          ),
-          FormLabel(
-            text: 'The Philanthropic arm of Merck KGaA',
-            fontSize: ResponsiveFlutter.of(context).fontSize(1.5),
-            fontweight: FontWeight.w800,
-            labelColor: Customcolor.text_blue,
-          ),
-          SizedBox(
-            height: 5,
-          ),
-        ],
-      ),
+        ),
+        // Positioned(
+        //     top: 60.0,
+        //     left: 225.0,
+        //     right: 0.0,
+        //     child: Image.asset(
+        //       "assets/newImages/toolbarflower.png",
+        //       height: 80,
+        //     )),
+      ],
     );
   }
 }

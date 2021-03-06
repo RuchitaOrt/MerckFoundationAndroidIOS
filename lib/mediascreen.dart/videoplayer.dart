@@ -93,7 +93,7 @@ class WebPageState extends State<VideoPlayer> {
                   width: 10,
                 ),
                 Image.asset(
-                  "assets/newImages/flowers-1.png",
+                  "assets/newImages/toolflowerfortext.png",
                   height: 35,
                 )
               ],

@@ -21,14 +21,11 @@ class Ourpatner extends StatefulWidget {
 class OurpatnerState extends State<Ourpatner> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
-
-@override
+  @override
   void initState() {
     getOurPartnerObjectives();
     super.initState();
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +45,12 @@ class OurpatnerState extends State<Ourpatner> {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 0,)));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Dashboard(
+                          index: 0,
+                        )));
           },
           index: 2,
           title: "Our Partners",
@@ -64,63 +66,73 @@ class OurpatnerState extends State<Ourpatner> {
           ),
           child: Column(
             children: [
-            
-         GlobalLists.ourPartnerObjectives.length <=0?Container(
+              GlobalLists.ourPartnerObjectives.length <= 0
+                  ? Container(
                       child: Center(child: Text(Constantstring.emptyData)),
-                    ):     ListView(
-                shrinkWrap: true,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 8, bottom: 15),
-                    child: Html(
-                                data: """${GlobalLists.ourPartnerObjectives[0].pageContent} """,
-                                onLinkTap: (url) {
-                                  print("Opening $url...");
-                                },
-                                
-                              ),
-                  ),
-                  
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 90, right: 90, bottom: 20, top: 20),
-                    child: FlatButton(
-                      color: Customcolor.text_blue,
-                      shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Customcolor.text_blue),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Text(
-                        "View Partners",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      minWidth: 38,
-                      height: 40,
-                      onPressed: () {
-                        getOurPartnerData();
-                       
-                      },
+                    )
+                  : ListView(
+                      shrinkWrap: true,
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10, top: 8, bottom: 15),
+                          child: Html(
+                            data:
+                                """${GlobalLists.ourPartnerObjectives[0].pageContent} """,
+                            onLinkTap: (url) {
+                              print("Opening $url...");
+                            },
+                          ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 90, right: 90, bottom: 20, top: 20),
+                          child: FlatButton(
+                            color: Customcolor.text_blue,
+                            shape: RoundedRectangleBorder(
+                                side: BorderSide(color: Customcolor.text_blue),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Text(
+                              "View Partners",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            minWidth: 38,
+                            height: 40,
+                            onPressed: () {
+                              getOurPartnerData();
+                            },
+                          ),
+                        ),
+                        // Padding(
+                        //   padding:
+                        //       const EdgeInsets.only(right: 60, left: 60, top: 20),
+                        //   child: Image.asset(
+                        //     "assets/newImages/flowers_footer.png",
+                        //   ),
+                        // ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 0, left: 0),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Image.asset(
+                              "assets/newImages/flowers_footer.png",
+                              height: 170,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        )
+                      ],
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(right: 60, left: 60, top: 20),
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  )
-                ],
-              ),
             ],
           ),
         ));
   }
 
-    getOurPartnerObjectives() async {
+  getOurPartnerObjectives() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -154,8 +166,7 @@ class OurpatnerState extends State<Ourpatner> {
     }
   }
 
-
-    getOurPartnerData() async {
+  getOurPartnerData() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -175,14 +186,12 @@ class OurpatnerState extends State<Ourpatner> {
             setState(() {
               GlobalLists.ourPartnerList = resp.data.list;
               Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    Ourpatnerdetail(baseUrl: resp.baseUrl,)));
-
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Ourpatnerdetail(
+                            baseUrl: resp.baseUrl,
+                          )));
             });
-
-            
           } else {
             ShowDialogs.showToast(resp.msg);
           }

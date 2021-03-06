@@ -101,24 +101,23 @@ class MerckFertilityState extends State<MerckFertility> {
               cardTitle:
                   "Watch below some of the latest videos of Dr. Rasha kelej and first ladies of Africa. Ambassadars of Merck More than a Mother.",
               titleColor: Customcolor.colorPink,
-               btnTitle: "Watch More",
+              btnTitle: "Watch More",
               titleImg: "",
               list: ListView.builder(
                 itemCount: GlobalLists.fertilityVideosList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
-                    onTap: (){
-                        Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                VideoPlayer(
-                                                  videoUrl: GlobalLists.fertilityVideosList[index]
-                                                      .videoLink,
-                                                )));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl: GlobalLists
+                                        .fertilityVideosList[index].videoLink,
+                                  )));
                     },
-                                      child: Padding(
+                    child: Padding(
                       padding: const EdgeInsets.only(right: 8, left: 10),
                       child: Stack(
                         children: [
@@ -142,7 +141,8 @@ class MerckFertilityState extends State<MerckFertility> {
                                 children: [
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width:
@@ -161,22 +161,20 @@ class MerckFertilityState extends State<MerckFertility> {
                                       SizedBox(
                                         height: 8,
                                       ),
-                                    
                                     ],
                                   ),
                                 ],
                               ),
                             ),
                           ),
-
-
-                            Padding(
-                                            padding: EdgeInsets.only(left: 120,),
-                                            child: Center(
-                                              child: Image.asset(
-                                                  "assets/newImages/pause.png"),
-                                            ),
-                                          )
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 120,
+                            ),
+                            child: Center(
+                              child: Image.asset("assets/newImages/pause.png"),
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -316,10 +314,20 @@ class MerckFertilityState extends State<MerckFertility> {
                 ),
               ),
             ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 60, left: 60, top: 20),
+            //   child: Image.asset(
+            //     "assets/newImages/flowers_footer.png",
+            //   ),
+            // ),
             Padding(
-              padding: const EdgeInsets.only(right: 60, left: 60, top: 20),
-              child: Image.asset(
-                "assets/newImages/flowers_footer.png",
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
+                ),
               ),
             ),
             SizedBox(

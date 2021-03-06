@@ -15,7 +15,6 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
-
 class LocalSongsandChildrenStories extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -105,7 +104,7 @@ class LocalSongsandChildrenStoriesState
                       index: 1,
                       cardImage: "assets/newImages/gallery.png",
                       cardTitle: "Our Videos  ",
-                       btnTitle: "Watch More",
+                      btnTitle: "Watch More",
                       titleColor: Customcolor.pink_col,
                       titleImg: "assets/newImages/flowers-3.png",
                       list: ListView.builder(
@@ -294,10 +293,20 @@ class LocalSongsandChildrenStoriesState
             SizedBox(
               height: 30,
             ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 60, left: 60, top: 20),
+            //   child: Image.asset(
+            //     "assets/newImages/flowers_footer.png",
+            //   ),
+            // ),
             Padding(
-              padding: const EdgeInsets.only(right: 60, left: 60, top: 20),
-              child: Image.asset(
-                "assets/newImages/flowers_footer.png",
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
+                ),
               ),
             ),
             SizedBox(

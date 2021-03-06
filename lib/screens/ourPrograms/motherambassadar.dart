@@ -33,7 +33,12 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard(index: 1,)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => Dashboard(
+                        index: 1,
+                      )));
         },
         index: 2,
         title: "Our Programs",
@@ -182,14 +187,14 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                             ),
                           ],
                         );
-                      },    
+                      },
                       itemCount: images.length,
                       viewportFraction: 0.7,
                       layout: SwiperLayout.DEFAULT,
 
                       scale: 0.9,
                       //outer: true,
-                    //  itemWidth: 300.0,
+                      //  itemWidth: 300.0,
                       //itemHeight: 400,
                       //itemHeight: 300,
                     ),
@@ -238,16 +243,26 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                   cardImage: "assets/newImages/award1.png",
                   cardTitle:
                       "Acknowledging the efforts of first ladies as Ambassadars of Merck More than a Mother.  ",
-                   btnTitle: "Read More",    
+                  btnTitle: "Read More",
                   titleColor: Customcolor.pink_col,
                   titleImg: "assets/newImages/flowers-1.png",
                   subTitle:
                       "Message Form Dr.Rasha Kelej, on the inauguration..."),
             ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 60, left: 60, top: 20),
+            //   child: Image.asset(
+            //     "assets/newImages/flowers_footer.png",
+            //   ),
+            // ),
             Padding(
-              padding: const EdgeInsets.only(right: 60, left: 60, top: 20),
-              child: Image.asset(
-                "assets/newImages/flowers_footer.png",
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
+                ),
               ),
             ),
             SizedBox(

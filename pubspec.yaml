@@ -50,6 +50,8 @@ dependencies:
   screenshot: ^0.1.1
   flutter_share_me: ^0.9.2
   flutter_custom_clippers: ^1.1.2
+  android_intent:
+  intent: ^1.4.0
  
   
  

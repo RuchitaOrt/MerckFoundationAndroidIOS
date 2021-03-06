@@ -92,11 +92,21 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
                   child: Center(child: Text(Constantstring.emptyData)),
                 )
               : ourvideo(),
+          // Padding(
+          //   padding:
+          //       const EdgeInsets.only(right: 60, left: 60, top: 20, bottom: 20),
+          //   child: Image.asset(
+          //     "assets/newImages/flowers_footer.png",
+          //   ),
+          // ),
           Padding(
-            padding:
-                const EdgeInsets.only(right: 60, left: 60, top: 20, bottom: 20),
-            child: Image.asset(
-              "assets/newImages/flowers_footer.png",
+            padding: const EdgeInsets.only(right: 0, left: 0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Image.asset(
+                "assets/newImages/flowers_footer.png",
+                height: 170,
+              ),
             ),
           ),
           SizedBox(

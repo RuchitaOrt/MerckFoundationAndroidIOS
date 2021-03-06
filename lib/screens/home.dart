@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:android_intent/android_intent.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -109,7 +111,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     print(mapsection);
-    //gethomeapi();
+    gethomeapi();
     _tabController = new TabController(vsync: this, length: tabs.length);
     _controller = new AnimationController(
       vsync: this,
@@ -274,13 +276,22 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               SizedBox(
                 height: 10,
               ),
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 60, left: 60),
+              //   child: Image.asset(
+              //     "assets/newImages/flowers_footer.png",
+              //   ),
+              // ),
               Padding(
-                padding: const EdgeInsets.only(right: 60, left: 60),
-                child: Image.asset(
-                  "assets/newImages/flowers_footer.png",
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
                 ),
               ),
-
               SizedBox(
                 height: 10,
               )
@@ -867,7 +878,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               Row(
                 children: [
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                      var response = await FlutterShareMe().openinsta(
+                          url: 'https://www.instagram.com/merckfoundation',
+                          msg: "Share");
 //                   var url = 'https://www.instagram.com/merckfoundation/';
 
 // if (await canLaunch(url)) {
@@ -877,9 +891,19 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 //   );
 // } else {
 //   throw 'There was a problem to open the url: $url';
-// }
-                      _launchInWebViewWithJavaScript(
-                          "https://www.instagram.com/merckfoundation/");
+// // }
+                      // _launchInWebViewWithJavaScript(
+                      //     "http://instagram.com/_u/merckfoundation");
+                      // if (Platform.isAndroid) {
+                      //   final AndroidIntent intent = AndroidIntent(
+                      //     action: 'Intent.ACTION_VIEW',
+                      //     package: "com.instagram.android",
+                      //     data:
+                      //         'https://instagram.com/merckfoundation/', // replace com.example.app with your applicationId
+                      //   );
+                      //   await intent.launch();
+                      // }
+
                       // Navigator.push(
                       //     context,
                       //     MaterialPageRoute(
@@ -896,17 +920,20 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     ),
                   ),
                   SizedBox(
-                    width: 7,
+                    width: 5,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => VideoPlayer(
-                                    videoUrl:
-                                        "https://www.facebook.com/merckfoundation/",
-                                  )));
+                    onTap: () async {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (BuildContext context) => VideoPlayer(
+                      //               videoUrl:
+                      //                   "https://www.facebook.com/merckfoundation/",
+                      //             )));
+                      var response = await FlutterShareMe().openinsta(
+                          url: 'https://www.facebook.com/merckfoundation/',
+                          msg: "Share");
                     },
                     child: Image.asset(
                       "assets/newImages/facebook.png",
@@ -915,17 +942,20 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     ),
                   ),
                   SizedBox(
-                    width: 7,
+                    width: 5,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => VideoPlayer(
-                                    videoUrl:
-                                        "https://twitter.com/MerckFoundation/",
-                                  )));
+                    onTap: () async {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (BuildContext context) => VideoPlayer(
+                      //               videoUrl:
+                      //                   "https://twitter.com/MerckFoundation/",
+                      //             )));
+                      var response = await FlutterShareMe().openinsta(
+                          url: 'https://twitter.com/MerckFoundation/',
+                          msg: "Share");
                     },
                     child: Image.asset(
                       "assets/newImages/twitter.png",
@@ -934,17 +964,21 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     ),
                   ),
                   SizedBox(
-                    width: 7,
+                    width: 5,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => VideoPlayer(
-                                    videoUrl:
-                                        "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg",
-                                  )));
+                    onTap: () async {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (BuildContext context) => VideoPlayer(
+                      //               videoUrl:
+                      //                   "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg",
+                      //             )));
+                      var response = await FlutterShareMe().openinsta(
+                          url:
+                              'https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg',
+                          msg: "Share");
                     },
                     child: Image.asset(
                       "assets/newImages/youtube.png",
@@ -953,17 +987,20 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     ),
                   ),
                   SizedBox(
-                    width: 7,
+                    width: 5,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => VideoPlayer(
-                                    videoUrl:
-                                        "https://www.flickr.com/photos/163124125@N08/",
-                                  )));
+                    onTap: () async {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (BuildContext context) => VideoPlayer(
+                      //               videoUrl:
+                      //                   "https://www.flickr.com/photos/163124125@N08/",
+                      //             )));
+                      var response = await FlutterShareMe().openinsta(
+                          url: 'https://www.flickr.com/photos/163124125@N08/',
+                          msg: "Share");
                     },
                     child: Image.asset(
                       "assets/newImages/flickr.png",
@@ -971,17 +1008,17 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       width: imgHeight,
                     ),
                   ),
-                  SizedBox(
-                    width: 7,
-                  ),
+                  // SizedBox(
+                  //   width: 7,
+                  // ),
                 ],
               )
             ],
           ),
           Image.asset(
             "assets/newImages/hometoolbar.png",
-            height: 80,
-            width: 0,
+            height: 100,
+            width: 80,
           )
         ],
       )),
@@ -1258,6 +1295,12 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
         print(video.videoDesc);
         print(programVidList.length);
+
+        Map<dynamic, dynamic> contentsection =
+            res['middle_area']['3']['content']['list'];
+        dynamic keycontent = contentsection.keys.elementAt(0);
+        Homecontent content = Homecontent.fromJson(contentsection[keycontent]);
+        print(content.pageContent);
       });
 
       //print(video.videoDesc);

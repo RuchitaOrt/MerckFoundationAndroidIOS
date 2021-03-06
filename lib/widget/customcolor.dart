@@ -39,6 +39,7 @@ class Customcolor {
   static const lightblue_col = const Color(0xff2368B3);
   static const lightgreen_col = const Color(0xffA6CC38);
   static const orange_col = const Color(0xffD79541);
+  static const programyellow = const Color(0xffFFE891);
   static const skyblue_col = const Color(0xff9CD4D1);
 
   //new colo®
@@ -48,6 +49,7 @@ class Customcolor {
   static const text_darkgrey = const Color(0xff333333);
   static const pinkbg = const Color(0xffFFA4D3);
   static const cardbg = const Color(0xffCEF5FF);
+  static const stemskyblue = const Color(0xffA9E2FC);
 }
 
 class AppFonts {

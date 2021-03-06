@@ -29,16 +29,14 @@ class MerckstemprogramState extends State<Merckstemprogram>
     "assets/images/slider2.jpg"
   ];
 
-    List _imgarray = [
+  List _imgarray = [
     "assets/newImages/img3.jpg",
     "assets/newImages/img4.jpg",
-     "assets/newImages/leader1.png",
-
+    "assets/newImages/leader1.png",
     "assets/newImages/leader2.png",
     "assets/newImages/img3.jpg",
-     "assets/newImages/leader1.png",
-      "assets/newImages/leader2.png",
-
+    "assets/newImages/leader1.png",
+    "assets/newImages/leader2.png",
   ];
 
   CarouselSlider carouselSlider;
@@ -73,7 +71,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-         backgroundColor: Customcolor.background,
+      backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
           Navigator.push(
@@ -241,14 +239,14 @@ class MerckstemprogramState extends State<Merckstemprogram>
                         index: 1,
                         cardImage: "assets/newImages/gallery.png",
                         cardTitle: "Our Videos  ",
-                         btnTitle: "Watch More",
-                          onbtnTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          Videolibrary()));
-                            },
+                        btnTitle: "Watch More",
+                        onbtnTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      Videolibrary()));
+                        },
                         titleColor: Customcolor.pink_col,
                         titleImg: "assets/newImages/flowers-1.png",
                         subTitle:
@@ -263,7 +261,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                         index: 1,
                         cardImage: "assets/newImages/ourvison.png",
                         cardTitle: "Photo Gallery  ",
-                         btnTitle: "View More",
+                        btnTitle: "View More",
                         titleColor: Customcolor.pink_col,
                         titleImg: "assets/newImages/flowers-3.png",
                         subTitle:
@@ -278,7 +276,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                         index: 1,
                         cardImage: "assets/newImages/mqdefault1.png",
                         cardTitle: "Our Newsletters  ",
-                         btnTitle: "View More",
+                        btnTitle: "View More",
                         titleColor: Customcolor.pink_col,
                         titleImg: "assets/newImages/flowers-2.png",
                         subTitle:
@@ -350,7 +348,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
                                                 image: AssetImage(
-                                                 _imgarray[index],
+                                                  _imgarray[index],
                                                 )),
                                           ),
                                         ),
@@ -428,10 +426,20 @@ class MerckstemprogramState extends State<Merckstemprogram>
                   SizedBox(
                     height: 20,
                   ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(right: 60, left: 60),
+                  //   child: Image.asset(
+                  //     "assets/newImages/flowers_footer.png",
+                  //   ),
+                  // ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 60, left: 60),
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
+                    padding: const EdgeInsets.only(right: 0, left: 0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Image.asset(
+                        "assets/newImages/flowers_footer.png",
+                        height: 170,
+                      ),
                     ),
                   ),
                   SizedBox(

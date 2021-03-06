@@ -36,7 +36,7 @@ class OurActivtyDetailState extends State<OurActivtyDetail> {
                         )));
           },
           index: 2,
-          title: "Our Activty",
+          title: "Our Activties",
           titleImg: "assets/newImages/leadership_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -56,6 +56,16 @@ class OurActivtyDetailState extends State<OurActivtyDetail> {
                   style: {
                     "body": Style(textAlign: TextAlign.start),
                   },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
+                    ),
+                  ),
                 ),
               ],
             ),

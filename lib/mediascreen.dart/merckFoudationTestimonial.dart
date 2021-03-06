@@ -57,7 +57,7 @@ class MerckFoundationTestimonialState
             index: 3,
           ),
         ),
-        appBar: InnerCustomAppBar(
+        appBar: InnerAluminsCustomAppBar(
           onTapvalfilter: () {
             print("videokk");
             // _scaffoldKey1.currentState.openDrawer();
@@ -72,7 +72,7 @@ class MerckFoundationTestimonialState
                         )));
           },
           index: 2,
-          title: "Merck Foundation \nAlumini's Testimonial",
+          title: "Merck Foundation \nAlumini's \nTestimonial",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",
@@ -182,11 +182,21 @@ class MerckFoundationTestimonialState
                         );
                       }),
                     ),
+              // Padding(
+              //   padding: const EdgeInsets.only(
+              //       left: 60, right: 60, top: 20, bottom: 10),
+              //   child: Image.asset(
+              //     "assets/newImages/flowers_footer.png",
+              //   ),
+              // ),
               Padding(
-                padding: const EdgeInsets.only(
-                    left: 60, right: 60, top: 20, bottom: 10),
-                child: Image.asset(
-                  "assets/newImages/flowers_footer.png",
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
                 ),
               ),
               SizedBox(

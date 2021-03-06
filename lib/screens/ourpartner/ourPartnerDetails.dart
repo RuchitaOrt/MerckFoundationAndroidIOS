@@ -140,6 +140,16 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                   );
                 }),
               ),
+              Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
+                ),
+              ),
             ],
           ),
         ));

@@ -57,7 +57,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {
-            print("hi");
+            // print("hi");
             showModalBottomSheet<void>(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(24.0)),
@@ -184,6 +184,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                   //     .then((data) {
                                   //   print(data);
                                   // });
+                                  //uncomment theese code
                                   var response = await FlutterShareMe()
                                       .shareToLinkedin(
                                           url: 'https://github.com/lizhuoyuan',
@@ -337,11 +338,22 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                               //     )
                               //     //fontWeight: FontWeight.w300),
                               //     ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(
+                              //       right: 60, left: 60, top: 20),
+                              //   child: Image.asset(
+                              //     "assets/newImages/flowers_footer.png",
+                              //   ),
+                              // ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 60, left: 60, top: 20),
-                                child: Image.asset(
-                                  "assets/newImages/flowers_footer.png",
+                                padding:
+                                    const EdgeInsets.only(right: 0, left: 0),
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: Image.asset(
+                                    "assets/newImages/flowers_footer.png",
+                                    height: 170,
+                                  ),
                                 ),
                               ),
                               SizedBox(

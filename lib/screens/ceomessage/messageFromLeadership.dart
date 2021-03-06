@@ -35,7 +35,6 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
   final CarouselController _controller = CarouselController();
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
-
   List<leaderclass> _messageAvailable = [
     leaderclass(
         programname:
@@ -62,7 +61,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Customcolor.background,
-      appBar: InnerCustomAppBar(
+      appBar: InnerMsgfromleadershipCustomAppBar(
         onTapval: () {
           Navigator.push(
               context,
@@ -211,165 +210,189 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
   Widget gifcontainer(BuildContext context) {
     return Stack(
       children: <Widget>[
-    GlobalLists.leadershipTeamResp.length<=0?Container(child: Center(
-      child: Text(Constantstring.emptyData)
-    ),):  Container(
-          //color: Colors.amber,
-          width: SizeConfig.blockSizeHorizontal * 100,
-          height: SizeConfig.blockSizeVertical * 100,
-          child: carouselSlider = CarouselSlider(
-            options: CarouselOptions(
-                autoPlay: false,
-                // aspectRatio: 0.1,
-                enlargeCenterPage: true,
-                enlargeStrategy: CenterPageEnlargeStrategy.height,
-                viewportFraction: 1.0,
+        GlobalLists.leadershipTeamResp.length <= 0
+            ? Container(
+                child: Center(child: Text(Constantstring.emptyData)),
+              )
+            : Container(
+                //color: Colors.amber,
+                width: SizeConfig.blockSizeHorizontal * 100,
                 height: SizeConfig.blockSizeVertical * 100,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _current = index;
-                  });
-                }),
-            items: GlobalLists.leadershipTeamResp.map((product) {
-              return new Builder(
-                builder: (BuildContext context) {
-                  return new Container(
-                    width: SizeConfig.blockSizeHorizontal * 96,
+                child: carouselSlider = CarouselSlider(
+                  options: CarouselOptions(
+                      autoPlay: false,
+                      // aspectRatio: 0.1,
+                      enlargeCenterPage: true,
+                      enlargeStrategy: CenterPageEnlargeStrategy.height,
+                      viewportFraction: 1.0,
+                      height: SizeConfig.blockSizeVertical * 100,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          _current = index;
+                        });
+                      }),
+                  items: GlobalLists.leadershipTeamResp.map((product) {
+                    return new Builder(
+                      builder: (BuildContext context) {
+                        return new Container(
+                          width: SizeConfig.blockSizeHorizontal * 96,
 
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: ScrollPhysics(),
-                      //  crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Center(
-                            child: Container(
-                                height: 200,
-                                width: 150,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: FadeInImage.assetNetwork(
-                                              placeholder:
-                                                  'assets/newImages/placeholder_3.jpg',
-                                              image: Constantstring.baseUrl+product
-                                                  .image,
-                                              fit: BoxFit.cover,
-                                              height: 150,
-                                            ),
-                                
-                                
-                                ),
-                          ),
-                        ),
-                       
-                       
-                       
-                        Center(
-                          child:   Html(
-                                data: """${product.shortDescription} """,
-                                onLinkTap: (url) {
-                                  print("Opening $url...");
-                                },
-                                 style: {
-                                "body": Style(
-                                  textAlign: TextAlign.center
-                                ),
-                              },
-                              ),
-                        ),
-                        
-                        Container(
-                          // margin:
-                          //     EdgeInsets.fromLTRB(16.0, 250.0, 16.0, 16.0),
-                          decoration: BoxDecoration(
-                              color: Customcolor.background,
-                              borderRadius: BorderRadius.circular(5.0)),
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Divider(),
-                              SizedBox(
-                                height: 5.0,
-                              ),
-                               Html(
-                                data: """${product.pageContent} """,
-                                onLinkTap: (url) {
-                                  print("Opening $url...");
-                                },
-                                
-                              ),
-                              SizedBox(height: 10.0),
-                              SizedBox(
-                                height: 15,
-                              ),
+                          child: ListView(
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(),
+                            //  crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 60, left: 60),
-                                child: Image.asset(
-                                  "assets/newImages/flowers_footer.png",
+                                padding: const EdgeInsets.only(top: 20),
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      height: 240,
+                                      child: Center(
+                                        child: Container(
+                                          height: 200,
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          child: FadeInImage.assetNetwork(
+                                            placeholder:
+                                                'assets/newImages/placeholder_3.jpg',
+                                            image: Constantstring.baseUrl +
+                                                product.image,
+                                            fit: BoxFit.cover,
+                                            height: 150,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      // alignment: Alignment.bottomRight,
+                                      top: 100.0,
+                                      left: 155.0,
+                                      right: 0.0,
+                                      child: Image.asset(
+                                        "assets/newImages/msgfromleadership.png",
+                                        height: 140,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              SizedBox(
-                                height: 10,
-                              )
+
+                              Center(
+                                child: Html(
+                                  data: """${product.shortDescription} """,
+                                  onLinkTap: (url) {
+                                    print("Opening $url...");
+                                  },
+                                  style: {
+                                    "body": Style(textAlign: TextAlign.center),
+                                  },
+                                ),
+                              ),
+
+                              Container(
+                                // margin:
+                                //     EdgeInsets.fromLTRB(16.0, 250.0, 16.0, 16.0),
+                                decoration: BoxDecoration(
+                                    color: Customcolor.background,
+                                    borderRadius: BorderRadius.circular(5.0)),
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Divider(),
+                                    SizedBox(
+                                      height: 5.0,
+                                    ),
+                                    Html(
+                                      data: """${product.pageContent} """,
+                                      onLinkTap: (url) {
+                                        print("Opening $url...");
+                                      },
+                                    ),
+                                    SizedBox(height: 10.0),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    // Padding(
+                                    //   padding:
+                                    //       const EdgeInsets.only(right: 60, left: 60),
+                                    //   child: Image.asset(
+                                    //     "assets/newImages/flowers_footer.png",
+                                    //   ),
+                                    // ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 0, left: 0),
+                                      child: Align(
+                                        alignment: Alignment.topRight,
+                                        child: Image.asset(
+                                          "assets/newImages/flowers_footer.png",
+                                          height: 170,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              // ListView(
+                              //   children: [
+                              //     Container(
+                              //       // margin:
+                              //       //     EdgeInsets.fromLTRB(16.0, 250.0, 16.0, 16.0),
+                              //       decoration: BoxDecoration(
+                              //           color: Customcolor.background,
+                              //           borderRadius:
+                              //               BorderRadius.circular(5.0)),
+                              //       padding: const EdgeInsets.all(16.0),
+                              //       child: Column(
+                              //         crossAxisAlignment:
+                              //             CrossAxisAlignment.start,
+                              //         children: <Widget>[
+                              //           Divider(),
+                              //           SizedBox(
+                              //             height: 15.0,
+                              //           ),
+                              //           Text(product.programname,
+                              //               textAlign: TextAlign.justify,
+                              //               style: TextStyle(
+                              //                   color: Customcolor.colorblack,
+                              //                   fontSize: 14,
+                              //                   fontWeight: FontWeight.w400)),
+                              //           SizedBox(height: 10.0),
+                              //           SizedBox(
+                              //             height: 15,
+                              //           ),
+                              //           Padding(
+                              //             padding: const EdgeInsets.only(
+                              //                 right: 60, left: 60),
+                              //             child: Image.asset(
+                              //               "assets/newImages/flowers_footer.png",
+                              //             ),
+                              //           ),
+                              //           SizedBox(
+                              //             height: 10,
+                              //           )
+                              //         ],
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
                             ],
                           ),
-                        ),
-                        // ListView(
-                        //   children: [
-                        //     Container(
-                        //       // margin:
-                        //       //     EdgeInsets.fromLTRB(16.0, 250.0, 16.0, 16.0),
-                        //       decoration: BoxDecoration(
-                        //           color: Customcolor.background,
-                        //           borderRadius:
-                        //               BorderRadius.circular(5.0)),
-                        //       padding: const EdgeInsets.all(16.0),
-                        //       child: Column(
-                        //         crossAxisAlignment:
-                        //             CrossAxisAlignment.start,
-                        //         children: <Widget>[
-                        //           Divider(),
-                        //           SizedBox(
-                        //             height: 15.0,
-                        //           ),
-                        //           Text(product.programname,
-                        //               textAlign: TextAlign.justify,
-                        //               style: TextStyle(
-                        //                   color: Customcolor.colorblack,
-                        //                   fontSize: 14,
-                        //                   fontWeight: FontWeight.w400)),
-                        //           SizedBox(height: 10.0),
-                        //           SizedBox(
-                        //             height: 15,
-                        //           ),
-                        //           Padding(
-                        //             padding: const EdgeInsets.only(
-                        //                 right: 60, left: 60),
-                        //             child: Image.asset(
-                        //               "assets/newImages/flowers_footer.png",
-                        //             ),
-                        //           ),
-                        //           SizedBox(
-                        //             height: 10,
-                        //           )
-                        //         ],
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                      ],
-                    ),
-                    //child: new Text('text $i', style: new TextStyle(fontSize: 16.0,color: Colors.black),)
-                  );
-                },
-              );
-            }).toList(),
-            carouselController: _controller,
-          ),
-        ),
+                          //child: new Text('text $i', style: new TextStyle(fontSize: 16.0,color: Colors.black),)
+                        );
+                      },
+                    );
+                  }).toList(),
+                  carouselController: _controller,
+                ),
+              ),
         Positioned(
           top: 140,
           child: Container(
@@ -417,8 +440,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
         duration: Duration(milliseconds: 300), curve: Curves.decelerate);
   }
 
-
-   getLeadershipTeamResponse() async {
+  getLeadershipTeamResponse() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -453,4 +475,3 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
     }
   }
 }
-

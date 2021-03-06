@@ -97,7 +97,7 @@ class _MyHomePageState extends State<OurProgram> {
             mabialaFABController.setExpandedWidgetConfiguration(
               showLogs: true,
               heightToExpandTo: 50,
-              expendedBackgroundColor: Customcolor.cardbg,
+              expendedBackgroundColor: Customcolor.programyellow,
               withChild: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -114,7 +114,8 @@ class _MyHomePageState extends State<OurProgram> {
                             mabialaFABController.setExpandedWidgetConfiguration(
                               showLogs: true,
                               heightToExpandTo: 50,
-                              expendedBackgroundColor: Customcolor.cardbg,
+                              expendedBackgroundColor:
+                                  Customcolor.programyellow,
                               withChild: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
@@ -321,7 +322,7 @@ class _MyHomePageState extends State<OurProgram> {
           floatingActionButtonIconColor: Customcolor.colorBlue,
           navigationBarIconActiveColor: Colors.pink,
           navigationBarIconInactiveColor: Colors.pink[200].withOpacity(0.6),
-          collapsedColor: Customcolor.cardbg,
+          collapsedColor: Customcolor.programyellow,
           // useAsFloatingSpaceBar: useFloatingSpaceBar,
           useAsFloatingActionButton: useAsFloatingActionButton,
           //useAsNavigationBar: useNavigationBar,

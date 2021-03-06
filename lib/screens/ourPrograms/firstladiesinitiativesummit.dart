@@ -10,7 +10,6 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
-
 class FirstLadiesInitiativeDetails extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -64,10 +63,20 @@ class FirstLadiesInitiativeDetailsState
                       print("Opening $url...");
                     },
                   ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(right: 60, left: 60),
+                  //   child: Image.asset(
+                  //     "assets/newImages/flowers_footer.png",
+                  //   ),
+                  // ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 60, left: 60),
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
+                    padding: const EdgeInsets.only(right: 0, left: 0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Image.asset(
+                        "assets/newImages/flowers_footer.png",
+                        height: 170,
+                      ),
                     ),
                   ),
                   SizedBox(

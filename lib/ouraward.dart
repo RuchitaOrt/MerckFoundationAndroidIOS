@@ -135,12 +135,16 @@ class ourawardState extends State<Ouraward> {
                                     ),
                                   ),
                                 ),
-                                Image.asset(
-                                  "assets/images/trophy.png",
-                                  width: 70,
-                                  height: 70,
-                                )
+
+                                // Image.asset(
+                                //   "assets/images/trophy.png",
+                                //   width: 70,
+                                //   height: 70,
+                                // )
                               ],
+                            ),
+                            SizedBox(
+                              height: 10,
                             ),
                           ],
                         ),
@@ -150,11 +154,21 @@ class ourawardState extends State<Ouraward> {
                 );
               },
             ),
+            // Padding(
+            //   padding: const EdgeInsets.only(
+            //       left: 60, right: 60, top: 20, bottom: 10),
+            //   child: Image.asset(
+            //     "assets/newImages/flowers_footer.png",
+            //   ),
+            // ),
             Padding(
-              padding: const EdgeInsets.only(
-                  left: 60, right: 60, top: 20, bottom: 10),
-              child: Image.asset(
-                "assets/newImages/flowers_footer.png",
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
+                ),
               ),
             ),
           ],
