@@ -55,7 +55,7 @@ class BottomArea {
 
   Art art;
   DigitalLibrary media;
-  Testimonial testimonial;
+  Art testimonial;
 
   factory BottomArea.fromJson(Map<String, dynamic> json) => BottomArea(
         art: json["art"] == null ? null : Art.fromJson(json["art"]),
@@ -64,7 +64,7 @@ class BottomArea {
             : DigitalLibrary.fromJson(json["media"]),
         testimonial: json["testimonial"] == null
             ? null
-            : Testimonial.fromJson(json["testimonial"]),
+            : Art.fromJson(json["testimonial"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -77,18 +77,20 @@ class BottomArea {
 class Art {
   Art({
     this.list,
+    this.baseUrl,
   });
 
-  Map<String, ArtList> list;
+  List<ArtList> list;
+  String baseUrl;
 
   factory Art.fromJson(Map<String, dynamic> json) => Art(
-        list: Map.from(json["list"]).map((k, v) => MapEntry<String, ArtList>(
-            k, v == null ? null : ArtList.fromJson(v))),
+        list: List<ArtList>.from(json["list"].map((x) => ArtList.fromJson(x))),
+        baseUrl: json["base_url"],
       );
 
   Map<String, dynamic> toJson() => {
-        "list": Map.from(list).map((k, v) =>
-            MapEntry<String, dynamic>(k, v == null ? null : v.toJson())),
+        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "base_url": baseUrl,
       };
 }
 
@@ -173,19 +175,21 @@ class ArtList {
 class DigitalLibrary {
   DigitalLibrary({
     this.list,
+    this.baseUrl,
   });
 
-  Map<String, DigitalLibraryList> list;
+  List<DigitalLibraryList> list;
+  String baseUrl;
 
   factory DigitalLibrary.fromJson(Map<String, dynamic> json) => DigitalLibrary(
-        list: Map.from(json["list"]).map((k, v) =>
-            MapEntry<String, DigitalLibraryList>(
-                k, DigitalLibraryList.fromJson(v))),
+        list: List<DigitalLibraryList>.from(
+            json["list"].map((x) => DigitalLibraryList.fromJson(x))),
+        baseUrl: json["base_url"],
       );
 
   Map<String, dynamic> toJson() => {
-        "list": Map.from(list)
-            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "base_url": baseUrl,
       };
 }
 
@@ -256,24 +260,6 @@ enum CreatedAtEnum { THE_00000000000000 }
 final createdAtEnumValues =
     EnumValues({"0000-00-00 00:00:00": CreatedAtEnum.THE_00000000000000});
 
-class Testimonial {
-  Testimonial({
-    this.list,
-  });
-
-  Map<String, ArtList> list;
-
-  factory Testimonial.fromJson(Map<String, dynamic> json) => Testimonial(
-        list: Map.from(json["list"])
-            .map((k, v) => MapEntry<String, ArtList>(k, ArtList.fromJson(v))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "list": Map.from(list)
-            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
-      };
-}
-
 class MiddleArea {
   MiddleArea({
     this.videos,
@@ -313,41 +299,43 @@ class MiddleArea {
 class Content {
   Content({
     this.list,
+    this.baseUrl,
   });
 
-  Map<String, Map<String, String>> list;
+  List<Map<String, String>> list;
+  String baseUrl;
 
   factory Content.fromJson(Map<String, dynamic> json) => Content(
-        list: Map.from(json["list"]).map((k, v) =>
-            MapEntry<String, Map<String, String>>(
-                k,
-                Map.from(v).map((k, v) =>
-                    MapEntry<String, String>(k, v == null ? null : v)))),
+        list: List<Map<String, String>>.from(json["list"].map((x) => Map.from(x)
+            .map((k, v) => MapEntry<String, String>(k, v == null ? null : v)))),
+        baseUrl: json["base_url"],
       );
 
   Map<String, dynamic> toJson() => {
-        "list": Map.from(list).map((k, v) => MapEntry<String, dynamic>(
-            k,
-            Map.from(v).map(
-                (k, v) => MapEntry<String, dynamic>(k, v == null ? null : v)))),
+        "list": List<dynamic>.from(list.map((x) => Map.from(x).map(
+            (k, v) => MapEntry<String, dynamic>(k, v == null ? null : v)))),
+        "base_url": baseUrl,
       };
 }
 
 class Mmtm {
   Mmtm({
     this.list,
+    this.baseUrl,
   });
 
-  Map<String, MmtmList> list;
+  List<MmtmList> list;
+  String baseUrl;
 
   factory Mmtm.fromJson(Map<String, dynamic> json) => Mmtm(
-        list: Map.from(json["list"])
-            .map((k, v) => MapEntry<String, MmtmList>(k, MmtmList.fromJson(v))),
+        list:
+            List<MmtmList>.from(json["list"].map((x) => MmtmList.fromJson(x))),
+        baseUrl: json["base_url"],
       );
 
   Map<String, dynamic> toJson() => {
-        "list": Map.from(list)
-            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "base_url": baseUrl,
       };
 }
 
@@ -364,6 +352,7 @@ class MmtmList {
     this.status,
     this.createdAt,
     this.updatedAt,
+    this.position,
   });
 
   String id;
@@ -375,8 +364,9 @@ class MmtmList {
   String year;
   String featuredImage;
   String status;
-  CreatedAtEnum createdAt;
-  CreatedAtEnum updatedAt;
+  dynamic createdAt;
+  dynamic updatedAt;
+  String position;
 
   factory MmtmList.fromJson(Map<String, dynamic> json) => MmtmList(
         id: json["id"],
@@ -388,8 +378,9 @@ class MmtmList {
         year: json["year"],
         featuredImage: json["featured_image"],
         status: json["status"],
-        createdAt: createdAtEnumValues.map[json["created_at"]],
-        updatedAt: createdAtEnumValues.map[json["updated_at"]],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
+        position: json["position"] == null ? null : json["position"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -402,26 +393,26 @@ class MmtmList {
         "year": year,
         "featured_image": featuredImage,
         "status": status,
-        "created_at": createdAtEnumValues.reverse[createdAt],
-        "updated_at": createdAtEnumValues.reverse[updatedAt],
+        "created_at": createdAt,
+        "updated_at": updatedAt,
+        "position": position == null ? null : position,
       };
 }
 
 class Videos {
   Videos({
-    this.videohomelist,
+    this.list,
   });
 
-  Map<String, VideosList> videohomelist;
+  List<VideosList> list;
 
   factory Videos.fromJson(Map<String, dynamic> json) => Videos(
-        videohomelist: Map.from(json["list"]).map(
-            (k, v) => MapEntry<String, VideosList>(k, VideosList.fromJson(v))),
+        list: List<VideosList>.from(
+            json["list"].map((x) => VideosList.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "list": Map.from(videohomelist)
-            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+        "list": List<dynamic>.from(list.map((x) => x.toJson())),
       };
 }
 
@@ -505,18 +496,21 @@ class RightArea {
 class CallForApp {
   CallForApp({
     this.list,
+    this.baseUrl,
   });
 
-  Map<String, CallForAppList> list;
+  List<CallForAppList> list;
+  String baseUrl;
 
   factory CallForApp.fromJson(Map<String, dynamic> json) => CallForApp(
-        list: Map.from(json["list"]).map((k, v) =>
-            MapEntry<String, CallForAppList>(k, CallForAppList.fromJson(v))),
+        list: List<CallForAppList>.from(
+            json["list"].map((x) => CallForAppList.fromJson(x))),
+        baseUrl: json["base_url"],
       );
 
   Map<String, dynamic> toJson() => {
-        "list": Map.from(list)
-            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "base_url": baseUrl,
       };
 }
 
@@ -597,18 +591,21 @@ class SliderArea {
 class Slider {
   Slider({
     this.list,
+    this.baseUrl,
   });
 
-  Map<String, SliderList> list;
+  List<SliderList> list;
+  String baseUrl;
 
   factory Slider.fromJson(Map<String, dynamic> json) => Slider(
-        list: Map.from(json["list"]).map(
-            (k, v) => MapEntry<String, SliderList>(k, SliderList.fromJson(v))),
+        list: List<SliderList>.from(
+            json["list"].map((x) => SliderList.fromJson(x))),
+        baseUrl: json["base_url"],
       );
 
   Map<String, dynamic> toJson() => {
-        "list": Map.from(list)
-            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "base_url": baseUrl,
       };
 }
 

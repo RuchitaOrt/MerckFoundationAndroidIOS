@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'dart:io';
 
 import 'package:android_intent/android_intent.dart';
@@ -13,9 +14,11 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:http/io_client.dart';
 import 'package:marquee/marquee.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
+import 'package:merckfoundation22dec/model/HomepageResponse.dart';
 import 'package:merckfoundation22dec/ouraward.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
 import 'package:merckfoundation22dec/whatwedo/ourpolicy.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
@@ -60,19 +63,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   int currentIndex = 0;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   Map<dynamic, dynamic> mapsection = {};
-  Map<dynamic, dynamic> slidersection = {};
+  List<dynamic> slidersection = [];
   Map<dynamic, dynamic> videosection = {};
-  List _productsAvailable = [
-    "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg",
-    "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg"
-  ];
+  List _productsAvailable = [];
   List _productsAvailable1 = [
     "assets/images/slider1.jpg",
     "assets/images/slider2.jpg",
   ];
   List typewidet = [];
+  List typewidetofrightsection = [];
   List<programclass> _ourlist = [
     //     programclass(
     // programname: "Our \nVision", colors: Customcolor.colorBlue),
@@ -97,22 +96,19 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   double imgHeight = 50;
   bool expandClick = false;
   String expandedName = "Upcoming Events";
-
-  final List<Tab> tabs = <Tab>[
-    new Tab(text: "Call for Application"),
-    new Tab(text: "Digital Library"),
-    new Tab(text: "Merck More Than A Mother Ambassadors")
-  ];
+  bool isMiddleSectionLoaded = false;
+  bool isrightSectionLoaded = false;
+  final List<Tab> tabs = <Tab>[];
 
   TabController _tabController;
   List<Widget> listofwiget = [];
-
+  List<Widget> listoftabwiget = [];
   @override
   void initState() {
     super.initState();
-    print(mapsection);
+    print("ho");
     gethomeapi();
-    _tabController = new TabController(vsync: this, length: tabs.length);
+    _tabController = new TabController(vsync: this, length: 3);
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -128,178 +124,217 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
-        ShowDialogs.showConfirmDialog(
-            context, "Exit", "Are you sure, want to exit?");
-      },
-      child: Scaffold(
-        backgroundColor: Customcolor.background,
-        key: _scaffoldKey,
-        appBar: CustomAppBar(
-          () {
-            print("kk");
-            _scaffoldKey.currentState.openDrawer();
-          },
-          1,
-          height: 120,
-        ),
-        drawer: Theme(
-          data: Theme.of(context).copyWith(
-            canvasColor: Colors.transparent,
+        onWillPop: () {
+          ShowDialogs.showConfirmDialog(
+              context, "Exit", "Are you sure, want to exit?");
+        },
+        child: Scaffold(
+          backgroundColor: Customcolor.background,
+          key: _scaffoldKey,
+          appBar: CustomAppBar(
+            () {
+              print("kk");
+              _scaffoldKey.currentState.openDrawer();
+            },
+            1,
+            height: 120,
           ),
-          //child: null,
-          child: AppDrawer(),
-        ),
-        body:
-            //  Container(
-            //     padding: EdgeInsets.all(20.0), child: ListView(children: list()))
-            Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: ListView(
-            //  crossAxisAlignment: CrossAxisAlignment.start,
-            shrinkWrap: true,
-            children: [
-              slider(context),
-              SizedBox(
-                height: 10,
-              ),
-              _buildComplexMarquee(),
-              SizedBox(
-                height: 5,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: ourlist(),
-              ),
-              followUs(),
-              //  newSlider(context),
-
-              SizedBox(
-                height: 12,
-              ),
-
-              CustomeCard(
-                index: 1,
-                cardImage: "assets/newImages/message.png",
-                cardTitle:
-                    "Message Form Dr.Rasha Kelej, CEO of Merck Foundation   ",
-                titleColor: Customcolor.text_darkblue,
-                titleImg: "assets/newImages/flowers-2.png",
-                subTitle: "Message Form Dr.Rasha Kelej, on the inauguration...",
-                buttontitle: "Read More ",
-                buttontitlecolor: Customcolor.text_darkblue,
-              ),
-              SizedBox(
-                height: 12,
-              ),
-              CustomeCard(
-                index: 2,
-                cardImage: "assets/newImages/mqdefault.png",
-                cardTitle: "Our Stories   ",
-                titleColor: Customcolor.text_darkblue,
-                titleImg: "assets/newImages/flowers-2.png",
-                subTitle: "Message Form Dr.Rasha Kelej, on the inauguration...",
-                buttontitle: "Watch More ",
-                onBtnTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => Dashboard(
-                                index: 2,
-                              )));
-                },
-                buttontitlecolor: Customcolor.text_darkblue,
-              ),
-
-              SizedBox(
-                height: 8,
-              ),
-              // RichText(
-              //   text: TextSpan(
-              //     children: [
-              //       TextSpan(
-              //         text:
-              //             "Message Form Dr.Rasha Kelej, on the inauguration Message Form Dr.Rasha Kelej, on the inauguration...",
-              //       ),
-              //       WidgetSpan(
-              //         child: Icon(Icons.add, size: 14),
-              //       ),
-              //     ],
-              //   ),
+          drawer: Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: Colors.transparent,
+            ),
+            //child: null,
+            child: AppDrawer(),
+          ),
+          body:
+              //  Container(
+              //   padding: EdgeInsets.all(20.0),
+              //   child: FutureBuilder(
+              //       future: gethomeapi(),
+              //       builder: (context, snapshot) {
+              //         if (snapshot.hasData) {
+              //           return ListView(children: list());
+              //         } else {
+              //           return CircularProgressIndicator();
+              //         }
+              //       }),
               // ),
-              CustomeCard(
-                index: 3,
-                cardImage: "assets/newImages/gallery.png",
-                cardTitle: "Photo Gallery   ",
-                titleColor: Customcolor.text_darkblue,
-                titleImg: "assets/newImages/flowers-3.png",
-                subTitle: "",
-                buttontitle: "View More ",
-                buttontitlecolor: Customcolor.text_darkblue,
-              ),
-
-              SizedBox(
-                height: 8,
-              ),
-
               Container(
-                height: 450,
-                child: Column(
-                  children: [
-                    TabBar(
-                      isScrollable: true,
-                      unselectedLabelColor: Colors.grey,
-                      labelColor: Colors.black,
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      indicator: new BubbleTabIndicator(
-                        indicatorHeight: 35.0,
-                        indicatorRadius: 5,
-                        indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
-                        tabBarIndicatorSize: TabBarIndicatorSize.tab,
-                      ),
-                      tabs: tabs,
-                      controller: _tabController,
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: TabBarView(controller: _tabController, children: [
-                        callforApplication(),
-                        digitalLibrary(),
-                        merckmorethanmother()
-                      ]),
-                    ),
-                  ],
+            width: double.infinity,
+            height: double.infinity,
+            child: ListView(
+              //  crossAxisAlignment: CrossAxisAlignment.start,
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              children: [
+                slider(context),
+                SizedBox(
+                  height: 10,
                 ),
-              ),
+                _buildComplexMarquee(),
+                SizedBox(
+                  height: 5,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: ourlist(),
+                ),
+                followUs(),
+                //  newSlider(context),
 
-              SizedBox(
-                height: 10,
-              ),
-              // Padding(
-              //   padding: const EdgeInsets.only(right: 60, left: 60),
-              //   child: Image.asset(
-              //     "assets/newImages/flowers_footer.png",
-              //   ),
-              // ),
-              Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
+                SizedBox(
+                  height: 12,
+                ),
+                Visibility(
+                  visible: isMiddleSectionLoaded,
+                  replacement: Center(child: CircularProgressIndicator()),
+                  child: ListView(
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      // scrollDirection: Axis.horizontal,
+                      children: list()),
+                ),
+                // Container(
+                //   padding: EdgeInsets.all(20.0),
+                //   child: FutureBuilder(
+                //       future: gethomeapi(),
+                //       builder: (context, snapshot) {
+                //         if (snapshot.hasData) {
+                //           return ListView(
+                //               shrinkWrap: true,
+                //               scrollDirection: Axis.horizontal,
+                //               children: list());
+                //         } else {
+                //           return CircularProgressIndicator();
+                //         }
+                //       }),
+                // ),
+                // CustomeCard(
+                //   index: 1,
+                //   cardImage: "assets/newImages/message.png",
+                //   cardTitle:
+                //       "Message Form Dr.Rasha Kelej, CEO of Merck Foundation   ",
+                //   titleColor: Customcolor.text_darkblue,
+                //   titleImg: "assets/newImages/flowers-2.png",
+                //   subTitle:
+                //       "Message Form Dr.Rasha Kelej, on the inauguration...",
+                //   buttontitle: "Read More ",
+                //   buttontitlecolor: Customcolor.text_darkblue,
+                // ),
+                // SizedBox(
+                //   height: 12,
+                // ),
+                // CustomeCard(
+                //   index: 2,
+                //   cardImage: "assets/newImages/mqdefault.png",
+                //   cardTitle: "Our Stories   ",
+                //   titleColor: Customcolor.text_darkblue,
+                //   titleImg: "assets/newImages/flowers-2.png",
+                //   subTitle:
+                //       "Message Form Dr.Rasha Kelej, on the inauguration...",
+                //   buttontitle: "Watch More ",
+                //   onBtnTap: () {
+                //     Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (BuildContext context) => Dashboard(
+                //                   index: 2,
+                //                 )));
+                //   },
+                //   buttontitlecolor: Customcolor.text_darkblue,
+                // ),
+
+                // SizedBox(
+                //   height: 8,
+                // ),
+                // RichText(
+                //   text: TextSpan(
+                //     children: [
+                //       TextSpan(
+                //         text:
+                //             "Message Form Dr.Rasha Kelej, on the inauguration Message Form Dr.Rasha Kelej, on the inauguration...",
+                //       ),
+                //       WidgetSpan(
+                //         child: Icon(Icons.add, size: 14),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // CustomeCard(
+                //   index: 3,
+                //   cardImage: "assets/newImages/gallery.png",
+                //   cardTitle: "Photo Gallery   ",
+                //   titleColor: Customcolor.text_darkblue,
+                //   titleImg: "assets/newImages/flowers-3.png",
+                //   subTitle: "",
+                //   buttontitle: "View More ",
+                //   buttontitlecolor: Customcolor.text_darkblue,
+                // ),
+
+                SizedBox(
+                  height: 8,
+                ),
+
+                Container(
+                  height: 450,
+                  //color: Colors.amber,
+                  child: Column(
+                    children: [
+                      TabBar(
+                        isScrollable: true,
+                        unselectedLabelColor: Colors.grey,
+                        labelColor: Colors.black,
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        indicator: new BubbleTabIndicator(
+                          indicatorHeight: 35.0,
+                          indicatorRadius: 5,
+                          indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
+                          tabBarIndicatorSize: TabBarIndicatorSize.tab,
+                        ),
+                        tabs: tabs,
+                        controller: _tabController,
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: TabBarView(
+                            physics: ScrollPhysics(),
+                            controller: _tabController,
+                            children: tablist()
+                            // callforApplication(),
+                            // digitalLibrary(),
+                            // merckmorethanmother()
+                            ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              )
-            ],
+
+                SizedBox(
+                  height: 10,
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 60, left: 60),
+                //   child: Image.asset(
+                //     "assets/newImages/flowers_footer.png",
+                //   ),
+                // ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                )
+              ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   Widget callforApplication() {
@@ -771,7 +806,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               image: DecorationImage(
-                                  image: AssetImage(product),
+                                  image: NetworkImage(
+                                      "http://merckfoundation.org/merck/public/uploads/slider/" +
+                                          product['image']),
                                   fit: BoxFit.cover)),
                           width: SizeConfig.blockSizeHorizontal * 100,
                           child: Column(
@@ -791,8 +828,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                           MainAxisAlignment.center,
                                       children: <Widget>[
                                         FormLabel(
-                                          text:
-                                              "Merck Capacity Advancement & Diabetes Blue Point Program",
+                                          text: product['image_title'],
                                           labelColor: Customcolor.pink_col,
                                           fontSize:
                                               ResponsiveFlutter.of(context)
@@ -804,8 +840,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                           height: 2,
                                         ),
                                         FormLabel(
-                                          text:
-                                              "Building nationwide Diabetes Care Capacity",
+                                          text: product['image_desc'],
                                           labelColor: Customcolor.pink_col,
                                           fontSize:
                                               ResponsiveFlutter.of(context)
@@ -1071,74 +1106,74 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     }
   }
 
-  Widget newSlider(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Column(
-          children: <Widget>[
-            Container(
-              child: carouselSlider = CarouselSlider(
-                options: CarouselOptions(
-                  viewportFraction: 1.0,
-                  height: 350,
-                  autoPlay: false,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _current1 = index;
-                    });
-                  },
-                ),
-                items: _productsAvailable1.map((product) {
-                  return new Builder(
-                    builder: (BuildContext context) {
-                      return new GridView.count(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10.0,
-                        mainAxisSpacing: 10.0,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        children: List.generate(
-                          4,
-                          (index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                        "assets/images/logo_nav1.png"),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(20.0),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  );
-                }).toList(),
-              ),
-            ),
-            new DotsIndicator(
-              dotsCount: _productsAvailable1.length,
-              position: double.parse("$_current1"),
-              decorator: DotsDecorator(
-                size: const Size.square(9.0),
-                activeSize: const Size(18.0, 9.0),
-                activeColor: Customcolor.colorBlue,
-                activeShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
+  // Widget newSlider(BuildContext context) {
+  //   return Stack(
+  //     children: <Widget>[
+  //       Column(
+  //         children: <Widget>[
+  //           Container(
+  //             child: carouselSlider = CarouselSlider(
+  //               options: CarouselOptions(
+  //                 viewportFraction: 1.0,
+  //                 height: 350,
+  //                 autoPlay: false,
+  //                 onPageChanged: (index, reason) {
+  //                   setState(() {
+  //                     _current1 = index;
+  //                   });
+  //                 },
+  //               ),
+  //               items: _productsAvailable1.map((product) {
+  //                 return new Builder(
+  //                   builder: (BuildContext context) {
+  //                     return new GridView.count(
+  //                       crossAxisCount: 2,
+  //                       crossAxisSpacing: 10.0,
+  //                       mainAxisSpacing: 10.0,
+  //                       shrinkWrap: true,
+  //                       scrollDirection: Axis.horizontal,
+  //                       children: List.generate(
+  //                         4,
+  //                         (index) {
+  //                           return Padding(
+  //                             padding: const EdgeInsets.all(10.0),
+  //                             child: Container(
+  //                               decoration: BoxDecoration(
+  //                                 image: DecorationImage(
+  //                                   image: AssetImage(
+  //                                       "assets/images/logo_nav1.png"),
+  //                                   fit: BoxFit.cover,
+  //                                 ),
+  //                                 borderRadius: BorderRadius.all(
+  //                                   Radius.circular(20.0),
+  //                                 ),
+  //                               ),
+  //                             ),
+  //                           );
+  //                         },
+  //                       ),
+  //                     );
+  //                   },
+  //                 );
+  //               }).toList(),
+  //             ),
+  //           ),
+  //           new DotsIndicator(
+  //             dotsCount: _productsAvailable1.length,
+  //             position: double.parse("$_current1"),
+  //             decorator: DotsDecorator(
+  //               size: const Size.square(9.0),
+  //               activeSize: const Size(18.0, 9.0),
+  //               activeColor: Customcolor.colorBlue,
+  //               activeShape: RoundedRectangleBorder(
+  //                   borderRadius: BorderRadius.circular(5.0)),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget ourlist() {
     //print(_ourlist.length);
@@ -1229,208 +1264,409 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   ////////////////////////
 
   Future<http.Response> gethomeapi() async {
+    print("home api");
     var response = await fetchget(
       encoding: "program_page_api/home/Android/1",
     );
     print("response");
     print(response);
-    const JsonEncoder encoder = JsonEncoder.withIndent('  ');
+
     var res = json.decode(response.body);
     print("ff");
+    print(res);
+    HomepageResponse homepageres = HomepageResponse.fromJson(res);
 
-    // slidersection = res['slider_area']['5'];
-    // print("slidersection");
-    // print(slidersection.length);
+    slidersection = homepageres.sliderArea[0].slider.list;
+    slidersection.forEach((element) {
+      _productsAvailable.add({
+        "id": element.id,
+        "menu_id": element.menuId,
+        "image_title": element.imageTitle,
+        "image_desc": element.imageDesc,
+        "links": element.links,
+        "image": element.image,
+        "alt_text": element.altText,
+        "status": element.status,
+        "created_at": element.createdAt,
+        "updated_at": element.updatedAt
+      });
+    });
 
-    dynamic section1 = res['middle_area']['1'];
-    dynamic section2 = res['middle_area']['2'];
-    dynamic section3 = res['middle_area']['3'];
-    dynamic section4 = res['middle_area']['4'];
-    dynamic section5 = res['middle_area']['5'];
+    print("slidersection");
+    print(slidersection.length);
 
-    var section1key = section1.keys.first; //video
-    var section2key = section2.keys.first; //award
-    var section3key = section3.keys.first; //content
-    var section4key = section4.keys.first; //gallery
-    var section5key = section5.keys.first;
-    setState(() {
-      typewidet = [
-        section1key,
-        section2key,
-        section3key,
-        section4key,
-        section5key
-      ];
+    Map<String, dynamic> section1 = homepageres.middleArea;
+    Map<String, dynamic> lastsection = homepageres.rightArea;
+    print(section1);
+    print(section1['1']);
 
-      print(typewidet);
-    }); //ceo_msg
+    for (int i = 0; i < section1.length; i++) {
+      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+      //  print(categoryKeys.videos.type);
+      dynamic section = res['middle_area']['${i + 1}'];
+      print("TKey: ${section.keys.first}");
+      var middlecategoryname = section.keys.first;
 
-    print(section1key);
-    print("section1key");
-
-    print(section2key);
-    print("section2key");
-    print(section3key);
-    print("section3key");
-    print(section4key);
-    print("section4key");
-    print(section5key);
-    print("section5key");
-    //section1
-    if (section1key == "videos") {
-      //videolist
       setState(() {
-        videosection = res['middle_area']['1']['videos']['list'];
+        typewidet.add(middlecategoryname);
 
-        dynamic key = videosection.keys.elementAt(0);
-        print(key);
-//1st Video Preview
-        Programvideo video = Programvideo.fromJson(videosection[key]);
+        print(typewidet);
+      });
+      if (middlecategoryname.toString().toLowerCase() ==
+          "Videos".toLowerCase()) {
+        GlobalLists.homevideolist =
+            homepageres.middleArea['${i + 1}'].videos.list;
+        print(GlobalLists.homevideolist.length);
+      } else if (middlecategoryname.toString().toLowerCase() ==
+          "awards".toLowerCase()) {
+        GlobalLists.homeawardlist =
+            homepageres.middleArea['${i + 1}'].awards.list;
+        print(GlobalLists.homeawardlist.length);
+      } else if (middlecategoryname.toString().toLowerCase() ==
+          "content".toLowerCase()) {
+        GlobalLists.homecontentlist =
+            homepageres.middleArea['${i + 1}'].content.list;
+        print(GlobalLists.homecontentlist.length);
+      } else if (middlecategoryname.toString().toLowerCase() ==
+          "gallery".toLowerCase()) {
+        GlobalLists.homegallerybaseurl =
+            homepageres.middleArea['${i + 1}'].gallery.baseUrl;
+        GlobalLists.homegallerylist =
+            homepageres.middleArea['${i + 1}'].gallery.list;
+        print(GlobalLists.homegallerylist.length);
+      } else if (middlecategoryname.toString().toLowerCase() ==
+          "ceo_msg".toLowerCase()) {
+        GlobalLists.homeceomsgbaseurl =
+            homepageres.middleArea['${i + 1}'].ceoMsg.baseUrl;
+        GlobalLists.homeceomsglist =
+            homepageres.middleArea['${i + 1}'].ceoMsg.list;
+        print(GlobalLists.homeceomsglist.length);
+      }
+    }
 
-        //List of all vidwoModels
-        List<Programvideo> programVidList = [];
-        videosection.forEach((key, value) {
-          programVidList.add(Programvideo.fromJson(value));
-        });
+    ///////right section
+    for (int i = 0; i < lastsection.length; i++) {
+      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+      //  print(categoryKeys.videos.type);
+      dynamic rightsection = res['Right_area']['${i + 1}'];
+      print("TKey: ${rightsection.keys.first}");
+      var rightsectioncategoryname = rightsection.keys.first;
 
-        print(video.videoDesc);
-        print(programVidList.length);
+      setState(() {
+        typewidetofrightsection.add(rightsectioncategoryname);
 
-        Map<dynamic, dynamic> contentsection =
-            res['middle_area']['3']['content']['list'];
-        dynamic keycontent = contentsection.keys.elementAt(0);
-        Homecontent content = Homecontent.fromJson(contentsection[keycontent]);
-        print(content.pageContent);
+        print(typewidetofrightsection);
       });
 
-      //print(video.videoDesc);
-      print("here");
-    } else if (section1key == "11") {
-      //award
-      print("not here");
-    } else if (section1key == "13") {
-      //covid
-      print("not here");
-    } else if (section1key == "15") {
-      //album
-      print("not here");
-    } else if (section1key == "23") {
-      //article
-      print("not here");
+      if (rightsectioncategoryname.toString().toLowerCase() ==
+          "call_for_app".toLowerCase()) {
+        GlobalLists.homecallforapp =
+            homepageres.rightArea['${i + 1}'].callForApp.list;
+        print(GlobalLists.homecallforapp.length);
+      } else if (rightsectioncategoryname.toString().toLowerCase() ==
+          "mmtm".toLowerCase()) {
+        GlobalLists.homemmtm = homepageres.rightArea['${i + 1}'].mmtm.list;
+        print(GlobalLists.homemmtm.length);
+      } else if (rightsectioncategoryname.toString().toLowerCase() ==
+          "digital_library".toLowerCase()) {
+        GlobalLists.homedigitallib =
+            homepageres.rightArea['${i + 1}'].digitalLibrary.list;
+        print(GlobalLists.homedigitallib.length);
+      }
     }
-//section2
-    if (section2key == "videos") {
-      //videolist
-      videosection = res['middle_area']['1']['videos'];
-      // print(videosection[0]);
-      print("not here");
-    } else if (section2key == "11") {
-      //award
-      print("here");
-    } else if (section2key == "13") {
-      //covid
-      print("not here");
-    } else if (section2key == "15") {
-      //album
-      print("not here");
-    } else if (section2key == "23") {
-      //article
-      print("not here");
-    }
-//section3
-    if (section3key == "videos") {
-      //videolist
-      videosection = res['middle_area']['1']['videos'];
-
-      print("not here");
-    } else if (section3key == "11") {
-      //award
-      print("not here");
-    } else if (section3key == "13") {
-      //covid
-      print("should came here");
-    } else if (section3key == "15") {
-      //album
-      print("not here");
-    } else if (section3key == "23") {
-      //article
-      print("not here");
-    }
-
-    //section4
-    if (section4key == "videos") {
-      //videolist
-      videosection = res['middle_area']['1']['videos'];
-
-      print("not here");
-    } else if (section4key == "11") {
-      //award
-      print("not here");
-    } else if (section4key == "13") {
-      //covid
-      print("not here");
-    } else if (section4key == "15") {
-      //album
-      print("here");
-    } else if (section4key == "23") {
-      //article
-      print("not here");
-    }
-
-    //section5
-    if (section5key == "videos") {
-      //videolist
-      videosection = res['middle_area']['1']['videos'];
-
-      print("not here");
-    } else if (section5key == "11") {
-      //award
-      print("not here");
-    } else if (section5key == "13") {
-      //covid
-      print("not here");
-    } else if (section5key == "15") {
-      //album
-      print("not here");
-    } else if (section5key == "23") {
-      //article
-      print("here");
-    }
-    // print(res['middle_area']["1"]['14'].runtimeType);
-    // setState(() {
-    //   mapsection = res['middle_area']["1"]['14'];
-    // });
-
-    // print("ken");
-    // print(mapsection.length);
-    // print(mapsection);
-    // mapsection.forEach((key, value) {
-    //   print("Key : ${key} value ${value}");
-    // });
+    setState(() {
+      isMiddleSectionLoaded = true;
+      isrightSectionLoaded = true;
+    });
 
     return response;
   }
+//   Future<http.Response> gethomeapi() async {
+//     var response = await fetchget(
+//       encoding: "program_page_api/home/Android/1",
+//     );
+//     print("response");
+//     print(response);
+//     const JsonEncoder encoder = JsonEncoder.withIndent('  ');
+//     var res = json.decode(response.body);
+//     print("ff");
+
+//     // slidersection = res['slider_area']['5'];
+//     // print("slidersection");
+//     // print(slidersection.length);
+
+//     dynamic section1 = res['middle_area']['1'];//1
+//     dynamic section2 = res['middle_area']['2'];//2
+//     dynamic section3 = res['middle_area']['3'];
+//     dynamic section4 = res['middle_area']['4'];
+//     dynamic section5 = res['middle_area']['5'];
+
+//     var section1key = section1.keys.first; //video
+//     var section2key = section2.keys.first; //award
+//     var section3key = section3.keys.first; //content
+//     var section4key = section4.keys.first; //gallery
+//     var section5key = section5.keys.first;
+//     setState(() {
+//       typewidet = [
+//         section1key,
+//         section2key,
+//         section3key,
+//         section4key,
+//         section5key
+//       ];
+
+//       print(typewidet);
+//     }); //ceo_msg
+
+//     print(section1key);
+//     print("section1key");
+
+//     print(section2key);
+//     print("section2key");
+//     print(section3key);
+//     print("section3key");
+//     print(section4key);
+//     print("section4key");
+//     print(section5key);
+//     print("section5key");
+//     //section1
+//     if (section1key == "videos") {
+//       //videolist
+//       setState(() {
+//         videosection = res['middle_area']['1']['videos']['list'];
+
+//         dynamic key = videosection.keys.elementAt(0);
+//         print(key);
+// //1st Video Preview
+//         Programvideo video = Programvideo.fromJson(videosection[key]);
+
+//         //List of all vidwoModels
+//         List<Programvideo> programVidList = [];
+//         videosection.forEach((key, value) {
+//           programVidList.add(Programvideo.fromJson(value));
+//         });
+
+//         print(video.videoDesc);
+//         print(programVidList.length);
+
+//         Map<dynamic, dynamic> contentsection =
+//             res['middle_area']['3']['content']['list'];
+//         dynamic keycontent = contentsection.keys.elementAt(0);
+//         Homecontent content = Homecontent.fromJson(contentsection[keycontent]);
+//         print(content.pageContent);
+//       });
+
+//       //print(video.videoDesc);
+//       print("here");
+//     } else if (section1key == "awards") {
+//       //award
+//       print("not here");
+//     } else if (section1key == "content") {
+//       //covid
+//       print("not here");
+//     } else if (section1key == "gallery") {
+//       //album
+//       print("not here");
+//     } else if (section1key == "ceo_msg") {
+//       //article
+//       print("not here");
+//     }
+// //section2
+//     if (section2key == "videos") {
+//       //videolist
+//       videosection = res['middle_area']['1']['videos'];
+//       // print(videosection[0]);
+//       print("not here");
+//     } else if (section2key == "11") {
+//       //award
+//       print("here");
+//     } else if (section2key == "13") {
+//       //covid
+//       print("not here");
+//     } else if (section2key == "15") {
+//       //album
+//       print("not here");
+//     } else if (section2key == "23") {
+//       //article
+//       print("not here");
+//     }
+// //section3
+//     if (section3key == "videos") {
+//       //videolist
+//       videosection = res['middle_area']['1']['videos'];
+
+//       print("not here");
+//     } else if (section3key == "11") {
+//       //award
+//       print("not here");
+//     } else if (section3key == "13") {
+//       //covid
+//       print("should came here");
+//     } else if (section3key == "15") {
+//       //album
+//       print("not here");
+//     } else if (section3key == "23") {
+//       //article
+//       print("not here");
+//     }
+
+//     //section4
+//     if (section4key == "videos") {
+//       //videolist
+//       videosection = res['middle_area']['1']['videos'];
+
+//       print("not here");
+//     } else if (section4key == "11") {
+//       //award
+//       print("not here");
+//     } else if (section4key == "13") {
+//       //covid
+//       print("not here");
+//     } else if (section4key == "15") {
+//       //album
+//       print("here");
+//     } else if (section4key == "23") {
+//       //article
+//       print("not here");
+//     }
+
+//     //section5
+//     if (section5key == "videos") {
+//       //videolist
+//       videosection = res['middle_area']['1']['videos'];
+
+//       print("not here");
+//     } else if (section5key == "11") {
+//       //award
+//       print("not here");
+//     } else if (section5key == "13") {
+//       //covid
+//       print("not here");
+//     } else if (section5key == "15") {
+//       //album
+//       print("not here");
+//     } else if (section5key == "23") {
+//       //article
+//       print("here");
+//     }
+//     // print(res['middle_area']["1"]['14'].runtimeType);
+//     // setState(() {
+//     //   mapsection = res['middle_area']["1"]['14'];
+//     // });
+
+//     // print("ken");
+//     // print(mapsection.length);
+//     // print(mapsection);
+//     // mapsection.forEach((key, value) {
+//     //   print("Key : ${key} value ${value}");
+//     // });
+
+//     return response;
+//   }
 
   List<Widget> list() {
     listofwiget.clear();
     for (int i = 0; i < typewidet.length; i++) {
       if (typewidet[i] == "videos") {
-        listofwiget.add(Text("vide"));
+        listofwiget.add(
+          CustomeCard(
+            //   index: 2,
+            cardImage:
+                'https://img.youtube.com/vi/${GlobalLists.homevideolist[0].videoLink.substring(GlobalLists.homevideolist[0].videoLink.length - 11)}/mqdefault.jpg',
+            cardTitle: "Our Stories   ",
+            titleColor: Customcolor.text_darkblue,
+            titleImg: "assets/newImages/flowers-2.png",
+            subTitle: GlobalLists.homevideolist[0].videoDesc,
+            buttontitle: "Watch More ",
+            onBtnTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Dashboard(
+                            index: 2,
+                          )));
+            },
+            buttontitlecolor: Customcolor.text_darkblue,
+          ),
+        );
       }
       if (typewidet[i] == "awards") {
-        listofwiget.add(RaisedButton(onPressed: () {}, child: Text("award")));
+        listofwiget.add(SizedBox());
       }
       if (typewidet[i] == "content") {
-        listofwiget.add(Text("content"));
+        listofwiget.add(SizedBox());
       }
       if (typewidet[i] == "gallery") {
-        listofwiget.add(Text("gallery"));
+        listofwiget.add(
+          CustomeCard(
+            index: 3,
+            cardImage: GlobalLists.homegallerybaseurl +
+                GlobalLists.homegallerylist[0].photo,
+            cardTitle: "Photo Gallery   ",
+            titleColor: Customcolor.text_darkblue,
+            titleImg: "assets/newImages/flowers-3.png",
+            subTitle: GlobalLists.homegallerylist[0].photoDescription,
+            buttontitle: "View More ",
+            buttontitlecolor: Customcolor.text_darkblue,
+          ),
+        );
       }
       if (typewidet[i] == "ceo_msg") {
-        listofwiget.add(Text("ceo_msg"));
+        listofwiget.add(
+          CustomeCard(
+            index: 1,
+            cardImage: GlobalLists.homeceomsgbaseurl +
+                GlobalLists.homeceomsglist[0].image,
+            cardTitle:
+                "Message Form Dr.Rasha Kelej, CEO of Merck Foundation   ",
+            titleColor: Customcolor.text_darkblue,
+            titleImg: "assets/newImages/flowers-2.png",
+            subTitle: GlobalLists.homeceomsglist[0].title,
+            buttontitle: "Read More ",
+            buttontitlecolor: Customcolor.text_darkblue,
+          ),
+        );
       }
     }
+
     return listofwiget;
+  }
+
+  List<Widget> tablist() {
+    setState(() {
+      listoftabwiget.clear();
+      tabs.clear();
+
+      // digitalLibrary(),
+      // merckmorethanmother()
+      for (int i = 0; i < typewidetofrightsection.length; i++) {
+        if (typewidetofrightsection[i] == "call_for_app") {
+          tabs.add(
+            new Tab(text: "Call for Application"),
+          );
+
+          listoftabwiget.add(
+            callforApplication(),
+          );
+        }
+        if (typewidetofrightsection[i] == "mmtm") {
+          tabs.add(
+            new Tab(text: "Merck More Than A Mother Ambassadors"),
+          );
+          listoftabwiget.add(merckmorethanmother());
+        }
+        if (typewidetofrightsection[i] == "digital_library") {
+          tabs.add(
+            new Tab(text: "Digital Library"),
+          );
+          listoftabwiget.add(digitalLibrary());
+        }
+        print('tabs');
+        print(tabs.length);
+      }
+    });
+    //_tabController.length = tabs.length;
+    return listoftabwiget;
   }
 
   static Future<http.Response> fetchget(

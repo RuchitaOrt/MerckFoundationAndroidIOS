@@ -82,6 +82,7 @@ import 'package:merckfoundation22dec/model/FilterdataResponse.dart'
     as filterlist;
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart'
     as awarddetail;
+import 'package:merckfoundation22dec/model/HomepageResponse.dart' as home;
 import 'package:merckfoundation22dec/model/searchmodel/SearchvideocategoryResponse.dart'
     as searchvideo;
 import 'package:merckfoundation22dec/model/searchmodel/SearchnewreleasecategoryResponse.dart'
@@ -172,4 +173,19 @@ class GlobalLists {
 
   //ourprogram
   static List<dynamic> programvideollisting = [];
+
+  //home api
+  static List<dynamic> homevideolist = [];
+  static List<dynamic> homeawardlist = [];
+  static List<dynamic> homecontentlist = [];
+
+  static List<dynamic> homegallerylist = [];
+  static String homegallerybaseurl = "";
+  static String homeceomsgbaseurl = "";
+
+  static List<dynamic> homeceomsglist = [];
+
+  static List<dynamic> homecallforapp = [];
+  static List<dynamic> homedigitallib = [];
+  static List<dynamic> homemmtm = [];
 }
