@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
+import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
 import 'package:merckfoundation22dec/model/MMTMSlider.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -26,6 +30,7 @@ import 'package:merckfoundation22dec/model/mmtmcallforappResponse.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/mmtmdigitallibrary.dart';
+import 'package:responsive_flutter/responsive_flutter.dart';
 
 class OurProgramDetails extends StatefulWidget {
   @override
@@ -38,13 +43,15 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
     with TickerProviderStateMixin {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   int _current = 0;
+  List<dynamic> slidersection = [];
+  List typewidet = [];
+  List typewidetofrightsection = [];
   int _current1 = 0;
-  List _productsAvailable = [
-    "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg",
-    "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg"
-  ];
+  List _productsAvailable = [];
+  bool isMiddleSectionLoaded = false;
+  bool isrightSectionLoaded = false;
+  List<Widget> listofwiget = [];
+  List<Widget> listoftabwiget = [];
 
   List _imgarray = [
     "assets/newImages/img3.jpg",
@@ -75,7 +82,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
 
   @override
   void initState() {
-    getmmtmslider();
+    // getmmtmslider();
+    getmmtmapi();
     super.initState();
     _tabController = new TabController(vsync: this, length: tabs.length);
   }
@@ -108,566 +116,581 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
         trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 15),
-        child: Column(
-          // shrinkWrap: true,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 15,
-                right: 15,
-              ),
-              child: GlobalLists.mmtmsliderlist.length <= 0
-                  ? Container(
-                      child: Center(child: Text(Constantstring.emptyData)),
-                    )
-                  : slider(context),
-            ),
-            SizedBox(
-              height: 9,
-            ),
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  GlobalLists.mmtmcontentlist.length <= 0
-                      ? Container(
-                          child: Center(child: Text(Constantstring.emptyData)),
-                        )
-                      : Html(
-                          data:
-                              """${GlobalLists.mmtmcontentlist[0].pageContent} """,
-                          onLinkTap: (url) {
-                            print("Opening $url...");
-                          },
-                        ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 450,
-                    child: Column(
-                      children: [
-                        TabBar(
-                          isScrollable: true,
-                          unselectedLabelColor: Colors.grey,
-                          labelColor: Colors.black,
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          indicator: new BubbleTabIndicator(
-                            indicatorHeight: 35.0,
-                            indicatorRadius: 5,
-                            indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
-                            tabBarIndicatorSize: TabBarIndicatorSize.tab,
-                          ),
-                          tabs: tabs,
-                          controller: _tabController,
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: TabBarView(
-                              controller: _tabController,
-                              children: [
-                                callforApplication(),
-                                digitalLibrary(),
-                                merckmorethanmother()
-                              ]),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GlobalLists.mmtmvideoseclist.length <= 0
-                      ? Container(
-                          child: Center(child: Text(Constantstring.emptyData)),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: CustomHorizontalCard(
-                            index: 1,
-                            cardImage: "assets/newImages/gallery.png",
-                            cardTitle: "Our Videos  ",
-                            btnTitle: "Watch More",
-                            onbtnTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          Videolibrary()));
-                            },
-                            titleColor: Customcolor.pink_col,
-                            titleImg: "assets/newImages/flowers-3.png",
-                            list: ListView.builder(
-                              itemCount: GlobalLists.mmtmvideoseclist.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                VideoPlayer(
-                                                  videoUrl: GlobalLists
-                                                      .mmtmvideoseclist[index]
-                                                      .videoLink,
-                                                )));
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 8, left: 10),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          width:
-                                              SizeConfig.blockSizeHorizontal *
-                                                  86,
-                                          child: FadeInImage.assetNetwork(
-                                            placeholder:
-                                                'assets/newImages/placeholder_3.jpg',
-                                            image:
-                                                "https://img.youtube.com/vi/${GlobalLists.mmtmvideoseclist[index].videoLink.substring(GlobalLists.mmtmvideoseclist[index].videoLink.length - 11)}/mqdefault.jpg",
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: Alignment.bottomCenter,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10,
-                                                right: 10,
-                                                bottom: 10),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: SizeConfig
-                                                              .blockSizeHorizontal *
-                                                          80,
-                                                      child: Text(
-                                                        GlobalLists
-                                                            .mmtmvideoseclist[
-                                                                index]
-                                                            .videoDesc,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700),
-                                                        maxLines: 3,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 25,
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(left: 120),
-                                          child: Center(
-                                              child: Image.asset(
-                                                  "assets/newImages/pause.png")),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GlobalLists.mmtmlatestupdatelist.length <= 0
-                      ? Container(
-                          child: Center(child: Text(Constantstring.emptyData)),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: CustomHorizontalCard(
-                            index: 1,
-                            cardImage: "assets/newImages/ourvison.png",
-                            cardTitle: "Latest Updates  ",
-                            btnTitle: "View More",
-                            titleColor: Customcolor.pink_col,
-                            titleImg: "assets/newImages/flowers-3.png",
-                            list: ListView.builder(
-                              itemCount:
-                                  GlobalLists.mmtmlatestupdatelist.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding:
-                                      const EdgeInsets.only(right: 8, left: 10),
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 86,
-                                        child: FadeInImage.assetNetwork(
-                                          placeholder:
-                                              'assets/newImages/placeholder_3.jpg',
-                                          image:
-                                              "${Constantstring.baseUrl + GlobalLists.mmtmlatestupdatelist[index].image}",
-                                          fit: BoxFit.fill,
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10, bottom: 10),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    width: SizeConfig
-                                                            .blockSizeHorizontal *
-                                                        80,
-                                                    child: Text(
-                                                      GlobalLists
-                                                          .mmtmlatestupdatelist[
-                                                              index]
-                                                          .title,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w700),
-                                                      maxLines: 3,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 8,
-                                                  )
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GlobalLists.mmtminmediaresp.length <= 0
-                      ? Container(
-                          child: Center(child: Text(Constantstring.emptyData)),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: CustomHorizontalCard(
-                            index: 1,
-                            cardImage: "assets/newImages/mqdefault.png",
-                            cardTitle: "Merck Foundation In Media  ",
-                            titleColor: Customcolor.pink_col,
-                            btnTitle: "View More",
-                            titleImg: "assets/newImages/flowers-3.png",
-                            list: ListView.builder(
-                              itemCount: GlobalLists.mmtminmediaresp.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding:
-                                      const EdgeInsets.only(right: 8, left: 10),
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 86,
-                                        child: FadeInImage.assetNetwork(
-                                          placeholder:
-                                              'assets/newImages/placeholder_3.jpg',
-                                          image:
-                                              "${Constantstring.baseUrl + GlobalLists.mmtminmediaresp[index].image}",
-                                          fit: BoxFit.fill,
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10, bottom: 10),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    width: SizeConfig
-                                                            .blockSizeHorizontal *
-                                                        80,
-                                                    child: Text(
-                                                      GlobalLists
-                                                          .mmtminmediaresp[
-                                                              index]
-                                                          .title,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w700),
-                                                      maxLines: 3,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 8,
-                                                  )
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GlobalLists.mmtmtestimonialresp.length <= 0
-                      ? Container(
-                          child: Center(child: Text(Constantstring.emptyData)),
-                        )
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 25,
-                                ),
-                                FormLabel(
-                                  text: "Alumini Testimonials",
-                                  labelColor: Customcolor.colorPink,
-                                  fontSize: 18,
-                                  fontweight: FontWeight.w700,
-                                  maxLines: 2,
-                                ),
-                                SizedBox(
-                                  width: 7,
-                                ),
-                                Image.asset(
-                                  'assets/newImages/flowers-3.png',
-                                  width: 40,
-                                  height: 40,
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: Container(
-                                height: 160,
-                                child: ListView.builder(
-                                  itemCount:
-                                      GlobalLists.mmtmtestimonialresp.length,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 8, right: 8),
-                                      child: Container(
-                                        height:
-                                            SizeConfig.blockSizeVertical * 15,
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Colors.white),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 5,
-                                                  bottom: 3,
-                                                  left: 8,
-                                                  right: 8),
-                                              child: Container(
-                                                // height: 220,
-                                                width: 100,
-                                                decoration: BoxDecoration(
-                                                  //color: Colors.amber,
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                child: FadeInImage.assetNetwork(
-                                                  placeholder:
-                                                      'assets/newImages/placeholder_3.jpg',
-                                                  image:
-                                                      "${Constantstring.baseUrl + GlobalLists.mmtmtestimonialresp[index].image}",
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: ListView(
-                                                shrinkWrap: true,
-                                                // crossAxisAlignment:
-                                                //     CrossAxisAlignment.start,
-                                                children: [
-                                                  SizedBox(
-                                                    height: 12,
-                                                  ),
-                                                  FormLabel(
-                                                    text: GlobalLists
-                                                        .mmtmtestimonialresp[
-                                                            index]
-                                                        .testimonialName,
-                                                    labelColor:
-                                                        Customcolor.colorPink,
-                                                    fontSize: 17,
-                                                    maxLines: 1,
-                                                    fontweight: FontWeight.w700,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 4,
-                                                  ),
-                                                  FormLabel(
-                                                    text: GlobalLists
-                                                        .mmtmtestimonialresp[
-                                                            index]
-                                                        .departmentName,
-                                                    labelColor: Colors.black87,
-                                                    fontSize: 13,
-                                                    fontweight: FontWeight.w600,
-                                                    maxLines: 2,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 7,
-                                                  ),
-                                                  FormLabel(
-                                                    text: GlobalLists
-                                                        .mmtmtestimonialresp[
-                                                            index]
-                                                        .shortDescription,
-                                                    labelColor: Colors.black54,
-                                                    fontSize: 13,
-                                                    fontweight: FontWeight.w500,
-                                                    maxLines: 4,
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 9,
-                            ),
-                            Center(
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              MerckFoundationTestimonial()));
-                                },
-                                child: Container(
-                                  width: 120,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                      color: Colors.amber,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Center(
-                                    child: Text(
-                                      "Read All",
-                                      style: TextStyle(
-                                          color: Customcolor.colorBlue,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(right: 60, left: 60),
-                  //   child: Image.asset(
-                  //     "assets/newImages/flowers_footer.png",
-                  //   ),
-                  // ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 0, left: 0),
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Image.asset(
-                        "assets/newImages/flowers_footer.png",
-                        height: 170,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: ListView(
+              //  crossAxisAlignment: CrossAxisAlignment.start,
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              children: [
+                slider(context),
+                Visibility(
+                  visible: isMiddleSectionLoaded,
+                  replacement: Center(child: CircularProgressIndicator()),
+                  child: ListView(
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      // scrollDirection: Axis.horizontal,
+                      children: list()),
+                ),
+              ])),
+      //     Padding(
+      //   padding: const EdgeInsets.only(top: 15),
+      //   child: Column(
+      //     // shrinkWrap: true,
+      //     crossAxisAlignment: CrossAxisAlignment.start,
+      //     children: [
+      //       Padding(
+      //         padding: const EdgeInsets.only(
+      //           left: 15,
+      //           right: 15,
+      //         ),
+      //         child: slider(context),
+      //       ),
+      //       SizedBox(
+      //         height: 9,
+      //       ),
+      //       Expanded(
+      //         child: ListView(
+      //           shrinkWrap: true,
+      //           children: [
+      //             GlobalLists.mmtmcontentlist.length <= 0
+      //                 ? Container(
+      //                     child: Center(child: Text(Constantstring.emptyData)),
+      //                   )
+      //                 : Html(
+      //                     data:
+      //                         """${GlobalLists.mmtmcontentlist[0].pageContent} """,
+      //                     onLinkTap: (url) {
+      //                       print("Opening $url...");
+      //                     },
+      //                   ),
+      //             SizedBox(
+      //               height: 20,
+      //             ),
+      //             Container(
+      //               height: 450,
+      //               child: Column(
+      //                 children: [
+      //                   TabBar(
+      //                     isScrollable: true,
+      //                     unselectedLabelColor: Colors.grey,
+      //                     labelColor: Colors.black,
+      //                     indicatorSize: TabBarIndicatorSize.tab,
+      //                     indicator: new BubbleTabIndicator(
+      //                       indicatorHeight: 35.0,
+      //                       indicatorRadius: 5,
+      //                       indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
+      //                       tabBarIndicatorSize: TabBarIndicatorSize.tab,
+      //                     ),
+      //                     tabs: tabs,
+      //                     controller: _tabController,
+      //                   ),
+      //                   Expanded(
+      //                     flex: 3,
+      //                     child: TabBarView(
+      //                         controller: _tabController,
+      //                         children: [
+      //                           callforApplication(),
+      //                           digitalLibrary(),
+      //                           merckmorethanmother()
+      //                         ]),
+      //                   ),
+      //                 ],
+      //               ),
+      //             ),
+      //             SizedBox(
+      //               height: 20,
+      //             ),
+      //             GlobalLists.mmtmvideoseclist.length <= 0
+      //                 ? Container(
+      //                     child: Center(child: Text(Constantstring.emptyData)),
+      //                   )
+      //                 : Padding(
+      //                     padding: const EdgeInsets.only(left: 10),
+      //                     child: CustomHorizontalCard(
+      //                       index: 1,
+      //                       cardImage: "assets/newImages/gallery.png",
+      //                       cardTitle: "Our Videos  ",
+      //                       btnTitle: "Watch More",
+      //                       onbtnTap: () {
+      //                         Navigator.push(
+      //                             context,
+      //                             MaterialPageRoute(
+      //                                 builder: (BuildContext context) =>
+      //                                     Videolibrary()));
+      //                       },
+      //                       titleColor: Customcolor.pink_col,
+      //                       titleImg: "assets/newImages/flowers-3.png",
+      //                       list: ListView.builder(
+      //                         itemCount: GlobalLists.mmtmvideoseclist.length,
+      //                         scrollDirection: Axis.horizontal,
+      //                         itemBuilder: (BuildContext context, int index) {
+      //                           return GestureDetector(
+      //                             onTap: () {
+      //                               Navigator.push(
+      //                                   context,
+      //                                   MaterialPageRoute(
+      //                                       builder: (BuildContext context) =>
+      //                                           VideoPlayer(
+      //                                             videoUrl: GlobalLists
+      //                                                 .mmtmvideoseclist[index]
+      //                                                 .videoLink,
+      //                                           )));
+      //                             },
+      //                             child: Padding(
+      //                               padding: const EdgeInsets.only(
+      //                                   right: 8, left: 10),
+      //                               child: Stack(
+      //                                 children: [
+      //                                   Container(
+      //                                     width:
+      //                                         SizeConfig.blockSizeHorizontal *
+      //                                             86,
+      //                                     child: FadeInImage.assetNetwork(
+      //                                       placeholder:
+      //                                           'assets/newImages/placeholder_3.jpg',
+      //                                       image:
+      //                                           "https://img.youtube.com/vi/${GlobalLists.mmtmvideoseclist[index].videoLink.substring(GlobalLists.mmtmvideoseclist[index].videoLink.length - 11)}/mqdefault.jpg",
+      //                                       fit: BoxFit.fill,
+      //                                     ),
+      //                                   ),
+      //                                   Align(
+      //                                     alignment: Alignment.bottomCenter,
+      //                                     child: Padding(
+      //                                       padding: const EdgeInsets.only(
+      //                                           left: 10,
+      //                                           right: 10,
+      //                                           bottom: 10),
+      //                                       child: Row(
+      //                                         crossAxisAlignment:
+      //                                             CrossAxisAlignment.end,
+      //                                         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                                         children: [
+      //                                           Column(
+      //                                             mainAxisAlignment:
+      //                                                 MainAxisAlignment.end,
+      //                                             crossAxisAlignment:
+      //                                                 CrossAxisAlignment.start,
+      //                                             children: [
+      //                                               Container(
+      //                                                 width: SizeConfig
+      //                                                         .blockSizeHorizontal *
+      //                                                     80,
+      //                                                 child: Text(
+      //                                                   GlobalLists
+      //                                                       .mmtmvideoseclist[
+      //                                                           index]
+      //                                                       .videoDesc,
+      //                                                   overflow: TextOverflow
+      //                                                       .ellipsis,
+      //                                                   style: TextStyle(
+      //                                                       color: Colors.white,
+      //                                                       fontSize: 14,
+      //                                                       fontWeight:
+      //                                                           FontWeight
+      //                                                               .w700),
+      //                                                   maxLines: 3,
+      //                                                 ),
+      //                                               ),
+      //                                               SizedBox(
+      //                                                 height: 25,
+      //                                               )
+      //                                             ],
+      //                                           ),
+      //                                         ],
+      //                                       ),
+      //                                     ),
+      //                                   ),
+      //                                   Padding(
+      //                                     padding: EdgeInsets.only(left: 120),
+      //                                     child: Center(
+      //                                         child: Image.asset(
+      //                                             "assets/newImages/pause.png")),
+      //                                   )
+      //                                 ],
+      //                               ),
+      //                             ),
+      //                           );
+      //                         },
+      //                       ),
+      //                     ),
+      //                   ),
+      //             SizedBox(
+      //               height: 20,
+      //             ),
+      //             GlobalLists.mmtmlatestupdatelist.length <= 0
+      //                 ? Container(
+      //                     child: Center(child: Text(Constantstring.emptyData)),
+      //                   )
+      //                 : Padding(
+      //                     padding: const EdgeInsets.only(left: 10),
+      //                     child: CustomHorizontalCard(
+      //                       index: 1,
+      //                       cardImage: "assets/newImages/ourvison.png",
+      //                       cardTitle: "Latest Updates  ",
+      //                       btnTitle: "View More",
+      //                       titleColor: Customcolor.pink_col,
+      //                       titleImg: "assets/newImages/flowers-3.png",
+      //                       list: ListView.builder(
+      //                         itemCount:
+      //                             GlobalLists.mmtmlatestupdatelist.length,
+      //                         scrollDirection: Axis.horizontal,
+      //                         itemBuilder: (BuildContext context, int index) {
+      //                           return Padding(
+      //                             padding:
+      //                                 const EdgeInsets.only(right: 8, left: 10),
+      //                             child: Stack(
+      //                               children: [
+      //                                 Container(
+      //                                   width:
+      //                                       SizeConfig.blockSizeHorizontal * 86,
+      //                                   child: FadeInImage.assetNetwork(
+      //                                     placeholder:
+      //                                         'assets/newImages/placeholder_3.jpg',
+      //                                     image:
+      //                                         "${Constantstring.baseUrl + GlobalLists.mmtmlatestupdatelist[index].image}",
+      //                                     fit: BoxFit.fill,
+      //                                   ),
+      //                                 ),
+      //                                 Align(
+      //                                   alignment: Alignment.bottomCenter,
+      //                                   child: Padding(
+      //                                     padding: const EdgeInsets.only(
+      //                                         left: 10, right: 10, bottom: 10),
+      //                                     child: Row(
+      //                                       crossAxisAlignment:
+      //                                           CrossAxisAlignment.end,
+      //                                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                                       children: [
+      //                                         Column(
+      //                                           mainAxisAlignment:
+      //                                               MainAxisAlignment.end,
+      //                                           crossAxisAlignment:
+      //                                               CrossAxisAlignment.start,
+      //                                           children: [
+      //                                             Container(
+      //                                               width: SizeConfig
+      //                                                       .blockSizeHorizontal *
+      //                                                   80,
+      //                                               child: Text(
+      //                                                 GlobalLists
+      //                                                     .mmtmlatestupdatelist[
+      //                                                         index]
+      //                                                     .title,
+      //                                                 overflow:
+      //                                                     TextOverflow.ellipsis,
+      //                                                 style: TextStyle(
+      //                                                     color: Colors.white,
+      //                                                     fontSize: 14,
+      //                                                     fontWeight:
+      //                                                         FontWeight.w700),
+      //                                                 maxLines: 3,
+      //                                               ),
+      //                                             ),
+      //                                             SizedBox(
+      //                                               height: 8,
+      //                                             )
+      //                                           ],
+      //                                         ),
+      //                                       ],
+      //                                     ),
+      //                                   ),
+      //                                 ),
+      //                               ],
+      //                             ),
+      //                           );
+      //                         },
+      //                       ),
+      //                     ),
+      //                   ),
+      //             SizedBox(
+      //               height: 20,
+      //             ),
+      //             GlobalLists.mmtminmediaresp.length <= 0
+      //                 ? Container(
+      //                     child: Center(child: Text(Constantstring.emptyData)),
+      //                   )
+      //                 : Padding(
+      //                     padding: const EdgeInsets.only(left: 10),
+      //                     child: CustomHorizontalCard(
+      //                       index: 1,
+      //                       cardImage: "assets/newImages/mqdefault.png",
+      //                       cardTitle: "Merck Foundation In Media  ",
+      //                       titleColor: Customcolor.pink_col,
+      //                       btnTitle: "View More",
+      //                       titleImg: "assets/newImages/flowers-3.png",
+      //                       list: ListView.builder(
+      //                         itemCount: GlobalLists.mmtminmediaresp.length,
+      //                         scrollDirection: Axis.horizontal,
+      //                         itemBuilder: (BuildContext context, int index) {
+      //                           return Padding(
+      //                             padding:
+      //                                 const EdgeInsets.only(right: 8, left: 10),
+      //                             child: Stack(
+      //                               children: [
+      //                                 Container(
+      //                                   width:
+      //                                       SizeConfig.blockSizeHorizontal * 86,
+      //                                   child: FadeInImage.assetNetwork(
+      //                                     placeholder:
+      //                                         'assets/newImages/placeholder_3.jpg',
+      //                                     image:
+      //                                         "${Constantstring.baseUrl + GlobalLists.mmtminmediaresp[index].image}",
+      //                                     fit: BoxFit.fill,
+      //                                   ),
+      //                                 ),
+      //                                 Align(
+      //                                   alignment: Alignment.bottomCenter,
+      //                                   child: Padding(
+      //                                     padding: const EdgeInsets.only(
+      //                                         left: 10, right: 10, bottom: 10),
+      //                                     child: Row(
+      //                                       crossAxisAlignment:
+      //                                           CrossAxisAlignment.end,
+      //                                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                                       children: [
+      //                                         Column(
+      //                                           mainAxisAlignment:
+      //                                               MainAxisAlignment.end,
+      //                                           crossAxisAlignment:
+      //                                               CrossAxisAlignment.start,
+      //                                           children: [
+      //                                             Container(
+      //                                               width: SizeConfig
+      //                                                       .blockSizeHorizontal *
+      //                                                   80,
+      //                                               child: Text(
+      //                                                 GlobalLists
+      //                                                     .mmtminmediaresp[
+      //                                                         index]
+      //                                                     .title,
+      //                                                 overflow:
+      //                                                     TextOverflow.ellipsis,
+      //                                                 style: TextStyle(
+      //                                                     color: Colors.white,
+      //                                                     fontSize: 14,
+      //                                                     fontWeight:
+      //                                                         FontWeight.w700),
+      //                                                 maxLines: 3,
+      //                                               ),
+      //                                             ),
+      //                                             SizedBox(
+      //                                               height: 8,
+      //                                             )
+      //                                           ],
+      //                                         ),
+      //                                       ],
+      //                                     ),
+      //                                   ),
+      //                                 ),
+      //                               ],
+      //                             ),
+      //                           );
+      //                         },
+      //                       ),
+      //                     ),
+      //                   ),
+      //             SizedBox(
+      //               height: 20,
+      //             ),
+      //             GlobalLists.mmtmtestimonialresp.length <= 0
+      //                 ? Container(
+      //                     child: Center(child: Text(Constantstring.emptyData)),
+      //                   )
+      //                 : Column(
+      //                     crossAxisAlignment: CrossAxisAlignment.start,
+      //                     children: [
+      //                       Row(
+      //                         children: [
+      //                           SizedBox(
+      //                             width: 25,
+      //                           ),
+      //                           FormLabel(
+      //                             text: "Alumini Testimonials",
+      //                             labelColor: Customcolor.colorPink,
+      //                             fontSize: 18,
+      //                             fontweight: FontWeight.w700,
+      //                             maxLines: 2,
+      //                           ),
+      //                           SizedBox(
+      //                             width: 7,
+      //                           ),
+      //                           Image.asset(
+      //                             'assets/newImages/flowers-3.png',
+      //                             width: 40,
+      //                             height: 40,
+      //                           )
+      //                         ],
+      //                       ),
+      //                       SizedBox(
+      //                         height: 10,
+      //                       ),
+      //                       Padding(
+      //                         padding: const EdgeInsets.only(left: 8),
+      //                         child: Container(
+      //                           height: 160,
+      //                           child: ListView.builder(
+      //                             itemCount:
+      //                                 GlobalLists.mmtmtestimonialresp.length,
+      //                             scrollDirection: Axis.horizontal,
+      //                             itemBuilder:
+      //                                 (BuildContext context, int index) {
+      //                               return Padding(
+      //                                 padding: const EdgeInsets.only(
+      //                                     left: 8, right: 8),
+      //                                 child: Container(
+      //                                   height:
+      //                                       SizeConfig.blockSizeVertical * 15,
+      //                                   width:
+      //                                       SizeConfig.blockSizeHorizontal * 80,
+      //                                   decoration: BoxDecoration(
+      //                                       borderRadius:
+      //                                           BorderRadius.circular(5),
+      //                                       color: Colors.white),
+      //                                   child: Row(
+      //                                     children: [
+      //                                       Padding(
+      //                                         padding: const EdgeInsets.only(
+      //                                             top: 5,
+      //                                             bottom: 3,
+      //                                             left: 8,
+      //                                             right: 8),
+      //                                         child: Container(
+      //                                           // height: 220,
+      //                                           width: 100,
+      //                                           decoration: BoxDecoration(
+      //                                             //color: Colors.amber,
+      //                                             borderRadius:
+      //                                                 BorderRadius.circular(10),
+      //                                           ),
+      //                                           child: FadeInImage.assetNetwork(
+      //                                             placeholder:
+      //                                                 'assets/newImages/placeholder_3.jpg',
+      //                                             image:
+      //                                                 "${Constantstring.baseUrl + GlobalLists.mmtmtestimonialresp[index].image}",
+      //                                             fit: BoxFit.cover,
+      //                                           ),
+      //                                         ),
+      //                                       ),
+      //                                       Expanded(
+      //                                         child: ListView(
+      //                                           shrinkWrap: true,
+      //                                           // crossAxisAlignment:
+      //                                           //     CrossAxisAlignment.start,
+      //                                           children: [
+      //                                             SizedBox(
+      //                                               height: 12,
+      //                                             ),
+      //                                             FormLabel(
+      //                                               text: GlobalLists
+      //                                                   .mmtmtestimonialresp[
+      //                                                       index]
+      //                                                   .testimonialName,
+      //                                               labelColor:
+      //                                                   Customcolor.colorPink,
+      //                                               fontSize: 17,
+      //                                               maxLines: 1,
+      //                                               fontweight: FontWeight.w700,
+      //                                             ),
+      //                                             SizedBox(
+      //                                               height: 4,
+      //                                             ),
+      //                                             FormLabel(
+      //                                               text: GlobalLists
+      //                                                   .mmtmtestimonialresp[
+      //                                                       index]
+      //                                                   .departmentName,
+      //                                               labelColor: Colors.black87,
+      //                                               fontSize: 13,
+      //                                               fontweight: FontWeight.w600,
+      //                                               maxLines: 2,
+      //                                             ),
+      //                                             SizedBox(
+      //                                               height: 7,
+      //                                             ),
+      //                                             FormLabel(
+      //                                               text: GlobalLists
+      //                                                   .mmtmtestimonialresp[
+      //                                                       index]
+      //                                                   .shortDescription,
+      //                                               labelColor: Colors.black54,
+      //                                               fontSize: 13,
+      //                                               fontweight: FontWeight.w500,
+      //                                               maxLines: 4,
+      //                                             ),
+      //                                           ],
+      //                                         ),
+      //                                       )
+      //                                     ],
+      //                                   ),
+      //                                 ),
+      //                               );
+      //                             },
+      //                           ),
+      //                         ),
+      //                       ),
+      //                       SizedBox(
+      //                         height: 9,
+      //                       ),
+      //                       Center(
+      //                         child: GestureDetector(
+      //                           onTap: () {
+      //                             Navigator.push(
+      //                                 context,
+      //                                 MaterialPageRoute(
+      //                                     builder: (BuildContext context) =>
+      //                                         MerckFoundationTestimonial()));
+      //                           },
+      //                           child: Container(
+      //                             width: 120,
+      //                             height: 40,
+      //                             decoration: BoxDecoration(
+      //                                 color: Colors.amber,
+      //                                 borderRadius: BorderRadius.circular(5)),
+      //                             child: Center(
+      //                               child: Text(
+      //                                 "Read All",
+      //                                 style: TextStyle(
+      //                                     color: Customcolor.colorBlue,
+      //                                     fontSize: 15,
+      //                                     fontWeight: FontWeight.w500),
+      //                               ),
+      //                             ),
+      //                           ),
+      //                         ),
+      //                       ),
+      //                     ],
+      //                   ),
+      //             SizedBox(
+      //               height: 20,
+      //             ),
+      //             // Padding(
+      //             //   padding: const EdgeInsets.only(right: 60, left: 60),
+      //             //   child: Image.asset(
+      //             //     "assets/newImages/flowers_footer.png",
+      //             //   ),
+      //             // ),
+      //             Padding(
+      //               padding: const EdgeInsets.only(right: 0, left: 0),
+      //               child: Align(
+      //                 alignment: Alignment.topRight,
+      //                 child: Image.asset(
+      //                   "assets/newImages/flowers_footer.png",
+      //                   height: 170,
+      //                 ),
+      //               ),
+      //             ),
+      //             SizedBox(
+      //               height: 10,
+      //             )
+      //           ],
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 
@@ -1000,337 +1023,744 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
     );
   }
 
+  // Widget slider(BuildContext context) {
+  //   return Stack(
+  //     children: <Widget>[
+  //       Column(
+  //         children: <Widget>[
+  //           Container(
+  //             child: carouselSlider = CarouselSlider(
+  //               options: CarouselOptions(
+  //                 viewportFraction: 1.0,
+  //                 height: 200,
+  //                 autoPlay: true,
+  //                 onPageChanged: (index, reason) {
+  //                   setState(() {
+  //                     _current = index;
+  //                   });
+  //                 },
+  //               ),
+  //               items: GlobalLists.mmtmsliderlist.map((product) {
+  //                 return new Builder(
+  //                   builder: (BuildContext context) {
+  //                     return new Container(
+  //                       decoration: BoxDecoration(
+  //                         borderRadius: BorderRadius.circular(10),
+  //                       ),
+  //                       width: SizeConfig.blockSizeHorizontal * 100,
+  //                       child: FadeInImage.assetNetwork(
+  //                         placeholder: 'assets/newImages/placeholder_3.jpg',
+  //                         image: Constantstring.baseUrl + product.image,
+  //                         fit: BoxFit.cover,
+  //                       ),
+  //                     );
+  //                   },
+  //                 );
+  //               }).toList(),
+  //             ),
+  //           ),
+  //           new DotsIndicator(
+  //             dotsCount: GlobalLists.mmtmsliderlist.length,
+  //             position: double.parse("$_current"),
+  //             decorator: DotsDecorator(
+  //               size: const Size.square(9.0),
+  //               activeSize: const Size(18.0, 9.0),
+  //               activeColor: Customcolor.colorPink,
+  //               activeShape: RoundedRectangleBorder(
+  //                   borderRadius: BorderRadius.circular(5.0)),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ],
+  //   );
+  // }
   Widget slider(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Column(
-          children: <Widget>[
-            Container(
-              child: carouselSlider = CarouselSlider(
-                options: CarouselOptions(
-                  viewportFraction: 1.0,
-                  height: 200,
-                  autoPlay: true,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _current = index;
-                    });
-                  },
-                ),
-                items: GlobalLists.mmtmsliderlist.map((product) {
-                  return new Builder(
-                    builder: (BuildContext context) {
-                      return new Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        width: SizeConfig.blockSizeHorizontal * 100,
-                        child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/newImages/placeholder_3.jpg',
-                          image: Constantstring.baseUrl + product.image,
-                          fit: BoxFit.cover,
-                        ),
-                      );
+    return Padding(
+      padding: const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 8),
+      child: Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Container(
+                child: carouselSlider = CarouselSlider(
+                  options: CarouselOptions(
+                    viewportFraction: 1.0,
+                    height: 170,
+                    autoPlay: true,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _current = index;
+                      });
                     },
-                  );
-                }).toList(),
+                  ),
+                  items: _productsAvailable.map((product) {
+                    return new Builder(
+                      builder: (BuildContext context) {
+                        return new Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      "http://merckfoundation.org/merck/public/uploads/slider/" +
+                                          product['image']),
+                                  fit: BoxFit.cover)),
+                          width: SizeConfig.blockSizeHorizontal * 100,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 0, bottom: 15),
+                                child: Container(
+                                  color: Colors.white.withOpacity(0.5),
+                                  width: SizeConfig.blockSizeHorizontal * 100,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10, top: 5, bottom: 5),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        FormLabel(
+                                          text: product['image_title'],
+                                          labelColor: Customcolor.pink_col,
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(1.4),
+                                          maxLines: 2,
+                                          fontweight: FontWeight.w700,
+                                        ),
+                                        SizedBox(
+                                          height: 2,
+                                        ),
+                                        FormLabel(
+                                          text: product['image_desc'],
+                                          labelColor: Customcolor.pink_col,
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(1.2),
+                                          fontweight: FontWeight.w500,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+                ),
               ),
-            ),
-            new DotsIndicator(
-              dotsCount: GlobalLists.mmtmsliderlist.length,
-              position: double.parse("$_current"),
-              decorator: DotsDecorator(
-                size: const Size.square(9.0),
-                activeSize: const Size(18.0, 9.0),
-                activeColor: Customcolor.colorPink,
-                activeShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
-              ),
-            ),
-          ],
-        ),
-      ],
+              // new DotsIndicator(
+              //   dotsCount: _productsAvailable.length,
+              //   position: double.parse("$_current"),
+              //   decorator: DotsDecorator(
+              //     size: const Size.square(9.0),
+              //     activeSize: const Size(18.0, 9.0),
+              //     activeColor: Customcolor.colorBlue,
+              //     activeShape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(5.0)),
+              //   ),
+              // ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
-  getmmtmslider() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
+  // getmmtmslider() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
 
-    if (status1) {
-      ShowDialogs.showLoadingDialog(context, _keyLoader);
+  //   if (status1) {
+  //     ShowDialogs.showLoadingDialog(context, _keyLoader);
 
-      APIManager().apiRequest(
-        context,
-        API.merckmotherSlider,
-        (response) async {
-          MmtmSliderResponse resp = response;
-          print(response);
-          print('Resp : $resp');
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.merckmotherSlider,
+  //       (response) async {
+  //         MmtmSliderResponse resp = response;
+  //         print(response);
+  //         print('Resp : $resp');
 
-          // Navigator.of(_keyLoader.currentContext).pop();
+  //         // Navigator.of(_keyLoader.currentContext).pop();
 
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.mmtmsliderlist = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
-              getmmtmcontent();
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-            Navigator.of(_keyLoader.currentContext).pop();
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
+  //         if (resp.success == "True") {
+  //           setState(() {
+  //             GlobalLists.mmtmsliderlist = resp.data.list;
+  //             Constantstring.baseUrl = resp.baseUrl;
+  //             getmmtmcontent();
+  //           });
+  //         } else {
+  //           ShowDialogs.showToast(resp.msg);
+  //           Navigator.of(_keyLoader.currentContext).pop();
+  //         }
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
+
+  // getmmtmcontent() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
+
+  //   if (status1) {
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.merckmotherContent,
+  //       (response) async {
+  //         MmtmContentResponce resp = response;
+  //         print(response);
+  //         print('Resp : $resp');
+
+  //         if (resp.success == "True") {
+  //           setState(() {
+  //             GlobalLists.mmtmcontentlist = resp.data.list;
+  //             getVideosection();
+  //           });
+  //         } else {
+  //           ShowDialogs.showToast(resp.msg);
+  //           Navigator.of(_keyLoader.currentContext).pop();
+  //         }
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
+
+  // getVideosection() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
+
+  //   if (status1) {
+  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.merckmotherVideos,
+  //       (response) async {
+  //         MerckMotherVideosResponce resp = response;
+  //         print(response);
+  //         print('Resp : $resp');
+
+  //         if (resp.success == "True") {
+  //           setState(() {
+  //             GlobalLists.mmtmvideoseclist = resp.data.list;
+  //             getlatestupdate();
+  //           });
+  //         } else {
+  //           ShowDialogs.showToast(resp.msg);
+
+  //           Navigator.of(_keyLoader.currentContext).pop();
+  //         }
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
+
+  // getlatestupdate() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
+
+  //   if (status1) {
+  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.merckmotherLatestUpdates,
+  //       (response) async {
+  //         MmtMlatestupdateResponse resp = response;
+  //         print(response);
+  //         print('Resp : $resp');
+
+  //         if (resp.success == "True") {
+  //           setState(() {
+  //             GlobalLists.mmtmlatestupdatelist = resp.data.list;
+  //             Constantstring.baseUrl = resp.baseUrl;
+  //             getmmtminmedia();
+  //           });
+  //         } else {
+  //           ShowDialogs.showToast(resp.msg);
+  //           Navigator.of(_keyLoader.currentContext).pop();
+  //         }
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
+
+  // getmmtminmedia() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
+
+  //   if (status1) {
+  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.merckmotherMedia,
+  //       (response) async {
+  //         MmtMinmediaResponse resp = response;
+  //         print(response);
+  //         print('Resp : $resp');
+  //         //Navigator.of(_keyLoader.currentContext).pop();
+  //         if (resp.success == "True") {
+  //           setState(() {
+  //             GlobalLists.mmtminmediaresp = resp.data.list;
+  //             Constantstring.baseUrl = resp.baseUrl;
+  //             getmmtmtestimonial();
+  //           });
+  //         } else {
+  //           ShowDialogs.showToast(resp.msg);
+  //           Navigator.of(_keyLoader.currentContext).pop();
+  //         }
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
+
+  // getmmtmtestimonial() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
+
+  //   if (status1) {
+  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.merckmotherTestimonial,
+  //       (response) async {
+  //         MmtmTestimonialResponse resp = response;
+  //         print(response);
+  //         print('Resp : $resp');
+
+  //         if (resp.success == "True") {
+  //           setState(() {
+  //             GlobalLists.mmtmtestimonialresp = resp.data.list;
+  //             Constantstring.baseUrl = resp.baseUrl;
+  //             getmmtmcallforapp();
+  //           });
+  //         } else {
+  //           ShowDialogs.showToast(resp.msg);
+
+  //           Navigator.of(_keyLoader.currentContext).pop();
+  //         }
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
+
+  // getmmtmcallforapp() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
+
+  //   if (status1) {
+  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.merckmotherCallApplication,
+  //       (response) async {
+  //         MmtmcallforappResponse resp = response;
+  //         print(response);
+  //         print('Resp : $resp');
+
+  //         if (resp.success == "True") {
+  //           setState(() {
+  //             GlobalLists.mmtmcallforappresp = resp.data.list;
+  //             Constantstring.baseUrl = resp.baseUrl;
+  //             getmmtmdigitallibrary();
+  //           });
+  //         } else {
+  //           ShowDialogs.showToast(resp.msg);
+  //           Navigator.of(_keyLoader.currentContext).pop();
+  //         }
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
+
+  // getmmtmdigitallibrary() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
+
+  //   if (status1) {
+  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.merckmotherDigitalLib,
+  //       (response) async {
+  //         MmtmdigitallibraryResponse resp = response;
+  //         print(response);
+  //         print('Resp : $resp');
+
+  //         Navigator.of(_keyLoader.currentContext).pop();
+
+  //         if (resp.success == "True") {
+  //           setState(() {
+  //             GlobalLists.mmtmdigitallibresp = resp.data.list;
+  //             Constantstring.baseUrl = resp.baseUrl;
+  //           });
+  //         } else {
+  //           ShowDialogs.showToast(resp.msg);
+  //         }
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
+
+  List<Widget> list() {
+    listofwiget.clear();
+    for (int i = 0; i < typewidet.length; i++) {
+      if (typewidet[i] == "gallery") {
+        listofwiget.add(Text("galley"));
+      }
+      if (typewidet[i] == "videos") {
+        listofwiget.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: CustomHorizontalCard(
+              index: 1,
+              cardImage: "assets/newImages/gallery.png",
+              cardTitle: "Our Videos  ",
+              btnTitle: "Watch More",
+              onbtnTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Videolibrary()));
+              },
+              titleColor: Customcolor.pink_col,
+              titleImg: "assets/newImages/flowers-3.png",
+              list: ListView.builder(
+                itemCount: GlobalLists.homevideolist.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl: GlobalLists
+                                        .homevideolist[index].videoLink,
+                                  )));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 86,
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/newImages/placeholder_3.jpg',
+                              image:
+                                  "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 80,
+                                        child: Text(
+                                          GlobalLists
+                                              .homevideolist[index].videoDesc,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700),
+                                          maxLines: 3,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 25,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 120),
+                            child: Center(
+                                child:
+                                    Image.asset("assets/newImages/pause.png")),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      }
+      if (typewidet[i] == "content") {
+        listofwiget.add(
+          Html(
+            data: """${GlobalLists.homecontentlist[0].pageContent} """,
+            onLinkTap: (url) {
+              print("Opening $url...");
+            },
+          ),
+        );
+      }
+      if (typewidet[i] == "latest_updates") {
+        listofwiget.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: CustomHorizontalCard(
+              index: 1,
+              cardImage: "assets/newImages/ourvison.png",
+              cardTitle: "Latest Updates  ",
+              btnTitle: "View More",
+              titleColor: Customcolor.pink_col,
+              titleImg: "assets/newImages/flowers-3.png",
+              list: ListView.builder(
+                itemCount: GlobalLists.homeceomsglist.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8, left: 10),
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: SizeConfig.blockSizeHorizontal * 86,
+                          child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/newImages/placeholder_3.jpg',
+                            image:
+                                "${GlobalLists.homeceomsgbaseurl + GlobalLists.homeceomsglist[index].image}",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, bottom: 10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width:
+                                          SizeConfig.blockSizeHorizontal * 80,
+                                      child: Text(
+                                        GlobalLists.homeceomsglist[index].title,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700),
+                                        maxLines: 3,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      }
     }
+    return listofwiget;
   }
 
-  getmmtmcontent() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
+  Future<http.Response> getmmtmapi() async {
+    print("mmtm api");
+    var response = await APIManager.fetchget(
+      encoding: APIManager.mmtmprogramurl,
+    );
+    print("response");
+    print(response);
 
-    if (status1) {
-      APIManager().apiRequest(
-        context,
-        API.merckmotherContent,
-        (response) async {
-          MmtmContentResponce resp = response;
-          print(response);
-          print('Resp : $resp');
+    var res = json.decode(response.body);
+    print("ff");
+    print(res);
+    MmtmMainResponse homepageres = MmtmMainResponse.fromJson(res);
 
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.mmtmcontentlist = resp.data.list;
-              getVideosection();
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-            Navigator.of(_keyLoader.currentContext).pop();
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
+    slidersection = homepageres.sliderArea[0].slider.list;
+    slidersection.forEach((element) {
+      _productsAvailable.add({
+        "id": element.id,
+        "menu_id": element.menuId,
+        "image_title": element.imageTitle,
+        "image_desc": element.imageDesc,
+        "links": element.links,
+        "image": element.image,
+        "alt_text": element.altText,
+        "status": element.status,
+        "created_at": element.createdAt,
+        "updated_at": element.updatedAt
+      });
+    });
+
+    print("sliderprogramsection");
+    print(slidersection.length);
+
+    Map<String, dynamic> section1 = homepageres.middleArea;
+    Map<String, dynamic> lastsection = homepageres.rightArea;
+    print(section1);
+    print(section1['1']);
+
+    for (int i = 0; i < section1.length; i++) {
+      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+      //  print(categoryKeys.videos.type);
+      dynamic section = res['middle_area']['${i + 1}'];
+      print("TKey: ${section.keys.first}");
+      var middlecategoryname = section.keys.first;
+
+      setState(() {
+        typewidet.add(middlecategoryname);
+
+        print(typewidet);
+      });
+      if (middlecategoryname.toString().toLowerCase() ==
+          "Videos".toLowerCase()) {
+        GlobalLists.homevideolist =
+            homepageres.middleArea['${i + 1}'].videos.list;
+        print(GlobalLists.homevideolist.length);
+      } else if (middlecategoryname.toString().toLowerCase() ==
+          "content".toLowerCase()) {
+        GlobalLists.homecontentlist =
+            homepageres.middleArea['${i + 1}'].content.list;
+        print(GlobalLists.homecontentlist.length);
+      } else if (middlecategoryname.toString().toLowerCase() ==
+          "gallery".toLowerCase()) {
+        GlobalLists.homegallerybaseurl =
+            homepageres.middleArea['${i + 1}'].gallery.baseUrl;
+        GlobalLists.homegallerylist =
+            homepageres.middleArea['${i + 1}'].gallery.list;
+        print(GlobalLists.homegallerylist.length);
+      } else if (middlecategoryname.toString().toLowerCase() ==
+          "latest_updates".toLowerCase()) {
+        //latest update
+        GlobalLists.homeceomsgbaseurl =
+            homepageres.middleArea['${i + 1}'].latestUpdates.baseUrl;
+        GlobalLists.homeceomsglist =
+            homepageres.middleArea['${i + 1}'].latestUpdates.list;
+        print(GlobalLists.homeceomsglist.length);
+      }
     }
-  }
 
-  getVideosection() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
+    ///////right section
+    for (int i = 0; i < lastsection.length; i++) {
+      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+      //  print(categoryKeys.videos.type);
+      dynamic rightsection = res['Right_area']['${i + 1}'];
+      print("TKey: ${rightsection.keys.first}");
+      var rightsectioncategoryname = rightsection.keys.first;
 
-    if (status1) {
-      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+      setState(() {
+        typewidetofrightsection.add(rightsectioncategoryname);
 
-      APIManager().apiRequest(
-        context,
-        API.merckmotherVideos,
-        (response) async {
-          MerckMotherVideosResponce resp = response;
-          print(response);
-          print('Resp : $resp');
+        print(typewidetofrightsection);
+      });
 
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.mmtmvideoseclist = resp.data.list;
-              getlatestupdate();
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-
-            Navigator.of(_keyLoader.currentContext).pop();
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
+      if (rightsectioncategoryname.toString().toLowerCase() ==
+          "call_for_app".toLowerCase()) {
+        GlobalLists.homecallforapp =
+            homepageres.rightArea['${i + 1}'].callForApp.list;
+        GlobalLists.homeCallForAppBaseURL =
+            homepageres.rightArea['${i + 1}'].callForApp.baseUrl;
+        print(GlobalLists.homecallforapp.length);
+      } else if (rightsectioncategoryname.toString().toLowerCase() ==
+          "mmtm".toLowerCase()) {
+        GlobalLists.homemmtm = homepageres.rightArea['${i + 1}'].mmtm.list;
+        print(GlobalLists.homemmtm.length);
+        GlobalLists.homeMMTMBaseURL =
+            homepageres.rightArea['${i + 1}'].mmtm.baseUrl;
+      } else if (rightsectioncategoryname.toString().toLowerCase() ==
+          "digital_library".toLowerCase()) {
+        // GlobalLists.homedigitallib =
+        //     homepageres.rightArea['${i + 1}'].digitalLibrary.list;
+        GlobalLists.homeDigitalLibraryBaseURL =
+            homepageres.rightArea['${i + 1}'].digitalLibrary.baseUrl;
+        print(GlobalLists.homedigitallib.length);
+      }
     }
-  }
+    setState(() {
+      isMiddleSectionLoaded = true;
+      isrightSectionLoaded = true;
+    });
 
-  getlatestupdate() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.merckmotherLatestUpdates,
-        (response) async {
-          MmtMlatestupdateResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.mmtmlatestupdatelist = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
-              getmmtminmedia();
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-            Navigator.of(_keyLoader.currentContext).pop();
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
-
-  getmmtminmedia() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.merckmotherMedia,
-        (response) async {
-          MmtMinmediaResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-          //Navigator.of(_keyLoader.currentContext).pop();
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.mmtminmediaresp = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
-              getmmtmtestimonial();
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-            Navigator.of(_keyLoader.currentContext).pop();
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
-
-  getmmtmtestimonial() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.merckmotherTestimonial,
-        (response) async {
-          MmtmTestimonialResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.mmtmtestimonialresp = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
-              getmmtmcallforapp();
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-
-            Navigator.of(_keyLoader.currentContext).pop();
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
-
-  getmmtmcallforapp() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.merckmotherCallApplication,
-        (response) async {
-          MmtmcallforappResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.mmtmcallforappresp = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
-              getmmtmdigitallibrary();
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-            Navigator.of(_keyLoader.currentContext).pop();
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
-
-  getmmtmdigitallibrary() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.merckmotherDigitalLib,
-        (response) async {
-          MmtmdigitallibraryResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-
-          Navigator.of(_keyLoader.currentContext).pop();
-
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.mmtmdigitallibresp = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
+    return response;
   }
 }
 

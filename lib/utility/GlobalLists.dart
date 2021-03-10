@@ -182,6 +182,9 @@ class GlobalLists {
   static List<dynamic> homegallerylist = [];
   static String homegallerybaseurl = "";
   static String homeceomsgbaseurl = "";
+  static String homeCallForAppBaseURL = "";
+  static String homeDigitalLibraryBaseURL = "";
+  static String homeMMTMBaseURL = "";
 
   static List<dynamic> homeceomsglist = [];
 

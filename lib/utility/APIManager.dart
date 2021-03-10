@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 import 'package:merckfoundation22dec/model/FilterdataResponse.dart';
 import 'package:merckfoundation22dec/model/GetAboutMerckContentResp.dart';
 import 'package:merckfoundation22dec/model/GetAboutMerckVideosResp.dart';
@@ -159,7 +160,37 @@ class APIManager {
     return baseURL;
   }
 
+  static Future<http.Response> fetchget(
+      {@required String encoding, BuildContext context}) async {
+    IOClient ioClient = new IOClient();
+
+    HttpClient client = new HttpClient();
+
+    client.badCertificateCallback =
+        ((X509Certificate cert, String host, int port) => false);
+
+    ioClient = new IOClient(client);
+
+    //TODO: Use this URI for UATs
+    var uri = Uri.http(
+        'onerooftechnologiesllp.com', '/mfindia/web/public/api/$encoding');
+    final response = await ioClient.get(uri);
+
+    if (response.statusCode == 401) {
+    } else if (response.statusCode == 200) {
+      return response;
+    } else {
+      // throw AlertDialog(
+      //   title: Text("Invalid User"),
+      // );
+      return response;
+    }
+  }
+
   static String searchapi = baseURL + "mobile_search";
+  static String homeurl = "program_page_api/home/Android/1";
+  static String mmtmprogramurl =
+      "MMTM_Program_Api/merck-more-than-a-mother/Android/1";
   Future<String> apiEndPoint(API api) async {
     var apiPathString = "";
     if (Platform.isAndroid) {
