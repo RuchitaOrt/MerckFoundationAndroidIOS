@@ -15,6 +15,7 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
 import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MerckFoundationTestimonial extends StatefulWidget {
   @override
@@ -118,15 +119,24 @@ class MerckFoundationTestimonialState
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              VideoPlayer(
-                                                videoUrl: GlobalLists
-                                                    .merckTestimonialList[index]
-                                                    .videoLink,
-                                              )));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (BuildContext context) =>
+                                  //             VideoPlayer(
+                                  //               videoUrl: GlobalLists
+                                  //                   .merckTestimonialList[index]
+                                  //                   .videoLink,
+                                  //             )));
+                                  var storykey = GlobalLists
+                                      .merckTestimonialList[index].videoLink
+                                      .substring(GlobalLists
+                                              .merckTestimonialList[index]
+                                              .videoLink
+                                              .length -
+                                          11);
+                                  _launchInWebViewWithJavaScript(
+                                      "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                                 },
                                 child: Container(
                                   color: Colors.transparent,
@@ -205,6 +215,19 @@ class MerckFoundationTestimonialState
             ],
           ),
         ));
+  }
+
+  Future<void> _launchInWebViewWithJavaScript(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   getMerckTestimonial() async {

@@ -6,6 +6,7 @@ import 'package:merckfoundation22dec/screens/ourPrograms/firstladiesinitiativesu
 import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforStem.dart';
 
 import 'package:merckfoundation22dec/screens/ourPrograms/ourprogramdetail.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Ourprogramdetailafricaasia.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -148,6 +149,20 @@ class _OurProgramState extends State<Ourprogram> {
                                 builder: (BuildContext context) => OurProgram(
                                       indexpass: 0,
                                     )));
+                      } else if (index == 1) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => OurProgram(
+                                      indexpass: 1,
+                                    )));
+                      } else if (index == 2) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => OurProgram(
+                                      indexpass: 2,
+                                    )));
                       } else if (index == 3) {
                         Navigator.push(
                             context,
@@ -155,12 +170,25 @@ class _OurProgramState extends State<Ourprogram> {
                                 builder: (BuildContext context) => OurProgram(
                                       indexpass: 12,
                                     )));
+                      } else if (index == 6) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => OurProgram(
+                                      indexpass: 13,
+                                    )));
                       } else if (index == 4) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     OurProgramStem()));
+                      } else if (index == 7) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    OurProgramAfrica()));
                       }
                     },
                     child: Padding(

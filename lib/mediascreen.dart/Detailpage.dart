@@ -106,53 +106,101 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                             ],
                           ),
                         )
-                      : Padding(
-                          padding: const EdgeInsets.only(
-                              left: 15, right: 8, top: 8, bottom: 15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Html(
-                                data:
-                                    """${GlobalLists.searcharticlelisting[widget.indexIs]['detail_page_url']} """,
-                                onLinkTap: (url) {
-                                  print("Opening $url...");
-                                },
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              // Html(
-                              //   data:
-                              //       """${GlobalLists.newsLettersList[widget.indexIs].detailPageUrl} """,
-                              //   onLinkTap: (url) {
-                              //     print("Opening $url...");
-                              //   },
-                              // ),
-                              // Padding(
-                              //   padding: const EdgeInsets.only(
-                              //       right: 60, left: 60, top: 20),
-                              //   child: Image.asset(
-                              //     "assets/newImages/flowers_footer.png",
-                              //   ),
-                              // ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 0, left: 0),
-                                child: Align(
-                                  alignment: Alignment.topRight,
-                                  child: Image.asset(
-                                    "assets/newImages/flowers_footer.png",
-                                    height: 170,
+                      : widget.callfrom == 2
+                          ? Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 15, right: 8, top: 8, bottom: 15),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Html(
+                                    data:
+                                        """${GlobalLists.homeceomsglist[widget.indexIs].details} """,
+                                    onLinkTap: (url) {
+                                      print("Opening $url...");
+                                    },
                                   ),
-                                ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Html(
+                                    data:
+                                        """${GlobalLists.homeceomsglist[widget.indexIs].detailPageUrl} """,
+                                    onLinkTap: (url) {
+                                      print("Opening $url...");
+                                    },
+                                  ),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.only(
+                                  //       right: 60, left: 60, top: 20),
+                                  //   child: Image.asset(
+                                  //     "assets/newImages/flowers_footer.png",
+                                  //   ),
+                                  // ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 0, left: 0),
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Image.asset(
+                                        "assets/newImages/flowers_footer.png",
+                                        height: 170,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  )
+                                ],
                               ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
-                        )
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 15, right: 8, top: 8, bottom: 15),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Html(
+                                    data:
+                                        """${GlobalLists.searcharticlelisting[widget.indexIs]['detail_page_url']} """,
+                                    onLinkTap: (url) {
+                                      print("Opening $url...");
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  // Html(
+                                  //   data:
+                                  //       """${GlobalLists.newsLettersList[widget.indexIs].detailPageUrl} """,
+                                  //   onLinkTap: (url) {
+                                  //     print("Opening $url...");
+                                  //   },
+                                  // ),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.only(
+                                  //       right: 60, left: 60, top: 20),
+                                  //   child: Image.asset(
+                                  //     "assets/newImages/flowers_footer.png",
+                                  //   ),
+                                  // ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 0, left: 0),
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Image.asset(
+                                        "assets/newImages/flowers_footer.png",
+                                        height: 170,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  )
+                                ],
+                              ),
+                            )
                 ],
               ),
             ),

@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
+
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,8 @@ import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
-import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
-import 'package:merckfoundation22dec/model/StemprogramResponse.dart' as stem;
+import 'package:merckfoundation22dec/model/CapacityAdvancement.dart'
+    as merckcapabilty;
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
 import 'package:merckfoundation22dec/ourawarddetail.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -24,7 +25,6 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'dart:convert';
 
 import 'package:flutter_html/flutter_html.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
@@ -32,14 +32,14 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
 
-class Merckstemprogram extends StatefulWidget {
+class MerckCapabilityadvancement extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MerckstemprogramState();
+    return MerckCapabilityadvancementState();
   }
 }
 
-class MerckstemprogramState extends State<Merckstemprogram>
+class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
     with TickerProviderStateMixin {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   int _current = 0;
@@ -84,7 +84,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
     // getmmtmslider();
     getmmtmapi();
     super.initState();
-    _tabController = new TabController(vsync: this, length: 2);
+    _tabController = new TabController(vsync: this, length: 1);
   }
 
   @override
@@ -1328,15 +1328,15 @@ class MerckstemprogramState extends State<Merckstemprogram>
       // digitalLibrary(),
       // merckmorethanmother()
       for (int i = 0; i < typewidetofrightsection.length; i++) {
-        if (typewidetofrightsection[i] == "call_for_app") {
-          tabs.add(
-            new Tab(text: "Call for Application"),
-          );
+        // if (typewidetofrightsection[i] == "call_for_app") {
+        //   tabs.add(
+        //     new Tab(text: "Call for Application"),
+        //   );
 
-          listoftabwiget.add(
-            getcallforapp(context),
-          );
-        }
+        //   listoftabwiget.add(
+        //     getcallforapp(context),
+        //   );
+        // }
         // if (typewidetofrightsection[i] == "mmtm") {
         //   tabs.add(
         //     new Tab(text: "Merck More Than A Mother Ambassadors"),
@@ -1482,7 +1482,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
   Future<http.Response> getmmtmapi() async {
     print("mmtm api");
     var response = await APIManager.fetchget(
-      encoding: APIManager.merckstemprogram,
+      encoding: APIManager.merckcapabilityprogram,
     );
     print("response");
     print(response);
@@ -1490,8 +1490,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
     var res = json.decode(response.body);
     print("ff");
     print(res);
-    stem.StemprogramResponse homepageres =
-        stem.StemprogramResponse.fromJson(res);
+    merckcapabilty.CapacityAdvancementResponse homepageres =
+        merckcapabilty.CapacityAdvancementResponse.fromJson(res);
 
     slidersection = homepageres.sliderArea[0].slider.list;
     slidersection.forEach((element) {
@@ -1513,15 +1513,16 @@ class MerckstemprogramState extends State<Merckstemprogram>
     print(slidersection.length);
 
     Map<String, dynamic> section1 = homepageres.middleArea;
-    Map<String, dynamic> lastsection = homepageres.rightArea;
-
+    List<dynamic> digitallibrary =
+        homepageres.rightArea.the3.digitalLibrary.list;
+    GlobalLists.homedigitallib = digitallibrary;
     print(section1);
     print(section1['1']);
-    // setState(() {
-    //   typewidetofrightsection.add('digital_library');
+    setState(() {
+      typewidetofrightsection.add('digital_library');
 
-    //   print(typewidetofrightsection);
-    // });
+      print(typewidetofrightsection);
+    });
     // for (int i = 0; i < digitallibrary.length; i++) {
     //   dynamic rightsection = res['Right_area']['${i + 1}'];
     //   print("TKey: ${rightsection.keys.first}");
@@ -1556,37 +1557,64 @@ class MerckstemprogramState extends State<Merckstemprogram>
         GlobalLists.homecontentlist =
             homepageres.middleArea['${i + 1}'].content.list;
         print(GlobalLists.homecontentlist.length);
+      } else if (middlecategoryname.toString().toLowerCase() ==
+          "testimonial".toLowerCase()) {
+        //latest update
+        GlobalLists.mmttestimonialbaseurl =
+            homepageres.middleArea['${i + 1}'].testimonial.baseUrl;
+        GlobalLists.mmttestimoniallist =
+            homepageres.middleArea['${i + 1}'].testimonial.list;
+        print(GlobalLists.homeceomsglist.length);
       }
     }
-
-    ///////right section
-
-    dynamic rightsection1 = res['Right_area'][1];
-    dynamic rightsection3 = res['Right_area'][3];
-    // print("TKey: ${rightsection.keys.first}");
-    var rightsection1categoryname = rightsection1;
-    var rightsection3categoryname = rightsection3;
-
-    setState(() {
-      typewidetofrightsection.add('call_for_app');
-      typewidetofrightsection.add('digital_library');
-
-      print(typewidetofrightsection);
-    });
-
-    if (rightsection1categoryname.toString().toLowerCase() ==
-        "call_for_app".toLowerCase()) {
-      GlobalLists.homecallforapp = homepageres.rightArea[1].callForApp.list;
-      GlobalLists.homeCallForAppBaseURL =
-          homepageres.rightArea[1].callForApp.baseUrl;
-      print(GlobalLists.homecallforapp.length);
-    } else if (rightsection3categoryname.toString().toLowerCase() ==
-        "digital_library".toLowerCase()) {
-      GlobalLists.homedigitallib = homepageres.rightArea[3].digitalLibrary.list;
-      GlobalLists.homeDigitalLibraryBaseURL =
-          homepageres.rightArea[3].digitalLibrary.baseUrl;
-      print(GlobalLists.homedigitallib.length);
+    Future<void> _launchInWebViewWithJavaScript(String url) async {
+      if (await canLaunch(url)) {
+        await launch(
+          url,
+          forceSafariVC: true,
+          forceWebView: true,
+          enableJavaScript: true,
+        );
+      } else {
+        throw 'Could not launch $url';
+      }
     }
+    ///////right section
+    // for (int i = 0; i < lastsection.length; i++) {
+    //   //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+    //   //  print(categoryKeys.videos.type);
+    //   dynamic rightsection = res['Right_area']['${i + 1}'];
+    //   print("TKey: ${rightsection.keys.first}");
+    //   var rightsectioncategoryname = rightsection.keys.first;
+
+    //   setState(() {
+    //     typewidetofrightsection.add(rightsectioncategoryname);
+
+    //     print(typewidetofrightsection);
+    //   });
+
+    //   if (rightsectioncategoryname.toString().toLowerCase() ==
+    //       "call_for_app".toLowerCase()) {
+    //     GlobalLists.homecallforapp =
+    //         homepageres.rightArea['${i + 1}'].callForApp.list;
+    //     GlobalLists.homeCallForAppBaseURL =
+    //         homepageres.rightArea['${i + 1}'].callForApp.baseUrl;
+    //     print(GlobalLists.homecallforapp.length);
+    //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
+    //       "mmtm".toLowerCase()) {
+    //     GlobalLists.homemmtm = homepageres.rightArea['${i + 1}'].mmtm.list;
+    //     print(GlobalLists.homemmtm.length);
+    //     GlobalLists.homeMMTMBaseURL =
+    //         homepageres.rightArea['${i + 1}'].mmtm.baseUrl;
+    //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
+    //       "digital_library".toLowerCase()) {
+    //     GlobalLists.homedigitallib =
+    //         homepageres.rightArea['${i + 1}'].digitalLibrary.list;
+    //     GlobalLists.homeDigitalLibraryBaseURL =
+    //         homepageres.rightArea['${i + 1}'].digitalLibrary.baseUrl;
+    //     print(GlobalLists.homedigitallib.length);
+    //   }
+    // }
 
     setState(() {
       isMiddleSectionLoaded = true;

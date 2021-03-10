@@ -13,7 +13,7 @@ class CustomHorizontalCard extends StatelessWidget {
   final int index;
   final Function onbtnTap;
   final Widget list;
-
+  final heigthoflist;
 
   const CustomHorizontalCard(
       {Key key,
@@ -24,7 +24,9 @@ class CustomHorizontalCard extends StatelessWidget {
       this.titleColor,
       this.titleImg,
       this.list,
-      this.index, this.onbtnTap})
+      this.index,
+      this.onbtnTap,
+      this.heigthoflist})
       : super(key: key);
 
   @override
@@ -50,14 +52,14 @@ class CustomHorizontalCard extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.bottom,
-                      child: Image.asset(
-                        titleImg,
-                        width: 40,
-                        height: 25,
-                      ),
-                    ),
+                    // WidgetSpan(
+                    //   alignment: PlaceholderAlignment.bottom,
+                    //   child: Image.asset(
+                    //     titleImg,
+                    //     width: 40,
+                    //     height: 25,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -90,21 +92,25 @@ class CustomHorizontalCard extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Container(height: SizeConfig.blockSizeVertical * 25, child: list),
+        Container(
+            height: heigthoflist == null
+                ? SizeConfig.blockSizeVertical * 25
+                : heigthoflist,
+            child: list),
         SizedBox(
           height: 9,
         ),
         Center(
           child: GestureDetector(
             onTap: onbtnTap,
-                      child: Container(
+            child: Container(
               width: 120,
               height: 40,
               decoration: BoxDecoration(
                   color: Colors.amber, borderRadius: BorderRadius.circular(5)),
               child: Center(
                 child: Text(
-                 btnTitle,
+                  btnTitle,
                   style: TextStyle(
                       color: Customcolor.colorBlue,
                       fontSize: 15,

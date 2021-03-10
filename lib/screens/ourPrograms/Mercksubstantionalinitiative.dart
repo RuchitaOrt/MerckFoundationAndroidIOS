@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
+
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,8 @@ import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart'
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
-import 'package:merckfoundation22dec/model/StemprogramResponse.dart' as stem;
+import 'package:merckfoundation22dec/model/Merckfoundationsubstaintion.dart'
+    as mercksubstaintion;
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
 import 'package:merckfoundation22dec/ourawarddetail.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -24,7 +26,6 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'dart:convert';
 
 import 'package:flutter_html/flutter_html.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
@@ -32,14 +33,14 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
 
-class Merckstemprogram extends StatefulWidget {
+class MerckSubstantional extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MerckstemprogramState();
+    return MerckSubstantionalState();
   }
 }
 
-class MerckstemprogramState extends State<Merckstemprogram>
+class MerckSubstantionalState extends State<MerckSubstantional>
     with TickerProviderStateMixin {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   int _current = 0;
@@ -84,7 +85,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
     // getmmtmslider();
     getmmtmapi();
     super.initState();
-    _tabController = new TabController(vsync: this, length: 2);
+    _tabController = new TabController(vsync: this, length: 1);
   }
 
   @override
@@ -1315,10 +1316,332 @@ class MerckstemprogramState extends State<Merckstemprogram>
                 )),
           ),
         );
+        //     Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        //   Row(
+        //     children: [
+        //       SizedBox(
+        //         width: 25,
+        //       ),
+        //       FormLabel(
+        //         text: "Alumini Testimonials",
+        //         labelColor: Customcolor.colorPink,
+        //         fontSize: 18,
+        //         fontweight: FontWeight.w700,
+        //         maxLines: 2,
+        //       ),
+        //       SizedBox(
+        //         width: 7,
+        //       ),
+        //       Image.asset(
+        //         'assets/newImages/flowers-3.png',
+        //         width: 40,
+        //         height: 40,
+        //       )
+        //     ],
+        //   ),
+        //   SizedBox(
+        //     height: 10,
+        //   ),
+        //   Padding(
+        //     padding: const EdgeInsets.only(left: 8),
+        //     child: Container(
+        //       height: 160,
+        //       child: ListView.builder(
+        //         itemCount: GlobalLists.mmttestimoniallist.length,
+        //         scrollDirection: Axis.horizontal,
+        //         itemBuilder: (BuildContext context, int index) {
+        //           return Padding(
+        //             padding: const EdgeInsets.only(left: 8, right: 8),
+        //             child: Container(
+        //               height: SizeConfig.blockSizeVertical * 15,
+        //               width: SizeConfig.blockSizeHorizontal * 80,
+        //               decoration: BoxDecoration(
+        //                   borderRadius: BorderRadius.circular(5),
+        //                   color: Colors.white),
+        //               child: Row(
+        //                 children: [
+        //                   Padding(
+        //                     padding: const EdgeInsets.only(
+        //                         top: 5, bottom: 3, left: 8, right: 8),
+        //                     child: Container(
+        //                       // height: 220,
+        //                       width: 100,
+        //                       decoration: BoxDecoration(
+        //                         //color: Colors.amber,
+        //                         borderRadius: BorderRadius.circular(10),
+        //                       ),
+        //                       child: FadeInImage.assetNetwork(
+        //                         placeholder:
+        //                             'assets/newImages/placeholder_3.jpg',
+        //                         image:
+        //                             "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[index].image}",
+        //                         fit: BoxFit.cover,
+        //                       ),
+        //                     ),
+        //                   ),
+        //                   Expanded(
+        //                     child: ListView(
+        //                       shrinkWrap: true,
+        //                       // crossAxisAlignment:
+        //                       //     CrossAxisAlignment.start,
+        //                       children: [
+        //                         SizedBox(
+        //                           height: 12,
+        //                         ),
+        //                         FormLabel(
+        //                           text: GlobalLists.mmttestimoniallist[index]
+        //                               .testimonialName,
+        //                           labelColor: Customcolor.colorPink,
+        //                           fontSize: 17,
+        //                           maxLines: 1,
+        //                           fontweight: FontWeight.w700,
+        //                         ),
+        //                         SizedBox(
+        //                           height: 4,
+        //                         ),
+        //                         FormLabel(
+        //                           text: GlobalLists
+        //                               .mmttestimoniallist[index].departmentName,
+        //                           labelColor: Colors.black87,
+        //                           fontSize: 13,
+        //                           fontweight: FontWeight.w600,
+        //                           maxLines: 2,
+        //                         ),
+        //                         SizedBox(
+        //                           height: 7,
+        //                         ),
+        //                         FormLabel(
+        //                           text: GlobalLists.mmttestimoniallist[index]
+        //                               .shortDescription,
+        //                           labelColor: Colors.black54,
+        //                           fontSize: 13,
+        //                           fontweight: FontWeight.w500,
+        //                           maxLines: 4,
+        //                         ),
+        //                       ],
+        //                     ),
+        //                   )
+        //                 ],
+        //               ),
+        //             ),
+        //           );
+        //         },
+        //       ),
+        //     ),
+        //   ),
+        // ]));
       }
     }
     return listofwiget;
   }
+
+  // List<Widget> listbottomwidget() {
+  //   listofbottomwiget.clear();
+  //   for (int i = 0; i < typewidetofbottomsection.length; i++) {
+  //     if (typewidetofbottomsection[i] == "media") {
+  //       listofbottomwiget.add(
+  //         Padding(
+  //           padding: const EdgeInsets.only(left: 10),
+  //           child: CustomHorizontalCard(
+  //             index: 1,
+  //             cardImage: "assets/newImages/mqdefault.png",
+  //             cardTitle: "Merck Foundation In Media  ",
+  //             titleColor: Customcolor.pink_col,
+  //             btnTitle: "View More",
+  //             titleImg: "assets/newImages/flowers-3.png",
+  //             list: ListView.builder(
+  //               itemCount: GlobalLists.mmtmmedialist.length,
+  //               scrollDirection: Axis.horizontal,
+  //               itemBuilder: (BuildContext context, int index) {
+  //                 return Padding(
+  //                   padding: const EdgeInsets.only(right: 8, left: 10),
+  //                   child: Stack(
+  //                     children: [
+  //                       Container(
+  //                         width: SizeConfig.blockSizeHorizontal * 86,
+  //                         child: FadeInImage.assetNetwork(
+  //                           placeholder: 'assets/newImages/placeholder_3.jpg',
+  //                           image:
+  //                               "${GlobalLists.mmtmmediabaseurl + GlobalLists.mmtmmedialist[index].image}",
+  //                           fit: BoxFit.fill,
+  //                         ),
+  //                       ),
+  //                       Align(
+  //                         alignment: Alignment.bottomCenter,
+  //                         child: Padding(
+  //                           padding: const EdgeInsets.only(
+  //                               left: 10, right: 10, bottom: 10),
+  //                           child: Row(
+  //                             crossAxisAlignment: CrossAxisAlignment.end,
+  //                             //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                             children: [
+  //                               Column(
+  //                                 mainAxisAlignment: MainAxisAlignment.end,
+  //                                 crossAxisAlignment: CrossAxisAlignment.start,
+  //                                 children: [
+  //                                   Container(
+  //                                     width:
+  //                                         SizeConfig.blockSizeHorizontal * 80,
+  //                                     child: Text(
+  //                                       GlobalLists.mmtmmedialist[index].title,
+  //                                       overflow: TextOverflow.ellipsis,
+  //                                       style: TextStyle(
+  //                                           color: Colors.white,
+  //                                           fontSize: 14,
+  //                                           fontWeight: FontWeight.w700),
+  //                                       maxLines: 3,
+  //                                     ),
+  //                                   ),
+  //                                   SizedBox(
+  //                                     height: 8,
+  //                                   )
+  //                                 ],
+  //                               ),
+  //                             ],
+  //                           ),
+  //                         ),
+  //                       ),
+  //                     ],
+  //                   ),
+  //                 );
+  //               },
+  //             ),
+  //           ),
+  //         ),
+  //       );
+  //     }
+  //     if (typewidetofbottomsection[i] == "testimonial") {
+  //       listofbottomwiget.add(
+  //           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  //         Row(
+  //           children: [
+  //             SizedBox(
+  //               width: 25,
+  //             ),
+  //             FormLabel(
+  //               text: "Alumini Testimonials",
+  //               labelColor: Customcolor.colorPink,
+  //               fontSize: 18,
+  //               fontweight: FontWeight.w700,
+  //               maxLines: 2,
+  //             ),
+  //             SizedBox(
+  //               width: 7,
+  //             ),
+  //             Image.asset(
+  //               'assets/newImages/flowers-3.png',
+  //               width: 40,
+  //               height: 40,
+  //             )
+  //           ],
+  //         ),
+  //         SizedBox(
+  //           height: 10,
+  //         ),
+  //         Padding(
+  //           padding: const EdgeInsets.only(left: 8),
+  //           child: Container(
+  //             height: 160,
+  //             child: ListView.builder(
+  //               itemCount: GlobalLists.mmttestimoniallist.length,
+  //               scrollDirection: Axis.horizontal,
+  //               itemBuilder: (BuildContext context, int index) {
+  //                 return GestureDetector(
+  //                   onTap: () {
+  //                     Navigator.push(
+  //                         context,
+  //                         MaterialPageRoute(
+  //                             builder: (BuildContext context) =>
+  //                                 Testimonialprogramdetailpage(
+  //                                   index: index,
+  //                                   baseurl: GlobalLists.mmttestimonialbaseurl,
+  //                                 )));
+  //                   },
+  //                   child: Padding(
+  //                     padding: const EdgeInsets.only(left: 8, right: 8),
+  //                     child: Container(
+  //                       height: SizeConfig.blockSizeVertical * 15,
+  //                       width: SizeConfig.blockSizeHorizontal * 80,
+  //                       decoration: BoxDecoration(
+  //                           borderRadius: BorderRadius.circular(5),
+  //                           color: Colors.white),
+  //                       child: Row(
+  //                         children: [
+  //                           Padding(
+  //                             padding: const EdgeInsets.only(
+  //                                 top: 5, bottom: 3, left: 8, right: 8),
+  //                             child: Container(
+  //                               // height: 220,
+  //                               width: 100,
+  //                               decoration: BoxDecoration(
+  //                                 //color: Colors.amber,
+  //                                 borderRadius: BorderRadius.circular(10),
+  //                               ),
+  //                               child: FadeInImage.assetNetwork(
+  //                                 placeholder:
+  //                                     'assets/newImages/placeholder_3.jpg',
+  //                                 image:
+  //                                     "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[index].image}",
+  //                                 fit: BoxFit.cover,
+  //                               ),
+  //                             ),
+  //                           ),
+  //                           Expanded(
+  //                             child: ListView(
+  //                               shrinkWrap: true,
+  //                               // crossAxisAlignment:
+  //                               //     CrossAxisAlignment.start,
+  //                               children: [
+  //                                 SizedBox(
+  //                                   height: 12,
+  //                                 ),
+  //                                 FormLabel(
+  //                                   text: GlobalLists.mmttestimoniallist[index]
+  //                                       .testimonialName,
+  //                                   labelColor: Customcolor.colorPink,
+  //                                   fontSize: 17,
+  //                                   maxLines: 1,
+  //                                   fontweight: FontWeight.w700,
+  //                                 ),
+  //                                 SizedBox(
+  //                                   height: 4,
+  //                                 ),
+  //                                 FormLabel(
+  //                                   text: GlobalLists.mmttestimoniallist[index]
+  //                                       .departmentName,
+  //                                   labelColor: Colors.black87,
+  //                                   fontSize: 13,
+  //                                   fontweight: FontWeight.w600,
+  //                                   maxLines: 2,
+  //                                 ),
+  //                                 SizedBox(
+  //                                   height: 7,
+  //                                 ),
+  //                                 FormLabel(
+  //                                   text: GlobalLists.mmttestimoniallist[index]
+  //                                       .shortDescription,
+  //                                   labelColor: Colors.black54,
+  //                                   fontSize: 13,
+  //                                   fontweight: FontWeight.w500,
+  //                                   maxLines: 4,
+  //                                 ),
+  //                               ],
+  //                             ),
+  //                           )
+  //                         ],
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 );
+  //               },
+  //             ),
+  //           ),
+  //         ),
+  //       ]));
+  //     }
+  //   }
+  //   return listofbottomwiget;
+  // }
 
   List<Widget> tablist() {
     setState(() {
@@ -1328,15 +1651,15 @@ class MerckstemprogramState extends State<Merckstemprogram>
       // digitalLibrary(),
       // merckmorethanmother()
       for (int i = 0; i < typewidetofrightsection.length; i++) {
-        if (typewidetofrightsection[i] == "call_for_app") {
-          tabs.add(
-            new Tab(text: "Call for Application"),
-          );
+        // if (typewidetofrightsection[i] == "call_for_app") {
+        //   tabs.add(
+        //     new Tab(text: "Call for Application"),
+        //   );
 
-          listoftabwiget.add(
-            getcallforapp(context),
-          );
-        }
+        //   listoftabwiget.add(
+        //     getcallforapp(context),
+        //   );
+        // }
         // if (typewidetofrightsection[i] == "mmtm") {
         //   tabs.add(
         //     new Tab(text: "Merck More Than A Mother Ambassadors"),
@@ -1482,7 +1805,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
   Future<http.Response> getmmtmapi() async {
     print("mmtm api");
     var response = await APIManager.fetchget(
-      encoding: APIManager.merckstemprogram,
+      encoding: APIManager.mercksubstaition,
     );
     print("response");
     print(response);
@@ -1490,8 +1813,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
     var res = json.decode(response.body);
     print("ff");
     print(res);
-    stem.StemprogramResponse homepageres =
-        stem.StemprogramResponse.fromJson(res);
+    mercksubstaintion.MerckfoundationsubstantionResponse homepageres =
+        mercksubstaintion.MerckfoundationsubstantionResponse.fromJson(res);
 
     slidersection = homepageres.sliderArea[0].slider.list;
     slidersection.forEach((element) {
@@ -1513,15 +1836,16 @@ class MerckstemprogramState extends State<Merckstemprogram>
     print(slidersection.length);
 
     Map<String, dynamic> section1 = homepageres.middleArea;
-    Map<String, dynamic> lastsection = homepageres.rightArea;
-
+    List<dynamic> digitallibrary =
+        homepageres.rightArea.the3.digitalLibrary.list;
+    GlobalLists.homedigitallib = digitallibrary;
     print(section1);
     print(section1['1']);
-    // setState(() {
-    //   typewidetofrightsection.add('digital_library');
+    setState(() {
+      typewidetofrightsection.add('digital_library');
 
-    //   print(typewidetofrightsection);
-    // });
+      print(typewidetofrightsection);
+    });
     // for (int i = 0; i < digitallibrary.length; i++) {
     //   dynamic rightsection = res['Right_area']['${i + 1}'];
     //   print("TKey: ${rightsection.keys.first}");
@@ -1556,37 +1880,63 @@ class MerckstemprogramState extends State<Merckstemprogram>
         GlobalLists.homecontentlist =
             homepageres.middleArea['${i + 1}'].content.list;
         print(GlobalLists.homecontentlist.length);
+      } else if (middlecategoryname.toString().toLowerCase() ==
+          "gallery".toLowerCase()) {
+        GlobalLists.homegallerybaseurl =
+            homepageres.middleArea['${i + 1}'].gallery.baseUrl;
+        GlobalLists.homegallerylist =
+            homepageres.middleArea['${i + 1}'].gallery.list;
+        print(GlobalLists.homegallerylist.length);
       }
     }
-
-    ///////right section
-
-    dynamic rightsection1 = res['Right_area'][1];
-    dynamic rightsection3 = res['Right_area'][3];
-    // print("TKey: ${rightsection.keys.first}");
-    var rightsection1categoryname = rightsection1;
-    var rightsection3categoryname = rightsection3;
-
-    setState(() {
-      typewidetofrightsection.add('call_for_app');
-      typewidetofrightsection.add('digital_library');
-
-      print(typewidetofrightsection);
-    });
-
-    if (rightsection1categoryname.toString().toLowerCase() ==
-        "call_for_app".toLowerCase()) {
-      GlobalLists.homecallforapp = homepageres.rightArea[1].callForApp.list;
-      GlobalLists.homeCallForAppBaseURL =
-          homepageres.rightArea[1].callForApp.baseUrl;
-      print(GlobalLists.homecallforapp.length);
-    } else if (rightsection3categoryname.toString().toLowerCase() ==
-        "digital_library".toLowerCase()) {
-      GlobalLists.homedigitallib = homepageres.rightArea[3].digitalLibrary.list;
-      GlobalLists.homeDigitalLibraryBaseURL =
-          homepageres.rightArea[3].digitalLibrary.baseUrl;
-      print(GlobalLists.homedigitallib.length);
+    Future<void> _launchInWebViewWithJavaScript(String url) async {
+      if (await canLaunch(url)) {
+        await launch(
+          url,
+          forceSafariVC: true,
+          forceWebView: true,
+          enableJavaScript: true,
+        );
+      } else {
+        throw 'Could not launch $url';
+      }
     }
+    ///////right section
+    // for (int i = 0; i < lastsection.length; i++) {
+    //   //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+    //   //  print(categoryKeys.videos.type);
+    //   dynamic rightsection = res['Right_area']['${i + 1}'];
+    //   print("TKey: ${rightsection.keys.first}");
+    //   var rightsectioncategoryname = rightsection.keys.first;
+
+    //   setState(() {
+    //     typewidetofrightsection.add(rightsectioncategoryname);
+
+    //     print(typewidetofrightsection);
+    //   });
+
+    //   if (rightsectioncategoryname.toString().toLowerCase() ==
+    //       "call_for_app".toLowerCase()) {
+    //     GlobalLists.homecallforapp =
+    //         homepageres.rightArea['${i + 1}'].callForApp.list;
+    //     GlobalLists.homeCallForAppBaseURL =
+    //         homepageres.rightArea['${i + 1}'].callForApp.baseUrl;
+    //     print(GlobalLists.homecallforapp.length);
+    //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
+    //       "mmtm".toLowerCase()) {
+    //     GlobalLists.homemmtm = homepageres.rightArea['${i + 1}'].mmtm.list;
+    //     print(GlobalLists.homemmtm.length);
+    //     GlobalLists.homeMMTMBaseURL =
+    //         homepageres.rightArea['${i + 1}'].mmtm.baseUrl;
+    //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
+    //       "digital_library".toLowerCase()) {
+    //     GlobalLists.homedigitallib =
+    //         homepageres.rightArea['${i + 1}'].digitalLibrary.list;
+    //     GlobalLists.homeDigitalLibraryBaseURL =
+    //         homepageres.rightArea['${i + 1}'].digitalLibrary.baseUrl;
+    //     print(GlobalLists.homedigitallib.length);
+    //   }
+    // }
 
     setState(() {
       isMiddleSectionLoaded = true;

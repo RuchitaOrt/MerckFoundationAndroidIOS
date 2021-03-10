@@ -2,15 +2,14 @@ import 'dart:convert';
 
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
-import 'package:merckfoundation22dec/model/MMTMSlider.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -18,19 +17,17 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
+
+import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:merckfoundation22dec/model/mmtmTestimonialResponse.dart';
-import 'package:merckfoundation22dec/model/mmtmContentResponse.dart';
-import 'package:merckfoundation22dec/model/merckothervideo.dart';
-import 'package:merckfoundation22dec/model/MMTMlatestupdateResponse.dart';
-import 'package:merckfoundation22dec/model/mmtminmediaResponse.dart';
-import 'package:merckfoundation22dec/model/mmtmcallforappResponse.dart';
 
 import 'package:flutter_html/flutter_html.dart';
-import 'package:merckfoundation22dec/model/mmtmdigitallibrary.dart';
+import 'package:merckfoundation22dec/model/TestimonialProgram.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OurProgramDetails extends StatefulWidget {
   @override
@@ -73,12 +70,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
   bool expandClick = false;
   String expandedName = "Upcoming Events";
 
-  final List<Tab> tabs = <Tab>[
-    new Tab(text: "Call for Application"),
-    new Tab(text: "Digital Library"),
-    new Tab(text: "Merck More Than A Mother Ambassadors")
-  ];
-
+  final List<Tab> tabs = <Tab>[];
+  final CarouselController callAppCarouselController = CarouselController();
   TabController _tabController;
 
   final CarouselController _controller = CarouselController();
@@ -88,7 +81,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
     // getmmtmslider();
     getmmtmapi();
     super.initState();
-    _tabController = new TabController(vsync: this, length: tabs.length);
+    _tabController = new TabController(vsync: this, length: 3);
   }
 
   @override
@@ -146,563 +139,53 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       // scrollDirection: Axis.horizontal,
                       children: listbottomwidget(),
                     )),
+                SizedBox(
+                  height: 8,
+                ),
+                Visibility(
+                  visible: isrightSectionLoaded,
+                  replacement: Column(
+                    children: [
+                      SizedBox(
+                        height: 20,
+                      ),
+                      CircularProgressIndicator()
+                    ],
+                  ),
+                  child: Container(
+                    height: 450,
+                    //color: Colors.amber,
+                    child: Column(
+                      children: [
+                        TabBar(
+                          isScrollable: true,
+                          unselectedLabelColor: Colors.grey,
+                          labelColor: Colors.black,
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          indicator: new BubbleTabIndicator(
+                            indicatorHeight: 35.0,
+                            indicatorRadius: 5,
+                            indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
+                            tabBarIndicatorSize: TabBarIndicatorSize.tab,
+                          ),
+                          tabs: tabs,
+                          controller: _tabController,
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: TabBarView(
+                              physics: ScrollPhysics(),
+                              controller: _tabController,
+                              children: tablist()),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
               ])),
-      //     Padding(
-      //   padding: const EdgeInsets.only(top: 15),
-      //   child: Column(
-      //     // shrinkWrap: true,
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       Padding(
-      //         padding: const EdgeInsets.only(
-      //           left: 15,
-      //           right: 15,
-      //         ),
-      //         child: slider(context),
-      //       ),
-      //       SizedBox(
-      //         height: 9,
-      //       ),
-      //       Expanded(
-      //         child: ListView(
-      //           shrinkWrap: true,
-      //           children: [
-      //             GlobalLists.mmtmcontentlist.length <= 0
-      //                 ? Container(
-      //                     child: Center(child: Text(Constantstring.emptyData)),
-      //                   )
-      //                 : Html(
-      //                     data:
-      //                         """${GlobalLists.mmtmcontentlist[0].pageContent} """,
-      //                     onLinkTap: (url) {
-      //                       print("Opening $url...");
-      //                     },
-      //                   ),
-      //             SizedBox(
-      //               height: 20,
-      //             ),
-      //             Container(
-      //               height: 450,
-      //               child: Column(
-      //                 children: [
-      //                   TabBar(
-      //                     isScrollable: true,
-      //                     unselectedLabelColor: Colors.grey,
-      //                     labelColor: Colors.black,
-      //                     indicatorSize: TabBarIndicatorSize.tab,
-      //                     indicator: new BubbleTabIndicator(
-      //                       indicatorHeight: 35.0,
-      //                       indicatorRadius: 5,
-      //                       indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
-      //                       tabBarIndicatorSize: TabBarIndicatorSize.tab,
-      //                     ),
-      //                     tabs: tabs,
-      //                     controller: _tabController,
-      //                   ),
-      //                   Expanded(
-      //                     flex: 3,
-      //                     child: TabBarView(
-      //                         controller: _tabController,
-      //                         children: [
-      //                           callforApplication(),
-      //                           digitalLibrary(),
-      //                           merckmorethanmother()
-      //                         ]),
-      //                   ),
-      //                 ],
-      //               ),
-      //             ),
-      //             SizedBox(
-      //               height: 20,
-      //             ),
-      //             GlobalLists.mmtmvideoseclist.length <= 0
-      //                 ? Container(
-      //                     child: Center(child: Text(Constantstring.emptyData)),
-      //                   )
-      //                 : Padding(
-      //                     padding: const EdgeInsets.only(left: 10),
-      //                     child: CustomHorizontalCard(
-      //                       index: 1,
-      //                       cardImage: "assets/newImages/gallery.png",
-      //                       cardTitle: "Our Videos  ",
-      //                       btnTitle: "Watch More",
-      //                       onbtnTap: () {
-      //                         Navigator.push(
-      //                             context,
-      //                             MaterialPageRoute(
-      //                                 builder: (BuildContext context) =>
-      //                                     Videolibrary()));
-      //                       },
-      //                       titleColor: Customcolor.pink_col,
-      //                       titleImg: "assets/newImages/flowers-3.png",
-      //                       list: ListView.builder(
-      //                         itemCount: GlobalLists.mmtmvideoseclist.length,
-      //                         scrollDirection: Axis.horizontal,
-      //                         itemBuilder: (BuildContext context, int index) {
-      //                           return GestureDetector(
-      //                             onTap: () {
-      //                               Navigator.push(
-      //                                   context,
-      //                                   MaterialPageRoute(
-      //                                       builder: (BuildContext context) =>
-      //                                           VideoPlayer(
-      //                                             videoUrl: GlobalLists
-      //                                                 .mmtmvideoseclist[index]
-      //                                                 .videoLink,
-      //                                           )));
-      //                             },
-      //                             child: Padding(
-      //                               padding: const EdgeInsets.only(
-      //                                   right: 8, left: 10),
-      //                               child: Stack(
-      //                                 children: [
-      //                                   Container(
-      //                                     width:
-      //                                         SizeConfig.blockSizeHorizontal *
-      //                                             86,
-      //                                     child: FadeInImage.assetNetwork(
-      //                                       placeholder:
-      //                                           'assets/newImages/placeholder_3.jpg',
-      //                                       image:
-      //                                           "https://img.youtube.com/vi/${GlobalLists.mmtmvideoseclist[index].videoLink.substring(GlobalLists.mmtmvideoseclist[index].videoLink.length - 11)}/mqdefault.jpg",
-      //                                       fit: BoxFit.fill,
-      //                                     ),
-      //                                   ),
-      //                                   Align(
-      //                                     alignment: Alignment.bottomCenter,
-      //                                     child: Padding(
-      //                                       padding: const EdgeInsets.only(
-      //                                           left: 10,
-      //                                           right: 10,
-      //                                           bottom: 10),
-      //                                       child: Row(
-      //                                         crossAxisAlignment:
-      //                                             CrossAxisAlignment.end,
-      //                                         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //                                         children: [
-      //                                           Column(
-      //                                             mainAxisAlignment:
-      //                                                 MainAxisAlignment.end,
-      //                                             crossAxisAlignment:
-      //                                                 CrossAxisAlignment.start,
-      //                                             children: [
-      //                                               Container(
-      //                                                 width: SizeConfig
-      //                                                         .blockSizeHorizontal *
-      //                                                     80,
-      //                                                 child: Text(
-      //                                                   GlobalLists
-      //                                                       .mmtmvideoseclist[
-      //                                                           index]
-      //                                                       .videoDesc,
-      //                                                   overflow: TextOverflow
-      //                                                       .ellipsis,
-      //                                                   style: TextStyle(
-      //                                                       color: Colors.white,
-      //                                                       fontSize: 14,
-      //                                                       fontWeight:
-      //                                                           FontWeight
-      //                                                               .w700),
-      //                                                   maxLines: 3,
-      //                                                 ),
-      //                                               ),
-      //                                               SizedBox(
-      //                                                 height: 25,
-      //                                               )
-      //                                             ],
-      //                                           ),
-      //                                         ],
-      //                                       ),
-      //                                     ),
-      //                                   ),
-      //                                   Padding(
-      //                                     padding: EdgeInsets.only(left: 120),
-      //                                     child: Center(
-      //                                         child: Image.asset(
-      //                                             "assets/newImages/pause.png")),
-      //                                   )
-      //                                 ],
-      //                               ),
-      //                             ),
-      //                           );
-      //                         },
-      //                       ),
-      //                     ),
-      //                   ),
-      //             SizedBox(
-      //               height: 20,
-      //             ),
-      //             GlobalLists.mmtmlatestupdatelist.length <= 0
-      //                 ? Container(
-      //                     child: Center(child: Text(Constantstring.emptyData)),
-      //                   )
-      //                 : Padding(
-      //                     padding: const EdgeInsets.only(left: 10),
-      //                     child: CustomHorizontalCard(
-      //                       index: 1,
-      //                       cardImage: "assets/newImages/ourvison.png",
-      //                       cardTitle: "Latest Updates  ",
-      //                       btnTitle: "View More",
-      //                       titleColor: Customcolor.pink_col,
-      //                       titleImg: "assets/newImages/flowers-3.png",
-      //                       list: ListView.builder(
-      //                         itemCount:
-      //                             GlobalLists.mmtmlatestupdatelist.length,
-      //                         scrollDirection: Axis.horizontal,
-      //                         itemBuilder: (BuildContext context, int index) {
-      //                           return Padding(
-      //                             padding:
-      //                                 const EdgeInsets.only(right: 8, left: 10),
-      //                             child: Stack(
-      //                               children: [
-      //                                 Container(
-      //                                   width:
-      //                                       SizeConfig.blockSizeHorizontal * 86,
-      //                                   child: FadeInImage.assetNetwork(
-      //                                     placeholder:
-      //                                         'assets/newImages/placeholder_3.jpg',
-      //                                     image:
-      //                                         "${Constantstring.baseUrl + GlobalLists.mmtmlatestupdatelist[index].image}",
-      //                                     fit: BoxFit.fill,
-      //                                   ),
-      //                                 ),
-      //                                 Align(
-      //                                   alignment: Alignment.bottomCenter,
-      //                                   child: Padding(
-      //                                     padding: const EdgeInsets.only(
-      //                                         left: 10, right: 10, bottom: 10),
-      //                                     child: Row(
-      //                                       crossAxisAlignment:
-      //                                           CrossAxisAlignment.end,
-      //                                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //                                       children: [
-      //                                         Column(
-      //                                           mainAxisAlignment:
-      //                                               MainAxisAlignment.end,
-      //                                           crossAxisAlignment:
-      //                                               CrossAxisAlignment.start,
-      //                                           children: [
-      //                                             Container(
-      //                                               width: SizeConfig
-      //                                                       .blockSizeHorizontal *
-      //                                                   80,
-      //                                               child: Text(
-      //                                                 GlobalLists
-      //                                                     .mmtmlatestupdatelist[
-      //                                                         index]
-      //                                                     .title,
-      //                                                 overflow:
-      //                                                     TextOverflow.ellipsis,
-      //                                                 style: TextStyle(
-      //                                                     color: Colors.white,
-      //                                                     fontSize: 14,
-      //                                                     fontWeight:
-      //                                                         FontWeight.w700),
-      //                                                 maxLines: 3,
-      //                                               ),
-      //                                             ),
-      //                                             SizedBox(
-      //                                               height: 8,
-      //                                             )
-      //                                           ],
-      //                                         ),
-      //                                       ],
-      //                                     ),
-      //                                   ),
-      //                                 ),
-      //                               ],
-      //                             ),
-      //                           );
-      //                         },
-      //                       ),
-      //                     ),
-      //                   ),
-      //             SizedBox(
-      //               height: 20,
-      //             ),
-      //             GlobalLists.mmtminmediaresp.length <= 0
-      //                 ? Container(
-      //                     child: Center(child: Text(Constantstring.emptyData)),
-      //                   )
-      //                 : Padding(
-      //                     padding: const EdgeInsets.only(left: 10),
-      //                     child: CustomHorizontalCard(
-      //                       index: 1,
-      //                       cardImage: "assets/newImages/mqdefault.png",
-      //                       cardTitle: "Merck Foundation In Media  ",
-      //                       titleColor: Customcolor.pink_col,
-      //                       btnTitle: "View More",
-      //                       titleImg: "assets/newImages/flowers-3.png",
-      //                       list: ListView.builder(
-      //                         itemCount: GlobalLists.mmtminmediaresp.length,
-      //                         scrollDirection: Axis.horizontal,
-      //                         itemBuilder: (BuildContext context, int index) {
-      //                           return Padding(
-      //                             padding:
-      //                                 const EdgeInsets.only(right: 8, left: 10),
-      //                             child: Stack(
-      //                               children: [
-      //                                 Container(
-      //                                   width:
-      //                                       SizeConfig.blockSizeHorizontal * 86,
-      //                                   child: FadeInImage.assetNetwork(
-      //                                     placeholder:
-      //                                         'assets/newImages/placeholder_3.jpg',
-      //                                     image:
-      //                                         "${Constantstring.baseUrl + GlobalLists.mmtminmediaresp[index].image}",
-      //                                     fit: BoxFit.fill,
-      //                                   ),
-      //                                 ),
-      //                                 Align(
-      //                                   alignment: Alignment.bottomCenter,
-      //                                   child: Padding(
-      //                                     padding: const EdgeInsets.only(
-      //                                         left: 10, right: 10, bottom: 10),
-      //                                     child: Row(
-      //                                       crossAxisAlignment:
-      //                                           CrossAxisAlignment.end,
-      //                                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //                                       children: [
-      //                                         Column(
-      //                                           mainAxisAlignment:
-      //                                               MainAxisAlignment.end,
-      //                                           crossAxisAlignment:
-      //                                               CrossAxisAlignment.start,
-      //                                           children: [
-      //                                             Container(
-      //                                               width: SizeConfig
-      //                                                       .blockSizeHorizontal *
-      //                                                   80,
-      //                                               child: Text(
-      //                                                 GlobalLists
-      //                                                     .mmtminmediaresp[
-      //                                                         index]
-      //                                                     .title,
-      //                                                 overflow:
-      //                                                     TextOverflow.ellipsis,
-      //                                                 style: TextStyle(
-      //                                                     color: Colors.white,
-      //                                                     fontSize: 14,
-      //                                                     fontWeight:
-      //                                                         FontWeight.w700),
-      //                                                 maxLines: 3,
-      //                                               ),
-      //                                             ),
-      //                                             SizedBox(
-      //                                               height: 8,
-      //                                             )
-      //                                           ],
-      //                                         ),
-      //                                       ],
-      //                                     ),
-      //                                   ),
-      //                                 ),
-      //                               ],
-      //                             ),
-      //                           );
-      //                         },
-      //                       ),
-      //                     ),
-      //                   ),
-      //             SizedBox(
-      //               height: 20,
-      //             ),
-      //             GlobalLists.mmtmtestimonialresp.length <= 0
-      //                 ? Container(
-      //                     child: Center(child: Text(Constantstring.emptyData)),
-      //                   )
-      //                 : Column(
-      //                     crossAxisAlignment: CrossAxisAlignment.start,
-      //                     children: [
-      //                       Row(
-      //                         children: [
-      //                           SizedBox(
-      //                             width: 25,
-      //                           ),
-      //                           FormLabel(
-      //                             text: "Alumini Testimonials",
-      //                             labelColor: Customcolor.colorPink,
-      //                             fontSize: 18,
-      //                             fontweight: FontWeight.w700,
-      //                             maxLines: 2,
-      //                           ),
-      //                           SizedBox(
-      //                             width: 7,
-      //                           ),
-      //                           Image.asset(
-      //                             'assets/newImages/flowers-3.png',
-      //                             width: 40,
-      //                             height: 40,
-      //                           )
-      //                         ],
-      //                       ),
-      //                       SizedBox(
-      //                         height: 10,
-      //                       ),
-      //                       Padding(
-      //                         padding: const EdgeInsets.only(left: 8),
-      //                         child: Container(
-      //                           height: 160,
-      //                           child: ListView.builder(
-      //                             itemCount:
-      //                                 GlobalLists.mmtmtestimonialresp.length,
-      //                             scrollDirection: Axis.horizontal,
-      //                             itemBuilder:
-      //                                 (BuildContext context, int index) {
-      //                               return Padding(
-      //                                 padding: const EdgeInsets.only(
-      //                                     left: 8, right: 8),
-      //                                 child: Container(
-      //                                   height:
-      //                                       SizeConfig.blockSizeVertical * 15,
-      //                                   width:
-      //                                       SizeConfig.blockSizeHorizontal * 80,
-      //                                   decoration: BoxDecoration(
-      //                                       borderRadius:
-      //                                           BorderRadius.circular(5),
-      //                                       color: Colors.white),
-      //                                   child: Row(
-      //                                     children: [
-      //                                       Padding(
-      //                                         padding: const EdgeInsets.only(
-      //                                             top: 5,
-      //                                             bottom: 3,
-      //                                             left: 8,
-      //                                             right: 8),
-      //                                         child: Container(
-      //                                           // height: 220,
-      //                                           width: 100,
-      //                                           decoration: BoxDecoration(
-      //                                             //color: Colors.amber,
-      //                                             borderRadius:
-      //                                                 BorderRadius.circular(10),
-      //                                           ),
-      //                                           child: FadeInImage.assetNetwork(
-      //                                             placeholder:
-      //                                                 'assets/newImages/placeholder_3.jpg',
-      //                                             image:
-      //                                                 "${Constantstring.baseUrl + GlobalLists.mmtmtestimonialresp[index].image}",
-      //                                             fit: BoxFit.cover,
-      //                                           ),
-      //                                         ),
-      //                                       ),
-      //                                       Expanded(
-      //                                         child: ListView(
-      //                                           shrinkWrap: true,
-      //                                           // crossAxisAlignment:
-      //                                           //     CrossAxisAlignment.start,
-      //                                           children: [
-      //                                             SizedBox(
-      //                                               height: 12,
-      //                                             ),
-      //                                             FormLabel(
-      //                                               text: GlobalLists
-      //                                                   .mmtmtestimonialresp[
-      //                                                       index]
-      //                                                   .testimonialName,
-      //                                               labelColor:
-      //                                                   Customcolor.colorPink,
-      //                                               fontSize: 17,
-      //                                               maxLines: 1,
-      //                                               fontweight: FontWeight.w700,
-      //                                             ),
-      //                                             SizedBox(
-      //                                               height: 4,
-      //                                             ),
-      //                                             FormLabel(
-      //                                               text: GlobalLists
-      //                                                   .mmtmtestimonialresp[
-      //                                                       index]
-      //                                                   .departmentName,
-      //                                               labelColor: Colors.black87,
-      //                                               fontSize: 13,
-      //                                               fontweight: FontWeight.w600,
-      //                                               maxLines: 2,
-      //                                             ),
-      //                                             SizedBox(
-      //                                               height: 7,
-      //                                             ),
-      //                                             FormLabel(
-      //                                               text: GlobalLists
-      //                                                   .mmtmtestimonialresp[
-      //                                                       index]
-      //                                                   .shortDescription,
-      //                                               labelColor: Colors.black54,
-      //                                               fontSize: 13,
-      //                                               fontweight: FontWeight.w500,
-      //                                               maxLines: 4,
-      //                                             ),
-      //                                           ],
-      //                                         ),
-      //                                       )
-      //                                     ],
-      //                                   ),
-      //                                 ),
-      //                               );
-      //                             },
-      //                           ),
-      //                         ),
-      //                       ),
-      //                       SizedBox(
-      //                         height: 9,
-      //                       ),
-      //                       Center(
-      //                         child: GestureDetector(
-      //                           onTap: () {
-      //                             Navigator.push(
-      //                                 context,
-      //                                 MaterialPageRoute(
-      //                                     builder: (BuildContext context) =>
-      //                                         MerckFoundationTestimonial()));
-      //                           },
-      //                           child: Container(
-      //                             width: 120,
-      //                             height: 40,
-      //                             decoration: BoxDecoration(
-      //                                 color: Colors.amber,
-      //                                 borderRadius: BorderRadius.circular(5)),
-      //                             child: Center(
-      //                               child: Text(
-      //                                 "Read All",
-      //                                 style: TextStyle(
-      //                                     color: Customcolor.colorBlue,
-      //                                     fontSize: 15,
-      //                                     fontWeight: FontWeight.w500),
-      //                               ),
-      //                             ),
-      //                           ),
-      //                         ),
-      //                       ),
-      //                     ],
-      //                   ),
-      //             SizedBox(
-      //               height: 20,
-      //             ),
-      //             // Padding(
-      //             //   padding: const EdgeInsets.only(right: 60, left: 60),
-      //             //   child: Image.asset(
-      //             //     "assets/newImages/flowers_footer.png",
-      //             //   ),
-      //             // ),
-      //             Padding(
-      //               padding: const EdgeInsets.only(right: 0, left: 0),
-      //               child: Align(
-      //                 alignment: Alignment.topRight,
-      //                 child: Image.asset(
-      //                   "assets/newImages/flowers_footer.png",
-      //                   height: 170,
-      //                 ),
-      //               ),
-      //             ),
-      //             SizedBox(
-      //               height: 10,
-      //             )
-      //           ],
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 
@@ -721,66 +204,108 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
     );
   }
 
+  Widget digitalLibraryLastSection() {
+    return getdigitallib(context);
+  }
+
   Widget getcallforapp(BuildContext context) {
     return Stack(
       children: <Widget>[
-        GlobalLists.mmtmcallforappresp.length <= 0
+        GlobalLists.homecallforapp.length <= 0
             ? Container(
                 child: Center(child: Text(Constantstring.emptyData)),
               )
-            : Container(
-                //color: Colors.amber,
-                width: SizeConfig.blockSizeHorizontal * 100,
-                height: SizeConfig.blockSizeVertical * 100,
-                child: carouselSlider = CarouselSlider(
-                  options: CarouselOptions(
-                      autoPlay: false,
-                      // aspectRatio: 0.1,
-                      enlargeCenterPage: true,
-                      enlargeStrategy: CenterPageEnlargeStrategy.height,
-                      viewportFraction: 1.0,
-                      //  height: SizeConfig.blockSizeVertical * 100,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          _current1 = index;
-                        });
-                      }),
-                  items: GlobalLists.mmtmcallforappresp.map((product) {
-                    return new Builder(
-                      builder: (BuildContext context) {
-                        return new Container(
-                          width: SizeConfig.blockSizeHorizontal * 96,
-
-                          child: ListView(
-                            shrinkWrap: true,
-                            physics: ScrollPhysics(),
-                            //  crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Container(
-                                  height: 200,
-                                  width: 250,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: FadeInImage.assetNetwork(
-                                    placeholder:
-                                        'assets/newImages/placeholder_3.jpg',
-                                    image:
-                                        Constantstring.baseUrl + product.appImg,
-                                    fit: BoxFit.cover,
-                                    height: 200,
-                                  ),
-                                ),
+            : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                    //color: Colors.amber,
+                    width: SizeConfig.blockSizeHorizontal * 100,
+                    height: 470,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                                child: Text(
+                              expandedName,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black),
+                            )),
+                            GestureDetector(
+                              onTap: () {
+                                print("in tap");
+                                setState(() {
+                                  expandClick = !expandClick;
+                                });
+                              },
+                              child: Image.asset(
+                                "assets/newImages/expand_more.png",
+                                width: 30,
+                                height: 30,
                               ),
-                            ],
-                          ),
-                          //child: new Text('text $i', style: new TextStyle(fontSize: 16.0,color: Colors.black),)
-                        );
-                      },
-                    );
-                  }).toList(),
-                  carouselController: _controller,
-                ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        carouselSlider = CarouselSlider(
+                          options: CarouselOptions(
+                              autoPlay: false,
+                              // aspectRatio: 0.1,
+                              enlargeCenterPage: true,
+                              enlargeStrategy: CenterPageEnlargeStrategy.height,
+                              viewportFraction: 1.0,
+                              height: 340,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  _current1 = index;
+                                });
+                              }),
+                          items: GlobalLists.homecallforapp.map((product) {
+                            return new Builder(
+                              builder: (BuildContext context) {
+                                return ListView(
+                                  shrinkWrap: true,
+                                  physics: ScrollPhysics(),
+                                  // crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder:
+                                            'assets/newImages/placeholder_3.jpg',
+                                        image:
+                                            GlobalLists.homeCallForAppBaseURL +
+                                                product.appImg,
+                                        fit: BoxFit.fill,
+                                        width: 240,
+                                        height: 290,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Center(
+                                      child: Text(product.title,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                            fontSize: 17,
+                                          )),
+                                    )
+                                  ],
+                                );
+                              },
+                            );
+                          }).toList(),
+                          carouselController: callAppCarouselController,
+                        ),
+                      ],
+                    )),
               ),
         Positioned(
           top: 140,
@@ -805,7 +330,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       goToNext();
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 40),
+                      padding: const EdgeInsets.only(right: 20),
                       child: Icon(
                         Icons.arrow_forward_ios,
                         color: Customcolor.text_darkblue,
@@ -822,62 +347,76 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
   Widget getdigitallib(BuildContext context) {
     return Stack(
       children: <Widget>[
-        GlobalLists.mmtmdigitallibresp.length <= 0
+        GlobalLists.homedigitallib.length <= 0
             ? Container(
                 child: Center(child: Text(Constantstring.emptyData)),
               )
-            : Container(
-                //color: Colors.amber,
-                width: SizeConfig.blockSizeHorizontal * 100,
-                height: SizeConfig.blockSizeVertical * 100,
-                child: carouselSlider = CarouselSlider(
-                  options: CarouselOptions(
-                      autoPlay: false,
-                      // aspectRatio: 0.1,
-                      enlargeCenterPage: true,
-                      enlargeStrategy: CenterPageEnlargeStrategy.height,
-                      viewportFraction: 1.0,
-                      //  height: SizeConfig.blockSizeVertical * 100,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          _current1 = index;
-                        });
-                      }),
-                  items: GlobalLists.mmtmdigitallibresp.map((product) {
-                    return new Builder(
-                      builder: (BuildContext context) {
-                        return new Container(
-                          width: SizeConfig.blockSizeHorizontal * 96,
-
-                          child: ListView(
+            : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  //color: Colors.amber,
+                  width: SizeConfig.blockSizeHorizontal * 100,
+                  height: 400,
+                  color: Colors.white,
+                  child: carouselSlider = CarouselSlider(
+                    options: CarouselOptions(
+                        autoPlay: false,
+                        aspectRatio: 1,
+                        enlargeCenterPage: true,
+                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        viewportFraction: 1.0,
+                        //  height: SizeConfig.blockSizeVertical * 100,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _current1 = index;
+                          });
+                        }),
+                    items: GlobalLists.homedigitallib.map((product) {
+                      print(GlobalLists.homeDigitalLibraryBaseURL +
+                          product.image);
+                      return new Builder(
+                        builder: (BuildContext context) {
+                          return ListView(
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             //  crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Center(
                                 child: Container(
-                                  height: 200,
-                                  width: 250,
+                                  padding: EdgeInsets.only(top: 20),
+                                  width: 240,
+                                  height: 290,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8)),
                                   child: FadeInImage.assetNetwork(
                                     placeholder:
                                         'assets/newImages/placeholder_3.jpg',
                                     image:
-                                        Constantstring.baseUrl + product.image,
-                                    fit: BoxFit.cover,
+                                        GlobalLists.homeDigitalLibraryBaseURL +
+                                            product.image,
+                                    fit: BoxFit.fitHeight,
                                     height: 200,
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Center(
+                                child: Text(product.title,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                    )),
+                              )
                             ],
-                          ),
-                          //child: new Text('text $i', style: new TextStyle(fontSize: 16.0,color: Colors.black),)
-                        );
-                      },
-                    );
-                  }).toList(),
-                  carouselController: _controller,
+                          );
+                        },
+                      );
+                    }).toList(),
+                    carouselController: callAppCarouselController,
+                  ),
                 ),
               ),
         Positioned(
@@ -1471,7 +1010,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
       if (typewidet[i] == "gallery") {
         listofwiget.add(
           Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10, top: 10),
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
@@ -1543,7 +1082,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
       if (typewidet[i] == "videos") {
         listofwiget.add(
           Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10, top: 10),
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/gallery.png",
@@ -1563,13 +1102,19 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => VideoPlayer(
-                                    videoUrl: GlobalLists
-                                        .homevideolist[index].videoLink,
-                                  )));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (BuildContext context) => VideoPlayer(
+                      //               videoUrl: GlobalLists
+                      //                   .homevideolist[index].videoLink,
+                      //             )));
+                      var storykey = GlobalLists.homevideolist[index].videoLink
+                          .substring(GlobalLists
+                                  .homevideolist[index].videoLink.length -
+                              11);
+                      _launchInWebViewWithJavaScript(
+                          "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8, left: 10),
@@ -1650,67 +1195,87 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
       if (typewidet[i] == "latest_updates") {
         listofwiget.add(
           Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10, top: 10),
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
               cardTitle: "Latest Updates  ",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
+              onbtnTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            Dashboard(index: 3)));
+              },
               titleImg: "assets/newImages/flowers-3.png",
               list: ListView.builder(
                 itemCount: GlobalLists.homeceomsglist.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8, left: 10),
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: SizeConfig.blockSizeHorizontal * 86,
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/newImages/placeholder_3.jpg',
-                            image:
-                                "${GlobalLists.homeceomsgbaseurl + GlobalLists.homeceomsglist[index].image}",
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, right: 10, bottom: 10),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width:
-                                          SizeConfig.blockSizeHorizontal * 80,
-                                      child: Text(
-                                        GlobalLists.homeceomsglist[index].title,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w700),
-                                        maxLines: 3,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    )
-                                  ],
-                                ),
-                              ],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Detailpage(
+                                    indexIs: index,
+                                    callfrom: 2,
+                                  )));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 86,
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/newImages/placeholder_3.jpg',
+                              image:
+                                  "${GlobalLists.homeceomsgbaseurl + GlobalLists.homeceomsglist[index].image}",
+                              fit: BoxFit.fill,
                             ),
                           ),
-                        ),
-                      ],
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 80,
+                                        child: Text(
+                                          GlobalLists
+                                              .homeceomsglist[index].title,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700),
+                                          maxLines: 3,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -1729,67 +1294,87 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
       if (typewidetofbottomsection[i] == "media") {
         listofbottomwiget.add(
           Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10, top: 10),
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/mqdefault.png",
               cardTitle: "Merck Foundation In Media  ",
               titleColor: Customcolor.pink_col,
+              onbtnTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            MerckFoundationMedia()));
+              },
               btnTitle: "View More",
               titleImg: "assets/newImages/flowers-3.png",
               list: ListView.builder(
                 itemCount: GlobalLists.mmtmmedialist.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8, left: 10),
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: SizeConfig.blockSizeHorizontal * 86,
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/newImages/placeholder_3.jpg',
-                            image:
-                                "${GlobalLists.mmtmmediabaseurl + GlobalLists.mmtmmedialist[index].image}",
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, right: 10, bottom: 10),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width:
-                                          SizeConfig.blockSizeHorizontal * 80,
-                                      child: Text(
-                                        GlobalLists.mmtmmedialist[index].title,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w700),
-                                        maxLines: 3,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    )
-                                  ],
-                                ),
-                              ],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl: GlobalLists
+                                        .mmtmmedialist[index].mediaUrl,
+                                  )));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 86,
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/newImages/placeholder_3.jpg',
+                              image:
+                                  "${GlobalLists.mmtmmediabaseurl + GlobalLists.mmtmmedialist[index].image}",
+                              fit: BoxFit.fill,
                             ),
                           ),
-                        ),
-                      ],
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 80,
+                                        child: Text(
+                                          GlobalLists
+                                              .mmtmmedialist[index].title,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700),
+                                          maxLines: 3,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -1800,123 +1385,282 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
       }
       if (typewidetofbottomsection[i] == "testimonial") {
         listofbottomwiget.add(
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(
-            children: [
-              SizedBox(
-                width: 25,
-              ),
-              FormLabel(
-                text: "Alumini Testimonials",
-                labelColor: Customcolor.colorPink,
-                fontSize: 18,
-                fontweight: FontWeight.w700,
-                maxLines: 2,
-              ),
-              SizedBox(
-                width: 7,
-              ),
-              Image.asset(
-                'assets/newImages/flowers-3.png',
-                width: 40,
-                height: 40,
-              )
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
           Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: Container(
-              height: 160,
-              child: ListView.builder(
-                itemCount: GlobalLists.mmttestimoniallist.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 8, right: 8),
-                    child: Container(
-                      height: SizeConfig.blockSizeVertical * 15,
-                      width: SizeConfig.blockSizeHorizontal * 80,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.white),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 5, bottom: 3, left: 8, right: 8),
+            padding: const EdgeInsets.only(left: 10, top: 10),
+            child: CustomHorizontalCard(
+                index: 1,
+                cardImage: "assets/newImages/mqdefault.png",
+                cardTitle: "Alumini Testimonials  ",
+                titleColor: Customcolor.pink_col,
+                onbtnTap: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (BuildContext context) =>
+                  //             MerckFoundationTestimonial()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              Testimonialprogramviewmore()));
+                  // getMerckprogramTestimonial();
+                },
+                btnTitle: "View More",
+                titleImg: "assets/newImages/flowers-3.png",
+                list: Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Container(
+                    height: 160,
+                    child: ListView.builder(
+                      itemCount: GlobalLists.mmttestimoniallist.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Testimonialprogramdetailpage(
+                                            index: index,
+                                            baseurl: GlobalLists
+                                                .mmttestimonialbaseurl,
+                                          )));
+                            },
                             child: Container(
-                              // height: 220,
-                              width: 100,
+                              height: SizeConfig.blockSizeVertical * 15,
+                              width: SizeConfig.blockSizeHorizontal * 80,
                               decoration: BoxDecoration(
-                                //color: Colors.amber,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: FadeInImage.assetNetwork(
-                                placeholder:
-                                    'assets/newImages/placeholder_3.jpg',
-                                image:
-                                    "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[index].image}",
-                                fit: BoxFit.cover,
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.white),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 5, bottom: 3, left: 8, right: 8),
+                                    child: Container(
+                                      // height: 220,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        //color: Colors.amber,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder:
+                                            'assets/newImages/placeholder_3.jpg',
+                                        image:
+                                            "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[index].image}",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: ListView(
+                                      shrinkWrap: true,
+                                      // crossAxisAlignment:
+                                      //     CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 12,
+                                        ),
+                                        FormLabel(
+                                          text: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .testimonialName,
+                                          labelColor: Customcolor.colorPink,
+                                          fontSize: 17,
+                                          maxLines: 1,
+                                          fontweight: FontWeight.w700,
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        FormLabel(
+                                          text: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .departmentName,
+                                          labelColor: Colors.black87,
+                                          fontSize: 13,
+                                          fontweight: FontWeight.w600,
+                                          maxLines: 2,
+                                        ),
+                                        SizedBox(
+                                          height: 7,
+                                        ),
+                                        FormLabel(
+                                          text: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .shortDescription,
+                                          labelColor: Colors.black54,
+                                          fontSize: 13,
+                                          fontweight: FontWeight.w500,
+                                          maxLines: 4,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: ListView(
-                              shrinkWrap: true,
-                              // crossAxisAlignment:
-                              //     CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                FormLabel(
-                                  text: GlobalLists.mmttestimoniallist[index]
-                                      .testimonialName,
-                                  labelColor: Customcolor.colorPink,
-                                  fontSize: 17,
-                                  maxLines: 1,
-                                  fontweight: FontWeight.w700,
-                                ),
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                FormLabel(
-                                  text: GlobalLists
-                                      .mmttestimoniallist[index].departmentName,
-                                  labelColor: Colors.black87,
-                                  fontSize: 13,
-                                  fontweight: FontWeight.w600,
-                                  maxLines: 2,
-                                ),
-                                SizedBox(
-                                  height: 7,
-                                ),
-                                FormLabel(
-                                  text: GlobalLists.mmttestimoniallist[index]
-                                      .shortDescription,
-                                  labelColor: Colors.black54,
-                                  fontSize: 13,
-                                  fontweight: FontWeight.w500,
-                                  maxLines: 4,
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-            ),
+                  ),
+                )),
           ),
-        ]));
+        );
       }
     }
     return listofbottomwiget;
+  }
+
+  List<Widget> tablist() {
+    setState(() {
+      listoftabwiget.clear();
+      tabs.clear();
+
+      // digitalLibrary(),
+      // merckmorethanmother()
+      for (int i = 0; i < typewidetofrightsection.length; i++) {
+        if (typewidetofrightsection[i] == "call_for_app") {
+          tabs.add(
+            new Tab(text: "Call for Application"),
+          );
+
+          listoftabwiget.add(
+            getcallforapp(context),
+          );
+        }
+        if (typewidetofrightsection[i] == "mmtm") {
+          tabs.add(
+            new Tab(text: "Merck More Than A Mother Ambassadors"),
+          );
+          listoftabwiget.add(getMMTMS(context));
+        }
+        if (typewidetofrightsection[i] == "digital_library") {
+          tabs.add(
+            new Tab(text: "Digital Library"),
+          );
+          listoftabwiget.add(digitalLibraryLastSection());
+        }
+        print('tabs');
+        print(tabs.length);
+      }
+    });
+    //_tabController.length = tabs.length;
+    return listoftabwiget;
+  }
+
+  Widget getMMTMS(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        GlobalLists.homemmtm.length <= 0
+            ? Container(
+                child: Center(child: Text(Constantstring.emptyData)),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  //color: Colors.amber,
+                  width: SizeConfig.blockSizeHorizontal * 100,
+                  height: 400,
+                  color: Colors.white,
+                  child: carouselSlider = CarouselSlider(
+                    options: CarouselOptions(
+                        autoPlay: false,
+                        aspectRatio: 1,
+                        enlargeCenterPage: true,
+                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        viewportFraction: 1.0,
+                        //  height: SizeConfig.blockSizeVertical * 100,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _current1 = index;
+                          });
+                        }),
+                    items: GlobalLists.homemmtm.map((product) {
+                      return new Builder(
+                        builder: (BuildContext context) {
+                          return ListView(
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(),
+                            //  crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: Container(
+                                  padding: EdgeInsets.only(top: 20),
+                                  width: 240,
+                                  height: 290,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: FadeInImage.assetNetwork(
+                                    placeholder:
+                                        'assets/newImages/placeholder_3.jpg',
+                                    image: GlobalLists.homeMMTMBaseURL +
+                                        product.photo,
+                                    fit: BoxFit.cover,
+                                    height: 200,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Center(
+                                child: Text(product.photoDescription,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                    )),
+                              )
+                            ],
+                          );
+                        },
+                      );
+                    }).toList(),
+                    carouselController: callAppCarouselController,
+                  ),
+                ),
+              ),
+        Positioned(
+          top: 140,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                GestureDetector(
+                    onTap: () {
+                      goToPrevious();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: Customcolor.text_darkblue,
+                      ),
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      goToNext();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 40),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Customcolor.text_darkblue,
+                      ),
+                    )),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Future<http.Response> getmmtmapi() async {
@@ -2026,8 +1770,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             homepageres.rightArea['${i + 1}'].mmtm.baseUrl;
       } else if (rightsectioncategoryname.toString().toLowerCase() ==
           "digital_library".toLowerCase()) {
-        // GlobalLists.homedigitallib =
-        //     homepageres.rightArea['${i + 1}'].digitalLibrary.list;
+        GlobalLists.homedigitallib =
+            homepageres.rightArea['${i + 1}'].digitalLibrary.list;
         GlobalLists.homeDigitalLibraryBaseURL =
             homepageres.rightArea['${i + 1}'].digitalLibrary.baseUrl;
         print(GlobalLists.homedigitallib.length);
@@ -2071,6 +1815,19 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
     });
 
     return response;
+  }
+
+  Future<void> _launchInWebViewWithJavaScript(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
 

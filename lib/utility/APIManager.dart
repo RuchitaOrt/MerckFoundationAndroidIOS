@@ -51,6 +51,7 @@ import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
 import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
 import 'package:merckfoundation22dec/model/LeadershipResponse.dart';
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
+import 'package:merckfoundation22dec/model/TestimonialProgram.dart';
 
 enum API {
   vision,
@@ -120,7 +121,10 @@ enum API {
   ourawarddetail,
 
   //mobilesearch
-  mobilesearch
+  mobilesearch,
+  //testiominalprogram
+  testiomonailpro,
+  ourgallerydetail
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -191,6 +195,19 @@ class APIManager {
   static String homeurl = "program_page_api/home/Android/1";
   static String mmtmprogramurl =
       "MMTM_Program_Api/merck-more-than-a-mother/Android/1";
+  static String merckcancerprogramurl =
+      "MainProgramPageApi/merck-cancer-access-program/Android/1";
+  static String merckcapabilityprogram =
+      "MainProgramPageApi/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/Android/1";
+
+  static String merckstemprogram =
+      "MainProgramPageApi/merck-stem-program/Android/1";
+  static String merckfirstladies =
+      "MainProgramPageApi/merck-foundation-first-ladies-initiative-summit/Android/1";
+  static String merckafricaasialuminar =
+      "MainProgramPageApi/merck-africa-asia-luminary/Android/1";
+  static String mercksubstaition =
+      "MainProgramPageApi/merck-foundation-sustainability-initiative/Android/1";
   Future<String> apiEndPoint(API api) async {
     var apiPathString = "";
     if (Platform.isAndroid) {
@@ -376,6 +393,12 @@ class APIManager {
           break;
         case API.ourawarddetail:
           apiPathString = "merck_awards";
+          break;
+        case API.testiomonailpro:
+          apiPathString = "merck_testimonials";
+          break;
+        case API.ourgallerydetail:
+          apiPathString = "mob_event_gallery";
           break;
         default:
           apiPathString = "";
@@ -568,6 +591,12 @@ class APIManager {
         case API.ourawarddetail:
           apiPathString = "merck_awards";
           break;
+        case API.testiomonailpro:
+          apiPathString = "merck_testimonials";
+          break;
+        case API.ourgallerydetail:
+          apiPathString = "mob_event_gallery";
+          break;
         default:
           apiPathString = "";
       }
@@ -582,6 +611,7 @@ class APIManager {
     switch (api) {
       case API.filterlist:
       case API.ourawarddetail:
+      case API.ourgallerydetail:
         // case API.legaldisclaimer:
         //  case API.mission:
         //  case API.ourActivities:
@@ -759,6 +789,12 @@ class APIManager {
       case API.ourawarddetail:
         className = "OurawarddetailResponse";
         break;
+      case API.testiomonailpro:
+        className = "TestimonialprogramResponse";
+        break;
+      case API.ourgallerydetail:
+        className = "OurgallerydetailResponse";
+        break;
       default:
         className = 'CommonResponse';
     }
@@ -918,6 +954,13 @@ class APIManager {
     }
     if (className == "OurawarddetailResponse") {
       responseObj = OurawarddetailResponse.fromJson(json);
+    }
+    if (className == "TestimonialprogramResponse") {
+      responseObj = TestimonialprogramResponse.fromJson(json);
+    }
+    if (className == "OurgallerydetailResponse") {
+      //enterhere
+      //  responseObj = TestimonialprogramResponse.fromJson(json);
     }
 
     return responseObj;

@@ -11,7 +11,8 @@ import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart'
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
-import 'package:merckfoundation22dec/model/StemprogramResponse.dart' as stem;
+import 'package:merckfoundation22dec/model/AfricaAsialuminar.dart'
+    as africaasia;
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
 import 'package:merckfoundation22dec/ourawarddetail.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -32,14 +33,14 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
 
-class Merckstemprogram extends StatefulWidget {
+class MerckAfricaasialuminar extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MerckstemprogramState();
+    return MerckAfricaasialuminarState();
   }
 }
 
-class MerckstemprogramState extends State<Merckstemprogram>
+class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
     with TickerProviderStateMixin {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   int _current = 0;
@@ -1482,7 +1483,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
   Future<http.Response> getmmtmapi() async {
     print("mmtm api");
     var response = await APIManager.fetchget(
-      encoding: APIManager.merckstemprogram,
+      encoding: APIManager.merckafricaasialuminar,
     );
     print("response");
     print(response);
@@ -1490,8 +1491,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
     var res = json.decode(response.body);
     print("ff");
     print(res);
-    stem.StemprogramResponse homepageres =
-        stem.StemprogramResponse.fromJson(res);
+    africaasia.AfricaAsiaResponse homepageres =
+        africaasia.AfricaAsiaResponse.fromJson(res);
 
     slidersection = homepageres.sliderArea[0].slider.list;
     slidersection.forEach((element) {
@@ -1517,22 +1518,6 @@ class MerckstemprogramState extends State<Merckstemprogram>
 
     print(section1);
     print(section1['1']);
-    // setState(() {
-    //   typewidetofrightsection.add('digital_library');
-
-    //   print(typewidetofrightsection);
-    // });
-    // for (int i = 0; i < digitallibrary.length; i++) {
-    //   dynamic rightsection = res['Right_area']['${i + 1}'];
-    //   print("TKey: ${rightsection.keys.first}");
-    //   var rightsectioncategoryname = rightsection.keys.first;
-
-    //   setState(() {
-    //     typewidetofrightsection.add(rightsectioncategoryname);
-
-    //     print(typewidetofrightsection);
-    //   });
-    // }
 
     for (int i = 0; i < section1.length; i++) {
       //  MiddleArea categoryKeys = section1[(i + 1).toString()];

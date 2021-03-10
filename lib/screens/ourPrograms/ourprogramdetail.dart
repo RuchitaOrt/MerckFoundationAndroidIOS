@@ -2,6 +2,7 @@ import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckmorethanamother.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckstemprogram.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Merckxanceraccess.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/aboutMerckMother.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/empoweringberna.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/fertilityPrograms.dart';
@@ -10,6 +11,8 @@ import 'package:merckfoundation22dec/screens/ourPrograms/localSogsandChildrenSto
 import 'package:merckfoundation22dec/screens/ourPrograms/mmtmprogram.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/motherambassadar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/strategy.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Merckcapabilityadvancement.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Mercksubstantionalinitiative.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -66,25 +69,31 @@ class _MyHomePageState extends State<OurProgram> {
           screens: <Widget>[
             indexpass == 0
                 ? OurProgramDetails()
-                : indexpass == 4
-                    ? Merckstemprogram()
-                    : indexpass == 5
-                        ? EmpoweringBerna()
-                        : indexpass == 9
-                            ? StrategyDetails()
-                            : indexpass == 10
-                                ? MotherAmbassadarDetails()
-                                : indexpass == 11
-                                    ? MerckFertility()
-                                    : indexpass == 12
-                                        ? FirstLadiesInitiativeDetails()
-                                        : indexpass == 7
-                                            ? MMTMProgram()
-                                            : indexpass == 6
-                                                ? LocalSongsandChildrenStories()
-                                                : indexpass == 8
-                                                    ? AboutMerckMother()
-                                                    : Container()
+                : indexpass == 1
+                    ? MerckCanceraccess()
+                    : indexpass == 2
+                        ? MerckCapabilityadvancement()
+                        : indexpass == 4
+                            ? Merckstemprogram()
+                            : indexpass == 5
+                                ? EmpoweringBerna()
+                                : indexpass == 9
+                                    ? StrategyDetails()
+                                    : indexpass == 10
+                                        ? MotherAmbassadarDetails()
+                                        : indexpass == 11
+                                            ? MerckFertility()
+                                            : indexpass == 12
+                                                ? FirstLadiesInitiativeDetails()
+                                                : indexpass == 7
+                                                    ? MMTMProgram()
+                                                    : indexpass == 6
+                                                        ? LocalSongsandChildrenStories()
+                                                        : indexpass == 8
+                                                            ? AboutMerckMother()
+                                                            : indexpass == 13
+                                                                ? MerckSubstantional()
+                                                                : Container()
           ],
           controller: mabialaFABController,
         ),

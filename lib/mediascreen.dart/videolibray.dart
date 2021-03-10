@@ -14,6 +14,7 @@ import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
 import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Videolibrary extends StatefulWidget {
   @override
@@ -118,15 +119,22 @@ class VideolibraryState extends State<Videolibrary> {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              VideoPlayer(
-                                                videoUrl: GlobalLists
-                                                    .videolibrary[index]
-                                                    .videoLink,
-                                              )));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (BuildContext context) =>
+                                  //             VideoPlayer(
+                                  //               videoUrl: GlobalLists
+                                  //                   .videolibrary[index]
+                                  //                   .videoLink,
+                                  //             )));
+                                  var storykey = GlobalLists
+                                      .videolibrary[index].videoLink
+                                      .substring(GlobalLists.videolibrary[index]
+                                              .videoLink.length -
+                                          11);
+                                  _launchInWebViewWithJavaScript(
+                                      "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                                 },
                                 child: Container(
                                   color: Colors.transparent,
@@ -271,6 +279,19 @@ class VideolibraryState extends State<Videolibrary> {
       );
     } else {
       ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  Future<void> _launchInWebViewWithJavaScript(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
+    } else {
+      throw 'Could not launch $url';
     }
   }
 

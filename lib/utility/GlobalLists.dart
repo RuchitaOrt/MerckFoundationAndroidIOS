@@ -199,4 +199,10 @@ class GlobalLists {
 
   static List<dynamic> mmttestimoniallist = [];
   static String mmttestimonialbaseurl = "";
+  static String merckcancerawardbaseurl = "";
+  static List<dynamic> merckcancerawardlist = [];
+
+  //testimonailprogram
+  static List<dynamic> testimonialprolist = [];
+  static String testimonialprobaseurl = "";
 }
