@@ -191,4 +191,12 @@ class GlobalLists {
   static List<dynamic> homecallforapp = [];
   static List<dynamic> homedigitallib = [];
   static List<dynamic> homemmtm = [];
+
+  //mmtm
+
+  static List<dynamic> mmtmmedialist = [];
+  static String mmtmmediabaseurl = "";
+
+  static List<dynamic> mmttestimoniallist = [];
+  static String mmttestimonialbaseurl = "";
 }
