@@ -31,6 +31,8 @@ import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
+import 'package:merckfoundation22dec/GalleryProgram.dart';
+import 'package:merckfoundation22dec/model/GalleryProgram.dart';
 
 class Merckstemprogram extends StatefulWidget {
   @override
@@ -450,13 +452,22 @@ class MerckstemprogramState extends State<Merckstemprogram>
     );
   }
 
+  // goToPrevious() {
+  //   _controller.previousPage(
+  //       duration: Duration(milliseconds: 300), curve: Curves.ease);
+  // }
+
+  // goToNext() {
+  //   _controller.nextPage(
+  //       duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+  // }
   goToPrevious() {
-    _controller.previousPage(
+    callAppCarouselController.previousPage(
         duration: Duration(milliseconds: 300), curve: Curves.ease);
   }
 
   goToNext() {
-    _controller.nextPage(
+    callAppCarouselController.nextPage(
         duration: Duration(milliseconds: 300), curve: Curves.decelerate);
   }
 
@@ -732,59 +743,74 @@ class MerckstemprogramState extends State<Merckstemprogram>
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
+              onbtnTap: () {
+                getprogramgallery();
+              },
               list: ListView.builder(
                 itemCount: GlobalLists.homegallerylist.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8, left: 10),
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: SizeConfig.blockSizeHorizontal * 86,
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/newImages/placeholder_3.jpg',
-                            image:
-                                "${GlobalLists.homegallerybaseurl + GlobalLists.homegallerylist[index].photo}",
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, right: 10, bottom: 10),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Container(
-                                    //   width:
-                                    //       SizeConfig.blockSizeHorizontal * 80,
-                                    //   child: Text(
-                                    //     GlobalLists.homegallerylist[index].title,
-                                    //     overflow: TextOverflow.ellipsis,
-                                    //     style: TextStyle(
-                                    //         color: Colors.white,
-                                    //         fontSize: 14,
-                                    //         fontWeight: FontWeight.w700),
-                                    //     maxLines: 3,
-                                    //   ),
-                                    // ),
-                                    SizedBox(
-                                      height: 8,
-                                    )
-                                  ],
-                                ),
-                              ],
+                  return GestureDetector(
+                    onTap: () {
+                      ShowDialogs.showImageDialog(
+                        context: context,
+                        image: GlobalLists.homegallerybaseurl +
+                            GlobalLists.homegallerylist[index].photo,
+                        description:
+                            GlobalLists.homegallerylist[index].photoDescription,
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 86,
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/newImages/placeholder_3.jpg',
+                              image:
+                                  "${GlobalLists.homegallerybaseurl + GlobalLists.homegallerylist[index].photo}",
+                              fit: BoxFit.fill,
                             ),
                           ),
-                        ),
-                      ],
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      // Container(
+                                      //   width:
+                                      //       SizeConfig.blockSizeHorizontal * 80,
+                                      //   child: Text(
+                                      //     GlobalLists.homegallerylist[index].title,
+                                      //     overflow: TextOverflow.ellipsis,
+                                      //     style: TextStyle(
+                                      //         color: Colors.white,
+                                      //         fontSize: 14,
+                                      //         fontWeight: FontWeight.w700),
+                                      //     maxLines: 3,
+                                      //   ),
+                                      // ),
+                                      SizedBox(
+                                        height: 8,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -1320,6 +1346,44 @@ class MerckstemprogramState extends State<Merckstemprogram>
     return listofwiget;
   }
 
+  getprogramgallery() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(context, API.programgallerystem,
+          (response) async {
+        GalleryProgramResponse resp = response;
+
+        print(response);
+        print('Resp : $resp');
+        Navigator.of(_keyLoader.currentContext).pop();
+        if (resp.success == "True".toLowerCase()) {
+          print(resp.list);
+          GlobalLists.programgallerybaseurl = resp.baseUrl;
+          GlobalLists.programgallerylist = resp.list;
+          print(GlobalLists.programgallerylist);
+          // GlobalLists.awarddetallisting[0].title
+
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => GalleryProgram(
+                        baseURL: GlobalLists.programgallerybaseurl,
+                        photosList: GlobalLists.programgallerylist,
+                      )));
+        } else {
+          ShowDialogs.showToast(resp.msg);
+        }
+      }, (error) {
+        print('ERR msg is $error');
+        Navigator.of(_keyLoader.currentContext).pop();
+      }, jsonval: json);
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
   List<Widget> tablist() {
     setState(() {
       listoftabwiget.clear();
@@ -1556,6 +1620,21 @@ class MerckstemprogramState extends State<Merckstemprogram>
         GlobalLists.homecontentlist =
             homepageres.middleArea['${i + 1}'].content.list;
         print(GlobalLists.homecontentlist.length);
+      } else if (middlecategoryname.toString().toLowerCase() ==
+          "gallery".toLowerCase()) {
+        GlobalLists.homegallerybaseurl =
+            homepageres.middleArea['${i + 1}'].gallery.baseUrl;
+        GlobalLists.homegallerylist =
+            homepageres.middleArea['${i + 1}'].gallery.list;
+        print(GlobalLists.homegallerylist.length);
+      } else if (middlecategoryname.toString().toLowerCase() ==
+          "latest_updates".toLowerCase()) {
+        //latest update
+        GlobalLists.homeceomsgbaseurl =
+            homepageres.middleArea['${i + 1}'].latestUpdates.baseUrl;
+        GlobalLists.homeceomsglist =
+            homepageres.middleArea['${i + 1}'].latestUpdates.list;
+        print(GlobalLists.homeceomsglist.length);
       }
     }
 

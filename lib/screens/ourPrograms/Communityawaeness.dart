@@ -17,14 +17,14 @@ import 'dart:convert';
 
 import 'package:responsive_flutter/responsive_flutter.dart';
 
-class StrategyDetails extends StatefulWidget {
+class CommunityAwareness extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return OurProgramstrategyState();
   }
 }
 
-class OurProgramstrategyState extends State<StrategyDetails> {
+class OurProgramstrategyState extends State<CommunityAwareness> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   bool isMiddleSectionLoaded = false;
 
@@ -100,7 +100,7 @@ class OurProgramstrategyState extends State<StrategyDetails> {
   Future<http.Response> getmmtmapi() async {
     print("mmtm api");
     var response = await APIManager.fetchget(
-      encoding: APIManager.subprogramstrategy,
+      encoding: APIManager.subprogramcommunityawareness,
     );
     print("response");
     print(response);

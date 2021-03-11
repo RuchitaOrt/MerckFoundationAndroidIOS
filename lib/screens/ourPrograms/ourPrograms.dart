@@ -2,7 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/screens/ourPrograms/firstladiesinitiativesummit.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailcancerlist.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailssevenlist.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforStem.dart';
 
 import 'package:merckfoundation22dec/screens/ourPrograms/ourprogramdetail.dart';
@@ -150,32 +151,58 @@ class _OurProgramState extends State<Ourprogram> {
                                       indexpass: 0,
                                     )));
                       } else if (index == 1) {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) => OurProgram(
+                        //               indexpass: 1,
+                        //             )));
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => OurProgram(
+                                builder: (BuildContext context) =>
+                                    OurProgramcancerlist()));
+                      } else if (index == 2) {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) => OurProgram(
+                        //               indexpass: 2,
+                        //             )));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    OurProgramSevenlist(
                                       indexpass: 1,
                                     )));
-                      } else if (index == 2) {
+                      } else if (index == 3) {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) => OurProgram(
+                        //               indexpass: 12,
+                        //             )));
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => OurProgram(
+                                builder: (BuildContext context) =>
+                                    OurProgramSevenlist(
                                       indexpass: 2,
                                     )));
-                      } else if (index == 3) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => OurProgram(
-                                      indexpass: 12,
-                                    )));
                       } else if (index == 6) {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) => OurProgram(
+                        //               indexpass: 13,
+                        //             )));
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => OurProgram(
-                                      indexpass: 13,
+                                builder: (BuildContext context) =>
+                                    OurProgramSevenlist(
+                                      indexpass: 4,
                                     )));
                       } else if (index == 4) {
                         Navigator.push(
@@ -183,12 +210,33 @@ class _OurProgramState extends State<Ourprogram> {
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     OurProgramStem()));
+                      } else if (index == 5) {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) => OurProgram(
+                        //               indexpass: 14,
+                        //             )));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    OurProgramSevenlist(
+                                      indexpass: 3,
+                                    )));
                       } else if (index == 7) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     OurProgramAfrica()));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) =>
+                        //             OurProgramSevenlist(
+                        //               indexpass: 4,
+                        //             )));
                       }
                     },
                     child: Padding(

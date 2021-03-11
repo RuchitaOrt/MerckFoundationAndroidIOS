@@ -10,10 +10,12 @@ import 'package:marquee/marquee.dart';
 import 'package:merckfoundation22dec/model/HomepageResponse.dart';
 import 'package:merckfoundation22dec/ouraward.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/photo_gallery.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
 import 'package:merckfoundation22dec/whatwedo/ourpolicy.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
@@ -23,6 +25,7 @@ import 'package:merckfoundation22dec/widget/drawer.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -1642,128 +1645,137 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   ////////////////////////
 
   Future<http.Response> gethomeapi() async {
-    print("home api");
-    var response = await APIManager.fetchget(
-      encoding: APIManager.homeurl,
-    );
-    print("response");
-    print(response);
+    var status1 = await ConnectionDetector.checkInternetConnection();
 
-    var res = json.decode(response.body);
-    print("ff");
-    print(res);
-    HomepageResponse homepageres = HomepageResponse.fromJson(res);
+    if (status1) {
+      print("home api");
+      var response = await APIManager.fetchget(
+        encoding: APIManager.homeurl,
+      );
+      print("response");
+      print(response);
+      if (response.statusCode == 200) {
+        var res = json.decode(response.body);
+        print("ff");
+        print(res);
+        HomepageResponse homepageres = HomepageResponse.fromJson(res);
 
-    slidersection = homepageres.sliderArea[0].slider.list;
-    slidersection.forEach((element) {
-      _productsAvailable.add({
-        "id": element.id,
-        "menu_id": element.menuId,
-        "image_title": element.imageTitle,
-        "image_desc": element.imageDesc,
-        "links": element.links,
-        "image": element.image,
-        "alt_text": element.altText,
-        "status": element.status,
-        "created_at": element.createdAt,
-        "updated_at": element.updatedAt
-      });
-    });
+        slidersection = homepageres.sliderArea[0].slider.list;
+        slidersection.forEach((element) {
+          _productsAvailable.add({
+            "id": element.id,
+            "menu_id": element.menuId,
+            "image_title": element.imageTitle,
+            "image_desc": element.imageDesc,
+            "links": element.links,
+            "image": element.image,
+            "alt_text": element.altText,
+            "status": element.status,
+            "created_at": element.createdAt,
+            "updated_at": element.updatedAt
+          });
+        });
 
-    print("slidersection");
-    print(slidersection.length);
+        print("slidersection");
+        print(slidersection.length);
 
-    Map<String, dynamic> section1 = homepageres.middleArea;
-    Map<String, dynamic> lastsection = homepageres.rightArea;
-    print(section1);
-    print(section1['1']);
+        Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> lastsection = homepageres.rightArea;
+        print(section1);
+        print(section1['1']);
 
-    for (int i = 0; i < section1.length; i++) {
-      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-      //  print(categoryKeys.videos.type);
-      dynamic section = res['middle_area']['${i + 1}'];
-      print("TKey: ${section.keys.first}");
-      var middlecategoryname = section.keys.first;
+        for (int i = 0; i < section1.length; i++) {
+          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+          //  print(categoryKeys.videos.type);
+          dynamic section = res['middle_area']['${i + 1}'];
+          print("TKey: ${section.keys.first}");
+          var middlecategoryname = section.keys.first;
 
-      setState(() {
-        typewidet.add(middlecategoryname);
+          setState(() {
+            typewidet.add(middlecategoryname);
 
-        print(typewidet);
-      });
-      if (middlecategoryname.toString().toLowerCase() ==
-          "Videos".toLowerCase()) {
-        GlobalLists.homevideolist =
-            homepageres.middleArea['${i + 1}'].videos.list;
-        print(GlobalLists.homevideolist.length);
-      } else if (middlecategoryname.toString().toLowerCase() ==
-          "awards".toLowerCase()) {
-        GlobalLists.homeawardlist =
-            homepageres.middleArea['${i + 1}'].awards.list;
-        print(GlobalLists.homeawardlist.length);
-      } else if (middlecategoryname.toString().toLowerCase() ==
-          "content".toLowerCase()) {
-        GlobalLists.homecontentlist =
-            homepageres.middleArea['${i + 1}'].content.list;
-        print(GlobalLists.homecontentlist.length);
-      } else if (middlecategoryname.toString().toLowerCase() ==
-          "gallery".toLowerCase()) {
-        GlobalLists.homegallerybaseurl =
-            homepageres.middleArea['${i + 1}'].gallery.baseUrl;
-        GlobalLists.homegallerylist =
-            homepageres.middleArea['${i + 1}'].gallery.list;
-        print(GlobalLists.homegallerylist.length);
-      } else if (middlecategoryname.toString().toLowerCase() ==
-          "ceo_msg".toLowerCase()) {
-        GlobalLists.homeceomsgbaseurl =
-            homepageres.middleArea['${i + 1}'].ceoMsg.baseUrl;
-        GlobalLists.homeceomsglist =
-            homepageres.middleArea['${i + 1}'].ceoMsg.list;
-        print(GlobalLists.homeceomsglist.length);
+            print(typewidet);
+          });
+          if (middlecategoryname.toString().toLowerCase() ==
+              "Videos".toLowerCase()) {
+            GlobalLists.homevideolist =
+                homepageres.middleArea['${i + 1}'].videos.list;
+            print(GlobalLists.homevideolist.length);
+          } else if (middlecategoryname.toString().toLowerCase() ==
+              "awards".toLowerCase()) {
+            GlobalLists.homeawardlist =
+                homepageres.middleArea['${i + 1}'].awards.list;
+            print(GlobalLists.homeawardlist.length);
+          } else if (middlecategoryname.toString().toLowerCase() ==
+              "content".toLowerCase()) {
+            GlobalLists.homecontentlist =
+                homepageres.middleArea['${i + 1}'].content.list;
+            print(GlobalLists.homecontentlist.length);
+          } else if (middlecategoryname.toString().toLowerCase() ==
+              "gallery".toLowerCase()) {
+            GlobalLists.homegallerybaseurl =
+                homepageres.middleArea['${i + 1}'].gallery.baseUrl;
+            GlobalLists.homegallerylist =
+                homepageres.middleArea['${i + 1}'].gallery.list;
+            print(GlobalLists.homegallerylist.length);
+          } else if (middlecategoryname.toString().toLowerCase() ==
+              "ceo_msg".toLowerCase()) {
+            GlobalLists.homeceomsgbaseurl =
+                homepageres.middleArea['${i + 1}'].ceoMsg.baseUrl;
+            GlobalLists.homeceomsglist =
+                homepageres.middleArea['${i + 1}'].ceoMsg.list;
+            print(GlobalLists.homeceomsglist.length);
+          }
+        }
+
+        ///////right section
+        for (int i = 0; i < lastsection.length; i++) {
+          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+          //  print(categoryKeys.videos.type);
+          dynamic rightsection = res['Right_area']['${i + 1}'];
+          print("TKey: ${rightsection.keys.first}");
+          var rightsectioncategoryname = rightsection.keys.first;
+
+          setState(() {
+            typewidetofrightsection.add(rightsectioncategoryname);
+
+            print(typewidetofrightsection);
+          });
+
+          if (rightsectioncategoryname.toString().toLowerCase() ==
+              "call_for_app".toLowerCase()) {
+            GlobalLists.homecallforapp =
+                homepageres.rightArea['${i + 1}'].callForApp.list;
+            GlobalLists.homeCallForAppBaseURL =
+                homepageres.rightArea['${i + 1}'].callForApp.baseUrl;
+            print(GlobalLists.homecallforapp.length);
+          } else if (rightsectioncategoryname.toString().toLowerCase() ==
+              "mmtm".toLowerCase()) {
+            GlobalLists.homemmtm = homepageres.rightArea['${i + 1}'].mmtm.list;
+            print(GlobalLists.homemmtm.length);
+            GlobalLists.homeMMTMBaseURL =
+                homepageres.rightArea['${i + 1}'].mmtm.baseUrl;
+          } else if (rightsectioncategoryname.toString().toLowerCase() ==
+              "digital_library".toLowerCase()) {
+            GlobalLists.homedigitallib =
+                homepageres.rightArea['${i + 1}'].digitalLibrary.list;
+            GlobalLists.homeDigitalLibraryBaseURL =
+                homepageres.rightArea['${i + 1}'].digitalLibrary.baseUrl;
+            print(GlobalLists.homedigitallib.length);
+          }
+        }
+        setState(() {
+          isMiddleSectionLoaded = true;
+          isrightSectionLoaded = true;
+        });
+
+        return response;
+      } else {
+        ShowDialogs.showToast("Server Not Responding");
       }
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
     }
-
-    ///////right section
-    for (int i = 0; i < lastsection.length; i++) {
-      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-      //  print(categoryKeys.videos.type);
-      dynamic rightsection = res['Right_area']['${i + 1}'];
-      print("TKey: ${rightsection.keys.first}");
-      var rightsectioncategoryname = rightsection.keys.first;
-
-      setState(() {
-        typewidetofrightsection.add(rightsectioncategoryname);
-
-        print(typewidetofrightsection);
-      });
-
-      if (rightsectioncategoryname.toString().toLowerCase() ==
-          "call_for_app".toLowerCase()) {
-        GlobalLists.homecallforapp =
-            homepageres.rightArea['${i + 1}'].callForApp.list;
-        GlobalLists.homeCallForAppBaseURL =
-            homepageres.rightArea['${i + 1}'].callForApp.baseUrl;
-        print(GlobalLists.homecallforapp.length);
-      } else if (rightsectioncategoryname.toString().toLowerCase() ==
-          "mmtm".toLowerCase()) {
-        GlobalLists.homemmtm = homepageres.rightArea['${i + 1}'].mmtm.list;
-        print(GlobalLists.homemmtm.length);
-        GlobalLists.homeMMTMBaseURL =
-            homepageres.rightArea['${i + 1}'].mmtm.baseUrl;
-      } else if (rightsectioncategoryname.toString().toLowerCase() ==
-          "digital_library".toLowerCase()) {
-        GlobalLists.homedigitallib =
-            homepageres.rightArea['${i + 1}'].digitalLibrary.list;
-        GlobalLists.homeDigitalLibraryBaseURL =
-            homepageres.rightArea['${i + 1}'].digitalLibrary.baseUrl;
-        print(GlobalLists.homedigitallib.length);
-      }
-    }
-    setState(() {
-      isMiddleSectionLoaded = true;
-      isrightSectionLoaded = true;
-    });
-
-    return response;
   }
 //   Future<http.Response> gethomeapi() async {
 //     var response = await fetchget(
@@ -1987,16 +1999,36 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         listofwiget.add(
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
-            child: CustomeCard(
-              index: 3,
-              cardImage: GlobalLists.homegallerybaseurl +
-                  GlobalLists.homegallerylist[0].photo,
-              cardTitle: "Photo Gallery   ",
-              titleColor: Customcolor.text_darkblue,
-              titleImg: "assets/newImages/flowers-3.png",
-              subTitle: GlobalLists.homegallerylist[0].photoDescription,
-              buttontitle: "View More ",
-              buttontitlecolor: Customcolor.text_darkblue,
+            child: GestureDetector(
+              onTap: () {
+                ShowDialogs.showImageDialog(
+                  context: context,
+                  image: GlobalLists.homegallerybaseurl +
+                      GlobalLists.homegallerylist[0].photo,
+                  description: GlobalLists.homegallerylist[0].photoDescription,
+                );
+              },
+              child: CustomeCard(
+                index: 3,
+                cardImage: GlobalLists.homegallerybaseurl +
+                    GlobalLists.homegallerylist[0].photo,
+                cardTitle: "Photo Gallery   ",
+                titleColor: Customcolor.text_darkblue,
+                titleImg: "assets/newImages/flowers-3.png",
+                subTitle: GlobalLists.homegallerylist[0].photoDescription,
+                buttontitle: "View More ",
+                buttontitlecolor: Customcolor.text_darkblue,
+                onBtnTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PhotoGalleryPage(
+                                baseURL: GlobalLists.homegallerybaseurl,
+                                index: 0,
+                                photosList: GlobalLists.homegallerylist,
+                              )));
+                },
+              ),
             ),
           ),
         );

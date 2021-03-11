@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
+import 'package:photo_view/photo_view.dart';
 
 class ShowDialogs {
   static Future<void> showLoadingDialog(BuildContext context, GlobalKey key,
@@ -13,6 +14,64 @@ class ShowDialogs {
       () {
         showLoadingDialogWithDelay(context, key, message, setForLightScreen);
       },
+    );
+  }
+
+  static showImageDialog(
+      {BuildContext context, String image, String description}) {
+    showDialog(
+      context: context,
+      builder: (_) => Dialog(
+        elevation: 0,
+        insetPadding: EdgeInsets.all(0),
+        backgroundColor: Colors.black.withOpacity(0.7),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Expanded(child: Container()),
+            Expanded(
+              child: PhotoView(
+                backgroundDecoration: BoxDecoration(color: Colors.transparent),
+                initialScale: 0.8,
+                imageProvider: NetworkImage(
+                  image,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                description,
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+            ),
+            // Expanded(child: Container()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      color: Colors.white, shape: BoxShape.circle),
+                  child: IconButton(
+                    color: Colors.black,
+                    icon: Icon(Icons.close),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ),
+                const SizedBox(width: 10.0),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            )
+          ],
+        ),
+      ),
     );
   }
 

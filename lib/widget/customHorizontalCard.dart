@@ -11,6 +11,7 @@ class CustomHorizontalCard extends StatelessWidget {
   final Color titleColor;
   final String titleImg;
   final int index;
+  final int showviewmore;
   final Function onbtnTap;
   final Widget list;
   final heigthoflist;
@@ -26,7 +27,8 @@ class CustomHorizontalCard extends StatelessWidget {
       this.list,
       this.index,
       this.onbtnTap,
-      this.heigthoflist})
+      this.heigthoflist,
+      this.showviewmore})
       : super(key: key);
 
   @override
@@ -100,26 +102,29 @@ class CustomHorizontalCard extends StatelessWidget {
         SizedBox(
           height: 9,
         ),
-        Center(
-          child: GestureDetector(
-            onTap: onbtnTap,
-            child: Container(
-              width: 120,
-              height: 40,
-              decoration: BoxDecoration(
-                  color: Colors.amber, borderRadius: BorderRadius.circular(5)),
-              child: Center(
-                child: Text(
-                  btnTitle,
-                  style: TextStyle(
-                      color: Customcolor.colorBlue,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500),
+        showviewmore == 1
+            ? Container()
+            : Center(
+                child: GestureDetector(
+                  onTap: onbtnTap,
+                  child: Container(
+                    width: 120,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Center(
+                      child: Text(
+                        btnTitle,
+                        style: TextStyle(
+                            color: Customcolor.colorBlue,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        ),
       ],
     );
   }

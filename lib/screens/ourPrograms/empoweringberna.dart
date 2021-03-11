@@ -1,13 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
-import 'package:merckfoundation22dec/model/empoweingbernavideo.dart';
-import 'package:merckfoundation22dec/model/empoweringbernacontentResponse.dart';
-import 'package:merckfoundation22dec/model/ourActivitiesObjectiveResp.dart';
-import 'package:merckfoundation22dec/model/ourActivitiesResponse.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
-import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
@@ -16,6 +16,10 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'package:merckfoundation22dec/model/EmpoweringbernaResponse.dart'
+    as berna;
+import 'package:url_launcher/url_launcher.dart';
 
 class EmpoweringBerna extends StatefulWidget {
   @override
@@ -26,11 +30,15 @@ class EmpoweringBerna extends StatefulWidget {
 
 class EmpoweringBernaState extends State<EmpoweringBerna> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+  bool isMiddleSectionLoaded = false;
 
+  List<Widget> listofwiget = [];
+  List typewidet = [];
   @override
   void initState() {
     // TODO: implement initState
-    getempoweringbernacontent();
+
+    getmmtmapi();
     super.initState();
   }
 
@@ -51,54 +59,27 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
       ),
       body: ListView(
         shrinkWrap: true,
+        physics: ScrollPhysics(),
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
             child: ListView(
               shrinkWrap: true,
+              physics: ScrollPhysics(),
               //  crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 10,
-                ),
-                GlobalLists.empowercontentlist.length <= 0
-                    ? Container(
-                        child: Center(child: Text(Constantstring.emptyData)),
-                      )
-                    : Html(
-                        data:
-                            """${GlobalLists.empowercontentlist[0].pageContent} """,
-                        onLinkTap: (url) {
-                          print("Opening $url...");
-                        },
-                      ),
-                SizedBox(
-                  height: 15,
+                Visibility(
+                  visible: isMiddleSectionLoaded,
+                  replacement: Center(child: CircularProgressIndicator()),
+                  child: ListView(
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      // scrollDirection: Axis.horizontal,
+                      children: list()),
                 ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
-            child: FormLabel(
-              text: "Videos",
-              labelColor: Customcolor.colorPink,
-              fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
-              fontweight: FontWeight.w500,
-            ),
-          ),
-          GlobalLists.empowervideotlist.length <= 0
-              ? Container(
-                  child: Center(child: Text(Constantstring.emptyData)),
-                )
-              : ourvideo(),
-          // Padding(
-          //   padding:
-          //       const EdgeInsets.only(right: 60, left: 60, top: 20, bottom: 20),
-          //   child: Image.asset(
-          //     "assets/newImages/flowers_footer.png",
-          //   ),
-          // ),
           Padding(
             padding: const EdgeInsets.only(right: 0, left: 0),
             child: Align(
@@ -117,161 +98,371 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
     );
   }
 
-  Widget ourvideo() {
-    return Container(
-        height: 190,
-        child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: GlobalLists.empowervideotlist.length,
-            itemBuilder: (BuildContext context, int index) => Padding(
-                  padding: const EdgeInsets.only(right: 10, left: 10),
-                  child: Container(
-                    height: SizeConfig.blockSizeVertical * 20,
-                    width: SizeConfig.blockSizeHorizontal * 86,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[100],
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+  Future<http.Response> getmmtmapi() async {
+    print("mmtm api");
+    var response = await APIManager.fetchget(
+      encoding: APIManager.empoweringberna,
+    );
+    print("response");
+    print(response);
+
+    var res = json.decode(response.body);
+    print("ff");
+    print(res);
+    berna.EmpowerinBernaResponse homepageres =
+        berna.EmpowerinBernaResponse.fromJson(res);
+
+    Map<String, dynamic> section1 = homepageres.middleArea;
+
+    print(section1);
+    print(section1['1']);
+
+    dynamic contentsection = res['middle_area']['1'];
+    dynamic videossection = res['middle_area']['3'];
+
+    var middlevideoname1 = videossection;
+    var middlecontentname1 = contentsection;
+
+    var middlevideoname = middlevideoname1.keys.first;
+    var middlecontentname = middlecontentname1.keys.first;
+    print(middlevideoname1);
+    print(middlecontentname1);
+    setState(() {
+      typewidet.add('content');
+      typewidet.add('videos');
+      print(typewidet);
+    });
+    GlobalLists.homevideolist.clear();
+    GlobalLists.homecontentlist.clear();
+    print("hi");
+    if (middlevideoname.toString().toLowerCase() == "videos".toLowerCase()) {
+      print("hill");
+      GlobalLists.homevideolist = homepageres.middleArea['3'].videos.list;
+      print(GlobalLists.homevideolist.length);
+    }
+    if (middlecontentname.toString().toLowerCase() == "content".toLowerCase()) {
+      print("hi");
+      GlobalLists.homecontentlist = homepageres.middleArea['1'].content.list;
+      print(GlobalLists.homecontentlist.length);
+    }
+
+    setState(() {
+      isMiddleSectionLoaded = true;
+    });
+
+    return response;
+  }
+
+  List<Widget> list() {
+    print("list");
+    listofwiget.clear();
+    for (int i = 0; i < typewidet.length; i++) {
+      if (typewidet[i] == "gallery") {
+        listofwiget.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 10, top: 10),
+            child: CustomHorizontalCard(
+              index: 1,
+              cardImage: "assets/newImages/ourvison.png",
+              cardTitle: "Our Gallery  ",
+              btnTitle: "View More",
+              titleColor: Customcolor.pink_col,
+              titleImg: "assets/newImages/flowers-3.png",
+              onbtnTap: () {
+                // getprogramgallery();
+              },
+              list: ListView.builder(
+                itemCount: GlobalLists.homegallerylist.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      ShowDialogs.showImageDialog(
+                        context: context,
+                        image: GlobalLists.homegallerybaseurl +
+                            GlobalLists.homegallerylist[index].photo,
+                        description:
+                            GlobalLists.homegallerylist[index].photoDescription,
+                      );
+                    },
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 2.0),
-                      child: Card(
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(1),
+                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 86,
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/newImages/placeholder_3.jpg',
+                              image:
+                                  "${GlobalLists.homegallerybaseurl + GlobalLists.homegallerylist[index].photo}",
+                              fit: BoxFit.fill,
                             ),
                           ),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          VideoPlayer(
-                                            videoUrl: GlobalLists
-                                                .empowervideotlist[index]
-                                                .videoLink,
-                                          )));
-                            },
-                            child: Container(
-                              color: Colors.transparent,
-                              width: SizeConfig.blockSizeHorizontal * 50,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      width:
-                                          SizeConfig.blockSizeHorizontal * 100,
-                                      height: 120,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        // border: Border.all(
-                                        //   width: 1,
-                                        // ),
-                                        image: new DecorationImage(
-                                          image: new NetworkImage(
-                                              'https://img.youtube.com/vi/${GlobalLists.empowervideotlist[index].videoLink.substring(GlobalLists.empowervideotlist[index].videoLink.length - 11)}/mqdefault.jpg'),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      // Container(
+                                      //   width:
+                                      //       SizeConfig.blockSizeHorizontal * 80,
+                                      //   child: Text(
+                                      //     GlobalLists.homegallerylist[index].title,
+                                      //     overflow: TextOverflow.ellipsis,
+                                      //     style: TextStyle(
+                                      //         color: Colors.white,
+                                      //         fontSize: 14,
+                                      //         fontWeight: FontWeight.w700),
+                                      //     maxLines: 3,
+                                      //   ),
+                                      // ),
+                                      SizedBox(
+                                        height: 8,
+                                      )
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Text(
-                                      GlobalLists
-                                          .empowervideotlist[index].videoDesc,
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.4),
-                                          fontWeight: FontWeight.w500),
-                                      maxLines: 3,
-                                    ),
-                                  ),
-                                  SizedBox(height: 5),
                                 ],
                               ),
                             ),
-                          )),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                )));
-  }
-
-  getempoweringbernacontent() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.empoweringbernacontent,
-        (response) async {
-          EmpoweingbernacontentResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.empowercontentlist = resp.data.list;
-
-              getvideoData();
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-            Navigator.of(_keyLoader.currentContext).pop();
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      }
+      if (typewidet[i] == "videos") {
+        listofwiget.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 10, top: 10),
+            child: CustomHorizontalCard(
+              index: 1,
+              cardImage: "assets/newImages/gallery.png",
+              cardTitle: "Our Videos  ",
+              btnTitle: "Watch More",
+              onbtnTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Videolibrary()));
+              },
+              titleColor: Customcolor.pink_col,
+              titleImg: "assets/newImages/flowers-3.png",
+              list: ListView.builder(
+                itemCount: GlobalLists.homevideolist.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (BuildContext context) => VideoPlayer(
+                      //               videoUrl: GlobalLists
+                      //                   .homevideolist[index].videoLink,
+                      //             )));
+                      var storykey = GlobalLists.homevideolist[index].videoLink
+                          .substring(GlobalLists
+                                  .homevideolist[index].videoLink.length -
+                              11);
+                      _launchInWebViewWithJavaScript(
+                          "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 86,
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/newImages/placeholder_3.jpg',
+                              image:
+                                  "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 80,
+                                        child: Text(
+                                          GlobalLists
+                                              .homevideolist[index].videoDesc,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700),
+                                          maxLines: 3,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 25,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 120),
+                            child: Center(
+                                child:
+                                    Image.asset("assets/newImages/pause.png")),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      }
+      if (typewidet[i] == "content") {
+        listofwiget.add(
+          Html(
+            data: """${GlobalLists.homecontentlist[0].pageContent} """,
+            onLinkTap: (url) {
+              print("Opening $url...");
+            },
+          ),
+        );
+      }
+      if (typewidet[i] == "latest_updates") {
+        listofwiget.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 10, top: 10),
+            child: CustomHorizontalCard(
+              index: 1,
+              cardImage: "assets/newImages/ourvison.png",
+              cardTitle: "Latest Updates  ",
+              btnTitle: "View More",
+              titleColor: Customcolor.pink_col,
+              onbtnTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            Dashboard(index: 3)));
+              },
+              titleImg: "assets/newImages/flowers-3.png",
+              list: ListView.builder(
+                itemCount: GlobalLists.homeceomsglist.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Detailpage(
+                                    indexIs: index,
+                                    callfrom: 2,
+                                  )));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 86,
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/newImages/placeholder_3.jpg',
+                              image:
+                                  "${GlobalLists.homeceomsgbaseurl + GlobalLists.homeceomsglist[index].image}",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 80,
+                                        child: Text(
+                                          GlobalLists
+                                              .homeceomsglist[index].title,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700),
+                                          maxLines: 3,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      }
     }
+    return listofwiget;
   }
 
-  getvideoData() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.empoweringbernavideo,
-        (response) async {
-          GetEmpowringbernaVideosResp resp = response;
-          print(response);
-          print('Resp : $resp');
-
-          Navigator.of(_keyLoader.currentContext).pop();
-
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.empowervideotlist = resp.data.list;
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
+  Future<void> _launchInWebViewWithJavaScript(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
       );
     } else {
-      ShowDialogs.showToast("Please check internet connection");
+      throw 'Could not launch $url';
     }
   }
 }

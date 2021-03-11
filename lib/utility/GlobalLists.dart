@@ -205,4 +205,16 @@ class GlobalLists {
   //testimonailprogram
   static List<dynamic> testimonialprolist = [];
   static String testimonialprobaseurl = "";
+
+  //program gallery
+  static List<dynamic> programgallerylist = [];
+  static String programgallerybaseurl = "";
+
+  //digital content
+  static List<dynamic> programdigitalcontentlist = [];
+  static String programdigitalcontentbaseurl = "";
+
+  //ambasadar
+  static List<dynamic> ambasdarslist = [];
+  static String ambasdarsbaseurl = "";
 }

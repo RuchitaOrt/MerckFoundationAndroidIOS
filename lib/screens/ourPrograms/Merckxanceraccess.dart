@@ -451,13 +451,22 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
     );
   }
 
+  // goToPrevious() {
+  //   _controller.previousPage(
+  //       duration: Duration(milliseconds: 300), curve: Curves.ease);
+  // }
+
+  // goToNext() {
+  //   _controller.nextPage(
+  //       duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+  // }
   goToPrevious() {
-    _controller.previousPage(
+    callAppCarouselController.previousPage(
         duration: Duration(milliseconds: 300), curve: Curves.ease);
   }
 
   goToNext() {
-    _controller.nextPage(
+    callAppCarouselController.nextPage(
         duration: Duration(milliseconds: 300), curve: Curves.decelerate);
   }
 

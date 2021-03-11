@@ -13,6 +13,8 @@ import 'package:merckfoundation22dec/screens/ourPrograms/motherambassadar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/strategy.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckcapabilityadvancement.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Mercksubstantionalinitiative.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Communityawaeness.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Educatinglinda.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -93,7 +95,13 @@ class _MyHomePageState extends State<OurProgram> {
                                                             ? AboutMerckMother()
                                                             : indexpass == 13
                                                                 ? MerckSubstantional()
-                                                                : Container()
+                                                                : indexpass ==
+                                                                        14
+                                                                    ? EducatingLinda()
+                                                                    : indexpass ==
+                                                                            15
+                                                                        ? CommunityAwareness()
+                                                                        : Container()
           ],
           controller: mabialaFABController,
         ),
@@ -255,6 +263,15 @@ class _MyHomePageState extends State<OurProgram> {
                                             builder: (BuildContext context) =>
                                                 OurProgram(
                                                   indexpass: 11,
+                                                )));
+                                  } else if (index == 4) {
+                                    //community
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                OurProgram(
+                                                  indexpass: 15,
                                                 )));
                                   } else if (index == 5) {
                                     //empowring berna

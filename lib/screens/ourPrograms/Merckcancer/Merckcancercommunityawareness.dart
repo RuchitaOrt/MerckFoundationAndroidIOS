@@ -1,21 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
+import 'dart:convert';
+
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/style.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
+import 'package:merckfoundation22dec/model/GalleryProgram.dart';
 import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
-import 'package:merckfoundation22dec/model/FirstladiesRespose.dart'
-    as firstlady;
-import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
-import 'package:merckfoundation22dec/ourawarddetail.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -23,28 +19,27 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
+
+import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'dart:convert';
 
 import 'package:flutter_html/flutter_html.dart';
+import 'package:merckfoundation22dec/model/MerckFellowship.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
-import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
-import 'package:merckfoundation22dec/GalleryProgram.dart';
-import 'package:merckfoundation22dec/model/GalleryProgram.dart';
 
-class FirstLadiesInitiativeDetails extends StatefulWidget {
+class Merckcancercommunityawareness extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return FirstLadiesInitiativeDetailsState();
+    return OurProgramsDetailsState();
   }
 }
 
-class FirstLadiesInitiativeDetailsState
-    extends State<FirstLadiesInitiativeDetails> with TickerProviderStateMixin {
+class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
+    with TickerProviderStateMixin {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   int _current = 0;
   List<dynamic> slidersection = [];
@@ -55,7 +50,7 @@ class FirstLadiesInitiativeDetailsState
   List _productsAvailable = [];
   bool isMiddleSectionLoaded = false;
   bool isrightSectionLoaded = false;
-
+  bool isbottomSectionLoaded = false;
   List<Widget> listofwiget = [];
   List<Widget> listoftabwiget = [];
   List<Widget> listofbottomwiget = [];
@@ -88,7 +83,7 @@ class FirstLadiesInitiativeDetailsState
     // getmmtmslider();
     getmmtmapi();
     super.initState();
-    _tabController = new TabController(vsync: this, length: 2);
+    _tabController = new TabController(vsync: this, length: 3);
   }
 
   @override
@@ -127,6 +122,7 @@ class FirstLadiesInitiativeDetailsState
               shrinkWrap: true,
               physics: ScrollPhysics(),
               children: [
+                slider(context),
                 Visibility(
                   visible: isMiddleSectionLoaded,
                   replacement: Center(child: CircularProgressIndicator()),
@@ -136,6 +132,15 @@ class FirstLadiesInitiativeDetailsState
                       // scrollDirection: Axis.horizontal,
                       children: list()),
                 ),
+                Visibility(
+                    visible: isbottomSectionLoaded,
+                    replacement: Center(child: CircularProgressIndicator()),
+                    child: ListView(
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      // scrollDirection: Axis.horizontal,
+                      children: listbottomwidget(),
+                    )),
                 SizedBox(
                   height: 8,
                 ),
@@ -736,7 +741,7 @@ class FirstLadiesInitiativeDetailsState
       if (typewidet[i] == "gallery") {
         listofwiget.add(
           Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10, top: 10),
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
@@ -923,103 +928,6 @@ class FirstLadiesInitiativeDetailsState
           ),
         );
       }
-      if (typewidet[i] == "awards") {
-        listofwiget.add(
-          Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
-            child: CustomHorizontalCard(
-              index: 1,
-              cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Our Awards  ",
-              btnTitle: "View More",
-              titleColor: Customcolor.pink_col,
-              titleImg: "assets/newImages/flowers-3.png",
-              heigthoflist: SizeConfig.blockSizeVertical * 15,
-              list: ListView.builder(
-                itemCount: GlobalLists.merckcancerawardlist.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.only(left: 8, right: 8, bottom: 6),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Card(
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(4),
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              bottom: 0, left: 10, right: 10, top: 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Html(
-                                data:
-                                    """${GlobalLists.merckcancerawardlist[index].title} """,
-                                onLinkTap: (url) {
-                                  print("Opening $url...");
-                                },
-                                style: {
-                                  "body": Style(
-                                      textAlign: TextAlign.start,
-                                      color: Customcolor.pink_col,
-                                      fontSize: FontSize.large,
-                                      fontWeight: FontWeight.w500),
-                                },
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      getawarddetail(GlobalLists
-                                          .merckcancerawardlist[index].pageUrl);
-                                    },
-                                    child: Container(
-                                      width: 110,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                          color: Colors.amber,
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Center(
-                                        child: Text(
-                                          "Read More",
-                                          style: TextStyle(
-                                              color: Customcolor.text_darkblue,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-
-                                  // Image.asset(
-                                  //   "assets/images/trophy.png",
-                                  //   width: 70,
-                                  //   height: 70,
-                                  // )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        );
-      }
       if (typewidet[i] == "content") {
         listofwiget.add(
           Html(
@@ -1040,7 +948,6 @@ class FirstLadiesInitiativeDetailsState
               cardTitle: "Latest Updates  ",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
-              titleImg: "assets/newImages/flowers-3.png",
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -1048,6 +955,7 @@ class FirstLadiesInitiativeDetailsState
                         builder: (BuildContext context) =>
                             Dashboard(index: 3)));
               },
+              titleImg: "assets/newImages/flowers-3.png",
               list: ListView.builder(
                 itemCount: GlobalLists.homeceomsglist.length,
                 scrollDirection: Axis.horizontal,
@@ -1122,98 +1030,6 @@ class FirstLadiesInitiativeDetailsState
           ),
         );
       }
-      if (typewidet[i] == "media") {
-        listofwiget.add(
-          Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
-            child: CustomHorizontalCard(
-              index: 1,
-              cardImage: "assets/newImages/mqdefault.png",
-              cardTitle: "Merck Foundation In Media  ",
-              titleColor: Customcolor.pink_col,
-              btnTitle: "View More",
-              titleImg: "assets/newImages/flowers-3.png",
-              onbtnTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            MerckFoundationMedia()));
-              },
-              list: ListView.builder(
-                itemCount: GlobalLists.mmtmmedialist.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => VideoPlayer(
-                                    videoUrl: GlobalLists
-                                        .mmtmmedialist[index].mediaUrl,
-                                  )));
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 8, left: 10),
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: SizeConfig.blockSizeHorizontal * 86,
-                            child: FadeInImage.assetNetwork(
-                              placeholder: 'assets/newImages/placeholder_3.jpg',
-                              image:
-                                  "${GlobalLists.mmtmmediabaseurl + GlobalLists.mmtmmedialist[index].image}",
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        child: Text(
-                                          GlobalLists
-                                              .mmtmmedialist[index].title,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700),
-                                          maxLines: 3,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        );
-      }
       if (typewidet[i] == "testimonial") {
         listofwiget.add(
           Padding(
@@ -1224,16 +1040,17 @@ class FirstLadiesInitiativeDetailsState
                 cardTitle: "Alumini Testimonials  ",
                 titleColor: Customcolor.pink_col,
                 onbtnTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              Testimonialprogramviewmore()));
                   // Navigator.push(
                   //     context,
                   //     MaterialPageRoute(
                   //         builder: (BuildContext context) =>
                   //             MerckFoundationTestimonial()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              Testimonialprogramviewmore()));
+                  // getMerckprogramTestimonial();
                 },
                 btnTitle: "View More",
                 titleImg: "assets/newImages/flowers-3.png",
@@ -1245,20 +1062,20 @@ class FirstLadiesInitiativeDetailsState
                       itemCount: GlobalLists.mmttestimoniallist.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        Testimonialprogramdetailpage(
-                                          index: index,
-                                          baseurl:
-                                              GlobalLists.mmttestimonialbaseurl,
-                                        )));
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 8, right: 8),
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Testimonialprogramdetailpage(
+                                            index: index,
+                                            baseurl: GlobalLists
+                                                .mmttestimonialbaseurl,
+                                          )));
+                            },
                             child: Container(
                               height: SizeConfig.blockSizeVertical * 15,
                               width: SizeConfig.blockSizeHorizontal * 80,
@@ -1347,6 +1164,235 @@ class FirstLadiesInitiativeDetailsState
     return listofwiget;
   }
 
+  List<Widget> listbottomwidget() {
+    listofbottomwiget.clear();
+    for (int i = 0; i < typewidetofbottomsection.length; i++) {
+      if (typewidetofbottomsection[i] == "media") {
+        listofbottomwiget.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 10, top: 10),
+            child: CustomHorizontalCard(
+              index: 1,
+              cardImage: "assets/newImages/mqdefault.png",
+              cardTitle: "Merck Foundation In Media  ",
+              titleColor: Customcolor.pink_col,
+              onbtnTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            MerckFoundationMedia()));
+              },
+              btnTitle: "View More",
+              titleImg: "assets/newImages/flowers-3.png",
+              list: ListView.builder(
+                itemCount: GlobalLists.mmtmmedialist.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => VideoPlayer(
+                                    videoUrl: GlobalLists
+                                        .mmtmmedialist[index].mediaUrl,
+                                  )));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 86,
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/newImages/placeholder_3.jpg',
+                              image:
+                                  "${GlobalLists.mmtmmediabaseurl + GlobalLists.mmtmmedialist[index].image}",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 80,
+                                        child: Text(
+                                          GlobalLists
+                                              .mmtmmedialist[index].title,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700),
+                                          maxLines: 3,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      }
+      if (typewidetofbottomsection[i] == "testimonial") {
+        listofbottomwiget.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 10, top: 10),
+            child: CustomHorizontalCard(
+                index: 1,
+                cardImage: "assets/newImages/mqdefault.png",
+                cardTitle: "Alumini Testimonials  ",
+                titleColor: Customcolor.pink_col,
+                onbtnTap: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (BuildContext context) =>
+                  //             MerckFoundationTestimonial()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              Testimonialprogramviewmore()));
+                  // getMerckprogramTestimonial();
+                },
+                btnTitle: "View More",
+                titleImg: "assets/newImages/flowers-3.png",
+                list: Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Container(
+                    height: 160,
+                    child: ListView.builder(
+                      itemCount: GlobalLists.mmttestimoniallist.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Testimonialprogramdetailpage(
+                                            index: index,
+                                            baseurl: GlobalLists
+                                                .mmttestimonialbaseurl,
+                                          )));
+                            },
+                            child: Container(
+                              height: SizeConfig.blockSizeVertical * 15,
+                              width: SizeConfig.blockSizeHorizontal * 80,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.white),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 5, bottom: 3, left: 8, right: 8),
+                                    child: Container(
+                                      // height: 220,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        //color: Colors.amber,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder:
+                                            'assets/newImages/placeholder_3.jpg',
+                                        image:
+                                            "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[index].image}",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: ListView(
+                                      shrinkWrap: true,
+                                      // crossAxisAlignment:
+                                      //     CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 12,
+                                        ),
+                                        FormLabel(
+                                          text: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .testimonialName,
+                                          labelColor: Customcolor.colorPink,
+                                          fontSize: 17,
+                                          maxLines: 1,
+                                          fontweight: FontWeight.w700,
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        FormLabel(
+                                          text: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .departmentName,
+                                          labelColor: Colors.black87,
+                                          fontSize: 13,
+                                          fontweight: FontWeight.w600,
+                                          maxLines: 2,
+                                        ),
+                                        SizedBox(
+                                          height: 7,
+                                        ),
+                                        FormLabel(
+                                          text: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .shortDescription,
+                                          labelColor: Colors.black54,
+                                          fontSize: 13,
+                                          fontweight: FontWeight.w500,
+                                          maxLines: 4,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                )),
+          ),
+        );
+      }
+    }
+    return listofbottomwiget;
+  }
+
   List<Widget> tablist() {
     setState(() {
       listoftabwiget.clear();
@@ -1355,15 +1401,15 @@ class FirstLadiesInitiativeDetailsState
       // digitalLibrary(),
       // merckmorethanmother()
       for (int i = 0; i < typewidetofrightsection.length; i++) {
-        // if (typewidetofrightsection[i] == "call_for_app") {
-        //   tabs.add(
-        //     new Tab(text: "Call for Application"),
-        //   );
+        if (typewidetofrightsection[i] == "call_for_app") {
+          tabs.add(
+            new Tab(text: "Call for Application"),
+          );
 
-        //   listoftabwiget.add(
-        //     getcallforapp(context),
-        //   );
-        // }
+          listoftabwiget.add(
+            getcallforapp(context),
+          );
+        }
         if (typewidetofrightsection[i] == "mmtm") {
           tabs.add(
             new Tab(text: "Merck More Than A Mother Ambassadors"),
@@ -1382,19 +1428,6 @@ class FirstLadiesInitiativeDetailsState
     });
     //_tabController.length = tabs.length;
     return listoftabwiget;
-  }
-
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 
   Widget getMMTMS(BuildContext context) {
@@ -1509,7 +1542,7 @@ class FirstLadiesInitiativeDetailsState
   Future<http.Response> getmmtmapi() async {
     print("mmtm api");
     var response = await APIManager.fetchget(
-      encoding: APIManager.merckfirstladies,
+      encoding: APIManager.subprocancercommunityawareness,
     );
     print("response");
     print(response);
@@ -1517,19 +1550,42 @@ class FirstLadiesInitiativeDetailsState
     var res = json.decode(response.body);
     print("ff");
     print(res);
-    firstlady.FirstladiesResponse homepageres =
-        firstlady.FirstladiesResponse.fromJson(res);
+    MerckFellowshipResponse homepageres = MerckFellowshipResponse.fromJson(res);
+
+    slidersection = homepageres.sliderArea[0].slider.list;
+    slidersection.forEach((element) {
+      _productsAvailable.add({
+        "id": element.id,
+        "menu_id": element.menuId,
+        "image_title": element.imageTitle,
+        "image_desc": element.imageDesc,
+        "links": element.links,
+        "image": element.image,
+        "alt_text": element.altText,
+        "status": element.status,
+        "created_at": element.createdAt,
+        "updated_at": element.updatedAt
+      });
+    });
+
+    print("sliderprogramsection");
+    print(slidersection.length);
 
     Map<String, dynamic> section1 = homepageres.middleArea;
     Map<String, dynamic> lastsection = homepageres.rightArea;
 
     print(section1);
     print(section1['1']);
-
+    print(res['middle_area'].keys);
+    List<String> middleareakey = [];
+    section1.keys.forEach((element) {
+      middleareakey.add(element.toString());
+    });
+    print(middleareakey);
     for (int i = 0; i < section1.length; i++) {
       //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-      //  print(categoryKeys.videos.type);
-      dynamic section = res['middle_area']['${i + 1}'];
+
+      dynamic section = res['middle_area'][middleareakey[i]];
       print("TKey: ${section.keys.first}");
       var middlecategoryname = section.keys.first;
 
@@ -1541,57 +1597,85 @@ class FirstLadiesInitiativeDetailsState
       if (middlecategoryname.toString().toLowerCase() ==
           "Videos".toLowerCase()) {
         GlobalLists.homevideolist =
-            homepageres.middleArea['${i + 1}'].videos.list;
+            homepageres.middleArea[middleareakey[i]].videos.list;
         print(GlobalLists.homevideolist.length);
       } else if (middlecategoryname.toString().toLowerCase() ==
           "content".toLowerCase()) {
         GlobalLists.homecontentlist =
-            homepageres.middleArea['${i + 1}'].content.list;
+            homepageres.middleArea[middleareakey[i]].content.list;
         print(GlobalLists.homecontentlist.length);
       } else if (middlecategoryname.toString().toLowerCase() ==
-          "gallery".toLowerCase()) {
-        GlobalLists.homegallerybaseurl =
-            homepageres.middleArea['${i + 1}'].gallery.baseUrl;
-        GlobalLists.homegallerylist =
-            homepageres.middleArea['${i + 1}'].gallery.list;
-        print(GlobalLists.homegallerylist.length);
+          "testimonial".toLowerCase()) {
+        GlobalLists.mmttestimoniallist =
+            homepageres.middleArea[middleareakey[i]].testimonial.list;
+        print(GlobalLists.mmttestimoniallist.length);
+        GlobalLists.mmttestimonialbaseurl =
+            homepageres.middleArea[middleareakey[i]].testimonial.baseUrl;
       }
     }
 
     ///////right section
-
-    dynamic rightsection1 = res['Right_area'][2];
-    dynamic rightsection3 = res['Right_area'][3];
-    // print("TKey: ${rightsection.keys.first}");
-    var rightsection1categoryname = rightsection1;
-    var rightsection3categoryname = rightsection3;
-
-    setState(() {
-      typewidetofrightsection.add('mmtm');
-      typewidetofrightsection.add('digital_library');
-
-      print(typewidetofrightsection);
+    List<String> rigthareakey = [];
+    lastsection.keys.forEach((element) {
+      rigthareakey.add(element.toString());
     });
+    print(middleareakey);
+    for (int i = 0; i < lastsection.length; i++) {
+      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+      //  print(categoryKeys.videos.type);
+      dynamic rightsection = res['Right_area'][rigthareakey[i]];
+      print("TKey: ${rightsection.keys.first}");
+      var rightsectioncategoryname = rightsection.keys.first;
 
-    if (rightsection1categoryname.toString().toLowerCase() ==
-        "mmtm".toLowerCase()) {
-      GlobalLists.homecallforapp = homepageres.rightArea[2].mmtm.list;
-      GlobalLists.homeCallForAppBaseURL = homepageres.rightArea[2].mmtm.baseUrl;
-      print(GlobalLists.homecallforapp.length);
-    } else if (rightsection3categoryname.toString().toLowerCase() ==
-        "digital_library".toLowerCase()) {
-      GlobalLists.homedigitallib = homepageres.rightArea[3].digitalLibrary.list;
-      GlobalLists.homeDigitalLibraryBaseURL =
-          homepageres.rightArea[3].digitalLibrary.baseUrl;
-      print(GlobalLists.homedigitallib.length);
+      setState(() {
+        typewidetofrightsection.add(rightsectioncategoryname);
+
+        print(typewidetofrightsection);
+      });
+
+      if (rightsectioncategoryname.toString().toLowerCase() ==
+          "call_for_app".toLowerCase()) {
+        GlobalLists.homecallforapp =
+            homepageres.rightArea[rigthareakey[i]].callForApp.list;
+        GlobalLists.homeCallForAppBaseURL =
+            homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
+        print(GlobalLists.homecallforapp.length);
+      } else if (rightsectioncategoryname.toString().toLowerCase() ==
+          "mmtm".toLowerCase()) {
+        GlobalLists.homemmtm = homepageres.rightArea[rigthareakey[i]].mmtm.list;
+        print(GlobalLists.homemmtm.length);
+        GlobalLists.homeMMTMBaseURL =
+            homepageres.rightArea[rigthareakey[i]].mmtm.baseUrl;
+      } else if (rightsectioncategoryname.toString().toLowerCase() ==
+          "digital_library".toLowerCase()) {
+        GlobalLists.homedigitallib =
+            homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
+        GlobalLists.homeDigitalLibraryBaseURL =
+            homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
+        print(GlobalLists.homedigitallib.length);
+      }
     }
 
     setState(() {
       isMiddleSectionLoaded = true;
       isrightSectionLoaded = true;
+      isbottomSectionLoaded = true;
     });
 
     return response;
+  }
+
+  Future<void> _launchInWebViewWithJavaScript(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   getprogramgallery() async {
@@ -1599,7 +1683,7 @@ class FirstLadiesInitiativeDetailsState
     if (status1) {
       ShowDialogs.showLoadingDialog(context, _keyLoader);
 
-      APIManager().apiRequest(context, API.programgalleryfirstladey,
+      APIManager().apiRequest(context, API.programgallerymmtm,
           (response) async {
         GalleryProgramResponse resp = response;
 
@@ -1620,45 +1704,6 @@ class FirstLadiesInitiativeDetailsState
                         baseURL: GlobalLists.programgallerybaseurl,
                         photosList: GlobalLists.programgallerylist,
                       )));
-        } else {
-          ShowDialogs.showToast(resp.msg);
-        }
-      }, (error) {
-        print('ERR msg is $error');
-        Navigator.of(_keyLoader.currentContext).pop();
-      }, jsonval: json);
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
-
-  getawarddetail(String pageurl) async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      ShowDialogs.showLoadingDialog(context, _keyLoader);
-      final json = {
-        'page_url': pageurl,
-      };
-      print(json);
-      APIManager().apiRequest(context, API.ourawarddetail, (response) async {
-        OurawarddetailResponse resp = response;
-        print(response);
-        print('Resp : $resp');
-
-        Navigator.of(_keyLoader.currentContext).pop();
-
-        if (resp.success == "True") {
-          setState(() {
-            GlobalLists.awarddetallisting = resp.data.list;
-            // GlobalLists.awarddetallisting[0].title
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => OurAwardDetail(
-                          detaill: GlobalLists.awarddetallisting,
-                        )));
-          });
         } else {
           ShowDialogs.showToast(resp.msg);
         }

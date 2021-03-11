@@ -14,6 +14,7 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MMTMProgram extends StatefulWidget {
   @override
@@ -90,14 +91,21 @@ class MMTMProgramState extends State<MMTMProgram> {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              VideoPlayer(
-                                                videoUrl: GlobalLists
-                                                    .mmtmlist[index].videoLink,
-                                              )));
+                                  var storykey = GlobalLists
+                                      .mmtmlist[index].videoLink
+                                      .substring(GlobalLists.mmtmlist[index]
+                                              .videoLink.length -
+                                          11);
+                                  _launchInWebViewWithJavaScript(
+                                      "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (BuildContext context) =>
+                                  //             VideoPlayer(
+                                  //               videoUrl: GlobalLists
+                                  //                   .mmtmlist[index].videoLink,
+                                  //             )));
                                 },
                                 child: Container(
                                   color: Colors.transparent,
@@ -176,6 +184,19 @@ class MMTMProgramState extends State<MMTMProgram> {
             ],
           ),
         ));
+  }
+
+  Future<void> _launchInWebViewWithJavaScript(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   getmmtm() async {

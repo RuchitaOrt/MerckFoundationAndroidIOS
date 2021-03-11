@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:merckfoundation22dec/model/FilterdataResponse.dart';
+import 'package:merckfoundation22dec/model/GalleryProgram.dart';
 import 'package:merckfoundation22dec/model/GetAboutMerckContentResp.dart';
 import 'package:merckfoundation22dec/model/GetAboutMerckVideosResp.dart';
 import 'package:merckfoundation22dec/model/GetFertilityContentResp.dart';
@@ -52,6 +53,7 @@ import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
 import 'package:merckfoundation22dec/model/LeadershipResponse.dart';
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
 import 'package:merckfoundation22dec/model/TestimonialProgram.dart';
+import 'package:merckfoundation22dec/model/our_gallery_detail_response.dart';
 
 enum API {
   vision,
@@ -124,7 +126,14 @@ enum API {
   mobilesearch,
   //testiominalprogram
   testiomonailpro,
-  ourgallerydetail
+  ourgallerydetail,
+  programgalleryeducting,
+  programgallerymmtm,
+  programgallerycapacity,
+  programgalleryfirstladey,
+  programgallerystem,
+  programgallerysubstain,
+  programgalleryafrica
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -208,6 +217,28 @@ class APIManager {
       "MainProgramPageApi/merck-africa-asia-luminary/Android/1";
   static String mercksubstaition =
       "MainProgramPageApi/merck-foundation-sustainability-initiative/Android/1";
+  static String merckeducatinglinda =
+      "MainProgramPageApi/educating-linda-program/Android/1";
+  static String empoweringberna =
+      "SubProgramPageApi/empowering-berna/Android/1";
+  static String fertilityprogram =
+      "SubProgramPageApi/merck-fertility-and-embryology-training-program/Android/1";
+  static String subproaboutmmtm =
+      "SubProgramPageApi/about-merck-more-than-a-mother/Android/1";
+  static String subprogramstrategy = "SubProgramPageApi/strategy/Android/1";
+  static String subprogrammmtmambasadar =
+      "SubProgramPageApi/merck-more-than-a-mother-ambassadors/Android/1";
+  static String subprogramcommunityawareness =
+      "SubProgramPageApi/community-awareness-and-awards-program/Android/1";
+  static String subprogramlocalsong =
+      "SubProgramPageApi/local-songs-and-children-stories/Android/1";
+  static String subprocancerobjtive = "SubProgramPageApi/objectives/Android/1";
+  static String subprofellowship =
+      "SubProgramPageApi/merck-oncology-fellowship-program/Android/1";
+  static String subprocancerpatient =
+      "SubProgramPageApi/merck-more-than-a-patient/Android/1";
+  static String subprocancercommunityawareness =
+      "SubProgramPageApi/merck-community-awareness/Android/1";
   Future<String> apiEndPoint(API api) async {
     var apiPathString = "";
     if (Platform.isAndroid) {
@@ -399,6 +430,30 @@ class APIManager {
           break;
         case API.ourgallerydetail:
           apiPathString = "mob_event_gallery";
+          break;
+        case API.programgalleryeducting:
+          apiPathString = "ProgramGallery/educating-linda-program/1";
+          break;
+        case API.programgallerymmtm:
+          apiPathString = "ProgramGallery/merck-more-than-a-mother/1";
+          break;
+        case API.programgallerycapacity:
+          apiPathString =
+              "ProgramGallery/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+          break;
+        case API.programgalleryfirstladey:
+          apiPathString =
+              "ProgramGallery/merck-foundation-first-ladies-initiative-summit/1";
+          break;
+        case API.programgallerystem:
+          apiPathString = "ProgramGallery/merck-stem-program/1";
+          break;
+        case API.programgallerysubstain:
+          apiPathString =
+              "ProgramGallery/merck-foundation-sustainability-initiative/1";
+          break;
+        case API.programgalleryafrica:
+          apiPathString = "ProgramGallery/merck-africa-asia-luminary/1";
           break;
         default:
           apiPathString = "";
@@ -596,6 +651,30 @@ class APIManager {
           break;
         case API.ourgallerydetail:
           apiPathString = "mob_event_gallery";
+          break;
+        case API.programgalleryeducting:
+          apiPathString = "ProgramGallery/educating-linda-program/1";
+          break;
+        case API.programgallerymmtm:
+          apiPathString = "ProgramGallery/merck-more-than-a-mother/1";
+          break;
+        case API.programgallerycapacity:
+          apiPathString =
+              "ProgramGallery/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+          break;
+        case API.programgalleryfirstladey:
+          apiPathString =
+              "ProgramGallery/merck-foundation-first-ladies-initiative-summit/1";
+          break;
+        case API.programgallerystem:
+          apiPathString = "ProgramGallery/merck-stem-program/1";
+          break;
+        case API.programgallerysubstain:
+          apiPathString =
+              "ProgramGallery/merck-foundation-sustainability-initiative/1";
+          break;
+        case API.programgalleryafrica:
+          apiPathString = "ProgramGallery/merck-africa-asia-luminary/1";
           break;
         default:
           apiPathString = "";
@@ -795,6 +874,15 @@ class APIManager {
       case API.ourgallerydetail:
         className = "OurgallerydetailResponse";
         break;
+      case API.programgalleryeducting:
+      case API.programgallerymmtm:
+      case API.programgallerycapacity:
+      case API.programgalleryfirstladey:
+      case API.programgallerystem:
+      case API.programgallerysubstain:
+      case API.programgalleryafrica:
+        className = "GalleryProgramResponse";
+        break;
       default:
         className = 'CommonResponse';
     }
@@ -960,7 +1048,11 @@ class APIManager {
     }
     if (className == "OurgallerydetailResponse") {
       //enterhere
-      //  responseObj = TestimonialprogramResponse.fromJson(json);
+      responseObj = OurGalleryDetailsResponse.fromJson(json);
+    }
+    if (className == "GalleryProgramResponse") {
+      //enterhere
+      responseObj = GalleryProgramResponse.fromJson(json);
     }
 
     return responseObj;

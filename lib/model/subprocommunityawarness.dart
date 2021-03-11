@@ -1,24 +1,27 @@
 // To parse this JSON data, do
 //
-//     final getStrategeryResponse = getStrategeryResponseFromJson(jsonString);
+//     final subproCommunityawarenessResponse = subproCommunityawarenessResponseFromJson(jsonString);
 
 import 'dart:convert';
 
-GetStrategeryResponse getStrategeryResponseFromJson(String str) =>
-    GetStrategeryResponse.fromJson(json.decode(str));
+SubproCommunityawarenessResponse subproCommunityawarenessResponseFromJson(
+        String str) =>
+    SubproCommunityawarenessResponse.fromJson(json.decode(str));
 
-String getStrategeryResponseToJson(GetStrategeryResponse data) =>
+String subproCommunityawarenessResponseToJson(
+        SubproCommunityawarenessResponse data) =>
     json.encode(data.toJson());
 
-class GetStrategeryResponse {
-  GetStrategeryResponse({
+class SubproCommunityawarenessResponse {
+  SubproCommunityawarenessResponse({
     this.middleArea,
   });
 
   MiddleArea middleArea;
 
-  factory GetStrategeryResponse.fromJson(Map<String, dynamic> json) =>
-      GetStrategeryResponse(
+  factory SubproCommunityawarenessResponse.fromJson(
+          Map<String, dynamic> json) =>
+      SubproCommunityawarenessResponse(
         middleArea: MiddleArea.fromJson(json["middle_area"]),
       );
 
