@@ -29,13 +29,82 @@ class Stories extends StatefulWidget {
 class StoriesState extends State<Stories> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
+  ScrollController _sc = new ScrollController();
+  //GetStoriesResponse resp;
+  int totalcount = 10;
+  int page = 10;
+  int offset = 0;
+  bool _isLoading = true;
   @override
   void initState() {
     // TODO: implement initState
     getStories();
     getcountrylist();
     getcategorylist();
+    _sc = new ScrollController()..addListener(_scrollListener);
     super.initState();
+  }
+
+  void _scrollListener() {
+    if (_sc.position.extentAfter < 50) {
+      if (!_isLoading && totalcount > GlobalLists.newsLettersList.length) {
+        // getNewsLetteranArticles();
+        setState(() {
+          _isLoading = true;
+        });
+//         Future.delayed(const Duration(seconds: 2), () {
+// // Here you can write your code
+
+//           setState(() {
+//             // Here you can write your code for open new view
+//             _isLoading = false;
+//             if (resp.success == "True") {
+//               setState(() {
+//                 print("here");
+//                 // list = new List();
+//                 // list = resp.data.list;
+//                 //totalcount 10
+
+//                 for (int i = offset; i < totalcount; i++) {
+//                   setState(() {
+//                     GlobalLists.newsLettersList.add(ListElement(
+//                         image: resp.data.list[i].image,
+//                         title: resp.data.list[i].title));
+//                   });
+
+//                   // GlobalLists.newsLettersList.add(resp.data.list);
+
+//                 }
+
+//                 offset = totalcount;
+//                 int remem = resp.data.list.length - totalcount;
+//                 print("remem");
+//                 print(remem);
+//                 if (remem < 10) {
+//                   totalcount = totalcount + remem;
+//                 } else {
+//                   totalcount = totalcount + 10;
+//                 }
+//                 // // GlobalLists.newsLettersList = resp.data.list;
+//                 Constantstring.baseUrl = resp.baseUrl;
+//                 print("-----------------------------------");
+//                 print(totalcount);
+//                 print(GlobalLists.newsLettersList.length);
+//               });
+
+//               setState(() {
+//                 _isLoading = false;
+//               });
+//             } else {
+//               ShowDialogs.showToast(resp.msg);
+//               setState(() {
+//                 _isLoading = false;
+//               });
+//             }
+//           });
+//         });
+      }
+    }
   }
 
   @override
@@ -64,6 +133,7 @@ class StoriesState extends State<Stories> {
                         )));
           },
           index: 2,
+          forfilterindes: 3,
           title: "Our Stories",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/filter.png",

@@ -6,6 +6,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -13,6 +14,7 @@ import 'package:merckfoundation22dec/model/CancerobjectiveResponse.dart'
     as cancer;
 import 'package:http/http.dart' as http;
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'dart:convert';
 
 class CancerobjectiveDetails extends StatefulWidget {
@@ -47,7 +49,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
   @override
   void initState() {
     getmmtmapi();
-    _tabController = new TabController(vsync: this, length: 2);
+    // _tabController = new TabController(vsync: this, length: 2);
     super.initState();
   }
 
@@ -161,86 +163,110 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
   Future<http.Response> getmmtmapi() async {
     print("mmtm api");
     print("cancerobjective");
-    var response = await APIManager.fetchget(
-      encoding: APIManager.subprocancerobjtive,
-    );
-    print("response");
-    print(response);
+    var status1 = await ConnectionDetector.checkInternetConnection();
 
-    var res = json.decode(response.body);
-    print("ff");
-    print(res);
-    cancer.CancerobjectiveResponse homepageres =
-        cancer.CancerobjectiveResponse.fromJson(res);
-    print(homepageres);
-    List<dynamic> section1 = homepageres.middleArea.the1.content.list;
-    Map<String, dynamic> lastsection = homepageres.rightArea;
+    if (status1) {
+      var response = await APIManager.fetchget(
+        encoding: APIManager.subprocancerobjtive,
+      );
+      print("response");
+      print(response);
+      if (response.statusCode == 200) {
+        var res = json.decode(response.body);
+        print("ff");
+        print(res);
+        cancer.CancerobjectiveResponse homepageres =
+            cancer.CancerobjectiveResponse.fromJson(res);
+        print(homepageres);
+        List<dynamic> section1 = homepageres.middleArea.the1.content.list;
+        Map<String, dynamic> lastsection = homepageres.rightArea;
 
-    dynamic contentsection = homepageres.middleArea.the1.content.list;
+        dynamic contentsection = homepageres.middleArea.the1.content.list;
 
-    //  var middlecontentname1 = contentsection;
-    // print(homepageres.middleArea.the1);
-    // var middlecontentname = homepageres.middleArea.the1;
+        //  var middlecontentname1 = contentsection;
+        // print(homepageres.middleArea.the1);
+        // var middlecontentname = homepageres.middleArea.the1;
 
-    // //print(middlecontentname1);
-    setState(() {
-      typewidet.add('content');
+        // //print(middlecontentname1);
+        setState(() {
+          typewidet.add('content');
 
-      print(typewidet);
-    });
-    GlobalLists.homecontentlist = homepageres.middleArea.the1.content.list;
-    // GlobalLists.homevideolist.clear();
-    // GlobalLists.homecontentlist.clear();
-    // print("hi");
+          print(typewidet);
+        });
+        GlobalLists.homecontentlist = homepageres.middleArea.the1.content.list;
+        // GlobalLists.homevideolist.clear();
+        // GlobalLists.homecontentlist.clear();
+        // print("hi");
 
-    // if (middlecontentname.toString().toLowerCase() == "content".toLowerCase()) {
-    //   print("hi");
-    //   GlobalLists.homecontentlist = homepageres.middleArea.the1.content.list;
-    //   print(GlobalLists.homecontentlist.length);
-    // }
-    /////right section
-    List<String> rigthareakey = [];
-    print(lastsection);
-    lastsection.keys.forEach((element) {
-      rigthareakey.add(element.toString());
-    });
+        // if (middlecontentname.toString().toLowerCase() == "content".toLowerCase()) {
+        //   print("hi");
+        //   GlobalLists.homecontentlist = homepageres.middleArea.the1.content.list;
+        //   print(GlobalLists.homecontentlist.length);
+        // }
+        /////right section
+        List<String> rigthareakey = [];
+        print(lastsection);
+        lastsection.keys.forEach((element) {
+          rigthareakey.add(element.toString());
+        });
 
-    for (int i = 0; i < lastsection.length; i++) {
-      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-      //  print(categoryKeys.videos.type);
-      dynamic rightsection = res['Right_area'][rigthareakey[i]];
-      print(rightsection);
-      // print("TKey: ${rightsection.keys.first}");
-      var rightsectioncategoryname = rightsection.keys.first;
+        for (int i = 0; i < lastsection.length; i++) {
+          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+          //  print(categoryKeys.videos.type);
+          dynamic rightsection = res['Right_area'][rigthareakey[i]];
+          print(rightsection);
+          // print("TKey: ${rightsection.keys.first}");
+          var rightsectioncategoryname = rightsection.keys.first;
 
+          setState(() {
+            typewidetofrightsection.add(rightsectioncategoryname);
+
+            print(typewidetofrightsection);
+            _tabController = new TabController(
+                vsync: this, length: typewidetofrightsection.length);
+          });
+
+          if (rightsectioncategoryname.toString().toLowerCase() ==
+              "call_for_app".toLowerCase()) {
+            GlobalLists.homecallforapp =
+                homepageres.rightArea[rigthareakey[i]].callForApp.list;
+            GlobalLists.homeCallForAppBaseURL =
+                homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
+            print(GlobalLists.homecallforapp.length);
+          } else if (rightsectioncategoryname.toString().toLowerCase() ==
+              "digital_library".toLowerCase()) {
+            GlobalLists.homedigitallib =
+                homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
+            GlobalLists.homeDigitalLibraryBaseURL =
+                homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
+            print(GlobalLists.homedigitallib.length);
+          }
+        }
+        setState(() {
+          isMiddleSectionLoaded = true;
+          isrightSectionLoaded = true;
+        });
+
+        return response;
+      } else {
+        _tabController = new TabController(vsync: this, length: 0);
+        setState(() {
+          isMiddleSectionLoaded = true;
+
+          isrightSectionLoaded = true;
+        });
+        ShowDialogs.showToast(GlobalLists.serverresp);
+      }
+    } else {
+      _tabController = new TabController(vsync: this, length: 0);
       setState(() {
-        typewidetofrightsection.add(rightsectioncategoryname);
+        isMiddleSectionLoaded = true;
 
-        print(typewidetofrightsection);
+        isrightSectionLoaded = true;
       });
 
-      if (rightsectioncategoryname.toString().toLowerCase() ==
-          "call_for_app".toLowerCase()) {
-        GlobalLists.homecallforapp =
-            homepageres.rightArea[rigthareakey[i]].callForApp.list;
-        GlobalLists.homeCallForAppBaseURL =
-            homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
-        print(GlobalLists.homecallforapp.length);
-      } else if (rightsectioncategoryname.toString().toLowerCase() ==
-          "digital_library".toLowerCase()) {
-        GlobalLists.homedigitallib =
-            homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
-        GlobalLists.homeDigitalLibraryBaseURL =
-            homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
-        print(GlobalLists.homedigitallib.length);
-      }
+      ShowDialogs.showToast("Please check internet connection");
     }
-    setState(() {
-      isMiddleSectionLoaded = true;
-      isrightSectionLoaded = true;
-    });
-
-    return response;
   }
 
   List<Widget> tablist() {

@@ -99,50 +99,69 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
 
   Future<http.Response> getmmtmapi() async {
     print("mmtm api");
-    var response = await APIManager.fetchget(
-      encoding: APIManager.subprogramcommunityawareness,
-    );
-    print("response");
-    print(response);
+    var status1 = await ConnectionDetector.checkInternetConnection();
 
-    var res = json.decode(response.body);
-    print("ff");
-    print(res);
-    aboutmmtm.SubProgramabotmmtmResponse homepageres =
-        aboutmmtm.SubProgramabotmmtmResponse.fromJson(res);
+    if (status1) {
+      var response = await APIManager.fetchget(
+        encoding: APIManager.subprogramcommunityawareness,
+      );
+      print("response");
+      print(response);
+      if (response.statusCode == 200) {
+        var res = json.decode(response.body);
+        print("ff");
+        print(res);
+        aboutmmtm.SubProgramabotmmtmResponse homepageres =
+            aboutmmtm.SubProgramabotmmtmResponse.fromJson(res);
 
-    Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> section1 = homepageres.middleArea;
 
-    print(section1);
-    print(section1['1']);
+        print(section1);
+        print(section1['1']);
 
-    dynamic contentsection = res['middle_area']['1'];
+        dynamic contentsection = res['middle_area']['1'];
 
-    var middlecontentname1 = contentsection;
+        var middlecontentname1 = contentsection;
 
-    var middlecontentname = middlecontentname1.keys.first;
+        var middlecontentname = middlecontentname1.keys.first;
 
-    print(middlecontentname1);
-    setState(() {
-      typewidet.add('content');
+        print(middlecontentname1);
+        setState(() {
+          typewidet.add('content');
 
-      print(typewidet);
-    });
-    GlobalLists.homevideolist.clear();
-    GlobalLists.homecontentlist.clear();
-    print("hi");
+          print(typewidet);
+        });
+        GlobalLists.homevideolist.clear();
+        GlobalLists.homecontentlist.clear();
+        print("hi");
 
-    if (middlecontentname.toString().toLowerCase() == "content".toLowerCase()) {
-      print("hi");
-      GlobalLists.homecontentlist = homepageres.middleArea['1'].content.list;
-      print(GlobalLists.homecontentlist.length);
+        if (middlecontentname.toString().toLowerCase() ==
+            "content".toLowerCase()) {
+          print("hi");
+          GlobalLists.homecontentlist =
+              homepageres.middleArea['1'].content.list;
+          print(GlobalLists.homecontentlist.length);
+        }
+
+        setState(() {
+          isMiddleSectionLoaded = true;
+        });
+
+        return response;
+      } else {
+        setState(() {
+          isMiddleSectionLoaded = true;
+        });
+
+        ShowDialogs.showToast(GlobalLists.serverresp);
+      }
+    } else {
+      setState(() {
+        isMiddleSectionLoaded = true;
+      });
+
+      ShowDialogs.showToast("Please check internet connection");
     }
-
-    setState(() {
-      isMiddleSectionLoaded = true;
-    });
-
-    return response;
   }
 
   List<Widget> list() {

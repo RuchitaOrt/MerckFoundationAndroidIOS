@@ -52,7 +52,8 @@ dependencies:
   flutter_custom_clippers: ^1.1.2
   android_intent:
   intent: ^1.4.0
- 
+  connectivity:
+
   
  
   

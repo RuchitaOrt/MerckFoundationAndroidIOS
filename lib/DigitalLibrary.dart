@@ -9,18 +9,18 @@ import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 // ignore: must_be_immutable
-class GalleryProgram extends StatefulWidget {
+class DigitalLibrary extends StatefulWidget {
   final List<dynamic> photosList;
 
   final String baseURL;
   String appBarTitle;
 
-  GalleryProgram({Key key, this.photosList, this.baseURL}) : super(key: key);
+  DigitalLibrary({Key key, this.photosList, this.baseURL}) : super(key: key);
   @override
   _GalleryProgramState createState() => _GalleryProgramState();
 }
 
-class _GalleryProgramState extends State<GalleryProgram> {
+class _GalleryProgramState extends State<DigitalLibrary> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   @override
   void initState() {
@@ -42,7 +42,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                       )));
         },
         index: 1,
-        title: "Photo Gallery",
+        title: "Digital Library",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -68,11 +68,11 @@ class _GalleryProgramState extends State<GalleryProgram> {
                 ),
                 child: GestureDetector(
                   onTap: () {
-                    ShowDialogs.showImageDialog(
-                      context: context,
-                      image: widget.baseURL + widget.photosList[index].photo,
-                      description: widget.photosList[index].photoDescription,
-                    );
+                    // ShowDialogs.showImageDialog(
+                    //   context: context,
+                    //   image: widget.baseURL + widget.photosList[index].photo,
+                    //   description: widget.photosList[index].photoDescription,
+                    // );
                   },
                   child: Container(
                     color: Colors.transparent,

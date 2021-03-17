@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -97,17 +100,41 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   String expandedName = "Upcoming Events";
   bool isMiddleSectionLoaded = false;
   bool isrightSectionLoaded = false;
+  bool issliderSectionLoaded = false;
   final List<Tab> tabs = <Tab>[];
-
+  List events = ["Upcoming Events", "Past Events"];
   TabController _tabController;
   List<Widget> listofwiget = [];
   List<Widget> listoftabwiget = [];
+  Connectivity _connectivity = Connectivity();
+  StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  ConnectivityResult stats;
   @override
   void initState() {
     super.initState();
+
     print("ho");
+    // _connectivity.checkConnectivity().then((value) {
+    //   stats = value;
+    //   print(stats);
+    //   if (stats != ConnectivityResult.none) {
+    //     // gethomeapi();
+    //     // exit(code)\
+    //     _connectivitySubscription = Connectivity()
+    //         .onConnectivityChanged
+    //         .listen((ConnectivityResult result) {
+    //       print(result);
+    //       // Got a new connectivity status!
+    //       setState(() {
+    //         print("hi");
+    //         gethomeapi();
+    //       });
+    //     });
+    //   }
+    // });
+
     gethomeapi();
-    _tabController = new TabController(vsync: this, length: 3);
+
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -117,6 +144,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void dispose() {
     _tabController.dispose();
+    //  _connectivitySubscription.cancel();
     super.dispose();
   }
 
@@ -166,7 +194,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               shrinkWrap: true,
               physics: ScrollPhysics(),
               children: [
-                slider(context),
+                Visibility(
+                  visible: issliderSectionLoaded,
+                  replacement: Center(child: CircularProgressIndicator()),
+                  child: slider(context),
+                ),
                 SizedBox(
                   height: 10,
                 ),
@@ -186,13 +218,63 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 ),
                 Visibility(
                   visible: isMiddleSectionLoaded,
-                  replacement: Center(child: CircularProgressIndicator()),
+                  replacement: (isMiddleSectionLoaded == false &&
+                          stats.toString() ==
+                              ConnectivityResult.none.toString())
+                      ? Container()
+                      : (isMiddleSectionLoaded == false &&
+                              stats.toString() !=
+                                  ConnectivityResult.none.toString())
+                          ? Center(child: CircularProgressIndicator())
+                          : Container(
+                              width: 200,
+                              height: 200,
+                              color: Colors.green,
+                            ),
                   child: ListView(
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
                       // scrollDirection: Axis.horizontal,
                       children: list()),
                 ),
+                // StreamBuilder(
+                //     stream: _bids,
+                //     initialData: false,
+                //     builder:
+                //         (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                //       if (snapshot.data) {
+                //         return Visibility(
+                //           visible: isMiddleSectionLoaded,
+                //           replacement:
+                //               Center(child: CircularProgressIndicator()),
+                //           child: ListView(
+                //               shrinkWrap: true,
+                //               physics: ScrollPhysics(),
+                //               // scrollDirection: Axis.horizontal,
+                //               children: list()),
+                //         );
+                //       } else {
+                //         return Container();
+                //       }
+                //       // var status1 =
+                //       //     ConnectionDetector.checkInternetConnection();
+
+                //       // // ignore: unrelated_type_equality_checks
+                //       // if (status1 == true) {
+                //       //   return Visibility(
+                //       //     visible: isMiddleSectionLoaded,
+                //       //     replacement:
+                //       //         Center(child: CircularProgressIndicator()),
+                //       //     child: ListView(
+                //       //         shrinkWrap: true,
+                //       //         physics: ScrollPhysics(),
+                //       //         // scrollDirection: Axis.horizontal,
+                //       //         children: list()),
+                //       //   );
+                //       // } else {
+                //       //   return Container();
+                //       // }
+                //     }),
                 // Container(
                 //   padding: EdgeInsets.all(20.0),
                 //   child: FutureBuilder(
@@ -285,7 +367,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     ],
                   ),
                   child: Container(
-                    height: 450,
+                    height: 490,
                     //color: Colors.amber,
                     child: Column(
                       children: [
@@ -629,36 +711,40 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 child: Container(
                     //color: Colors.amber,
                     width: SizeConfig.blockSizeHorizontal * 100,
-                    height: 470,
+                    // height: 590,
                     color: Colors.white,
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                                child: Text(
-                              expandedName,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black),
-                            )),
-                            GestureDetector(
-                              onTap: () {
-                                print("in tap");
-                                setState(() {
-                                  expandClick = !expandClick;
-                                });
-                              },
-                              child: Image.asset(
-                                "assets/newImages/expand_more.png",
-                                width: 30,
-                                height: 30,
-                              ),
-                            )
-                          ],
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(10.0),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //     children: [
+                        //       Expanded(
+                        //           child: Text(
+                        //         expandedName,
+                        //         style: TextStyle(
+                        //             fontSize: 18,
+                        //             fontWeight: FontWeight.w700,
+                        //             color: Colors.black),
+                        //       )),
+                        //       GestureDetector(
+                        //         onTap: () {
+                        //           print("in tap");
+                        //           setState(() {
+                        //             expandClick = !expandClick;
+                        //           });
+                        //         },
+                        //         child: Image.asset(
+                        //           "assets/newImages/expand_more.png",
+                        //           width: 30,
+                        //           height: 30,
+                        //         ),
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
+                        //  expandClick ? eventDropdown() : Container(),
                         SizedBox(
                           height: 10,
                         ),
@@ -713,6 +799,31 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           }).toList(),
                           carouselController: callAppCarouselController,
                         ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: 120,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Center(
+                                  child: Text(
+                                    "View All",
+                                    style: TextStyle(
+                                        color: Customcolor.colorBlue,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     )),
               ),
@@ -725,7 +836,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               children: <Widget>[
                 GestureDetector(
                     onTap: () {
-                      goToPrevious();
+                      goTocallPrevious();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
@@ -736,7 +847,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     )),
                 GestureDetector(
                     onTap: () {
-                      goToNext();
+                      goTocallNext();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 20),
@@ -763,70 +874,92 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  //color: Colors.amber,
-                  width: SizeConfig.blockSizeHorizontal * 100,
-                  height: 400,
-                  color: Colors.white,
-                  child: carouselSlider = CarouselSlider(
-                    options: CarouselOptions(
-                        autoPlay: false,
-                        aspectRatio: 1,
-                        enlargeCenterPage: true,
-                        enlargeStrategy: CenterPageEnlargeStrategy.height,
-                        viewportFraction: 1.0,
-                        //  height: SizeConfig.blockSizeVertical * 100,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _current1 = index;
-                          });
-                        }),
-                    items: GlobalLists.homedigitallib.map((product) {
-                      print(GlobalLists.homeDigitalLibraryBaseURL +
-                          product.image);
-                      return new Builder(
-                        builder: (BuildContext context) {
-                          return ListView(
-                            shrinkWrap: true,
-                            physics: ScrollPhysics(),
-                            //  crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Container(
-                                  padding: EdgeInsets.only(top: 20),
-                                  width: 240,
-                                  height: 290,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: FadeInImage.assetNetwork(
-                                    placeholder:
-                                        'assets/newImages/placeholder_3.jpg',
-                                    image:
-                                        GlobalLists.homeDigitalLibraryBaseURL +
+                    //color: Colors.amber,
+                    width: SizeConfig.blockSizeHorizontal * 100,
+                    // height: 590,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        carouselSlider = CarouselSlider(
+                          options: CarouselOptions(
+                              autoPlay: false,
+                              // aspectRatio: 0.1,
+                              enlargeCenterPage: true,
+                              enlargeStrategy: CenterPageEnlargeStrategy.height,
+                              viewportFraction: 1.0,
+                              height: 340,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  _current1 = index;
+                                });
+                              }),
+                          items: GlobalLists.homedigitallib.map((product) {
+                            return new Builder(
+                              builder: (BuildContext context) {
+                                return ListView(
+                                  shrinkWrap: true,
+                                  physics: ScrollPhysics(),
+                                  // crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder:
+                                            'assets/newImages/placeholder_3.jpg',
+                                        image: GlobalLists
+                                                .homeDigitalLibraryBaseURL +
                                             product.image,
-                                    fit: BoxFit.fitHeight,
-                                    height: 200,
+                                        fit: BoxFit.fill,
+                                        width: 240,
+                                        height: 290,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Center(
+                                      child: Text(product.title,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                            fontSize: 17,
+                                          )),
+                                    )
+                                  ],
+                                );
+                              },
+                            );
+                          }).toList(),
+                          carouselController: digitalLibraryCarouselController,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: 120,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Center(
+                                  child: Text(
+                                    "View All",
+                                    style: TextStyle(
+                                        color: Customcolor.colorBlue,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Center(
-                                child: Text(product.title,
-                                    textAlign: TextAlign.center,
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                    )),
-                              )
-                            ],
-                          );
-                        },
-                      );
-                    }).toList(),
-                    carouselController: callAppCarouselController,
-                  ),
-                ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
               ),
         Positioned(
           top: 140,
@@ -837,7 +970,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               children: <Widget>[
                 GestureDetector(
                     onTap: () {
-                      goToPrevious();
+                      goTodigitalPrevious();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
@@ -848,10 +981,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     )),
                 GestureDetector(
                     onTap: () {
-                      goToNext();
+                      goTodigitalNext();
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 40),
+                      padding: const EdgeInsets.only(right: 20),
                       child: Icon(
                         Icons.arrow_forward_ios,
                         color: Customcolor.text_darkblue,
@@ -875,67 +1008,91 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  //color: Colors.amber,
-                  width: SizeConfig.blockSizeHorizontal * 100,
-                  height: 400,
-                  color: Colors.white,
-                  child: carouselSlider = CarouselSlider(
-                    options: CarouselOptions(
-                        autoPlay: false,
-                        aspectRatio: 1,
-                        enlargeCenterPage: true,
-                        enlargeStrategy: CenterPageEnlargeStrategy.height,
-                        viewportFraction: 1.0,
-                        //  height: SizeConfig.blockSizeVertical * 100,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _current1 = index;
-                          });
-                        }),
-                    items: GlobalLists.homemmtm.map((product) {
-                      return new Builder(
-                        builder: (BuildContext context) {
-                          return ListView(
-                            shrinkWrap: true,
-                            physics: ScrollPhysics(),
-                            //  crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Container(
-                                  padding: EdgeInsets.only(top: 20),
-                                  width: 240,
-                                  height: 290,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: FadeInImage.assetNetwork(
-                                    placeholder:
-                                        'assets/newImages/placeholder_3.jpg',
-                                    image: GlobalLists.homeMMTMBaseURL +
-                                        product.photo,
-                                    fit: BoxFit.cover,
-                                    height: 200,
+                    //color: Colors.amber,
+                    width: SizeConfig.blockSizeHorizontal * 100,
+                    // height: 590,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        carouselSlider = CarouselSlider(
+                          options: CarouselOptions(
+                              autoPlay: false,
+                              // aspectRatio: 0.1,
+                              enlargeCenterPage: true,
+                              enlargeStrategy: CenterPageEnlargeStrategy.height,
+                              viewportFraction: 1.0,
+                              height: 340,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  _current1 = index;
+                                });
+                              }),
+                          items: GlobalLists.homemmtm.map((product) {
+                            return new Builder(
+                              builder: (BuildContext context) {
+                                return ListView(
+                                  shrinkWrap: true,
+                                  physics: ScrollPhysics(),
+                                  // crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder:
+                                            'assets/newImages/placeholder_3.jpg',
+                                        image: GlobalLists.homeMMTMBaseURL +
+                                            product.photo,
+                                        fit: BoxFit.fill,
+                                        width: 240,
+                                        height: 290,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Center(
+                                      child: Text(product.photoDescription,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                            fontSize: 17,
+                                          )),
+                                    )
+                                  ],
+                                );
+                              },
+                            );
+                          }).toList(),
+                          carouselController: mmtmCarouselController,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: 120,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Center(
+                                  child: Text(
+                                    "View All",
+                                    style: TextStyle(
+                                        color: Customcolor.colorBlue,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Center(
-                                child: Text(product.photoDescription,
-                                    textAlign: TextAlign.center,
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                    )),
-                              )
-                            ],
-                          );
-                        },
-                      );
-                    }).toList(),
-                    carouselController: callAppCarouselController,
-                  ),
-                ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
               ),
         Positioned(
           top: 140,
@@ -946,7 +1103,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               children: <Widget>[
                 GestureDetector(
                     onTap: () {
-                      goToPrevious();
+                      goTommtmPrevious();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
@@ -957,10 +1114,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     )),
                 GestureDetector(
                     onTap: () {
-                      goToNext();
+                      goTommtmNext();
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 40),
+                      padding: const EdgeInsets.only(right: 20),
                       child: Icon(
                         Icons.arrow_forward_ios,
                         color: Customcolor.text_darkblue,
@@ -978,12 +1135,32 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     return getdigitallib(context);
   }
 
-  goToPrevious() {
+  goTommtmPrevious() {
+    mmtmCarouselController.previousPage(
+        duration: Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  goTommtmNext() {
+    mmtmCarouselController.nextPage(
+        duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+  }
+
+  goTodigitalPrevious() {
+    digitalLibraryCarouselController.previousPage(
+        duration: Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  goTodigitalNext() {
+    digitalLibraryCarouselController.nextPage(
+        duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+  }
+
+  goTocallPrevious() {
     callAppCarouselController.previousPage(
         duration: Duration(milliseconds: 300), curve: Curves.ease);
   }
 
-  goToNext() {
+  goTocallNext() {
     callAppCarouselController.nextPage(
         duration: Duration(milliseconds: 300), curve: Curves.decelerate);
   }
@@ -1062,6 +1239,13 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       ),
     );
   }
+
+  Stream<bool> _bids = (() async* {
+    print("print");
+    await Future<void>.delayed(Duration(seconds: 1));
+    yield await ConnectionDetector.checkInternetConnection();
+    await Future<void>.delayed(Duration(seconds: 1));
+  })();
 
   Widget merckmorethanmother() {
     return Padding(
@@ -1157,6 +1341,55 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget eventDropdown() {
+    //building index 1, plant 2,stocks 3
+    return Container(
+      padding: EdgeInsets.only(top: 5, left: 5, right: 5),
+      height: 140,
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(10)),
+      child: Card(
+        elevation: 5,
+        child: Padding(
+            padding: EdgeInsets.only(top: 5, left: 10, right: 5),
+            child: ListView.builder(
+                itemCount: events.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            expandedName = events[index];
+
+                            expandClick = false;
+                          });
+                        },
+                        child: Container(
+                          color: Colors.white,
+                          width: SizeConfig.blockSizeHorizontal * 100,
+                          child: Text(
+                            events[index],
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 1,
+                      ),
+                      Divider(
+                        color: Colors.black,
+                      )
+                    ],
+                  );
+                })),
       ),
     );
   }
@@ -1738,7 +1971,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
           setState(() {
             typewidetofrightsection.add(rightsectioncategoryname);
-
+            _tabController = new TabController(
+                vsync: this, length: typewidetofrightsection.length);
             print(typewidetofrightsection);
           });
 
@@ -1767,13 +2001,23 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         setState(() {
           isMiddleSectionLoaded = true;
           isrightSectionLoaded = true;
+          issliderSectionLoaded = true;
         });
 
         return response;
       } else {
-        ShowDialogs.showToast("Server Not Responding");
+        ShowDialogs.showToast(GlobalLists.serverresp);
+        _tabController = new TabController(vsync: this, length: 0);
+
+        isMiddleSectionLoaded = true;
+        isrightSectionLoaded = true;
+        issliderSectionLoaded = true;
       }
     } else {
+      _tabController = new TabController(vsync: this, length: 0);
+      isMiddleSectionLoaded = true;
+      issliderSectionLoaded = true;
+      isrightSectionLoaded = true;
       ShowDialogs.showToast("Please check internet connection");
     }
   }
@@ -2086,8 +2330,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           );
           listoftabwiget.add(digitalLibraryLastSection());
         }
-        print('tabs');
-        print(tabs.length);
+        // print('tabs');
+        // print(tabs.length);
+
       }
     });
     //_tabController.length = tabs.length;

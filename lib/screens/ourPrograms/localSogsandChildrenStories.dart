@@ -787,56 +787,73 @@ class LocalSongsandChildrenStoriesState
 
   Future<http.Response> getmmtmapi() async {
     print("mmtm api");
-    var response = await APIManager.fetchget(
-      encoding: APIManager.subprogramlocalsong,
-    );
-    print("response");
-    print(response);
+    var status1 = await ConnectionDetector.checkInternetConnection();
 
-    var res = json.decode(response.body);
-    print("ff");
-    print(res);
-    LocalsongResponse homepageres = LocalsongResponse.fromJson(res);
+    if (status1) {
+      var response = await APIManager.fetchget(
+        encoding: APIManager.subprogramlocalsong,
+      );
+      print("response");
+      print(response);
+      if (response.statusCode == 200) {
+        var res = json.decode(response.body);
+        print("ff");
+        print(res);
+        LocalsongResponse homepageres = LocalsongResponse.fromJson(res);
 
-    Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> section1 = homepageres.middleArea;
 
-    for (int i = 0; i < section1.length; i++) {
-      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-      //  print(categoryKeys.videos.type);
-      dynamic section = res['middle_area']['${i + 1}'];
-      print("TKey: ${section.keys.first}");
-      var middlecategoryname = section.keys.first;
+        for (int i = 0; i < section1.length; i++) {
+          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+          //  print(categoryKeys.videos.type);
+          dynamic section = res['middle_area']['${i + 1}'];
+          print("TKey: ${section.keys.first}");
+          var middlecategoryname = section.keys.first;
 
-      setState(() {
-        typewidet.add(middlecategoryname);
+          setState(() {
+            typewidet.add(middlecategoryname);
 
-        print(typewidet);
-      });
-      if (middlecategoryname.toString().toLowerCase() ==
-          "Videos".toLowerCase()) {
-        GlobalLists.homevideolist =
-            homepageres.middleArea['${i + 1}'].videos.list;
-        print(GlobalLists.homevideolist.length);
-      } else if (middlecategoryname.toString().toLowerCase() ==
-          "content".toLowerCase()) {
-        GlobalLists.homecontentlist =
-            homepageres.middleArea['${i + 1}'].content.list;
-        print(GlobalLists.homecontentlist.length);
-      } else if (middlecategoryname.toString().toLowerCase() ==
-          "digital_library".toLowerCase()) {
-        GlobalLists.programdigitalcontentbaseurl =
-            homepageres.middleArea['${i + 1}'].digitalLibrary.baseUrl;
-        GlobalLists.programdigitalcontentlist =
-            homepageres.middleArea['${i + 1}'].digitalLibrary.list;
-        print(GlobalLists.programdigitalcontentlist.length);
+            print(typewidet);
+          });
+          if (middlecategoryname.toString().toLowerCase() ==
+              "Videos".toLowerCase()) {
+            GlobalLists.homevideolist =
+                homepageres.middleArea['${i + 1}'].videos.list;
+            print(GlobalLists.homevideolist.length);
+          } else if (middlecategoryname.toString().toLowerCase() ==
+              "content".toLowerCase()) {
+            GlobalLists.homecontentlist =
+                homepageres.middleArea['${i + 1}'].content.list;
+            print(GlobalLists.homecontentlist.length);
+          } else if (middlecategoryname.toString().toLowerCase() ==
+              "digital_library".toLowerCase()) {
+            GlobalLists.programdigitalcontentbaseurl =
+                homepageres.middleArea['${i + 1}'].digitalLibrary.baseUrl;
+            GlobalLists.programdigitalcontentlist =
+                homepageres.middleArea['${i + 1}'].digitalLibrary.list;
+            print(GlobalLists.programdigitalcontentlist.length);
+          }
+        }
+
+        setState(() {
+          isMiddleSectionLoaded = true;
+        });
+
+        return response;
+      } else {
+        setState(() {
+          isMiddleSectionLoaded = true;
+        });
+
+        ShowDialogs.showToast(GlobalLists.serverresp);
       }
+    } else {
+      setState(() {
+        isMiddleSectionLoaded = true;
+      });
+
+      ShowDialogs.showToast("Please check internet connection");
     }
-
-    setState(() {
-      isMiddleSectionLoaded = true;
-    });
-
-    return response;
   }
 
   Future<void> _launchInWebViewWithJavaScript(String url) async {

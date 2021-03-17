@@ -217,4 +217,5 @@ class GlobalLists {
   //ambasadar
   static List<dynamic> ambasdarslist = [];
   static String ambasdarsbaseurl = "";
+  static String serverresp = "Server Not Responding";
 }

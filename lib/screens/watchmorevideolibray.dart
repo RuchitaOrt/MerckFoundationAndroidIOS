@@ -1,39 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
-import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
-import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
-import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
-import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
-import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Videolibrary extends StatefulWidget {
+class WatchmoreVideolibrary extends StatefulWidget {
+  final List<dynamic> videoList;
+
+  final String baseURL;
+
+  const WatchmoreVideolibrary({Key key, this.videoList, this.baseURL})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return VideolibraryState();
   }
 }
 
-class VideolibraryState extends State<Videolibrary> {
-  List _productsAvailable = [
-    "assets/images/slider1.jpg",
-    "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg",
-    "assets/images/slider1.jpg",
-    "assets/images/slider1.jpg",
-    "assets/images/slider1.jpg",
-    "assets/images/slider1.jpg",
-  ];
-
+class VideolibraryState extends State<WatchmoreVideolibrary> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
@@ -41,9 +30,6 @@ class VideolibraryState extends State<Videolibrary> {
   void initState() {
     // TODO: implement initState
 
-    getvideolibray();
-    getcountrylist();
-    getcategorylist();
     super.initState();
   }
 
@@ -74,7 +60,7 @@ class VideolibraryState extends State<Videolibrary> {
           },
           index: 2,
           forfilterindes: 3,
-          title: "Video Library",
+          title: "Videos",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",
@@ -91,7 +77,7 @@ class VideolibraryState extends State<Videolibrary> {
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
                 child: FormLabel(
-                  text: "Video Library",
+                  text: "Videos",
                   labelColor: Customcolor.colorblack,
                   fontSize: ResponsiveFlutter.of(context).fontSize(2),
                   maxLines: 2,
@@ -107,8 +93,7 @@ class VideolibraryState extends State<Videolibrary> {
                       physics: ScrollPhysics(),
                       crossAxisCount: 2,
                       childAspectRatio: 0.8,
-                      children: List.generate(GlobalLists.videolibrary.length,
-                          (index) {
+                      children: List.generate(widget.videoList.length, (index) {
                         return Padding(
                           padding: const EdgeInsets.only(right: 2.0),
                           child: Card(
@@ -129,9 +114,9 @@ class VideolibraryState extends State<Videolibrary> {
                                   //                   .videolibrary[index]
                                   //                   .videoLink,
                                   //             )));
-                                  var storykey = GlobalLists
-                                      .videolibrary[index].videoLink
-                                      .substring(GlobalLists.videolibrary[index]
+                                  var storykey = widget
+                                      .videoList[index].videoLink
+                                      .substring(widget.videoList[index]
                                               .videoLink.length -
                                           11);
                                   _launchInWebViewWithJavaScript(
@@ -160,7 +145,7 @@ class VideolibraryState extends State<Videolibrary> {
                                             // ),
                                             image: new DecorationImage(
                                               image: new NetworkImage(
-                                                  'https://img.youtube.com/vi/${GlobalLists.videolibrary[index].videoLink.substring(GlobalLists.videolibrary[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                  'https://img.youtube.com/vi/${widget.videoList[index].videoLink.substring(widget.videoList[index].videoLink.length - 11)}/mqdefault.jpg'),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -169,8 +154,7 @@ class VideolibraryState extends State<Videolibrary> {
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Text(
-                                          GlobalLists
-                                              .videolibrary[index].videoDesc,
+                                          widget.videoList[index].videoDesc,
                                           textAlign: TextAlign.center,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
@@ -215,74 +199,6 @@ class VideolibraryState extends State<Videolibrary> {
         ));
   }
 
-  getvideolibray() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.videoLibrary,
-        (response) async {
-          GetVideoLibraryResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-
-          Navigator.of(_keyLoader.currentContext).pop();
-
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.videolibrary = resp.data.list;
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
-
-  getcountrylist() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      // ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.countrylist,
-        (response) async {
-          CountrylistResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-
-          //  Navigator.of(_keyLoader.currentContext).pop();
-
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.countrylisting = resp.data.list;
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          // Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
-
   Future<void> _launchInWebViewWithJavaScript(String url) async {
     if (await canLaunch(url)) {
       await launch(
@@ -293,40 +209,6 @@ class VideolibraryState extends State<Videolibrary> {
       );
     } else {
       throw 'Could not launch $url';
-    }
-  }
-
-  getcategorylist() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      // ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.categoryList,
-        (response) async {
-          CategorylistResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-
-          //  Navigator.of(_keyLoader.currentContext).pop();
-
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.categorylisting = resp.data.list;
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          // Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
     }
   }
 }

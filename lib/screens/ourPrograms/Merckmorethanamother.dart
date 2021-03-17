@@ -83,7 +83,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
     // getmmtmslider();
     getmmtmapi();
     super.initState();
-    _tabController = new TabController(vsync: this, length: 3);
+    // _tabController = new TabController(vsync: this, length: 3);
   }
 
   @override
@@ -1691,170 +1691,189 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
 
   Future<http.Response> getmmtmapi() async {
     print("mmtm api");
-    var response = await APIManager.fetchget(
-      encoding: APIManager.mmtmprogramurl,
-    );
-    print("response");
-    print(response);
+    var status1 = await ConnectionDetector.checkInternetConnection();
 
-    var res = json.decode(response.body);
-    print("ff");
-    print(res);
-    MmtmMainResponse homepageres = MmtmMainResponse.fromJson(res);
+    if (status1) {
+      var response = await APIManager.fetchget(
+        encoding: APIManager.mmtmprogramurl,
+      );
+      print("response");
+      print(response);
+      if (response.statusCode == 200) {
+        var res = json.decode(response.body);
+        print("ff");
+        print(res);
+        MmtmMainResponse homepageres = MmtmMainResponse.fromJson(res);
 
-    slidersection = homepageres.sliderArea[0].slider.list;
-    slidersection.forEach((element) {
-      _productsAvailable.add({
-        "id": element.id,
-        "menu_id": element.menuId,
-        "image_title": element.imageTitle,
-        "image_desc": element.imageDesc,
-        "links": element.links,
-        "image": element.image,
-        "alt_text": element.altText,
-        "status": element.status,
-        "created_at": element.createdAt,
-        "updated_at": element.updatedAt
-      });
-    });
+        slidersection = homepageres.sliderArea[0].slider.list;
+        slidersection.forEach((element) {
+          _productsAvailable.add({
+            "id": element.id,
+            "menu_id": element.menuId,
+            "image_title": element.imageTitle,
+            "image_desc": element.imageDesc,
+            "links": element.links,
+            "image": element.image,
+            "alt_text": element.altText,
+            "status": element.status,
+            "created_at": element.createdAt,
+            "updated_at": element.updatedAt
+          });
+        });
 
-    print("sliderprogramsection");
-    print(slidersection.length);
+        print("sliderprogramsection");
+        print(slidersection.length);
 
-    Map<String, dynamic> section1 = homepageres.middleArea;
-    Map<String, dynamic> lastsection = homepageres.rightArea;
-    Map<String, dynamic> bottomsection = homepageres.bottomArea;
-    print(section1);
-    print(section1['1']);
-    print(res['middle_area'].keys);
-    List<String> middleareakey = [];
-    section1.keys.forEach((element) {
-      middleareakey.add(element.toString());
-    });
-    print(middleareakey);
-    for (int i = 0; i < section1.length; i++) {
-      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+        Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> lastsection = homepageres.rightArea;
+        Map<String, dynamic> bottomsection = homepageres.bottomArea;
+        print(section1);
+        print(section1['1']);
+        print(res['middle_area'].keys);
+        List<String> middleareakey = [];
+        section1.keys.forEach((element) {
+          middleareakey.add(element.toString());
+        });
+        print(middleareakey);
+        for (int i = 0; i < section1.length; i++) {
+          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
 
-      dynamic section = res['middle_area'][middleareakey[i]];
-      print("TKey: ${section.keys.first}");
-      var middlecategoryname = section.keys.first;
+          dynamic section = res['middle_area'][middleareakey[i]];
+          print("TKey: ${section.keys.first}");
+          var middlecategoryname = section.keys.first;
 
-      setState(() {
-        typewidet.add(middlecategoryname);
+          setState(() {
+            typewidet.add(middlecategoryname);
 
-        print(typewidet);
-      });
-      if (middlecategoryname.toString().toLowerCase() ==
-          "Videos".toLowerCase()) {
-        GlobalLists.homevideolist =
-            homepageres.middleArea[middleareakey[i]].videos.list;
-        print(GlobalLists.homevideolist.length);
-      } else if (middlecategoryname.toString().toLowerCase() ==
-          "content".toLowerCase()) {
-        GlobalLists.homecontentlist =
-            homepageres.middleArea[middleareakey[i]].content.list;
-        print(GlobalLists.homecontentlist.length);
-      } else if (middlecategoryname.toString().toLowerCase() ==
-          "gallery".toLowerCase()) {
-        GlobalLists.homegallerybaseurl =
-            homepageres.middleArea[middleareakey[i]].gallery.baseUrl;
-        GlobalLists.homegallerylist =
-            homepageres.middleArea[middleareakey[i]].gallery.list;
-        print(GlobalLists.homegallerylist.length);
-      } else if (middlecategoryname.toString().toLowerCase() ==
-          "latest_updates".toLowerCase()) {
-        //latest update
-        GlobalLists.homeceomsgbaseurl =
-            homepageres.middleArea[middleareakey[i]].latestUpdates.baseUrl;
-        GlobalLists.homeceomsglist =
-            homepageres.middleArea[middleareakey[i]].latestUpdates.list;
-        print(GlobalLists.homeceomsglist.length);
+            print(typewidet);
+          });
+          if (middlecategoryname.toString().toLowerCase() ==
+              "Videos".toLowerCase()) {
+            GlobalLists.homevideolist =
+                homepageres.middleArea[middleareakey[i]].videos.list;
+            print(GlobalLists.homevideolist.length);
+          } else if (middlecategoryname.toString().toLowerCase() ==
+              "content".toLowerCase()) {
+            GlobalLists.homecontentlist =
+                homepageres.middleArea[middleareakey[i]].content.list;
+            print(GlobalLists.homecontentlist.length);
+          } else if (middlecategoryname.toString().toLowerCase() ==
+              "gallery".toLowerCase()) {
+            GlobalLists.homegallerybaseurl =
+                homepageres.middleArea[middleareakey[i]].gallery.baseUrl;
+            GlobalLists.homegallerylist =
+                homepageres.middleArea[middleareakey[i]].gallery.list;
+            print(GlobalLists.homegallerylist.length);
+          } else if (middlecategoryname.toString().toLowerCase() ==
+              "latest_updates".toLowerCase()) {
+            //latest update
+            GlobalLists.homeceomsgbaseurl =
+                homepageres.middleArea[middleareakey[i]].latestUpdates.baseUrl;
+            GlobalLists.homeceomsglist =
+                homepageres.middleArea[middleareakey[i]].latestUpdates.list;
+            print(GlobalLists.homeceomsglist.length);
+          }
+        }
+
+        ///////right section
+        List<String> rigthareakey = [];
+        lastsection.keys.forEach((element) {
+          rigthareakey.add(element.toString());
+        });
+        print(middleareakey);
+        for (int i = 0; i < lastsection.length; i++) {
+          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+          //  print(categoryKeys.videos.type);
+          dynamic rightsection = res['Right_area'][rigthareakey[i]];
+          print("TKey: ${rightsection.keys.first}");
+          var rightsectioncategoryname = rightsection.keys.first;
+
+          setState(() {
+            typewidetofrightsection.add(rightsectioncategoryname);
+            _tabController = new TabController(
+                vsync: this, length: typewidetofrightsection.length);
+            print(typewidetofrightsection);
+          });
+
+          if (rightsectioncategoryname.toString().toLowerCase() ==
+              "call_for_app".toLowerCase()) {
+            GlobalLists.homecallforapp =
+                homepageres.rightArea[rigthareakey[i]].callForApp.list;
+            GlobalLists.homeCallForAppBaseURL =
+                homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
+            print(GlobalLists.homecallforapp.length);
+          } else if (rightsectioncategoryname.toString().toLowerCase() ==
+              "mmtm".toLowerCase()) {
+            GlobalLists.homemmtm =
+                homepageres.rightArea[rigthareakey[i]].mmtm.list;
+            print(GlobalLists.homemmtm.length);
+            GlobalLists.homeMMTMBaseURL =
+                homepageres.rightArea[rigthareakey[i]].mmtm.baseUrl;
+          } else if (rightsectioncategoryname.toString().toLowerCase() ==
+              "digital_library".toLowerCase()) {
+            GlobalLists.homedigitallib =
+                homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
+            GlobalLists.homeDigitalLibraryBaseURL =
+                homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
+            print(GlobalLists.homedigitallib.length);
+          }
+        }
+
+        ///////bottom section
+        List<String> bottomareakey = [];
+        bottomsection.keys.forEach((element) {
+          bottomareakey.add(element.toString());
+        });
+        for (int i = 0; i < bottomsection.length; i++) {
+          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+          //  print(categoryKeys.videos.type);
+          dynamic bottomendsection = res['bottom_area'][bottomareakey[i]];
+          print("TKey: ${bottomendsection.keys.first}");
+          var bottomectioncategoryname = bottomendsection.keys.first;
+
+          setState(() {
+            typewidetofbottomsection.add(bottomectioncategoryname);
+
+            print(typewidetofbottomsection);
+          });
+
+          if (bottomectioncategoryname.toString().toLowerCase() ==
+              "media".toLowerCase()) {
+            GlobalLists.mmtmmediabaseurl =
+                homepageres.bottomArea[bottomareakey[i]].media.baseUrl;
+            GlobalLists.mmtmmedialist =
+                homepageres.bottomArea[bottomareakey[i]].media.list;
+            print(GlobalLists.mmtmmedialist.length);
+          } else if (bottomectioncategoryname.toString().toLowerCase() ==
+              "testimonial".toLowerCase()) {
+            GlobalLists.mmttestimoniallist =
+                homepageres.bottomArea[bottomareakey[i]].testimonial.list;
+            print(GlobalLists.mmttestimoniallist.length);
+            GlobalLists.mmttestimonialbaseurl =
+                homepageres.bottomArea[bottomareakey[i]].testimonial.baseUrl;
+          }
+        }
+        setState(() {
+          isMiddleSectionLoaded = true;
+          isrightSectionLoaded = true;
+          isbottomSectionLoaded = true;
+        });
+
+        return response;
+      } else {
+        _tabController = new TabController(vsync: this, length: 0);
+        isMiddleSectionLoaded = true;
+        isbottomSectionLoaded = true;
+        isrightSectionLoaded = true;
+        ShowDialogs.showToast(GlobalLists.serverresp);
       }
-    }
-
-    ///////right section
-    List<String> rigthareakey = [];
-    lastsection.keys.forEach((element) {
-      rigthareakey.add(element.toString());
-    });
-    print(middleareakey);
-    for (int i = 0; i < lastsection.length; i++) {
-      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-      //  print(categoryKeys.videos.type);
-      dynamic rightsection = res['Right_area'][rigthareakey[i]];
-      print("TKey: ${rightsection.keys.first}");
-      var rightsectioncategoryname = rightsection.keys.first;
-
-      setState(() {
-        typewidetofrightsection.add(rightsectioncategoryname);
-
-        print(typewidetofrightsection);
-      });
-
-      if (rightsectioncategoryname.toString().toLowerCase() ==
-          "call_for_app".toLowerCase()) {
-        GlobalLists.homecallforapp =
-            homepageres.rightArea[rigthareakey[i]].callForApp.list;
-        GlobalLists.homeCallForAppBaseURL =
-            homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
-        print(GlobalLists.homecallforapp.length);
-      } else if (rightsectioncategoryname.toString().toLowerCase() ==
-          "mmtm".toLowerCase()) {
-        GlobalLists.homemmtm = homepageres.rightArea[rigthareakey[i]].mmtm.list;
-        print(GlobalLists.homemmtm.length);
-        GlobalLists.homeMMTMBaseURL =
-            homepageres.rightArea[rigthareakey[i]].mmtm.baseUrl;
-      } else if (rightsectioncategoryname.toString().toLowerCase() ==
-          "digital_library".toLowerCase()) {
-        GlobalLists.homedigitallib =
-            homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
-        GlobalLists.homeDigitalLibraryBaseURL =
-            homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
-        print(GlobalLists.homedigitallib.length);
-      }
-    }
-
-    ///////bottom section
-    List<String> bottomareakey = [];
-    bottomsection.keys.forEach((element) {
-      bottomareakey.add(element.toString());
-    });
-    for (int i = 0; i < bottomsection.length; i++) {
-      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-      //  print(categoryKeys.videos.type);
-      dynamic bottomendsection = res['bottom_area'][bottomareakey[i]];
-      print("TKey: ${bottomendsection.keys.first}");
-      var bottomectioncategoryname = bottomendsection.keys.first;
-
-      setState(() {
-        typewidetofbottomsection.add(bottomectioncategoryname);
-
-        print(typewidetofbottomsection);
-      });
-
-      if (bottomectioncategoryname.toString().toLowerCase() ==
-          "media".toLowerCase()) {
-        GlobalLists.mmtmmediabaseurl =
-            homepageres.bottomArea[bottomareakey[i]].media.baseUrl;
-        GlobalLists.mmtmmedialist =
-            homepageres.bottomArea[bottomareakey[i]].media.list;
-        print(GlobalLists.mmtmmedialist.length);
-      } else if (bottomectioncategoryname.toString().toLowerCase() ==
-          "testimonial".toLowerCase()) {
-        GlobalLists.mmttestimoniallist =
-            homepageres.bottomArea[bottomareakey[i]].testimonial.list;
-        print(GlobalLists.mmttestimoniallist.length);
-        GlobalLists.mmttestimonialbaseurl =
-            homepageres.bottomArea[bottomareakey[i]].testimonial.baseUrl;
-      }
-    }
-    setState(() {
+    } else {
+      _tabController = new TabController(vsync: this, length: 0);
       isMiddleSectionLoaded = true;
-      isrightSectionLoaded = true;
       isbottomSectionLoaded = true;
-    });
-
-    return response;
+      isrightSectionLoaded = true;
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 
   Future<void> _launchInWebViewWithJavaScript(String url) async {

@@ -87,7 +87,7 @@ class MerckSubstantionalState extends State<MerckSubstantional>
     // getmmtmslider();
     getmmtmapi();
     super.initState();
-    _tabController = new TabController(vsync: this, length: 1);
+    // _tabController = new TabController(vsync: this, length: 1);
   }
 
   @override
@@ -1868,146 +1868,172 @@ class MerckSubstantionalState extends State<MerckSubstantional>
 
   Future<http.Response> getmmtmapi() async {
     print("mmtm api");
-    var response = await APIManager.fetchget(
-      encoding: APIManager.mercksubstaition,
-    );
-    print("response");
-    print(response);
+    var status1 = await ConnectionDetector.checkInternetConnection();
 
-    var res = json.decode(response.body);
-    print("ff");
-    print(res);
-    mercksubstaintion.MerckfoundationsubstantionResponse homepageres =
-        mercksubstaintion.MerckfoundationsubstantionResponse.fromJson(res);
+    if (status1) {
+      var response = await APIManager.fetchget(
+        encoding: APIManager.mercksubstaition,
+      );
+      print("response");
+      print(response);
+      if (response.statusCode == 200) {
+        var res = json.decode(response.body);
+        print("ff");
+        print(res);
+        mercksubstaintion.MerckfoundationsubstantionResponse homepageres =
+            mercksubstaintion.MerckfoundationsubstantionResponse.fromJson(res);
 
-    slidersection = homepageres.sliderArea[0].slider.list;
-    slidersection.forEach((element) {
-      _productsAvailable.add({
-        "id": element.id,
-        "menu_id": element.menuId,
-        "image_title": element.imageTitle,
-        "image_desc": element.imageDesc,
-        "links": element.links,
-        "image": element.image,
-        "alt_text": element.altText,
-        "status": element.status,
-        "created_at": element.createdAt,
-        "updated_at": element.updatedAt
-      });
-    });
+        slidersection = homepageres.sliderArea[0].slider.list;
+        slidersection.forEach((element) {
+          _productsAvailable.add({
+            "id": element.id,
+            "menu_id": element.menuId,
+            "image_title": element.imageTitle,
+            "image_desc": element.imageDesc,
+            "links": element.links,
+            "image": element.image,
+            "alt_text": element.altText,
+            "status": element.status,
+            "created_at": element.createdAt,
+            "updated_at": element.updatedAt
+          });
+        });
 
-    print("sliderprogramsection");
-    print(slidersection.length);
+        print("sliderprogramsection");
+        print(slidersection.length);
 
-    Map<String, dynamic> section1 = homepageres.middleArea;
-    List<dynamic> digitallibrary =
-        homepageres.rightArea.the3.digitalLibrary.list;
-    GlobalLists.homedigitallib = digitallibrary;
-    print(section1);
-    print(section1['1']);
-    setState(() {
-      typewidetofrightsection.add('digital_library');
+        Map<String, dynamic> section1 = homepageres.middleArea;
+        List<dynamic> digitallibrary =
+            homepageres.rightArea.the3.digitalLibrary.list;
+        GlobalLists.homedigitallib = digitallibrary;
+        print(section1);
+        print(section1['1']);
+        setState(() {
+          typewidetofrightsection.add('digital_library');
+          _tabController = new TabController(
+              vsync: this, length: typewidetofrightsection.length);
+          print(typewidetofrightsection);
+        });
+        // for (int i = 0; i < digitallibrary.length; i++) {
+        //   dynamic rightsection = res['Right_area']['${i + 1}'];
+        //   print("TKey: ${rightsection.keys.first}");
+        //   var rightsectioncategoryname = rightsection.keys.first;
 
-      print(typewidetofrightsection);
-    });
-    // for (int i = 0; i < digitallibrary.length; i++) {
-    //   dynamic rightsection = res['Right_area']['${i + 1}'];
-    //   print("TKey: ${rightsection.keys.first}");
-    //   var rightsectioncategoryname = rightsection.keys.first;
+        //   setState(() {
+        //     typewidetofrightsection.add(rightsectioncategoryname);
 
-    //   setState(() {
-    //     typewidetofrightsection.add(rightsectioncategoryname);
+        //     print(typewidetofrightsection);
+        //   });
+        // }
+        List<String> middleareakey = [];
+        section1.keys.forEach((element) {
+          middleareakey.add(element.toString());
+        });
+        print(middleareakey);
+        for (int i = 0; i < section1.length; i++) {
+          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+          //  print(categoryKeys.videos.type);
+          // dynamic section = res['middle_area']['${i + 1}'];
+          // print("TKey: ${section.keys.first}");
+          // var middlecategoryname = section.keys.first;
 
-    //     print(typewidetofrightsection);
-    //   });
-    // }
+          dynamic section = res['middle_area'][middleareakey[i]];
+          print("TKey: ${section.keys.first}");
+          var middlecategoryname = section.keys.first;
 
-    for (int i = 0; i < section1.length; i++) {
-      //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-      //  print(categoryKeys.videos.type);
-      dynamic section = res['middle_area']['${i + 1}'];
-      print("TKey: ${section.keys.first}");
-      var middlecategoryname = section.keys.first;
+          setState(() {
+            typewidet.add(middlecategoryname);
 
-      setState(() {
-        typewidet.add(middlecategoryname);
+            print(typewidet);
+          });
+          if (middlecategoryname.toString().toLowerCase() ==
+              "Videos".toLowerCase()) {
+            GlobalLists.homevideolist =
+                homepageres.middleArea[middleareakey[i]].videos.list;
+            print(GlobalLists.homevideolist.length);
+          } else if (middlecategoryname.toString().toLowerCase() ==
+              "content".toLowerCase()) {
+            GlobalLists.homecontentlist =
+                homepageres.middleArea[middleareakey[i]].content.list;
+            print(GlobalLists.homecontentlist.length);
+          } else if (middlecategoryname.toString().toLowerCase() ==
+              "gallery".toLowerCase()) {
+            GlobalLists.homegallerybaseurl =
+                homepageres.middleArea[middleareakey[i]].gallery.baseUrl;
+            GlobalLists.homegallerylist =
+                homepageres.middleArea[middleareakey[i]].gallery.list;
+            print(GlobalLists.homegallerylist.length);
+          }
+        }
+        // Future<void> _launchInWebViewWithJavaScript(String url) async {
+        //   if (await canLaunch(url)) {
+        //     await launch(
+        //       url,
+        //       forceSafariVC: true,
+        //       forceWebView: true,
+        //       enableJavaScript: true,
+        //     );
+        //   } else {
+        //     throw 'Could not launch $url';
+        //   }
+        // }
+        ///////right section
+        // for (int i = 0; i < lastsection.length; i++) {
+        //   //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+        //   //  print(categoryKeys.videos.type);
+        //   dynamic rightsection = res['Right_area']['${i + 1}'];
+        //   print("TKey: ${rightsection.keys.first}");
+        //   var rightsectioncategoryname = rightsection.keys.first;
 
-        print(typewidet);
-      });
-      if (middlecategoryname.toString().toLowerCase() ==
-          "Videos".toLowerCase()) {
-        GlobalLists.homevideolist =
-            homepageres.middleArea['${i + 1}'].videos.list;
-        print(GlobalLists.homevideolist.length);
-      } else if (middlecategoryname.toString().toLowerCase() ==
-          "content".toLowerCase()) {
-        GlobalLists.homecontentlist =
-            homepageres.middleArea['${i + 1}'].content.list;
-        print(GlobalLists.homecontentlist.length);
-      } else if (middlecategoryname.toString().toLowerCase() ==
-          "gallery".toLowerCase()) {
-        GlobalLists.homegallerybaseurl =
-            homepageres.middleArea['${i + 1}'].gallery.baseUrl;
-        GlobalLists.homegallerylist =
-            homepageres.middleArea['${i + 1}'].gallery.list;
-        print(GlobalLists.homegallerylist.length);
-      }
-    }
-    Future<void> _launchInWebViewWithJavaScript(String url) async {
-      if (await canLaunch(url)) {
-        await launch(
-          url,
-          forceSafariVC: true,
-          forceWebView: true,
-          enableJavaScript: true,
-        );
+        //   setState(() {
+        //     typewidetofrightsection.add(rightsectioncategoryname);
+
+        //     print(typewidetofrightsection);
+        //   });
+
+        //   if (rightsectioncategoryname.toString().toLowerCase() ==
+        //       "call_for_app".toLowerCase()) {
+        //     GlobalLists.homecallforapp =
+        //         homepageres.rightArea['${i + 1}'].callForApp.list;
+        //     GlobalLists.homeCallForAppBaseURL =
+        //         homepageres.rightArea['${i + 1}'].callForApp.baseUrl;
+        //     print(GlobalLists.homecallforapp.length);
+        //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
+        //       "mmtm".toLowerCase()) {
+        //     GlobalLists.homemmtm = homepageres.rightArea['${i + 1}'].mmtm.list;
+        //     print(GlobalLists.homemmtm.length);
+        //     GlobalLists.homeMMTMBaseURL =
+        //         homepageres.rightArea['${i + 1}'].mmtm.baseUrl;
+        //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
+        //       "digital_library".toLowerCase()) {
+        //     GlobalLists.homedigitallib =
+        //         homepageres.rightArea['${i + 1}'].digitalLibrary.list;
+        //     GlobalLists.homeDigitalLibraryBaseURL =
+        //         homepageres.rightArea['${i + 1}'].digitalLibrary.baseUrl;
+        //     print(GlobalLists.homedigitallib.length);
+        //   }
+        // }
+
+        setState(() {
+          isMiddleSectionLoaded = true;
+          isrightSectionLoaded = true;
+        });
+
+        return response;
       } else {
-        throw 'Could not launch $url';
+        _tabController = new TabController(vsync: this, length: 0);
+        isMiddleSectionLoaded = true;
+
+        isrightSectionLoaded = true;
+        ShowDialogs.showToast(GlobalLists.serverresp);
       }
-    }
-    ///////right section
-    // for (int i = 0; i < lastsection.length; i++) {
-    //   //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-    //   //  print(categoryKeys.videos.type);
-    //   dynamic rightsection = res['Right_area']['${i + 1}'];
-    //   print("TKey: ${rightsection.keys.first}");
-    //   var rightsectioncategoryname = rightsection.keys.first;
-
-    //   setState(() {
-    //     typewidetofrightsection.add(rightsectioncategoryname);
-
-    //     print(typewidetofrightsection);
-    //   });
-
-    //   if (rightsectioncategoryname.toString().toLowerCase() ==
-    //       "call_for_app".toLowerCase()) {
-    //     GlobalLists.homecallforapp =
-    //         homepageres.rightArea['${i + 1}'].callForApp.list;
-    //     GlobalLists.homeCallForAppBaseURL =
-    //         homepageres.rightArea['${i + 1}'].callForApp.baseUrl;
-    //     print(GlobalLists.homecallforapp.length);
-    //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
-    //       "mmtm".toLowerCase()) {
-    //     GlobalLists.homemmtm = homepageres.rightArea['${i + 1}'].mmtm.list;
-    //     print(GlobalLists.homemmtm.length);
-    //     GlobalLists.homeMMTMBaseURL =
-    //         homepageres.rightArea['${i + 1}'].mmtm.baseUrl;
-    //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
-    //       "digital_library".toLowerCase()) {
-    //     GlobalLists.homedigitallib =
-    //         homepageres.rightArea['${i + 1}'].digitalLibrary.list;
-    //     GlobalLists.homeDigitalLibraryBaseURL =
-    //         homepageres.rightArea['${i + 1}'].digitalLibrary.baseUrl;
-    //     print(GlobalLists.homedigitallib.length);
-    //   }
-    // }
-
-    setState(() {
+    } else {
+      _tabController = new TabController(vsync: this, length: 0);
       isMiddleSectionLoaded = true;
-      isrightSectionLoaded = true;
-    });
 
-    return response;
+      isrightSectionLoaded = true;
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 
   getawarddetail(String pageurl) async {
