@@ -32,7 +32,7 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
   @override
   void initState() {
     super.initState();
-    getMerckprogramTestimonial();
+    //  getMerckprogramTestimonial();
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -138,38 +138,38 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
         ));
   }
 
-  getMerckprogramTestimonial() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
+  // getMerckprogramTestimonial() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
 
-    if (status1) {
-      ShowDialogs.showLoadingDialog(context, _keyLoader);
+  //   if (status1) {
+  //     ShowDialogs.showLoadingDialog(context, _keyLoader);
 
-      APIManager().apiRequest(
-        context,
-        API.testiomonailpro,
-        (response) async {
-          TestimonialprogramResponse resp = response;
-          print(response);
-          print('Resp : $resp');
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.testiomonailpro,
+  //       (response) async {
+  //         TestimonialprogramResponse resp = response;
+  //         print(response);
+  //         print('Resp : $resp');
 
-          Navigator.of(_keyLoader.currentContext).pop();
+  //         Navigator.of(_keyLoader.currentContext).pop();
 
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.testimonialprolist = resp.list;
-              GlobalLists.testimonialprobaseurl = resp.baseUrl;
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
+  //         if (resp.success == "True") {
+  //           setState(() {
+  //             GlobalLists.testimonialprolist = resp.list;
+  //             GlobalLists.testimonialprobaseurl = resp.baseUrl;
+  //           });
+  //         } else {
+  //           ShowDialogs.showToast(resp.msg);
+  //         }
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
 }

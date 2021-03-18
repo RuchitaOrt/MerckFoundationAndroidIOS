@@ -12,6 +12,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 
 import 'package:merckfoundation22dec/screens/ourpartner/ourPartners.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/whatwedo/dataprivacy.dart';
 import 'package:merckfoundation22dec/whatwedo/legaldisclaimer.dart';
 import 'package:merckfoundation22dec/whatwedo/ouractivities.dart';
@@ -451,7 +452,9 @@ class _AppDrawerState extends State<AppDrawer> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        MerckFoundationMedia()));
+                                        MerckFoundationMedia(
+                                          apiurl: API.merckfoundationinmedia,
+                                        )));
 
                             // print('ontap');
                           },

@@ -199,79 +199,79 @@ class OurActivityState extends State<OurActivity> {
                                       SizedBox(
                                         height: 7,
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 0),
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              width: 85,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.amber,
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)),
-                                              child: Center(
-                                                child: FormLabel(
-                                                  text: 'Portuguese',
-                                                  fontSize:
-                                                      ResponsiveFlutter.of(
-                                                              context)
-                                                          .fontSize(1.8),
-                                                  labelColor:
-                                                      Customcolor.text_darkblue,
-                                                  fontweight: FontWeight.w400,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 4,
-                                            ),
-                                            Container(
-                                              width: 60,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.amber,
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)),
-                                              child: Center(
-                                                child: FormLabel(
-                                                  text: 'French',
-                                                  fontSize:
-                                                      ResponsiveFlutter.of(
-                                                              context)
-                                                          .fontSize(1.8),
-                                                  labelColor:
-                                                      Customcolor.text_darkblue,
-                                                  fontweight: FontWeight.w400,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 4,
-                                            ),
-                                            Container(
-                                              width: 70,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.amber,
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)),
-                                              child: Center(
-                                                child: FormLabel(
-                                                  text: 'English',
-                                                  fontSize:
-                                                      ResponsiveFlutter.of(
-                                                              context)
-                                                          .fontSize(1.8),
-                                                  labelColor:
-                                                      Customcolor.text_darkblue,
-                                                  fontweight: FontWeight.w400,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )
+                                      // Padding(
+                                      //   padding: const EdgeInsets.only(left: 0),
+                                      //   child: Row(
+                                      //     children: [
+                                      //       Container(
+                                      //         width: 85,
+                                      //         height: 30,
+                                      //         decoration: BoxDecoration(
+                                      //             color: Colors.amber,
+                                      //             borderRadius:
+                                      //                 BorderRadius.circular(5)),
+                                      //         child: Center(
+                                      //           child: FormLabel(
+                                      //             text: 'Portuguese',
+                                      //             fontSize:
+                                      //                 ResponsiveFlutter.of(
+                                      //                         context)
+                                      //                     .fontSize(1.8),
+                                      //             labelColor:
+                                      //                 Customcolor.text_darkblue,
+                                      //             fontweight: FontWeight.w400,
+                                      //           ),
+                                      //         ),
+                                      //       ),
+                                      //       SizedBox(
+                                      //         width: 4,
+                                      //       ),
+                                      //       Container(
+                                      //         width: 60,
+                                      //         height: 30,
+                                      //         decoration: BoxDecoration(
+                                      //             color: Colors.amber,
+                                      //             borderRadius:
+                                      //                 BorderRadius.circular(5)),
+                                      //         child: Center(
+                                      //           child: FormLabel(
+                                      //             text: 'French',
+                                      //             fontSize:
+                                      //                 ResponsiveFlutter.of(
+                                      //                         context)
+                                      //                     .fontSize(1.8),
+                                      //             labelColor:
+                                      //                 Customcolor.text_darkblue,
+                                      //             fontweight: FontWeight.w400,
+                                      //           ),
+                                      //         ),
+                                      //       ),
+                                      //       SizedBox(
+                                      //         width: 4,
+                                      //       ),
+                                      //       Container(
+                                      //         width: 70,
+                                      //         height: 30,
+                                      //         decoration: BoxDecoration(
+                                      //             color: Colors.amber,
+                                      //             borderRadius:
+                                      //                 BorderRadius.circular(5)),
+                                      //         child: Center(
+                                      //           child: FormLabel(
+                                      //             text: 'English',
+                                      //             fontSize:
+                                      //                 ResponsiveFlutter.of(
+                                      //                         context)
+                                      //                     .fontSize(1.8),
+                                      //             labelColor:
+                                      //                 Customcolor.text_darkblue,
+                                      //             fontweight: FontWeight.w400,
+                                      //           ),
+                                      //         ),
+                                      //       ),
+                                      //     ],
+                                      //   ),
+                                      // )
                                     ],
                                   ),
                                 ],

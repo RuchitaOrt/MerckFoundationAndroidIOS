@@ -101,7 +101,12 @@ class OurpatnerState extends State<Ourpatner> {
                             minWidth: 38,
                             height: 40,
                             onPressed: () {
-                              getOurPartnerData();
+                              // getOurPartnerData();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Ourpatnerdetail()));
                             },
                           ),
                         ),
@@ -151,46 +156,6 @@ class OurpatnerState extends State<Ourpatner> {
           if (resp.success == "True") {
             setState(() {
               GlobalLists.ourPartnerObjectives = resp.data.list;
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
-
-  getOurPartnerData() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
-
-    if (status1) {
-      ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-      APIManager().apiRequest(
-        context,
-        API.ourPartner,
-        (response) async {
-          OurpartnerResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-          GlobalLists.ourPartnerList.clear();
-          Navigator.of(_keyLoader.currentContext).pop();
-
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.ourPartnerList = resp.data.list;
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => Ourpatnerdetail(
-                            baseUrl: resp.baseUrl,
-                          )));
             });
           } else {
             ShowDialogs.showToast(resp.msg);

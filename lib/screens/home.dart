@@ -10,6 +10,9 @@ import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:http/http.dart' as http;
 import 'package:marquee/marquee.dart';
+import 'package:merckfoundation22dec/GalleryProgram.dart';
+import 'package:merckfoundation22dec/ViewmoremmtmAmbassadar.dart';
+import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/model/HomepageResponse.dart';
 import 'package:merckfoundation22dec/ouraward.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -938,7 +941,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           padding: const EdgeInsets.only(top: 10),
                           child: Center(
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            WatchDigitalLibrary(
+                                              apiurl: API.digitalhome,
+                                            )));
+                              },
                               child: Container(
                                 width: 120,
                                 height: 40,
@@ -1071,7 +1082,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           padding: const EdgeInsets.only(top: 10),
                           child: Center(
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            ViewmoremmtmAmbassadar(
+                                              apiurl: API.watchhomemmtm,
+                                            )));
+                              },
                               child: Container(
                                 width: 120,
                                 height: 40,

@@ -5,6 +5,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 
 import 'package:merckfoundation22dec/model/LocalsongResponde.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/watchmorevideolibray.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -20,8 +21,6 @@ import 'package:responsive_flutter/responsive_flutter.dart';
 import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 
 class LocalSongsandChildrenStories extends StatefulWidget {
   @override
@@ -428,10 +427,17 @@ class LocalSongsandChildrenStoriesState
               cardTitle: "Our Videos  ",
               btnTitle: "Watch More",
               onbtnTap: () {
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) => Videolibrary()));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => Videolibrary()));
+                        builder: (BuildContext context) =>
+                            WatchmoreVideolibrary(
+                              apiurl: API.watchvideolocalsong,
+                            )));
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",

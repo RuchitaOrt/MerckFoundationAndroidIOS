@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/model/getNewsRelease.dart';
 import 'package:merckfoundation22dec/model/merckFoundationMediaResp.dart';
+import 'package:merckfoundation22dec/model/viewmoreMediaResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -13,23 +14,24 @@ import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
-import 'package:merckfoundation22dec/model/merckFoundationMediaResp.dart'
-    as merckMediaresp;
 
-class MerckFoundationMedia extends StatefulWidget {
+import 'package:merckfoundation22dec/model/viewmoreMediaResponse.dart'
+    as viewmmtmedia;
+
+class ViewmoreMedia extends StatefulWidget {
   final dynamic apiurl;
 
-  const MerckFoundationMedia({Key key, this.apiurl}) : super(key: key);
+  const ViewmoreMedia({Key key, this.apiurl}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return MerckFoundationMediaState();
+    return ViewMediaState();
   }
 }
 
-class MerckFoundationMediaState extends State<MerckFoundationMedia> {
+class ViewMediaState extends State<ViewmoreMedia> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   ScrollController _sc = new ScrollController();
-  MerckinMediaResponse resp;
+  ViewmoremediaResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -37,7 +39,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
   @override
   void initState() {
     // TODO: implement initState
-    GlobalLists.merckinMediaList.clear();
+    GlobalLists.viewmoremedialist.clear();
     getmerckfoundationmediaData(widget.apiurl);
     _sc = new ScrollController()..addListener(_scrollListener);
     super.initState();
@@ -45,7 +47,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
 
   void _scrollListener() {
     if (_sc.position.extentAfter < 50) {
-      if (!_isLoading && totalcount > GlobalLists.merckinMediaList.length) {
+      if (!_isLoading && totalcount > GlobalLists.viewmoremedialist.length) {
         // getNewsLetteranArticles();
         setState(() {
           _isLoading = true;
@@ -63,14 +65,14 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                 // list = resp.data.list;
                 //totalcount 10
 
-                for (int i = offset; i < totalcount; i++) {
+                for (int i = offset; i < resp.list.length; i++) {
                   setState(() {
-                    GlobalLists.merckinMediaList.add(merckMediaresp.ListElement(
-                        title: resp.data.list[i].title,
-                        id: resp.data.list[i].id,
-                        description: resp.data.list[i].description,
-                        mediaUrl: resp.data.list[i].mediaUrl,
-                        image: resp.data.list[i].image));
+                    GlobalLists.viewmoremedialist.add(viewmmtmedia.ListElement(
+                        title: resp.list[i].title,
+                        id: resp.list[i].id,
+                        description: resp.list[i].description,
+                        mediaUrl: resp.list[i].mediaUrl,
+                        image: resp.list[i].image));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -78,7 +80,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                 }
 
                 offset = totalcount;
-                int remem = resp.data.list.length - totalcount;
+                int remem = resp.list.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -90,7 +92,6 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                 Constantstring.baseUrl = resp.baseUrl;
                 print("-----------------------------------");
                 print(totalcount);
-                print(GlobalLists.newsReleaseList.length);
               });
 
               setState(() {
@@ -142,11 +143,11 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
         physics: ScrollPhysics(),
         controller: _sc,
         children: [
-          (GlobalLists.merckinMediaList.length == 0 && _isLoading)
+          (GlobalLists.viewmoremedialist.length == 0 && _isLoading)
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : (GlobalLists.merckinMediaList.length == 0 &&
+              : (GlobalLists.viewmoremedialist.length == 0 &&
                       _isLoading == false)
                   ? Center(
                       child: Container(
@@ -154,11 +155,11 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                       ),
                     )
                   : ListView.builder(
-                      itemCount: GlobalLists.merckinMediaList.length,
+                      itemCount: GlobalLists.viewmoremedialist.length,
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
-                        if (GlobalLists.merckinMediaList.length - 1 == index &&
+                        if (GlobalLists.viewmoremedialist.length - 1 == index &&
                             _isLoading) {
                           return Center(
                             child: CircularProgressIndicator(),
@@ -175,7 +176,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                                         builder: (BuildContext context) =>
                                             VideoPlayer(
                                               videoUrl: GlobalLists
-                                                  .merckinMediaList[index]
+                                                  .viewmoremedialist[index]
                                                   .mediaUrl,
                                             )));
                                 // _launchURL(
@@ -203,7 +204,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                                                   'assets/newImages/placeholder_3.jpg',
                                               image: Constantstring.baseUrl +
                                                   GlobalLists
-                                                      .merckinMediaList[index]
+                                                      .viewmoremedialist[index]
                                                       .image,
                                               fit: BoxFit.cover,
                                               height: 80,
@@ -216,7 +217,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                                           Expanded(
                                             child: Text(
                                               GlobalLists
-                                                  .merckinMediaList[index]
+                                                  .viewmoremedialist[index]
                                                   .title,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
@@ -281,22 +282,38 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
             setState(() {
               // GlobalLists.merckinMediaList = resp.data.list;
               Constantstring.baseUrl = resp.baseUrl;
-              for (int i = offset; i < totalcount; i++) {
-                setState(() {
-                  GlobalLists.merckinMediaList.add(merckMediaresp.ListElement(
-                      title: resp.data.list[i].title,
-                      id: resp.data.list[i].id,
-                      description: resp.data.list[i].description,
-                      mediaUrl: resp.data.list[i].mediaUrl,
-                      image: resp.data.list[i].image));
-                });
+              if (resp.list.length < 10) {
+                for (int i = offset; i < resp.list.length; i++) {
+                  setState(() {
+                    GlobalLists.viewmoremedialist.add(viewmmtmedia.ListElement(
+                        title: resp.list[i].title,
+                        id: resp.list[i].id,
+                        description: resp.list[i].description,
+                        mediaUrl: resp.list[i].mediaUrl,
+                        image: resp.list[i].image));
+                  });
 
-                // GlobalLists.newsLettersList.add(resp.data.list);
+                  // GlobalLists.newsLettersList.add(resp.data.list);
 
+                }
+              } else {
+                for (int i = offset; i < totalcount; i++) {
+                  setState(() {
+                    GlobalLists.viewmoremedialist.add(viewmmtmedia.ListElement(
+                        title: resp.list[i].title,
+                        id: resp.list[i].id,
+                        description: resp.list[i].description,
+                        mediaUrl: resp.list[i].mediaUrl,
+                        image: resp.list[i].image));
+                  });
+
+                  // GlobalLists.newsLettersList.add(resp.data.list);
+
+                }
               }
 
               offset = totalcount;
-              int remem = resp.data.list.length - totalcount;
+              int remem = resp.list.length - totalcount;
               print("remem");
               print(remem);
               if (remem < 10) {
@@ -308,7 +325,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
               Constantstring.baseUrl = resp.baseUrl;
               print("-----------------------------------");
               print(totalcount);
-              print(GlobalLists.merckinMediaList.length);
+              // print(GlobalLists.merckinMediaList.length);
             });
 
             setState(() {

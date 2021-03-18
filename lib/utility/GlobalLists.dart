@@ -1,4 +1,5 @@
 import 'package:merckfoundation22dec/model/dataprivacy.dart' as dataPrivacy;
+import 'package:merckfoundation22dec/model/digitalProgramResponse.dart';
 import 'package:merckfoundation22dec/model/legaldisclaimerResponse.dart'
     as legalDisclaimer;
 import 'package:merckfoundation22dec/model/ourmissionResponse.dart'
@@ -87,6 +88,12 @@ import 'package:merckfoundation22dec/model/searchmodel/SearchvideocategoryRespon
     as searchvideo;
 import 'package:merckfoundation22dec/model/searchmodel/SearchnewreleasecategoryResponse.dart'
     as searchnewrelease;
+import 'package:merckfoundation22dec/model/videoProgramResponse.dart'
+    as watchvideo;
+import 'package:merckfoundation22dec/model/viewmoreMMTMResponse.dart'
+    as viewmmtmrightsec;
+import 'package:merckfoundation22dec/model/viewmoreMediaResponse.dart'
+    as viewmmtmedia;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -103,7 +110,7 @@ class GlobalLists {
 
   //media event
   static List<videolibrayResp.ListElement> videolibrary = [];
-
+  static List<watchvideo.ListElement> watchvideolibrary = [];
   static List<storiesResp.ListElement> storiesList = [];
 
   static List<newsArticles.ListElement> newsLettersList = [];
@@ -217,5 +224,14 @@ class GlobalLists {
   //ambasadar
   static List<dynamic> ambasdarslist = [];
   static String ambasdarsbaseurl = "";
+
+//digitallib view more
+  static List<ListClass> digitallibraryviewlist = [];
+
   static String serverresp = "Server Not Responding";
+  //viewmore mmtm rightsection
+  static List<viewmmtmrightsec.ListElement> viewmoremmtmlist = [];
+
+  //viewmore media
+  static List<viewmmtmedia.ListElement> viewmoremedialist = [];
 }

@@ -49,7 +49,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
   int _current1 = 0;
   List _productsAvailable = [];
   bool isMiddleSectionLoaded = false;
-  bool isrightSectionLoaded = false;
+//  bool isrightSectionLoaded = false;
   bool isbottomSectionLoaded = false;
   List<Widget> listofwiget = [];
   List<Widget> listoftabwiget = [];
@@ -144,49 +144,49 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                 SizedBox(
                   height: 8,
                 ),
-                Visibility(
-                  visible: isrightSectionLoaded,
-                  replacement: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CircularProgressIndicator()
-                    ],
-                  ),
-                  child: Container(
-                    height: 450,
-                    //color: Colors.amber,
-                    child: Column(
-                      children: [
-                        TabBar(
-                          isScrollable: true,
-                          unselectedLabelColor: Colors.grey,
-                          labelColor: Colors.black,
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          indicator: new BubbleTabIndicator(
-                            indicatorHeight: 35.0,
-                            indicatorRadius: 5,
-                            indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
-                            tabBarIndicatorSize: TabBarIndicatorSize.tab,
-                          ),
-                          tabs: tabs,
-                          controller: _tabController,
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: TabBarView(
-                              physics: ScrollPhysics(),
-                              controller: _tabController,
-                              children: tablist()),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
+                // Visibility(
+                //   visible: isrightSectionLoaded,
+                //   replacement: Column(
+                //     children: [
+                //       SizedBox(
+                //         height: 20,
+                //       ),
+                //       CircularProgressIndicator()
+                //     ],
+                //   ),
+                //   child: Container(
+                //     height: 450,
+                //     //color: Colors.amber,
+                //     child: Column(
+                //       children: [
+                //         TabBar(
+                //           isScrollable: true,
+                //           unselectedLabelColor: Colors.grey,
+                //           labelColor: Colors.black,
+                //           indicatorSize: TabBarIndicatorSize.tab,
+                //           indicator: new BubbleTabIndicator(
+                //             indicatorHeight: 35.0,
+                //             indicatorRadius: 5,
+                //             indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
+                //             tabBarIndicatorSize: TabBarIndicatorSize.tab,
+                //           ),
+                //           tabs: tabs,
+                //           controller: _tabController,
+                //         ),
+                //         Expanded(
+                //           flex: 3,
+                //           child: TabBarView(
+                //               physics: ScrollPhysics(),
+                //               controller: _tabController,
+                //               children: tablist()),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 10,
+                // ),
               ])),
     );
   }
@@ -1039,6 +1039,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                 cardImage: "assets/newImages/mqdefault.png",
                 cardTitle: "Alumini Testimonials  ",
                 titleColor: Customcolor.pink_col,
+                showviewmore: 1,
                 onbtnTap: () {
                   // Navigator.push(
                   //     context,
@@ -1664,7 +1665,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
 
         setState(() {
           isMiddleSectionLoaded = true;
-          isrightSectionLoaded = true;
+          //   isrightSectionLoaded = true;
           isbottomSectionLoaded = true;
         });
 
@@ -1672,14 +1673,14 @@ class OurProgramsDetailsState extends State<MerckFellowship>
       } else {
         _tabController = new TabController(vsync: this, length: 0);
         isMiddleSectionLoaded = true;
-        isrightSectionLoaded = true;
+        //  isrightSectionLoaded = true;
         isbottomSectionLoaded = true;
         ShowDialogs.showToast(GlobalLists.serverresp);
       }
     } else {
       _tabController = new TabController(vsync: this, length: 0);
       isMiddleSectionLoaded = true;
-      isrightSectionLoaded = true;
+      // isrightSectionLoaded = true;
       isbottomSectionLoaded = true;
       ShowDialogs.showToast("Please check internet connection");
     }

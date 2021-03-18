@@ -1,36 +1,38 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/model/digitalProgramResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:merckfoundation22dec/utility/APIManager.dart';
-import 'package:merckfoundation22dec/utility/GlobalLists.dart';
-import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
-import 'package:merckfoundation22dec/model/GalleryProgram.dart';
-import 'dart:convert';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
-class GalleryProgram extends StatefulWidget {
-  final List<dynamic> photosList;
-
-  final String baseURL;
-  final dynamic apiurl;
+class WatchDigitalLibrary extends StatefulWidget {
   String appBarTitle;
+  final dynamic apiurl;
 
-  GalleryProgram({Key key, this.photosList, this.baseURL, this.apiurl})
-      : super(key: key);
+  WatchDigitalLibrary({
+    Key key,
+    this.apiurl,
+  }) : super(key: key);
   @override
-  _GalleryProgramState createState() => _GalleryProgramState();
+  _DigitalLibraryState createState() => _DigitalLibraryState();
 }
 
-class _GalleryProgramState extends State<GalleryProgram> {
+class _DigitalLibraryState extends State<WatchDigitalLibrary> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+  DigitalProgramResponse resp;
+
   ScrollController _sc = new ScrollController();
-  GalleryProgramResponse resp;
+
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -38,76 +40,11 @@ class _GalleryProgramState extends State<GalleryProgram> {
   @override
   void initState() {
     // TODO: implement initState
-    GlobalLists.programgallerylist.clear();
-    getprogramgallery(widget.apiurl);
-    _sc = new ScrollController()..addListener(_scrollListener);
+
     super.initState();
-  }
-
-  void _scrollListener() {
-    //   print("scroll");
-    if (_sc.position.extentAfter < 50) {
-      if (!_isLoading && totalcount > GlobalLists.programgallerylist.length) {
-        // getNewsLetteranArticles();
-        setState(() {
-          _isLoading = true;
-        });
-        Future.delayed(const Duration(seconds: 2), () {
-// Here you can write your code
-
-          setState(() {
-            // Here you can write your code for open new view
-            _isLoading = false;
-            if (resp.success == "True".toLowerCase()) {
-              setState(() {
-                print("here");
-                // list = new List();
-                // list = resp.data.list;
-                //totalcount 10
-
-                for (int i = offset; i < totalcount; i++) {
-                  setState(() {
-                    GlobalLists.programgallerylist.add(ListElement(
-                      id: resp.list[i].id,
-                      photo: resp.list[i].photo,
-                      photoCategoryId: resp.list[i].photoCategoryId,
-                      photoDescription: resp.list[i].photoDescription,
-                    ));
-                  });
-
-                  // GlobalLists.newsLettersList.add(resp.data.list);
-
-                }
-
-                offset = totalcount;
-                int remem = resp.list.length - totalcount;
-                print("remem");
-                print(remem);
-                if (remem < 10) {
-                  totalcount = totalcount + remem;
-                } else {
-                  totalcount = totalcount + 10;
-                }
-                // // GlobalLists.newsLettersList = resp.data.list;
-                // Constantstring.baseUrl = resp.baseUrl;
-                print("-----------------------------------");
-                print(totalcount);
-                //    print(GlobalLists.newsLettersList.length);
-              });
-
-              setState(() {
-                _isLoading = false;
-              });
-            } else {
-              ShowDialogs.showToast(resp.msg);
-              setState(() {
-                _isLoading = false;
-              });
-            }
-          });
-        });
-      }
-    }
+    GlobalLists.digitallibraryviewlist.clear();
+    getprogramdigitallib(widget.apiurl);
+    _sc = new ScrollController()..addListener(_scrollListener);
   }
 
   @override
@@ -123,7 +60,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                       )));
         },
         index: 1,
-        title: "Photo Gallery",
+        title: "Digital Library",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -135,11 +72,11 @@ class _GalleryProgramState extends State<GalleryProgram> {
         shrinkWrap: true,
         controller: _sc,
         children: [
-          (GlobalLists.programgallerylist.length == 0 && _isLoading)
+          (GlobalLists.digitallibraryviewlist.length == 0 && _isLoading)
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : (GlobalLists.programgallerylist.length == 0 &&
+              : (GlobalLists.digitallibraryviewlist.length == 0 &&
                       _isLoading == false)
                   ? Center(
                       child: Container(
@@ -155,8 +92,8 @@ class _GalleryProgramState extends State<GalleryProgram> {
                       crossAxisCount: 2,
                       childAspectRatio: Platform.isIOS ? 0.86 : 0.8,
                       children: List.generate(
-                          GlobalLists.programgallerylist.length, (index) {
-                        if (GlobalLists.programgallerylist.length - 1 ==
+                          GlobalLists.digitallibraryviewlist.length, (index) {
+                        if (GlobalLists.digitallibraryviewlist.length - 1 ==
                                 index &&
                             _isLoading) {
                           return Center(
@@ -174,15 +111,11 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                 ),
                                 child: GestureDetector(
                                   onTap: () {
-                                    ShowDialogs.showImageDialog(
-                                      context: context,
-                                      image: GlobalLists.programgallerybaseurl +
-                                          GlobalLists
-                                              .programgallerylist[index].photo,
-                                      description: GlobalLists
-                                          .programgallerylist[index]
-                                          .photoDescription,
-                                    );
+                                    _launchURL(GlobalLists
+                                            .programdigitalcontentbaseurl +
+                                        GlobalLists
+                                            .digitallibraryviewlist[index]
+                                            .document);
                                   },
                                   child: Container(
                                     color: Colors.transparent,
@@ -208,11 +141,11 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                               // ),
                                               image: new DecorationImage(
                                                 image: new NetworkImage(GlobalLists
-                                                        .programgallerybaseurl +
+                                                        .programdigitalcontentbaseurl +
                                                     GlobalLists
-                                                        .programgallerylist[
+                                                        .digitallibraryviewlist[
                                                             index]
-                                                        .photo),
+                                                        .image),
                                                 fit: BoxFit.contain,
                                               ),
                                             ),
@@ -222,8 +155,8 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                           padding: const EdgeInsets.all(4.0),
                                           child: Text(
                                             GlobalLists
-                                                .programgallerylist[index]
-                                                .photoDescription,
+                                                .digitallibraryviewlist[index]
+                                                .title,
                                             textAlign: TextAlign.center,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
@@ -249,7 +182,98 @@ class _GalleryProgramState extends State<GalleryProgram> {
     );
   }
 
-  getprogramgallery(dynamic api) async {
+  void _scrollListener() {
+    //   print("scroll");
+    if (_sc.position.extentAfter < 50) {
+      if (!_isLoading &&
+          totalcount > GlobalLists.digitallibraryviewlist.length) {
+        // getNewsLetteranArticles();
+        setState(() {
+          _isLoading = true;
+        });
+        Future.delayed(const Duration(seconds: 2), () {
+// Here you can write your code
+
+          setState(() {
+            // Here you can write your code for open new view
+            _isLoading = false;
+            if (resp.success == "True") {
+              setState(() {
+                print("here");
+                // list = new List();
+                // list = resp.data.list;
+                //totalcount 10
+                if (resp.list.length < 10) {
+                  for (int i = offset; i < resp.list.length; i++) {
+                    setState(() {
+                      GlobalLists.digitallibraryviewlist.add(ListClass(
+                          id: resp.list[i].id,
+                          categoryType: resp.list[i].categoryType,
+                          title: resp.list[i].title,
+                          image: resp.list[i].image,
+                          document: resp.list[i].document));
+                    });
+
+                    // GlobalLists.newsLettersList.add(resp.data.list);
+
+                  }
+                } else {
+                  for (int i = offset; i < totalcount; i++) {
+                    setState(() {
+                      GlobalLists.digitallibraryviewlist.add(ListClass(
+                          id: resp.list[i].id,
+                          categoryType: resp.list[i].categoryType,
+                          title: resp.list[i].title,
+                          image: resp.list[i].image,
+                          document: resp.list[i].document));
+                    });
+
+                    // GlobalLists.newsLettersList.add(resp.data.list);
+
+                  }
+                }
+
+                offset = totalcount;
+                int remem = resp.list.length - totalcount;
+                print("remem");
+                print(remem);
+                if (remem < 10) {
+                  totalcount = totalcount + remem;
+                } else {
+                  totalcount = totalcount + 10;
+                }
+                // // GlobalLists.newsLettersList = resp.data.list;
+                GlobalLists.programdigitalcontentbaseurl = resp.baseUrl;
+                print("-----------------------------------");
+                print(totalcount);
+                //    print(GlobalLists.newsLettersList.length);
+              });
+
+              setState(() {
+                _isLoading = false;
+              });
+            } else {
+              ShowDialogs.showToast(resp.msg);
+              setState(() {
+                _isLoading = false;
+              });
+            }
+          });
+        });
+      }
+    }
+  }
+
+  _launchURL(String urlIs) async {
+    var url = urlIs;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  getprogramdigitallib(dynamic api) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
     if (status1) {
       print(api);
@@ -261,31 +285,31 @@ class _GalleryProgramState extends State<GalleryProgram> {
         print(response);
         print('Resp : $resp');
         // Navigator.of(_keyLoader.currentContext).pop();
-        if (resp.success == "True".toLowerCase()) {
+        if (resp.success == "True") {
           print(resp.list);
-          GlobalLists.programgallerybaseurl = resp.baseUrl;
+          GlobalLists.programdigitalcontentbaseurl = resp.baseUrl;
           setState(() {
             print("here");
             if (resp.list.length < 10) {
               for (int i = offset; i < resp.list.length; i++) {
                 setState(() {
-                  GlobalLists.programgallerylist.add(ListElement(
-                    id: resp.list[i].id,
-                    photo: resp.list[i].photo,
-                    photoCategoryId: resp.list[i].photoCategoryId,
-                    photoDescription: resp.list[i].photoDescription,
-                  ));
+                  GlobalLists.digitallibraryviewlist.add(ListClass(
+                      id: resp.list[i].id,
+                      categoryType: resp.list[i].categoryType,
+                      title: resp.list[i].title,
+                      image: resp.list[i].image,
+                      document: resp.list[i].document));
                 });
               }
             } else {
               for (int i = offset; i < totalcount; i++) {
                 setState(() {
-                  GlobalLists.programgallerylist.add(ListElement(
-                    id: resp.list[i].id,
-                    photo: resp.list[i].photo,
-                    photoCategoryId: resp.list[i].photoCategoryId,
-                    photoDescription: resp.list[i].photoDescription,
-                  ));
+                  GlobalLists.digitallibraryviewlist.add(ListClass(
+                      id: resp.list[i].id,
+                      categoryType: resp.list[i].categoryType,
+                      title: resp.list[i].title,
+                      image: resp.list[i].image,
+                      document: resp.list[i].document));
                 });
               }
             }
@@ -301,7 +325,6 @@ class _GalleryProgramState extends State<GalleryProgram> {
             }
 
             print(totalcount);
-            print(GlobalLists.programgallerylist.length);
           });
 
           setState(() {

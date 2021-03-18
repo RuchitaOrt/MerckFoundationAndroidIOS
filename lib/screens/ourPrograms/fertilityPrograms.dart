@@ -22,6 +22,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:merckfoundation22dec/model/Fertilityembrology.dart'
     as fertility;
+import 'package:merckfoundation22dec/screens/watchmorevideolibray.dart';
 
 class MerckFertility extends StatefulWidget {
   @override
@@ -283,10 +284,17 @@ class MerckFertilityState extends State<MerckFertility> {
               cardTitle: "Our Videos  ",
               btnTitle: "Watch More",
               onbtnTap: () {
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) => Videolibrary()));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => Videolibrary()));
+                        builder: (BuildContext context) =>
+                            WatchmoreVideolibrary(
+                              apiurl: API.watchvideofertility,
+                            )));
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",

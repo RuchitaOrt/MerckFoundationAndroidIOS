@@ -5,6 +5,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/watchmorevideolibray.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -275,10 +276,17 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
               cardTitle: "Our Videos  ",
               btnTitle: "Watch More",
               onbtnTap: () {
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) => Videolibrary()));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => Videolibrary()));
+                        builder: (BuildContext context) =>
+                            WatchmoreVideolibrary(
+                              apiurl: API.watchvideoempoweringberna,
+                            )));
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",

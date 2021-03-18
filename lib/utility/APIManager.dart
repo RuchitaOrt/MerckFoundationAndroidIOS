@@ -20,6 +20,7 @@ import 'package:merckfoundation22dec/model/MMTMSlider.dart';
 import 'package:merckfoundation22dec/model/OurawardResponse.dart';
 import 'package:merckfoundation22dec/model/StrategyResponse.dart';
 import 'package:merckfoundation22dec/model/dataprivacy.dart';
+import 'package:merckfoundation22dec/model/digitalProgramResponse.dart';
 import 'package:merckfoundation22dec/model/empoweingbernavideo.dart';
 import 'package:merckfoundation22dec/model/empoweringbernacontentResponse.dart';
 import 'package:merckfoundation22dec/model/getMerckTestimonialResp.dart';
@@ -36,6 +37,9 @@ import 'package:merckfoundation22dec/model/ourPartnerObjectivesResp.dart';
 import 'package:merckfoundation22dec/model/ourPartnerResponse.dart';
 import 'package:merckfoundation22dec/model/ourmissionResponse.dart';
 import 'package:merckfoundation22dec/model/ourpolicy.dart';
+import 'package:merckfoundation22dec/model/videoProgramResponse.dart';
+import 'package:merckfoundation22dec/model/viewmoreMMTMResponse.dart';
+import 'package:merckfoundation22dec/model/viewmoreMediaResponse.dart';
 import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/utility/AppEror.dart';
 import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
@@ -133,7 +137,52 @@ enum API {
   programgalleryfirstladey,
   programgallerystem,
   programgallerysubstain,
-  programgalleryafrica
+  programgalleryafrica,
+
+  //watchmore video
+  watchvideommtm,
+  watchvideocancer,
+  watchvideocapacity,
+  watchvideostem,
+  watchvdeoducation,
+  watchvideofirstlady,
+  watchvideosubstain,
+  watchvideoafrica,
+//subprogram cancer video
+  watchvideoaboutmmtm,
+  watchvideoempoweringberna,
+  watchvideolocalsong,
+  watchvideofertility,
+  //viewmoredigital
+  digitalmmtm,
+  digitalhome,
+  digitalcancer,
+  digitalcapacity,
+  digitalfirstlady,
+  digitalstem,
+  digitaleducting,
+  digitalsubstain,
+  digitalafrica,
+
+  //viewmoremmtm
+  watchprogrammmtm,
+  watchhomemmtm,
+  watchfirstladymmtm,
+
+  //viewmore media section
+  watchmediprogrammmtm,
+  watchmediaprogramcancer,
+
+  //watch more latest update
+  watchmorelatestupmmtm,
+  watchmorelatestupcancer,
+  watchmorelatestupstem,
+  watchmorelatestupafrica,
+
+  //watch more testimonial
+  watchmoretestimonialcapacity,
+  watchmoretestimonialcancer,
+  watchmoretestimonialmmtm
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -455,6 +504,143 @@ class APIManager {
         case API.programgalleryafrica:
           apiPathString = "ProgramGallery/merck-africa-asia-luminary/1";
           break;
+        case API.watchvideommtm:
+          apiPathString = "watch_program_videos/merck-more-than-a-mother/1";
+          break;
+        case API.watchvideocancer:
+          apiPathString = "watch_program_videos/merck-cancer-access-program/1";
+          break;
+        case API.watchvideocapacity:
+          apiPathString =
+              "watch_program_videos/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+          break;
+        case API.watchvideosubstain:
+          apiPathString =
+              "watch_program_videos/merck-foundation-sustainability-initiative/1";
+          break;
+        case API.watchvdeoducation:
+          apiPathString = "watch_program_videos/educating-linda-program/1";
+          break;
+        case API.watchvideofirstlady:
+          apiPathString =
+              "watch_program_videos/merck-foundation-first-ladies-initiative-summit/1";
+          break;
+        case API.watchvideoafrica:
+          apiPathString = "watch_program_videos/merck-africa-asia-luminary/1";
+
+          break;
+        case API.watchvideostem:
+          apiPathString = "watch_program_videos/merck-stem-program/1";
+          break;
+
+        case API.digitalmmtm:
+          apiPathString = "digital_library/merck-more-than-a-mother/1";
+          break;
+        case API.digitalhome:
+          apiPathString = "digital_library/Home/1";
+          break;
+
+        case API.digitalcancer:
+          apiPathString = "digital_library/merck-cancer-access-program/1";
+          break;
+        case API.digitalcapacity:
+          apiPathString =
+              "digital_library/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+          break;
+
+        case API.digitalfirstlady:
+          apiPathString =
+              "digital_library/merck-foundation-first-ladies-initiative-summit/1";
+          break;
+        case API.digitalstem:
+          apiPathString = "digital_library/merck-stem-program/1";
+
+          break;
+        case API.digitaleducting:
+          apiPathString = "digital_library/educating-linda-program/1";
+
+          break;
+        case API.digitalsubstain:
+          apiPathString =
+              "digital_library/merck-foundation-sustainability-initiative/1";
+
+          break;
+        case API.digitalafrica:
+          apiPathString = "digital_library/merck-africa-asia-luminary/1";
+
+          break;
+        case API.watchhomemmtm:
+          apiPathString = "show_mmtm_gallery/home/1";
+
+          break;
+        case API.watchprogrammmtm:
+          apiPathString = "show_mmtm_gallery/merck-more-than-a-mother/1";
+
+          break;
+        case API.watchfirstladymmtm:
+          apiPathString =
+              "show_mmtm_gallery/merck-foundation-first-ladies-initiative-summit/1";
+
+          break;
+        case API.watchmediprogrammmtm:
+          apiPathString = "read_merck_media/merck-more-than-a-mother/1";
+
+          break;
+        case API.watchmediaprogramcancer:
+          apiPathString = "read_merck_media/merck-cancer-access-program/1";
+
+          break;
+        case API.watchmorelatestupmmtm:
+          apiPathString = "read_latest_updates/merck-more-than-a-mother/1";
+
+          break;
+        case API.watchmorelatestupcancer:
+          apiPathString = "read_latest_updates/merck-cancer-access-program/1";
+
+          break;
+        case API.watchmorelatestupstem:
+          apiPathString = "read_latest_updates/merck-stem-program/1";
+
+          break;
+        case API.watchmorelatestupafrica:
+          apiPathString = "read_latest_updates/merck-africa-asia-luminary/1";
+
+          break;
+
+        case API.watchmoretestimonialcancer:
+          apiPathString =
+              "merck_testimonials_list/merck-cancer-access-program/1";
+
+          break;
+        case API.watchmoretestimonialcapacity:
+          apiPathString =
+              "merck_testimonials_list/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+
+          break;
+        case API.watchmoretestimonialmmtm:
+          apiPathString = "merck_testimonials_list/merck-more-than-a-mother/1";
+
+          break;
+
+        case API.watchvideoaboutmmtm:
+          apiPathString =
+              "watch_program_videos/about-merck-more-than-a-mother/1";
+
+          break;
+        case API.watchvideoempoweringberna:
+          apiPathString = "watch_program_videos/empowering-berna/1";
+
+          break;
+        case API.watchvideolocalsong:
+          apiPathString =
+              "watch_program_videos/local-songs-and-children-stories/1";
+
+          break;
+        case API.watchvideofertility:
+          apiPathString =
+              "watch_program_videos/merck-fertility-and-embryology-training-program/1";
+
+          break;
         default:
           apiPathString = "";
       }
@@ -676,6 +862,144 @@ class APIManager {
         case API.programgalleryafrica:
           apiPathString = "ProgramGallery/merck-africa-asia-luminary/1";
           break;
+
+        case API.watchvideommtm:
+          apiPathString = "watch_program_videos/merck-more-than-a-mother/1";
+          break;
+        case API.watchvideocancer:
+          apiPathString = "watch_program_videos/merck-cancer-access-program/1";
+          break;
+        case API.watchvideocapacity:
+          apiPathString =
+              "watch_program_videos/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+          break;
+        case API.watchvideosubstain:
+          apiPathString =
+              "watch_program_videos/merck-foundation-sustainability-initiative/1";
+          break;
+        case API.watchvdeoducation:
+          apiPathString = "watch_program_videos/educating-linda-program/1";
+          break;
+        case API.watchvideofirstlady:
+          apiPathString =
+              "watch_program_videos/merck-foundation-first-ladies-initiative-summit/1";
+          break;
+        case API.watchvideoafrica:
+          apiPathString = "watch_program_videos/merck-africa-asia-luminary/1";
+
+          break;
+        case API.watchvideostem:
+          apiPathString = "watch_program_videos/merck-stem-program/1";
+
+          break;
+        case API.digitalmmtm:
+          apiPathString = "digital_library/merck-more-than-a-mother/1";
+          break;
+        case API.digitalhome:
+          apiPathString = "digital_library/Home/1";
+          break;
+
+        case API.digitalcancer:
+          apiPathString = "digital_library/merck-cancer-access-program/1";
+          break;
+        case API.digitalcapacity:
+          apiPathString =
+              "digital_library/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+          break;
+
+        case API.digitalfirstlady:
+          apiPathString =
+              "digital_library/merck-foundation-first-ladies-initiative-summit/1";
+          break;
+        case API.digitalstem:
+          apiPathString = "digital_library/merck-stem-program/1";
+
+          break;
+        case API.digitaleducting:
+          apiPathString = "digital_library/educating-linda-program/1";
+
+          break;
+        case API.digitalsubstain:
+          apiPathString =
+              "digital_library/merck-foundation-sustainability-initiative/1";
+
+          break;
+        case API.digitalafrica:
+          apiPathString = "digital_library/merck-africa-asia-luminary/1";
+
+          break;
+
+        case API.watchhomemmtm:
+          apiPathString = "show_mmtm_gallery/home/1";
+
+          break;
+        case API.watchprogrammmtm:
+          apiPathString = "show_mmtm_gallery/merck-more-than-a-mother/1";
+
+          break;
+        case API.watchfirstladymmtm:
+          apiPathString =
+              "show_mmtm_gallery/merck-foundation-first-ladies-initiative-summit/1";
+
+          break;
+        case API.watchmediprogrammmtm:
+          apiPathString = "read_merck_media/merck-more-than-a-mother/1";
+
+          break;
+        case API.watchmediaprogramcancer:
+          apiPathString = "read_merck_media/merck-cancer-access-program/1";
+
+          break;
+        case API.watchmorelatestupmmtm:
+          apiPathString = "read_latest_updates/merck-more-than-a-mother/1";
+
+          break;
+        case API.watchmorelatestupcancer:
+          apiPathString = "read_latest_updates/merck-cancer-access-program/1";
+
+          break;
+        case API.watchmorelatestupstem:
+          apiPathString = "read_latest_updates/merck-stem-program/1";
+
+          break;
+        case API.watchmorelatestupafrica:
+          apiPathString = "read_latest_updates/merck-africa-asia-luminary/1";
+
+          break;
+
+        case API.watchmoretestimonialcancer:
+          apiPathString =
+              "merck_testimonials_list/merck-cancer-access-program/1";
+
+          break;
+        case API.watchmoretestimonialcapacity:
+          apiPathString =
+              "merck_testimonials_list/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+
+          break;
+        case API.watchmoretestimonialmmtm:
+          apiPathString = "merck_testimonials_list/merck-more-than-a-mother/1";
+
+          break;
+        case API.watchvideoaboutmmtm:
+          apiPathString =
+              "watch_program_videos/about-merck-more-than-a-mother/1";
+
+          break;
+        case API.watchvideoempoweringberna:
+          apiPathString = "watch_program_videos/empowering-berna/1";
+
+          break;
+        case API.watchvideolocalsong:
+          apiPathString =
+              "watch_program_videos/local-songs-and-children-stories/1";
+
+          break;
+        case API.watchvideofertility:
+          apiPathString =
+              "watch_program_videos/merck-fertility-and-embryology-training-program/1";
+
+          break;
         default:
           apiPathString = "";
       }
@@ -738,6 +1062,10 @@ class APIManager {
         className = "NewsReleaseResponse";
         break;
       case API.newsletters:
+      case API.watchmorelatestupmmtm:
+      case API.watchmorelatestupcancer:
+      case API.watchmorelatestupstem:
+      case API.watchmorelatestupafrica:
         className = "NewsLetterseResponse";
         break;
 
@@ -869,6 +1197,9 @@ class APIManager {
         className = "OurawarddetailResponse";
         break;
       case API.testiomonailpro:
+      case API.watchmoretestimonialcancer:
+      case API.watchmoretestimonialcapacity:
+      case API.watchmoretestimonialmmtm:
         className = "TestimonialprogramResponse";
         break;
       case API.ourgallerydetail:
@@ -883,6 +1214,44 @@ class APIManager {
       case API.programgalleryafrica:
         className = "GalleryProgramResponse";
         break;
+      case API.watchvideommtm:
+      case API.watchvideocancer:
+      case API.watchvideocapacity:
+      case API.watchvdeoducation:
+      case API.watchvideofirstlady:
+      case API.watchvideosubstain:
+      case API.watchvideostem:
+      case API.watchvideoafrica:
+
+      case API.watchvideoaboutmmtm:
+      case API.watchvideoempoweringberna:
+      case API.watchvideolocalsong:
+      case API.watchvideofertility:
+        className = "VideoProgramResponse";
+        break;
+
+      case API.digitalmmtm:
+      case API.digitalhome:
+      case API.digitalcancer:
+      case API.digitalcapacity:
+      case API.digitalfirstlady:
+      case API.digitalstem:
+      case API.digitaleducting:
+      case API.digitalsubstain:
+      case API.digitalafrica:
+        className = "DigitalProgramResponse";
+        break;
+
+      case API.watchhomemmtm:
+      case API.watchprogrammmtm:
+      case API.watchfirstladymmtm:
+        className = "ViewmoremmtmResponse";
+        break;
+      case API.watchmediprogrammmtm:
+      case API.watchmediaprogramcancer:
+        className = "ViewmoremediaResponse";
+        break;
+
       default:
         className = 'CommonResponse';
     }
@@ -1053,6 +1422,22 @@ class APIManager {
     if (className == "GalleryProgramResponse") {
       //enterhere
       responseObj = GalleryProgramResponse.fromJson(json);
+    }
+    if (className == "VideoProgramResponse") {
+      //enterhere
+      responseObj = VideoProgramResponse.fromJson(json);
+    }
+    if (className == "DigitalProgramResponse") {
+      //enterhere
+      responseObj = DigitalProgramResponse.fromJson(json);
+    }
+    if (className == "ViewmoremmtmResponse") {
+      //enterhere
+      responseObj = ViewmoremmtmResponse.fromJson(json);
+    }
+    if (className == "ViewmoremediaResponse") {
+      //enterhere
+      responseObj = ViewmoremediaResponse.fromJson(json);
     }
 
     return responseObj;

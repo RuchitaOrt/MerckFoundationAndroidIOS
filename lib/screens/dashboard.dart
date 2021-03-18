@@ -6,6 +6,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/stories.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -61,7 +62,9 @@ class _DashboardState extends State<Dashboard>
             Home(),
             Ourprogram(),
             Stories(),
-            NewsPage(),
+            NewsPage(
+              apiurl: API.newsletters,
+            ),
             CallforApplication()
           ]),
       bottomNavigationBar: BottomNavyBar(

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/style.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
@@ -17,6 +18,7 @@ import 'package:merckfoundation22dec/model/Merckfoundationsubstaintion.dart'
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
 import 'package:merckfoundation22dec/ourawarddetail.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/watchmorevideolibray.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -78,6 +80,9 @@ class MerckSubstantionalState extends State<MerckSubstantional>
 
   final List<Tab> tabs = <Tab>[];
   final CarouselController callAppCarouselController = CarouselController();
+  final CarouselController digitalLibraryCarouselController =
+      CarouselController();
+  final CarouselController mmtmCarouselController = CarouselController();
   TabController _tabController;
 
   final CarouselController _controller = CarouselController();
@@ -150,7 +155,7 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                     ],
                   ),
                   child: Container(
-                    height: 450,
+                    height: 490,
                     //color: Colors.amber,
                     child: Column(
                       children: [
@@ -186,24 +191,301 @@ class MerckSubstantionalState extends State<MerckSubstantional>
     );
   }
 
-  Widget callforApplication() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-        right: 10,
-        top: 10,
-      ),
-      child: Card(
-          elevation: 5,
-          // height: 1800,
-          color: Colors.white,
-          child: getcallforapp(context)),
-    );
-  }
+  // Widget callforApplication() {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(
+  //       left: 10,
+  //       right: 10,
+  //       top: 10,
+  //     ),
+  //     child: Card(
+  //         elevation: 5,
+  //         // height: 1800,
+  //         color: Colors.white,
+  //         child: getcallforapp(context)),
+  //   );
+  // }
 
-  Widget digitalLibraryLastSection() {
-    return getdigitallib(context);
-  }
+  // Widget digitalLibraryLastSection() {
+  //   return getdigitallib(context);
+  // }
+
+  // Widget getcallforapp(BuildContext context) {
+  //   return Stack(
+  //     children: <Widget>[
+  //       GlobalLists.homecallforapp.length <= 0
+  //           ? Container(
+  //               child: Center(child: Text(Constantstring.emptyData)),
+  //             )
+  //           : Padding(
+  //               padding: const EdgeInsets.all(8.0),
+  //               child: Container(
+  //                   //color: Colors.amber,
+  //                   width: SizeConfig.blockSizeHorizontal * 100,
+  //                   height: 470,
+  //                   color: Colors.white,
+  //                   child: Column(
+  //                     children: [
+  //                       Row(
+  //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                         children: [
+  //                           Expanded(
+  //                               child: Text(
+  //                             expandedName,
+  //                             style: TextStyle(
+  //                                 fontSize: 18,
+  //                                 fontWeight: FontWeight.w700,
+  //                                 color: Colors.black),
+  //                           )),
+  //                           GestureDetector(
+  //                             onTap: () {
+  //                               print("in tap");
+  //                               setState(() {
+  //                                 expandClick = !expandClick;
+  //                               });
+  //                             },
+  //                             child: Image.asset(
+  //                               "assets/newImages/expand_more.png",
+  //                               width: 30,
+  //                               height: 30,
+  //                             ),
+  //                           )
+  //                         ],
+  //                       ),
+  //                       SizedBox(
+  //                         height: 10,
+  //                       ),
+  //                       carouselSlider = CarouselSlider(
+  //                         options: CarouselOptions(
+  //                             autoPlay: false,
+  //                             // aspectRatio: 0.1,
+  //                             enlargeCenterPage: true,
+  //                             enlargeStrategy: CenterPageEnlargeStrategy.height,
+  //                             viewportFraction: 1.0,
+  //                             height: 340,
+  //                             onPageChanged: (index, reason) {
+  //                               setState(() {
+  //                                 _current1 = index;
+  //                               });
+  //                             }),
+  //                         items: GlobalLists.homecallforapp.map((product) {
+  //                           return new Builder(
+  //                             builder: (BuildContext context) {
+  //                               return ListView(
+  //                                 shrinkWrap: true,
+  //                                 physics: ScrollPhysics(),
+  //                                 // crossAxisAlignment: CrossAxisAlignment.center,
+  //                                 children: [
+  //                                   Center(
+  //                                     child: FadeInImage.assetNetwork(
+  //                                       placeholder:
+  //                                           'assets/newImages/placeholder_3.jpg',
+  //                                       image:
+  //                                           GlobalLists.homeCallForAppBaseURL +
+  //                                               product.appImg,
+  //                                       fit: BoxFit.fill,
+  //                                       width: 240,
+  //                                       height: 290,
+  //                                     ),
+  //                                   ),
+  //                                   SizedBox(
+  //                                     height: 10,
+  //                                   ),
+  //                                   Center(
+  //                                     child: Text(product.title,
+  //                                         textAlign: TextAlign.center,
+  //                                         maxLines: 2,
+  //                                         style: TextStyle(
+  //                                           fontSize: 17,
+  //                                         )),
+  //                                   )
+  //                                 ],
+  //                               );
+  //                             },
+  //                           );
+  //                         }).toList(),
+  //                         carouselController: callAppCarouselController,
+  //                       ),
+  //                     ],
+  //                   )),
+  //             ),
+  //       Positioned(
+  //         top: 140,
+  //         child: Container(
+  //           width: MediaQuery.of(context).size.width,
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //             children: <Widget>[
+  //               GestureDetector(
+  //                   onTap: () {
+  //                     goToPrevious();
+  //                   },
+  //                   child: Padding(
+  //                     padding: const EdgeInsets.only(left: 20),
+  //                     child: Icon(
+  //                       Icons.arrow_back_ios,
+  //                       color: Customcolor.text_darkblue,
+  //                     ),
+  //                   )),
+  //               GestureDetector(
+  //                   onTap: () {
+  //                     goToNext();
+  //                   },
+  //                   child: Padding(
+  //                     padding: const EdgeInsets.only(right: 20),
+  //                     child: Icon(
+  //                       Icons.arrow_forward_ios,
+  //                       color: Customcolor.text_darkblue,
+  //                     ),
+  //                   )),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
+
+  // Widget getdigitallib(BuildContext context) {
+  //   return Stack(
+  //     children: <Widget>[
+  //       GlobalLists.homedigitallib.length <= 0
+  //           ? Container(
+  //               child: Center(child: Text(Constantstring.emptyData)),
+  //             )
+  //           : Padding(
+  //               padding: const EdgeInsets.all(8.0),
+  //               child: Container(
+  //                 //color: Colors.amber,
+  //                 width: SizeConfig.blockSizeHorizontal * 100,
+  //                 height: 400,
+  //                 color: Colors.white,
+  //                 child: carouselSlider = CarouselSlider(
+  //                   options: CarouselOptions(
+  //                       autoPlay: false,
+  //                       aspectRatio: 1,
+  //                       enlargeCenterPage: true,
+  //                       enlargeStrategy: CenterPageEnlargeStrategy.height,
+  //                       viewportFraction: 1.0,
+  //                       //  height: SizeConfig.blockSizeVertical * 100,
+  //                       onPageChanged: (index, reason) {
+  //                         setState(() {
+  //                           _current1 = index;
+  //                         });
+  //                       }),
+  //                   items: GlobalLists.homedigitallib.map((product) {
+  //                     print(GlobalLists.homeDigitalLibraryBaseURL +
+  //                         product.image);
+  //                     return new Builder(
+  //                       builder: (BuildContext context) {
+  //                         return ListView(
+  //                           shrinkWrap: true,
+  //                           physics: ScrollPhysics(),
+  //                           //  crossAxisAlignment: CrossAxisAlignment.center,
+  //                           children: [
+  //                             Center(
+  //                               child: Container(
+  //                                 padding: EdgeInsets.only(top: 20),
+  //                                 width: 240,
+  //                                 height: 290,
+  //                                 decoration: BoxDecoration(
+  //                                     borderRadius: BorderRadius.circular(8)),
+  //                                 child: FadeInImage.assetNetwork(
+  //                                   placeholder:
+  //                                       'assets/newImages/placeholder_3.jpg',
+  //                                   image:
+  //                                       GlobalLists.homeDigitalLibraryBaseURL +
+  //                                           product.image,
+  //                                   fit: BoxFit.fitHeight,
+  //                                   height: 200,
+  //                                 ),
+  //                               ),
+  //                             ),
+  //                             SizedBox(
+  //                               height: 10,
+  //                             ),
+  //                             Center(
+  //                               child: Text(product.title,
+  //                                   textAlign: TextAlign.center,
+  //                                   maxLines: 2,
+  //                                   style: TextStyle(
+  //                                     fontSize: 17,
+  //                                   )),
+  //                             )
+  //                           ],
+  //                         );
+  //                       },
+  //                     );
+  //                   }).toList(),
+  //                   carouselController: callAppCarouselController,
+  //                 ),
+  //               ),
+  //             ),
+  //       Positioned(
+  //         top: 140,
+  //         child: Container(
+  //           width: MediaQuery.of(context).size.width,
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //             children: <Widget>[
+  //               GestureDetector(
+  //                   onTap: () {
+  //                     goToPrevious();
+  //                   },
+  //                   child: Padding(
+  //                     padding: const EdgeInsets.only(left: 20),
+  //                     child: Icon(
+  //                       Icons.arrow_back_ios,
+  //                       color: Customcolor.text_darkblue,
+  //                     ),
+  //                   )),
+  //               GestureDetector(
+  //                   onTap: () {
+  //                     goToNext();
+  //                   },
+  //                   child: Padding(
+  //                     padding: const EdgeInsets.only(right: 40),
+  //                     child: Icon(
+  //                       Icons.arrow_forward_ios,
+  //                       color: Customcolor.text_darkblue,
+  //                     ),
+  //                   )),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
+
+  // goToPrevious() {
+  //   _controller.previousPage(
+  //       duration: Duration(milliseconds: 300), curve: Curves.ease);
+  // }
+
+  // goToNext() {
+  //   _controller.nextPage(
+  //       duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+  // }
+  // goToPrevious() {
+  //   callAppCarouselController.previousPage(
+  //       duration: Duration(milliseconds: 300), curve: Curves.ease);
+  // }
+
+  // goToNext() {
+  //   callAppCarouselController.nextPage(
+  //       duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+  // }
+
+  // Widget digitalLibrary() {
+  //   return Padding(
+  //       padding: const EdgeInsets.only(
+  //         left: 10,
+  //         right: 10,
+  //         top: 10,
+  //       ),
+  //       child: getdigitallib(context));
+  // }
 
   Widget getcallforapp(BuildContext context) {
     return Stack(
@@ -217,36 +499,40 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                 child: Container(
                     //color: Colors.amber,
                     width: SizeConfig.blockSizeHorizontal * 100,
-                    height: 470,
+                    // height: 590,
                     color: Colors.white,
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                                child: Text(
-                              expandedName,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black),
-                            )),
-                            GestureDetector(
-                              onTap: () {
-                                print("in tap");
-                                setState(() {
-                                  expandClick = !expandClick;
-                                });
-                              },
-                              child: Image.asset(
-                                "assets/newImages/expand_more.png",
-                                width: 30,
-                                height: 30,
-                              ),
-                            )
-                          ],
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(10.0),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //     children: [
+                        //       Expanded(
+                        //           child: Text(
+                        //         expandedName,
+                        //         style: TextStyle(
+                        //             fontSize: 18,
+                        //             fontWeight: FontWeight.w700,
+                        //             color: Colors.black),
+                        //       )),
+                        //       GestureDetector(
+                        //         onTap: () {
+                        //           print("in tap");
+                        //           setState(() {
+                        //             expandClick = !expandClick;
+                        //           });
+                        //         },
+                        //         child: Image.asset(
+                        //           "assets/newImages/expand_more.png",
+                        //           width: 30,
+                        //           height: 30,
+                        //         ),
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
+                        //  expandClick ? eventDropdown() : Container(),
                         SizedBox(
                           height: 10,
                         ),
@@ -301,6 +587,31 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                           }).toList(),
                           carouselController: callAppCarouselController,
                         ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: 120,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Center(
+                                  child: Text(
+                                    "View All",
+                                    style: TextStyle(
+                                        color: Customcolor.colorBlue,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     )),
               ),
@@ -313,7 +624,7 @@ class MerckSubstantionalState extends State<MerckSubstantional>
               children: <Widget>[
                 GestureDetector(
                     onTap: () {
-                      goToPrevious();
+                      goTocallPrevious();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
@@ -324,7 +635,7 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                     )),
                 GestureDetector(
                     onTap: () {
-                      goToNext();
+                      goTocallNext();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 20),
@@ -351,70 +662,100 @@ class MerckSubstantionalState extends State<MerckSubstantional>
             : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  //color: Colors.amber,
-                  width: SizeConfig.blockSizeHorizontal * 100,
-                  height: 400,
-                  color: Colors.white,
-                  child: carouselSlider = CarouselSlider(
-                    options: CarouselOptions(
-                        autoPlay: false,
-                        aspectRatio: 1,
-                        enlargeCenterPage: true,
-                        enlargeStrategy: CenterPageEnlargeStrategy.height,
-                        viewportFraction: 1.0,
-                        //  height: SizeConfig.blockSizeVertical * 100,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _current1 = index;
-                          });
-                        }),
-                    items: GlobalLists.homedigitallib.map((product) {
-                      print(GlobalLists.homeDigitalLibraryBaseURL +
-                          product.image);
-                      return new Builder(
-                        builder: (BuildContext context) {
-                          return ListView(
-                            shrinkWrap: true,
-                            physics: ScrollPhysics(),
-                            //  crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Container(
-                                  padding: EdgeInsets.only(top: 20),
-                                  width: 240,
-                                  height: 290,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: FadeInImage.assetNetwork(
-                                    placeholder:
-                                        'assets/newImages/placeholder_3.jpg',
-                                    image:
-                                        GlobalLists.homeDigitalLibraryBaseURL +
+                    //color: Colors.amber,
+                    width: SizeConfig.blockSizeHorizontal * 100,
+                    // height: 590,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        carouselSlider = CarouselSlider(
+                          options: CarouselOptions(
+                              autoPlay: false,
+                              // aspectRatio: 0.1,
+                              enlargeCenterPage: true,
+                              enlargeStrategy: CenterPageEnlargeStrategy.height,
+                              viewportFraction: 1.0,
+                              height: 340,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  _current1 = index;
+                                });
+                              }),
+                          items: GlobalLists.homedigitallib.map((product) {
+                            return new Builder(
+                              builder: (BuildContext context) {
+                                return ListView(
+                                  shrinkWrap: true,
+                                  physics: ScrollPhysics(),
+                                  // crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder:
+                                            'assets/newImages/placeholder_3.jpg',
+                                        image: GlobalLists
+                                                .homeDigitalLibraryBaseURL +
                                             product.image,
-                                    fit: BoxFit.fitHeight,
-                                    height: 200,
+                                        fit: BoxFit.fill,
+                                        width: 240,
+                                        height: 290,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Center(
+                                      child: Text(product.title,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                            fontSize: 17,
+                                          )),
+                                    )
+                                  ],
+                                );
+                              },
+                            );
+                          }).toList(),
+                          carouselController: digitalLibraryCarouselController,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            WatchDigitalLibrary(
+                                              apiurl: API.digitalsubstain,
+                                            )));
+                              },
+                              child: Container(
+                                width: 120,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Center(
+                                  child: Text(
+                                    "View All",
+                                    style: TextStyle(
+                                        color: Customcolor.colorBlue,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Center(
-                                child: Text(product.title,
-                                    textAlign: TextAlign.center,
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                    )),
-                              )
-                            ],
-                          );
-                        },
-                      );
-                    }).toList(),
-                    carouselController: callAppCarouselController,
-                  ),
-                ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
               ),
         Positioned(
           top: 140,
@@ -425,7 +766,7 @@ class MerckSubstantionalState extends State<MerckSubstantional>
               children: <Widget>[
                 GestureDetector(
                     onTap: () {
-                      goToPrevious();
+                      goTodigitalPrevious();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
@@ -436,10 +777,10 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                     )),
                 GestureDetector(
                     onTap: () {
-                      goToNext();
+                      goTodigitalNext();
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 40),
+                      padding: const EdgeInsets.only(right: 20),
                       child: Icon(
                         Icons.arrow_forward_ios,
                         color: Customcolor.text_darkblue,
@@ -453,33 +794,171 @@ class MerckSubstantionalState extends State<MerckSubstantional>
     );
   }
 
-  // goToPrevious() {
-  //   _controller.previousPage(
-  //       duration: Duration(milliseconds: 300), curve: Curves.ease);
-  // }
+  Widget getMMTMS(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        GlobalLists.homemmtm.length <= 0
+            ? Container(
+                child: Center(child: Text(Constantstring.emptyData)),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                    //color: Colors.amber,
+                    width: SizeConfig.blockSizeHorizontal * 100,
+                    // height: 590,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        carouselSlider = CarouselSlider(
+                          options: CarouselOptions(
+                              autoPlay: false,
+                              // aspectRatio: 0.1,
+                              enlargeCenterPage: true,
+                              enlargeStrategy: CenterPageEnlargeStrategy.height,
+                              viewportFraction: 1.0,
+                              height: 340,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  _current1 = index;
+                                });
+                              }),
+                          items: GlobalLists.homemmtm.map((product) {
+                            return new Builder(
+                              builder: (BuildContext context) {
+                                return ListView(
+                                  shrinkWrap: true,
+                                  physics: ScrollPhysics(),
+                                  // crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder:
+                                            'assets/newImages/placeholder_3.jpg',
+                                        image: GlobalLists.homeMMTMBaseURL +
+                                            product.photo,
+                                        fit: BoxFit.fill,
+                                        width: 240,
+                                        height: 290,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Center(
+                                      child: Text(product.photoDescription,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                            fontSize: 17,
+                                          )),
+                                    )
+                                  ],
+                                );
+                              },
+                            );
+                          }).toList(),
+                          carouselController: mmtmCarouselController,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: 120,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Center(
+                                  child: Text(
+                                    "View All",
+                                    style: TextStyle(
+                                        color: Customcolor.colorBlue,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+              ),
+        Positioned(
+          top: 140,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                GestureDetector(
+                    onTap: () {
+                      goTommtmPrevious();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: Customcolor.text_darkblue,
+                      ),
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      goTommtmNext();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Customcolor.text_darkblue,
+                      ),
+                    )),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
-  // goToNext() {
-  //   _controller.nextPage(
-  //       duration: Duration(milliseconds: 300), curve: Curves.decelerate);
-  // }
-  goToPrevious() {
+  Widget digitalLibraryLastSection() {
+    return getdigitallib(context);
+  }
+
+  goTommtmPrevious() {
+    mmtmCarouselController.previousPage(
+        duration: Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  goTommtmNext() {
+    mmtmCarouselController.nextPage(
+        duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+  }
+
+  goTodigitalPrevious() {
+    digitalLibraryCarouselController.previousPage(
+        duration: Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  goTodigitalNext() {
+    digitalLibraryCarouselController.nextPage(
+        duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+  }
+
+  goTocallPrevious() {
     callAppCarouselController.previousPage(
         duration: Duration(milliseconds: 300), curve: Curves.ease);
   }
 
-  goToNext() {
+  goTocallNext() {
     callAppCarouselController.nextPage(
         duration: Duration(milliseconds: 300), curve: Curves.decelerate);
-  }
-
-  Widget digitalLibrary() {
-    return Padding(
-        padding: const EdgeInsets.only(
-          left: 10,
-          right: 10,
-          top: 10,
-        ),
-        child: getdigitallib(context));
   }
 
   Widget merckmorethanmother() {
@@ -780,7 +1259,13 @@ class MerckSubstantionalState extends State<MerckSubstantional>
               cardImage: "assets/newImages/ourvison.png",
               cardTitle: "Our Gallery  ",
               onbtnTap: () {
-                getprogramgallery();
+                // getprogramgallery();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => GalleryProgram(
+                              apiurl: API.programgallerysubstain,
+                            )));
               },
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
@@ -871,7 +1356,14 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => Videolibrary()));
+                        builder: (BuildContext context) =>
+                            WatchmoreVideolibrary(
+                              apiurl: API.watchvideosubstain,
+                            )));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) => Videolibrary()));
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1757,114 +2249,114 @@ class MerckSubstantionalState extends State<MerckSubstantional>
     }
   }
 
-  Widget getMMTMS(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        GlobalLists.homemmtm.length <= 0
-            ? Container(
-                child: Center(child: Text(Constantstring.emptyData)),
-              )
-            : Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  //color: Colors.amber,
-                  width: SizeConfig.blockSizeHorizontal * 100,
-                  height: 400,
-                  color: Colors.white,
-                  child: carouselSlider = CarouselSlider(
-                    options: CarouselOptions(
-                        autoPlay: false,
-                        aspectRatio: 1,
-                        enlargeCenterPage: true,
-                        enlargeStrategy: CenterPageEnlargeStrategy.height,
-                        viewportFraction: 1.0,
-                        //  height: SizeConfig.blockSizeVertical * 100,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _current1 = index;
-                          });
-                        }),
-                    items: GlobalLists.homemmtm.map((product) {
-                      return new Builder(
-                        builder: (BuildContext context) {
-                          return ListView(
-                            shrinkWrap: true,
-                            physics: ScrollPhysics(),
-                            //  crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Container(
-                                  padding: EdgeInsets.only(top: 20),
-                                  width: 240,
-                                  height: 290,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: FadeInImage.assetNetwork(
-                                    placeholder:
-                                        'assets/newImages/placeholder_3.jpg',
-                                    image: GlobalLists.homeMMTMBaseURL +
-                                        product.photo,
-                                    fit: BoxFit.cover,
-                                    height: 200,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Center(
-                                child: Text(product.photoDescription,
-                                    textAlign: TextAlign.center,
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                    )),
-                              )
-                            ],
-                          );
-                        },
-                      );
-                    }).toList(),
-                    carouselController: callAppCarouselController,
-                  ),
-                ),
-              ),
-        Positioned(
-          top: 140,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                GestureDetector(
-                    onTap: () {
-                      goToPrevious();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Customcolor.text_darkblue,
-                      ),
-                    )),
-                GestureDetector(
-                    onTap: () {
-                      goToNext();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 40),
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Customcolor.text_darkblue,
-                      ),
-                    )),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+  // Widget getMMTMS(BuildContext context) {
+  //   return Stack(
+  //     children: <Widget>[
+  //       GlobalLists.homemmtm.length <= 0
+  //           ? Container(
+  //               child: Center(child: Text(Constantstring.emptyData)),
+  //             )
+  //           : Padding(
+  //               padding: const EdgeInsets.all(8.0),
+  //               child: Container(
+  //                 //color: Colors.amber,
+  //                 width: SizeConfig.blockSizeHorizontal * 100,
+  //                 height: 400,
+  //                 color: Colors.white,
+  //                 child: carouselSlider = CarouselSlider(
+  //                   options: CarouselOptions(
+  //                       autoPlay: false,
+  //                       aspectRatio: 1,
+  //                       enlargeCenterPage: true,
+  //                       enlargeStrategy: CenterPageEnlargeStrategy.height,
+  //                       viewportFraction: 1.0,
+  //                       //  height: SizeConfig.blockSizeVertical * 100,
+  //                       onPageChanged: (index, reason) {
+  //                         setState(() {
+  //                           _current1 = index;
+  //                         });
+  //                       }),
+  //                   items: GlobalLists.homemmtm.map((product) {
+  //                     return new Builder(
+  //                       builder: (BuildContext context) {
+  //                         return ListView(
+  //                           shrinkWrap: true,
+  //                           physics: ScrollPhysics(),
+  //                           //  crossAxisAlignment: CrossAxisAlignment.center,
+  //                           children: [
+  //                             Center(
+  //                               child: Container(
+  //                                 padding: EdgeInsets.only(top: 20),
+  //                                 width: 240,
+  //                                 height: 290,
+  //                                 decoration: BoxDecoration(
+  //                                     borderRadius: BorderRadius.circular(8)),
+  //                                 child: FadeInImage.assetNetwork(
+  //                                   placeholder:
+  //                                       'assets/newImages/placeholder_3.jpg',
+  //                                   image: GlobalLists.homeMMTMBaseURL +
+  //                                       product.photo,
+  //                                   fit: BoxFit.cover,
+  //                                   height: 200,
+  //                                 ),
+  //                               ),
+  //                             ),
+  //                             SizedBox(
+  //                               height: 10,
+  //                             ),
+  //                             Center(
+  //                               child: Text(product.photoDescription,
+  //                                   textAlign: TextAlign.center,
+  //                                   maxLines: 2,
+  //                                   style: TextStyle(
+  //                                     fontSize: 17,
+  //                                   )),
+  //                             )
+  //                           ],
+  //                         );
+  //                       },
+  //                     );
+  //                   }).toList(),
+  //                   carouselController: callAppCarouselController,
+  //                 ),
+  //               ),
+  //             ),
+  //       Positioned(
+  //         top: 140,
+  //         child: Container(
+  //           width: MediaQuery.of(context).size.width,
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //             children: <Widget>[
+  //               GestureDetector(
+  //                   onTap: () {
+  //                     goToPrevious();
+  //                   },
+  //                   child: Padding(
+  //                     padding: const EdgeInsets.only(left: 20),
+  //                     child: Icon(
+  //                       Icons.arrow_back_ios,
+  //                       color: Customcolor.text_darkblue,
+  //                     ),
+  //                   )),
+  //               GestureDetector(
+  //                   onTap: () {
+  //                     goToNext();
+  //                   },
+  //                   child: Padding(
+  //                     padding: const EdgeInsets.only(right: 40),
+  //                     child: Icon(
+  //                       Icons.arrow_forward_ios,
+  //                       color: Customcolor.text_darkblue,
+  //                     ),
+  //                   )),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Future<http.Response> getmmtmapi() async {
     print("mmtm api");

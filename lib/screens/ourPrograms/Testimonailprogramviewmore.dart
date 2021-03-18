@@ -11,8 +11,10 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class Testimonialprogramviewmore extends StatefulWidget {
+  final dynamic apiurl;
   const Testimonialprogramviewmore({
     Key key,
+    this.apiurl,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -28,7 +30,7 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
   @override
   void initState() {
     super.initState();
-    getMerckprogramTestimonial();
+    getMerckprogramTestimonial(widget.apiurl);
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -148,7 +150,7 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
         ));
   }
 
-  getMerckprogramTestimonial() async {
+  getMerckprogramTestimonial(dynamic api) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -156,7 +158,7 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
 
       APIManager().apiRequest(
         context,
-        API.testiomonailpro,
+        api,
         (response) async {
           TestimonialprogramResponse resp = response;
           print(response);

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/model/viewmoreMMTMResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -12,25 +13,23 @@ import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
 import 'dart:convert';
+import 'package:merckfoundation22dec/model/viewmoreMMTMResponse.dart'
+    as viewmmtmrightsec;
 
 // ignore: must_be_immutable
-class GalleryProgram extends StatefulWidget {
-  final List<dynamic> photosList;
-
-  final String baseURL;
+class ViewmoremmtmAmbassadar extends StatefulWidget {
   final dynamic apiurl;
   String appBarTitle;
 
-  GalleryProgram({Key key, this.photosList, this.baseURL, this.apiurl})
-      : super(key: key);
+  ViewmoremmtmAmbassadar({Key key, this.apiurl}) : super(key: key);
   @override
-  _GalleryProgramState createState() => _GalleryProgramState();
+  _viewmoremmtmaState createState() => _viewmoremmtmaState();
 }
 
-class _GalleryProgramState extends State<GalleryProgram> {
+class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   ScrollController _sc = new ScrollController();
-  GalleryProgramResponse resp;
+  ViewmoremmtmResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -38,8 +37,8 @@ class _GalleryProgramState extends State<GalleryProgram> {
   @override
   void initState() {
     // TODO: implement initState
-    GlobalLists.programgallerylist.clear();
-    getprogramgallery(widget.apiurl);
+    GlobalLists.viewmoremmtmlist.clear();
+    getviewmoremmmt(widget.apiurl);
     _sc = new ScrollController()..addListener(_scrollListener);
     super.initState();
   }
@@ -47,7 +46,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
   void _scrollListener() {
     //   print("scroll");
     if (_sc.position.extentAfter < 50) {
-      if (!_isLoading && totalcount > GlobalLists.programgallerylist.length) {
+      if (!_isLoading && totalcount > GlobalLists.viewmoremmtmlist.length) {
         // getNewsLetteranArticles();
         setState(() {
           _isLoading = true;
@@ -58,7 +57,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
           setState(() {
             // Here you can write your code for open new view
             _isLoading = false;
-            if (resp.success == "True".toLowerCase()) {
+            if (resp.success == "True") {
               setState(() {
                 print("here");
                 // list = new List();
@@ -67,11 +66,12 @@ class _GalleryProgramState extends State<GalleryProgram> {
 
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
-                    GlobalLists.programgallerylist.add(ListElement(
-                      id: resp.list[i].id,
-                      photo: resp.list[i].photo,
-                      photoCategoryId: resp.list[i].photoCategoryId,
-                      photoDescription: resp.list[i].photoDescription,
+                    GlobalLists.viewmoremmtmlist
+                        .add(viewmmtmrightsec.ListElement(
+                      id: resp.data.list[i].id,
+                      photo: resp.data.list[i].photo,
+                      photoCategoryId: resp.data.list[i].photoCategoryId,
+                      photoDescription: resp.data.list[i].photoDescription,
                     ));
                   });
 
@@ -80,7 +80,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                 }
 
                 offset = totalcount;
-                int remem = resp.list.length - totalcount;
+                int remem = resp.data.list.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -89,7 +89,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                   totalcount = totalcount + 10;
                 }
                 // // GlobalLists.newsLettersList = resp.data.list;
-                // Constantstring.baseUrl = resp.baseUrl;
+                Constantstring.baseUrl = resp.baseUrl;
                 print("-----------------------------------");
                 print(totalcount);
                 //    print(GlobalLists.newsLettersList.length);
@@ -113,7 +113,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: InnerCustomAppBar(
+      appBar: InnerAluminsCustomAppBar(
         onTapval: () {
           Navigator.push(
               context,
@@ -123,7 +123,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                       )));
         },
         index: 1,
-        title: "Photo Gallery",
+        title: "Merck More Than \nMother Ambassadors",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -135,11 +135,11 @@ class _GalleryProgramState extends State<GalleryProgram> {
         shrinkWrap: true,
         controller: _sc,
         children: [
-          (GlobalLists.programgallerylist.length == 0 && _isLoading)
+          (GlobalLists.viewmoremmtmlist.length == 0 && _isLoading)
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : (GlobalLists.programgallerylist.length == 0 &&
+              : (GlobalLists.viewmoremmtmlist.length == 0 &&
                       _isLoading == false)
                   ? Center(
                       child: Container(
@@ -155,9 +155,8 @@ class _GalleryProgramState extends State<GalleryProgram> {
                       crossAxisCount: 2,
                       childAspectRatio: Platform.isIOS ? 0.86 : 0.8,
                       children: List.generate(
-                          GlobalLists.programgallerylist.length, (index) {
-                        if (GlobalLists.programgallerylist.length - 1 ==
-                                index &&
+                          GlobalLists.viewmoremmtmlist.length, (index) {
+                        if (GlobalLists.viewmoremmtmlist.length - 1 == index &&
                             _isLoading) {
                           return Center(
                             child: CircularProgressIndicator(),
@@ -176,11 +175,11 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                   onTap: () {
                                     ShowDialogs.showImageDialog(
                                       context: context,
-                                      image: GlobalLists.programgallerybaseurl +
+                                      image: Constantstring.baseUrl +
                                           GlobalLists
-                                              .programgallerylist[index].photo,
+                                              .viewmoremmtmlist[index].photo,
                                       description: GlobalLists
-                                          .programgallerylist[index]
+                                          .viewmoremmtmlist[index]
                                           .photoDescription,
                                     );
                                   },
@@ -207,12 +206,12 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                               //   width: 1,
                                               // ),
                                               image: new DecorationImage(
-                                                image: new NetworkImage(GlobalLists
-                                                        .programgallerybaseurl +
-                                                    GlobalLists
-                                                        .programgallerylist[
-                                                            index]
-                                                        .photo),
+                                                image: new NetworkImage(
+                                                    Constantstring.baseUrl +
+                                                        GlobalLists
+                                                            .viewmoremmtmlist[
+                                                                index]
+                                                            .photo),
                                                 fit: BoxFit.contain,
                                               ),
                                             ),
@@ -221,8 +220,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Text(
-                                            GlobalLists
-                                                .programgallerylist[index]
+                                            GlobalLists.viewmoremmtmlist[index]
                                                 .photoDescription,
                                             textAlign: TextAlign.center,
                                             overflow: TextOverflow.ellipsis,
@@ -249,7 +247,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
     );
   }
 
-  getprogramgallery(dynamic api) async {
+  getviewmoremmmt(dynamic api) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
     if (status1) {
       print(api);
@@ -261,37 +259,37 @@ class _GalleryProgramState extends State<GalleryProgram> {
         print(response);
         print('Resp : $resp');
         // Navigator.of(_keyLoader.currentContext).pop();
-        if (resp.success == "True".toLowerCase()) {
-          print(resp.list);
-          GlobalLists.programgallerybaseurl = resp.baseUrl;
+        if (resp.success == "True") {
+          print(resp.data.list);
+          Constantstring.baseUrl = resp.baseUrl;
           setState(() {
             print("here");
-            if (resp.list.length < 10) {
-              for (int i = offset; i < resp.list.length; i++) {
+            if (resp.data.list.length < 10) {
+              for (int i = offset; i < resp.data.list.length; i++) {
                 setState(() {
-                  GlobalLists.programgallerylist.add(ListElement(
-                    id: resp.list[i].id,
-                    photo: resp.list[i].photo,
-                    photoCategoryId: resp.list[i].photoCategoryId,
-                    photoDescription: resp.list[i].photoDescription,
+                  GlobalLists.viewmoremmtmlist.add(viewmmtmrightsec.ListElement(
+                    id: resp.data.list[i].id,
+                    photo: resp.data.list[i].photo,
+                    photoCategoryId: resp.data.list[i].photoCategoryId,
+                    photoDescription: resp.data.list[i].photoDescription,
                   ));
                 });
               }
             } else {
               for (int i = offset; i < totalcount; i++) {
                 setState(() {
-                  GlobalLists.programgallerylist.add(ListElement(
-                    id: resp.list[i].id,
-                    photo: resp.list[i].photo,
-                    photoCategoryId: resp.list[i].photoCategoryId,
-                    photoDescription: resp.list[i].photoDescription,
+                  GlobalLists.viewmoremmtmlist.add(viewmmtmrightsec.ListElement(
+                    id: resp.data.list[i].id,
+                    photo: resp.data.list[i].photo,
+                    photoCategoryId: resp.data.list[i].photoCategoryId,
+                    photoDescription: resp.data.list[i].photoDescription,
                   ));
                 });
               }
             }
 
             offset = totalcount;
-            int remem = resp.list.length - totalcount;
+            int remem = resp.data.list.length - totalcount;
             print("remem");
             print(remem);
             if (remem < 10) {
@@ -301,23 +299,12 @@ class _GalleryProgramState extends State<GalleryProgram> {
             }
 
             print(totalcount);
-            print(GlobalLists.programgallerylist.length);
+            print(GlobalLists.viewmoremmtmlist.length);
           });
 
           setState(() {
             _isLoading = false;
           });
-          // GlobalLists.programgallerylist = resp.list;
-          // print(GlobalLists.programgallerylist);
-          // GlobalLists.awarddetallisting[0].title
-
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (BuildContext context) => GalleryProgram(
-          //               baseURL: GlobalLists.programgallerybaseurl,
-          //               photosList: GlobalLists.programgallerylist,
-          //             )));
         } else {
           ShowDialogs.showToast(resp.msg);
           setState(() {
