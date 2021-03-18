@@ -13,6 +13,13 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/model/HomepageResponse.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class programclass {
   final String programname;
@@ -32,12 +39,9 @@ class _OurProgramState extends State<Ourprogram> {
   CarouselSlider carouselSlider;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int _current = 0;
-  List _productsAvailable = [
-    "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg",
-    "assets/images/slider1.jpg",
-    "assets/images/slider2.jpg"
-  ];
+  List<dynamic> slidersection = [];
+  List _productsAvailable = [];
+  bool issliderSectionLoaded = false;
   List<programclass> _productsAvailable1 = [
     programclass(
         programname: "Merck More Than A Mother", colors: Customcolor.text_blue),
@@ -63,6 +67,14 @@ class _OurProgramState extends State<Ourprogram> {
         programname: "Merck Africa Asia Luminary",
         colors: Customcolor.colorGreen),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    gethomeapi();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -87,7 +99,12 @@ class _OurProgramState extends State<Ourprogram> {
       body: Column(
         //  shrinkWrap: true,
         children: [
-          slider(context),
+          Visibility(
+            visible: issliderSectionLoaded,
+            replacement: Center(child: CircularProgressIndicator()),
+            child: slider(context),
+          ),
+          //   slider(context),
           Expanded(
             child: ListView(
               shrinkWrap: true,
@@ -121,6 +138,58 @@ class _OurProgramState extends State<Ourprogram> {
         ],
       ),
     );
+  }
+
+  Future<http.Response> gethomeapi() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      print("home api");
+      var response = await APIManager.fetchget(
+        encoding: APIManager.homeurl,
+      );
+      print("response");
+      print(response);
+      if (response.statusCode == 200) {
+        var res = json.decode(response.body);
+        print("ff");
+        print(res);
+        HomepageResponse homepageres = HomepageResponse.fromJson(res);
+
+        slidersection = homepageres.sliderArea[0].slider.list;
+        slidersection.forEach((element) {
+          _productsAvailable.add({
+            "id": element.id,
+            "menu_id": element.menuId,
+            "image_title": element.imageTitle,
+            "image_desc": element.imageDesc,
+            "links": element.links,
+            "image": element.image,
+            "alt_text": element.altText,
+            "status": element.status,
+            "created_at": element.createdAt,
+            "updated_at": element.updatedAt
+          });
+        });
+
+        print("slidersection");
+        print(slidersection.length);
+
+        setState(() {
+          issliderSectionLoaded = true;
+        });
+
+        return response;
+      } else {
+        ShowDialogs.showToast(GlobalLists.serverresp);
+
+        issliderSectionLoaded = true;
+      }
+    } else {
+      issliderSectionLoaded = true;
+
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 
   Widget oorprogram() {
@@ -300,7 +369,7 @@ class _OurProgramState extends State<Ourprogram> {
 
   Widget slider(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
+      padding: const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 8),
       child: Stack(
         children: <Widget>[
           Column(
@@ -309,7 +378,7 @@ class _OurProgramState extends State<Ourprogram> {
                 child: carouselSlider = CarouselSlider(
                   options: CarouselOptions(
                     viewportFraction: 1.0,
-                    height: 180,
+                    height: 170,
                     autoPlay: true,
                     onPageChanged: (index, reason) {
                       setState(() {
@@ -322,49 +391,48 @@ class _OurProgramState extends State<Ourprogram> {
                       builder: (BuildContext context) {
                         return new Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(7),
+                              borderRadius: BorderRadius.circular(8),
                               image: DecorationImage(
-                                  image: AssetImage(product),
+                                  image: NetworkImage(
+                                      "http://merckfoundation.org/merck/public/uploads/slider/" +
+                                          product['image']),
                                   fit: BoxFit.cover)),
                           width: SizeConfig.blockSizeHorizontal * 100,
                           child: Column(
-                            // crossAxisAlignment: CrossAxisAlignment.end,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(right: 0, bottom: 10),
+                                    const EdgeInsets.only(right: 0, bottom: 15),
                                 child: Container(
                                   color: Colors.white.withOpacity(0.5),
                                   width: SizeConfig.blockSizeHorizontal * 100,
                                   child: Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 5, right: 5, top: 5, bottom: 5),
+                                        left: 10, right: 10, top: 5, bottom: 5),
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: <Widget>[
                                         FormLabel(
-                                          text:
-                                              "Merck Capacity Advancement & Diabetes Blue Point Program",
-                                          labelColor: Colors.black,
+                                          text: product['image_title'],
+                                          labelColor: Customcolor.pink_col,
                                           fontSize:
                                               ResponsiveFlutter.of(context)
-                                                  .fontSize(1.5),
+                                                  .fontSize(1.4),
                                           maxLines: 2,
-                                          fontweight: FontWeight.w600,
+                                          fontweight: FontWeight.w700,
                                         ),
                                         SizedBox(
                                           height: 2,
                                         ),
                                         FormLabel(
-                                          text:
-                                              "Building nationwide Diabetes Care Capacity",
-                                          labelColor: Colors.black,
+                                          text: product['image_desc'],
+                                          labelColor: Customcolor.pink_col,
                                           fontSize:
                                               ResponsiveFlutter.of(context)
-                                                  .fontSize(1.5),
-                                          fontweight: FontWeight.w600,
+                                                  .fontSize(1.2),
+                                          fontweight: FontWeight.w500,
                                         ),
                                       ],
                                     ),
@@ -379,6 +447,17 @@ class _OurProgramState extends State<Ourprogram> {
                   }).toList(),
                 ),
               ),
+              // new DotsIndicator(
+              //   dotsCount: _productsAvailable.length,
+              //   position: double.parse("$_current"),
+              //   decorator: DotsDecorator(
+              //     size: const Size.square(9.0),
+              //     activeSize: const Size(18.0, 9.0),
+              //     activeColor: Customcolor.colorBlue,
+              //     activeShape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(5.0)),
+              //   ),
+              // ),
             ],
           ),
         ],

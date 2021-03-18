@@ -34,6 +34,7 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/callforApplication.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -767,35 +768,44 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           items: GlobalLists.homecallforapp.map((product) {
                             return new Builder(
                               builder: (BuildContext context) {
-                                return ListView(
-                                  shrinkWrap: true,
-                                  physics: ScrollPhysics(),
-                                  // crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Center(
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                            'assets/newImages/placeholder_3.jpg',
-                                        image:
-                                            GlobalLists.homeCallForAppBaseURL +
-                                                product.appImg,
-                                        fit: BoxFit.fill,
-                                        width: 240,
-                                        height: 290,
+                                return GestureDetector(
+                                  onTap: () {
+                                    print(GlobalLists.homeCallForAppBaseURL +
+                                        product.pdfFile);
+                                    ShowDialogs.launchURL(
+                                        GlobalLists.homeCallForAppBaseURL +
+                                            product.pdfFile);
+                                  },
+                                  child: ListView(
+                                    shrinkWrap: true,
+                                    physics: ScrollPhysics(),
+                                    // crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: FadeInImage.assetNetwork(
+                                          placeholder:
+                                              'assets/newImages/placeholder_3.jpg',
+                                          image: GlobalLists
+                                                  .homeCallForAppBaseURL +
+                                              product.appImg,
+                                          fit: BoxFit.fill,
+                                          width: 240,
+                                          height: 290,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Center(
-                                      child: Text(product.title,
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                          )),
-                                    )
-                                  ],
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Center(
+                                        child: Text(product.title,
+                                            textAlign: TextAlign.center,
+                                            maxLines: 2,
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                            )),
+                                      )
+                                    ],
+                                  ),
                                 );
                               },
                             );
@@ -807,7 +817,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           padding: const EdgeInsets.only(top: 10),
                           child: Center(
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            CallforApplication(
+                                              apiurl: API.watchcallhome,
+                                            )));
+                              },
                               child: Container(
                                 width: 120,
                                 height: 40,
@@ -902,35 +920,42 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           items: GlobalLists.homedigitallib.map((product) {
                             return new Builder(
                               builder: (BuildContext context) {
-                                return ListView(
-                                  shrinkWrap: true,
-                                  physics: ScrollPhysics(),
-                                  // crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Center(
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                            'assets/newImages/placeholder_3.jpg',
-                                        image: GlobalLists
-                                                .homeDigitalLibraryBaseURL +
-                                            product.image,
-                                        fit: BoxFit.fill,
-                                        width: 240,
-                                        height: 290,
+                                return GestureDetector(
+                                  onTap: () {
+                                    ShowDialogs.launchURL(
+                                        GlobalLists.homeDigitalLibraryBaseURL +
+                                            product.document);
+                                  },
+                                  child: ListView(
+                                    shrinkWrap: true,
+                                    physics: ScrollPhysics(),
+                                    // crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: FadeInImage.assetNetwork(
+                                          placeholder:
+                                              'assets/newImages/placeholder_3.jpg',
+                                          image: GlobalLists
+                                                  .homeDigitalLibraryBaseURL +
+                                              product.image,
+                                          fit: BoxFit.fill,
+                                          width: 240,
+                                          height: 290,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Center(
-                                      child: Text(product.title,
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                          )),
-                                    )
-                                  ],
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Center(
+                                        child: Text(product.title,
+                                            textAlign: TextAlign.center,
+                                            maxLines: 2,
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                            )),
+                                      )
+                                    ],
+                                  ),
                                 );
                               },
                             );

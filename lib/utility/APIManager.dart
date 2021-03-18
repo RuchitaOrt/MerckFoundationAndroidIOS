@@ -182,7 +182,13 @@ enum API {
   //watch more testimonial
   watchmoretestimonialcapacity,
   watchmoretestimonialcancer,
-  watchmoretestimonialmmtm
+  watchmoretestimonialmmtm,
+
+  //watchmore callfor app
+  watchcallhome,
+  watchcallmmtm,
+  watchcallstem,
+  watchcallafrica
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -641,6 +647,23 @@ class APIManager {
               "watch_program_videos/merck-fertility-and-embryology-training-program/1";
 
           break;
+
+        case API.watchcallhome:
+          apiPathString = "read_call_for_app/Home/1";
+
+          break;
+        case API.watchcallmmtm:
+          apiPathString = "read_call_for_app/merck-more-than-a-mother/1";
+
+          break;
+        case API.watchcallstem:
+          apiPathString = "read_call_for_app/merck-stem-program/1";
+
+          break;
+        case API.watchcallafrica:
+          apiPathString = "read_call_for_app/merck-africa-asia-luminary/1";
+
+          break;
         default:
           apiPathString = "";
       }
@@ -1000,6 +1023,23 @@ class APIManager {
               "watch_program_videos/merck-fertility-and-embryology-training-program/1";
 
           break;
+
+        case API.watchcallhome:
+          apiPathString = "read_call_for_app/Home/1";
+
+          break;
+        case API.watchcallmmtm:
+          apiPathString = "read_call_for_app/merck-more-than-a-mother/1";
+
+          break;
+        case API.watchcallstem:
+          apiPathString = "read_call_for_app/merck-stem-program/1";
+
+          break;
+        case API.watchcallafrica:
+          apiPathString = "read_call_for_app/merck-africa-asia-luminary/1";
+
+          break;
         default:
           apiPathString = "";
       }
@@ -1074,6 +1114,10 @@ class APIManager {
         break;
 
       case API.callforapplication:
+      case API.watchcallhome:
+      case API.watchcallmmtm:
+      case API.watchcallstem:
+      case API.watchcallafrica:
         className = "callforapplicationResponse";
         break;
 

@@ -14,9 +14,10 @@ import 'package:merckfoundation22dec/widget/drawer.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 class Dashboard extends StatefulWidget {
-  Dashboard({Key key, this.title, this.index}) : super(key: key);
+  Dashboard({Key key, this.title, this.index, this.apiurl}) : super(key: key);
   final String title;
   final int index;
+  final dynamic apiurl;
 
   @override
   _DashboardState createState() => _DashboardState();
@@ -65,7 +66,9 @@ class _DashboardState extends State<Dashboard>
             NewsPage(
               apiurl: API.newsletters,
             ),
-            CallforApplication()
+            CallforApplication(
+              apiurl: API.callforapplication,
+            )
           ]),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: currentIndex,

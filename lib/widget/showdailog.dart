@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ShowDialogs {
   static Future<void> showLoadingDialog(BuildContext context, GlobalKey key,
@@ -109,6 +110,15 @@ class ShowDialogs {
         textColor: Customcolor.colorBlue,
         backgroundColor: Customcolor.colorGrey,
         fontSize: 16.0);
+  }
+
+  static launchURL(String urlIs) async {
+    var url = urlIs;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   static void showSimpleDialog(

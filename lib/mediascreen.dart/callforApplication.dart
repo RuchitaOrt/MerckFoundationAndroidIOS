@@ -13,6 +13,9 @@ import 'package:merckfoundation22dec/model/callforapplicationResponse.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CallforApplication extends StatefulWidget {
+  final dynamic apiurl;
+
+  const CallforApplication({Key key, this.apiurl}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return CallApplicationState();
@@ -34,7 +37,8 @@ class CallApplicationState extends State<CallforApplication>
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   @override
   void initState() {
-    getcallforapp();
+    // API.callforapplication
+    getcallforapp(widget.apiurl);
     super.initState();
     _scrollViewController = new ScrollController();
     _tabController = new TabController(vsync: this, length: 2);
@@ -367,21 +371,21 @@ class CallApplicationState extends State<CallforApplication>
     );
   }
 
-  getcallforapp() async {
+  getcallforapp(dynamic api) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
-      ShowDialogs.showLoadingDialog(context, _keyLoader);
+      // ShowDialogs.showLoadingDialog(context, _keyLoader);
 
       APIManager().apiRequest(
         context,
-        API.callforapplication,
+        api,
         (response) async {
           CallforApplicationResponse resp = response;
           print(response);
           print('Resp : $resp');
 
-          Navigator.of(_keyLoader.currentContext).pop();
+          //   Navigator.of(_keyLoader.currentContext).pop();
 
           if (resp.success == "True") {
             setState(() {

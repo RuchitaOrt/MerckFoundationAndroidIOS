@@ -41,21 +41,22 @@ class CallforApplicationResponse {
 
 class Data {
   Data({
-    this.past,
     this.upcoming,
+    this.past,
   });
 
+  List<Past> upcoming;
   List<Past> past;
-  List<dynamic> upcoming;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
+        upcoming:
+            List<Past>.from(json["upcoming"].map((x) => Past.fromJson(x))),
         past: List<Past>.from(json["past"].map((x) => Past.fromJson(x))),
-        upcoming: List<dynamic>.from(json["upcoming"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
+        "upcoming": List<dynamic>.from(upcoming.map((x) => x.toJson())),
         "past": List<dynamic>.from(past.map((x) => x.toJson())),
-        "upcoming": List<dynamic>.from(upcoming.map((x) => x)),
       };
 }
 
@@ -83,8 +84,8 @@ class Past {
   String appImg;
   String altText;
   String status;
-  AtedAt createdAt;
-  AtedAt updatedAt;
+  dynamic createdAt;
+  dynamic updatedAt;
 
   factory Past.fromJson(Map<String, dynamic> json) => Past(
         id: json["id"],
@@ -96,8 +97,8 @@ class Past {
         appImg: json["app_img"],
         altText: json["alt_text"],
         status: json["status"],
-        createdAt: atedAtValues.map[json["created_at"]],
-        updatedAt: atedAtValues.map[json["updated_at"]],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -112,15 +113,15 @@ class Past {
         "app_img": appImg,
         "alt_text": altText,
         "status": status,
-        "created_at": atedAtValues.reverse[createdAt],
-        "updated_at": atedAtValues.reverse[updatedAt],
+        "created_at": createdAt,
+        "updated_at": updatedAt,
       };
 }
 
-enum AtedAt { THE_00000000000000 }
+enum CreatedAtEnum { THE_00000000000000 }
 
-final atedAtValues =
-    EnumValues({"0000-00-00 00:00:00": AtedAt.THE_00000000000000});
+final createdAtEnumValues =
+    EnumValues({"0000-00-00 00:00:00": CreatedAtEnum.THE_00000000000000});
 
 class EnumValues<T> {
   Map<String, T> map;

@@ -279,14 +279,26 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
             setState(() {
               print("here");
               Constantstring.baseUrl = resp.baseUrl;
-              for (int i = offset; i < totalcount; i++) {
-                setState(() {
-                  GlobalLists.ourPartnerList.add(ListElement(
-                      id: resp.data.list[i].id,
-                      title: resp.data.list[i].title,
-                      webUrl: resp.data.list[i].webUrl,
-                      image: resp.data.list[i].image));
-                });
+              if (resp.data.list.length < 10) {
+                for (int i = offset; i < resp.data.list.length; i++) {
+                  setState(() {
+                    GlobalLists.ourPartnerList.add(ListElement(
+                        id: resp.data.list[i].id,
+                        title: resp.data.list[i].title,
+                        webUrl: resp.data.list[i].webUrl,
+                        image: resp.data.list[i].image));
+                  });
+                }
+              } else {
+                for (int i = offset; i < totalcount; i++) {
+                  setState(() {
+                    GlobalLists.ourPartnerList.add(ListElement(
+                        id: resp.data.list[i].id,
+                        title: resp.data.list[i].title,
+                        webUrl: resp.data.list[i].webUrl,
+                        image: resp.data.list[i].image));
+                  });
+                }
               }
 
               offset = totalcount;

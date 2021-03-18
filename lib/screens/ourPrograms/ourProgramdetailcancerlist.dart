@@ -5,6 +5,7 @@ import 'package:merckfoundation22dec/screens/ourPrograms/Merckcancer/cancerobjec
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckcancer/MerckFellowship.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckcancer/MerckCancerPatient.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckcancer/Merckcancercommunityawareness.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Merckcancer/socialmedia.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -220,6 +221,12 @@ class _MyHomePageState extends State<OurProgramcancerlist> {
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
                                                 Merckcancercommunityawareness()));
+                                  } else if (index == 5) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                SocialMedia()));
                                   }
                                 },
                                 child: Container(

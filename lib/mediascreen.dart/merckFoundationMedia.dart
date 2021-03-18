@@ -62,19 +62,36 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                 // list = new List();
                 // list = resp.data.list;
                 //totalcount 10
+                if (resp.data.list.length < 10) {
+                  for (int i = offset; i < resp.data.list.length; i++) {
+                    setState(() {
+                      GlobalLists.merckinMediaList.add(
+                          merckMediaresp.ListElement(
+                              title: resp.data.list[i].title,
+                              id: resp.data.list[i].id,
+                              description: resp.data.list[i].description,
+                              mediaUrl: resp.data.list[i].mediaUrl,
+                              image: resp.data.list[i].image));
+                    });
 
-                for (int i = offset; i < totalcount; i++) {
-                  setState(() {
-                    GlobalLists.merckinMediaList.add(merckMediaresp.ListElement(
-                        title: resp.data.list[i].title,
-                        id: resp.data.list[i].id,
-                        description: resp.data.list[i].description,
-                        mediaUrl: resp.data.list[i].mediaUrl,
-                        image: resp.data.list[i].image));
-                  });
+                    // GlobalLists.newsLettersList.add(resp.data.list);
 
-                  // GlobalLists.newsLettersList.add(resp.data.list);
+                  }
+                } else {
+                  for (int i = offset; i < totalcount; i++) {
+                    setState(() {
+                      GlobalLists.merckinMediaList.add(
+                          merckMediaresp.ListElement(
+                              title: resp.data.list[i].title,
+                              id: resp.data.list[i].id,
+                              description: resp.data.list[i].description,
+                              mediaUrl: resp.data.list[i].mediaUrl,
+                              image: resp.data.list[i].image));
+                    });
 
+                    // GlobalLists.newsLettersList.add(resp.data.list);
+
+                  }
                 }
 
                 offset = totalcount;

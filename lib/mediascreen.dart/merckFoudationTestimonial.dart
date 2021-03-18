@@ -352,18 +352,32 @@ class MerckFoundationTestimonialState
             setState(() {
               //  GlobalLists.merckTestimonialList = resp.data.list;
               print("here");
-
-              for (int i = offset; i < totalcount; i++) {
-                setState(() {
-                  GlobalLists.merckTestimonialList.add(
-                      merckTestimonialResp.ListElement(
-                          id: resp.data.list[i].id,
-                          videoDesc: resp.data.list[i].videoDesc,
-                          videoLink: resp.data.list[i].videoLink,
-                          countryId: resp.data.list[i].countryId,
-                          categoryId: resp.data.list[i].categoryId,
-                          year: resp.data.list[i].status));
-                });
+              if (resp.data.list.length < 10) {
+                for (int i = offset; i < resp.data.list.length; i++) {
+                  setState(() {
+                    GlobalLists.merckTestimonialList.add(
+                        merckTestimonialResp.ListElement(
+                            id: resp.data.list[i].id,
+                            videoDesc: resp.data.list[i].videoDesc,
+                            videoLink: resp.data.list[i].videoLink,
+                            countryId: resp.data.list[i].countryId,
+                            categoryId: resp.data.list[i].categoryId,
+                            year: resp.data.list[i].status));
+                  });
+                }
+              } else {
+                for (int i = offset; i < totalcount; i++) {
+                  setState(() {
+                    GlobalLists.merckTestimonialList.add(
+                        merckTestimonialResp.ListElement(
+                            id: resp.data.list[i].id,
+                            videoDesc: resp.data.list[i].videoDesc,
+                            videoLink: resp.data.list[i].videoLink,
+                            countryId: resp.data.list[i].countryId,
+                            categoryId: resp.data.list[i].categoryId,
+                            year: resp.data.list[i].status));
+                  });
+                }
               }
 
               offset = totalcount;

@@ -403,17 +403,30 @@ class StoriesState extends State<Stories> {
           if (resp.success == "True") {
             setState(() {
               print("here");
-
-              for (int i = offset; i < totalcount; i++) {
-                setState(() {
-                  GlobalLists.storiesList.add(storiesResp.ListElement(
-                      id: resp.data.list[i].id,
-                      videoDesc: resp.data.list[i].videoDesc,
-                      videoLink: resp.data.list[i].videoLink,
-                      countryId: resp.data.list[i].countryId,
-                      categoryId: resp.data.list[i].categoryId,
-                      year: resp.data.list[i].status));
-                });
+              if (resp.data.list.length < 10) {
+                for (int i = offset; i < resp.data.list.length; i++) {
+                  setState(() {
+                    GlobalLists.storiesList.add(storiesResp.ListElement(
+                        id: resp.data.list[i].id,
+                        videoDesc: resp.data.list[i].videoDesc,
+                        videoLink: resp.data.list[i].videoLink,
+                        countryId: resp.data.list[i].countryId,
+                        categoryId: resp.data.list[i].categoryId,
+                        year: resp.data.list[i].status));
+                  });
+                }
+              } else {
+                for (int i = offset; i < totalcount; i++) {
+                  setState(() {
+                    GlobalLists.storiesList.add(storiesResp.ListElement(
+                        id: resp.data.list[i].id,
+                        videoDesc: resp.data.list[i].videoDesc,
+                        videoLink: resp.data.list[i].videoLink,
+                        countryId: resp.data.list[i].countryId,
+                        categoryId: resp.data.list[i].categoryId,
+                        year: resp.data.list[i].status));
+                  });
+                }
               }
 
               offset = totalcount;

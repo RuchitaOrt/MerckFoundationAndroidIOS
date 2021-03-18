@@ -481,20 +481,36 @@ class NewsReleaseState extends State<NewsRelease> {
             setState(() {
               // GlobalLists.newsReleaseList = resp.data.list;
               Constantstring.baseUrl = resp.baseUrl;
+              if (resp.data.list.length < 10) {
+                for (int i = offset; i < resp.data.list.length; i++) {
+                  setState(() {
+                    GlobalLists.newsReleaseList.add(newsRelease.ListElement(
+                        title: resp.data.list[i].title,
+                        id: resp.data.list[i].id,
+                        pdfFile: resp.data.list[i].pdfFile,
+                        appImg: resp.data.list[i].appImg,
+                        eventType: resp.data.list[i].eventType,
+                        eventYear: resp.data.list[i].eventYear));
+                  });
 
-              for (int i = offset; i < totalcount; i++) {
-                setState(() {
-                  GlobalLists.newsReleaseList.add(newsRelease.ListElement(
-                      title: resp.data.list[i].title,
-                      id: resp.data.list[i].id,
-                      pdfFile: resp.data.list[i].pdfFile,
-                      appImg: resp.data.list[i].appImg,
-                      eventType: resp.data.list[i].eventType,
-                      eventYear: resp.data.list[i].eventYear));
-                });
+                  // GlobalLists.newsLettersList.add(resp.data.list);
 
-                // GlobalLists.newsLettersList.add(resp.data.list);
+                }
+              } else {
+                for (int i = offset; i < totalcount; i++) {
+                  setState(() {
+                    GlobalLists.newsReleaseList.add(newsRelease.ListElement(
+                        title: resp.data.list[i].title,
+                        id: resp.data.list[i].id,
+                        pdfFile: resp.data.list[i].pdfFile,
+                        appImg: resp.data.list[i].appImg,
+                        eventType: resp.data.list[i].eventType,
+                        eventYear: resp.data.list[i].eventYear));
+                  });
 
+                  // GlobalLists.newsLettersList.add(resp.data.list);
+
+                }
               }
 
               offset = totalcount;
