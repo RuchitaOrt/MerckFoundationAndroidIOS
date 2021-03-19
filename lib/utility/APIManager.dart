@@ -256,6 +256,9 @@ class APIManager {
   }
 
   static String searchapi = baseURL + "mobile_search";
+  static String ambasadarvideoapi =
+      baseURL + "ambassadors_view_more_videos_mob";
+  static String ambasadarimageapi = baseURL + "ambassadors_view_more_image_mob";
   static String homeurl = "program_page_api/home/Android/1";
   static String mmtmprogramurl =
       "MMTM_Program_Api/merck-more-than-a-mother/Android/1";

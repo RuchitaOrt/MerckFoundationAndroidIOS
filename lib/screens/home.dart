@@ -20,6 +20,8 @@ import 'package:merckfoundation22dec/photo_gallery.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
+
+import 'package:merckfoundation22dec/screens/ceomessage/Detailpageceo.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
@@ -35,6 +37,9 @@ import 'package:photo_view/photo_view.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/callforApplication.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
+import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
+import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -68,6 +73,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   List<dynamic> slidersection = [];
   Map<dynamic, dynamic> videosection = {};
   List _productsAvailable = [];
+  List typewidetofbottomsection = [];
+  bool isbottomSectionLoaded = false;
   List _productsAvailable1 = [
     "assets/images/slider1.jpg",
     "assets/images/slider2.jpg",
@@ -113,10 +120,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   Connectivity _connectivity = Connectivity();
   StreamSubscription<ConnectivityResult> _connectivitySubscription;
   ConnectivityResult stats;
+  DateTime _todaysDate;
+  var todayformatdate;
+  List<Widget> listofbottomwiget = [];
   @override
   void initState() {
     super.initState();
-
+    _todaysDate = DateTime.now();
+    todayformatdate = DateFormat('yyyy-MM-dd').format(_todaysDate);
+    print(todayformatdate);
     print("ho");
     // _connectivity.checkConnectivity().then((value) {
     //   stats = value;
@@ -241,125 +253,22 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       // scrollDirection: Axis.horizontal,
                       children: list()),
                 ),
-                // StreamBuilder(
-                //     stream: _bids,
-                //     initialData: false,
-                //     builder:
-                //         (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                //       if (snapshot.data) {
-                //         return Visibility(
-                //           visible: isMiddleSectionLoaded,
-                //           replacement:
-                //               Center(child: CircularProgressIndicator()),
-                //           child: ListView(
-                //               shrinkWrap: true,
-                //               physics: ScrollPhysics(),
-                //               // scrollDirection: Axis.horizontal,
-                //               children: list()),
-                //         );
-                //       } else {
-                //         return Container();
-                //       }
-                //       // var status1 =
-                //       //     ConnectionDetector.checkInternetConnection();
-
-                //       // // ignore: unrelated_type_equality_checks
-                //       // if (status1 == true) {
-                //       //   return Visibility(
-                //       //     visible: isMiddleSectionLoaded,
-                //       //     replacement:
-                //       //         Center(child: CircularProgressIndicator()),
-                //       //     child: ListView(
-                //       //         shrinkWrap: true,
-                //       //         physics: ScrollPhysics(),
-                //       //         // scrollDirection: Axis.horizontal,
-                //       //         children: list()),
-                //       //   );
-                //       // } else {
-                //       //   return Container();
-                //       // }
-                //     }),
-                // Container(
-                //   padding: EdgeInsets.all(20.0),
-                //   child: FutureBuilder(
-                //       future: gethomeapi(),
-                //       builder: (context, snapshot) {
-                //         if (snapshot.hasData) {
-                //           return ListView(
-                //               shrinkWrap: true,
-                //               scrollDirection: Axis.horizontal,
-                //               children: list());
-                //         } else {
-                //           return CircularProgressIndicator();
-                //         }
-                //       }),
-                // ),
-                // CustomeCard(
-                //   index: 1,
-                //   cardImage: "assets/newImages/message.png",
-                //   cardTitle:
-                //       "Message Form Dr.Rasha Kelej, CEO of Merck Foundation   ",
-                //   titleColor: Customcolor.text_darkblue,
-                //   titleImg: "assets/newImages/flowers-2.png",
-                //   subTitle:
-                //       "Message Form Dr.Rasha Kelej, on the inauguration...",
-                //   buttontitle: "Read More ",
-                //   buttontitlecolor: Customcolor.text_darkblue,
-                // ),
-                // SizedBox(
-                //   height: 12,
-                // ),
-                // CustomeCard(
-                //   index: 2,
-                //   cardImage: "assets/newImages/mqdefault.png",
-                //   cardTitle: "Our Stories   ",
-                //   titleColor: Customcolor.text_darkblue,
-                //   titleImg: "assets/newImages/flowers-2.png",
-                //   subTitle:
-                //       "Message Form Dr.Rasha Kelej, on the inauguration...",
-                //   buttontitle: "Watch More ",
-                //   onBtnTap: () {
-                //     Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //             builder: (BuildContext context) => Dashboard(
-                //                   index: 2,
-                //                 )));
-                //   },
-                //   buttontitlecolor: Customcolor.text_darkblue,
-                // ),
-
-                // SizedBox(
-                //   height: 8,
-                // ),
-                // RichText(
-                //   text: TextSpan(
-                //     children: [
-                //       TextSpan(
-                //         text:
-                //             "Message Form Dr.Rasha Kelej, on the inauguration Message Form Dr.Rasha Kelej, on the inauguration...",
-                //       ),
-                //       WidgetSpan(
-                //         child: Icon(Icons.add, size: 14),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // CustomeCard(
-                //   index: 3,
-                //   cardImage: "assets/newImages/gallery.png",
-                //   cardTitle: "Photo Gallery   ",
-                //   titleColor: Customcolor.text_darkblue,
-                //   titleImg: "assets/newImages/flowers-3.png",
-                //   subTitle: "",
-                //   buttontitle: "View More ",
-                //   buttontitlecolor: Customcolor.text_darkblue,
-                // ),
 
                 SizedBox(
                   height: 8,
                 ),
-
+                Visibility(
+                    visible: isbottomSectionLoaded,
+                    replacement: Center(child: CircularProgressIndicator()),
+                    child: ListView(
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      // scrollDirection: Axis.horizontal,
+                      children: listbottomwidget(),
+                    )),
+                SizedBox(
+                  height: 8,
+                ),
                 Visibility(
                   visible: isrightSectionLoaded,
                   replacement: Column(
@@ -480,222 +389,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   )
                 ],
               ),
-              Expanded(child: getcallforapp(context)
-                  // Stack(
-                  //   children: [
-                  //     Padding(
-                  //       padding: const EdgeInsets.only(top: 10),
-                  //       child: Swiper.children(
-                  //         autoplay: false,
-                  //         loop: true,
-                  //         // pagination: SwiperPagination(
-                  //         //   margin: EdgeInsets.only(
-                  //         //     right: 25.0,
-                  //         //   ),
-                  //         //   builder: DotSwiperPaginationBuilder(
-                  //         //       color: Colors.grey),
-                  //         // ),
-                  //         control: SwiperControl(
-                  //             iconNext: Icons.arrow_forward_ios,
-                  //             iconPrevious: Icons.arrow_back_ios,
-                  //             size: 20,
-                  //             color: Customcolor.darkblue_col),
-                  //         children: <Widget>[
-                  //           Column(
-                  //             children: [
-                  //               Container(
-                  //                   margin: EdgeInsets.only(
-                  //                     right: 40.0,
-                  //                     left: 30,
-                  //                   ),
-                  //                   child: ClipRRect(
-                  //                       borderRadius: BorderRadius.circular(5.0),
-                  //                       child: Image.asset(
-                  //                         "assets/newImages/cfa1.png",
-                  //                         height: 270,
-                  //                         fit: BoxFit.fill,
-                  //                       ))),
-                  //               SizedBox(
-                  //                 height: 10,
-                  //               ),
-                  //               Text("UNESCO-MARS 2020",
-                  //                   style: TextStyle(
-                  //                     fontSize: 17,
-                  //                   ))
-                  //             ],
-                  //           ),
-                  //           Column(
-                  //             children: [
-                  //               Container(
-                  //                   margin: EdgeInsets.only(
-                  //                     right: 40.0,
-                  //                     left: 30,
-                  //                   ),
-                  //                   child: ClipRRect(
-                  //                       borderRadius: BorderRadius.circular(5.0),
-                  //                       child: Image.asset(
-                  //                         "assets/newImages/poster_4.png",
-                  //                         height: 300,
-                  //                         fit: BoxFit.fill,
-                  //                       ))),
-                  //               SizedBox(
-                  //                 height: 8,
-                  //               ),
-                  //               Text("UNESCO-MARS 2020",
-                  //                   style: TextStyle(
-                  //                     fontSize: 17,
-                  //                   ))
-                  //             ],
-                  //           ),
-                  //           Column(
-                  //             children: [
-                  //               Container(
-                  //                   margin: EdgeInsets.only(
-                  //                     right: 40.0,
-                  //                     left: 30,
-                  //                   ),
-                  //                   child: ClipRRect(
-                  //                       borderRadius: BorderRadius.circular(5.0),
-                  //                       child: Image.asset(
-                  //                         "assets/newImages/poster_6.png",
-                  //                         height: 300,
-                  //                         fit: BoxFit.fill,
-                  //                       ))),
-                  //               SizedBox(
-                  //                 height: 8,
-                  //               ),
-                  //               Text("UNESCO-MARS 2020",
-                  //                   style: TextStyle(
-                  //                     fontSize: 17,
-                  //                   ))
-                  //             ],
-                  //           ),
-                  //           Column(
-                  //             children: [
-                  //               Container(
-                  //                   margin: EdgeInsets.only(
-                  //                     right: 40.0,
-                  //                     left: 30,
-                  //                   ),
-                  //                   child: ClipRRect(
-                  //                       borderRadius: BorderRadius.circular(5.0),
-                  //                       child: Image.asset(
-                  //                         "assets/newImages/cfa1.png",
-                  //                         height: 300,
-                  //                         fit: BoxFit.fill,
-                  //                       ))),
-                  //               SizedBox(
-                  //                 height: 8,
-                  //               ),
-                  //               Text("UNESCO-MARS 2020",
-                  //                   style: TextStyle(
-                  //                     fontSize: 17,
-                  //                   ))
-                  //             ],
-                  //           ),
-                  //           Column(
-                  //             children: [
-                  //               Container(
-                  //                   margin: EdgeInsets.only(
-                  //                     right: 40.0,
-                  //                     left: 30,
-                  //                   ),
-                  //                   child: ClipRRect(
-                  //                       borderRadius: BorderRadius.circular(5.0),
-                  //                       child: Image.asset(
-                  //                         "assets/newImages/poster_4.png",
-                  //                         height: 300,
-                  //                         fit: BoxFit.fill,
-                  //                       ))),
-                  //               SizedBox(
-                  //                 height: 8,
-                  //               ),
-                  //               Text("UNESCO-MARS 2020",
-                  //                   style: TextStyle(
-                  //                     fontSize: 17,
-                  //                   ))
-                  //             ],
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //     expandClick
-                  //         ? Container(
-                  //             height: 130,
-                  //             decoration: BoxDecoration(
-                  //                 color: Colors.white,
-                  //                 borderRadius: BorderRadius.circular(10)),
-                  //             child: Card(
-                  //               elevation: 5,
-                  //               child: Padding(
-                  //                 padding: EdgeInsets.only(
-                  //                     top: 20, left: 10, right: 10),
-                  //                 child: Column(
-                  //                   crossAxisAlignment: CrossAxisAlignment.start,
-                  //                   children: [
-                  //                     GestureDetector(
-                  //                       onTap: () {
-                  //                         setState(() {
-                  //                           expandClick = false;
-                  //                           expandedName = "Upcoming Events";
-                  //                         });
-                  //                       },
-                  //                       child: Container(
-                  //                         color: Colors.transparent,
-                  //                         width: SizeConfig.blockSizeHorizontal *
-                  //                             100,
-                  //                         child: Text(
-                  //                           "Upcoming Events",
-                  //                           style: TextStyle(
-                  //                             color: Customcolor.colorblack,
-                  //                             fontSize: 20,
-                  //                           ),
-                  //                         ),
-                  //                       ),
-                  //                     ),
-                  //                     SizedBox(
-                  //                       height: 15,
-                  //                     ),
-                  //                     Container(
-                  //                       height: 1,
-                  //                       color: Customcolor.colorblack
-                  //                           .withOpacity(0.4),
-                  //                     ),
-                  //                     SizedBox(
-                  //                       height: 15,
-                  //                     ),
-                  //                     GestureDetector(
-                  //                       onTap: () {
-                  //                         setState(() {
-                  //                           expandClick = false;
-                  //                           expandedName = "Past Events";
-                  //                         });
-                  //                       },
-                  //                       child: Container(
-                  //                         color: Colors.transparent,
-                  //                         width: SizeConfig.blockSizeHorizontal *
-                  //                             100,
-                  //                         child: Text(
-                  //                           "Past Events",
-                  //                           style: TextStyle(
-                  //                             color: Customcolor.colorblack,
-                  //                             fontSize: 20,
-                  //                           ),
-                  //                         ),
-                  //                       ),
-                  //                     ),
-                  //                     SizedBox(
-                  //                       height: 15,
-                  //                     ),
-                  //                   ],
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //           )
-                  //         : Container()
-                  //   ],
-                  // ),
-                  )
+              Expanded(child: getcallforapp(context))
             ],
           ),
         ),
@@ -1708,10 +1402,12 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               )
             ],
           ),
-          Image.asset(
-            "assets/newImages/hometoolbar.png",
-            height: 100,
-            width: 80,
+          Expanded(
+            child: Image.asset(
+              "assets/newImages/hometoolbar.png",
+              height: 100,
+              width: 80,
+            ),
           )
         ],
       )),
@@ -1958,6 +1654,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
         Map<String, dynamic> section1 = homepageres.middleArea;
         Map<String, dynamic> lastsection = homepageres.rightArea;
+        Map<String, dynamic> bottomsection = homepageres.bottomArea;
         print(section1);
         print(section1['1']);
 
@@ -2022,10 +1719,33 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
           if (rightsectioncategoryname.toString().toLowerCase() ==
               "call_for_app".toLowerCase()) {
-            GlobalLists.homecallforapp =
-                homepageres.rightArea['${i + 1}'].callForApp.list;
+            print("year");
+            // print(homepageres
+            //     .rightArea['${i + 1}'].callForApp.list[3].eventEndDate.year);
+            //
+            for (int j = 0;
+                j < homepageres.rightArea['${i + 1}'].callForApp.list.length;
+                j++) {
+              var enddate = new DateTime.utc(
+                  homepageres.rightArea['${i + 1}'].callForApp.list[j]
+                      .eventEndDate.year,
+                  homepageres.rightArea['${i + 1}'].callForApp.list[j]
+                      .eventEndDate.month,
+                  homepageres.rightArea['${i + 1}'].callForApp.list[j]
+                      .eventEndDate.day);
+
+              if (_todaysDate.isBefore(enddate)) {
+                GlobalLists.homecallforapp
+                    .add(homepageres.rightArea['${i + 1}'].callForApp.list[j]);
+                print(GlobalLists.homecallforapp.length);
+              }
+            }
+
+            // GlobalLists.homecallforapp =
+            //     homepageres.rightArea['${i + 1}'].callForApp.list;
             GlobalLists.homeCallForAppBaseURL =
                 homepageres.rightArea['${i + 1}'].callForApp.baseUrl;
+            print("callforapp length");
             print(GlobalLists.homecallforapp.length);
           } else if (rightsectioncategoryname.toString().toLowerCase() ==
               "mmtm".toLowerCase()) {
@@ -2042,17 +1762,53 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             print(GlobalLists.homedigitallib.length);
           }
         }
+
+        ///////bottom section
+        List<String> bottomareakey = [];
+        bottomsection.keys.forEach((element) {
+          bottomareakey.add(element.toString());
+        });
+        for (int i = 0; i < bottomsection.length; i++) {
+          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+          //  print(categoryKeys.videos.type);
+          dynamic bottomendsection = res['bottom_area'][bottomareakey[i]];
+          print("TKey: ${bottomendsection.keys.first}");
+          var bottomectioncategoryname = bottomendsection.keys.first;
+
+          setState(() {
+            typewidetofbottomsection.add(bottomectioncategoryname);
+
+            print(typewidetofbottomsection);
+          });
+
+          if (bottomectioncategoryname.toString().toLowerCase() ==
+              "media".toLowerCase()) {
+            GlobalLists.mmtmmediabaseurl =
+                homepageres.bottomArea[bottomareakey[i]].media.baseUrl;
+            GlobalLists.mmtmmedialist =
+                homepageres.bottomArea[bottomareakey[i]].media.list;
+            print(GlobalLists.mmtmmedialist.length);
+          } else if (bottomectioncategoryname.toString().toLowerCase() ==
+              "testimonial".toLowerCase()) {
+            GlobalLists.mmttestimoniallist =
+                homepageres.bottomArea[bottomareakey[i]].testimonial.list;
+            print(GlobalLists.mmttestimoniallist.length);
+            GlobalLists.mmttestimonialbaseurl =
+                homepageres.bottomArea[bottomareakey[i]].testimonial.baseUrl;
+          }
+        }
         setState(() {
           isMiddleSectionLoaded = true;
           isrightSectionLoaded = true;
           issliderSectionLoaded = true;
+          isbottomSectionLoaded = true;
         });
 
         return response;
       } else {
         ShowDialogs.showToast(GlobalLists.serverresp);
         _tabController = new TabController(vsync: this, length: 0);
-
+        isbottomSectionLoaded = true;
         isMiddleSectionLoaded = true;
         isrightSectionLoaded = true;
         issliderSectionLoaded = true;
@@ -2062,6 +1818,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       isMiddleSectionLoaded = true;
       issliderSectionLoaded = true;
       isrightSectionLoaded = true;
+      isbottomSectionLoaded = true;
       ShowDialogs.showToast("Please check internet connection");
     }
   }
@@ -2247,6 +2004,138 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
 //     return response;
 //   }
+  List<Widget> listbottomwidget() {
+    listofbottomwiget.clear();
+    for (int i = 0; i < typewidetofbottomsection.length; i++) {
+      if (typewidetofbottomsection[i] == "testimonial") {
+        listofbottomwiget.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 10, top: 10),
+            child: CustomHorizontalCard(
+                index: 1,
+                cardImage: "assets/newImages/mqdefault.png",
+                cardTitle: "Alumini Testimonials  ",
+                titleColor: Customcolor.pink_col,
+                onbtnTap: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (BuildContext context) =>
+                  //             Testimonialprogramviewmore(
+                  //               apiurl: API.watchmoretestimonialmmtm,
+                  //             )));
+                },
+                btnTitle: "View More",
+                titleImg: "assets/newImages/flowers-3.png",
+                list: Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Container(
+                    height: 160,
+                    child: ListView.builder(
+                      itemCount: GlobalLists.mmttestimoniallist.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Testimonialprogramdetailpage(
+                                            index: index,
+                                            baseurl: GlobalLists
+                                                .mmttestimonialbaseurl,
+                                          )));
+                            },
+                            child: Container(
+                              height: SizeConfig.blockSizeVertical * 15,
+                              width: SizeConfig.blockSizeHorizontal * 80,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.white),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 5, bottom: 3, left: 8, right: 8),
+                                    child: Container(
+                                      // height: 220,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        //color: Colors.amber,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder:
+                                            'assets/newImages/placeholder_3.jpg',
+                                        image:
+                                            "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[index].image}",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: ListView(
+                                      shrinkWrap: true,
+                                      // crossAxisAlignment:
+                                      //     CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 12,
+                                        ),
+                                        FormLabel(
+                                          text: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .testimonialName,
+                                          labelColor: Customcolor.colorPink,
+                                          fontSize: 17,
+                                          maxLines: 1,
+                                          fontweight: FontWeight.w700,
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        FormLabel(
+                                          text: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .departmentName,
+                                          labelColor: Colors.black87,
+                                          fontSize: 13,
+                                          fontweight: FontWeight.w600,
+                                          maxLines: 2,
+                                        ),
+                                        SizedBox(
+                                          height: 7,
+                                        ),
+                                        FormLabel(
+                                          text: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .shortDescription,
+                                          labelColor: Colors.black54,
+                                          fontSize: 13,
+                                          fontweight: FontWeight.w500,
+                                          maxLines: 4,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                )),
+          ),
+        );
+      }
+    }
+    return listofbottomwiget;
+  }
 
   List<Widget> list() {
     listofwiget.clear();
@@ -2334,8 +2223,18 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               titleColor: Customcolor.text_darkblue,
               titleImg: "assets/newImages/flowers-2.png",
               subTitle: GlobalLists.homeceomsglist[0].title,
-              buttontitle: "Read More ",
+              buttontitle: "View More ",
               buttontitlecolor: Customcolor.text_darkblue,
+              oncardtap: () {
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) => Detailpageceo(
+                //               list: GlobalLists.homeceomsglist,
+                //               imageurl: Constantstring.baseUrl,
+                //               index: 0,
+                //             )));
+              },
             ),
           ),
         );

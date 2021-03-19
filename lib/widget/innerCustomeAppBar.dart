@@ -70,9 +70,11 @@ class InnerCustomAppBar extends PreferredSize {
                     SizedBox(
                       width: 5,
                     ),
-                    Image.asset(
-                      "assets/newImages/toolflowerfortext.png",
-                      height: 50,
+                    Expanded(
+                      child: Image.asset(
+                        "assets/newImages/toolflowerfortext.png",
+                        height: 50,
+                      ),
                     )
                   ],
                 ),

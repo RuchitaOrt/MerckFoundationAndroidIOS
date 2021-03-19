@@ -83,17 +83,16 @@ import 'package:merckfoundation22dec/model/FilterdataResponse.dart'
     as filterlist;
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart'
     as awarddetail;
-import 'package:merckfoundation22dec/model/HomepageResponse.dart' as home;
-import 'package:merckfoundation22dec/model/searchmodel/SearchvideocategoryResponse.dart'
-    as searchvideo;
-import 'package:merckfoundation22dec/model/searchmodel/SearchnewreleasecategoryResponse.dart'
-    as searchnewrelease;
 import 'package:merckfoundation22dec/model/videoProgramResponse.dart'
     as watchvideo;
 import 'package:merckfoundation22dec/model/viewmoreMMTMResponse.dart'
     as viewmmtmrightsec;
 import 'package:merckfoundation22dec/model/viewmoreMediaResponse.dart'
     as viewmmtmedia;
+import 'package:merckfoundation22dec/model/AmbassadarImageViewall.dart'
+    as ambaviewmoreimage;
+import 'package:merckfoundation22dec/model/AmbassadarVideoviewall.dart'
+    as ambaviewmorevideo;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -234,4 +233,11 @@ class GlobalLists {
 
   //viewmore media
   static List<viewmmtmedia.ListElement> viewmoremedialist = [];
+
+  //view more for mmtm ambassadar program page
+  static List<ambaviewmoreimage.ListElement> viewmoreambasdarslist = [];
+  static String viewmoreambasdarsbaseurl = "";
+
+  //view more for video mmtm ambassadar program page
+  static List<ambaviewmorevideo.ListElement> videoviewmoreambasdarslist = [];
 }

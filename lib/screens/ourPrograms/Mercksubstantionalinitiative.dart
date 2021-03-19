@@ -687,35 +687,42 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                           items: GlobalLists.homedigitallib.map((product) {
                             return new Builder(
                               builder: (BuildContext context) {
-                                return ListView(
-                                  shrinkWrap: true,
-                                  physics: ScrollPhysics(),
-                                  // crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Center(
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                            'assets/newImages/placeholder_3.jpg',
-                                        image: GlobalLists
-                                                .homeDigitalLibraryBaseURL +
-                                            product.image,
-                                        fit: BoxFit.fill,
-                                        width: 240,
-                                        height: 290,
+                                return GestureDetector(
+                                  onTap: () {
+                                    ShowDialogs.launchURL(
+                                        GlobalLists.homeDigitalLibraryBaseURL +
+                                            product.document);
+                                  },
+                                  child: ListView(
+                                    shrinkWrap: true,
+                                    physics: ScrollPhysics(),
+                                    // crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: FadeInImage.assetNetwork(
+                                          placeholder:
+                                              'assets/newImages/placeholder_3.jpg',
+                                          image: GlobalLists
+                                                  .homeDigitalLibraryBaseURL +
+                                              product.image,
+                                          fit: BoxFit.fill,
+                                          width: 240,
+                                          height: 290,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Center(
-                                      child: Text(product.title,
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                          )),
-                                    )
-                                  ],
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Center(
+                                        child: Text(product.title,
+                                            textAlign: TextAlign.center,
+                                            maxLines: 2,
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                            )),
+                                      )
+                                    ],
+                                  ),
                                 );
                               },
                             );

@@ -5,6 +5,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class OurGalleryDetailsPage extends StatefulWidget {
   String categoryID;
@@ -72,7 +73,19 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                 padding: const EdgeInsets.only(right: 8, left: 10),
                 child: GestureDetector(
                   onTap: () {
-                    _showImageDialog(
+                    //   _showImageDialog(
+                    //       context: context,
+                    //       image: galleryDetailsResponse.baseUrl +
+                    //           galleryDetailsResponse
+                    //               .list[galleryDetailsResponse.list.keys
+                    //                   .elementAt(i)][index]
+                    //               .photo,
+                    //       description: galleryDetailsResponse
+                    //           .list[galleryDetailsResponse.list.keys.elementAt(i)]
+                    //               [index]
+                    //           .photoDescription);
+
+                    ShowDialogs.showImageDialog(
                         context: context,
                         image: galleryDetailsResponse.baseUrl +
                             galleryDetailsResponse

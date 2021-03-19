@@ -62,6 +62,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
   List<Widget> listofwiget = [];
   List<Widget> listoftabwiget = [];
   List<Widget> listofbottomwiget = [];
+  DateTime _todaysDate;
 
   List _imgarray = [
     "assets/newImages/img3.jpg",
@@ -92,6 +93,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
   @override
   void initState() {
     // getmmtmslider();
+    _todaysDate = DateTime.now();
     getmmtmapi();
     super.initState();
     //_tabController = new TabController(vsync: this, length: 2);
@@ -705,35 +707,42 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                           items: GlobalLists.homedigitallib.map((product) {
                             return new Builder(
                               builder: (BuildContext context) {
-                                return ListView(
-                                  shrinkWrap: true,
-                                  physics: ScrollPhysics(),
-                                  // crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Center(
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                            'assets/newImages/placeholder_3.jpg',
-                                        image: GlobalLists
-                                                .homeDigitalLibraryBaseURL +
-                                            product.image,
-                                        fit: BoxFit.fill,
-                                        width: 240,
-                                        height: 290,
+                                return GestureDetector(
+                                  onTap: () {
+                                    ShowDialogs.launchURL(
+                                        GlobalLists.homeDigitalLibraryBaseURL +
+                                            product.document);
+                                  },
+                                  child: ListView(
+                                    shrinkWrap: true,
+                                    physics: ScrollPhysics(),
+                                    // crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: FadeInImage.assetNetwork(
+                                          placeholder:
+                                              'assets/newImages/placeholder_3.jpg',
+                                          image: GlobalLists
+                                                  .homeDigitalLibraryBaseURL +
+                                              product.image,
+                                          fit: BoxFit.fill,
+                                          width: 240,
+                                          height: 290,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Center(
-                                      child: Text(product.title,
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                          )),
-                                    )
-                                  ],
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Center(
+                                        child: Text(product.title,
+                                            textAlign: TextAlign.center,
+                                            maxLines: 2,
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                            )),
+                                      )
+                                    ],
+                                  ),
                                 );
                               },
                             );
@@ -2204,7 +2213,21 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
 
         if (rightsection1categoryname.toString().toLowerCase() ==
             "call_for_app".toLowerCase()) {
-          GlobalLists.homecallforapp = homepageres.rightArea[1].callForApp.list;
+          for (int j = 0;
+              j < homepageres.rightArea[1].callForApp.list.length;
+              j++) {
+            var enddate = new DateTime.utc(
+                homepageres.rightArea[1].callForApp.list[j].eventEndDate.year,
+                homepageres.rightArea[1].callForApp.list[j].eventEndDate.month,
+                homepageres.rightArea[1].callForApp.list[j].eventEndDate.day);
+
+            if (_todaysDate.isBefore(enddate)) {
+              GlobalLists.homecallforapp
+                  .add(homepageres.rightArea[1].callForApp.list[j]);
+              print(GlobalLists.homecallforapp.length);
+            }
+          }
+          // GlobalLists.homecallforapp = homepageres.rightArea[1].callForApp.list;
           GlobalLists.homeCallForAppBaseURL =
               homepageres.rightArea[1].callForApp.baseUrl;
           print(GlobalLists.homecallforapp.length);

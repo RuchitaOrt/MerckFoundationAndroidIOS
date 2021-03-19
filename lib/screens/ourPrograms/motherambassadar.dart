@@ -17,6 +17,13 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:http/io_client.dart';
+import 'dart:io';
+import 'package:merckfoundation22dec/model/AmbassadarImageViewall.dart';
+
+import 'package:merckfoundation22dec/Ambassadarmmtmimage.dart';
+import 'package:merckfoundation22dec/watchmorevideoambaassadar.dart';
 
 class MotherAmbassadarDetails extends StatefulWidget {
   @override
@@ -73,221 +80,6 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
           shrinkWrap: true,
           //  crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // FormLabel(
-            //   text: "Merck More Than a Mother",
-            //   labelColor: Customcolor.colorPink,
-            //   fontweight: FontWeight.w700,
-            //   fontSize: ResponsiveFlutter.of(context).fontSize(2.4),
-            // ),
-            // SizedBox(
-            //   height: 15,
-            // ),
-            // FormLabel(
-            //   text: "Merck More Than a Mother Ambassadors",
-            //   labelColor: Customcolor.text_blue,
-            //   fontweight: FontWeight.w700,
-            //   fontSize: ResponsiveFlutter.of(context).fontSize(1.9),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            // FormLabel(
-            //   text:
-            //       "Merck Foundation works together with African First Ladies, who are the Ambassadors of Merck More Than a Mother, through Merck Foundation First Ladies Initiative (MFFLI). Through this platform, Merck Foundation together with First Ladies, ensures continuous improvement and exchange of variable aspects of different cultures in order to localize and/or standardize specific messages that can raise awareness and create a culture shift across Africa with regards to the below objectives:",
-            //   labelColor: Customcolor.text_darkgrey,
-            //   //fontweight: FontWeight.w500,
-            //   fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
-            // ),
-            // SizedBox(
-            //   height: 9,
-            // ),
-            // ListView.builder(
-            //   shrinkWrap: true,
-            //   physics: ScrollPhysics(),
-            //   scrollDirection: Axis.vertical,
-            //   itemCount: paravalue.length,
-            //   itemBuilder: (context, index) {
-            //     return Padding(
-            //       padding: const EdgeInsets.only(top: 20),
-            //       child: Row(
-            //         crossAxisAlignment: CrossAxisAlignment.start,
-            //         children: <Widget>[
-            //           Padding(
-            //             padding: const EdgeInsets.only(top: 5),
-            //             child: Icon(
-            //               Icons.circle,
-            //               size: 8,
-            //             ),
-            //           ),
-            //           SizedBox(
-            //             width: 5,
-            //           ),
-            //           Expanded(
-            //             child: Text(
-            //               paravalue[index],
-            //               style: TextStyle(
-            //                 color: Customcolor.text_darkgrey,
-            //                 fontSize:
-            //                     ResponsiveFlutter.of(context).fontSize(1.8),
-            //                 //             fontWeight: FontWeight.w500,
-            //               ),
-            //             ),
-            //           )
-            //         ],
-            //       ),
-            //     );
-            //   },
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // FormLabel(
-            //   text:
-            //       "So far, First Ladies of more than 18 Countries have partnered with Merck Foundation to lead and execute the initiatives in their respective countries as Merck More Than a Mother Ambassadors.",
-            //   labelColor: Customcolor.text_darkgrey,
-            //   //   fontweight: FontWeight.w500,
-            //   fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // FormLabel(
-            //   text:
-            //       "The Ambassadors of Merck More Than a Mother have their own social media campaign for their respective countries.",
-            //   labelColor: Customcolor.text_darkgrey,
-            //   // fontweight: FontWeight.w500,
-            //   fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            // Container(
-            //   height: 340,
-            //   // color: Colors.grey.shade800,
-            //   //  padding: EdgeInsets.all(16.0),
-            //   child: Column(
-            //     children: [
-            //       Expanded(
-            //         child: Swiper(
-            //           fade: 0.0,
-            //           itemBuilder: (BuildContext context, int index) {
-            //             return Column(
-            //               children: [
-            //                 Expanded(
-            //                   child: Card(
-            //                     elevation: 5,
-            //                     color: Colors.transparent,
-            //                     child: Column(
-            //                       children: <Widget>[
-            //                         Expanded(
-            //                           child: Container(
-            //                             // height: SizeConfig.blockSizeVertical * 40,
-            //                             width: double.infinity,
-            //                             decoration: BoxDecoration(
-            //                                 borderRadius:
-            //                                     BorderRadius.circular(10),
-            //                                 image: DecorationImage(
-            //                                     image: AssetImage(
-            //                                       images[index],
-            //                                     ),
-            //                                     fit: BoxFit.fill)),
-            //                           ),
-            //                         ),
-            //                         // Container(
-            //                         //     padding: EdgeInsets.only(bottom: 20),
-            //                         //     decoration: BoxDecoration(
-            //                         //         color: Colors.white,
-            //                         //         borderRadius: BorderRadius.only(
-            //                         //             bottomLeft: Radius.circular(10.0),
-            //                         //             bottomRight: Radius.circular(10.0))),
-            //                         //     child: )
-            //                       ],
-            //                     ),
-            //                   ),
-            //                 ),
-            //               ],
-            //             );
-            //           },
-            //           itemCount: images.length,
-            //           viewportFraction: 0.7,
-            //           layout: SwiperLayout.DEFAULT,
-
-            //           scale: 0.9,
-            //           //outer: true,
-            //           //  itemWidth: 300.0,
-            //           //itemHeight: 400,
-            //           //itemHeight: 300,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            // Center(
-            //   child: Container(
-            //     width: 120,
-            //     height: 40,
-            //     decoration: BoxDecoration(
-            //         color: Colors.amber,
-            //         borderRadius: BorderRadius.circular(5)),
-            //     child: Center(
-            //       child: Text(
-            //         "Watch More",
-            //         style: TextStyle(
-            //             color: Customcolor.colorBlue,
-            //             fontSize: 15,
-            //             fontWeight: FontWeight.w500),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 30,
-            // ),
-            // CustomHorizontalCard(
-            //     index: 1,
-            //     cardImage: "assets/newImages/mqdefault1.png",
-            //     cardTitle:
-            //         "Watch below some of the latest videos of Dr. Rasha kelej and first ladies of Africa. Ambassadars of Merck More than a Mother.  ",
-            //     titleColor: Customcolor.pink_col,
-            //     btnTitle: "Read All",
-            //     titleImg: "assets/newImages/flowers-2.png",
-            //     subTitle:
-            //         "Message Form Dr.Rasha Kelej, on the inauguration..."),
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 20),
-            //   child: CustomHorizontalCard(
-            //       index: 1,
-            //       cardImage: "assets/newImages/award1.png",
-            //       cardTitle:
-            //           "Acknowledging the efforts of first ladies as Ambassadars of Merck More than a Mother.  ",
-            //       btnTitle: "Read More",
-            //       titleColor: Customcolor.pink_col,
-            //       titleImg: "assets/newImages/flowers-1.png",
-            //       subTitle:
-            //           "Message Form Dr.Rasha Kelej, on the inauguration..."),
-            // ),
-            // // Padding(
-            // //   padding: const EdgeInsets.only(right: 60, left: 60, top: 20),
-            // //   child: Image.asset(
-            // //     "assets/newImages/flowers_footer.png",
-            // //   ),
-            // // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 0, left: 0),
-            //   child: Align(
-            //     alignment: Alignment.topRight,
-            //     child: Image.asset(
-            //       "assets/newImages/flowers_footer.png",
-            //       height: 170,
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // )
             Visibility(
               visible: isMiddleSectionLoaded,
               replacement: Center(child: CircularProgressIndicator()),
@@ -489,92 +281,130 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
               btnTitle: "Watch More",
               showviewmore: 1,
               onbtnTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => Videolibrary()));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) => Videolibrary()));
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
+              heigthoflist: SizeConfig.blockSizeVertical * 30,
               list: ListView.builder(
                 itemCount: GlobalLists.homevideolist.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (BuildContext context) => VideoPlayer(
-                      //               videoUrl: GlobalLists
-                      //                   .homevideolist[index].videoLink,
-                      //             )));
-                      var storykey = GlobalLists.homevideolist[index].videoLink
-                          .substring(GlobalLists
-                                  .homevideolist[index].videoLink.length -
-                              11);
-                      _launchInWebViewWithJavaScript(
-                          "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 8, left: 10),
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: SizeConfig.blockSizeHorizontal * 86,
-                            child: FadeInImage.assetNetwork(
-                              placeholder: 'assets/newImages/placeholder_3.jpg',
-                              image:
-                                  "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                  return Column(
+                    //  mainAxisAlignment: Ma.end,
+                    //    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          var storykey = GlobalLists
+                              .homevideolist[index].videoLink
+                              .substring(GlobalLists
+                                      .homevideolist[index].videoLink.length -
+                                  11);
+                          _launchInWebViewWithJavaScript(
+                              "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              right: 8, left: 10, bottom: 10),
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: SizeConfig.blockSizeHorizontal * 86,
+                                child: FadeInImage.assetNetwork(
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
+                                  image:
+                                      "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              Positioned(
+                                top: SizeConfig.blockSizeVertical * 18,
+                                // alignment: Alignment.bottomCenter,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10, bottom: 20),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Container(
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        child: Text(
-                                          GlobalLists
-                                              .homevideolist[index].videoDesc,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700),
-                                          maxLines: 3,
-                                        ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width:
+                                                SizeConfig.blockSizeHorizontal *
+                                                    80,
+                                            child: Text(
+                                              GlobalLists.homevideolist[index]
+                                                  .videoDesc,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700),
+                                              maxLines: 3,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 25,
+                                          )
+                                        ],
                                       ),
-                                      SizedBox(
-                                        height: 25,
-                                      )
                                     ],
                                   ),
-                                ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 120),
+                                child: Center(
+                                    child: Image.asset(
+                                        "assets/newImages/pause.png")),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        WatchmoreVideoambassdar(
+                                          categoryid: GlobalLists
+                                              .homevideolist[index].categoryId,
+                                        )));
+                            // ambasssadarvideoviewmore(
+                            //     GlobalLists.homevideolist[index].categoryId);
+                          },
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: Colors.amber,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Center(
+                              child: Text(
+                                "View All",
+                                style: TextStyle(
+                                    color: Customcolor.colorBlue,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500),
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 120),
-                            child: Center(
-                                child:
-                                    Image.asset("assets/newImages/pause.png")),
-                          )
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   );
                 },
               ),
@@ -730,7 +560,12 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                         ),
                         Center(
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              print(
+                                  GlobalLists.ambasdarslist[index].albumNameId);
+                              ambasssadarimageviewmore(
+                                  GlobalLists.ambasdarslist[index].albumNameId);
+                            },
                             child: Container(
                               width: 120,
                               height: 40,
@@ -797,6 +632,91 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
     return listofwiget;
   }
 
+  // ambasssadarvideoviewmore(String categoryid) async {
+  //   var status = await ConnectionDetector.checkInternetConnection();
+
+  //   if (status) {
+  //     dynamic bodyData = {
+  //       'category_id': categoryid,
+  //     };
+
+  //     // String body = json.encode(bodyData);
+  //     print(bodyData);
+  //     var response = await fetchPostWithBodyResponse(
+  //       APIManager.ambasadarvideoapi,
+  //       bodyData,
+  //     );
+
+  //     var res = json.decode(response.body);
+  //     print("res");
+  //     print(res);
+  //     AmbassdarvideoResponse resp =
+  //         ambassdarvideoResponseFromJson(response.body);
+  //     if (response.statusCode == 200) {
+  //       if (res['success'] == true) {
+  //         GlobalLists.videoviewmoreambasdarslist = resp.list;
+  //       } else {
+  //         setState(() {
+  //           ShowDialogs.showToast(res['msg']);
+  //         });
+  //       }
+  //     } else {
+  //       ShowDialogs.showToast("Server Not Responding");
+  //     }
+  //   } else {
+  //     setState(() {
+  //       ShowDialogs.showToast("Please check Internet Connection.");
+  //     });
+  //   }
+  // }
+
+  ambasssadarimageviewmore(String albumid) async {
+    var status = await ConnectionDetector.checkInternetConnection();
+
+    if (status) {
+      dynamic bodyData = {
+        'album_id': albumid,
+      };
+
+      // String body = json.encode(bodyData);
+      print(bodyData);
+      var response = await fetchPostWithBodyResponse(
+        APIManager.ambasadarimageapi,
+        bodyData,
+      );
+
+      var res = json.decode(response.body);
+      print("res");
+      print(res);
+      AmbassdarImageResponse resp =
+          ambassdarImageResponseFromJson(response.body);
+      if (response.statusCode == 200) {
+        GlobalLists.viewmoreambasdarslist = resp.list;
+        GlobalLists.viewmoreambasdarsbaseurl = resp.baseUrl;
+        if (res['success'] == true) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AmbassadarmmtmImagePage(
+                        baseURL: GlobalLists.viewmoreambasdarsbaseurl,
+                        index: 0,
+                        photosList: GlobalLists.viewmoreambasdarslist,
+                      )));
+        } else {
+          setState(() {
+            ShowDialogs.showToast(res['msg']);
+          });
+        }
+      } else {
+        ShowDialogs.showToast("Server Not Responding");
+      }
+    } else {
+      setState(() {
+        ShowDialogs.showToast("Please check Internet Connection.");
+      });
+    }
+  }
+
   Future<void> _launchInWebViewWithJavaScript(String url) async {
     if (await canLaunch(url)) {
       await launch(
@@ -808,5 +728,17 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  Future<http.Response> fetchPostWithBodyResponse(
+      String url, dynamic body) async {
+    IOClient ioClient = new IOClient();
+
+    HttpClient client = new HttpClient();
+
+    ioClient = new IOClient(client);
+    final response = await ioClient.post(url, body: body);
+    print('pit stop');
+    return response;
   }
 }

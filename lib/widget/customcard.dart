@@ -13,6 +13,7 @@ class CustomeCard extends StatefulWidget {
   final String buttontitle;
   final Color buttontitlecolor;
   final Function onBtnTap;
+  final Function oncardtap;
 
   const CustomeCard(
       {Key key,
@@ -25,7 +26,8 @@ class CustomeCard extends StatefulWidget {
       this.index,
       this.buttontitle,
       this.onBtnTap,
-      this.buttontitlecolor})
+      this.buttontitlecolor,
+      this.oncardtap})
       : super(key: key);
 
   @override
@@ -69,52 +71,56 @@ class CustomCardState extends State<CustomeCard> {
           SizedBox(
             height: 10,
           ),
-          Container(
-            height: SizeConfig.blockSizeVertical * 25,
-            width: SizeConfig.blockSizeHorizontal * 100,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                    image: NetworkImage(widget.cardImage), fit: BoxFit.cover)),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      widget.subTitle,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: TextStyle(
-                          fontSize: 17,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500),
-                      // fontSize: 17,
-                      // labelColor: Colors.white,
-                      // fontweight: FontWeight.w500,
+          GestureDetector(
+            onTap: widget.oncardtap,
+            child: Container(
+              height: SizeConfig.blockSizeVertical * 25,
+              width: SizeConfig.blockSizeHorizontal * 100,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                      image: NetworkImage(widget.cardImage),
+                      fit: BoxFit.cover)),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        widget.subTitle,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500),
+                        // fontSize: 17,
+                        // labelColor: Colors.white,
+                        // fontweight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: widget.onBtnTap,
-                    child: Container(
-                      width: 110,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Center(
-                        child: Text(
-                          widget.buttontitle,
-                          style: TextStyle(
-                              color: widget.buttontitlecolor,
-                              fontWeight: FontWeight.w500),
+                    GestureDetector(
+                      onTap: widget.onBtnTap,
+                      child: Container(
+                        width: 110,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Center(
+                          child: Text(
+                            widget.buttontitle,
+                            style: TextStyle(
+                                color: widget.buttontitlecolor,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           )
