@@ -58,7 +58,9 @@ import 'package:merckfoundation22dec/model/LeadershipResponse.dart';
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
 import 'package:merckfoundation22dec/model/TestimonialProgram.dart';
 import 'package:merckfoundation22dec/model/our_gallery_detail_response.dart';
+import 'package:merckfoundation22dec/model/Merckoverview.dart';
 
+//Note URL need to change in configuration.json and also in these file fetchget method
 enum API {
   vision,
   legaldisclaimer,
@@ -188,7 +190,14 @@ enum API {
   watchcallhome,
   watchcallmmtm,
   watchcallstem,
-  watchcallafrica
+  watchcallafrica,
+
+  //merckoverview
+
+  merckoverview,
+
+  //message from ceo rasha
+  viewallceomessagerasha
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -197,6 +206,7 @@ typedef successCallback = void Function(dynamic response);
 typedef progressCallback = void Function(int progress);
 typedef failureCallback = void Function(AppError error);
 
+//Note URL need to change in configuration.json and also in these file fetchget method
 class APIManager {
   static Duration timeout;
   static String token;
@@ -256,8 +266,12 @@ class APIManager {
   }
 
   static String searchapi = baseURL + "mobile_search";
+  //video view all section
   static String ambasadarvideoapi =
       baseURL + "ambassadors_view_more_videos_mob";
+  //api for view all video section-Empowering Berna ,Local Songs and Children Stories,Merck Oncology Fellowship Program,Merck More Than a Patient,Merck Community Awareness
+  static String watchsubmenuvideoapi = baseURL + "WatchMoreSubProgramVideos";
+  ////
   static String ambasadarimageapi = baseURL + "ambassadors_view_more_image_mob";
   static String homeurl = "program_page_api/home/Android/1";
   static String mmtmprogramurl =
@@ -667,6 +681,15 @@ class APIManager {
           apiPathString = "read_call_for_app/merck-africa-asia-luminary/1";
 
           break;
+
+        case API.merckoverview:
+          apiPathString = "merck_foundation_over_view";
+
+          break;
+
+        case API.viewallceomessagerasha:
+          apiPathString = "all_ceo_message/home/1";
+          break;
         default:
           apiPathString = "";
       }
@@ -1043,6 +1066,13 @@ class APIManager {
           apiPathString = "read_call_for_app/merck-africa-asia-luminary/1";
 
           break;
+        case API.merckoverview:
+          apiPathString = "merck_foundation_over_view";
+
+          break;
+        case API.viewallceomessagerasha:
+          apiPathString = "all_ceo_message/home/1";
+          break;
         default:
           apiPathString = "";
       }
@@ -1109,6 +1139,7 @@ class APIManager {
       case API.watchmorelatestupcancer:
       case API.watchmorelatestupstem:
       case API.watchmorelatestupafrica:
+      case API.viewallceomessagerasha:
         className = "NewsLetterseResponse";
         break;
 
@@ -1298,6 +1329,9 @@ class APIManager {
       case API.watchmediaprogramcancer:
         className = "ViewmoremediaResponse";
         break;
+      case API.merckoverview:
+        className = "MerckoverviewResponse";
+        break;
 
       default:
         className = 'CommonResponse';
@@ -1485,6 +1519,10 @@ class APIManager {
     if (className == "ViewmoremediaResponse") {
       //enterhere
       responseObj = ViewmoremediaResponse.fromJson(json);
+    }
+    if (className == "MerckoverviewResponse") {
+      //enterhere
+      responseObj = MerckoverviewResponse.fromJson(json);
     }
 
     return responseObj;

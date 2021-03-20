@@ -15,6 +15,8 @@ import 'package:merckfoundation22dec/screens/ourPrograms/Merckcapabilityadvancem
 import 'package:merckfoundation22dec/screens/ourPrograms/Mercksubstantionalinitiative.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Communityawaeness.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Educatinglinda.dart';
+import 'package:merckfoundation22dec/screens/watchmorevideolibray.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -88,7 +90,13 @@ class _MyHomePageState extends State<OurProgram> {
                                             : indexpass == 12
                                                 ? FirstLadiesInitiativeDetails()
                                                 : indexpass == 7
-                                                    ? MMTMProgram()
+                                                    ?
+                                                    // MMTMProgram()
+                                                    //same api that is call frpm mmtm video view more
+                                                    WatchmoreVideolibrary(
+                                                        apiurl:
+                                                            API.watchvideommtm,
+                                                      )
                                                     : indexpass == 6
                                                         ? LocalSongsandChildrenStories()
                                                         : indexpass == 8

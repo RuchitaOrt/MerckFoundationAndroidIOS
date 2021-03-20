@@ -13,13 +13,16 @@ import 'package:marquee/marquee.dart';
 import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/ViewmoremmtmAmbassadar.dart';
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
 import 'package:merckfoundation22dec/model/HomepageResponse.dart';
 import 'package:merckfoundation22dec/ouraward.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/photo_gallery.dart';
+import 'package:merckfoundation22dec/Homescreenceo.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/model/Merckoverview.dart';
 
 import 'package:merckfoundation22dec/screens/ceomessage/Detailpageceo.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -39,7 +42,10 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/callforApplication.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:intl/intl.dart';
+import 'package:merckfoundation22dec/viewmorehomeceo.dart';
+import 'package:merckfoundation22dec/covid/CovidResponse.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -150,7 +156,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     // });
 
     gethomeapi();
-
+    getmerckoverview();
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -512,13 +518,18 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           child: Center(
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            CallforApplication(
-                                              apiurl: API.watchcallhome,
-                                            )));
+                                        builder: (context) =>
+                                            Dashboard(index: 4)));
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (BuildContext context) =>
+                                //             CallforApplication(
+                                //               apiurl: API.watchcallhome,
+                                //             )));
                               },
                               child: Container(
                                 width: 120,
@@ -1582,11 +1593,23 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => Dashboard(
-                                      index: 3,
+                                builder: (BuildContext context) =>
+                                    MerckFoundationMedia(
+                                      apiurl: API.merckfoundationinmedia,
                                     )));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) => Dashboard(
+                        //               index: 3,
+                        //             )));
                       } else if (index == 6) {
                         //covid response
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) =>
+                        //             CovidResponse()));
                       } else if (index == 7) {
                         //our polcies
                         Navigator.push(
@@ -2017,13 +2040,13 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 cardTitle: "Alumini Testimonials  ",
                 titleColor: Customcolor.pink_col,
                 onbtnTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (BuildContext context) =>
-                  //             Testimonialprogramviewmore(
-                  //               apiurl: API.watchmoretestimonialmmtm,
-                  //             )));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              Testimonialprogramviewmore(
+                                apiurl: API.testiomonailpro,
+                              )));
                 },
                 btnTitle: "View More",
                 titleImg: "assets/newImages/flowers-3.png",
@@ -2225,15 +2248,21 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               subTitle: GlobalLists.homeceomsglist[0].title,
               buttontitle: "View More ",
               buttontitlecolor: Customcolor.text_darkblue,
+              onBtnTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => viewmoreHomeceo(
+                            apiurl: API.viewallceomessagerasha)));
+              },
               oncardtap: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (BuildContext context) => Detailpageceo(
-                //               list: GlobalLists.homeceomsglist,
-                //               imageurl: Constantstring.baseUrl,
-                //               index: 0,
-                //             )));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Homeceomessage(
+                              title: GlobalLists.homeceomsglist[0].title,
+                              detail: GlobalLists.homeceomsglist[0].details,
+                            )));
               },
             ),
           ),
@@ -2280,6 +2309,41 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     });
     //_tabController.length = tabs.length;
     return listoftabwiget;
+  }
+
+  getmerckoverview() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      // ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.merckoverview,
+        (response) async {
+          MerckoverviewResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          //    Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == true) {
+            setState(() {
+              GlobalLists.merckoverview = resp.list;
+              print(GlobalLists.merckoverview.image);
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          //   Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 }
 

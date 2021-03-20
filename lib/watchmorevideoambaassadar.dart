@@ -20,10 +20,14 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
+//ambassadar,empowering berna,local song,encology,fellowship,community,merck patient
 class WatchmoreVideoambassdar extends StatefulWidget {
   final String categoryid;
+  final dynamic api;
+  final String type;
 
-  const WatchmoreVideoambassdar({Key key, this.categoryid}) : super(key: key);
+  const WatchmoreVideoambassdar({Key key, this.categoryid, this.api, this.type})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return VideolibraryState();
@@ -46,7 +50,7 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
 
     super.initState();
     GlobalLists.videoviewmoreambasdarslist.clear();
-    ambasssadarvideoviewmore(widget.categoryid);
+    ambasssadarvideoviewmore(widget.categoryid, widget.api, widget.type);
     _sc = new ScrollController()..addListener(_scrollListener);
   }
 
@@ -65,31 +69,28 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
           setState(() {
             // Here you can write your code for open new view
             _isLoading = false;
-            if (resp.success == "True") {
+            if (resp.success == true) {
               setState(() {
                 print("here");
                 // list = new List();
                 // list = resp.data.list;
                 //totalcount 10
 
-                for (int i = offset; i < totalcount; i++) {
-                  setState(() {
-                    for (int i = offset; i < totalcount; i++) {
-                      setState(() {
-                        GlobalLists.videoviewmoreambasdarslist.add(ListElement(
-                            id: resp.list[i].id,
-                            videoDesc: resp.list[i].videoDesc,
-                            videoLink: resp.list[i].videoLink,
-                            countryId: resp.list[i].countryId,
-                            categoryId: resp.list[i].categoryId,
-                            year: resp.list[i].status));
-                      });
-                    }
-                  });
+                setState(() {
+                  for (int i = offset; i < totalcount; i++) {
+                    setState(() {
+                      GlobalLists.videoviewmoreambasdarslist.add(ListElement(
+                          id: resp.list[i].id,
+                          videoDesc: resp.list[i].videoDesc,
+                          videoLink: resp.list[i].videoLink,
+                          countryId: resp.list[i].countryId,
+                          categoryId: resp.list[i].categoryId,
+                          year: resp.list[i].status));
+                    });
+                  }
+                });
 
-                  // GlobalLists.newsLettersList.add(resp.data.list);
-
-                }
+                // GlobalLists.newsLettersList.add(resp.data.list);
 
                 offset = totalcount;
                 int remem = resp.list.length - totalcount;
@@ -111,7 +112,7 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              //ShowDialogs.showToast(resp.msg);
               setState(() {
                 _isLoading = false;
               });
@@ -312,18 +313,26 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
         ));
   }
 
-  ambasssadarvideoviewmore(String categoryid) async {
+  ambasssadarvideoviewmore(
+      String categoryid, dynamic api, String bodydata) async {
     var status = await ConnectionDetector.checkInternetConnection();
-
+    dynamic bodyData;
     if (status) {
-      dynamic bodyData = {
-        'category_id': categoryid,
-      };
+      if (bodydata == "ambassadar") {
+        bodyData = {
+          'category_id': categoryid,
+        };
+      } else {
+        bodyData = {
+          'catg_id': categoryid,
+        };
+      }
 
+//APIManager.ambasadarvideoapi
       // String body = json.encode(bodyData);
       print(bodyData);
       var response = await fetchPostWithBodyResponse(
-        APIManager.ambasadarvideoapi,
+        api,
         bodyData,
       );
 

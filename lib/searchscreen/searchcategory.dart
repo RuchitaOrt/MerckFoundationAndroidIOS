@@ -37,7 +37,7 @@ class SearchcategoryState extends State<Searchcategory>
     "Photo",
     "Media",
     "Testimonials",
-    "Award"
+    "Awards"
   ];
   TextEditingController categoryController = new TextEditingController();
   TextEditingController keywordController = new TextEditingController();
@@ -324,17 +324,17 @@ class SearchcategoryState extends State<Searchcategory>
                             categorytype: 8,
                           )));
             });
-          } else if (categoryController.text == "Award") {
+          } else if (categoryController.text == "Awards") {
             // SearchnewreleasecategoryResponse resp = res;
             setState(() {
-              // Constantstring.baseUrl = res['base_url'];
-              // GlobalLists.searchawardlisting = res['data']['list'];
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (BuildContext context) => Search(
-              //               categorytype: 9,
-              //             )));
+              Constantstring.baseUrl = res['base_url'];
+              GlobalLists.searchawardlisting = res['data']['list'];
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Search(
+                            categorytype: 9,
+                          )));
             });
           }
         } else {

@@ -10,6 +10,8 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/screens/watchmorevideolibray.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
 
 class OurProgramcancerlist extends StatefulWidget {
   OurProgramcancerlist({Key key, this.title, this.indexpass}) : super(key: key);
@@ -221,6 +223,14 @@ class _MyHomePageState extends State<OurProgramcancerlist> {
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
                                                 Merckcancercommunityawareness()));
+                                  } else if (index == 4) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                WatchmoreVideolibrary(
+                                                  apiurl: API.watchvideocancer,
+                                                )));
                                   } else if (index == 5) {
                                     Navigator.push(
                                         context,

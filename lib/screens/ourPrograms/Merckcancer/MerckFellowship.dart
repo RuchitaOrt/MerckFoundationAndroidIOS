@@ -30,6 +30,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/MerckFellowship.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:merckfoundation22dec/watchmorevideoambaassadar.dart';
 
 class MerckFellowship extends StatefulWidget {
   @override
@@ -835,10 +836,20 @@ class OurProgramsDetailsState extends State<MerckFellowship>
               cardTitle: "Our Videos  ",
               btnTitle: "Watch More",
               onbtnTap: () {
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) => Videolibrary()));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => Videolibrary()));
+                        builder: (BuildContext context) =>
+                            WatchmoreVideoambassdar(
+                              categoryid:
+                                  GlobalLists.homevideolist[0].categoryId,
+                              api: APIManager.watchsubmenuvideoapi,
+                              type: "",
+                            )));
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",

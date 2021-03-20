@@ -53,16 +53,17 @@ dependencies:
   android_intent:
   intent: ^1.4.0
   connectivity:
-
+  pdf_viewer_plugin: ^1.1.1
+  flutter_launcher_icons: ^0.8.1
   
- 
-  
-
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+flutter_icons:
+  image_path: "assets/newImages/ic_launcher.png"
+  android: true
+  ios: true  
   
   
     

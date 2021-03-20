@@ -31,6 +31,7 @@ class InnerCustomAppBar extends PreferredSize {
   @override
   Size get preferredSize => Size.fromHeight(height);
   double imgHeight = 50;
+  double whatsupheigth = 45;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -239,6 +240,9 @@ class InnerCustomAppBar extends PreferredSize {
                                               height: imgHeight,
                                               width: imgHeight,
                                             ),
+                                          ),
+                                          SizedBox(
+                                            width: 7,
                                           ),
                                           GestureDetector(
                                             onTap: () {
