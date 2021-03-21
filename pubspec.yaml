@@ -55,7 +55,7 @@ dependencies:
   connectivity:
   pdf_viewer_plugin: ^1.1.1
   flutter_launcher_icons: ^0.8.1
-  
+  flip_card: 
 
 dev_dependencies:
   flutter_test:

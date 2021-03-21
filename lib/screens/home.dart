@@ -1605,11 +1605,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                         //             )));
                       } else if (index == 6) {
                         //covid response
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (BuildContext context) =>
-                        //             CovidResponse()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    CovidResponse()));
                       } else if (index == 7) {
                         //our polcies
                         Navigator.push(

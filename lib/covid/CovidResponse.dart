@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/covid/childrenyouth.dart';
+import 'package:merckfoundation22dec/covid/communitysupport.dart';
+import 'package:merckfoundation22dec/covid/communitymedia.dart';
+import 'package:merckfoundation22dec/covid/Healthcare.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -6,6 +10,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flip_card/flip_card.dart';
 
 class Description {
   final String title;
@@ -45,6 +50,10 @@ class CovidResponseState extends State<CovidResponse>
         detail:
             "Merck Foundation launched an inspiring storybook ‘Making the Right Choice’ in partnership with African First Ladies to sensitize children and youth about Coronavirus"),
   ];
+  GlobalKey<FlipCardState> media = GlobalKey<FlipCardState>();
+  GlobalKey<FlipCardState> youth = GlobalKey<FlipCardState>();
+  GlobalKey<FlipCardState> communitysupport = GlobalKey<FlipCardState>();
+  GlobalKey<FlipCardState> health = GlobalKey<FlipCardState>();
   @override
   void initState() {
     super.initState();
@@ -112,7 +121,7 @@ class CovidResponseState extends State<CovidResponse>
                         FormLabel(
                           text:
                               "MERCK FOUNDATION RESPONSE TO COVID-19 PANDEMIC",
-                          labelColor: Customcolor.pink_col,
+                          labelColor: Customcolor.violet_col,
                           fontSize: ResponsiveFlutter.of(context).fontSize(2),
                           fontweight: FontWeight.w400,
                           textAlignment: TextAlign.center,
@@ -121,9 +130,24 @@ class CovidResponseState extends State<CovidResponse>
                           height: 10,
                         ),
                         advertise(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            _mediaaward(context),
+                            _childrenyouth(context),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            _communitysupport(context),
+                            _healthcapacity(context),
+                          ],
+                        ),
                         SizedBox(
                           height: 10,
                         ),
+
                         FormLabel(
                           text:
                               "Merck Foundation has raced to respond to the Coronavirus pandemic in partnership with 18 African First Ladies, Ministries of Health, Information and Education focusing on four main areas:",
@@ -197,6 +221,325 @@ class CovidResponseState extends State<CovidResponse>
             // ),
           ],
         ));
+  }
+
+  _mediaaward(context) {
+    return Card(
+      elevation: 0.0,
+      margin: EdgeInsets.only(left: 40.0, right: 10.0, top: 5.0, bottom: 0.0),
+      color: Color(0x00000000),
+      child: FlipCard(
+        key: media,
+        direction: FlipDirection.HORIZONTAL,
+        speed: 500,
+        onFlipDone: (status) {
+          print(status);
+          // if (status == false) {
+          //   media.currentState.controller.reverse();
+          // }
+          if (status == false) {
+            if (youth.currentState.isFront == false) {
+              youth.currentState.toggleCard();
+            }
+            if (health.currentState.isFront == false) {
+              health.currentState.toggleCard();
+            }
+            if (communitysupport.currentState.isFront == false) {
+              communitysupport.currentState.toggleCard();
+            }
+          }
+        },
+        front: Container(
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(
+                "assets/newImages/MF_Bubble_Image.png",
+                width: 100,
+                height: 100,
+              ),
+            ],
+          ),
+        ),
+        back: GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => CommunityMedia()));
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                    width: 150,
+                    height: 150,
+                    decoration: BoxDecoration(
+                        color: Customcolor.baby_blue,
+                        borderRadius: BorderRadius.all(Radius.circular(75))),
+                    child: Center(
+                        child: Text(
+                      "Community awareness through Media awards",
+                      style: TextStyle(
+                        fontSize: 12,
+                      ),
+                      textAlign: TextAlign.center,
+                    )))
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  _childrenyouth(context) {
+    return Card(
+      elevation: 0.0,
+      margin: EdgeInsets.only(left: 5.0, right: 6.0, top: 20.0, bottom: 0.0),
+      color: Color(0x00000000),
+      child: FlipCard(
+        key: youth,
+        direction: FlipDirection.HORIZONTAL,
+        speed: 500,
+        onFlipDone: (status) {
+          print(status);
+          if (status == false) {
+            if (media.currentState.isFront == false) {
+              media.currentState.toggleCard();
+            }
+            if (health.currentState.isFront == false) {
+              health.currentState.toggleCard();
+            }
+            if (communitysupport.currentState.isFront == false) {
+              communitysupport.currentState.toggleCard();
+            }
+          }
+        },
+        front: Container(
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 40),
+                child: Image.asset(
+                  "assets/newImages/MF_Bubble_Image.png",
+                  width: 150,
+                  height: 150,
+                ),
+              ),
+            ],
+          ),
+        ),
+        back: GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Childrenyouth()));
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                          color: Customcolor.baby_blue,
+                          borderRadius: BorderRadius.all(Radius.circular(75))),
+                      child: Center(
+                          child: Text(
+                        "Community awareness for Children and Youth",
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.center,
+                      ))),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  _communitysupport(context) {
+    return Card(
+      elevation: 0.0,
+      margin: EdgeInsets.only(left: 32.0, right: 32.0, top: 40.0, bottom: 0.0),
+      color: Color(0x00000000),
+      child: FlipCard(
+        key: communitysupport,
+        direction: FlipDirection.HORIZONTAL,
+        speed: 500,
+        onFlipDone: (status) {
+          print(status);
+          if (status == false) {
+            if (youth.currentState.isFront == false) {
+              youth.currentState.toggleCard();
+            }
+            if (health.currentState.isFront == false) {
+              health.currentState.toggleCard();
+            }
+            if (media.currentState.isFront == false) {
+              media.currentState.toggleCard();
+            }
+          }
+        },
+        front: Container(
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(
+                "assets/newImages/MF_Bubble_Image.png",
+                width: 150,
+                height: 150,
+              ),
+            ],
+          ),
+        ),
+        back: GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Communitysupport()));
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                          color: Customcolor.baby_blue,
+                          borderRadius: BorderRadius.all(Radius.circular(75))),
+                      child: Center(
+                          child: Text(
+                        "Community Support",
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.center,
+                      ))),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  _healthcapacity(context) {
+    return Card(
+      elevation: 0.0,
+      margin: EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0, bottom: 10.0),
+      color: Color(0x00000000),
+      child: FlipCard(
+        key: health,
+        direction: FlipDirection.HORIZONTAL,
+        speed: 500,
+        onFlipDone: (status) {
+          print(status);
+          if (status == false) {
+            if (youth.currentState.isFront == false) {
+              youth.currentState.toggleCard();
+            }
+            if (media.currentState.isFront == false) {
+              media.currentState.toggleCard();
+            }
+            if (communitysupport.currentState.isFront == false) {
+              communitysupport.currentState.toggleCard();
+            }
+          }
+        },
+        front: Container(
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(
+                "assets/newImages/MF_Bubble_Image.png",
+                width: 100,
+                height: 100,
+              ),
+            ],
+          ),
+        ),
+        back: GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Healthcare()));
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          color: Customcolor.baby_blue,
+                          borderRadius: BorderRadius.all(Radius.circular(75))),
+                      child: Center(
+                          child: Text(
+                        "Health Care Capacity Building",
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.center,
+                      ))),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget advertise() {
