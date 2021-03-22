@@ -6,6 +6,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/stories.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -13,9 +14,10 @@ import 'package:merckfoundation22dec/widget/drawer.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 class Dashboard extends StatefulWidget {
-  Dashboard({Key key, this.title, this.index}) : super(key: key);
+  Dashboard({Key key, this.title, this.index, this.apiurl}) : super(key: key);
   final String title;
   final int index;
+  final dynamic apiurl;
 
   @override
   _DashboardState createState() => _DashboardState();
@@ -61,8 +63,12 @@ class _DashboardState extends State<Dashboard>
             Home(),
             Ourprogram(),
             Stories(),
-            NewsPage(),
-            CallforApplication()
+            NewsPage(
+              apiurl: API.newsletters,
+            ),
+            CallforApplication(
+              apiurl: API.callforapplication,
+            )
           ]),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: currentIndex,

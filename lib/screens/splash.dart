@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/Landingpage.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -36,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
             left: 8,
             bottom: 20,
             child: Text(
-              "version 1.7",
+              "version 1.9",
               style: TextStyle(
                 color: Colors.black87,
               ),
@@ -52,9 +53,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   onDoneLoading() async {
-    // Navigator.pushReplacement(
-    //     context, MaterialPageRoute(builder: (context) => LoginPage()));
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Dashboard(index: 0)));
+        context, MaterialPageRoute(builder: (context) => Landingpage()));
+    // Navigator.pushReplacement(
+    //     context, MaterialPageRoute(builder: (context) => Dashboard(index: 0)));
   }
 }

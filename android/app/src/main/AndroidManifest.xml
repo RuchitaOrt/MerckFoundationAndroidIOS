@@ -11,31 +11,34 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="merckfoundation"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
+
+
 
 <!--        <meta-data android:name="com.facebook.sdk.ApplicationId"-->
 <!--            android:value="@string/facebook_app_id"/>-->
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
+        <!-- <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
 
         <meta-data android:name="com.facebook.sdk.ApplicationName"
             android:value="@string/app_name"/>
-
+ -->
 
 
 <!--        <provider android:authorities="com.facebook.app.FacebookContentProvider{870993726807583}"-->
 <!--            android:name="com.facebook.FacebookContentProvider"-->
 <!--            android:exported="true"/>-->
 
-        <provider android:name="androidx.core.content.FileProvider"
+        <!-- <provider android:name="androidx.core.content.FileProvider"
             android:authorities="{APP_PACKAGE}.social.share.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths"/>
-        </provider>
+        </provider> -->
 
         <activity
             android:name=".MainActivity"
@@ -74,6 +77,15 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider250032663370281"
+            android:exported="false" />
 <!--        <provider-->
 <!--            android:name="com.facebook.FacebookContentProvider"-->
 <!--            android:authorities="com.facebook.app.FacebookContentProvider[870993726807583]"-->

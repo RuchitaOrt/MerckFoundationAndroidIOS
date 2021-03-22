@@ -2,6 +2,7 @@ import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckmorethanamother.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckstemprogram.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Merckxanceraccess.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/aboutMerckMother.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/empoweringberna.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/fertilityPrograms.dart';
@@ -10,6 +11,10 @@ import 'package:merckfoundation22dec/screens/ourPrograms/localSogsandChildrenSto
 import 'package:merckfoundation22dec/screens/ourPrograms/mmtmprogram.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/motherambassadar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/strategy.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Merckcapabilityadvancement.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Mercksubstantionalinitiative.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Communityawaeness.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/Educatinglinda.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -66,25 +71,37 @@ class _MyHomePageState extends State<OurProgram> {
           screens: <Widget>[
             indexpass == 0
                 ? OurProgramDetails()
-                : indexpass == 4
-                    ? Merckstemprogram()
-                    : indexpass == 5
-                        ? EmpoweringBerna()
-                        : indexpass == 9
-                            ? StrategyDetails()
-                            : indexpass == 10
-                                ? MotherAmbassadarDetails()
-                                : indexpass == 11
-                                    ? MerckFertility()
-                                    : indexpass == 12
-                                        ? FirstLadiesInitiativeDetails()
-                                        : indexpass == 7
-                                            ? MMTMProgram()
-                                            : indexpass == 6
-                                                ? LocalSongsandChildrenStories()
-                                                : indexpass == 8
-                                                    ? AboutMerckMother()
-                                                    : Container()
+                : indexpass == 1
+                    ? MerckCanceraccess()
+                    : indexpass == 2
+                        ? MerckCapabilityadvancement()
+                        : indexpass == 4
+                            ? Merckstemprogram()
+                            : indexpass == 5
+                                ? EmpoweringBerna()
+                                : indexpass == 9
+                                    ? StrategyDetails()
+                                    : indexpass == 10
+                                        ? MotherAmbassadarDetails()
+                                        : indexpass == 11
+                                            ? MerckFertility()
+                                            : indexpass == 12
+                                                ? FirstLadiesInitiativeDetails()
+                                                : indexpass == 7
+                                                    ? MMTMProgram()
+                                                    : indexpass == 6
+                                                        ? LocalSongsandChildrenStories()
+                                                        : indexpass == 8
+                                                            ? AboutMerckMother()
+                                                            : indexpass == 13
+                                                                ? MerckSubstantional()
+                                                                : indexpass ==
+                                                                        14
+                                                                    ? EducatingLinda()
+                                                                    : indexpass ==
+                                                                            15
+                                                                        ? CommunityAwareness()
+                                                                        : Container()
           ],
           controller: mabialaFABController,
         ),
@@ -97,7 +114,7 @@ class _MyHomePageState extends State<OurProgram> {
             mabialaFABController.setExpandedWidgetConfiguration(
               showLogs: true,
               heightToExpandTo: 50,
-              expendedBackgroundColor: Customcolor.cardbg,
+              expendedBackgroundColor: Customcolor.programyellow,
               withChild: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -114,7 +131,8 @@ class _MyHomePageState extends State<OurProgram> {
                             mabialaFABController.setExpandedWidgetConfiguration(
                               showLogs: true,
                               heightToExpandTo: 50,
-                              expendedBackgroundColor: Customcolor.cardbg,
+                              expendedBackgroundColor:
+                                  Customcolor.programyellow,
                               withChild: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
@@ -246,6 +264,15 @@ class _MyHomePageState extends State<OurProgram> {
                                                 OurProgram(
                                                   indexpass: 11,
                                                 )));
+                                  } else if (index == 4) {
+                                    //community
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                OurProgram(
+                                                  indexpass: 15,
+                                                )));
                                   } else if (index == 5) {
                                     //empowring berna
                                     Navigator.push(
@@ -321,7 +348,7 @@ class _MyHomePageState extends State<OurProgram> {
           floatingActionButtonIconColor: Customcolor.colorBlue,
           navigationBarIconActiveColor: Colors.pink,
           navigationBarIconInactiveColor: Colors.pink[200].withOpacity(0.6),
-          collapsedColor: Customcolor.cardbg,
+          collapsedColor: Customcolor.programyellow,
           // useAsFloatingSpaceBar: useFloatingSpaceBar,
           useAsFloatingActionButton: useAsFloatingActionButton,
           //useAsNavigationBar: useNavigationBar,

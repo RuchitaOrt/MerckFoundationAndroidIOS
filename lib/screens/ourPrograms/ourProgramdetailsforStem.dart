@@ -67,7 +67,7 @@ class _MyHomePageState extends State<OurProgramStem> {
             mabialaFABController.setExpandedWidgetConfiguration(
               showLogs: true,
               heightToExpandTo: 44,
-              expendedBackgroundColor: Customcolor.cardbg,
+              expendedBackgroundColor: Customcolor.programyellow,
               withChild: Padding(
                 padding: const EdgeInsets.all(0.0),
                 child: Container(
@@ -84,7 +84,8 @@ class _MyHomePageState extends State<OurProgramStem> {
                             mabialaFABController.setExpandedWidgetConfiguration(
                               showLogs: true,
                               heightToExpandTo: 60,
-                              expendedBackgroundColor: Customcolor.cardbg,
+                              expendedBackgroundColor:
+                                  Customcolor.programyellow,
                               withChild: Container(
                                 width: (MediaQuery.of(context).size.width) * 50,
 
@@ -107,7 +108,7 @@ class _MyHomePageState extends State<OurProgramStem> {
                                     Expanded(
                                         flex: 5,
                                         child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(0.0),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -277,7 +278,7 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                 width: SizeConfig
                                                         .blockSizeHorizontal *
                                                     100,
-                                                color: Color(0xffFEDBB3),
+                                                color: Customcolor.stemskyblue,
                                                 child: FormLabel(
                                                   text:
                                                       "3rd Edition of UNESCO-MARS",
@@ -335,7 +336,7 @@ class _MyHomePageState extends State<OurProgramStem> {
                       Expanded(
                           flex: 5,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(0.0),
                             child: ListView(
                               shrinkWrap: true,
                               //  crossAxisAlignment: CrossAxisAlignment.start,
@@ -413,14 +414,18 @@ class _MyHomePageState extends State<OurProgramStem> {
                                               '4th Edition of UNESCO-MARS');
                                       }),
                                       children: <Widget>[
-                                        FormLabel(
-                                          text:
-                                              "4th Edition- UNESCO MARS Scientific book",
-                                          labelColor: Customcolor.text_darkblue,
-                                          fontweight: FontWeight.w600,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.8),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: FormLabel(
+                                            text:
+                                                "4th Edition- UNESCO MARS Scientific book",
+                                            labelColor:
+                                                Customcolor.text_darkblue,
+                                            fontweight: FontWeight.w600,
+                                            fontSize:
+                                                ResponsiveFlutter.of(context)
+                                                    .fontSize(1.8),
+                                          ),
                                         ),
                                         SizedBox(
                                           height: 4,
@@ -431,14 +436,18 @@ class _MyHomePageState extends State<OurProgramStem> {
                                         SizedBox(
                                           height: 4,
                                         ),
-                                        FormLabel(
-                                          text:
-                                              "Scientific & Steering Committee       ",
-                                          labelColor: Customcolor.text_darkblue,
-                                          fontweight: FontWeight.w600,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.8),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: FormLabel(
+                                            text:
+                                                "Scientific & Steering Committee       ",
+                                            labelColor:
+                                                Customcolor.text_darkblue,
+                                            fontweight: FontWeight.w600,
+                                            fontSize:
+                                                ResponsiveFlutter.of(context)
+                                                    .fontSize(1.8),
+                                          ),
                                         ),
                                         SizedBox(
                                           height: 4,
@@ -471,7 +480,7 @@ class _MyHomePageState extends State<OurProgramStem> {
                                 Container(
                                   padding: EdgeInsets.only(bottom: 8, top: 8),
                                   width: SizeConfig.blockSizeHorizontal * 100,
-                                  color: Color(0xffFEDBB3),
+                                  color: Customcolor.stemskyblue,
                                   child: FormLabel(
                                     text: "3rd Edition of UNESCO-MARS",
                                     labelColor: Customcolor.text_darkblue,
@@ -516,7 +525,7 @@ class _MyHomePageState extends State<OurProgramStem> {
           floatingActionButtonIconColor: Customcolor.colorBlue,
           navigationBarIconActiveColor: Colors.pink,
           navigationBarIconInactiveColor: Colors.pink[200].withOpacity(0.6),
-          collapsedColor: Customcolor.cardbg,
+          collapsedColor: Customcolor.programyellow,
           // useAsFloatingSpaceBar: useFloatingSpaceBar,
           useAsFloatingActionButton: useAsFloatingActionButton,
           //useAsNavigationBar: useNavigationBar,

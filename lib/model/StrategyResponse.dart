@@ -12,43 +12,71 @@ String getStrategeryResponseToJson(GetStrategeryResponse data) =>
 
 class GetStrategeryResponse {
   GetStrategeryResponse({
-    this.success,
-    this.msg,
-    this.data,
+    this.middleArea,
   });
 
-  String success;
-  String msg;
-  Data data;
+  MiddleArea middleArea;
 
   factory GetStrategeryResponse.fromJson(Map<String, dynamic> json) =>
       GetStrategeryResponse(
-        success: json["success"],
-        msg: json["msg"],
-        data: Data.fromJson(json["data"]),
+        middleArea: MiddleArea.fromJson(json["middle_area"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "msg": msg,
-        "data": data.toJson(),
+        "middle_area": middleArea.toJson(),
       };
 }
 
-class Data {
-  Data({
+class MiddleArea {
+  MiddleArea({
+    this.the1,
+  });
+
+  The1 the1;
+
+  factory MiddleArea.fromJson(Map<String, dynamic> json) => MiddleArea(
+        the1: The1.fromJson(json["1"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "1": the1.toJson(),
+      };
+}
+
+class The1 {
+  The1({
+    this.content,
+  });
+
+  Content content;
+
+  factory The1.fromJson(Map<String, dynamic> json) => The1(
+        content: Content.fromJson(json["content"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "content": content.toJson(),
+      };
+}
+
+class Content {
+  Content({
     this.list,
+    this.baseUrl,
   });
 
   List<ListElement> list;
+  String baseUrl;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory Content.fromJson(Map<String, dynamic> json) => Content(
         list: List<ListElement>.from(
             json["list"].map((x) => ListElement.fromJson(x))),
+        baseUrl: json["base_url"],
       );
 
   Map<String, dynamic> toJson() => {
         "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "base_url": baseUrl,
       };
 }
 
@@ -88,7 +116,7 @@ class ListElement {
   factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
         contentType: json["content_type"],
-        pageContent: json["page_content"] == null ? "" : json["page_content"],
+        pageContent: json["page_content"],
         title: json["title"],
         shortDescription: json["short_description"],
         image: json["image"],

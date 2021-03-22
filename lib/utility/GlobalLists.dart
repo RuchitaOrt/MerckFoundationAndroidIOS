@@ -1,4 +1,5 @@
 import 'package:merckfoundation22dec/model/dataprivacy.dart' as dataPrivacy;
+import 'package:merckfoundation22dec/model/digitalProgramResponse.dart';
 import 'package:merckfoundation22dec/model/legaldisclaimerResponse.dart'
     as legalDisclaimer;
 import 'package:merckfoundation22dec/model/ourmissionResponse.dart'
@@ -82,10 +83,16 @@ import 'package:merckfoundation22dec/model/FilterdataResponse.dart'
     as filterlist;
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart'
     as awarddetail;
-import 'package:merckfoundation22dec/model/searchmodel/SearchvideocategoryResponse.dart'
-    as searchvideo;
-import 'package:merckfoundation22dec/model/searchmodel/SearchnewreleasecategoryResponse.dart'
-    as searchnewrelease;
+import 'package:merckfoundation22dec/model/videoProgramResponse.dart'
+    as watchvideo;
+import 'package:merckfoundation22dec/model/viewmoreMMTMResponse.dart'
+    as viewmmtmrightsec;
+import 'package:merckfoundation22dec/model/viewmoreMediaResponse.dart'
+    as viewmmtmedia;
+import 'package:merckfoundation22dec/model/AmbassadarImageViewall.dart'
+    as ambaviewmoreimage;
+import 'package:merckfoundation22dec/model/AmbassadarVideoviewall.dart'
+    as ambaviewmorevideo;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -102,7 +109,7 @@ class GlobalLists {
 
   //media event
   static List<videolibrayResp.ListElement> videolibrary = [];
-
+  static List<watchvideo.ListElement> watchvideolibrary = [];
   static List<storiesResp.ListElement> storiesList = [];
 
   static List<newsArticles.ListElement> newsLettersList = [];
@@ -163,4 +170,74 @@ class GlobalLists {
   static List<dynamic> searchvideollisting = [];
   static List<dynamic> searchnewreleaselisting = [];
   static List<dynamic> searcharticlelisting = [];
+  static List<dynamic> searcheventslisting = [];
+  static List<dynamic> searchtestimoniallisting = [];
+  static List<dynamic> searchphotolisting = [];
+  static List<dynamic> searchmedialisting = [];
+  static List<dynamic> searchceomeassagelisting = [];
+  static List<dynamic> searchawardlisting = [];
+
+  //ourprogram
+  static List<dynamic> programvideollisting = [];
+
+  //home api
+  static List<dynamic> homevideolist = [];
+  static List<dynamic> homeawardlist = [];
+  static List<dynamic> homecontentlist = [];
+
+  static List<dynamic> homegallerylist = [];
+  static String homegallerybaseurl = "";
+  static String homeceomsgbaseurl = "";
+  static String homeCallForAppBaseURL = "";
+  static String homeDigitalLibraryBaseURL = "";
+  static String homeMMTMBaseURL = "";
+
+  static List<dynamic> homeceomsglist = [];
+
+  static List<dynamic> homecallforapp = [];
+  static List<dynamic> homedigitallib = [];
+  static List<dynamic> homemmtm = [];
+
+  //mmtm
+
+  static List<dynamic> mmtmmedialist = [];
+  static String mmtmmediabaseurl = "";
+
+  static List<dynamic> mmttestimoniallist = [];
+  static String mmttestimonialbaseurl = "";
+  static String merckcancerawardbaseurl = "";
+  static List<dynamic> merckcancerawardlist = [];
+
+  //testimonailprogram
+  static List<dynamic> testimonialprolist = [];
+  static String testimonialprobaseurl = "";
+
+  //program gallery
+  static List<dynamic> programgallerylist = [];
+  static String programgallerybaseurl = "";
+
+  //digital content
+  static List<dynamic> programdigitalcontentlist = [];
+  static String programdigitalcontentbaseurl = "";
+
+  //ambasadar
+  static List<dynamic> ambasdarslist = [];
+  static String ambasdarsbaseurl = "";
+
+//digitallib view more
+  static List<ListClass> digitallibraryviewlist = [];
+
+  static String serverresp = "Server Not Responding";
+  //viewmore mmtm rightsection
+  static List<viewmmtmrightsec.ListElement> viewmoremmtmlist = [];
+
+  //viewmore media
+  static List<viewmmtmedia.ListElement> viewmoremedialist = [];
+
+  //view more for mmtm ambassadar program page
+  static List<ambaviewmoreimage.ListElement> viewmoreambasdarslist = [];
+  static String viewmoreambasdarsbaseurl = "";
+
+  //view more for video mmtm ambassadar program page
+  static List<ambaviewmorevideo.ListElement> videoviewmoreambasdarslist = [];
 }
