@@ -46,6 +46,7 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
         height: 85,
       ),
       body: ListView(
+        shrinkWrap: true,
         children: widgetList(),
       ),
     );
@@ -97,59 +98,98 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                                 [index]
                             .photoDescription);
                   },
-                  child: Stack(
+                  child: Column(
                     children: [
-                      Container(
-                        width: SizeConfig.blockSizeHorizontal * 86,
-                        child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/newImages/placeholder_3.jpg',
-                          image: galleryDetailsResponse.baseUrl +
-                              galleryDetailsResponse
-                                  .list[galleryDetailsResponse.list.keys
-                                      .elementAt(i)][index]
-                                  .photo,
-                          fit: BoxFit.fitWidth,
-                        ),
+                      Stack(
+                        children: [
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 86,
+                            height: SizeConfig.blockSizeHorizontal * 45,
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/newImages/placeholder_3.jpg',
+                              image: galleryDetailsResponse.baseUrl +
+                                  galleryDetailsResponse
+                                      .list[galleryDetailsResponse.list.keys
+                                          .elementAt(i)][index]
+                                      .photo,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          // Align(
+                          //   alignment: Alignment.bottomCenter,
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.only(
+                          //         bottom: 1, left: 2.5, right: 2.5),
+                          //     child: Row(
+                          //       crossAxisAlignment: CrossAxisAlignment.end,
+                          //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //       children: [
+                          //         Column(
+                          //           mainAxisAlignment: MainAxisAlignment.end,
+                          //           crossAxisAlignment:
+                          //               CrossAxisAlignment.start,
+                          //           children: [
+                          //             Container(
+                          //               width:
+                          //                   SizeConfig.blockSizeHorizontal * 85,
+                          //               // color: Colors.black.withOpacity(0.7),
+                          //               child: Text(
+                          //                 galleryDetailsResponse
+                          //                         .list[galleryDetailsResponse
+                          //                             .list.keys
+                          //                             .elementAt(i)][index]
+                          //                         .photoDescription ??
+                          //                     "",
+                          //                 overflow: TextOverflow.ellipsis,
+                          //                 style: TextStyle(
+                          //                     color: Colors.white,
+                          //                     fontSize: 14,
+                          //                     fontWeight: FontWeight.w700),
+                          //                 maxLines: 3,
+                          //               ),
+                          //             ),
+                          //             // SizedBox(
+                          //             //   height: 8,
+                          //             // )
+                          //           ],
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
                       ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              bottom: 1, left: 2.5, right: 2.5),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: SizeConfig.blockSizeHorizontal * 85,
-                                    // color: Colors.black.withOpacity(0.7),
-                                    child: Text(
-                                      galleryDetailsResponse
-                                              .list[galleryDetailsResponse
-                                                  .list.keys
-                                                  .elementAt(i)][index]
-                                              .photoDescription ??
-                                          "",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w700),
-                                      maxLines: 3,
-                                    ),
-                                  ),
-                                  // SizedBox(
-                                  //   height: 8,
-                                  // )
-                                ],
+                              Container(
+                                width: SizeConfig.blockSizeHorizontal * 85,
+                                // color: Colors.black.withOpacity(0.7),
+                                child: Text(
+                                  galleryDetailsResponse
+                                          .list[galleryDetailsResponse.list.keys
+                                              .elementAt(i)][index]
+                                          .photoDescription ??
+                                      "",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700),
+                                  maxLines: 3,
+                                ),
                               ),
+                              // SizedBox(
+                              //   height: 8,
+                              // )
                             ],
                           ),
-                        ),
+                        ],
                       ),
                     ],
                   ),
@@ -309,7 +349,7 @@ class CustomCard extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Container(height: SizeConfig.blockSizeVertical * 25, child: list),
+        Container(height: SizeConfig.blockSizeVertical * 30, child: list),
         SizedBox(
           height: 9,
         ),

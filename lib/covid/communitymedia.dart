@@ -24,31 +24,49 @@ class CommunityMediaState extends State<CommunityMedia>
   String _platformVersion = 'Unknown';
   List<programclass> _productsAvailable1 = [
     programclass(
-        programname: "Southen African Countries",
+        programname:
+            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM690000040cuH",
         colors: Customcolor.violet_col),
     programclass(
-        programname: "West African Countries",
+        programname:
+            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM690000040cuM",
         colors: Customcolor.colorLightGreen),
     programclass(
-        programname: "East African Countries", colors: Customcolor.baby_blue),
+        programname:
+            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM690000040cuR",
+        colors: Customcolor.baby_blue),
     programclass(
-        programname: "French Speaking African Countries",
+        programname:
+            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM690000040cub",
         colors: Customcolor.pink_col),
     programclass(
-        programname: "Portuguese Speaking African Countries",
+        programname:
+            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM690000040cug",
         colors: Customcolor.colorVoilet),
     programclass(
-        programname: "Arabic Speaking African Countries",
+        programname:
+            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM690000040cul",
         colors: Customcolor.colorLightBlue),
-    programclass(programname: "Ghana", colors: Customcolor.colorLightGreen),
     programclass(
-        programname: "Democratic Republic of congo",
-        colors: Customcolor.colorGreen),
-    programclass(programname: "Mali", colors: Customcolor.colorGreen),
+        programname:
+            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM690000040cul",
+        colors: Customcolor.colorLightGreen),
     programclass(
-        programname: "Latin American Countries",
+        programname:
+            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM690000040cvF",
         colors: Customcolor.colorGreen),
-    programclass(programname: "AsianCountries", colors: Customcolor.colorGreen),
+    programclass(
+        programname:
+            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM690000040cvP",
+        colors: Customcolor.colorGreen),
+    programclass(
+        programname:
+            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM690000040cvU",
+        colors: Customcolor.colorGreen),
+    programclass(
+        programname:
+            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM690000040cvj",
+        colors: Customcolor.colorGreen),
   ];
   @override
   void initState() {
@@ -83,43 +101,30 @@ class CommunityMediaState extends State<CommunityMedia>
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 8, right: 8, top: 8, bottom: 8),
-                      child: Container(
-                        // padding: EdgeInsets.all(10),
-
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          color: _productsAvailable1[index].colors,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                //spreadRadius: 2,
-                                // blurRadius: 2,
-                                offset: Offset(0, 3)
-                                // changes position of shadow
-                                ),
-                          ],
-                          //
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          // crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, right: 10, top: 10, bottom: 10),
-                              child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 0, right: 10, top: 0, bottom: 0),
+                            child: Container(
                                 width: SizeConfig.blockSizeHorizontal * 80,
-                                child: FormLabel(
-                                  text: _productsAvailable1[index].programname,
-                                  labelColor: Colors.white,
-                                  fontSize:
-                                      ResponsiveFlutter.of(context).fontSize(2),
-                                  fontweight: FontWeight.bold,
+                                child: Image.network(
+                                  _productsAvailable1[index].programname,
+                                  height: 50,
+                                  fit: BoxFit.fill,
+                                )
+                                // FormLabel(
+                                //   text: _productsAvailable1[index].programname,
+                                //   labelColor: Colors.white,
+                                //   fontSize:
+                                //       ResponsiveFlutter.of(context).fontSize(2),
+                                //   fontweight: FontWeight.bold,
+                                // ),
                                 ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -164,7 +169,7 @@ class CommunityMediaState extends State<CommunityMedia>
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 15, right: 8, top: 8, bottom: 15),
+                        left: 15, right: 15, top: 8, bottom: 15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -208,8 +213,8 @@ class CommunityMediaState extends State<CommunityMedia>
                           height: 10,
                         ),
                         Center(
-                          child: Image.asset(
-                            "assets/newImages/img1.png",
+                          child: Image.network(
+                            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDI&feoid=00Nw0000009EtWJ&refid=0EM1r000002ewuL",
                             height: 290,
                           ),
                         ),
@@ -238,7 +243,7 @@ class CommunityMediaState extends State<CommunityMedia>
                         ),
                         Center(
                           child: Image.asset(
-                            "assets/newImages/img1.png",
+                            "assets/newImages/one.png",
                             height: 290,
                           ),
                         ),
@@ -312,7 +317,7 @@ class CommunityMediaState extends State<CommunityMedia>
                         ),
                         Center(
                           child: Image.asset(
-                            "assets/newImages/img1.png",
+                            "assets/newImages/two.png",
                             height: 290,
                           ),
                         ),
@@ -388,7 +393,7 @@ class CommunityMediaState extends State<CommunityMedia>
                         ),
                         Center(
                           child: Image.asset(
-                            "assets/newImages/img1.png",
+                            "assets/newImages/three.png",
                             height: 290,
                           ),
                         ),
@@ -414,7 +419,7 @@ class CommunityMediaState extends State<CommunityMedia>
                         ),
                         Center(
                           child: Image.asset(
-                            "assets/newImages/img1.png",
+                            "assets/newImages/four.png",
                             height: 290,
                           ),
                         ),
@@ -439,7 +444,7 @@ class CommunityMediaState extends State<CommunityMedia>
                         ),
                         Center(
                           child: Image.asset(
-                            "assets/newImages/img1.png",
+                            "assets/newImages/five.png",
                             height: 290,
                           ),
                         ),
@@ -462,7 +467,7 @@ class CommunityMediaState extends State<CommunityMedia>
 
                         Center(
                           child: Image.asset(
-                            "assets/newImages/img1.png",
+                            "assets/newImages/six.png",
                             height: 290,
                           ),
                         ),
@@ -506,7 +511,7 @@ class CommunityMediaState extends State<CommunityMedia>
 
                         Center(
                           child: Image.asset(
-                            "assets/newImages/img1.png",
+                            "assets/newImages/seven.png",
                             height: 290,
                           ),
                         ),
@@ -557,7 +562,7 @@ class CommunityMediaState extends State<CommunityMedia>
                         ),
                         Center(
                           child: Image.asset(
-                            "assets/newImages/img1.png",
+                            "assets/newImages/eigth.png",
                             height: 290,
                           ),
                         ),

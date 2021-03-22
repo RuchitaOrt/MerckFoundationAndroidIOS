@@ -920,7 +920,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Our Awards  ",
+              cardTitle: "",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",

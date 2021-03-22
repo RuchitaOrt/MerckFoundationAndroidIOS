@@ -12,6 +12,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:flutter_html/style.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 
@@ -229,6 +230,10 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                         )));
           },
           index: 2,
+          facebooklink: "http://merckfoundation.org/mfindia/web/public/vision",
+          linkedinlink: "http://merckfoundation.org/mfindia/web/public/vision",
+          whatsuplink: "http://merckfoundation.org/mfindia/web/public/vision",
+          twitterlink: "http://merckfoundation.org/mfindia/web/public/vision",
           title: "Our Vision",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
@@ -280,6 +285,13 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                 data: """${GlobalLists.vision[0].title} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                },
+                                style: {
+                                  "body": Style(
+                                      textAlign: TextAlign.start,
+                                      color: Customcolor.colorVoilet,
+                                      fontSize: FontSize.larger,
+                                      fontWeight: FontWeight.w600),
                                 },
                                 // style: {
                                 //   "body": Style(

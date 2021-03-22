@@ -2,7 +2,7 @@
     "environment": "development",
     "version": "1",
     "development": {
-        "hostUrl": "https://onerooftechnologiesllp.com/mfindia/web/public/api/",
+        "hostUrl": "http://merckfoundation.org/mfindia/web/public/api/",
         "timeout": 120,
         "retry": 3
     },

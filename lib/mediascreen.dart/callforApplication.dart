@@ -153,174 +153,75 @@ class CallApplicationState extends State<CallforApplication>
 
   Widget upcomingEvents() {
     return Container(
-      height: 340,
+      height: double.infinity,
       // color: Colors.grey.shade800,
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          Expanded(
-            child: Swiper(
-              fade: 0.0,
-              onIndexChanged: (val) {
-                setState(() {
-                  _current1 = val;
-                });
-              },
-              itemBuilder: (BuildContext context, int index) {
-                return Column(
-                  children: [
-                    Expanded(
-                      child: Card(
-                        //elevation: 5,
-                        //color: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          children: <Widget>[
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: () {
-                                  _launchURL(Constantstring.baseUrl +
-                                      GlobalLists.upcomingevent[index].pdfFile);
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  child: FadeInImage.assetNetwork(
-                                    placeholder:
-                                        'assets/newImages/placeholder_3.jpg',
-                                    image: Constantstring.baseUrl +
-                                        GlobalLists.upcomingevent[index].appImg,
-                                    fit: BoxFit.cover,
-                                    height: 80,
+      padding: EdgeInsets.only(left: 8, right: 8, top: 8),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 350,
+              child: Swiper(
+                fade: 0.0,
+                onIndexChanged: (val) {
+                  setState(() {
+                    _current1 = val;
+                  });
+                },
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      Container(
+                        height: 350,
+                        child: Card(
+                          //elevation: 5,
+                          //color: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            children: <Widget>[
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _launchURL(Constantstring.baseUrl +
+                                        GlobalLists
+                                            .upcomingevent[index].pdfFile);
+                                  },
+                                  child: Container(
+                                    //  color: Colors.amber,
+                                    width: double.infinity,
+                                    //height: 350,
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder:
+                                          'assets/newImages/placeholder_3.jpg',
+                                      image: Constantstring.baseUrl +
+                                          GlobalLists
+                                              .upcomingevent[index].appImg,
+                                      fit: BoxFit.cover,
+                                      //  height: 410
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-              itemCount: GlobalLists.upcomingevent.length,
-              viewportFraction: 0.7,
-              layout: SwiperLayout.DEFAULT,
-              scale: 0.9,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: new DotsIndicator(
-              dotsCount: GlobalLists.upcomingevent.length,
-              position: double.parse("$_current1"),
-              decorator: DotsDecorator(
-                size: const Size.square(9.0),
-                activeSize: const Size(25.0, 9.0),
-                color: Customcolor.ligthpink,
-                spacing: EdgeInsets.only(right: 3),
-                activeColor: Customcolor.pink_col,
-                activeShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
-              ),
-            ),
-          ),
-          ListTile(
-            // subtitle: Text("awesome image caption"),
-            title: Text(
-              GlobalLists.upcomingevent[_current1].title,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 17),
-            ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          // Padding(
-          //   padding: const EdgeInsets.only(right: 60, left: 60),
-          //   child: Image.asset(
-          //     "assets/newImages/flowers_footer.png",
-          //   ),
-          // ),
-          Padding(
-            padding: const EdgeInsets.only(right: 0, left: 0),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Image.asset(
-                "assets/newImages/flowers_footer.png",
-                height: 170,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget pastEvents() {
-    return Container(
-      height: 340,
-      // color: Colors.grey.shade800,
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          Expanded(
-            child: Swiper(
-              onIndexChanged: (val) {
-                setState(() {
-                  _current = val;
-                });
-              },
-              fade: 0.0,
-              itemBuilder: (BuildContext context, int index) {
-                return Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          _launchURL(Constantstring.baseUrl +
-                              GlobalLists.pastevent[index].pdfFile);
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/newImages/placeholder_3.jpg',
-                            image: Constantstring.baseUrl +
-                                GlobalLists.pastevent[index].appImg,
-                            fit: BoxFit.cover,
-                            height: 80,
+                            ],
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                );
-              },
-              itemCount: GlobalLists.pastevent.length,
-              viewportFraction: 0.7,
-              layout: SwiperLayout.DEFAULT,
-              scale: 0.9,
-              // pagination: SwiperPagination(
-              //   builder: new DotSwiperPaginationBuilder(
-              //       color: Customcolor.ligthpink,
-              //       activeColor: Customcolor.pink_col),
-              // ),
+                    ],
+                  );
+                },
+                itemCount: GlobalLists.upcomingevent.length,
+                viewportFraction: 0.7,
+                layout: SwiperLayout.DEFAULT,
+                scale: 0.9,
+                itemHeight: 410,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: ScrollPhysics(),
+            Padding(
+              padding: const EdgeInsets.only(top: 20, bottom: 20),
               child: new DotsIndicator(
-                dotsCount: GlobalLists.pastevent.length,
-                position: double.parse("$_current"),
+                dotsCount: GlobalLists.upcomingevent.length,
+                position: double.parse("$_current1"),
                 decorator: DotsDecorator(
                   size: const Size.square(9.0),
                   activeSize: const Size(25.0, 9.0),
@@ -332,44 +233,315 @@ class CallApplicationState extends State<CallforApplication>
                 ),
               ),
             ),
-          ),
-          ListTile(
-            // subtitle: Text("awesome image caption"),
-            title: Text(
-              GlobalLists.pastevent[_current].title,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 17),
-            ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          // Padding(
-          //   padding: const EdgeInsets.only(right: 60, left: 60),
-          //   child: Image.asset(
-          //     "assets/newImages/flowers_footer.png",
-          //   ),
-          // ),
-          Padding(
-            padding: const EdgeInsets.only(right: 0, left: 0),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Image.asset(
-                "assets/newImages/flowers_footer.png",
-                height: 170,
+            ListTile(
+              // subtitle: Text("awesome image caption"),
+              title: Text(
+                GlobalLists.upcomingevent[_current1].title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 17),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          )
-        ],
+            SizedBox(
+              height: 15,
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 60, left: 60),
+            //   child: Image.asset(
+            //     "assets/newImages/flowers_footer.png",
+            //   ),
+            // ),
+            Padding(
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            )
+          ],
+        ),
       ),
     );
   }
+
+  Widget pastEvents() {
+    return Container(
+      height: double.infinity,
+      // color: Colors.grey.shade800,
+      padding: EdgeInsets.only(left: 8, right: 8, top: 8),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 350,
+              child: Swiper(
+                fade: 0.0,
+                onIndexChanged: (val) {
+                  setState(() {
+                    _current1 = val;
+                  });
+                },
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      Container(
+                        height: 350,
+                        child: Card(
+                          //elevation: 5,
+                          //color: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            children: <Widget>[
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _launchURL(Constantstring.baseUrl +
+                                        GlobalLists.pastevent[index].pdfFile);
+                                  },
+                                  child: Container(
+                                    //  color: Colors.amber,
+                                    width: double.infinity,
+                                    //height: 350,
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder:
+                                          'assets/newImages/placeholder_3.jpg',
+                                      image: Constantstring.baseUrl +
+                                          GlobalLists.pastevent[index].appImg,
+                                      fit: BoxFit.cover,
+                                      //  height: 410
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+                itemCount: GlobalLists.pastevent.length,
+                viewportFraction: 0.7,
+                layout: SwiperLayout.DEFAULT,
+                scale: 0.9,
+                itemHeight: 410,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20, bottom: 20),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                physics: ScrollPhysics(),
+                child: new DotsIndicator(
+                  dotsCount: GlobalLists.pastevent.length,
+                  position: double.parse("$_current"),
+                  decorator: DotsDecorator(
+                    size: const Size.square(9.0),
+                    activeSize: const Size(25.0, 9.0),
+                    color: Customcolor.ligthpink,
+                    spacing: EdgeInsets.only(right: 3),
+                    activeColor: Customcolor.pink_col,
+                    activeShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0)),
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              // subtitle: Text("awesome image caption"),
+              title: Text(
+                GlobalLists.pastevent[_current1].title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 17),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 60, left: 60),
+            //   child: Image.asset(
+            //     "assets/newImages/flowers_footer.png",
+            //   ),
+            // ),
+            Padding(
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Widget pastEvents() {
+  //   return Container(
+  //     height: 340,
+  //     // color: Colors.grey.shade800,
+  //     padding: EdgeInsets.only(left: 8, right: 8, top: 8),
+  //     child: SingleChildScrollView(
+  //       child: Column(
+  //         children: [
+  //           Container(
+  //             height: 350,
+  //             child: Expanded(
+  //               child: Swiper(
+  //                 onIndexChanged: (val) {
+  //                   setState(() {
+  //                     _current = val;
+  //                   });
+  //                 },
+  //                 fade: 0.0,
+  //                 itemBuilder: (BuildContext context, int index) {
+  //                   // return Column(
+  //                   //   children: <Widget>[
+  //                   //     Expanded(
+  //                   //       child: GestureDetector(
+  //                   //         onTap: () {
+  //                   //           _launchURL(Constantstring.baseUrl +
+  //                   //               GlobalLists.pastevent[index].pdfFile);
+  //                   //         },
+  //                   //         child: Container(
+  //                   //           width: double.infinity,
+  //                   //           child: FadeInImage.assetNetwork(
+  //                   //             placeholder:
+  //                   //                 'assets/newImages/placeholder_3.jpg',
+  //                   //             image: Constantstring.baseUrl +
+  //                   //                 GlobalLists.pastevent[index].appImg,
+  //                   //             fit: BoxFit.cover,
+  //                   //             height: 80,
+  //                   //           ),
+  //                   //         ),
+  //                   //       ),
+  //                   //     ),
+  //                   //   ],
+  //                   // );
+  //                   return Container(
+  //                     height: 350,
+  //                     child: Card(
+  //                       //elevation: 5,
+  //                       //color: Colors.transparent,
+  //                       shape: RoundedRectangleBorder(
+  //                           borderRadius: BorderRadius.circular(10)),
+  //                       child: Column(
+  //                         children: <Widget>[
+  //                           Expanded(
+  //                             child: GestureDetector(
+  //                               onTap: () {
+  //                                 _launchURL(Constantstring.baseUrl +
+  //                                     GlobalLists.pastevent[index].pdfFile);
+  //                               },
+  //                               child: Container(
+  //                                 //  color: Colors.amber,
+  //                                 width: double.infinity,
+  //                                 //height: 350,
+  //                                 child: FadeInImage.assetNetwork(
+  //                                   placeholder:
+  //                                       'assets/newImages/placeholder_3.jpg',
+  //                                   image: Constantstring.baseUrl +
+  //                                       GlobalLists.pastevent[index].appImg,
+  //                                   fit: BoxFit.cover,
+  //                                   //  height: 410
+  //                                 ),
+  //                               ),
+  //                             ),
+  //                           ),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                   );
+  //                 },
+  //                 itemCount: GlobalLists.pastevent.length,
+  //                 viewportFraction: 0.7,
+  //                 layout: SwiperLayout.DEFAULT,
+  //                 scale: 0.9,
+  //                 // pagination: SwiperPagination(
+  //                 //   builder: new DotSwiperPaginationBuilder(
+  //                 //       color: Customcolor.ligthpink,
+  //                 //       activeColor: Customcolor.pink_col),
+  //                 // ),
+  //               ),
+  //             ),
+  //           ),
+  //           Padding(
+  //             padding: const EdgeInsets.only(top: 20, bottom: 20),
+  //             child: SingleChildScrollView(
+  //               scrollDirection: Axis.horizontal,
+  //               physics: ScrollPhysics(),
+  //               child: new DotsIndicator(
+  //                 dotsCount: GlobalLists.pastevent.length,
+  //                 position: double.parse("$_current"),
+  //                 decorator: DotsDecorator(
+  //                   size: const Size.square(9.0),
+  //                   activeSize: const Size(25.0, 9.0),
+  //                   color: Customcolor.ligthpink,
+  //                   spacing: EdgeInsets.only(right: 3),
+  //                   activeColor: Customcolor.pink_col,
+  //                   activeShape: RoundedRectangleBorder(
+  //                       borderRadius: BorderRadius.circular(5.0)),
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //           ListTile(
+  //             // subtitle: Text("awesome image caption"),
+  //             title: Text(
+  //               GlobalLists.pastevent[_current].title,
+  //               textAlign: TextAlign.center,
+  //               style: TextStyle(
+  //                   color: Colors.black87,
+  //                   fontWeight: FontWeight.w600,
+  //                   fontSize: 17),
+  //             ),
+  //           ),
+  //           SizedBox(
+  //             height: 15,
+  //           ),
+  //           // Padding(
+  //           //   padding: const EdgeInsets.only(right: 60, left: 60),
+  //           //   child: Image.asset(
+  //           //     "assets/newImages/flowers_footer.png",
+  //           //   ),
+  //           // ),
+  //           Padding(
+  //             padding: const EdgeInsets.only(right: 0, left: 0),
+  //             child: Align(
+  //               alignment: Alignment.topRight,
+  //               child: Image.asset(
+  //                 "assets/newImages/flowers_footer.png",
+  //                 height: 170,
+  //               ),
+  //             ),
+  //           ),
+  //           SizedBox(
+  //             height: 10,
+  //           )
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   getcallforapp(dynamic api) async {
     var status1 = await ConnectionDetector.checkInternetConnection();

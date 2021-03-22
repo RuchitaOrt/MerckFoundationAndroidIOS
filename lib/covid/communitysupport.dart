@@ -165,8 +165,8 @@ class CommunitysupportState extends State<Communitysupport>
                         SizedBox(
                           height: 10,
                         ),
-                        Image.asset(
-                          "assets/newImages/img1.png",
+                        Image.network(
+                          "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YID8&feoid=00Nw0000009EtWJ&refid=0EM1r000002evEJ",
                           height: 290,
                         ),
                         SizedBox(
@@ -203,8 +203,8 @@ class CommunitysupportState extends State<Communitysupport>
                         SizedBox(
                           height: 10,
                         ),
-                        Image.asset(
-                          "assets/newImages/img1.png",
+                        Image.network(
+                          "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YID8&feoid=00Nw0000009EtWJ&refid=0EM1r000002evFR",
                           height: 290,
                         ),
                         SizedBox(
@@ -241,8 +241,8 @@ class CommunitysupportState extends State<Communitysupport>
                         SizedBox(
                           height: 10,
                         ),
-                        Image.asset(
-                          "assets/newImages/img1.png",
+                        Image.network(
+                          "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YID8&feoid=00Nw0000009EtWJ&refid=0EM1r000002evGP",
                           height: 290,
                         ),
                         SizedBox(

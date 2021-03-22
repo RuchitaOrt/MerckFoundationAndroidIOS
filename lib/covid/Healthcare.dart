@@ -60,7 +60,7 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 15, right: 8, top: 8, bottom: 15),
+                        left: 15, right: 15, top: 8, bottom: 15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -131,8 +131,8 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
                           height: 20,
                         ),
                         Center(
-                          child: Image.asset(
-                            "assets/newImages/img1.png",
+                          child: Image.network(
+                            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDD&feoid=00Nw0000009EtWJ&refid=0EM1r000002ewVB",
                             height: 290,
                           ),
                         ),
@@ -163,8 +163,8 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
                           height: 20,
                         ),
                         Center(
-                          child: Image.asset(
-                            "assets/newImages/img1.png",
+                          child: Image.network(
+                            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDD&feoid=00Nw0000009EtWJ&refid=0EM1r000002evsJ",
                             height: 290,
                           ),
                         ),
@@ -195,8 +195,8 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
                           height: 20,
                         ),
                         Center(
-                          child: Image.asset(
-                            "assets/newImages/img1.png",
+                          child: Image.network(
+                            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDD&feoid=00Nw0000009EtWJ&refid=0EM1r000002evtq",
                             height: 290,
                           ),
                         ),
