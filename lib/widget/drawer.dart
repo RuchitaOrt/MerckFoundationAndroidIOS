@@ -21,7 +21,9 @@ import 'package:merckfoundation22dec/whatwedo/ourpolicy.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
+import 'package:merckfoundation22dec/widget/pdfviewpage.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Map<String, bool> expansionState = Map();
 
@@ -214,6 +216,18 @@ class _AppDrawerState extends State<AppDrawer> {
                           value: 'Merck Foundation Overview',
                           onTapfun: () {
                             print('ontap');
+                            _launchURL(
+                                "http://merckfoundation.org/merck/public/uploads/page_content/1616159695_3c88d39708ef1a56f6cf.pdf");
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (BuildContext context) =>
+                            //             PdfviewPage()
+                            //         // VideoPlayer(
+                            //         //   videoUrl:
+                            //         //       "http://merckfoundation.org/merck/public/uploads/page_content/1616159695_3c88d39708ef1a56f6cf.pdf",
+                            //         // )
+                            //         ));
                           },
                         ),
                       ],
@@ -604,5 +618,14 @@ class _AppDrawerState extends State<AppDrawer> {
     setState(() {
       this.isLoggedIn = isLoggedIn;
     });
+  }
+
+  _launchURL(String urlIs) async {
+    var url = urlIs;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

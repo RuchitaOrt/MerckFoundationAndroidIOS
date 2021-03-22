@@ -21,6 +21,7 @@ import 'package:responsive_flutter/responsive_flutter.dart';
 import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
+import 'package:merckfoundation22dec/watchmorevideoambaassadar.dart';
 
 class LocalSongsandChildrenStories extends StatefulWidget {
   @override
@@ -82,232 +83,6 @@ class LocalSongsandChildrenStoriesState
                   // scrollDirection: Axis.horizontal,
                   children: list()),
             ),
-            // GlobalLists.localSongsContent.length <= 0
-            //     ? Container(
-            //         child: Center(child: Text(Constantstring.emptyData)),
-            //       )
-            //     : Html(
-            //         data: """${GlobalLists.localSongsContent[0].title} """,
-            //         onLinkTap: (url) {
-            //           print("Opening $url...");
-            //         },
-            //       ),
-            // GlobalLists.localSongsContent.length <= 0
-            //     ? Container(
-            //         child: Center(child: Text(Constantstring.emptyData)),
-            //       )
-            //     : Html(
-            //         data:
-            //             """${GlobalLists.localSongsContent[0].pageContent} """,
-            //         onLinkTap: (url) {
-            //           print("Opening $url...");
-            //         },
-            //       ),
-            // GlobalLists.localSongsVideosList.length <= 0
-            //     ? Container(
-            //         child: Center(child: Text(Constantstring.emptyData)),
-            //       )
-            //     : Padding(
-            //         padding: const EdgeInsets.only(left: 10),
-            //         child: CustomHorizontalCard(
-            //           index: 1,
-            //           cardImage: "assets/newImages/gallery.png",
-            //           cardTitle: "Our Videos  ",
-            //           btnTitle: "Watch More",
-            //           titleColor: Customcolor.pink_col,
-            //           titleImg: "assets/newImages/flowers-3.png",
-            //           list: ListView.builder(
-            //             itemCount: GlobalLists.localSongsVideosList.length,
-            //             scrollDirection: Axis.horizontal,
-            //             itemBuilder: (BuildContext context, int index) {
-            //               return Padding(
-            //                 padding: const EdgeInsets.only(right: 8, left: 10),
-            //                 child: Stack(
-            //                   children: [
-            //                     Container(
-            //                       width: SizeConfig.blockSizeHorizontal * 86,
-            //                       child: FadeInImage.assetNetwork(
-            //                         placeholder:
-            //                             'assets/newImages/placeholder_3.jpg',
-            //                         image:
-            //                             "https://img.youtube.com/vi/${GlobalLists.localSongsVideosList[index].videoLink.substring(GlobalLists.localSongsVideosList[index].videoLink.length - 11)}/mqdefault.jpg",
-            //                         fit: BoxFit.fill,
-            //                       ),
-            //                     ),
-            //                     Align(
-            //                       alignment: Alignment.bottomCenter,
-            //                       child: Padding(
-            //                         padding: const EdgeInsets.only(
-            //                             left: 10, right: 10, bottom: 10),
-            //                         child: Row(
-            //                           crossAxisAlignment:
-            //                               CrossAxisAlignment.end,
-            //                           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //                           children: [
-            //                             Column(
-            //                               mainAxisAlignment:
-            //                                   MainAxisAlignment.end,
-            //                               crossAxisAlignment:
-            //                                   CrossAxisAlignment.start,
-            //                               children: [
-            //                                 Container(
-            //                                   width: SizeConfig
-            //                                           .blockSizeHorizontal *
-            //                                       80,
-            //                                   child: Text(
-            //                                     GlobalLists
-            //                                         .localSongsVideosList[index]
-            //                                         .videoDesc,
-            //                                     overflow: TextOverflow.ellipsis,
-            //                                     style: TextStyle(
-            //                                         color: Colors.white,
-            //                                         fontSize: 14,
-            //                                         fontWeight:
-            //                                             FontWeight.w700),
-            //                                     maxLines: 3,
-            //                                   ),
-            //                                 ),
-            //                                 SizedBox(
-            //                                   height: 8,
-            //                                 )
-            //                               ],
-            //                             ),
-            //                           ],
-            //                         ),
-            //                       ),
-            //                     ),
-            //                   ],
-            //                 ),
-            //               );
-            //             },
-            //           ),
-            //         ),
-            //       ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            // GlobalLists.localSongsContent.length <= 0
-            //     ? Container(
-            //         child: Center(child: Text(Constantstring.emptyData)),
-            //       )
-            //     : Html(
-            //         data: """${GlobalLists.localSongsContent[1].title} """,
-            //         onLinkTap: (url) {
-            //           print("Opening $url...");
-            //         },
-            //       ),
-            // GlobalLists.localSongsContent.length <= 0
-            //     ? Container(
-            //         child: Center(child: Text(Constantstring.emptyData)),
-            //       )
-            //     : Html(
-            //         data:
-            //             """${GlobalLists.localSongsContent[1].pageContent} """,
-            //         onLinkTap: (url) {
-            //           print("Opening $url...");
-            //         },
-            //       ),
-            // Container(
-            //   height: 340,
-            //   // color: Colors.grey.shade800,
-            //   //  padding: EdgeInsets.all(16.0),
-            //   child: Column(
-            //     children: [
-            //       Expanded(
-            //         child: Swiper(
-            //           fade: 0.0,
-            //           itemBuilder: (BuildContext context, int index) {
-            //             return Column(
-            //               children: [
-            //                 Expanded(
-            //                   child: Card(
-            //                     elevation: 5,
-            //                     color: Colors.white,
-            //                     child: Column(
-            //                       children: <Widget>[
-            //                         Container(
-            //                           padding: EdgeInsets.all(6),
-            //                           width:
-            //                               SizeConfig.blockSizeHorizontal * 60,
-            //                           child: Text(
-            //                             GlobalLists
-            //                                 .localSongsDigitalList[index].title,
-            //                             overflow: TextOverflow.ellipsis,
-            //                             style: TextStyle(
-            //                                 color: Colors.black54,
-            //                                 fontSize: 14,
-            //                                 fontWeight: FontWeight.w700),
-            //                             maxLines: 3,
-            //                           ),
-            //                         ),
-            //                         Expanded(
-            //                           child: Container(
-            //                             // height: SizeConfig.blockSizeVertical * 40,
-            //                             width: double.infinity,
-            //                             decoration: BoxDecoration(
-            //                               borderRadius:
-            //                                   BorderRadius.circular(10),
-            //                             ),
-            //                             child: FadeInImage.assetNetwork(
-            //                               placeholder:
-            //                                   'assets/newImages/placeholder_3.jpg',
-            //                               image:
-            //                                   "${Constantstring.baseUrl + GlobalLists.localSongsDigitalList[index].image}",
-            //                               fit: BoxFit.fill,
-            //                             ),
-            //                           ),
-            //                         ),
-            //                       ],
-            //                     ),
-            //                   ),
-            //                 ),
-            //               ],
-            //             );
-            //           },
-            //           itemCount: GlobalLists.localSongsDigitalList.length,
-            //           viewportFraction: 0.7,
-            //           layout: SwiperLayout.DEFAULT,
-
-            //           scale: 0.9,
-            //           //outer: true,
-            //           //  itemWidth: 300.0,
-            //           //itemHeight: 400,
-            //           //itemHeight: 300,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            // Center(
-            //   child: Container(
-            //     width: 120,
-            //     height: 40,
-            //     decoration: BoxDecoration(
-            //         color: Colors.amber,
-            //         borderRadius: BorderRadius.circular(5)),
-            //     child: Center(
-            //       child: Text(
-            //         "Watch More",
-            //         style: TextStyle(
-            //             color: Customcolor.colorBlue,
-            //             fontSize: 15,
-            //             fontWeight: FontWeight.w500),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 30,
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 60, left: 60, top: 20),
-            //   child: Image.asset(
-            //     "assets/newImages/flowers_footer.png",
-            //   ),
-            // ),
             Padding(
               padding: const EdgeInsets.only(right: 0, left: 0),
               child: Align(
@@ -427,17 +202,23 @@ class LocalSongsandChildrenStoriesState
               cardTitle: "Our Videos  ",
               btnTitle: "Watch More",
               onbtnTap: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (BuildContext context) => Videolibrary()));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            WatchmoreVideolibrary(
-                              apiurl: API.watchvideolocalsong,
+                            WatchmoreVideoambassdar(
+                              categoryid:
+                                  GlobalLists.homevideolist[0].categoryId,
+                              api: APIManager.watchsubmenuvideoapi,
+                              type: "",
                             )));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) =>
+                //             WatchmoreVideolibrary(
+                //               apiurl: API.watchvideolocalsong,
+                //             )));
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",

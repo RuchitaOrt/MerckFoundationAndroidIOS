@@ -3,25 +3,22 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/screens/watchmorevideolibray.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
-import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:merckfoundation22dec/model/EmpoweringbernaResponse.dart'
     as berna;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:merckfoundation22dec/watchmorevideoambaassadar.dart';
 
 class EmpoweringBerna extends StatefulWidget {
   @override
@@ -276,17 +273,23 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
               cardTitle: "Our Videos  ",
               btnTitle: "Watch More",
               onbtnTap: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (BuildContext context) => Videolibrary()));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            WatchmoreVideolibrary(
-                              apiurl: API.watchvideoempoweringberna,
+                            WatchmoreVideoambassdar(
+                              categoryid:
+                                  GlobalLists.homevideolist[0].categoryId,
+                              api: APIManager.watchsubmenuvideoapi,
+                              type: "",
                             )));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) =>
+                //             WatchmoreVideolibrary(
+                //               apiurl: API.watchvideoempoweringberna,
+                //             )));
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",

@@ -124,11 +124,11 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
           print("TKey: ${section.keys.first}");
           var middlecategoryname = section.keys.first;
 
-          setState(() {
-            typewidet.add(middlecategoryname);
+          // setState(() {
+          typewidet.add(middlecategoryname);
 
-            print(typewidet);
-          });
+          print(typewidet);
+          //  });
           if (middlecategoryname.toString().toLowerCase() ==
               "Videos".toLowerCase()) {
             GlobalLists.homevideolist =
@@ -382,6 +382,8 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                         WatchmoreVideoambassdar(
                                           categoryid: GlobalLists
                                               .homevideolist[index].categoryId,
+                                          api: APIManager.ambasadarvideoapi,
+                                          type: "ambassadar",
                                         )));
                             // ambasssadarvideoviewmore(
                             //     GlobalLists.homevideolist[index].categoryId);

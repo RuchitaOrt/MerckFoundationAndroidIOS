@@ -1,9 +1,14 @@
 import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/model/stemsubmenuprogramlist.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckstemprogram.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
@@ -23,12 +28,12 @@ class _MyHomePageState extends State<OurProgramStem> {
   final int indexpass;
   AdvFabController mabialaFABController;
 
-  var expansionList = [
-    "4th Edition of UNESCO-MARS",
-  ];
+  // var expansionList = [
+  //   "4th Edition of UNESCO-MARS",
+  // ];
   void closeOpenExpansionList(expansionName) {
-    expansionList.forEach((name) {
-      if (name != expansionName) expansionState[name] = false;
+    GlobalLists.stemprogramlistsubmenu.forEach((name) {
+      if (name != expansionName) expansionState[name.menuName] = false;
     });
     setState(() {
       if (!expansionState[expansionName]) expansionState[expansionName] = true;
@@ -41,13 +46,13 @@ class _MyHomePageState extends State<OurProgramStem> {
   @override
   void initState() {
     super.initState();
+    getstemprogram();
     mabialaFABController = AdvFabController();
-    setData();
   }
 
   setData() {
-    expansionList.forEach((name) {
-      expansionState.putIfAbsent(name, () => false);
+    GlobalLists.stemprogramlistsubmenu.forEach((name) {
+      expansionState.putIfAbsent(name.menuName, () => false);
     });
   }
 
@@ -109,212 +114,180 @@ class _MyHomePageState extends State<OurProgramStem> {
                                         flex: 5,
                                         child: Padding(
                                           padding: const EdgeInsets.all(0.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                          child: ListView(
+                                            shrinkWrap: true,
+                                            //  crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              FormLabel(
-                                                text:
-                                                    "About 5th Edition of UNESCO-Merck Africa Research Summit",
-                                                labelColor:
-                                                    Customcolor.text_darkblue,
-                                                fontweight: FontWeight.w600,
-                                                fontSize: ResponsiveFlutter.of(
-                                                        context)
-                                                    .fontSize(1.8),
-                                              ),
-                                              Divider(
-                                                color: Customcolor.colorBlue,
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              FormLabel(
-                                                text:
-                                                    "Call for Application - Apply Now",
-                                                labelColor:
-                                                    Customcolor.text_darkblue,
-                                                fontweight: FontWeight.w600,
-                                                fontSize: ResponsiveFlutter.of(
-                                                        context)
-                                                    .fontSize(1.8),
-                                              ),
-                                              Divider(
-                                                color: Customcolor.colorBlue,
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              FormLabel(
-                                                text:
-                                                    "Scientific & Steering Committee ",
-                                                labelColor:
-                                                    Customcolor.text_darkblue,
-                                                fontweight: FontWeight.w600,
-                                                fontSize: ResponsiveFlutter.of(
-                                                        context)
-                                                    .fontSize(1.8),
-                                              ),
-                                              SizedBox(
-                                                height: 8,
-                                              ),
-                                              Container(
-                                                width: SizeConfig
-                                                        .blockSizeHorizontal *
-                                                    100,
-                                                color: Color(0xffC1DEA4),
-                                                child: Theme(
-                                                  data: Theme.of(context)
-                                                      .copyWith(
-                                                    dividerColor:
-                                                        Colors.transparent,
-                                                  ),
-                                                  child: ExpansionTile(
-                                                    backgroundColor:
-                                                        Color(0xffC1DEA4),
-                                                    tilePadding:
-                                                        EdgeInsets.all(0.0),
-                                                    key: GlobalKey(),
-                                                    initiallyExpanded:
-                                                        expansionState[
-                                                            '4th Edition of UNESCO-MARS'],
-                                                    title: Container(
-                                                      // color: Color(0xffC1DEA4),
-                                                      child: FormLabel(
-                                                        text:
-                                                            "4th Edition of UNESCO-MARS",
-                                                        labelColor: Customcolor
-                                                            .text_darkblue,
-                                                        fontweight:
-                                                            FontWeight.w600,
-                                                        fontSize:
-                                                            ResponsiveFlutter
-                                                                    .of(context)
-                                                                .fontSize(1.8),
-                                                      ),
+                                              ListView.builder(
+                                                itemCount: GlobalLists
+                                                    .stemprogramlistsubmenu
+                                                    .length,
+                                                shrinkWrap: true,
+                                                physics: ScrollPhysics(),
+                                                itemBuilder:
+                                                    (BuildContext context,
+                                                        int index) {
+                                                  return Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            bottom: 5,
+                                                            left: 4,
+                                                            right: 4),
+                                                    child: Column(
+                                                      children: [
+                                                        GlobalLists
+                                                                    .stemprogramlistsubmenu[
+                                                                        index]
+                                                                    .children
+                                                                    .length ==
+                                                                0
+                                                            ? Column(
+                                                                // mainAxisAlignment:
+                                                                //     MainAxisAlignment.start,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  FormLabel(
+                                                                    text: GlobalLists
+                                                                        .stemprogramlistsubmenu[
+                                                                            index]
+                                                                        .menuName,
+                                                                    labelColor:
+                                                                        Customcolor
+                                                                            .text_darkblue,
+                                                                    fontweight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontSize: ResponsiveFlutter.of(
+                                                                            context)
+                                                                        .fontSize(
+                                                                            1.8),
+                                                                    textAlignment:
+                                                                        TextAlign
+                                                                            .start,
+                                                                  ),
+                                                                  Divider(
+                                                                    color: Colors
+                                                                        .black,
+                                                                  )
+                                                                ],
+                                                              )
+                                                            : Container(
+                                                                width: SizeConfig
+                                                                        .blockSizeHorizontal *
+                                                                    100,
+                                                                color: GlobalLists
+                                                                            .stemprogramlistsubmenu[
+                                                                                index]
+                                                                            .children
+                                                                            .length ==
+                                                                        0
+                                                                    ? Colors
+                                                                        .transparent
+                                                                    : Color(
+                                                                        0xffC1DEA4),
+                                                                child: Theme(
+                                                                  data: Theme.of(
+                                                                          context)
+                                                                      .copyWith(
+                                                                    dividerColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                  ),
+                                                                  child:
+                                                                      ExpansionTile(
+                                                                    backgroundColor: GlobalLists.stemprogramlistsubmenu[index].children.length ==
+                                                                            0
+                                                                        ? Colors
+                                                                            .transparent
+                                                                        : Color(
+                                                                            0xffC1DEA4),
+                                                                    // trailing: null,
+                                                                    tilePadding:
+                                                                        EdgeInsets.all(
+                                                                            0.0),
+                                                                    key:
+                                                                        GlobalKey(),
+                                                                    initiallyExpanded: expansionState[GlobalLists
+                                                                        .stemprogramlistsubmenu[
+                                                                            index]
+                                                                        .menuName],
+                                                                    title:
+                                                                        Container(
+                                                                      // color: Color(0xffC1DEA4),
+                                                                      //  padding: EdgeInsets.zero,
+                                                                      child:
+                                                                          FormLabel(
+                                                                        text: GlobalLists
+                                                                            .stemprogramlistsubmenu[index]
+                                                                            .menuName,
+                                                                        labelColor:
+                                                                            Customcolor.text_darkblue,
+                                                                        fontweight:
+                                                                            FontWeight.w600,
+                                                                        fontSize:
+                                                                            ResponsiveFlutter.of(context).fontSize(1.8),
+                                                                      ),
+                                                                    ),
+                                                                    onExpansionChanged:
+                                                                        ((newState) {
+                                                                      expansionState[GlobalLists
+                                                                          .stemprogramlistsubmenu[
+                                                                              index]
+                                                                          .menuName] = newState;
+                                                                      if (newState)
+                                                                        closeOpenExpansionList(GlobalLists
+                                                                            .stemprogramlistsubmenu[index]
+                                                                            .menuName);
+                                                                    }),
+                                                                    children: <
+                                                                        Widget>[
+                                                                      GlobalLists.stemprogramlistsubmenu[index].children.length !=
+                                                                              0
+                                                                          ? ListView
+                                                                              .builder(
+                                                                              itemCount: GlobalLists.stemprogramlistsubmenu[index].children.length,
+                                                                              shrinkWrap: true,
+                                                                              physics: ScrollPhysics(),
+                                                                              itemBuilder: (BuildContext context, int indexchildren) {
+                                                                                return Padding(
+                                                                                  padding: const EdgeInsets.only(left: 8, right: 8, bottom: 6),
+                                                                                  child: Column(
+                                                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                    children: [
+                                                                                      GestureDetector(
+                                                                                          onTap: () {},
+                                                                                          child: FormLabel(
+                                                                                            text: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName,
+                                                                                            labelColor: Customcolor.text_darkblue,
+                                                                                            fontweight: FontWeight.w600,
+                                                                                            fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
+                                                                                          )),
+                                                                                      Divider(
+                                                                                        color: Colors.black,
+                                                                                      )
+                                                                                    ],
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            )
+                                                                          : Container(),
+// ;                                                  Divider(
+//                                                     color:
+//                                                         Customcolor.colorBlue,
+//                                                   ),
+//                                                   SizedBox(
+//                                                     height: 5,
+//                                                   ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                      ],
                                                     ),
-                                                    onExpansionChanged:
-                                                        ((newState) {
-                                                      expansionState[
-                                                              '4th Edition of UNESCO-MARS'] =
-                                                          newState;
-                                                      if (newState)
-                                                        closeOpenExpansionList(
-                                                            '4th Edition of UNESCO-MARS');
-                                                    }),
-                                                    children: <Widget>[
-                                                      FormLabel(
-                                                        text:
-                                                            "4th Edition- UNESCO MARS Scientific book",
-                                                        labelColor: Customcolor
-                                                            .text_darkblue,
-                                                        fontweight:
-                                                            FontWeight.w600,
-                                                        fontSize:
-                                                            ResponsiveFlutter
-                                                                    .of(context)
-                                                                .fontSize(1.8),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 4,
-                                                      ),
-                                                      Divider(
-                                                        color:
-                                                            Color(0xff83A23B),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 4,
-                                                      ),
-                                                      FormLabel(
-                                                        text:
-                                                            "Scientific & Steering Committee        ",
-                                                        labelColor: Customcolor
-                                                            .text_darkblue,
-                                                        fontweight:
-                                                            FontWeight.w600,
-                                                        fontSize:
-                                                            ResponsiveFlutter
-                                                                    .of(context)
-                                                                .fontSize(1.8),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 4,
-                                                      ),
-                                                      Divider(
-                                                        color:
-                                                            Color(0xff83A23B),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 4,
-                                                      ),
-                                                      FormLabel(
-                                                        text:
-                                                            "About 4th Edition of UNESCO Merck Africa Research Summit",
-                                                        labelColor: Customcolor
-                                                            .text_darkblue,
-                                                        fontweight:
-                                                            FontWeight.w600,
-                                                        fontSize:
-                                                            ResponsiveFlutter
-                                                                    .of(context)
-                                                                .fontSize(1.8),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 6,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 2,
-                                              ),
-                                              Container(
-                                                padding: EdgeInsets.only(
-                                                    bottom: 8, top: 8),
-                                                width: SizeConfig
-                                                        .blockSizeHorizontal *
-                                                    100,
-                                                color: Customcolor.stemskyblue,
-                                                child: FormLabel(
-                                                  text:
-                                                      "3rd Edition of UNESCO-MARS",
-                                                  labelColor:
-                                                      Customcolor.text_darkblue,
-                                                  fontweight: FontWeight.w600,
-                                                  fontSize:
-                                                      ResponsiveFlutter.of(
-                                                              context)
-                                                          .fontSize(1.8),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 2,
-                                              ),
-                                              Container(
-                                                padding: EdgeInsets.only(
-                                                    bottom: 8, top: 8),
-                                                width: SizeConfig
-                                                        .blockSizeHorizontal *
-                                                    100,
-                                                color: Color(0xffE0C0CB),
-                                                child: FormLabel(
-                                                  text:
-                                                      "5th Edition of UNESCO-Merck Africa Research Summit",
-                                                  labelColor:
-                                                      Customcolor.text_darkblue,
-                                                  fontweight: FontWeight.w600,
-                                                  fontSize:
-                                                      ResponsiveFlutter.of(
-                                                              context)
-                                                          .fontSize(1.8),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 5,
+                                                  );
+                                                },
                                               ),
                                             ],
                                           ),
@@ -333,6 +306,7 @@ class _MyHomePageState extends State<OurProgramStem> {
                                 Icons.close,
                                 color: Customcolor.colorBlue,
                               ))),
+                      //here need to do code
                       Expanded(
                           flex: 5,
                           child: Padding(
@@ -341,172 +315,190 @@ class _MyHomePageState extends State<OurProgramStem> {
                               shrinkWrap: true,
                               //  crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                FormLabel(
-                                  text:
-                                      "About 5th Edition of UNESCO-Merck Africa Research Summit",
-                                  labelColor: Customcolor.text_darkblue,
-                                  fontweight: FontWeight.w600,
-                                  fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(1.8),
-                                ),
-                                Divider(
-                                  color: Customcolor.colorBlue,
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                FormLabel(
-                                  text: "Call for Application - Apply Now",
-                                  labelColor: Customcolor.text_darkblue,
-                                  fontweight: FontWeight.w600,
-                                  fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(1.8),
-                                ),
-                                Divider(
-                                  color: Customcolor.colorBlue,
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                FormLabel(
-                                  text: "Scientific & Steering Committee",
-                                  labelColor: Customcolor.text_darkblue,
-                                  fontweight: FontWeight.w600,
-                                  fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(1.8),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Container(
-                                  width: SizeConfig.blockSizeHorizontal * 100,
-                                  color: Color(0xffC1DEA4),
-                                  child: Theme(
-                                    data: Theme.of(context).copyWith(
-                                      dividerColor: Colors.transparent,
-                                    ),
-                                    child: ExpansionTile(
-                                      backgroundColor: Color(0xffC1DEA4),
-                                      tilePadding: EdgeInsets.all(0.0),
-                                      key: GlobalKey(),
-                                      initiallyExpanded: expansionState[
-                                          '4th Edition of UNESCO-MARS'],
-                                      title: Container(
-                                        // color: Color(0xffC1DEA4),
-                                        child: FormLabel(
-                                          text: "4th Edition of UNESCO-MARS",
-                                          labelColor: Customcolor.text_darkblue,
-                                          fontweight: FontWeight.w600,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.8),
-                                        ),
+                                ListView.builder(
+                                  itemCount:
+                                      GlobalLists.stemprogramlistsubmenu.length,
+                                  shrinkWrap: true,
+                                  physics: ScrollPhysics(),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                          bottom: 5, left: 4, right: 4),
+                                      child: Column(
+                                        children: [
+                                          GlobalLists
+                                                      .stemprogramlistsubmenu[
+                                                          index]
+                                                      .children
+                                                      .length ==
+                                                  0
+                                              ? Column(
+                                                  // mainAxisAlignment:
+                                                  //     MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    FormLabel(
+                                                      text: GlobalLists
+                                                          .stemprogramlistsubmenu[
+                                                              index]
+                                                          .menuName,
+                                                      labelColor: Customcolor
+                                                          .text_darkblue,
+                                                      fontweight:
+                                                          FontWeight.w600,
+                                                      fontSize:
+                                                          ResponsiveFlutter.of(
+                                                                  context)
+                                                              .fontSize(1.8),
+                                                      textAlignment:
+                                                          TextAlign.start,
+                                                    ),
+                                                    Divider(
+                                                      color: Colors.black,
+                                                    )
+                                                  ],
+                                                )
+                                              : Container(
+                                                  width: SizeConfig
+                                                          .blockSizeHorizontal *
+                                                      100,
+                                                  color: GlobalLists
+                                                              .stemprogramlistsubmenu[
+                                                                  index]
+                                                              .children
+                                                              .length ==
+                                                          0
+                                                      ? Colors.transparent
+                                                      : Color(0xffC1DEA4),
+                                                  child: Theme(
+                                                    data: Theme.of(context)
+                                                        .copyWith(
+                                                      dividerColor:
+                                                          Colors.transparent,
+                                                    ),
+                                                    child: ExpansionTile(
+                                                      backgroundColor: GlobalLists
+                                                                  .stemprogramlistsubmenu[
+                                                                      index]
+                                                                  .children
+                                                                  .length ==
+                                                              0
+                                                          ? Colors.transparent
+                                                          : Color(0xffC1DEA4),
+                                                      // trailing: null,
+                                                      tilePadding:
+                                                          EdgeInsets.all(0.0),
+                                                      key: GlobalKey(),
+                                                      initiallyExpanded:
+                                                          expansionState[GlobalLists
+                                                              .stemprogramlistsubmenu[
+                                                                  index]
+                                                              .menuName],
+                                                      title: Container(
+                                                        // color: Color(0xffC1DEA4),
+                                                        //  padding: EdgeInsets.zero,
+                                                        child: FormLabel(
+                                                          text: GlobalLists
+                                                              .stemprogramlistsubmenu[
+                                                                  index]
+                                                              .menuName,
+                                                          labelColor: Customcolor
+                                                              .text_darkblue,
+                                                          fontweight:
+                                                              FontWeight.w600,
+                                                          fontSize:
+                                                              ResponsiveFlutter
+                                                                      .of(
+                                                                          context)
+                                                                  .fontSize(
+                                                                      1.8),
+                                                        ),
+                                                      ),
+                                                      onExpansionChanged:
+                                                          ((newState) {
+                                                        expansionState[GlobalLists
+                                                            .stemprogramlistsubmenu[
+                                                                index]
+                                                            .menuName] = newState;
+                                                        if (newState)
+                                                          closeOpenExpansionList(
+                                                              GlobalLists
+                                                                  .stemprogramlistsubmenu[
+                                                                      index]
+                                                                  .menuName);
+                                                      }),
+                                                      children: <Widget>[
+                                                        GlobalLists
+                                                                    .stemprogramlistsubmenu[
+                                                                        index]
+                                                                    .children
+                                                                    .length !=
+                                                                0
+                                                            ? ListView.builder(
+                                                                itemCount: GlobalLists
+                                                                    .stemprogramlistsubmenu[
+                                                                        index]
+                                                                    .children
+                                                                    .length,
+                                                                shrinkWrap:
+                                                                    true,
+                                                                physics:
+                                                                    ScrollPhysics(),
+                                                                itemBuilder:
+                                                                    (BuildContext
+                                                                            context,
+                                                                        int indexchildren) {
+                                                                  return Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .only(
+                                                                        left: 8,
+                                                                        right:
+                                                                            8,
+                                                                        bottom:
+                                                                            6),
+                                                                    child:
+                                                                        Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        GestureDetector(
+                                                                            onTap:
+                                                                                () {},
+                                                                            child:
+                                                                                FormLabel(
+                                                                              text: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName,
+                                                                              labelColor: Customcolor.text_darkblue,
+                                                                              fontweight: FontWeight.w600,
+                                                                              fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
+                                                                            )),
+                                                                        Divider(
+                                                                          color:
+                                                                              Colors.black,
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              )
+                                                            : Container(),
+// ;                                                  Divider(
+//                                                     color:
+//                                                         Customcolor.colorBlue,
+//                                                   ),
+//                                                   SizedBox(
+//                                                     height: 5,
+//                                                   ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                        ],
                                       ),
-                                      onExpansionChanged: ((newState) {
-                                        expansionState[
-                                                '4th Edition of UNESCO-MARS'] =
-                                            newState;
-                                        if (newState)
-                                          closeOpenExpansionList(
-                                              '4th Edition of UNESCO-MARS');
-                                      }),
-                                      children: <Widget>[
-                                        Align(
-                                          alignment: Alignment.topLeft,
-                                          child: FormLabel(
-                                            text:
-                                                "4th Edition- UNESCO MARS Scientific book",
-                                            labelColor:
-                                                Customcolor.text_darkblue,
-                                            fontweight: FontWeight.w600,
-                                            fontSize:
-                                                ResponsiveFlutter.of(context)
-                                                    .fontSize(1.8),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 4,
-                                        ),
-                                        Divider(
-                                          color: Color(0xff83A23B),
-                                        ),
-                                        SizedBox(
-                                          height: 4,
-                                        ),
-                                        Align(
-                                          alignment: Alignment.topLeft,
-                                          child: FormLabel(
-                                            text:
-                                                "Scientific & Steering Committee       ",
-                                            labelColor:
-                                                Customcolor.text_darkblue,
-                                            fontweight: FontWeight.w600,
-                                            fontSize:
-                                                ResponsiveFlutter.of(context)
-                                                    .fontSize(1.8),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 4,
-                                        ),
-                                        Divider(
-                                          color: Color(0xff83A23B),
-                                        ),
-                                        SizedBox(
-                                          height: 4,
-                                        ),
-                                        FormLabel(
-                                          text:
-                                              "About 4th Edition of UNESCO Merck Africa Research Summit",
-                                          labelColor: Customcolor.text_darkblue,
-                                          fontweight: FontWeight.w600,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.8),
-                                        ),
-                                        SizedBox(
-                                          height: 6,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 2,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(bottom: 8, top: 8),
-                                  width: SizeConfig.blockSizeHorizontal * 100,
-                                  color: Customcolor.stemskyblue,
-                                  child: FormLabel(
-                                    text: "3rd Edition of UNESCO-MARS",
-                                    labelColor: Customcolor.text_darkblue,
-                                    fontweight: FontWeight.w600,
-                                    fontSize: ResponsiveFlutter.of(context)
-                                        .fontSize(1.8),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 2,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(bottom: 8, top: 8),
-                                  width: SizeConfig.blockSizeHorizontal * 100,
-                                  color: Color(0xffE0C0CB),
-                                  child: FormLabel(
-                                    text:
-                                        "5th Edition of UNESCO-Merck Africa Research Summit",
-                                    labelColor: Customcolor.text_darkblue,
-                                    fontweight: FontWeight.w600,
-                                    fontSize: ResponsiveFlutter.of(context)
-                                        .fontSize(1.8),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
+                                    );
+                                  },
                                 ),
                               ],
                             ),
@@ -534,5 +526,42 @@ class _MyHomePageState extends State<OurProgramStem> {
         )
         // This trailing comma makes auto-formatting nicer for build methods.
         );
+  }
+
+  getstemprogram() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.stemprogramlist,
+        (response) async {
+          StemsubmenuprogramlistResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          // Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.stemprogramlistsubmenu = resp.data.list;
+              print("stemlength");
+              print(GlobalLists.stemprogramlistsubmenu.length);
+              setData();
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          // Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 }

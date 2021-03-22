@@ -81,12 +81,23 @@ class WebPageState extends State<VideoPlayer> {
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: FormLabel(
-                    text: widget.videoUrl,
-                    fontSize: 17,
-                    maxLines: 3,
-                    fontweight: FontWeight.w700,
-                    labelColor: Customcolor.text_blue,
+                  // child: FormLabel(
+                  //   text: widget.videoUrl,
+                  //   fontSize: 17,
+                  //   maxLines: 3,
+                  //   fontweight: FontWeight.w700,
+                  //   labelColor: Customcolor.text_blue,
+
+                  // ),
+                  child: Text(
+                    widget.videoUrl,
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: Customcolor.text_blue,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700),
+                    maxLines: 2,
                   ),
                 ),
                 SizedBox(

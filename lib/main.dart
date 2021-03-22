@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/screens/splash.dart';
+import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 
 // import 'package:flutter/material.dart';
 // import 'package:merckfoundation22dec/screens/splash.dart';
 
 void main() {
+  PdfView.platform = SurfaceAndroidPdfViewer();
   runApp(MyApp());
 }
 

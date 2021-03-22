@@ -12,6 +12,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
 import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
+import 'package:merckfoundation22dec/model/cncersubprogramcommunityawareness.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -30,6 +31,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/MerckFellowship.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:merckfoundation22dec/watchmorevideoambaassadar.dart';
 
 class Merckcancercommunityawareness extends StatefulWidget {
   @override
@@ -122,7 +124,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
               shrinkWrap: true,
               physics: ScrollPhysics(),
               children: [
-                slider(context),
+                // slidersection.length <= 0 ? Container() : slider(context),
                 Visibility(
                   visible: isMiddleSectionLoaded,
                   replacement: Center(child: CircularProgressIndicator()),
@@ -841,10 +843,20 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
               cardTitle: "Our Videos  ",
               btnTitle: "Watch More",
               onbtnTap: () {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (BuildContext context) => Videolibrary()));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => Videolibrary()));
+                        builder: (BuildContext context) =>
+                            WatchmoreVideoambassdar(
+                              categoryid:
+                                  GlobalLists.homevideolist[0].categoryId,
+                              api: APIManager.watchsubmenuvideoapi,
+                              type: "",
+                            )));
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1559,30 +1571,30 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
         var res = json.decode(response.body);
         print("ff");
         print(res);
-        MerckFellowshipResponse homepageres =
-            MerckFellowshipResponse.fromJson(res);
+        CancersubprogramcommunityawaremnessResponse homepageres =
+            CancersubprogramcommunityawaremnessResponse.fromJson(res);
 
-        slidersection = homepageres.sliderArea[0].slider.list;
-        slidersection.forEach((element) {
-          _productsAvailable.add({
-            "id": element.id,
-            "menu_id": element.menuId,
-            "image_title": element.imageTitle,
-            "image_desc": element.imageDesc,
-            "links": element.links,
-            "image": element.image,
-            "alt_text": element.altText,
-            "status": element.status,
-            "created_at": element.createdAt,
-            "updated_at": element.updatedAt
-          });
-        });
+        // slidersection = homepageres.sliderArea[0].slider.list;
 
-        print("sliderprogramsection");
-        print(slidersection.length);
+        // slidersection.forEach((element) {
+        //   _productsAvailable.add({
+        //     "id": element.id,
+        //     "menu_id": element.menuId,
+        //     "image_title": element.imageTitle,
+        //     "image_desc": element.imageDesc,
+        //     "links": element.links,
+        //     "image": element.image,
+        //     "alt_text": element.altText,
+        //     "status": element.status,
+        //     "created_at": element.createdAt,
+        //     "updated_at": element.updatedAt
+        //   });
+        // });
+
+        // print("sliderprogramsection");
+        // print(slidersection.length);
 
         Map<String, dynamic> section1 = homepageres.middleArea;
-        Map<String, dynamic> lastsection = homepageres.rightArea;
 
         print(section1);
         print(section1['1']);
@@ -1614,57 +1626,6 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
             GlobalLists.homecontentlist =
                 homepageres.middleArea[middleareakey[i]].content.list;
             print(GlobalLists.homecontentlist.length);
-          } else if (middlecategoryname.toString().toLowerCase() ==
-              "testimonial".toLowerCase()) {
-            GlobalLists.mmttestimoniallist =
-                homepageres.middleArea[middleareakey[i]].testimonial.list;
-            print(GlobalLists.mmttestimoniallist.length);
-            GlobalLists.mmttestimonialbaseurl =
-                homepageres.middleArea[middleareakey[i]].testimonial.baseUrl;
-          }
-        }
-
-        ///////right section
-        List<String> rigthareakey = [];
-        lastsection.keys.forEach((element) {
-          rigthareakey.add(element.toString());
-        });
-        print(middleareakey);
-        for (int i = 0; i < lastsection.length; i++) {
-          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-          //  print(categoryKeys.videos.type);
-          dynamic rightsection = res['Right_area'][rigthareakey[i]];
-          print("TKey: ${rightsection.keys.first}");
-          var rightsectioncategoryname = rightsection.keys.first;
-
-          setState(() {
-            typewidetofrightsection.add(rightsectioncategoryname);
-            _tabController = new TabController(
-                vsync: this, length: typewidetofrightsection.length);
-            print(typewidetofrightsection);
-          });
-
-          if (rightsectioncategoryname.toString().toLowerCase() ==
-              "call_for_app".toLowerCase()) {
-            GlobalLists.homecallforapp =
-                homepageres.rightArea[rigthareakey[i]].callForApp.list;
-            GlobalLists.homeCallForAppBaseURL =
-                homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
-            print(GlobalLists.homecallforapp.length);
-          } else if (rightsectioncategoryname.toString().toLowerCase() ==
-              "mmtm".toLowerCase()) {
-            GlobalLists.homemmtm =
-                homepageres.rightArea[rigthareakey[i]].mmtm.list;
-            print(GlobalLists.homemmtm.length);
-            GlobalLists.homeMMTMBaseURL =
-                homepageres.rightArea[rigthareakey[i]].mmtm.baseUrl;
-          } else if (rightsectioncategoryname.toString().toLowerCase() ==
-              "digital_library".toLowerCase()) {
-            GlobalLists.homedigitallib =
-                homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
-            GlobalLists.homeDigitalLibraryBaseURL =
-                homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
-            print(GlobalLists.homedigitallib.length);
           }
         }
 

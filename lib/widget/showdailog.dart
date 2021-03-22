@@ -33,10 +33,8 @@ class ShowDialogs {
             Expanded(
               child: PhotoView(
                 backgroundDecoration: BoxDecoration(color: Colors.transparent),
-                initialScale: 0.8,
-                imageProvider: NetworkImage(
-                  image,
-                ),
+                initialScale: PhotoViewComputedScale.covered,
+                imageProvider: NetworkImage(image, scale: 0.4),
               ),
             ),
             Expanded(

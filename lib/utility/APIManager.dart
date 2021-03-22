@@ -37,10 +37,12 @@ import 'package:merckfoundation22dec/model/ourPartnerObjectivesResp.dart';
 import 'package:merckfoundation22dec/model/ourPartnerResponse.dart';
 import 'package:merckfoundation22dec/model/ourmissionResponse.dart';
 import 'package:merckfoundation22dec/model/ourpolicy.dart';
+import 'package:merckfoundation22dec/model/stemsubmenuprogramlist.dart';
 import 'package:merckfoundation22dec/model/videoProgramResponse.dart';
 import 'package:merckfoundation22dec/model/viewmoreMMTMResponse.dart';
 import 'package:merckfoundation22dec/model/viewmoreMediaResponse.dart';
 import 'package:merckfoundation22dec/model/visionResponse.dart';
+import 'package:merckfoundation22dec/model/yearwisephotogallery.dart';
 import 'package:merckfoundation22dec/utility/AppEror.dart';
 import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 import 'package:merckfoundation22dec/model/callforapplicationResponse.dart';
@@ -58,7 +60,9 @@ import 'package:merckfoundation22dec/model/LeadershipResponse.dart';
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
 import 'package:merckfoundation22dec/model/TestimonialProgram.dart';
 import 'package:merckfoundation22dec/model/our_gallery_detail_response.dart';
+import 'package:merckfoundation22dec/model/Merckoverview.dart';
 
+//Note URL need to change in configuration.json and also in these file fetchget method
 enum API {
   vision,
   legaldisclaimer,
@@ -188,7 +192,24 @@ enum API {
   watchcallhome,
   watchcallmmtm,
   watchcallstem,
-  watchcallafrica
+  watchcallafrica,
+
+  //merckoverview
+
+  merckoverview,
+
+  //message from ceo rasha
+  viewallceomessagerasha,
+
+  //stemprogramlist
+  stemprogramlist,
+
+  //covid video
+  covidvideo,
+  covidnews,
+
+  //yearwise photo
+  yearwisegallery
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -197,6 +218,7 @@ typedef successCallback = void Function(dynamic response);
 typedef progressCallback = void Function(int progress);
 typedef failureCallback = void Function(AppError error);
 
+//Note URL need to change in configuration.json and also in these file fetchget method
 class APIManager {
   static Duration timeout;
   static String token;
@@ -240,8 +262,11 @@ class APIManager {
     ioClient = new IOClient(client);
 
     //TODO: Use this URI for UATs
-    var uri = Uri.http(
-        'onerooftechnologiesllp.com', '/mfindia/web/public/api/$encoding');
+    //http://merckfoundation.org/mfindia/web/public/api/
+    // var uri = Uri.http(
+    //     'onerooftechnologiesllp.com', '/mfindia/web/public/api/$encoding');
+    var uri =
+        Uri.http('merckfoundation.org', '/mfindia/web/public/api/$encoding');
     final response = await ioClient.get(uri);
 
     if (response.statusCode == 401) {
@@ -256,8 +281,12 @@ class APIManager {
   }
 
   static String searchapi = baseURL + "mobile_search";
+  //video view all section
   static String ambasadarvideoapi =
       baseURL + "ambassadors_view_more_videos_mob";
+  //api for view all video section-Empowering Berna ,Local Songs and Children Stories,Merck Oncology Fellowship Program,Merck More Than a Patient,Merck Community Awareness
+  static String watchsubmenuvideoapi = baseURL + "WatchMoreSubProgramVideos";
+  ////
   static String ambasadarimageapi = baseURL + "ambassadors_view_more_image_mob";
   static String homeurl = "program_page_api/home/Android/1";
   static String mmtmprogramurl =
@@ -667,6 +696,29 @@ class APIManager {
           apiPathString = "read_call_for_app/merck-africa-asia-luminary/1";
 
           break;
+
+        case API.merckoverview:
+          apiPathString = "merck_foundation_over_view";
+
+          break;
+
+        case API.viewallceomessagerasha:
+          apiPathString = "all_ceo_message/home/1";
+          break;
+
+        case API.stemprogramlist:
+          apiPathString = "get_luminary_pages/merck-stem-program/1";
+          break;
+        case API.covidvideo:
+          apiPathString = "covid_videos/1";
+          break;
+        case API.covidnews:
+          apiPathString = "covid_news/1";
+          break;
+
+        case API.yearwisegallery:
+          apiPathString = "year_wise_gallery/1";
+          break;
         default:
           apiPathString = "";
       }
@@ -1043,13 +1095,46 @@ class APIManager {
           apiPathString = "read_call_for_app/merck-africa-asia-luminary/1";
 
           break;
+        case API.merckoverview:
+          apiPathString = "merck_foundation_over_view";
+
+          break;
+        case API.viewallceomessagerasha:
+          apiPathString = "all_ceo_message/home/1";
+          break;
+        case API.stemprogramlist:
+          apiPathString = "get_luminary_pages/merck-stem-program/1";
+          break;
+        case API.covidvideo:
+          apiPathString = "covid_videos/1";
+          break;
+        case API.covidnews:
+          apiPathString = "covid_news/1";
+          break;
+        case API.yearwisegallery:
+          apiPathString = "year_wise_gallery/1";
+          break;
         default:
           apiPathString = "";
       }
       print(apiBaseURL());
     }
-
-    return this.apiBaseURL() + apiPathString;
+    if (apiPathString == "get_luminary_pages/merck-stem-program/1") {
+      return "http://merckfoundation.org/mfindia/web/public/api/" +
+          apiPathString;
+    }
+    //  else if (apiPathString == "covid_videos/1") {
+    //   return "http://merckfoundation.org/mfindia/web/public/api/" +
+    //       apiPathString;
+    // }
+    // else if (apiPathString == "covid_news/1") {
+    //   return "http://merckfoundation.org/mfindia/web/public/api/" +
+    //       apiPathString;
+    // }
+    else {
+      return this.apiBaseURL() + apiPathString;
+    }
+    // return this.apiBaseURL() + apiPathString;
   }
 
   HTTPMethod apiHTTPMethod(API api) {
@@ -1109,6 +1194,8 @@ class APIManager {
       case API.watchmorelatestupcancer:
       case API.watchmorelatestupstem:
       case API.watchmorelatestupafrica:
+      case API.viewallceomessagerasha:
+      case API.covidnews:
         className = "NewsLetterseResponse";
         break;
 
@@ -1274,6 +1361,7 @@ class APIManager {
       case API.watchvideoempoweringberna:
       case API.watchvideolocalsong:
       case API.watchvideofertility:
+      case API.covidvideo:
         className = "VideoProgramResponse";
         break;
 
@@ -1298,7 +1386,15 @@ class APIManager {
       case API.watchmediaprogramcancer:
         className = "ViewmoremediaResponse";
         break;
-
+      case API.merckoverview:
+        className = "MerckoverviewResponse";
+        break;
+      case API.stemprogramlist:
+        className = "StemsubmenuprogramlistResponse";
+        break;
+      case API.yearwisegallery:
+        className = "YearwisePhotogalleryResponse";
+        break;
       default:
         className = 'CommonResponse';
     }
@@ -1485,6 +1581,18 @@ class APIManager {
     if (className == "ViewmoremediaResponse") {
       //enterhere
       responseObj = ViewmoremediaResponse.fromJson(json);
+    }
+    if (className == "MerckoverviewResponse") {
+      //enterhere
+      responseObj = MerckoverviewResponse.fromJson(json);
+    }
+    if (className == "StemsubmenuprogramlistResponse") {
+      //enterhere
+      responseObj = StemsubmenuprogramlistResponse.fromJson(json);
+    }
+    if (className == "YearwisePhotogalleryResponse") {
+      //enterhere
+      responseObj = YearwisePhotogalleryResponse.fromJson(json);
     }
 
     return responseObj;

@@ -93,6 +93,10 @@ import 'package:merckfoundation22dec/model/AmbassadarImageViewall.dart'
     as ambaviewmoreimage;
 import 'package:merckfoundation22dec/model/AmbassadarVideoviewall.dart'
     as ambaviewmorevideo;
+import 'package:merckfoundation22dec/model/Merckoverview.dart'
+    as merckoverviewapi;
+import 'package:merckfoundation22dec/model/stemsubmenuprogramlist.dart'
+    as stemsubmenu;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -240,4 +244,10 @@ class GlobalLists {
 
   //view more for video mmtm ambassadar program page
   static List<ambaviewmorevideo.ListElement> videoviewmoreambasdarslist = [];
+
+  //merck overview
+  static merckoverviewapi.ListClass merckoverview;
+  //stemprogram list
+
+  static List<stemsubmenu.ListElement> stemprogramlistsubmenu = [];
 }

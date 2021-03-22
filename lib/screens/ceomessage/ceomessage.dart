@@ -96,7 +96,11 @@ class CeomessageState extends State<Ceomessage> {
                                       print("Opening $url...");
                                     },
                                     style: {
-                                      "body": Style(textAlign: TextAlign.start),
+                                      "body": Style(
+                                          textAlign: TextAlign.start,
+                                          color: Customcolor.violet_col,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: FontSize.larger),
                                     },
                                   ),
                                   Html(
@@ -124,7 +128,7 @@ class CeomessageState extends State<Ceomessage> {
                                                   )));
                                     },
                                     child: Html(
-                                      data: "Bio",
+                                      data: "((View Bio))",
                                       onLinkTap: (url) {
                                         print("Opening $url...");
                                       },
@@ -197,8 +201,11 @@ class CeomessageState extends State<Ceomessage> {
                                           print("Opening $url...");
                                         },
                                         style: {
-                                          "body":
-                                              Style(textAlign: TextAlign.start),
+                                          "body": Style(
+                                              textAlign: TextAlign.start,
+                                              color: Customcolor.violet_col,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: FontSize.larger),
                                         },
                                       ),
                                       Html(
@@ -229,7 +236,7 @@ class CeomessageState extends State<Ceomessage> {
                                                           )));
                                         },
                                         child: Html(
-                                          data: "Bio",
+                                          data: "((View Bio))",
                                           onLinkTap: (url) {
                                             print("Opening $url...");
                                           },
