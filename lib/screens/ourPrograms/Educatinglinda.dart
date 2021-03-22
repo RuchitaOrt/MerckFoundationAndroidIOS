@@ -2302,9 +2302,6 @@ class EducatingLindaState extends State<EducatingLinda>
         Map<String, dynamic> section1 = homepageres.middleArea;
         Map<String, dynamic> lastsection = homepageres.rightArea;
 
-        print(section1);
-        print(section1['1']);
-
         for (int i = 0; i < section1.length; i++) {
           //  MiddleArea categoryKeys = section1[(i + 1).toString()];
           //  print(categoryKeys.videos.type);
@@ -2336,13 +2333,17 @@ class EducatingLindaState extends State<EducatingLinda>
             print(GlobalLists.homegallerylist.length);
           }
         }
+        List<String> rigthareakey = [];
+        lastsection.keys.forEach((element) {
+          rigthareakey.add(element.toString());
+        });
 
         ///////right section
         for (int i = 0; i < lastsection.length; i++) {
           //  MiddleArea categoryKeys = section1[(i + 1).toString()];
           //  print(categoryKeys.videos.type);
-          dynamic rightsection = res['Right_area']['${i + 1}'];
-          print("TKey: ${rightsection.keys.first}");
+          dynamic rightsection = res['Right_area'][rigthareakey[i]];
+          //  print("TKey: ${rightsection.keys.first}");
           var rightsectioncategoryname = rightsection.keys.first;
 
           typewidetofrightsection.add(rightsectioncategoryname);
@@ -2354,22 +2355,23 @@ class EducatingLindaState extends State<EducatingLinda>
           if (rightsectioncategoryname.toString().toLowerCase() ==
               "call_for_app".toLowerCase()) {
             GlobalLists.homecallforapp =
-                homepageres.rightArea['${i + 1}'].callForApp.list;
+                homepageres.rightArea[rigthareakey[i]].callForApp.list;
             GlobalLists.homeCallForAppBaseURL =
-                homepageres.rightArea['${i + 1}'].callForApp.baseUrl;
+                homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
             print(GlobalLists.homecallforapp.length);
           } else if (rightsectioncategoryname.toString().toLowerCase() ==
               "mmtm".toLowerCase()) {
-            GlobalLists.homemmtm = homepageres.rightArea['${i + 1}'].mmtm.list;
+            GlobalLists.homemmtm =
+                homepageres.rightArea[rigthareakey[i]].mmtm.list;
             print(GlobalLists.homemmtm.length);
             GlobalLists.homeMMTMBaseURL =
-                homepageres.rightArea['${i + 1}'].mmtm.baseUrl;
+                homepageres.rightArea[rigthareakey[i]].mmtm.baseUrl;
           } else if (rightsectioncategoryname.toString().toLowerCase() ==
               "digital_library".toLowerCase()) {
             GlobalLists.homedigitallib =
-                homepageres.rightArea['${i + 1}'].digitalLibrary.list;
+                homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
             GlobalLists.homeDigitalLibraryBaseURL =
-                homepageres.rightArea['${i + 1}'].digitalLibrary.baseUrl;
+                homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
             print(GlobalLists.homedigitallib.length);
           }
         }

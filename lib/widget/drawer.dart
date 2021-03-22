@@ -13,6 +13,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/screens/ourpartner/ourPartners.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/whatwedo/dataprivacy.dart';
 import 'package:merckfoundation22dec/whatwedo/legaldisclaimer.dart';
 import 'package:merckfoundation22dec/whatwedo/ouractivities.dart';
@@ -22,6 +23,7 @@ import 'package:merckfoundation22dec/whatwedo/ourpolicy.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
 import 'package:merckfoundation22dec/widget/pdfviewpage.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -216,8 +218,9 @@ class _AppDrawerState extends State<AppDrawer> {
                           value: 'Merck Foundation Overview',
                           onTapfun: () {
                             print('ontap');
-                            _launchURL(
-                                "http://merckfoundation.org/merck/public/uploads/page_content/1616159695_3c88d39708ef1a56f6cf.pdf");
+                            ShowDialogs.launchURL(
+                                GlobalLists.Constantmerckoverview);
+
                             // Navigator.push(
                             //     context,
                             //     MaterialPageRoute(
@@ -618,14 +621,5 @@ class _AppDrawerState extends State<AppDrawer> {
     setState(() {
       this.isLoggedIn = isLoggedIn;
     });
-  }
-
-  _launchURL(String urlIs) async {
-    var url = urlIs;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }

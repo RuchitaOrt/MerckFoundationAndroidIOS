@@ -246,7 +246,7 @@ class GlobalLists {
   static List<ambaviewmorevideo.ListElement> videoviewmoreambasdarslist = [];
 
   //merck overview
-  static merckoverviewapi.ListClass merckoverview;
+  static String Constantmerckoverview = "";
   //stemprogram list
 
   static List<stemsubmenu.ListElement> stemprogramlistsubmenu = [];

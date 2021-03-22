@@ -203,6 +203,7 @@ enum API {
 
   //stemprogramlist
   stemprogramlist,
+  africaprogramlist,
 
   //covid video
   covidvideo,
@@ -280,6 +281,7 @@ class APIManager {
     }
   }
 
+  static String steminnerpages = baseURL + "LuminaryStemBarPages";
   static String searchapi = baseURL + "mobile_search";
   //video view all section
   static String ambasadarvideoapi =
@@ -719,6 +721,9 @@ class APIManager {
         case API.yearwisegallery:
           apiPathString = "year_wise_gallery/1";
           break;
+        case API.africaprogramlist:
+          apiPathString = "get_luminary_pages/merck-africa-asia-luminary/1";
+          break;
         default:
           apiPathString = "";
       }
@@ -1114,26 +1119,17 @@ class APIManager {
         case API.yearwisegallery:
           apiPathString = "year_wise_gallery/1";
           break;
+        case API.africaprogramlist:
+          apiPathString = "get_luminary_pages/merck-africa-asia-luminary/1";
+          break;
         default:
           apiPathString = "";
       }
       print(apiBaseURL());
     }
-    if (apiPathString == "get_luminary_pages/merck-stem-program/1") {
-      return "http://merckfoundation.org/mfindia/web/public/api/" +
-          apiPathString;
-    }
-    //  else if (apiPathString == "covid_videos/1") {
-    //   return "http://merckfoundation.org/mfindia/web/public/api/" +
-    //       apiPathString;
-    // }
-    // else if (apiPathString == "covid_news/1") {
-    //   return "http://merckfoundation.org/mfindia/web/public/api/" +
-    //       apiPathString;
-    // }
-    else {
-      return this.apiBaseURL() + apiPathString;
-    }
+
+    return this.apiBaseURL() + apiPathString;
+
     // return this.apiBaseURL() + apiPathString;
   }
 
@@ -1390,6 +1386,7 @@ class APIManager {
         className = "MerckoverviewResponse";
         break;
       case API.stemprogramlist:
+      case API.africaprogramlist:
         className = "StemsubmenuprogramlistResponse";
         break;
       case API.yearwisegallery:

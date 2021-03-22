@@ -2145,8 +2145,6 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
         Map<String, dynamic> section1 = homepageres.middleArea;
         Map<String, dynamic> lastsection = homepageres.rightArea;
 
-        print(section1);
-        print(section1['1']);
         List<String> middleareakey = [];
         section1.keys.forEach((element) {
           middleareakey.add(element.toString());
