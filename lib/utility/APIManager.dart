@@ -389,7 +389,7 @@ class APIManager {
           break;
         case API.callforapplication:
           apiPathString =
-              "media_and_events_sorting/call-for-application/9/Android/1";
+              "media_and_events_sorting/call-for-applications/9/Android/1";
           //"call_for_app/call-for-application/9";
           break;
         case API.videoLibrary:
@@ -412,8 +412,9 @@ class APIManager {
 
         case API.merckTestimonial:
           apiPathString =
-              "media_and_events_sorting/merck-foundation-alumnis-testimonies/14/Android/1";
+              "media_and_events_sorting/merck-foundation-alumni-testimonials/14/Android/1";
           // "show/merck-foundation-alumnis-testimonies/14/Android/1";
+
           break;
         case API.strategy:
           apiPathString = "show/strategy/13/Android/1";
@@ -786,7 +787,7 @@ class APIManager {
           break;
         case API.callforapplication:
           apiPathString =
-              "media_and_events_sorting/call-for-application/9/IOS/1";
+              "media_and_events_sorting/call-for-applications/9/Android/1";
           //"call_for_app/call-for-application/9";
           break;
         case API.videoLibrary:
@@ -811,7 +812,7 @@ class APIManager {
 
         case API.merckTestimonial:
           apiPathString =
-              "media_and_events_sorting/merck-foundation-alumnis-testimonies/14/IOS/1";
+              "media_and_events_sorting/merck-foundation-alumni-testimonials/14/Android/1";
           break;
 
         case API.strategy:

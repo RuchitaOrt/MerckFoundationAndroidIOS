@@ -141,7 +141,7 @@ class NewsState extends State<NewsPage> {
                         )));
           },
           index: 1,
-          title: "News Article",
+          title: "Articles",
           titleImg: "assets/newImages/news_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -264,16 +264,16 @@ class NewsState extends State<NewsPage> {
             //     "assets/newImages/flowers_footer.png",
             //   ),
             // ),
-            Padding(
-              padding: const EdgeInsets.only(right: 0, left: 0),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Image.asset(
-                  "assets/newImages/flowers_footer.png",
-                  height: 170,
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 0, left: 0),
+            //   child: Align(
+            //     alignment: Alignment.topRight,
+            //     child: Image.asset(
+            //       "assets/newImages/flowers_footer.png",
+            //       height: 170,
+            //     ),
+            //   ),
+            // ),
           ],
         ));
   }

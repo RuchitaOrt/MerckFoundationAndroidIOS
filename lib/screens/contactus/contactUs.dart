@@ -262,13 +262,13 @@ class ContactusState extends State<ContactUs> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Image.asset(
-              "assets/newImages/flowers_footer.png",
-              height: 170,
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.bottomRight,
+          //   child: Image.asset(
+          //     "assets/newImages/flowers_footer.png",
+          //     height: 170,
+          //   ),
+          // ),
         ],
       ),
     );

@@ -4,6 +4,7 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:flutter_html/style.dart';
 
 class Detailpage extends StatefulWidget {
   final int indexIs;
@@ -35,15 +36,16 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(
-                          index: 0,
-                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Dashboard(
+            //               index: 0,
+            //             )));
+            Navigator.pop(context);
           },
           index: 2,
-          title: "News Article",
+          title: "Articles",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -89,30 +91,44 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                               //     "assets/newImages/flowers_footer.png",
                               //   ),
                               // ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 0, left: 0),
-                                child: Align(
-                                  alignment: Alignment.topRight,
-                                  child: Image.asset(
-                                    "assets/newImages/flowers_footer.png",
-                                    height: 170,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.only(right: 0, left: 0),
+                              //   child: Align(
+                              //     alignment: Alignment.topRight,
+                              //     child: Image.asset(
+                              //       "assets/newImages/flowers_footer.png",
+                              //       height: 170,
+                              //     ),
+                              //   ),
+                              // ),
+                              // SizedBox(
+                              //   height: 10,
+                              // )
                             ],
                           ),
                         )
                       : widget.callfrom == 2
                           ? Padding(
                               padding: const EdgeInsets.only(
-                                  left: 15, right: 8, top: 8, bottom: 15),
+                                  left: 8, right: 8, top: 8, bottom: 15),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  Html(
+                                    data:
+                                        """${GlobalLists.homeceomsglist[widget.indexIs].title} """,
+                                    onLinkTap: (url) {
+                                      print("Opening $url...");
+                                    },
+                                    style: {
+                                      "body": Style(
+                                          textAlign: TextAlign.center,
+                                          color: Customcolor.colorVoilet,
+                                          fontSize: FontSize.larger,
+                                          fontWeight: FontWeight.w600),
+                                    },
+                                  ),
                                   Html(
                                     data:
                                         """${GlobalLists.homeceomsglist[widget.indexIs].details} """,
@@ -123,13 +139,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  Html(
-                                    data:
-                                        """${GlobalLists.homeceomsglist[widget.indexIs].detailPageUrl} """,
-                                    onLinkTap: (url) {
-                                      print("Opening $url...");
-                                    },
-                                  ),
+
                                   // Padding(
                                   //   padding: const EdgeInsets.only(
                                   //       right: 60, left: 60, top: 20),

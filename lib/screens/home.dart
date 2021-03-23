@@ -37,6 +37,7 @@ import 'package:merckfoundation22dec/widget/drawer.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -196,6 +197,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             ),
             //child: null,
             child: AppDrawer(),
+          ),
+          bottomNavigationBar: Container(
+            child: Text(
+              "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
+            ),
           ),
           body:
               //  Container(
@@ -1167,59 +1173,65 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   items: _productsAvailable.map((product) {
                     return new Builder(
                       builder: (BuildContext context) {
-                        return new Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "http://merckfoundation.org/merck/public/uploads/slider/" +
-                                          product['image']),
-                                  fit: BoxFit.cover)),
-                          width: SizeConfig.blockSizeHorizontal * 100,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 0, bottom: 15),
-                                child: Container(
-                                  color: Colors.white.withOpacity(0.5),
-                                  width: SizeConfig.blockSizeHorizontal * 100,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        FormLabel(
-                                          text: product['image_title'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.4),
-                                          maxLines: 2,
-                                          fontweight: FontWeight.w700,
-                                        ),
-                                        SizedBox(
-                                          height: 2,
-                                        ),
-                                        FormLabel(
-                                          text: product['image_desc'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.2),
-                                          fontweight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        return Slidercard(
+                          cardImage: GlobalLists.sliderurl + product['image'],
+                          cardTitle: product['image_title'],
+                          subTitle: product['image_desc'],
                         );
+
+                        // new Container(
+                        //   decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(8),
+                        //       image: DecorationImage(
+                        //           image: NetworkImage(
+                        //               "http://merckfoundation.org/merck/public/uploads/slider/" +
+                        //                   product['image']),
+                        //           fit: BoxFit.cover)),
+                        //   width: SizeConfig.blockSizeHorizontal * 100,
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.start,
+                        //     children: <Widget>[
+                        //       Padding(
+                        //         padding:
+                        //             const EdgeInsets.only(right: 0, bottom: 15),
+                        //         child: Container(
+                        //           color: Colors.white.withOpacity(0.5),
+                        //           width: SizeConfig.blockSizeHorizontal * 100,
+                        //           child: Padding(
+                        //             padding: const EdgeInsets.only(
+                        //                 left: 10, right: 10, top: 5, bottom: 5),
+                        //             child: Column(
+                        //               mainAxisAlignment:
+                        //                   MainAxisAlignment.center,
+                        //               children: <Widget>[
+                        //                 FormLabel(
+                        //                     text: product['image_title'],
+                        //                     labelColor: Customcolor.pink_col,
+                        //                     fontSize:
+                        //                         ResponsiveFlutter.of(context)
+                        //                             .fontSize(1.4),
+                        //                     maxLines: 2,
+                        //                     fontweight: FontWeight.bold,
+                        //                     textAlignment: TextAlign.center),
+                        //                 SizedBox(
+                        //                   height: 2,
+                        //                 ),
+                        //                 FormLabel(
+                        //                     text: product['image_desc'],
+                        //                     labelColor: Customcolor.colorBlue,
+                        //                     fontSize:
+                        //                         ResponsiveFlutter.of(context)
+                        //                             .fontSize(1.2),
+                        //                     fontweight: FontWeight.bold,
+                        //                     textAlignment: TextAlign.center),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // );
                       },
                     );
                   }).toList(),
@@ -1433,13 +1445,13 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       height: 30,
       child: Marquee(
         text:
-            'Call for Application-UNESCO MARS 2020          Savethe Date-Merck Foundation "Stay at home" Media recognization award 2020-online edtion for africa and latin america',
+            'Call for Application-UNESCO MARS 2020          Save the Date-Merck Foundation "Stay at home" Media recognization award 2020-online edtion for africa and latin america',
         style: TextStyle(
             fontWeight: FontWeight.w700, color: Customcolor.text_blue),
         scrollAxis: Axis.horizontal,
         crossAxisAlignment: CrossAxisAlignment.start,
         blankSpace: 20.0,
-        velocity: 100.0,
+        velocity: 40.0,
         pauseAfterRound: Duration(seconds: 1),
         showFadingOnlyWhenScrolling: true,
         fadingEdgeStartFraction: 0.1,
@@ -1658,7 +1670,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         print("ff");
         print(res);
         HomepageResponse homepageres = HomepageResponse.fromJson(res);
-
+        GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
         slidersection = homepageres.sliderArea[0].slider.list;
         slidersection.forEach((element) {
           _productsAvailable.add({
@@ -1691,11 +1703,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           print("TKey: ${section.keys.first}");
           var middlecategoryname = section.keys.first;
 
-          setState(() {
-            typewidet.add(middlecategoryname);
+          // setState(() {
+          typewidet.add(middlecategoryname);
 
-            print(typewidet);
-          });
+          print(typewidet);
+          // });
           if (middlecategoryname.toString().toLowerCase() ==
               "Videos".toLowerCase()) {
             GlobalLists.homevideolist =
@@ -1736,12 +1748,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           print("TKey: ${rightsection.keys.first}");
           var rightsectioncategoryname = rightsection.keys.first;
 
-          setState(() {
-            typewidetofrightsection.add(rightsectioncategoryname);
-            _tabController = new TabController(
-                vsync: this, length: typewidetofrightsection.length);
-            print(typewidetofrightsection);
-          });
+          typewidetofrightsection.add(rightsectioncategoryname);
+          _tabController = new TabController(
+              vsync: this, length: typewidetofrightsection.length);
+          print(typewidetofrightsection);
 
           if (rightsectioncategoryname.toString().toLowerCase() ==
               "call_for_app".toLowerCase()) {
@@ -2259,6 +2269,12 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             padding: const EdgeInsets.only(top: 8.0),
             child: CustomeCard(
               //   index: 2,
+              oncardtap: () {
+                var storykey = GlobalLists.homevideolist[0].videoLink.substring(
+                    GlobalLists.homevideolist[0].videoLink.length - 11);
+                ShowDialogs.youtubevideolink(
+                    "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+              },
               cardImage:
                   'https://img.youtube.com/vi/${GlobalLists.homevideolist[0].videoLink.substring(GlobalLists.homevideolist[0].videoLink.length - 11)}/mqdefault.jpg',
               cardTitle: "Our Stories   ",
@@ -2329,7 +2345,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               cardImage: GlobalLists.homeceomsgbaseurl +
                   GlobalLists.homeceomsglist[0].image,
               cardTitle:
-                  "Message Form Dr.Rasha Kelej, CEO of Merck Foundation   ",
+                  "Message Form Dr.Rasha Kelej, \nCEO of Merck Foundation   ",
               titleColor: Customcolor.text_darkblue,
               titleImg: "assets/newImages/flowers-2.png",
               subTitle: GlobalLists.homeceomsglist[0].title,

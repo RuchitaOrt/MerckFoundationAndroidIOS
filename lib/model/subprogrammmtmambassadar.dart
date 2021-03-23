@@ -4,104 +4,115 @@
 
 import 'dart:convert';
 
-SubprommtmambassadarResponse subprommtmambassadarResponseFromJson(String str) => SubprommtmambassadarResponse.fromJson(json.decode(str));
+SubprommtmambassadarResponse subprommtmambassadarResponseFromJson(String str) =>
+    SubprommtmambassadarResponse.fromJson(json.decode(str));
 
-String subprommtmambassadarResponseToJson(SubprommtmambassadarResponse data) => json.encode(data.toJson());
+String subprommtmambassadarResponseToJson(SubprommtmambassadarResponse data) =>
+    json.encode(data.toJson());
 
 class SubprommtmambassadarResponse {
-    SubprommtmambassadarResponse({
-        this.middleArea,
-    });
+  SubprommtmambassadarResponse({
+    this.middleArea,
+  });
 
-    Map<String, MiddleArea> middleArea;
+  Map<String, MiddleArea> middleArea;
 
-    factory SubprommtmambassadarResponse.fromJson(Map<String, dynamic> json) => SubprommtmambassadarResponse(
-        middleArea: Map.from(json["middle_area"]).map((k, v) => MapEntry<String, MiddleArea>(k, MiddleArea.fromJson(v))),
-    );
+  factory SubprommtmambassadarResponse.fromJson(Map<String, dynamic> json) =>
+      SubprommtmambassadarResponse(
+        middleArea: Map.from(json["middle_area"]).map(
+            (k, v) => MapEntry<String, MiddleArea>(k, MiddleArea.fromJson(v))),
+      );
 
-    Map<String, dynamic> toJson() => {
-        "middle_area": Map.from(middleArea).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
-    };
+  Map<String, dynamic> toJson() => {
+        "middle_area": Map.from(middleArea)
+            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+      };
 }
 
 class MiddleArea {
-    MiddleArea({
-        this.content,
-        this.ambasdars,
-        this.videos,
-        this.gallery,
-    });
+  MiddleArea({
+    this.content,
+    this.ambasdars,
+    this.videos,
+    this.gallery,
+  });
 
-    Content content;
-    Ambasdars ambasdars;
-    Videos videos;
-    Ambasdars gallery;
+  Content content;
+  Ambasdars ambasdars;
+  Videos videos;
+  Ambasdars gallery;
 
-    factory MiddleArea.fromJson(Map<String, dynamic> json) => MiddleArea(
-        content: json["content"] == null ? null : Content.fromJson(json["content"]),
-        ambasdars: json["ambasdars"] == null ? null : Ambasdars.fromJson(json["ambasdars"]),
+  factory MiddleArea.fromJson(Map<String, dynamic> json) => MiddleArea(
+        content:
+            json["content"] == null ? null : Content.fromJson(json["content"]),
+        ambasdars: json["ambasdars"] == null
+            ? null
+            : Ambasdars.fromJson(json["ambasdars"]),
         videos: json["videos"] == null ? null : Videos.fromJson(json["videos"]),
-        gallery: json["gallery"] == null ? null : Ambasdars.fromJson(json["gallery"]),
-    );
+        gallery: json["gallery"] == null
+            ? null
+            : Ambasdars.fromJson(json["gallery"]),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "content": content == null ? null : content.toJson(),
         "ambasdars": ambasdars == null ? null : ambasdars.toJson(),
         "videos": videos == null ? null : videos.toJson(),
         "gallery": gallery == null ? null : gallery.toJson(),
-    };
+      };
 }
 
 class Ambasdars {
-    Ambasdars({
-        this.list,
-        this.baseUrl,
-    });
+  Ambasdars({
+    this.list,
+    this.baseUrl,
+  });
 
-    List<AmbasdarsList> list;
-    String baseUrl;
+  List<AmbasdarsList> list;
+  String baseUrl;
 
-    factory Ambasdars.fromJson(Map<String, dynamic> json) => Ambasdars(
-        list: List<AmbasdarsList>.from(json["list"].map((x) => AmbasdarsList.fromJson(x))),
+  factory Ambasdars.fromJson(Map<String, dynamic> json) => Ambasdars(
+        list: List<AmbasdarsList>.from(
+            json["list"].map((x) => AmbasdarsList.fromJson(x))),
         baseUrl: json["base_url"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "list": List<dynamic>.from(list.map((x) => x.toJson())),
         "base_url": baseUrl,
-    };
+      };
 }
 
 class AmbasdarsList {
-    AmbasdarsList({
-        this.id,
-        this.photo,
-        this.photoCategoryId,
-        this.albumNameId,
-        this.photoDescription,
-        this.altTag,
-        this.year,
-        this.featuredImage,
-        this.status,
-        this.createdAt,
-        this.updatedAt,
-        this.position,
-    });
+  AmbasdarsList({
+    this.id,
+    this.photo,
+    this.photoCategoryId,
+    this.albumNameId,
+    this.photoDescription,
+    this.altTag,
+    this.year,
+    this.featuredImage,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+    this.position,
+  });
 
-    String id;
-    String photo;
-    String photoCategoryId;
-    String albumNameId;
-    String photoDescription;
-    String altTag;
-    String year;
-    String featuredImage;
-    String status;
-    AtedAt createdAt;
-    AtedAt updatedAt;
-    String position;
+  String id;
+  String photo;
+  String photoCategoryId;
+  String albumNameId;
+  String photoDescription;
+  String altTag;
+  String year;
+  String featuredImage;
+  String status;
+  AtedAt createdAt;
+  AtedAt updatedAt;
+  String position;
 
-    factory AmbasdarsList.fromJson(Map<String, dynamic> json) => AmbasdarsList(
+  factory AmbasdarsList.fromJson(Map<String, dynamic> json) => AmbasdarsList(
         id: json["id"],
         photo: json["photo"],
         photoCategoryId: json["photo_category_id"],
@@ -114,9 +125,9 @@ class AmbasdarsList {
         createdAt: atedAtValues.map[json["created_at"]],
         updatedAt: atedAtValues.map[json["updated_at"]],
         position: json["position"] == null ? null : json["position"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "photo": photo,
         "photo_category_id": photoCategoryId,
@@ -129,69 +140,69 @@ class AmbasdarsList {
         "created_at": atedAtValues.reverse[createdAt],
         "updated_at": atedAtValues.reverse[updatedAt],
         "position": position == null ? null : position,
-    };
+      };
 }
 
 enum AtedAt { THE_00000000000000 }
 
-final atedAtValues = EnumValues({
-    "0000-00-00 00:00:00": AtedAt.THE_00000000000000
-});
+final atedAtValues =
+    EnumValues({"0000-00-00 00:00:00": AtedAt.THE_00000000000000});
 
 class Content {
-    Content({
-        this.list,
-        this.baseUrl,
-    });
+  Content({
+    this.list,
+    this.baseUrl,
+  });
 
-    List<ContentList> list;
-    String baseUrl;
+  List<ContentList> list;
+  String baseUrl;
 
-    factory Content.fromJson(Map<String, dynamic> json) => Content(
-        list: List<ContentList>.from(json["list"].map((x) => ContentList.fromJson(x))),
+  factory Content.fromJson(Map<String, dynamic> json) => Content(
+        list: List<ContentList>.from(
+            json["list"].map((x) => ContentList.fromJson(x))),
         baseUrl: json["base_url"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "list": List<dynamic>.from(list.map((x) => x.toJson())),
         "base_url": baseUrl,
-    };
+      };
 }
 
 class ContentList {
-    ContentList({
-        this.id,
-        this.contentType,
-        this.pageContent,
-        this.title,
-        this.shortDescription,
-        this.image,
-        this.altText,
-        this.url,
-        this.utubeUrl,
-        this.metaKeyword,
-        this.metaDescription,
-        this.status,
-        this.createdAt,
-        this.updatedAt,
-    });
+  ContentList({
+    this.id,
+    this.contentType,
+    this.pageContent,
+    this.title,
+    this.shortDescription,
+    this.image,
+    this.altText,
+    this.url,
+    this.utubeUrl,
+    this.metaKeyword,
+    this.metaDescription,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+  });
 
-    String id;
-    String contentType;
-    String pageContent;
-    String title;
-    String shortDescription;
-    dynamic image;
-    String altText;
-    String url;
-    String utubeUrl;
-    String metaKeyword;
-    String metaDescription;
-    String status;
-    DateTime createdAt;
-    DateTime updatedAt;
+  String id;
+  String contentType;
+  String pageContent;
+  String title;
+  String shortDescription;
+  dynamic image;
+  String altText;
+  String url;
+  String utubeUrl;
+  String metaKeyword;
+  String metaDescription;
+  String status;
+  DateTime createdAt;
+  DateTime updatedAt;
 
-    factory ContentList.fromJson(Map<String, dynamic> json) => ContentList(
+  factory ContentList.fromJson(Map<String, dynamic> json) => ContentList(
         id: json["id"],
         contentType: json["content_type"],
         pageContent: json["page_content"],
@@ -206,9 +217,9 @@ class ContentList {
         status: json["status"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "content_type": contentType,
         "page_content": pageContent,
@@ -223,49 +234,50 @@ class ContentList {
         "status": status,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
-    };
+      };
 }
 
 class Videos {
-    Videos({
-        this.list,
-    });
+  Videos({
+    this.list,
+  });
 
-    List<VideosList> list;
+  List<VideosList> list;
 
-    factory Videos.fromJson(Map<String, dynamic> json) => Videos(
-        list: List<VideosList>.from(json["list"].map((x) => VideosList.fromJson(x))),
-    );
+  factory Videos.fromJson(Map<String, dynamic> json) => Videos(
+        list: List<VideosList>.from(
+            json["list"].map((x) => VideosList.fromJson(x))),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "list": List<dynamic>.from(list.map((x) => x.toJson())),
-    };
+      };
 }
 
 class VideosList {
-    VideosList({
-        this.id,
-        this.videoLink,
-        this.videoDesc,
-        this.countryId,
-        this.categoryId,
-        this.year,
-        this.status,
-        this.createdAt,
-        this.updatedAt,
-    });
+  VideosList({
+    this.id,
+    this.videoLink,
+    this.videoDesc,
+    this.countryId,
+    this.categoryId,
+    this.year,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+  });
 
-    String id;
-    String videoLink;
-    String videoDesc;
-    String countryId;
-    String categoryId;
-    String year;
-    String status;
-    AtedAt createdAt;
-    AtedAt updatedAt;
+  String id;
+  String videoLink;
+  String videoDesc;
+  String countryId;
+  String categoryId;
+  String year;
+  String status;
+  AtedAt createdAt;
+  AtedAt updatedAt;
 
-    factory VideosList.fromJson(Map<String, dynamic> json) => VideosList(
+  factory VideosList.fromJson(Map<String, dynamic> json) => VideosList(
         id: json["id"],
         videoLink: json["video_link"],
         videoDesc: json["video_desc"],
@@ -275,9 +287,9 @@ class VideosList {
         status: json["status"],
         createdAt: atedAtValues.map[json["created_at"]],
         updatedAt: atedAtValues.map[json["updated_at"]],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "video_link": videoLink,
         "video_desc": videoDesc,
@@ -287,19 +299,19 @@ class VideosList {
         "status": status,
         "created_at": atedAtValues.reverse[createdAt],
         "updated_at": atedAtValues.reverse[updatedAt],
-    };
+      };
 }
 
 class EnumValues<T> {
-    Map<String, T> map;
-    Map<T, String> reverseMap;
+  Map<String, T> map;
+  Map<T, String> reverseMap;
 
-    EnumValues(this.map);
+  EnumValues(this.map);
 
-    Map<T, String> get reverse {
-        if (reverseMap == null) {
-            reverseMap = map.map((k, v) => new MapEntry(v, k));
-        }
-        return reverseMap;
+  Map<T, String> get reverse {
+    if (reverseMap == null) {
+      reverseMap = map.map((k, v) => new MapEntry(v, k));
     }
+    return reverseMap;
+  }
 }

@@ -7,8 +7,10 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 
 class OurActivtyDetail extends StatefulWidget {
   final String activtydetaill;
+  final String activtytitle;
 
-  const OurActivtyDetail({Key key, this.activtydetaill}) : super(key: key);
+  const OurActivtyDetail({Key key, this.activtydetaill, this.activtytitle})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return OurActivtyDetailState();
@@ -28,12 +30,13 @@ class OurActivtyDetailState extends State<OurActivtyDetail> {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(
-                          index: 0,
-                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Dashboard(
+            //               index: 0,
+            //             )));
+            Navigator.pop(context);
           },
           index: 2,
           title: "Our Activties",
@@ -49,6 +52,19 @@ class OurActivtyDetailState extends State<OurActivtyDetail> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Html(
+                  data: """${widget.activtytitle} """,
+                  onLinkTap: (url) {
+                    print("Opening $url...");
+                  },
+                  style: {
+                    "body": Style(
+                        textAlign: TextAlign.center,
+                        color: Customcolor.colorVoilet,
+                        fontSize: FontSize.larger,
+                        fontWeight: FontWeight.w600),
+                  },
+                ),
+                Html(
                   data: """${widget.activtydetaill} """,
                   onLinkTap: (url) {
                     print("Opening $url...");
@@ -57,16 +73,16 @@ class OurActivtyDetailState extends State<OurActivtyDetail> {
                     "body": Style(textAlign: TextAlign.start),
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                      height: 170,
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 0, left: 0),
+                //   child: Align(
+                //     alignment: Alignment.topRight,
+                //     child: Image.asset(
+                //       "assets/newImages/flowers_footer.png",
+                //       height: 170,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

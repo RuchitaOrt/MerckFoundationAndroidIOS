@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_share_me/flutter_share_me.dart';
 
 class ShowDialogs {
   static Future<void> showLoadingDialog(BuildContext context, GlobalKey key,
@@ -74,6 +75,11 @@ class ShowDialogs {
     );
   }
 
+  static youtubevideolink(String videourl) async {
+    var response =
+        await FlutterShareMe().openinsta(url: videourl, msg: "Youtube");
+  }
+
   static Future<void> showLoadingDialogWithDelay(BuildContext context,
       GlobalKey key, String message, bool setForLightScreen) async {
     return showDialog<void>(
@@ -117,6 +123,14 @@ class ShowDialogs {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  static void bottomlink(BuildContext context) {
+    Container(
+      child: Text(
+        "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
+      ),
+    );
   }
 
   static void showSimpleDialog(

@@ -9,6 +9,7 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:responsive_flutter/responsive_flutter.dart';
 
 //TODO:
 //index == 0 (MiddleArea from getHomeAPI -> View More in Photo Gallery)
@@ -59,7 +60,7 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
               print(widget.baseURL + photo.photo);
               return photoWidget(
                   imageurl: widget.baseURL + photo.photo,
-                  title: photo.year,
+                  title: photo.photoCatgName,
                   categpryID: photo.photoCategoryId);
             }
           }).toList()),
@@ -92,7 +93,16 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
             SizedBox(
               height: 5,
             ),
-            Text(title),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: ResponsiveFlutter.of(context).fontSize(1.4),
+                  fontWeight: FontWeight.w500),
+              maxLines: 2,
+            ),
             SizedBox(
               height: 10,
             )

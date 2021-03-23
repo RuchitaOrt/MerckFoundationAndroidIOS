@@ -18,6 +18,7 @@ import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
+import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:merckfoundation22dec/model/getStoriesResponse.dart'
     as storiesResp;
 
@@ -157,16 +158,16 @@ class StoriesState extends State<Stories> {
             controller: _sc,
             //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
-                child: FormLabel(
-                  text: "Our Stories",
-                  labelColor: Customcolor.colorblack,
-                  fontSize: ResponsiveFlutter.of(context).fontSize(2),
-                  maxLines: 2,
-                  fontweight: FontWeight.w800,
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
+              //   child: FormLabel(
+              //     text: "Our Stories",
+              //     labelColor: Customcolor.colorblack,
+              //     fontSize: ResponsiveFlutter.of(context).fontSize(2),
+              //     maxLines: 2,
+              //     fontweight: FontWeight.w800,
+              //   ),
+              // ),
               (GlobalLists.storiesList.length == 0 && _isLoading)
                   ? Center(
                       child: CircularProgressIndicator(),
@@ -207,7 +208,7 @@ class StoriesState extends State<Stories> {
                                       ),
                                     ),
                                     child: GestureDetector(
-                                      onTap: () {
+                                      onTap: () async {
                                         var storykey = GlobalLists
                                             .storiesList[index].videoLink
                                             .substring(GlobalLists
@@ -215,8 +216,15 @@ class StoriesState extends State<Stories> {
                                                     .videoLink
                                                     .length -
                                                 11);
-                                        _launchInWebViewWithJavaScript(
+                                        ShowDialogs.youtubevideolink(
                                             "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                        // var response = await FlutterShareMe()
+                                        //     .openinsta(
+                                        //         url:
+                                        //             'https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1',
+                                        //         msg: "Youtube");
+                                        // _launchInWebViewWithJavaScript(
+                                        //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                                       },
                                       child: Container(
                                         color: Colors.transparent,
@@ -366,19 +374,19 @@ class StoriesState extends State<Stories> {
               //     "assets/newImages/flowers_footer.png",
               //   ),
               // ),
-              Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              )
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 0, left: 0),
+              //   child: Align(
+              //     alignment: Alignment.topRight,
+              //     child: Image.asset(
+              //       "assets/newImages/flowers_footer.png",
+              //       height: 170,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 10,
+              // )
             ],
           ),
         ));
