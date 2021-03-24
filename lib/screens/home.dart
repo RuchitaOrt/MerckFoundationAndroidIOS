@@ -32,6 +32,7 @@ import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
 import 'package:merckfoundation22dec/whatwedo/ourpolicy.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/widget/customcard.dart';
+import 'package:merckfoundation22dec/widget/customcardforTestimonial.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawer.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
@@ -295,7 +296,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     ],
                   ),
                   child: Container(
-                    height: 500,
+                    height: Constantstring.tabheight,
                     //color: Colors.amber,
                     child: Column(
                       children: [
@@ -477,7 +478,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 350,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -504,23 +505,31 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                           placeholder:
                                               'assets/newImages/placeholder_3.jpg',
                                           image: GlobalLists
-                                                  .homeCallForAppBaseURL +
-                                              product.appImg,
+                                                          .homeCallForAppBaseURL +
+                                                      product.appImg ==
+                                                  null
+                                              ? "assets/newImages/placeholder_3.jpg"
+                                              : GlobalLists
+                                                      .homeCallForAppBaseURL +
+                                                  product.appImg,
                                           fit: BoxFit.fill,
-                                          width: 220,
-                                          height: 300,
+                                          width: Constantstring.callimagewidth,
+                                          height:
+                                              Constantstring.callimageheight,
                                         ),
                                       ),
                                       SizedBox(
                                         height: 10,
                                       ),
                                       Center(
-                                        child: Text(product.title,
-                                            textAlign: TextAlign.center,
-                                            maxLines: 2,
-                                            style: TextStyle(
-                                              fontSize: 17,
-                                            )),
+                                        child: product.title == null
+                                            ? ""
+                                            : Text(product.title,
+                                                textAlign: TextAlign.center,
+                                                maxLines: 2,
+                                                style: TextStyle(
+                                                  fontSize: 17,
+                                                )),
                                       )
                                     ],
                                   ),
@@ -634,7 +643,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -662,20 +671,23 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                                   .homeDigitalLibraryBaseURL +
                                               product.image,
                                           fit: BoxFit.fill,
-                                          width: 240,
-                                          height: 290,
+                                          width: Constantstring.callimagewidth,
+                                          height:
+                                              Constantstring.callimageheight,
                                         ),
                                       ),
                                       SizedBox(
                                         height: 10,
                                       ),
                                       Center(
-                                        child: Text(product.title,
-                                            textAlign: TextAlign.center,
-                                            maxLines: 2,
-                                            style: TextStyle(
-                                              fontSize: 17,
-                                            )),
+                                        child: product.title == null
+                                            ? ""
+                                            : Text(product.title,
+                                                textAlign: TextAlign.center,
+                                                maxLines: 2,
+                                                style: TextStyle(
+                                                  fontSize: 17,
+                                                )),
                                       )
                                     ],
                                   ),
@@ -783,7 +795,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -804,20 +816,22 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                         image: GlobalLists.homeMMTMBaseURL +
                                             product.photo,
                                         fit: BoxFit.fill,
-                                        width: 240,
-                                        height: 290,
+                                        width: Constantstring.callimagewidth,
+                                        height: Constantstring.callimageheight,
                                       ),
                                     ),
                                     SizedBox(
                                       height: 10,
                                     ),
                                     Center(
-                                      child: Text(product.photoDescription,
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                          )),
+                                      child: product.photoDescription == null
+                                          ? ""
+                                          : Text(product.photoDescription,
+                                              textAlign: TextAlign.center,
+                                              maxLines: 2,
+                                              style: TextStyle(
+                                                fontSize: 17,
+                                              )),
                                     )
                                   ],
                                 );
@@ -2056,13 +2070,21 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       if (typewidetofbottomsection[i] == "testimonial") {
         listofbottomwiget.add(
           Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
-            child: CustomHorizontalCard(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: CustomeCardforTestimonial(
               index: 1,
-              cardImage: "assets/newImages/mqdefault.png",
+              cardImage: GlobalLists.mmttestimonialbaseurl +
+                  GlobalLists.mmttestimoniallist[0].image,
               cardTitle: "Alumini Testimonials  ",
-              titleColor: Customcolor.pink_col,
-              onbtnTap: () {
+              testimonialname:
+                  GlobalLists.mmttestimoniallist[0].testimonialName,
+              titleColor: Customcolor.text_darkblue,
+              departmentname: GlobalLists.mmttestimoniallist[0].departmentName,
+              titleImg: "assets/newImages/flowers-2.png",
+              subTitle: "",
+              buttontitle: "View More ",
+              buttontitlecolor: Customcolor.text_darkblue,
+              onBtnTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -2071,199 +2093,124 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               apiurl: API.testiomonailpro,
                             )));
               },
-              btnTitle: "View More",
-              titleImg: "assets/newImages/flowers-3.png",
-              list: Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                Testimonialprogramdetailpage(
-                                  index: 0,
-                                  baseurl: GlobalLists.mmttestimonialbaseurl,
-                                )));
-                  },
-                  child: Container(
-                    height: SizeConfig.blockSizeVertical * 15,
-                    width: SizeConfig.blockSizeHorizontal * 90,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.white),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 5, bottom: 3, left: 8, right: 8),
-                          child: Container(
-                            // height: 220,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              //color: Colors.amber,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: FadeInImage.assetNetwork(
-                              placeholder: 'assets/newImages/placeholder_3.jpg',
-                              image:
-                                  "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[0].image}",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: ListView(
-                            shrinkWrap: true,
-                            // crossAxisAlignment:
-                            //     CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 12,
-                              ),
-                              FormLabel(
-                                text: GlobalLists
-                                    .mmttestimoniallist[0].testimonialName,
-                                labelColor: Customcolor.colorPink,
-                                fontSize: 17,
-                                maxLines: 1,
-                                fontweight: FontWeight.w700,
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              FormLabel(
-                                text: GlobalLists
-                                    .mmttestimoniallist[0].departmentName,
-                                labelColor: Colors.black87,
-                                fontSize: 13,
-                                fontweight: FontWeight.w600,
-                                maxLines: 2,
-                              ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              FormLabel(
-                                text: GlobalLists
-                                    .mmttestimoniallist[0].shortDescription,
-                                labelColor: Colors.black54,
-                                fontSize: 13,
-                                fontweight: FontWeight.w500,
-                                maxLines: 4,
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              //  Padding(
-              //   padding: const EdgeInsets.only(left: 8),
-              //   child: Container(
-              //     height: 160,
-              //     child: ListView.builder(
-              //       itemCount: GlobalLists.mmttestimoniallist.length,
-              //       scrollDirection: Axis.horizontal,
-              //       itemBuilder: (BuildContext context, int index) {
-              //         return Padding(
-              //           padding: const EdgeInsets.only(left: 8, right: 8),
-              //           child: GestureDetector(
-              //             onTap: () {
-              //               Navigator.push(
-              //                   context,
-              //                   MaterialPageRoute(
-              //                       builder: (BuildContext context) =>
-              //                           Testimonialprogramdetailpage(
-              //                             index: index,
-              //                             baseurl: GlobalLists
-              //                                 .mmttestimonialbaseurl,
-              //                           )));
-              //             },
-              //             child: Container(
-              //               height: SizeConfig.blockSizeVertical * 15,
-              //               width: SizeConfig.blockSizeHorizontal * 80,
-              //               decoration: BoxDecoration(
-              //                   borderRadius: BorderRadius.circular(5),
-              //                   color: Colors.white),
-              //               child: Row(
-              //                 children: [
-              //                   Padding(
-              //                     padding: const EdgeInsets.only(
-              //                         top: 5, bottom: 3, left: 8, right: 8),
-              //                     child: Container(
-              //                       // height: 220,
-              //                       width: 100,
-              //                       decoration: BoxDecoration(
-              //                         //color: Colors.amber,
-              //                         borderRadius: BorderRadius.circular(10),
-              //                       ),
-              //                       child: FadeInImage.assetNetwork(
-              //                         placeholder:
-              //                             'assets/newImages/placeholder_3.jpg',
-              //                         image:
-              //                             "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[index].image}",
-              //                         fit: BoxFit.cover,
-              //                       ),
-              //                     ),
-              //                   ),
-              //                   Expanded(
-              //                     child: ListView(
-              //                       shrinkWrap: true,
-              //                       // crossAxisAlignment:
-              //                       //     CrossAxisAlignment.start,
-              //                       children: [
-              //                         SizedBox(
-              //                           height: 12,
-              //                         ),
-              //                         FormLabel(
-              //                           text: GlobalLists
-              //                               .mmttestimoniallist[index]
-              //                               .testimonialName,
-              //                           labelColor: Customcolor.colorPink,
-              //                           fontSize: 17,
-              //                           maxLines: 1,
-              //                           fontweight: FontWeight.w700,
-              //                         ),
-              //                         SizedBox(
-              //                           height: 4,
-              //                         ),
-              //                         FormLabel(
-              //                           text: GlobalLists
-              //                               .mmttestimoniallist[index]
-              //                               .departmentName,
-              //                           labelColor: Colors.black87,
-              //                           fontSize: 13,
-              //                           fontweight: FontWeight.w600,
-              //                           maxLines: 2,
-              //                         ),
-              //                         SizedBox(
-              //                           height: 7,
-              //                         ),
-              //                         FormLabel(
-              //                           text: GlobalLists
-              //                               .mmttestimoniallist[index]
-              //                               .shortDescription,
-              //                           labelColor: Colors.black54,
-              //                           fontSize: 13,
-              //                           fontweight: FontWeight.w500,
-              //                           maxLines: 4,
-              //                         ),
-              //                       ],
-              //                     ),
-              //                   )
-              //                 ],
-              //               ),
-              //             ),
-              //           ),
-              //         );
-              //       },
-              //     ),
-              //   ),
-              // )
+              oncardtap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            Testimonialprogramdetailpage(
+                              index: 0,
+                              baseurl: GlobalLists.mmttestimonialbaseurl,
+                            )));
+              },
             ),
           ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 10, top: 10),
+          //   child: CustomHorizontalCard(
+          //     index: 1,
+          //     cardImage: "assets/newImages/mqdefault.png",
+          //     cardTitle: "Alumini Testimonials  ",
+          //     titleColor: Customcolor.pink_col,
+          //     onbtnTap: () {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (BuildContext context) =>
+          //                   Testimonialprogramviewmore(
+          //                     apiurl: API.testiomonailpro,
+          //                   )));
+          //     },
+          //     btnTitle: "View More",
+          //     titleImg: "assets/newImages/flowers-3.png",
+          //     list: Padding(
+          //       padding: const EdgeInsets.only(left: 8, right: 8),
+          //       child: GestureDetector(
+          //         onTap: () {
+          //           Navigator.push(
+          //               context,
+          //               MaterialPageRoute(
+          //                   builder: (BuildContext context) =>
+          //                       Testimonialprogramdetailpage(
+          //                         index: 0,
+          //                         baseurl: GlobalLists.mmttestimonialbaseurl,
+          //                       )));
+          //         },
+          //         child: Container(
+          //           height: SizeConfig.blockSizeVertical * 15,
+          //           width: SizeConfig.blockSizeHorizontal * 90,
+          //           decoration: BoxDecoration(
+          //               borderRadius: BorderRadius.circular(5),
+          //               color: Colors.white),
+          //           child: Row(
+          //             children: [
+          //               Padding(
+          //                 padding: const EdgeInsets.only(
+          //                     top: 5, bottom: 3, left: 8, right: 8),
+          //                 child: Container(
+          //                   // height: 220,
+          //                   width: 100,
+          //                   decoration: BoxDecoration(
+          //                     //color: Colors.amber,
+          //                     borderRadius: BorderRadius.circular(10),
+          //                   ),
+          //                   child: FadeInImage.assetNetwork(
+          //                     placeholder: 'assets/newImages/placeholder_3.jpg',
+          //                     image:
+          //                         "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[0].image}",
+          //                     fit: BoxFit.cover,
+          //                   ),
+          //                 ),
+          //               ),
+          //               Expanded(
+          //                 child: ListView(
+          //                   shrinkWrap: true,
+          //                   // crossAxisAlignment:
+          //                   //     CrossAxisAlignment.start,
+          //                   children: [
+          //                     SizedBox(
+          //                       height: 12,
+          //                     ),
+          //                     FormLabel(
+          //                       text: GlobalLists
+          //                           .mmttestimoniallist[0].testimonialName,
+          //                       labelColor: Customcolor.colorPink,
+          //                       fontSize: 17,
+          //                       maxLines: 1,
+          //                       fontweight: FontWeight.w700,
+          //                     ),
+          //                     SizedBox(
+          //                       height: 4,
+          //                     ),
+          //                     FormLabel(
+          //                       text: GlobalLists
+          //                           .mmttestimoniallist[0].departmentName,
+          //                       labelColor: Colors.black87,
+          //                       fontSize: 13,
+          //                       fontweight: FontWeight.w600,
+          //                       maxLines: 2,
+          //                     ),
+          //                     SizedBox(
+          //                       height: 7,
+          //                     ),
+          //                     FormLabel(
+          //                       text: GlobalLists
+          //                           .mmttestimoniallist[0].shortDescription,
+          //                       labelColor: Colors.black54,
+          //                       fontSize: 13,
+          //                       fontweight: FontWeight.w500,
+          //                       maxLines: 4,
+          //                     ),
+          //                   ],
+          //                 ),
+          //               )
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         );
       }
     }

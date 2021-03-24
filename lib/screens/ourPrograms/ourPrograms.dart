@@ -45,27 +45,29 @@ class _OurProgramState extends State<Ourprogram> {
   bool issliderSectionLoaded = false;
   List<programclass> _productsAvailable1 = [
     programclass(
-        programname: "Merck More Than A Mother", colors: Customcolor.text_blue),
+        programname: "Merck Foundation More Than A Mother",
+        colors: Customcolor.text_blue),
     programclass(
-        programname: "Merck Cancer Access Program",
+        programname: "Merck Foundation Cancer Access Program",
         colors: Customcolor.colorLightGreen),
     programclass(
         programname:
-            "Merck Capacity Advancement and Diabetes Blue Point Program",
+            "Merck Foundation Capacity Advancement and Diabetes Blue Point Program",
         colors: Customcolor.baby_blue),
     programclass(
         programname: "Merck Foundation First Ladies Initiative Summit",
         colors: Customcolor.pink_col),
     programclass(
-        programname: "Merck STEM Program", colors: Customcolor.colorVoilet),
+        programname: "Merck Foundation STEM Program",
+        colors: Customcolor.colorVoilet),
     programclass(
-        programname: "Educating Linda Program",
+        programname: "Merck Foundation Educating Linda Program",
         colors: Customcolor.colorLightBlue),
     programclass(
         programname: "Merck Foundation Sustainability Initiative",
         colors: Customcolor.colorLightGreen),
     programclass(
-        programname: "Merck Africa Asia Luminary",
+        programname: "Merck Foundation Africa Asia Luminary",
         colors: Customcolor.colorGreen),
   ];
 
@@ -324,10 +326,12 @@ class _OurProgramState extends State<Ourprogram> {
                           // crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Padding(
+                              // padding: const EdgeInsets.only(
+                              //     left: 16, right: 16, top: 25, bottom: 25),
                               padding: const EdgeInsets.only(
-                                  left: 16, right: 16, top: 25, bottom: 25),
+                                  left: 8, right: 8, top: 8, bottom: 8),
                               child: Container(
-                                width: SizeConfig.blockSizeHorizontal * 75,
+                                width: SizeConfig.blockSizeHorizontal * 80,
                                 child: FormLabel(
                                   text: _productsAvailable1[index].programname,
                                   labelColor: Colors.white,

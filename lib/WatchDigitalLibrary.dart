@@ -52,12 +52,13 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
     return Scaffold(
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 0,
-                      )));
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 0,
+          //             )));
+          Navigator.pop(context);
         },
         index: 1,
         title: "Digital Library",

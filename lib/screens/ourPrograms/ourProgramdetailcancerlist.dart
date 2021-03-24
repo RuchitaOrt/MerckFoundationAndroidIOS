@@ -43,9 +43,9 @@ class _MyHomePageState extends State<OurProgramcancerlist> {
 
   List programvalue = [
     "Objectives",
-    "Merck Oncology Fellowship Program",
-    "Merck More Than a Patient",
-    "Merck Community Awareness",
+    "Merck Foundation Oncology Fellowship Program",
+    "Merck Foundation More Than a Patient",
+    "Merck Foundation Community Awareness",
     "Videos",
     "Social Media",
   ];

@@ -167,7 +167,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                     ],
                   ),
                   child: Container(
-                    height: 490,
+                    height: Constantstring.tabheight,
                     //color: Colors.amber,
                     child: Column(
                       children: [
@@ -274,7 +274,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -304,8 +304,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                                   .homeCallForAppBaseURL +
                                               product.appImg,
                                           fit: BoxFit.fill,
-                                          width: 240,
-                                          height: 290,
+                                          width: Constantstring.callimagewidth,
+                                          height:
+                                              Constantstring.callimageheight,
                                         ),
                                       ),
                                       SizedBox(
@@ -426,7 +427,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -454,8 +455,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                                   .homeDigitalLibraryBaseURL +
                                               product.image,
                                           fit: BoxFit.fill,
-                                          width: 240,
-                                          height: 290,
+                                          width: Constantstring.callimagewidth,
+                                          height:
+                                              Constantstring.callimageheight,
                                         ),
                                       ),
                                       SizedBox(
@@ -575,7 +577,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -596,8 +598,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                         image: GlobalLists.homeMMTMBaseURL +
                                             product.photo,
                                         fit: BoxFit.fill,
-                                        width: 240,
-                                        height: 290,
+                                        width: Constantstring.callimagewidth,
+                                        height: Constantstring.callimageheight,
                                       ),
                                     ),
                                     SizedBox(

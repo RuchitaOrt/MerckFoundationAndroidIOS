@@ -292,42 +292,42 @@ class APIManager {
   static String ambasadarimageapi = baseURL + "ambassadors_view_more_image_mob";
   static String homeurl = "program_page_api/home/Android/1";
   static String mmtmprogramurl =
-      "MMTM_Program_Api/merck-more-than-a-mother/Android/1";
+      "MMTM_Program_Api/merck-foundation-more-than-a-mother/Android/1";
   static String merckcancerprogramurl =
-      "MainProgramPageApi/merck-cancer-access-program/Android/1";
+      "MainProgramPageApi/merck-foundation-cancer-access-program/Android/1";
   static String merckcapabilityprogram =
-      "MainProgramPageApi/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/Android/1";
+      "MainProgramPageApi/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program/Android/1";
 
   static String merckstemprogram =
-      "MainProgramPageApi/merck-stem-program/Android/1";
+      "MainProgramPageApi/merck-foundation-stem-program/Android/1";
   static String merckfirstladies =
       "MainProgramPageApi/merck-foundation-first-ladies-initiative-summit/Android/1";
   static String merckafricaasialuminar =
-      "MainProgramPageApi/merck-africa-asia-luminary/Android/1";
+      "MainProgramPageApi/merck-foundation-africa-asia-luminary/Android/1";
   static String mercksubstaition =
       "MainProgramPageApi/merck-foundation-sustainability-initiative/Android/1";
   static String merckeducatinglinda =
-      "MainProgramPageApi/educating-linda-program/Android/1";
+      "MainProgramPageApi/merck-foundation-educating-linda-program/Android/1";
   static String empoweringberna =
       "SubProgramPageApi/empowering-berna/Android/1";
   static String fertilityprogram =
-      "SubProgramPageApi/merck-fertility-and-embryology-training-program/Android/1";
+      "SubProgramPageApi/merck-foundation-fertility-and-embryology-training-program/Android/1";
   static String subproaboutmmtm =
       "SubProgramPageApi/about-merck-more-than-a-mother/Android/1";
   static String subprogramstrategy = "SubProgramPageApi/strategy/Android/1";
   static String subprogrammmtmambasadar =
-      "SubProgramPageApi/merck-more-than-a-mother-ambassadors/Android/1";
+      "SubProgramPageApi/merck-foundation-more-than-a-mother-ambassadors/Android/1";
   static String subprogramcommunityawareness =
       "SubProgramPageApi/community-awareness-and-awards-program/Android/1";
   static String subprogramlocalsong =
       "SubProgramPageApi/local-songs-and-children-stories/Android/1";
   static String subprocancerobjtive = "SubProgramPageApi/objectives/Android/1";
   static String subprofellowship =
-      "SubProgramPageApi/merck-oncology-fellowship-program/Android/1";
+      "SubProgramPageApi/merck-foundation-oncology-fellowship-program/Android/1";
   static String subprocancerpatient =
-      "SubProgramPageApi/merck-more-than-a-patient/Android/1";
+      "SubProgramPageApi/merck-foundation-more-than-a-patient/Android/1";
   static String subprocancercommunityawareness =
-      "SubProgramPageApi/merck-community-awareness/Android/1";
+      "SubProgramPageApi/merck-foundation-community-awareness/Android/1";
   Future<String> apiEndPoint(API api) async {
     var apiPathString = "";
     //  if (Platform.isAndroid) {
@@ -423,7 +423,8 @@ class APIManager {
             "show/merck-foundation-first-ladies-initiative-summit/13/Android/1";
         break;
       case API.mmtmprogram:
-        apiPathString = "MMTM_Videos_list/merck-more-than-a-mother/Android/1";
+        apiPathString =
+            "MMTM_Videos_list/merck-foundation-more-than-a-mother/Android/1";
         break;
       case API.empoweringbernacontent:
         apiPathString = "show/empowering-berna/13/Android/1";
@@ -433,50 +434,50 @@ class APIManager {
         break;
 
       case API.merckmotherSlider:
-        apiPathString = "show/merck-more-than-a-mother/5/Android/1";
+        apiPathString = "show/merck-foundation-more-than-a-mother/5/Android/1";
         break;
 
       case API.merckmotherContent:
-        apiPathString = "show/merck-more-than-a-mother/13/Android/1";
+        apiPathString = "show/merck-foundation-more-than-a-mother/13/Android/1";
         break;
 
       case API.merckmotherVideos:
-        apiPathString = "show/merck-more-than-a-mother/14/Android/1";
+        apiPathString = "show/merck-foundation-more-than-a-mother/14/Android/1";
         break;
 
       case API.merckmotherLatestUpdates:
-        apiPathString = "show/merck-more-than-a-mother/23/Android/1";
+        apiPathString = "show/merck-foundation-more-than-a-mother/23/Android/1";
         break;
 
       case API.merckmotherCallApplication:
-        apiPathString = "show/merck-more-than-a-mother/9/Android/1";
+        apiPathString = "show/merck-foundation-more-than-a-mother/9/Android/1";
         break;
 
       case API.merckmotherDigitalLib:
-        apiPathString = "show/merck-more-than-a-mother/22/Android/1";
+        apiPathString = "show/merck-foundation-more-than-a-mother/22/Android/1";
         break;
 
       case API.merckmotherMedia:
-        apiPathString = "show/merck-more-than-a-mother/20/Android/1";
+        apiPathString = "show/merck-foundation-more-than-a-mother/20/Android/1";
         break;
 
       case API.merckmotherTestimonial:
-        apiPathString = "show/merck-more-than-a-mother/18/Android/1";
+        apiPathString = "show/merck-foundation-more-than-a-mother/18/Android/1";
         break;
 
       case API.merckFertilityContent:
         apiPathString =
-            "show/merck-fertility-and-embryology-training-program/13/Android/1";
+            "show/merck-foundation-fertility-and-embryology-training-program/13/Android/1";
         break;
 
       case API.merckFertilityVideos:
         apiPathString =
-            "show/merck-fertility-and-embryology-training-program/14/Android/1";
+            "show/merck-foundation-fertility-and-embryology-training-program/14/Android/1";
         break;
 
       case API.merckFertilityTestimonials:
         apiPathString =
-            "show/merck-fertility-and-embryology-training-program/18/Android/1";
+            "show/merck-foundation-fertility-and-embryology-training-program/18/Android/1";
         break;
 
       case API.merckLocalSongsContent:
@@ -521,71 +522,78 @@ class APIManager {
         apiPathString = "mob_event_gallery";
         break;
       case API.programgalleryeducting:
-        apiPathString = "ProgramGallery/educating-linda-program/1";
+        apiPathString =
+            "ProgramGallery/merck-foundation-educating-linda-program/1";
         break;
       case API.programgallerymmtm:
-        apiPathString = "ProgramGallery/merck-more-than-a-mother/1";
+        apiPathString = "ProgramGallery/merck-foundation-more-than-a-mother/1";
         break;
       case API.programgallerycapacity:
         apiPathString =
-            "ProgramGallery/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+            "ProgramGallery/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program/1";
         break;
       case API.programgalleryfirstladey:
         apiPathString =
             "ProgramGallery/merck-foundation-first-ladies-initiative-summit/1";
         break;
       case API.programgallerystem:
-        apiPathString = "ProgramGallery/merck-stem-program/1";
+        apiPathString = "ProgramGallery/merck-foundation-stem-program/1";
         break;
       case API.programgallerysubstain:
         apiPathString =
             "ProgramGallery/merck-foundation-sustainability-initiative/1";
         break;
       case API.programgalleryafrica:
-        apiPathString = "ProgramGallery/merck-africa-asia-luminary/1";
+        apiPathString =
+            "ProgramGallery/merck-foundation-africa-asia-luminary/1";
         break;
       case API.watchvideommtm:
-        apiPathString = "watch_program_videos/merck-more-than-a-mother/1";
+        apiPathString =
+            "watch_program_videos/merck-foundation-more-than-a-mother/1";
         break;
       case API.watchvideocancer:
-        apiPathString = "watch_program_videos/merck-cancer-access-program/1";
+        apiPathString =
+            "watch_program_videos/merck-foundation-cancer-access-program/1";
         break;
       case API.watchvideocapacity:
         apiPathString =
-            "watch_program_videos/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+            "watch_program_videos/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program/1";
         break;
       case API.watchvideosubstain:
         apiPathString =
             "watch_program_videos/merck-foundation-sustainability-initiative/1";
         break;
       case API.watchvdeoducation:
-        apiPathString = "watch_program_videos/educating-linda-program/1";
+        apiPathString =
+            "watch_program_videos/merck-foundation-educating-linda-program/1";
         break;
       case API.watchvideofirstlady:
         apiPathString =
             "watch_program_videos/merck-foundation-first-ladies-initiative-summit/1";
         break;
       case API.watchvideoafrica:
-        apiPathString = "watch_program_videos/merck-africa-asia-luminary/1";
+        apiPathString =
+            "watch_program_videos/merck-foundation-africa-asia-luminary/1";
 
         break;
       case API.watchvideostem:
-        apiPathString = "watch_program_videos/merck-stem-program/1";
+        apiPathString = "watch_program_videos/merck-foundation-stem-program/1";
         break;
 
       case API.digitalmmtm:
-        apiPathString = "digital_library/merck-more-than-a-mother/1";
+        apiPathString = "digital_library/merck-foundation-more-than-a-mother/1";
         break;
       case API.digitalhome:
         apiPathString = "digital_library/Home/1";
         break;
 
       case API.digitalcancer:
-        apiPathString = "digital_library/merck-cancer-access-program/1";
+        apiPathString =
+            "digital_library/merck-foundation-cancer-access-program/1";
         break;
       case API.digitalcapacity:
         apiPathString =
-            "digital_library/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+            "digital_library/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program/1";
         break;
 
       case API.digitalfirstlady:
@@ -593,11 +601,12 @@ class APIManager {
             "digital_library/merck-foundation-first-ladies-initiative-summit/1";
         break;
       case API.digitalstem:
-        apiPathString = "digital_library/merck-stem-program/1";
+        apiPathString = "digital_library/merck-foundation-stem-program/1";
 
         break;
       case API.digitaleducting:
-        apiPathString = "digital_library/educating-linda-program/1";
+        apiPathString =
+            "digital_library/merck-foundation-educating-linda-program/1";
 
         break;
       case API.digitalsubstain:
@@ -606,7 +615,8 @@ class APIManager {
 
         break;
       case API.digitalafrica:
-        apiPathString = "digital_library/merck-africa-asia-luminary/1";
+        apiPathString =
+            "digital_library/merck-foundation-africa-asia-luminary/1";
 
         break;
       case API.watchhomemmtm:
@@ -614,7 +624,8 @@ class APIManager {
 
         break;
       case API.watchprogrammmtm:
-        apiPathString = "show_mmtm_gallery/merck-more-than-a-mother/1";
+        apiPathString =
+            "show_mmtm_gallery/merck-foundation-more-than-a-mother/1";
 
         break;
       case API.watchfirstladymmtm:
@@ -623,41 +634,48 @@ class APIManager {
 
         break;
       case API.watchmediprogrammmtm:
-        apiPathString = "read_merck_media/merck-more-than-a-mother/1";
+        apiPathString =
+            "read_merck_media/merck-foundation-more-than-a-mother/1";
 
         break;
       case API.watchmediaprogramcancer:
-        apiPathString = "read_merck_media/merck-cancer-access-program/1";
+        apiPathString =
+            "read_merck_media/merck-foundation-cancer-access-program/1";
 
         break;
       case API.watchmorelatestupmmtm:
-        apiPathString = "read_latest_updates/merck-more-than-a-mother/1";
+        apiPathString =
+            "read_latest_updates/merck-foundation-more-than-a-mother/1";
 
         break;
       case API.watchmorelatestupcancer:
-        apiPathString = "read_latest_updates/merck-cancer-access-program/1";
+        apiPathString =
+            "read_latest_updates/merck-foundation-cancer-access-program/1";
 
         break;
       case API.watchmorelatestupstem:
-        apiPathString = "read_latest_updates/merck-stem-program/1";
+        apiPathString = "read_latest_updates/merck-foundation-stem-program/1";
 
         break;
       case API.watchmorelatestupafrica:
-        apiPathString = "read_latest_updates/merck-africa-asia-luminary/1";
+        apiPathString =
+            "read_latest_updates/merck-foundation-africa-asia-luminary/1";
 
         break;
 
       case API.watchmoretestimonialcancer:
-        apiPathString = "merck_testimonials_list/merck-cancer-access-program/1";
+        apiPathString =
+            "merck_testimonials_list/merck-foundation-cancer-access-program/1";
 
         break;
       case API.watchmoretestimonialcapacity:
         apiPathString =
-            "merck_testimonials_list/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+            "merck_testimonials_list/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program/1";
 
         break;
       case API.watchmoretestimonialmmtm:
-        apiPathString = "merck_testimonials_list/merck-more-than-a-mother/1";
+        apiPathString =
+            "merck_testimonials_list/merck-foundation-more-than-a-mother/1";
 
         break;
 
@@ -676,7 +694,7 @@ class APIManager {
         break;
       case API.watchvideofertility:
         apiPathString =
-            "watch_program_videos/merck-fertility-and-embryology-training-program/1";
+            "watch_program_videos/merck-foundation-fertility-and-embryology-training-program/1";
 
         break;
 
@@ -685,15 +703,17 @@ class APIManager {
 
         break;
       case API.watchcallmmtm:
-        apiPathString = "read_call_for_app/merck-more-than-a-mother/1";
+        apiPathString =
+            "read_call_for_app/merck-foundation-more-than-a-mother/1";
 
         break;
       case API.watchcallstem:
-        apiPathString = "read_call_for_app/merck-stem-program/1";
+        apiPathString = "read_call_for_app/merck-foundation-stem-program/1";
 
         break;
       case API.watchcallafrica:
-        apiPathString = "read_call_for_app/merck-africa-asia-luminary/1";
+        apiPathString =
+            "read_call_for_app/merck-foundation-africa-asia-luminary/1";
 
         break;
 
@@ -707,7 +727,7 @@ class APIManager {
         break;
 
       case API.stemprogramlist:
-        apiPathString = "get_luminary_pages/merck-stem-program/1";
+        apiPathString = "get_luminary_pages/merck-foundation-stem-program/1";
         break;
       case API.covidvideo:
         apiPathString = "covid_videos/1";
@@ -720,7 +740,8 @@ class APIManager {
         apiPathString = "year_wise_gallery/1";
         break;
       case API.africaprogramlist:
-        apiPathString = "get_luminary_pages/merck-africa-asia-luminary/1";
+        apiPathString =
+            "get_luminary_pages/merck-foundation-africa-asia-luminary/1";
         break;
       default:
         apiPathString = "";

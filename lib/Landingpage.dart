@@ -58,7 +58,7 @@ class _LandingpageState extends State<Landingpage> {
               padding: const EdgeInsets.all(10.0),
               child: FormLabel(
                 text:
-                    "A world were everone can lead a healthy and Fulfiling life",
+                    "A WORLD WHERE EVERYONE CAN LEAD A HEALTHY AND FULFILLING LIFE",
                 labelColor: Customcolor.colorPink,
                 fontSize: ResponsiveFlutter.of(context).fontSize(2),
                 maxLines: 2,
@@ -81,8 +81,8 @@ class _LandingpageState extends State<Landingpage> {
                   child: Padding(
                 padding: const EdgeInsets.only(left: 25, right: 20, top: 10),
                 child: Text(
-                  "The Merck Foundation is the philanthropic arm of Merck KGaA Germany that aims to improve the health and wekkbeing of people  and advance their lives throigh science and technology,Our efforts are primarily focused on improving access to quality & equitable healthcare solutions,building healthcare,scientific research & media capacity and empowering people in STEM* with a special focus on women and youth in under-served communites. \n*STEM:Science,Technology,Engineering and Mathematic",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  "The Merck Foundation, established in 2017, is the philanthropic arm of Merck KGaA, Germany that aims to improve the health and wellbeing of people and advance their lives through science and technology. \n\nOur efforts are primarily focused on improving access to quality and equitable healthcare solutions in underserved communities, building healthcare and scientific research capacity and empowering people in STEM (Science, Technology, Engineering, and Mathematics) with a special focus on women and youth.",
+                  style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
               )),
             ),

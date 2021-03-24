@@ -160,7 +160,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                     ],
                   ),
                   child: Container(
-                    height: 490,
+                    height: Constantstring.tabheight,
                     //color: Colors.amber,
                     child: Column(
                       children: [
@@ -549,7 +549,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -577,8 +577,9 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                                   .homeCallForAppBaseURL +
                                               product.appImg,
                                           fit: BoxFit.fill,
-                                          width: 240,
-                                          height: 290,
+                                          width: Constantstring.callimagewidth,
+                                          height:
+                                              Constantstring.callimageheight,
                                         ),
                                       ),
                                       SizedBox(
@@ -699,7 +700,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -727,8 +728,9 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                                   .homeDigitalLibraryBaseURL +
                                               product.image,
                                           fit: BoxFit.fill,
-                                          width: 240,
-                                          height: 290,
+                                          width: Constantstring.callimagewidth,
+                                          height:
+                                              Constantstring.callimageheight,
                                         ),
                                       ),
                                       SizedBox(
@@ -848,7 +850,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -869,8 +871,8 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                         image: GlobalLists.homeMMTMBaseURL +
                                             product.photo,
                                         fit: BoxFit.fill,
-                                        width: 240,
-                                        height: 290,
+                                        width: Constantstring.callimagewidth,
+                                        height: Constantstring.callimageheight,
                                       ),
                                     ),
                                     SizedBox(

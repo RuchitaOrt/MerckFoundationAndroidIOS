@@ -236,7 +236,7 @@ class DigitalLibraryList {
         id: json["id"],
         categoryType:
             json["category_type"] == null ? null : json["category_type"],
-        title: json["title"],
+        title: json["title"] == null ? "" : json["title"],
         image: json["image"],
         altText: json["alt_text"],
         document: json["document"] == null ? null : json["document"],
@@ -382,7 +382,8 @@ class MmtmList {
         photo: json["photo"],
         photoCategoryId: json["photo_category_id"],
         albumNameId: json["album_name_id"],
-        photoDescription: json["photo_description"],
+        photoDescription:
+            json["photo_description"] == null ? "" : json["photo_description"],
         altTag: json["alt_tag"],
         year: json["year"],
         featuredImage: json["featured_image"],
@@ -552,7 +553,7 @@ class CallForAppList {
 
   factory CallForAppList.fromJson(Map<String, dynamic> json) => CallForAppList(
         id: json["id"],
-        title: json["title"],
+        title: json["title"] == null ? "" : json["title"],
         eventType: json["event_type"],
         eventStartDate: DateTime.parse(json["event_start_date"]),
         eventEndDate: DateTime.parse(json["event_end_date"]),

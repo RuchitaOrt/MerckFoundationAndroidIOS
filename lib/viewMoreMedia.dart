@@ -124,12 +124,13 @@ class ViewMediaState extends State<ViewmoreMedia> {
       backgroundColor: Customcolor.background,
       appBar: InnerMsgfromleadershipCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 0,
-                      )));
+          Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 0,
+          //             )));
         },
         index: 1,
         title: "Merck Foundation \nin Media",

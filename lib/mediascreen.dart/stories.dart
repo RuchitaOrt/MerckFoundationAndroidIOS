@@ -38,6 +38,7 @@ class StoriesState extends State<Stories> {
   int page = 10;
   int offset = 0;
   bool _isLoading = true;
+  double ratio;
   @override
   void initState() {
     // TODO: implement initState
@@ -118,6 +119,8 @@ class StoriesState extends State<Stories> {
 
   @override
   Widget build(BuildContext context) {
+    ratio = MediaQuery.of(context).size.width /
+        (MediaQuery.of(context).size.height / 1.3);
     return Scaffold(
         key: _scaffoldKey1,
         endDrawer: Theme(
@@ -187,7 +190,7 @@ class StoriesState extends State<Stories> {
                           // childAspectRatio: 0.8,
                           itemCount: GlobalLists.storiesList.length,
                           gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
+                              SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             childAspectRatio: 0.9,
                           ),
@@ -239,23 +242,46 @@ class StoriesState extends State<Stories> {
                                             Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: Container(
-                                                width: SizeConfig
-                                                        .blockSizeHorizontal *
-                                                    100,
-                                                height: 120,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  // border: Border.all(
-                                                  //   width: 1,
-                                                  // ),
-                                                  image: new DecorationImage(
-                                                    image: new NetworkImage(
-                                                        'https://img.youtube.com/vi/${GlobalLists.storiesList[index].videoLink.substring(GlobalLists.storiesList[index].videoLink.length - 11)}/mqdefault.jpg'),
-                                                    fit: BoxFit.cover,
+                                              child: Stack(
+                                                children: [
+                                                  Container(
+                                                    width: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        100,
+                                                    height: SizeConfig
+                                                            .blockSizeVertical *
+                                                        15,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      // border: Border.all(
+                                                      //   width: 1,
+                                                      // ),
+                                                      image:
+                                                          new DecorationImage(
+                                                        image: new NetworkImage(
+                                                            'https://img.youtube.com/vi/${GlobalLists.storiesList[index].videoLink.substring(GlobalLists.storiesList[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
+                                                  Positioned(
+                                                    top: SizeConfig
+                                                            .blockSizeVertical *
+                                                        4,
+                                                    left: SizeConfig
+                                                            .blockSizeVertical *
+                                                        8,
+                                                    child: Center(
+                                                      child: Image.asset(
+                                                        "assets/newImages/pause.png",
+                                                        height: 30,
+                                                        width: 30,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                             Padding(

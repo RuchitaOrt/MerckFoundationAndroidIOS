@@ -150,12 +150,12 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                 homepageres.middleArea[middleareakey[i]].gallery.list;
             print(GlobalLists.homegallerylist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
-              "ambasdars".toLowerCase()) {
+              "mmtm".toLowerCase()) {
             //  if (homepageres.middleArea['${i + 1}'].ambasdars != null) {
             GlobalLists.ambasdarsbaseurl =
-                homepageres.middleArea[middleareakey[i]].ambasdars.baseUrl;
+                homepageres.middleArea[middleareakey[i]].mmtm.baseUrl;
             GlobalLists.ambasdarslist =
-                homepageres.middleArea[middleareakey[i]].ambasdars.list;
+                homepageres.middleArea[middleareakey[i]].mmtm.list;
             //}
             print(GlobalLists.ambasdarslist.length);
           }
@@ -523,7 +523,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
           ),
         );
       }
-      if (typewidet[i] == "ambasdars") {
+      if (typewidet[i] == "mmtm") {
         listofwiget.add(Padding(
           padding: const EdgeInsets.only(left: 10, top: 10),
           child: CustomHorizontalCard(
