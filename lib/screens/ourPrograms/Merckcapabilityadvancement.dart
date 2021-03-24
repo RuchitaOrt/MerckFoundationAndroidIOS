@@ -118,7 +118,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title:
+            "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Point Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -1326,6 +1327,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideocapacity,
+                              headertitle:
+                                  "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program Videos",
                             )));
               },
               titleColor: Customcolor.pink_col,

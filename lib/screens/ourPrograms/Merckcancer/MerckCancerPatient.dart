@@ -110,7 +110,7 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
           //             )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation More Than A Patient",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",

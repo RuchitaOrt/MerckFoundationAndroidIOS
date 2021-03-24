@@ -27,6 +27,7 @@ import 'package:merckfoundation22dec/model/Merckoverview.dart';
 import 'package:merckfoundation22dec/model/yearwisephotogallery.dart';
 import 'package:merckfoundation22dec/screens/ceomessage/Detailpageceo.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/SPManager.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
 import 'package:merckfoundation22dec/whatwedo/ourpolicy.dart';
@@ -137,6 +138,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    SPManager().setAuthToken("token");
     _todaysDate = DateTime.now();
     todayformatdate = DateFormat('yyyy-MM-dd').format(_todaysDate);
     print(todayformatdate);

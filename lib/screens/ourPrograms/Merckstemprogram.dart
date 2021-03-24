@@ -121,7 +121,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation STEM Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -856,6 +856,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideostem,
+                              headertitle:
+                                  "Merck Foundation Stem Program Videos",
                             )));
                 // Navigator.push(
                 //     context,

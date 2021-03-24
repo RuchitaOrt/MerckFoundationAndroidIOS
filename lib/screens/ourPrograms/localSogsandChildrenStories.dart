@@ -59,7 +59,7 @@ class LocalSongsandChildrenStoriesState
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Local Songs And Children Stories",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",

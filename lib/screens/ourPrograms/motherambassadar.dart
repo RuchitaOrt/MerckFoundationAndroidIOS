@@ -68,7 +68,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation More Than A Mother Ambassadors",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",

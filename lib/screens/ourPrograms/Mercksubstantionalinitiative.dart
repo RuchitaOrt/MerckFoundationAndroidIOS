@@ -118,7 +118,7 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation Sustainability Initiative",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -1373,6 +1373,8 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideosubstain,
+                              headertitle:
+                                  "Merck Foundation Sustainability Initiative Videos",
                             )));
                 // Navigator.push(
                 //     context,

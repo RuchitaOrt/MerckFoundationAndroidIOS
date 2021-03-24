@@ -121,7 +121,7 @@ class FirstLadiesInitiativeDetailsState
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation First Ladies Initiative Summit",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -1342,6 +1342,8 @@ class FirstLadiesInitiativeDetailsState
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideofirstlady,
+                              headertitle:
+                                  "Merck Foundation First Ladies Initiative Summit",
                             )));
               },
               titleColor: Customcolor.pink_col,

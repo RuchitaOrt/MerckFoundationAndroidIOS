@@ -52,7 +52,7 @@ class _OurProgramState extends State<Ourprogram> {
         colors: Customcolor.colorLightGreen),
     programclass(
         programname:
-            "Merck Foundation Capacity Advancement and Diabetes Blue Point Program",
+            "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
         colors: Customcolor.baby_blue),
     programclass(
         programname: "Merck Foundation First Ladies Initiative Summit",

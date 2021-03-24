@@ -21,8 +21,10 @@ import 'package:merckfoundation22dec/model/videoProgramResponse.dart'
 
 class WatchmoreVideolibrary extends StatefulWidget {
   final dynamic apiurl;
+  final String headertitle;
 
-  const WatchmoreVideolibrary({Key key, this.apiurl}) : super(key: key);
+  const WatchmoreVideolibrary({Key key, this.apiurl, this.headertitle})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return VideolibraryState();
@@ -144,7 +146,7 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
           },
           index: 1,
           forfilterindes: 3,
-          title: "Videos",
+          title: widget.headertitle,
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",

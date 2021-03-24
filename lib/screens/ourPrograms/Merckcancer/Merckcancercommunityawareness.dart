@@ -110,7 +110,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
           //             )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation Community Awareness",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",

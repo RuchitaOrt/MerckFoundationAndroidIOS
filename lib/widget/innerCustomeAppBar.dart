@@ -38,7 +38,7 @@ class InnerCustomAppBar extends PreferredSize {
       @required this.height = kToolbarHeight});
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
-  Size get preferredSize => Size.fromHeight(height);
+  Size get preferredSize => Size.fromHeight(120);
   // Size get preferredSize => Size.fromHeight(height);
   double imgHeight = 50;
   double whatsupheigth = 45;
@@ -48,7 +48,7 @@ class InnerCustomAppBar extends PreferredSize {
     return Column(
       children: [
         Container(
-          height: height,
+          height: 90,
           color: Customcolor.baby_blue,
           alignment: Alignment.center,
           child: Padding(
@@ -433,19 +433,19 @@ class InnerCustomAppBar extends PreferredSize {
             ),
           ),
         ),
-        // Container(
-        //   height: 40,
-        //   color: Customcolor.colorVoilet,
-        //   alignment: Alignment.centerLeft,
-        //   child: Padding(
-        //     padding: const EdgeInsets.only(left: 10),
-        //     child: Text(
-        //       'Our Stories',
-        //       style:
-        //           TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        //     ),
-        //   ),
-        // )
+        Container(
+          height: 40,
+          color: Customcolor.colorVoilet,
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Text(
+              title,
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+        )
       ],
     );
   }

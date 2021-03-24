@@ -50,7 +50,7 @@ class OurProgramstrategyState extends State<StrategyDetails> {
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Strategy",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
