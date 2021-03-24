@@ -1992,13 +1992,15 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => VideoPlayer(
-                                    videoUrl: GlobalLists
-                                        .mmtmmedialist[index].mediaUrl,
-                                  )));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (BuildContext context) => VideoPlayer(
+                      //               videoUrl: GlobalLists
+                      //                   .mmtmmedialist[index].mediaUrl,
+                      //             )));
+                      ShowDialogs.launchURL(
+                          GlobalLists.mmtmmedialist[index].mediaUrl);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8, left: 10),

@@ -186,15 +186,17 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                                 left: 8, right: 8, bottom: 6),
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            VideoPlayer(
-                                              videoUrl: GlobalLists
-                                                  .merckinMediaList[index]
-                                                  .mediaUrl,
-                                            )));
+                                ShowDialogs.launchURL(GlobalLists
+                                    .merckinMediaList[index].mediaUrl);
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (BuildContext context) =>
+                                //             VideoPlayer(
+                                //               videoUrl: GlobalLists
+                                //                   .merckinMediaList[index]
+                                //                   .mediaUrl,
+                                //             )));
                                 // _launchURL(
                                 //     GlobalLists.merckinMediaList[index].mediaUrl);
                               },
