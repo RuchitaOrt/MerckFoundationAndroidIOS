@@ -66,3 +66,21 @@ class Slidercard extends StatelessWidget {
     );
   }
 }
+
+class PauseImage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Positioned(
+      top: SizeConfig.blockSizeVertical * 5,
+      left: SizeConfig.blockSizeVertical * 9,
+      child: Center(
+        child: Image.asset(
+          "assets/newImages/pause.png",
+          height: 30,
+          width: 30,
+        ),
+      ),
+    );
+  }
+}

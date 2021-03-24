@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -102,64 +104,82 @@ class VideofilterState extends State<Videofilter> {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              VideoPlayer(
-                                                videoUrl: GlobalLists
-                                                    .filterdatalisting[index]
-                                                    .videoLink,
-                                              )));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (BuildContext context) =>
+                                  //             VideoPlayer(
+                                  //               videoUrl: GlobalLists
+                                  //                   .filterdatalisting[index]
+                                  //                   .videoLink,
+                                  //             )));
+                                  var storykey = GlobalLists
+                                      .filterdatalisting[index].videoLink
+                                      .substring(GlobalLists.storiesList[index]
+                                              .videoLink.length -
+                                          11);
+                                  ShowDialogs.youtubevideolink(
+                                      "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                                 },
-                                child: Container(
-                                  color: Colors.transparent,
-                                  width: SizeConfig.blockSizeHorizontal * 50,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          width:
-                                              SizeConfig.blockSizeHorizontal *
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      color: Colors.transparent,
+                                      width:
+                                          SizeConfig.blockSizeHorizontal * 50,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              width: SizeConfig
+                                                      .blockSizeHorizontal *
                                                   100,
-                                          height: 120,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            // border: Border.all(
-                                            //   width: 1,
-                                            // ),
-                                            image: new DecorationImage(
-                                              image: new NetworkImage(
-                                                  'https://img.youtube.com/vi/${GlobalLists.filterdatalisting[index].videoLink.substring(GlobalLists.filterdatalisting[index].videoLink.length - 11)}/mqdefault.jpg'),
-                                              fit: BoxFit.cover,
+                                              height:
+                                                  SizeConfig.blockSizeVertical *
+                                                      15,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                // border: Border.all(
+                                                //   width: 1,
+                                                // ),
+                                                image: new DecorationImage(
+                                                  image: new NetworkImage(
+                                                      'https://img.youtube.com/vi/${GlobalLists.filterdatalisting[index].videoLink.substring(GlobalLists.filterdatalisting[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: Text(
+                                              GlobalLists
+                                                  .filterdatalisting[index]
+                                                  .videoDesc,
+                                              textAlign: TextAlign.center,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize:
+                                                      ResponsiveFlutter.of(
+                                                              context)
+                                                          .fontSize(1.4),
+                                                  fontWeight: FontWeight.w500),
+                                              maxLines: 3,
+                                            ),
+                                          ),
+                                          SizedBox(height: 5),
+                                        ],
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: Text(
-                                          GlobalLists.filterdatalisting[index]
-                                              .videoDesc,
-                                          textAlign: TextAlign.center,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize:
-                                                  ResponsiveFlutter.of(context)
-                                                      .fontSize(1.4),
-                                              fontWeight: FontWeight.w500),
-                                          maxLines: 3,
-                                        ),
-                                      ),
-                                      SizedBox(height: 5),
-                                    ],
-                                  ),
+                                    ),
+                                    PauseImage()
+                                  ],
                                 ),
                               )),
                         );

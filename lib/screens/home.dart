@@ -2079,7 +2079,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               testimonialname:
                   GlobalLists.mmttestimoniallist[0].testimonialName,
               titleColor: Customcolor.text_darkblue,
-              departmentname: GlobalLists.mmttestimoniallist[0].departmentName,
+              departmentname:
+                  // "Gynecologic Oncology Fellow | 2018 \nMerck Foundation Alumni",
+                  GlobalLists.mmttestimoniallist[0].departmentName,
               titleImg: "assets/newImages/flowers-2.png",
               subTitle: "",
               buttontitle: "View More ",

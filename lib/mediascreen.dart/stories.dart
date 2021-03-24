@@ -10,6 +10,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -266,21 +267,7 @@ class StoriesState extends State<Stories> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Positioned(
-                                                    top: SizeConfig
-                                                            .blockSizeVertical *
-                                                        4,
-                                                    left: SizeConfig
-                                                            .blockSizeVertical *
-                                                        8,
-                                                    child: Center(
-                                                      child: Image.asset(
-                                                        "assets/newImages/pause.png",
-                                                        height: 30,
-                                                        width: 30,
-                                                      ),
-                                                    ),
-                                                  ),
+                                                  PauseImage()
                                                 ],
                                               ),
                                             ),

@@ -38,8 +38,8 @@ class InnerCustomAppBar extends PreferredSize {
       @required this.height = kToolbarHeight});
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
-  // Size get preferredSize => Size.fromHeight(120);
   Size get preferredSize => Size.fromHeight(height);
+  // Size get preferredSize => Size.fromHeight(height);
   double imgHeight = 50;
   double whatsupheigth = 45;
   ScreenshotController screenshotController = ScreenshotController();
@@ -48,7 +48,7 @@ class InnerCustomAppBar extends PreferredSize {
     return Column(
       children: [
         Container(
-          height: height, //90
+          height: height,
           color: Customcolor.baby_blue,
           alignment: Alignment.center,
           child: Padding(
@@ -75,39 +75,39 @@ class InnerCustomAppBar extends PreferredSize {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.only(top: 5, bottom: 5),
-                        //   child: Container(
-                        //     child: Image.asset(
-                        //       "assets/newImages/logoforheader.png",
-                        //       // width: 200,
-                        //       height: 80,
-                        //     ),
-                        //   ),
-                        // ),
-
-                        FormLabel(
-                          text: title,
-                          fontSize: 18,
-                          fontweight: FontWeight.w700,
-                          labelColor: Customcolor.text_blue,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Expanded(
-                          child: Image.asset(
-                            "assets/newImages/toolflowerfortext.png",
-                            height: 50,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5, bottom: 5),
+                          child: Container(
+                            child: Image.asset(
+                              "assets/newImages/logoforheader.png",
+                              // width: 200,
+                              height: 80,
+                            ),
                           ),
-                        )
+                        ),
+
+                        // FormLabel(
+                        //   text: title,
+                        //   fontSize: 18,
+                        //   fontweight: FontWeight.w700,
+                        //   labelColor: Customcolor.text_blue,
+                        // ),
+                        // SizedBox(
+                        //   width: 5,
+                        // ),
+                        // Expanded(
+                        //   child: Image.asset(
+                        //     "assets/newImages/toolflowerfortext.png",
+                        //     height: 50,
+                        //   ),
+                        // )
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
+                // SizedBox(
+                //   width: 20,
+                // ),
                 index != 1
                     ? forfilterindes == 3
                         ? GestureDetector(
@@ -522,9 +522,9 @@ class InnerMsgfromleadershipCustomAppBar extends PreferredSize {
                 ),
               ),
             ),
-            SizedBox(
-              width: 20,
-            ),
+            // SizedBox(
+            //   width: 20,
+            // ),
             index != 1
                 ? GestureDetector(
                     onTap: () {

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
+import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_share_me/flutter_share_me.dart';
@@ -78,6 +79,20 @@ class ShowDialogs {
   static youtubevideolink(String videourl) async {
     var response =
         await FlutterShareMe().openinsta(url: videourl, msg: "Youtube");
+  }
+
+  static youtbeicon(BuildContext context) {
+    Positioned(
+      top: SizeConfig.blockSizeVertical * 4,
+      left: SizeConfig.blockSizeVertical * 8,
+      child: Center(
+        child: Image.asset(
+          "assets/newImages/pause.png",
+          height: 30,
+          width: 30,
+        ),
+      ),
+    );
   }
 
   static Future<void> showLoadingDialogWithDelay(BuildContext context,

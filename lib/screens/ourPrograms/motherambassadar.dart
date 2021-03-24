@@ -370,7 +370,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 120),
+                                padding: EdgeInsets.only(top: 70, left: 120),
                                 child: Center(
                                     child: Image.asset(
                                         "assets/newImages/pause.png")),

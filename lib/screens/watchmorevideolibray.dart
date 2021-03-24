@@ -9,6 +9,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -158,16 +159,6 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
             controller: _sc,
             //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
-                child: FormLabel(
-                  text: "Videos",
-                  labelColor: Customcolor.colorblack,
-                  fontSize: ResponsiveFlutter.of(context).fontSize(2),
-                  maxLines: 2,
-                  fontweight: FontWeight.w800,
-                ),
-              ),
               (GlobalLists.watchvideolibrary.length == 0 && _isLoading)
                   ? Center(
                       child: CircularProgressIndicator(),
@@ -226,61 +217,73 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
                                         // _launchInWebViewWithJavaScript(
                                         //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                                       },
-                                      child: Container(
-                                        color: Colors.transparent,
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 50,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Container(
-                                                width: SizeConfig
-                                                        .blockSizeHorizontal *
-                                                    100,
-                                                height: 120,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  // border: Border.all(
-                                                  //   width: 1,
-                                                  // ),
-                                                  image: new DecorationImage(
-                                                    image: new NetworkImage(
-                                                        'https://img.youtube.com/vi/${GlobalLists.watchvideolibrary[index].videoLink.substring(GlobalLists.watchvideolibrary[index].videoLink.length - 11)}/mqdefault.jpg'),
-                                                    fit: BoxFit.cover,
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            color: Colors.transparent,
+                                            width:
+                                                SizeConfig.blockSizeHorizontal *
+                                                    50,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Container(
+                                                    width: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        100,
+                                                    height: SizeConfig
+                                                            .blockSizeVertical *
+                                                        15,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      // border: Border.all(
+                                                      //   width: 1,
+                                                      // ),
+                                                      image:
+                                                          new DecorationImage(
+                                                        image: new NetworkImage(
+                                                            'https://img.youtube.com/vi/${GlobalLists.watchvideolibrary[index].videoLink.substring(GlobalLists.watchvideolibrary[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(4.0),
+                                                  child: Text(
+                                                    GlobalLists
+                                                        .watchvideolibrary[
+                                                            index]
+                                                        .videoDesc,
+                                                    textAlign: TextAlign.center,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize:
+                                                            ResponsiveFlutter
+                                                                    .of(context)
+                                                                .fontSize(1.4),
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                    maxLines: 3,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 5),
+                                              ],
                                             ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(4.0),
-                                              child: Text(
-                                                GlobalLists
-                                                    .watchvideolibrary[index]
-                                                    .videoDesc,
-                                                textAlign: TextAlign.center,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize:
-                                                        ResponsiveFlutter.of(
-                                                                context)
-                                                            .fontSize(1.4),
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                                maxLines: 3,
-                                              ),
-                                            ),
-                                            SizedBox(height: 5),
-                                          ],
-                                        ),
+                                          ),
+                                          PauseImage()
+                                        ],
                                       ),
                                     )),
                               );
