@@ -41,7 +41,7 @@ class CustomCardState extends State<CustomeCard> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -69,7 +69,7 @@ class CustomCardState extends State<CustomeCard> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 14,
           ),
           GestureDetector(
             onTap: widget.oncardtap,

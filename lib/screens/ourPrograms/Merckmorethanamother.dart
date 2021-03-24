@@ -2340,19 +2340,21 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
           if (rightsectioncategoryname.toString().toLowerCase() ==
               "call_for_app".toLowerCase()) {
             for (int j = 0;
-                j < homepageres.rightArea['${i + 1}'].callForApp.list.length;
+                j <
+                    homepageres
+                        .rightArea[rigthareakey[i]].callForApp.list.length;
                 j++) {
               var enddate = new DateTime.utc(
-                  homepageres.rightArea['${i + 1}'].callForApp.list[j]
+                  homepageres.rightArea[rigthareakey[i]].callForApp.list[j]
                       .eventEndDate.year,
-                  homepageres.rightArea['${i + 1}'].callForApp.list[j]
+                  homepageres.rightArea[rigthareakey[i]].callForApp.list[j]
                       .eventEndDate.month,
-                  homepageres.rightArea['${i + 1}'].callForApp.list[j]
+                  homepageres.rightArea[rigthareakey[i]].callForApp.list[j]
                       .eventEndDate.day);
 
               if (_todaysDate.isBefore(enddate)) {
-                GlobalLists.homecallforapp
-                    .add(homepageres.rightArea['${i + 1}'].callForApp.list[j]);
+                GlobalLists.homecallforapp.add(
+                    homepageres.rightArea[rigthareakey[i]].callForApp.list[j]);
                 print(GlobalLists.homecallforapp.length);
               }
             }

@@ -162,17 +162,22 @@ class _OurProgramState extends State<Ourprogram> {
 
         print("slidersection");
         print(slidersection.length);
-
-        issliderSectionLoaded = true;
+        setState(() {
+          issliderSectionLoaded = true;
+        });
 
         return response;
       } else {
         ShowDialogs.showToast(GlobalLists.serverresp);
 
-        issliderSectionLoaded = true;
+        setState(() {
+          issliderSectionLoaded = true;
+        });
       }
     } else {
-      issliderSectionLoaded = true;
+      setState(() {
+        issliderSectionLoaded = true;
+      });
 
       ShowDialogs.showToast("Please check internet connection");
     }

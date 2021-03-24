@@ -48,6 +48,7 @@ import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewm
 import 'package:intl/intl.dart';
 import 'package:merckfoundation22dec/viewmorehomeceo.dart';
 import 'package:merckfoundation22dec/covid/CovidResponse.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -198,11 +199,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             //child: null,
             child: AppDrawer(),
           ),
-          bottomNavigationBar: Container(
-            child: Text(
-              "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
-            ),
-          ),
+          // bottomNavigationBar: Container(
+          //   child: Text(
+          //     "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
+          //   ),
+          // ),
           body:
               //  Container(
               //   padding: EdgeInsets.all(20.0),
@@ -269,7 +270,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 ),
 
                 SizedBox(
-                  height: 8,
+                  height: 12,
                 ),
                 Visibility(
                     visible: isbottomSectionLoaded,
@@ -281,7 +282,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       children: listbottomwidget(),
                     )),
                 SizedBox(
-                  height: 8,
+                  height: 12,
                 ),
                 Visibility(
                   visible: isrightSectionLoaded,
@@ -294,7 +295,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     ],
                   ),
                   child: Container(
-                    height: 490,
+                    height: 500,
                     //color: Colors.amber,
                     child: Column(
                       children: [
@@ -349,7 +350,16 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 ),
                 SizedBox(
                   height: 10,
-                )
+                ),
+                Bottomcardlink(),
+                // Container(
+                //   child: Text(
+                //     "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
+                //     style:
+                //         TextStyle(color: Customcolor.colorBlue, fontSize: 12),
+                //     textAlign: TextAlign.center,
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -467,7 +477,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: 350,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -497,8 +507,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                                   .homeCallForAppBaseURL +
                                               product.appImg,
                                           fit: BoxFit.fill,
-                                          width: 240,
-                                          height: 290,
+                                          width: 220,
+                                          height: 300,
                                         ),
                                       ),
                                       SizedBox(
@@ -2266,7 +2276,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       if (typewidet[i] == "videos") {
         listofwiget.add(
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 12.0),
             child: CustomeCard(
               //   index: 2,
               oncardtap: () {
@@ -2308,7 +2318,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       if (typewidet[i] == "gallery") {
         listofwiget.add(
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 15.0),
             child: GestureDetector(
               onTap: () {
                 ShowDialogs.showImageDialog(
@@ -2339,7 +2349,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       if (typewidet[i] == "ceo_msg") {
         listofwiget.add(
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 15.0),
             child: CustomeCard(
               index: 1,
               cardImage: GlobalLists.homeceomsgbaseurl +
