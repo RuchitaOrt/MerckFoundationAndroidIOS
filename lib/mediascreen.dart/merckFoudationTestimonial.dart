@@ -147,7 +147,7 @@ class MerckFoundationTestimonialState
                 context,
                 MaterialPageRoute(
                     builder: (BuildContext context) => Dashboard(
-                          index: 0,
+                          index: 1,
                         )));
           },
           index: 2,

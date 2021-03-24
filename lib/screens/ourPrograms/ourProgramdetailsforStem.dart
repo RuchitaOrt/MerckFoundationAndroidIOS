@@ -1,7 +1,11 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/model/stemsubmenuprogramlist.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckstemprogram.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/StemInnerPages.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -11,6 +15,8 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 
 class OurProgramStem extends StatefulWidget {
   OurProgramStem({Key key, this.title, this.indexpass}) : super(key: key);
@@ -333,32 +339,55 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                       .children
                                                       .length ==
                                                   0
-                                              ? Column(
-                                                  // mainAxisAlignment:
-                                                  //     MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    FormLabel(
-                                                      text: GlobalLists
+                                              ? GestureDetector(
+                                                  onTap: () {
+                                                    if (GlobalLists
+                                                        .stemprogramlistsubmenu[
+                                                            index]
+                                                        .menuUrl
+                                                        .contains(".pdf")) {
+                                                      print("pdf");
+                                                      ShowDialogs.launchURL(
+                                                          GlobalLists
+                                                              .stemprogramlistsubmenu[
+                                                                  index]
+                                                              .menuUrl);
+                                                    } else {
+                                                      print("detail");
+                                                      getsteminnerapi(GlobalLists
                                                           .stemprogramlistsubmenu[
                                                               index]
-                                                          .menuName,
-                                                      labelColor: Customcolor
-                                                          .text_darkblue,
-                                                      fontweight:
-                                                          FontWeight.w600,
-                                                      fontSize:
-                                                          ResponsiveFlutter.of(
-                                                                  context)
-                                                              .fontSize(1.8),
-                                                      textAlignment:
-                                                          TextAlign.start,
-                                                    ),
-                                                    Divider(
-                                                      color: Colors.black,
-                                                    )
-                                                  ],
+                                                          .menuUrl);
+                                                    }
+                                                  },
+                                                  child: Column(
+                                                    // mainAxisAlignment:
+                                                    //     MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      FormLabel(
+                                                        text: GlobalLists
+                                                            .stemprogramlistsubmenu[
+                                                                index]
+                                                            .menuName,
+                                                        labelColor: Customcolor
+                                                            .text_darkblue,
+                                                        fontweight:
+                                                            FontWeight.w600,
+                                                        fontSize:
+                                                            ResponsiveFlutter
+                                                                    .of(context)
+                                                                .fontSize(1.8),
+                                                        textAlignment:
+                                                            TextAlign.start,
+                                                      ),
+                                                      Divider(
+                                                        color: Colors.black,
+                                                      )
+                                                    ],
+                                                  ),
                                                 )
                                               : Container(
                                                   width: SizeConfig
@@ -466,7 +495,15 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                       children: [
                                                                         GestureDetector(
                                                                             onTap:
-                                                                                () {},
+                                                                                () {
+                                                                              if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".pdf")) {
+                                                                                print("pdf");
+                                                                                ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
+                                                                              } else {
+                                                                                print("detail");
+                                                                                getsteminnerapi(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
+                                                                              }
+                                                                            },
                                                                             child:
                                                                                 FormLabel(
                                                                               text: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName,
@@ -562,6 +599,63 @@ class _MyHomePageState extends State<OurProgramStem> {
       );
     } else {
       ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  Future<http.Response> fetchPostWithBodyResponse(
+      String url, dynamic body) async {
+    IOClient ioClient = new IOClient();
+
+    HttpClient client = new HttpClient();
+
+    ioClient = new IOClient(client);
+    final response = await ioClient.post(url, body: body);
+    print('pit stop');
+    return response;
+  }
+
+  getsteminnerapi(String menuurl) async {
+    var status = await ConnectionDetector.checkInternetConnection();
+
+    if (status) {
+      dynamic bodyData = {
+        'page_url': menuurl,
+      };
+
+      // String body = json.encode(bodyData);
+      print(bodyData);
+      var response = await fetchPostWithBodyResponse(
+        APIManager.steminnerpages,
+        bodyData,
+      );
+
+      var res = json.decode(response.body);
+      print("res");
+      print(res);
+      //1-video 2-News_Release 3-Article 4-Events 5-Testimonials 6-Photo  7-Media 8-ceomeaasage 9-award
+      if (response.statusCode == 200) {
+        if (res['success'] == true) {
+          print("here it is");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => StemInnerPages(
+                        title: res['list']['p_name'],
+                        details: res['list']['p_details'],
+                      )));
+        } else {
+          setState(() {
+            ShowDialogs.showToast(res['msg']);
+          });
+          //showErrorDialog(context, message: "Something went wrong!");
+        }
+      } else {
+        ShowDialogs.showToast("Server Not Responding");
+      }
+    } else {
+      setState(() {
+        ShowDialogs.showToast("Please check Internet Connection.");
+      });
     }
   }
 }

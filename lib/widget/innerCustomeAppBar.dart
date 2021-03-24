@@ -4,6 +4,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/searchscreen/searchcategory.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:screenshot/screenshot.dart';
 
 class InnerCustomAppBar extends PreferredSize {
   // final Widget child;
@@ -40,6 +41,7 @@ class InnerCustomAppBar extends PreferredSize {
   Size get preferredSize => Size.fromHeight(height);
   double imgHeight = 50;
   double whatsupheigth = 45;
+  ScreenshotController screenshotController = ScreenshotController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -113,105 +115,273 @@ class InnerCustomAppBar extends PreferredSize {
                             ),
                             context: context,
                             builder: (BuildContext context) {
-                              return Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 10, bottom: 10),
-                                      child: FormLabel(
-                                        text: "Share",
-                                        labelColor: Customcolor.pink_col,
-                                        fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(2.5),
-                                        fontweight: FontWeight.w500,
+                              return Screenshot(
+                                controller: screenshotController,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 10, bottom: 10),
+                                        child: FormLabel(
+                                          text: "Share",
+                                          labelColor: Customcolor.pink_col,
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(2.5),
+                                          fontweight: FontWeight.w500,
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 10, bottom: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          //
-                                          GestureDetector(
-                                            onTap: () async {
-                                              var response =
-                                                  await FlutterShareMe()
-                                                      .openinsta(
-                                                          url: facebooklink,
-                                                          msg: "Share");
-                                            },
-                                            child: Image.asset(
-                                              "assets/newImages/facebook.png",
-                                              height: imgHeight,
-                                              width: imgHeight,
-                                            ),
-                                          ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 10, bottom: 10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            //
+                                            GestureDetector(
+                                              onTap: () async {
+                                                FlutterShareMe()
+                                                    .shareToFacebook(
+                                                        url: facebooklink,
+                                                        msg: "msg");
+                                              },
+                                              // await screenshotController
+                                              //     .capture()
+                                              //     .then((image) async {
+                                              //   //facebook appId is mandatory for andorid or else share won't work
 
-                                          SizedBox(
-                                            width: 7,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () async {
-                                              var response =
-                                                  await FlutterShareMe()
-                                                      .openinsta(
-                                                          url: twitterlink,
-                                                          msg: "Share");
-                                              if (response == 'success') {
-                                                print('navigate success');
-                                              }
-                                            },
-                                            child: Image.asset(
-                                              "assets/newImages/twitter.png",
-                                              height: imgHeight,
-                                              width: imgHeight,
+                                              // });
+                                              // Platform.isAndroid
+                                              //     ? SocialShare.shareFacebookStory("#ffffff",
+                                              //             "#000000", "https://google.com",
+                                              //             appId: "870993726807583")
+                                              //         .then((data) {
+                                              //         print(data);
+                                              //       })
+                                              //     : SocialShare.shareFacebookStory("#ffffff",
+                                              //             "#000000", "https://google.com")
+                                              //         .then((data) {
+                                              //         print(data);
+                                              //       });
+
+                                              child: Image.asset(
+                                                "assets/newImages/facebook.png",
+                                                height: imgHeight,
+                                                width: imgHeight,
+                                              ),
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: 7,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () async {
-                                              var response =
-                                                  await FlutterShareMe()
-                                                      .openinsta(
-                                                          url: linkedinlink,
-                                                          msg: "Share");
-                                            },
-                                            child: Image.asset(
-                                              "assets/newImages/linkedin.png",
-                                              height: imgHeight,
-                                              width: imgHeight,
+                                            // RaisedButton(
+                                            //   onPressed: () async {
+                                            //     await screenshotController
+                                            //         .capture()
+                                            //         .then((image) async {
+                                            //       //facebook appId is mandatory for andorid or else share won't work
+                                            //       Platform.isAndroid
+                                            //           ? SocialShare.shareFacebookStory(
+                                            //                   image.path,
+                                            //                   "#ffffff",
+                                            //                   "#000000",
+                                            //                   "https://google.com",
+                                            //                   appId: "870993726807583")
+                                            //               .then((data) {
+                                            //               print(data);
+                                            //             })
+                                            //           : SocialShare.shareFacebookStory(
+                                            //                   image.path,
+                                            //                   "#ffffff",
+                                            //                   "#000000",
+                                            //                   "https://google.com")
+                                            //               .then((data) {
+                                            //               print(data);
+                                            //             });
+                                            //     });
+                                            //   },
+                                            //   child: Text("Share On Facebook Story"),
+                                            // ),
+                                            SizedBox(
+                                              width: 7,
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: 7,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              FlutterShareMe().shareToWhatsApp(
-                                                  base64Image: "",
-                                                  msg: whatsuplink);
-                                            },
-                                            child: Image.asset(
-                                              "assets/newImages/whatsapp.png",
-                                              height: imgHeight,
-                                              width: imgHeight,
+                                            GestureDetector(
+                                              onTap: ()
+                                                  // SocialShare.shareTwitter(
+                                                  //         "This is Social Share twitter example",
+                                                  //         hashtags: ["hello", "world", "foo", "bar"],
+                                                  //         url: "https://google.com/#/hello",
+                                                  //         trailingText: "\nhello")
+                                                  //     .then((data) {
+                                                  //   print(data);
+                                                  // });
+                                                  async {
+                                                var response =
+                                                    await FlutterShareMe()
+                                                        .shareToTwitter(
+                                                            url: twitterlink,
+                                                            msg: "Share");
+                                                if (response == 'success') {
+                                                  print('navigate success');
+                                                }
+                                              },
+                                              child: Image.asset(
+                                                "assets/newImages/twitter.png",
+                                                height: imgHeight,
+                                                width: imgHeight,
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                            SizedBox(
+                                              width: 7,
+                                            ),
+                                            GestureDetector(
+                                              onTap: () async {
+                                                // SocialShare.shareLinkedin(
+                                                //         "Hello World \n https://google.com")
+                                                //     .then((data) {
+                                                //   print(data);
+                                                // });
+                                                //uncomment theese code
+                                                var response =
+                                                    await FlutterShareMe()
+                                                        .shareToLinkedin(
+                                                            url: linkedinlink,
+                                                            msg: "Share");
+                                              },
+                                              child: Image.asset(
+                                                "assets/newImages/linkedin.png",
+                                                height: imgHeight,
+                                                width: imgHeight,
+                                              ),
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                FlutterShareMe()
+                                                    .shareToWhatsApp(
+                                                        base64Image: "",
+                                                        msg: whatsuplink);
+                                              },
+                                              child: Image.asset(
+                                                "assets/newImages/whatsapp.png",
+                                                height: imgHeight,
+                                                width: imgHeight,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               );
                             },
                           ).whenComplete(() {});
+                          // showModalBottomSheet<void>(
+                          //   shape: RoundedRectangleBorder(
+                          //     borderRadius: BorderRadius.vertical(
+                          //         top: Radius.circular(24.0)),
+                          //   ),
+                          //   context: context,
+                          //   builder: (BuildContext context) {
+                          //     return Padding(
+                          //       padding: const EdgeInsets.all(10.0),
+                          //       child: Column(
+                          //         mainAxisSize: MainAxisSize.min,
+                          //         children: [
+                          //           Padding(
+                          //             padding: const EdgeInsets.only(
+                          //                 top: 10, bottom: 10),
+                          //             child: FormLabel(
+                          //               text: "Share",
+                          //               labelColor: Customcolor.pink_col,
+                          //               fontSize: ResponsiveFlutter.of(context)
+                          //                   .fontSize(2.5),
+                          //               fontweight: FontWeight.w500,
+                          //             ),
+                          //           ),
+                          //           Padding(
+                          //             padding: const EdgeInsets.only(
+                          //                 top: 10, bottom: 10),
+                          //             child: Row(
+                          //               mainAxisAlignment:
+                          //                   MainAxisAlignment.center,
+                          //               children: [
+                          //                 //
+                          //                 GestureDetector(
+                          //                   onTap: () async {
+                          //                     var response =
+                          //                         await FlutterShareMe()
+                          //                             .openinsta(
+                          //                                 url: facebooklink,
+                          //                                 msg: "Share");
+                          //                   },
+                          //                   child: Image.asset(
+                          //                     "assets/newImages/facebook.png",
+                          //                     height: imgHeight,
+                          //                     width: imgHeight,
+                          //                   ),
+                          //                 ),
+
+                          //                 SizedBox(
+                          //                   width: 7,
+                          //                 ),
+                          //                 GestureDetector(
+                          //                   onTap: () async {
+                          //                     var response =
+                          //                         await FlutterShareMe()
+                          //                             .openinsta(
+                          //                                 url: twitterlink,
+                          //                                 msg: "Share");
+                          //                     if (response == 'success') {
+                          //                       print('navigate success');
+                          //                     }
+                          //                   },
+                          //                   child: Image.asset(
+                          //                     "assets/newImages/twitter.png",
+                          //                     height: imgHeight,
+                          //                     width: imgHeight,
+                          //                   ),
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: 7,
+                          //                 ),
+                          //                 GestureDetector(
+                          //                   onTap: () async {
+                          //                     var response =
+                          //                         await FlutterShareMe()
+                          //                             .openinsta(
+                          //                                 url: linkedinlink,
+                          //                                 msg: "Share");
+                          //                   },
+                          //                   child: Image.asset(
+                          //                     "assets/newImages/linkedin.png",
+                          //                     height: imgHeight,
+                          //                     width: imgHeight,
+                          //                   ),
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: 7,
+                          //                 ),
+                          //                 GestureDetector(
+                          //                   onTap: () {
+                          //                     FlutterShareMe().shareToWhatsApp(
+                          //                         base64Image: "",
+                          //                         msg: whatsuplink);
+                          //                   },
+                          //                   child: Image.asset(
+                          //                     "assets/newImages/whatsapp.png",
+                          //                     height: imgHeight,
+                          //                     width: imgHeight,
+                          //                   ),
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     );
+                          //   },
+                          // ).whenComplete(() {});
                         },
                         child: Image.asset(
                           trallingImg1,

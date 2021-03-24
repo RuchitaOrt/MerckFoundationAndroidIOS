@@ -158,7 +158,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     // });
 
     gethomeapi();
-    //  getmerckoverview();
+    getmerckoverview();
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -1331,6 +1331,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       //               videoUrl:
                       //                   "https://www.facebook.com/merckfoundation/",
                       //             )));
+
                       var response = await FlutterShareMe().openinsta(
                           url: 'https://www.facebook.com/merckfoundation/',
                           msg: "Share");
@@ -2415,8 +2416,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
           if (resp.success == true) {
             setState(() {
-              GlobalLists.merckoverview = resp.list;
-              print(GlobalLists.merckoverview.image);
+              GlobalLists.Constantmerckoverview =
+                  resp.baseUrl + resp.list.image;
+              print(GlobalLists.Constantmerckoverview);
             });
           } else {
             ShowDialogs.showToast(resp.msg);

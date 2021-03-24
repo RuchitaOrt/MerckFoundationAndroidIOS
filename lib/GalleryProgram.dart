@@ -119,7 +119,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) => Dashboard(
-                        index: 0,
+                        index: 1,
                       )));
         },
         index: 1,
@@ -153,7 +153,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 2,
                       crossAxisCount: 2,
-                      childAspectRatio: Platform.isIOS ? 0.86 : 0.8,
+                      childAspectRatio: Platform.isIOS ? 0.75 : 0.8,
                       children: List.generate(
                           GlobalLists.programgallerylist.length, (index) {
                         if (GlobalLists.programgallerylist.length - 1 ==
