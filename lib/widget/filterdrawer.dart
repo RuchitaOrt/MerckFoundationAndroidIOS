@@ -29,6 +29,8 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   String countryid = "";
   String catid = "";
+  String title = "";
+  bool isfilterLoaded = true;
   @override
   void initState() {
     super.initState();
@@ -235,6 +237,11 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                                 ],
                               )
                             : Container()),
+            Visibility(
+              visible: isfilterLoaded,
+              replacement: Center(child: CircularProgressIndicator()),
+              child: Container(),
+            ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
@@ -244,13 +251,15 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                   onTap: () {
                     if (widget.index == 1) {
                       //for video library
-
+                      title = "Video Library";
                       getfilterdata("2", countryid, catid);
                     } else if (widget.index == 2) {
                       //for stories
+                      title = "Our Stories";
                       getfilterdata("1", countryid, catid);
                     } else if (widget.index == 3) {
                       //for alumina
+                      title = "Merck Foundation \nAlumini's \nTestimonial";
                       getfilterdata("3", countryid, catid);
                     }
                   },
@@ -428,7 +437,11 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
     // var fcm_token = SPManager().getAuthToken();
     var json;
     if (status1) {
-      ShowDialogs.showLoadingDialog(context, _keyLoader);
+      setState(() {
+        isfilterLoaded = false;
+      });
+
+      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
       if (pagename == "1") {
         json = {
           'page_name': pagename,
@@ -449,25 +462,32 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
         FilterdataResponse resp = response;
         print(response);
         print('Resp : $resp');
-        Navigator.of(_keyLoader.currentContext).pop();
+
+        isfilterLoaded = true;
+        //   Navigator.of(_keyLoader.currentContext).pop();
         if (resp.success == "True") {
           setState(() {
-            ShowDialogs.showToast(resp.msg);
+            //  ShowDialogs.showToast(resp.msg);
             GlobalLists.filterdatalisting = resp.data.list;
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => Videofilter()));
+                    builder: (BuildContext context) => Videofilter(
+                          apptitle: title,
+                        )));
           });
         } else {
           ShowDialogs.showToast(resp.msg);
+          isfilterLoaded = true;
         }
       }, (error) {
         print('ERR msg is $error');
         ShowDialogs.showToast("Server Not Responding");
-        Navigator.of(_keyLoader.currentContext).pop();
+        isfilterLoaded = true;
+        //  Navigator.of(_keyLoader.currentContext).pop();
       }, jsonval: json);
     } else {
+      isfilterLoaded = true;
       ShowDialogs.showToast("Please check internet connection");
     }
   }

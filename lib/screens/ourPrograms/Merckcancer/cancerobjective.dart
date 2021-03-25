@@ -59,12 +59,13 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 1,
-                      )));
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 1,
+          //             )));
+          Navigator.pop(context);
         },
         index: 2,
         title: "Our Programs",
@@ -125,13 +126,13 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                           tabs: tabs,
                           controller: _tabController,
                         ),
-                        Expanded(
-                          flex: 3,
-                          child: TabBarView(
-                              physics: ScrollPhysics(),
-                              controller: _tabController,
-                              children: tablist()),
-                        ),
+                        // Expanded(
+                        //   flex: 3,
+                        //   child: TabBarView(
+                        //       physics: ScrollPhysics(),
+                        //       controller: _tabController,
+                        //       children: tablist()),
+                        // ),
                       ],
                     ),
                   ),
@@ -142,16 +143,16 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 0, left: 0),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Image.asset(
-                "assets/newImages/flowers_footer.png",
-                height: 170,
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(right: 0, left: 0),
+          //   child: Align(
+          //     alignment: Alignment.topRight,
+          //     child: Image.asset(
+          //       "assets/newImages/flowers_footer.png",
+          //       height: 170,
+          //     ),
+          //   ),
+          // ),
           SizedBox(
             height: 10,
           )
@@ -419,6 +420,141 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
     );
   }
 
+  // Widget getcallforapp(BuildContext context) {
+  //   return Stack(
+  //     children: <Widget>[
+  //       GlobalLists.homecallforapp.length <= 0
+  //           ? Container(
+  //               child: Center(child: Text(Constantstring.emptyData)),
+  //             )
+  //           : Padding(
+  //               padding: const EdgeInsets.all(8.0),
+  //               child: Container(
+  //                   //color: Colors.amber,
+  //                   width: SizeConfig.blockSizeHorizontal * 100,
+  //                  // height: 470,
+  //                   color: Colors.white,
+  //                   child: Column(
+  //                     children: [
+  //                       Row(
+  //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                         children: [
+  //                           Expanded(
+  //                               child: Text(
+  //                             expandedName,
+  //                             style: TextStyle(
+  //                                 fontSize: 18,
+  //                                 fontWeight: FontWeight.w700,
+  //                                 color: Colors.black),
+  //                           )),
+  //                           GestureDetector(
+  //                             onTap: () {
+  //                               print("in tap");
+  //                               setState(() {
+  //                                 expandClick = !expandClick;
+  //                               });
+  //                             },
+  //                             child: Image.asset(
+  //                               "assets/newImages/expand_more.png",
+  //                               width: 30,
+  //                               height: 30,
+  //                             ),
+  //                           )
+  //                         ],
+  //                       ),
+  //                       SizedBox(
+  //                         height: 10,
+  //                       ),
+  //                       carouselSlider = CarouselSlider(
+  //                         options: CarouselOptions(
+  //                             autoPlay: false,
+  //                             // aspectRatio: 0.1,
+  //                             enlargeCenterPage: true,
+  //                             enlargeStrategy: CenterPageEnlargeStrategy.height,
+  //                             viewportFraction: 1.0,
+  //                             height: 340,
+  //                             onPageChanged: (index, reason) {
+  //                               setState(() {
+  //                                 _current1 = index;
+  //                               });
+  //                             }),
+  //                         items: GlobalLists.homecallforapp.map((product) {
+  //                           return new Builder(
+  //                             builder: (BuildContext context) {
+  //                               return ListView(
+  //                                 shrinkWrap: true,
+  //                                 physics: ScrollPhysics(),
+  //                                 // crossAxisAlignment: CrossAxisAlignment.center,
+  //                                 children: [
+  //                                   Center(
+  //                                     child: FadeInImage.assetNetwork(
+  //                                       placeholder:
+  //                                           'assets/newImages/placeholder_3.jpg',
+  //                                       image:
+  //                                           GlobalLists.homeCallForAppBaseURL +
+  //                                               product.appImg,
+  //                                       fit: BoxFit.fill,
+  //                                       width: 240,
+  //                                       height: 290,
+  //                                     ),
+  //                                   ),
+  //                                   SizedBox(
+  //                                     height: 10,
+  //                                   ),
+  //                                   Center(
+  //                                     child: Text(product.title,
+  //                                         textAlign: TextAlign.center,
+  //                                         maxLines: 2,
+  //                                         style: TextStyle(
+  //                                           fontSize: 17,
+  //                                         )),
+  //                                   )
+  //                                 ],
+  //                               );
+  //                             },
+  //                           );
+  //                         }).toList(),
+  //                         carouselController: callAppCarouselController,
+  //                       ),
+  //                     ],
+  //                   )),
+  //             ),
+  //       Positioned(
+  //         top: 140,
+  //         child: Container(
+  //           width: MediaQuery.of(context).size.width,
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //             children: <Widget>[
+  //               GestureDetector(
+  //                   onTap: () {
+  //                     goToPrevious();
+  //                   },
+  //                   child: Padding(
+  //                     padding: const EdgeInsets.only(left: 20),
+  //                     child: Icon(
+  //                       Icons.arrow_back_ios,
+  //                       color: Customcolor.text_darkblue,
+  //                     ),
+  //                   )),
+  //               GestureDetector(
+  //                   onTap: () {
+  //                     goToNext();
+  //                   },
+  //                   child: Padding(
+  //                     padding: const EdgeInsets.only(right: 20),
+  //                     child: Icon(
+  //                       Icons.arrow_forward_ios,
+  //                       color: Customcolor.text_darkblue,
+  //                     ),
+  //                   )),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
   Widget getcallforapp(BuildContext context) {
     return Stack(
       children: <Widget>[
@@ -431,36 +567,40 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                 child: Container(
                     //color: Colors.amber,
                     width: SizeConfig.blockSizeHorizontal * 100,
-                    height: 470,
+                    // height: 590,
                     color: Colors.white,
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                                child: Text(
-                              expandedName,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black),
-                            )),
-                            GestureDetector(
-                              onTap: () {
-                                print("in tap");
-                                setState(() {
-                                  expandClick = !expandClick;
-                                });
-                              },
-                              child: Image.asset(
-                                "assets/newImages/expand_more.png",
-                                width: 30,
-                                height: 30,
-                              ),
-                            )
-                          ],
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(10.0),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //     children: [
+                        //       Expanded(
+                        //           child: Text(
+                        //         expandedName,
+                        //         style: TextStyle(
+                        //             fontSize: 18,
+                        //             fontWeight: FontWeight.w700,
+                        //             color: Colors.black),
+                        //       )),
+                        //       GestureDetector(
+                        //         onTap: () {
+                        //           print("in tap");
+                        //           setState(() {
+                        //             expandClick = !expandClick;
+                        //           });
+                        //         },
+                        //         child: Image.asset(
+                        //           "assets/newImages/expand_more.png",
+                        //           width: 30,
+                        //           height: 30,
+                        //         ),
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
+                        //  expandClick ? eventDropdown() : Container(),
                         SizedBox(
                           height: 10,
                         ),
@@ -471,7 +611,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -493,8 +633,8 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                                             GlobalLists.homeCallForAppBaseURL +
                                                 product.appImg,
                                         fit: BoxFit.fill,
-                                        width: 240,
-                                        height: 290,
+                                        width: Constantstring.callimagewidth,
+                                        height: Constantstring.callimageheight,
                                       ),
                                     ),
                                     SizedBox(
@@ -515,6 +655,31 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                           }).toList(),
                           carouselController: callAppCarouselController,
                         ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: 120,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Center(
+                                  child: Text(
+                                    "View All",
+                                    style: TextStyle(
+                                        color: Customcolor.colorBlue,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     )),
               ),
@@ -527,7 +692,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
               children: <Widget>[
                 GestureDetector(
                     onTap: () {
-                      goToPrevious();
+                      goTocallPrevious();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
@@ -538,7 +703,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                     )),
                 GestureDetector(
                     onTap: () {
-                      goToNext();
+                      goTocallNext();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 20),
@@ -553,6 +718,16 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
         ),
       ],
     );
+  }
+
+  goTocallPrevious() {
+    callAppCarouselController.previousPage(
+        duration: Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  goTocallNext() {
+    callAppCarouselController.nextPage(
+        duration: Duration(milliseconds: 300), curve: Curves.decelerate);
   }
 
   Widget getdigitallib(BuildContext context) {

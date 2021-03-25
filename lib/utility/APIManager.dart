@@ -269,7 +269,7 @@ class APIManager {
     var uri =
         Uri.http('merckfoundation.org', '/mfindia/web/public/api/$encoding');
     final response = await ioClient.get(uri);
-
+    print(uri.toString());
     if (response.statusCode == 401) {
     } else if (response.statusCode == 200) {
       return response;
@@ -292,841 +292,860 @@ class APIManager {
   static String ambasadarimageapi = baseURL + "ambassadors_view_more_image_mob";
   static String homeurl = "program_page_api/home/Android/1";
   static String mmtmprogramurl =
-      "MMTM_Program_Api/merck-more-than-a-mother/Android/1";
+      "MMTM_Program_Api/merck-foundation-more-than-a-mother/Android/1";
   static String merckcancerprogramurl =
-      "MainProgramPageApi/merck-cancer-access-program/Android/1";
+      "MainProgramPageApi/merck-foundation-cancer-access-program/Android/1";
   static String merckcapabilityprogram =
-      "MainProgramPageApi/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/Android/1";
+      "MainProgramPageApi/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program/Android/1";
 
   static String merckstemprogram =
-      "MainProgramPageApi/merck-stem-program/Android/1";
+      "MainProgramPageApi/merck-foundation-stem-program/Android/1";
   static String merckfirstladies =
       "MainProgramPageApi/merck-foundation-first-ladies-initiative-summit/Android/1";
   static String merckafricaasialuminar =
-      "MainProgramPageApi/merck-africa-asia-luminary/Android/1";
+      "MainProgramPageApi/merck-foundation-africa-asia-luminary/Android/1";
   static String mercksubstaition =
       "MainProgramPageApi/merck-foundation-sustainability-initiative/Android/1";
   static String merckeducatinglinda =
-      "MainProgramPageApi/educating-linda-program/Android/1";
+      "MainProgramPageApi/merck-foundation-educating-linda-program/Android/1";
   static String empoweringberna =
       "SubProgramPageApi/empowering-berna/Android/1";
   static String fertilityprogram =
-      "SubProgramPageApi/merck-fertility-and-embryology-training-program/Android/1";
+      "SubProgramPageApi/merck-foundation-fertility-and-embryology-training-program/Android/1";
   static String subproaboutmmtm =
       "SubProgramPageApi/about-merck-more-than-a-mother/Android/1";
   static String subprogramstrategy = "SubProgramPageApi/strategy/Android/1";
   static String subprogrammmtmambasadar =
-      "SubProgramPageApi/merck-more-than-a-mother-ambassadors/Android/1";
+      "SubProgramPageApi/merck-foundation-more-than-a-mother-ambassadors/Android/1";
   static String subprogramcommunityawareness =
       "SubProgramPageApi/community-awareness-and-awards-program/Android/1";
   static String subprogramlocalsong =
       "SubProgramPageApi/local-songs-and-children-stories/Android/1";
   static String subprocancerobjtive = "SubProgramPageApi/objectives/Android/1";
   static String subprofellowship =
-      "SubProgramPageApi/merck-oncology-fellowship-program/Android/1";
+      "SubProgramPageApi/merck-foundation-oncology-fellowship-program/Android/1";
   static String subprocancerpatient =
-      "SubProgramPageApi/merck-more-than-a-patient/Android/1";
+      "SubProgramPageApi/merck-foundation-more-than-a-patient/Android/1";
   static String subprocancercommunityawareness =
-      "SubProgramPageApi/merck-community-awareness/Android/1";
+      "SubProgramPageApi/merck-foundation-community-awareness/Android/1";
   Future<String> apiEndPoint(API api) async {
     var apiPathString = "";
-    if (Platform.isAndroid) {
-      // Android-specific code
-      print("This is android");
-      switch (api) {
-        case API.vision:
-          apiPathString = "show/vision/13/Android/1";
-          break;
-
-        case API.legaldisclaimer:
-          apiPathString = "show/legal-disclaimer/13/Android/1";
-          break;
-
-        case API.ourmission:
-          apiPathString = "show/mission/13/Android/1";
-          break;
-
-        case API.ourActivities:
-          apiPathString =
-              "media_and_events_sorting/our-activities/23/Android/1";
-          //"show/our-activities/23/Android/1";
-          break;
-
-        case API.ourActivitiesObjectives:
-          apiPathString = "show/our-activities/13/Android/1";
-          break;
-
-        case API.ourPolicies:
-          apiPathString = "show/our-policies/13/Android/1";
-          break;
-
-        case API.leadershipTeam:
-          apiPathString = "show/message-from-leadership-team/13/Android/1";
-          break;
-
-        case API.leadership:
-          apiPathString = "leaders/leadership/19/Android/1";
-          //"show/leadership/19/Android/1";
-          break;
-
-        case API.dataPrivacy:
-          apiPathString = "show/data-privacy/13/Android/1";
-          break;
-
-        case API.newsRelease:
-          apiPathString = "media_and_events_sorting/news-releases/16/Android/1";
-          // "show/news-releases/16/Android/1";
-          break;
-        case API.newsletters:
-          apiPathString =
-              "media_and_events_sorting/newsletters-and-articles/23/Android/1";
-          // "show/newsletters-and-articles/23/Android/1";
-          break;
-        case API.merckfoundationinmedia:
-          apiPathString =
-              "media_and_events_sorting/merck-foundation-in-media/20/Android/1";
-          //"show/merck-foundation-in-media/20/Android/1";
-          break;
-        case API.callforapplication:
-          apiPathString =
-              "media_and_events_sorting/call-for-application/9/Android/1";
-          //"call_for_app/call-for-application/9";
-          break;
-        case API.videoLibrary:
-          apiPathString = "media_and_events_sorting/video-library/14/Android/1";
-          // "show/Video-Library/14/Android/1";
-          break;
-
-        case API.ourPartner:
-          apiPathString = "media_and_events_sorting/our-partners/17/Android/1";
-          //"show/our-partners/17/Android/1";
-          break;
-
-        case API.ourPartnerObjectives:
-          apiPathString = "media_and_events_sorting/our-partners/13/Android/1";
-          //"show/our-partners/13/Android/1";
-          break;
-        case API.getStories:
-          apiPathString = "show/stories/14/Android/1";
-          break;
-
-        case API.merckTestimonial:
-          apiPathString =
-              "media_and_events_sorting/merck-foundation-alumnis-testimonies/14/Android/1";
-          // "show/merck-foundation-alumnis-testimonies/14/Android/1";
-          break;
-        case API.strategy:
-          apiPathString = "show/strategy/13/Android/1";
-          break;
-        case API.firstladiesinitiative:
-          apiPathString =
-              "show/merck-foundation-first-ladies-initiative-summit/13/Android/1";
-          break;
-        case API.mmtmprogram:
-          apiPathString = "MMTM_Videos_list/merck-more-than-a-mother/Android/1";
-          break;
-        case API.empoweringbernacontent:
-          apiPathString = "show/empowering-berna/13/Android/1";
-          break;
-        case API.empoweringbernavideo:
-          apiPathString = "show/empowering-berna/14/Android/1";
-          break;
-
-        case API.merckmotherSlider:
-          apiPathString = "show/merck-more-than-a-mother/5/Android/1";
-          break;
-
-        case API.merckmotherContent:
-          apiPathString = "show/merck-more-than-a-mother/13/Android/1";
-          break;
-
-        case API.merckmotherVideos:
-          apiPathString = "show/merck-more-than-a-mother/14/Android/1";
-          break;
-
-        case API.merckmotherLatestUpdates:
-          apiPathString = "show/merck-more-than-a-mother/23/Android/1";
-          break;
-
-        case API.merckmotherCallApplication:
-          apiPathString = "show/merck-more-than-a-mother/9/Android/1";
-          break;
-
-        case API.merckmotherDigitalLib:
-          apiPathString = "show/merck-more-than-a-mother/22/Android/1";
-          break;
-
-        case API.merckmotherMedia:
-          apiPathString = "show/merck-more-than-a-mother/20/Android/1";
-          break;
-
-        case API.merckmotherTestimonial:
-          apiPathString = "show/merck-more-than-a-mother/18/Android/1";
-          break;
-
-        case API.merckFertilityContent:
-          apiPathString =
-              "show/merck-fertility-and-embryology-training-program/13/Android/1";
-          break;
-
-        case API.merckFertilityVideos:
-          apiPathString =
-              "show/merck-fertility-and-embryology-training-program/14/Android/1";
-          break;
-
-        case API.merckFertilityTestimonials:
-          apiPathString =
-              "show/merck-fertility-and-embryology-training-program/18/Android/1";
-          break;
-
-        case API.merckLocalSongsContent:
-          apiPathString = "show/local-songs-and-children-stories/13/Android/1";
-          break;
-
-        case API.merckLocalSongsVideos:
-          apiPathString = "show/local-songs-and-children-stories/14/Android/1";
-          break;
-
-        case API.merckLocalDigital:
-          apiPathString = "show/local-songs-and-children-stories/22/Android/1";
-          break;
-
-        case API.merckAboutContent:
-          apiPathString = "show/about-merck-more-than-a-mother/13/Android/1";
-          break;
-
-        case API.merckAboutVideos:
-          apiPathString = "show/about-merck-more-than-a-mother/14/Android/1";
-          break;
-
-        case API.countrylist:
-          apiPathString = "getCountryList/1";
-          break;
-        case API.categoryList:
-          apiPathString = "getCategoryList/1";
-          break;
-        case API.ouraward:
-          apiPathString = "show/home/11/Android/1";
-          break;
-        case API.filterlist:
-          apiPathString = "filter_data";
-          break;
-        case API.ourawarddetail:
-          apiPathString = "merck_awards";
-          break;
-        case API.testiomonailpro:
-          apiPathString = "merck_testimonials";
-          break;
-        case API.ourgallerydetail:
-          apiPathString = "mob_event_gallery";
-          break;
-        case API.programgalleryeducting:
-          apiPathString = "ProgramGallery/educating-linda-program/1";
-          break;
-        case API.programgallerymmtm:
-          apiPathString = "ProgramGallery/merck-more-than-a-mother/1";
-          break;
-        case API.programgallerycapacity:
-          apiPathString =
-              "ProgramGallery/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
-          break;
-        case API.programgalleryfirstladey:
-          apiPathString =
-              "ProgramGallery/merck-foundation-first-ladies-initiative-summit/1";
-          break;
-        case API.programgallerystem:
-          apiPathString = "ProgramGallery/merck-stem-program/1";
-          break;
-        case API.programgallerysubstain:
-          apiPathString =
-              "ProgramGallery/merck-foundation-sustainability-initiative/1";
-          break;
-        case API.programgalleryafrica:
-          apiPathString = "ProgramGallery/merck-africa-asia-luminary/1";
-          break;
-        case API.watchvideommtm:
-          apiPathString = "watch_program_videos/merck-more-than-a-mother/1";
-          break;
-        case API.watchvideocancer:
-          apiPathString = "watch_program_videos/merck-cancer-access-program/1";
-          break;
-        case API.watchvideocapacity:
-          apiPathString =
-              "watch_program_videos/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
-          break;
-        case API.watchvideosubstain:
-          apiPathString =
-              "watch_program_videos/merck-foundation-sustainability-initiative/1";
-          break;
-        case API.watchvdeoducation:
-          apiPathString = "watch_program_videos/educating-linda-program/1";
-          break;
-        case API.watchvideofirstlady:
-          apiPathString =
-              "watch_program_videos/merck-foundation-first-ladies-initiative-summit/1";
-          break;
-        case API.watchvideoafrica:
-          apiPathString = "watch_program_videos/merck-africa-asia-luminary/1";
-
-          break;
-        case API.watchvideostem:
-          apiPathString = "watch_program_videos/merck-stem-program/1";
-          break;
-
-        case API.digitalmmtm:
-          apiPathString = "digital_library/merck-more-than-a-mother/1";
-          break;
-        case API.digitalhome:
-          apiPathString = "digital_library/Home/1";
-          break;
-
-        case API.digitalcancer:
-          apiPathString = "digital_library/merck-cancer-access-program/1";
-          break;
-        case API.digitalcapacity:
-          apiPathString =
-              "digital_library/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
-          break;
-
-        case API.digitalfirstlady:
-          apiPathString =
-              "digital_library/merck-foundation-first-ladies-initiative-summit/1";
-          break;
-        case API.digitalstem:
-          apiPathString = "digital_library/merck-stem-program/1";
-
-          break;
-        case API.digitaleducting:
-          apiPathString = "digital_library/educating-linda-program/1";
-
-          break;
-        case API.digitalsubstain:
-          apiPathString =
-              "digital_library/merck-foundation-sustainability-initiative/1";
-
-          break;
-        case API.digitalafrica:
-          apiPathString = "digital_library/merck-africa-asia-luminary/1";
-
-          break;
-        case API.watchhomemmtm:
-          apiPathString = "show_mmtm_gallery/home/1";
-
-          break;
-        case API.watchprogrammmtm:
-          apiPathString = "show_mmtm_gallery/merck-more-than-a-mother/1";
-
-          break;
-        case API.watchfirstladymmtm:
-          apiPathString =
-              "show_mmtm_gallery/merck-foundation-first-ladies-initiative-summit/1";
-
-          break;
-        case API.watchmediprogrammmtm:
-          apiPathString = "read_merck_media/merck-more-than-a-mother/1";
-
-          break;
-        case API.watchmediaprogramcancer:
-          apiPathString = "read_merck_media/merck-cancer-access-program/1";
-
-          break;
-        case API.watchmorelatestupmmtm:
-          apiPathString = "read_latest_updates/merck-more-than-a-mother/1";
-
-          break;
-        case API.watchmorelatestupcancer:
-          apiPathString = "read_latest_updates/merck-cancer-access-program/1";
-
-          break;
-        case API.watchmorelatestupstem:
-          apiPathString = "read_latest_updates/merck-stem-program/1";
-
-          break;
-        case API.watchmorelatestupafrica:
-          apiPathString = "read_latest_updates/merck-africa-asia-luminary/1";
-
-          break;
-
-        case API.watchmoretestimonialcancer:
-          apiPathString =
-              "merck_testimonials_list/merck-cancer-access-program/1";
-
-          break;
-        case API.watchmoretestimonialcapacity:
-          apiPathString =
-              "merck_testimonials_list/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
-
-          break;
-        case API.watchmoretestimonialmmtm:
-          apiPathString = "merck_testimonials_list/merck-more-than-a-mother/1";
-
-          break;
-
-        case API.watchvideoaboutmmtm:
-          apiPathString =
-              "watch_program_videos/about-merck-more-than-a-mother/1";
-
-          break;
-        case API.watchvideoempoweringberna:
-          apiPathString = "watch_program_videos/empowering-berna/1";
-
-          break;
-        case API.watchvideolocalsong:
-          apiPathString =
-              "watch_program_videos/local-songs-and-children-stories/1";
-
-          break;
-        case API.watchvideofertility:
-          apiPathString =
-              "watch_program_videos/merck-fertility-and-embryology-training-program/1";
-
-          break;
-
-        case API.watchcallhome:
-          apiPathString = "read_call_for_app/Home/1";
-
-          break;
-        case API.watchcallmmtm:
-          apiPathString = "read_call_for_app/merck-more-than-a-mother/1";
-
-          break;
-        case API.watchcallstem:
-          apiPathString = "read_call_for_app/merck-stem-program/1";
-
-          break;
-        case API.watchcallafrica:
-          apiPathString = "read_call_for_app/merck-africa-asia-luminary/1";
-
-          break;
-
-        case API.merckoverview:
-          apiPathString = "merck_foundation_over_view";
-
-          break;
-
-        case API.viewallceomessagerasha:
-          apiPathString = "all_ceo_message/home/1";
-          break;
-
-        case API.stemprogramlist:
-          apiPathString = "get_luminary_pages/merck-stem-program/1";
-          break;
-        case API.covidvideo:
-          apiPathString = "covid_videos/1";
-          break;
-        case API.covidnews:
-          apiPathString = "covid_news/1";
-          break;
-
-        case API.yearwisegallery:
-          apiPathString = "year_wise_gallery/1";
-          break;
-        case API.africaprogramlist:
-          apiPathString = "get_luminary_pages/merck-africa-asia-luminary/1";
-          break;
-        default:
-          apiPathString = "";
-      }
-      print(apiBaseURL());
-    } else if (Platform.isIOS) {
-      // iOS-specific code
-      print("This is ios");
-      switch (api) {
-        case API.vision:
-          apiPathString = "show/vision/13/IOS/1";
-          break;
-
-        case API.legaldisclaimer:
-          apiPathString = "show/legal-disclaimer/13/IOS/1";
-          break;
-
-        case API.ourmission:
-          apiPathString = "show/mission/13/IOS/1";
-          break;
-
-        case API.ourActivities:
-          apiPathString = "media_and_events_sorting/our-activities/23/IOS/1";
-          //"show/our-activities/23/IOS/1";
-          break;
-
-        case API.ourActivitiesObjectives:
-          apiPathString = "show/our-activities/13/IOS/1";
-          break;
-
-        case API.ourPolicies:
-          apiPathString = "show/our-policies/13/IOS/1";
-          break;
-
-        case API.leadershipTeam:
-          apiPathString = "show/message-from-leadership-team/13/IOS/1";
-          break;
-
-        case API.leadership:
-          apiPathString = "leaders/leadership/19/IOS/1";
-          //"show/leadership/19/IOS/1";
-          break;
-
-        case API.dataPrivacy:
-          apiPathString = "show/data-privacy/13/IOS/1";
-          break;
-
-        case API.newsRelease:
-          apiPathString = "media_and_events_sorting/news-releases/16/IOS/1";
-          //"show/news-releases/16/IOS/1";
-          break;
-        case API.newsletters:
-          apiPathString =
-              "media_and_events_sorting/newsletters-and-articles/23/IOS/1";
-          // "show/newsletters-and-articles/23/IOS/1";
-          break;
-        case API.merckfoundationinmedia:
-          apiPathString =
-              "media_and_events_sorting/merck-foundation-in-media/20/IOS/1";
-          //"show/merck-foundation-in-media/20/IOS/1";
-          break;
-        case API.callforapplication:
-          apiPathString =
-              "media_and_events_sorting/call-for-application/9/IOS/1";
-          //"call_for_app/call-for-application/9";
-          break;
-        case API.videoLibrary:
-          apiPathString = "/media_and_events_sorting/video-library/14/IOS/1";
-          //"show/Video-Library/14/IOS/1";
-          break;
-
-        case API.ourPartner:
-          apiPathString = "media_and_events_sorting/our-partners/17/IOS/1";
-          //"show/our-partners/17/IOS/1";
-          break;
-
-        case API.ourPartnerObjectives:
-          apiPathString = "media_and_events_sorting/our-partners/13/IOS/1";
-          // "show/our-partners/13/IOS/1";
-          break;
-
-        case API.getStories:
-          apiPathString = "media_and_events_sorting/stories/14/Android/1";
-          //"show/stories/14/IOS/1";
-          break;
-
-        case API.merckTestimonial:
-          apiPathString =
-              "media_and_events_sorting/merck-foundation-alumnis-testimonies/14/IOS/1";
-          break;
-
-        case API.strategy:
-          apiPathString = "show/strategy/13/IOS/1";
-          break;
-        case API.firstladiesinitiative:
-          apiPathString =
-              "show/merck-foundation-first-ladies-initiative-summit/13/IOS/1";
-          break;
-        case API.mmtmprogram:
-          apiPathString = "MMTM_Videos_list/merck-more-than-a-mother/IOS/1";
-          break;
-
-        case API.empoweringbernacontent:
-          apiPathString = "show/empowering-berna/13/IOS/1";
-          break;
-        case API.empoweringbernavideo:
-          apiPathString = "show/empowering-berna/14/IOS/1";
-          break;
-
-        case API.merckmotherSlider:
-          apiPathString = "show/merck-more-than-a-mother/5/IOS/1";
-          break;
-
-        case API.merckmotherContent:
-          apiPathString = "show/merck-more-than-a-mother/13/IOS/1";
-          break;
-
-        case API.merckmotherVideos:
-          apiPathString = "show/merck-more-than-a-mother/14/IOS/1";
-          break;
-
-        case API.merckmotherLatestUpdates:
-          apiPathString = "show/merck-more-than-a-mother/23/IOS/1";
-          break;
-
-        case API.merckmotherCallApplication:
-          apiPathString = "show/merck-more-than-a-mother/9/IOS/1";
-          break;
-
-        case API.merckmotherDigitalLib:
-          apiPathString = "show/merck-more-than-a-mother/22/IOS/1";
-          break;
-
-        case API.merckmotherMedia:
-          apiPathString = "show/merck-more-than-a-mother/20/IOS/1";
-          break;
-
-        case API.merckmotherTestimonial:
-          apiPathString = "show/merck-more-than-a-mother/18/IOS/1";
-          break;
-
-        case API.merckFertilityContent:
-          apiPathString =
-              "show/merck-fertility-and-embryology-training-program/13/IOS/1";
-          break;
-
-        case API.merckFertilityVideos:
-          apiPathString =
-              "show/merck-fertility-and-embryology-training-program/14/IOS/1";
-          break;
-
-        case API.merckFertilityTestimonials:
-          apiPathString =
-              "show/merck-fertility-and-embryology-training-program/18/IOS/1";
-          break;
-
-        case API.merckLocalSongsContent:
-          apiPathString = "media_and_events_sorting/stories/14/IOS/1";
-          //"show/local-songs-and-children-stories/13/IOS/1";
-          break;
-
-        case API.merckLocalSongsVideos:
-          apiPathString = "show/local-songs-and-children-stories/14/IOS/1";
-          break;
-
-        case API.merckLocalDigital:
-          apiPathString = "show/local-songs-and-children-stories/22/IOS/1";
-          break;
-
-        case API.merckAboutContent:
-          apiPathString = "show/about-merck-more-than-a-mother/13/IOS/1";
-          break;
-
-        case API.merckAboutVideos:
-          apiPathString = "show/about-merck-more-than-a-mother/14/IOS/1";
-          break;
-
-        case API.countrylist:
-          apiPathString = "getCountryList/1";
-          break;
-        case API.categoryList:
-          apiPathString = "getCategoryList/1";
-          break;
-        case API.ouraward:
-          apiPathString = "show/home/11/IOS/1";
-          break;
-        case API.filterlist:
-          apiPathString = "filter_data";
-          break;
-        case API.ourawarddetail:
-          apiPathString = "merck_awards";
-          break;
-        case API.testiomonailpro:
-          apiPathString = "merck_testimonials";
-          break;
-        case API.ourgallerydetail:
-          apiPathString = "mob_event_gallery";
-          break;
-        case API.programgalleryeducting:
-          apiPathString = "ProgramGallery/educating-linda-program/1";
-          break;
-        case API.programgallerymmtm:
-          apiPathString = "ProgramGallery/merck-more-than-a-mother/1";
-          break;
-        case API.programgallerycapacity:
-          apiPathString =
-              "ProgramGallery/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
-          break;
-        case API.programgalleryfirstladey:
-          apiPathString =
-              "ProgramGallery/merck-foundation-first-ladies-initiative-summit/1";
-          break;
-        case API.programgallerystem:
-          apiPathString = "ProgramGallery/merck-stem-program/1";
-          break;
-        case API.programgallerysubstain:
-          apiPathString =
-              "ProgramGallery/merck-foundation-sustainability-initiative/1";
-          break;
-        case API.programgalleryafrica:
-          apiPathString = "ProgramGallery/merck-africa-asia-luminary/1";
-          break;
-
-        case API.watchvideommtm:
-          apiPathString = "watch_program_videos/merck-more-than-a-mother/1";
-          break;
-        case API.watchvideocancer:
-          apiPathString = "watch_program_videos/merck-cancer-access-program/1";
-          break;
-        case API.watchvideocapacity:
-          apiPathString =
-              "watch_program_videos/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
-          break;
-        case API.watchvideosubstain:
-          apiPathString =
-              "watch_program_videos/merck-foundation-sustainability-initiative/1";
-          break;
-        case API.watchvdeoducation:
-          apiPathString = "watch_program_videos/educating-linda-program/1";
-          break;
-        case API.watchvideofirstlady:
-          apiPathString =
-              "watch_program_videos/merck-foundation-first-ladies-initiative-summit/1";
-          break;
-        case API.watchvideoafrica:
-          apiPathString = "watch_program_videos/merck-africa-asia-luminary/1";
-
-          break;
-        case API.watchvideostem:
-          apiPathString = "watch_program_videos/merck-stem-program/1";
-
-          break;
-        case API.digitalmmtm:
-          apiPathString = "digital_library/merck-more-than-a-mother/1";
-          break;
-        case API.digitalhome:
-          apiPathString = "digital_library/Home/1";
-          break;
-
-        case API.digitalcancer:
-          apiPathString = "digital_library/merck-cancer-access-program/1";
-          break;
-        case API.digitalcapacity:
-          apiPathString =
-              "digital_library/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
-          break;
-
-        case API.digitalfirstlady:
-          apiPathString =
-              "digital_library/merck-foundation-first-ladies-initiative-summit/1";
-          break;
-        case API.digitalstem:
-          apiPathString = "digital_library/merck-stem-program/1";
-
-          break;
-        case API.digitaleducting:
-          apiPathString = "digital_library/educating-linda-program/1";
-
-          break;
-        case API.digitalsubstain:
-          apiPathString =
-              "digital_library/merck-foundation-sustainability-initiative/1";
-
-          break;
-        case API.digitalafrica:
-          apiPathString = "digital_library/merck-africa-asia-luminary/1";
-
-          break;
-
-        case API.watchhomemmtm:
-          apiPathString = "show_mmtm_gallery/home/1";
-
-          break;
-        case API.watchprogrammmtm:
-          apiPathString = "show_mmtm_gallery/merck-more-than-a-mother/1";
-
-          break;
-        case API.watchfirstladymmtm:
-          apiPathString =
-              "show_mmtm_gallery/merck-foundation-first-ladies-initiative-summit/1";
-
-          break;
-        case API.watchmediprogrammmtm:
-          apiPathString = "read_merck_media/merck-more-than-a-mother/1";
-
-          break;
-        case API.watchmediaprogramcancer:
-          apiPathString = "read_merck_media/merck-cancer-access-program/1";
-
-          break;
-        case API.watchmorelatestupmmtm:
-          apiPathString = "read_latest_updates/merck-more-than-a-mother/1";
-
-          break;
-        case API.watchmorelatestupcancer:
-          apiPathString = "read_latest_updates/merck-cancer-access-program/1";
-
-          break;
-        case API.watchmorelatestupstem:
-          apiPathString = "read_latest_updates/merck-stem-program/1";
-
-          break;
-        case API.watchmorelatestupafrica:
-          apiPathString = "read_latest_updates/merck-africa-asia-luminary/1";
-
-          break;
-
-        case API.watchmoretestimonialcancer:
-          apiPathString =
-              "merck_testimonials_list/merck-cancer-access-program/1";
-
-          break;
-        case API.watchmoretestimonialcapacity:
-          apiPathString =
-              "merck_testimonials_list/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
-
-          break;
-        case API.watchmoretestimonialmmtm:
-          apiPathString = "merck_testimonials_list/merck-more-than-a-mother/1";
-
-          break;
-        case API.watchvideoaboutmmtm:
-          apiPathString =
-              "watch_program_videos/about-merck-more-than-a-mother/1";
-
-          break;
-        case API.watchvideoempoweringberna:
-          apiPathString = "watch_program_videos/empowering-berna/1";
-
-          break;
-        case API.watchvideolocalsong:
-          apiPathString =
-              "watch_program_videos/local-songs-and-children-stories/1";
-
-          break;
-        case API.watchvideofertility:
-          apiPathString =
-              "watch_program_videos/merck-fertility-and-embryology-training-program/1";
-
-          break;
-
-        case API.watchcallhome:
-          apiPathString = "read_call_for_app/Home/1";
-
-          break;
-        case API.watchcallmmtm:
-          apiPathString = "read_call_for_app/merck-more-than-a-mother/1";
-
-          break;
-        case API.watchcallstem:
-          apiPathString = "read_call_for_app/merck-stem-program/1";
-
-          break;
-        case API.watchcallafrica:
-          apiPathString = "read_call_for_app/merck-africa-asia-luminary/1";
-
-          break;
-        case API.merckoverview:
-          apiPathString = "merck_foundation_over_view";
-
-          break;
-        case API.viewallceomessagerasha:
-          apiPathString = "all_ceo_message/home/1";
-          break;
-        case API.stemprogramlist:
-          apiPathString = "get_luminary_pages/merck-stem-program/1";
-          break;
-        case API.covidvideo:
-          apiPathString = "covid_videos/1";
-          break;
-        case API.covidnews:
-          apiPathString = "covid_news/1";
-          break;
-        case API.yearwisegallery:
-          apiPathString = "year_wise_gallery/1";
-          break;
-        case API.africaprogramlist:
-          apiPathString = "get_luminary_pages/merck-africa-asia-luminary/1";
-          break;
-        default:
-          apiPathString = "";
-      }
-      print(apiBaseURL());
+    //  if (Platform.isAndroid) {
+    // Android-specific code
+    print("This is android");
+    switch (api) {
+      case API.vision:
+        apiPathString = "show/vision/13/Android/1";
+        break;
+
+      case API.legaldisclaimer:
+        apiPathString = "show/legal-disclaimer/13/Android/1";
+        break;
+
+      case API.ourmission:
+        apiPathString = "show/mission/13/Android/1";
+        break;
+
+      case API.ourActivities:
+        apiPathString = "media_and_events_sorting/our-activities/23/Android/1";
+        //"show/our-activities/23/Android/1";
+        break;
+
+      case API.ourActivitiesObjectives:
+        apiPathString = "show/our-activities/13/Android/1";
+        break;
+
+      case API.ourPolicies:
+        apiPathString = "show/our-policies/13/Android/1";
+        break;
+
+      case API.leadershipTeam:
+        apiPathString = "show/message-from-leadership-team/13/Android/1";
+        break;
+
+      case API.leadership:
+        apiPathString = "leaders/leadership/19/Android/1";
+        //"show/leadership/19/Android/1";
+        break;
+
+      case API.dataPrivacy:
+        apiPathString = "show/data-privacy/13/Android/1";
+        break;
+
+      case API.newsRelease:
+        apiPathString = "media_and_events_sorting/news-releases/16/Android/1";
+        // "show/news-releases/16/Android/1";
+        break;
+      case API.newsletters:
+        apiPathString =
+            "media_and_events_sorting/newsletters-and-articles/23/Android/1";
+        // "show/newsletters-and-articles/23/Android/1";
+        break;
+      case API.merckfoundationinmedia:
+        apiPathString =
+            "media_and_events_sorting/merck-foundation-in-media/20/Android/1";
+        //"show/merck-foundation-in-media/20/Android/1";
+        break;
+      case API.callforapplication:
+        apiPathString =
+            "media_and_events_sorting/call-for-applications/9/Android/1";
+        //"call_for_app/call-for-application/9";
+        break;
+      case API.videoLibrary:
+        apiPathString = "media_and_events_sorting/video-library/14/Android/1";
+        // "show/Video-Library/14/Android/1";
+        break;
+
+      case API.ourPartner:
+        apiPathString = "media_and_events_sorting/our-partners/17/Android/1";
+        //"show/our-partners/17/Android/1";
+        break;
+
+      case API.ourPartnerObjectives:
+        apiPathString = "media_and_events_sorting/our-partners/13/Android/1";
+        //"show/our-partners/13/Android/1";
+        break;
+      case API.getStories:
+        apiPathString = "show/stories/14/Android/1";
+        break;
+
+      case API.merckTestimonial:
+        apiPathString =
+            "media_and_events_sorting/merck-foundation-alumni-testimonials/14/Android/1";
+        // "show/merck-foundation-alumnis-testimonies/14/Android/1";
+
+        break;
+      case API.strategy:
+        apiPathString = "show/strategy/13/Android/1";
+        break;
+      case API.firstladiesinitiative:
+        apiPathString =
+            "show/merck-foundation-first-ladies-initiative-summit/13/Android/1";
+        break;
+      case API.mmtmprogram:
+        apiPathString =
+            "MMTM_Videos_list/merck-foundation-more-than-a-mother/Android/1";
+        break;
+      case API.empoweringbernacontent:
+        apiPathString = "show/empowering-berna/13/Android/1";
+        break;
+      case API.empoweringbernavideo:
+        apiPathString = "show/empowering-berna/14/Android/1";
+        break;
+
+      case API.merckmotherSlider:
+        apiPathString = "show/merck-foundation-more-than-a-mother/5/Android/1";
+        break;
+
+      case API.merckmotherContent:
+        apiPathString = "show/merck-foundation-more-than-a-mother/13/Android/1";
+        break;
+
+      case API.merckmotherVideos:
+        apiPathString = "show/merck-foundation-more-than-a-mother/14/Android/1";
+        break;
+
+      case API.merckmotherLatestUpdates:
+        apiPathString = "show/merck-foundation-more-than-a-mother/23/Android/1";
+        break;
+
+      case API.merckmotherCallApplication:
+        apiPathString = "show/merck-foundation-more-than-a-mother/9/Android/1";
+        break;
+
+      case API.merckmotherDigitalLib:
+        apiPathString = "show/merck-foundation-more-than-a-mother/22/Android/1";
+        break;
+
+      case API.merckmotherMedia:
+        apiPathString = "show/merck-foundation-more-than-a-mother/20/Android/1";
+        break;
+
+      case API.merckmotherTestimonial:
+        apiPathString = "show/merck-foundation-more-than-a-mother/18/Android/1";
+        break;
+
+      case API.merckFertilityContent:
+        apiPathString =
+            "show/merck-foundation-fertility-and-embryology-training-program/13/Android/1";
+        break;
+
+      case API.merckFertilityVideos:
+        apiPathString =
+            "show/merck-foundation-fertility-and-embryology-training-program/14/Android/1";
+        break;
+
+      case API.merckFertilityTestimonials:
+        apiPathString =
+            "show/merck-foundation-fertility-and-embryology-training-program/18/Android/1";
+        break;
+
+      case API.merckLocalSongsContent:
+        apiPathString = "show/local-songs-and-children-stories/13/Android/1";
+        break;
+
+      case API.merckLocalSongsVideos:
+        apiPathString = "show/local-songs-and-children-stories/14/Android/1";
+        break;
+
+      case API.merckLocalDigital:
+        apiPathString = "show/local-songs-and-children-stories/22/Android/1";
+        break;
+
+      case API.merckAboutContent:
+        apiPathString = "show/about-merck-more-than-a-mother/13/Android/1";
+        break;
+
+      case API.merckAboutVideos:
+        apiPathString = "show/about-merck-more-than-a-mother/14/Android/1";
+        break;
+
+      case API.countrylist:
+        apiPathString = "getCountryList/1";
+        break;
+      case API.categoryList:
+        apiPathString = "getCategoryList/1";
+        break;
+      case API.ouraward:
+        apiPathString = "show/home/11/Android/1";
+        break;
+      case API.filterlist:
+        apiPathString = "filter_data";
+        break;
+      case API.ourawarddetail:
+        apiPathString = "merck_awards";
+        break;
+      case API.testiomonailpro:
+        apiPathString = "merck_testimonials";
+        break;
+      case API.ourgallerydetail:
+        apiPathString = "mob_event_gallery";
+        break;
+      case API.programgalleryeducting:
+        apiPathString =
+            "ProgramGallery/merck-foundation-educating-linda-program/1";
+        break;
+      case API.programgallerymmtm:
+        apiPathString = "ProgramGallery/merck-foundation-more-than-a-mother/1";
+        break;
+      case API.programgallerycapacity:
+        apiPathString =
+            "ProgramGallery/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program/1";
+        break;
+      case API.programgalleryfirstladey:
+        apiPathString =
+            "ProgramGallery/merck-foundation-first-ladies-initiative-summit/1";
+        break;
+      case API.programgallerystem:
+        apiPathString = "ProgramGallery/merck-foundation-stem-program/1";
+        break;
+      case API.programgallerysubstain:
+        apiPathString =
+            "ProgramGallery/merck-foundation-sustainability-initiative/1";
+        break;
+      case API.programgalleryafrica:
+        apiPathString =
+            "ProgramGallery/merck-foundation-africa-asia-luminary/1";
+        break;
+      case API.watchvideommtm:
+        apiPathString =
+            "watch_program_videos/merck-foundation-more-than-a-mother/1";
+        break;
+      case API.watchvideocancer:
+        apiPathString =
+            "watch_program_videos/merck-foundation-cancer-access-program/1";
+        break;
+      case API.watchvideocapacity:
+        apiPathString =
+            "watch_program_videos/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program/1";
+        break;
+      case API.watchvideosubstain:
+        apiPathString =
+            "watch_program_videos/merck-foundation-sustainability-initiative/1";
+        break;
+      case API.watchvdeoducation:
+        apiPathString =
+            "watch_program_videos/merck-foundation-educating-linda-program/1";
+        break;
+      case API.watchvideofirstlady:
+        apiPathString =
+            "watch_program_videos/merck-foundation-first-ladies-initiative-summit/1";
+        break;
+      case API.watchvideoafrica:
+        apiPathString =
+            "watch_program_videos/merck-foundation-africa-asia-luminary/1";
+
+        break;
+      case API.watchvideostem:
+        apiPathString = "watch_program_videos/merck-foundation-stem-program/1";
+        break;
+
+      case API.digitalmmtm:
+        apiPathString = "digital_library/merck-foundation-more-than-a-mother/1";
+        break;
+      case API.digitalhome:
+        apiPathString = "digital_library/Home/1";
+        break;
+
+      case API.digitalcancer:
+        apiPathString =
+            "digital_library/merck-foundation-cancer-access-program/1";
+        break;
+      case API.digitalcapacity:
+        apiPathString =
+            "digital_library/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program/1";
+        break;
+
+      case API.digitalfirstlady:
+        apiPathString =
+            "digital_library/merck-foundation-first-ladies-initiative-summit/1";
+        break;
+      case API.digitalstem:
+        apiPathString = "digital_library/merck-foundation-stem-program/1";
+
+        break;
+      case API.digitaleducting:
+        apiPathString =
+            "digital_library/merck-foundation-educating-linda-program/1";
+
+        break;
+      case API.digitalsubstain:
+        apiPathString =
+            "digital_library/merck-foundation-sustainability-initiative/1";
+
+        break;
+      case API.digitalafrica:
+        apiPathString =
+            "digital_library/merck-foundation-africa-asia-luminary/1";
+
+        break;
+      case API.watchhomemmtm:
+        apiPathString = "show_mmtm_gallery/home/1";
+
+        break;
+      case API.watchprogrammmtm:
+        apiPathString =
+            "show_mmtm_gallery/merck-foundation-more-than-a-mother/1";
+
+        break;
+      case API.watchfirstladymmtm:
+        apiPathString =
+            "show_mmtm_gallery/merck-foundation-first-ladies-initiative-summit/1";
+
+        break;
+      case API.watchmediprogrammmtm:
+        apiPathString =
+            "read_merck_media/merck-foundation-more-than-a-mother/1";
+
+        break;
+      case API.watchmediaprogramcancer:
+        apiPathString =
+            "read_merck_media/merck-foundation-cancer-access-program/1";
+
+        break;
+      case API.watchmorelatestupmmtm:
+        apiPathString =
+            "read_latest_updates/merck-foundation-more-than-a-mother/1";
+
+        break;
+      case API.watchmorelatestupcancer:
+        apiPathString =
+            "read_latest_updates/merck-foundation-cancer-access-program/1";
+
+        break;
+      case API.watchmorelatestupstem:
+        apiPathString = "read_latest_updates/merck-foundation-stem-program/1";
+
+        break;
+      case API.watchmorelatestupafrica:
+        apiPathString =
+            "read_latest_updates/merck-foundation-africa-asia-luminary/1";
+
+        break;
+
+      case API.watchmoretestimonialcancer:
+        apiPathString =
+            "merck_testimonials_list/merck-foundation-cancer-access-program/1";
+
+        break;
+      case API.watchmoretestimonialcapacity:
+        apiPathString =
+            "merck_testimonials_list/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program/1";
+
+        break;
+      case API.watchmoretestimonialmmtm:
+        apiPathString =
+            "merck_testimonials_list/merck-foundation-more-than-a-mother/1";
+
+        break;
+
+      case API.watchvideoaboutmmtm:
+        apiPathString = "watch_program_videos/about-merck-more-than-a-mother/1";
+
+        break;
+      case API.watchvideoempoweringberna:
+        apiPathString = "watch_program_videos/empowering-berna/1";
+
+        break;
+      case API.watchvideolocalsong:
+        apiPathString =
+            "watch_program_videos/local-songs-and-children-stories/1";
+
+        break;
+      case API.watchvideofertility:
+        apiPathString =
+            "watch_program_videos/merck-foundation-fertility-and-embryology-training-program/1";
+
+        break;
+
+      case API.watchcallhome:
+        apiPathString = "read_call_for_app/Home/1";
+
+        break;
+      case API.watchcallmmtm:
+        apiPathString =
+            "read_call_for_app/merck-foundation-more-than-a-mother/1";
+
+        break;
+      case API.watchcallstem:
+        apiPathString = "read_call_for_app/merck-foundation-stem-program/1";
+
+        break;
+      case API.watchcallafrica:
+        apiPathString =
+            "read_call_for_app/merck-foundation-africa-asia-luminary/1";
+
+        break;
+
+      case API.merckoverview:
+        apiPathString = "merck_foundation_over_view";
+
+        break;
+
+      case API.viewallceomessagerasha:
+        apiPathString = "all_ceo_message/home/1";
+        break;
+
+      case API.stemprogramlist:
+        apiPathString = "get_luminary_pages/merck-foundation-stem-program/1";
+        break;
+      case API.covidvideo:
+        apiPathString = "covid_videos/1";
+        break;
+      case API.covidnews:
+        apiPathString = "covid_news/1";
+        break;
+
+      case API.yearwisegallery:
+        apiPathString = "year_wise_gallery/1";
+        break;
+      case API.africaprogramlist:
+        apiPathString =
+            "get_luminary_pages/merck-foundation-africa-asia-luminary/1";
+        break;
+      default:
+        apiPathString = "";
     }
+    //   print(apiBaseURL());
+    // } else if (Platform.isIOS) {
+    //   // iOS-specific code
+    //   print("This is ios");
+    //   switch (api) {
+    //     case API.vision:
+    //       apiPathString = "show/vision/13/IOS/1";
+    //       break;
+
+    //     case API.legaldisclaimer:
+    //       apiPathString = "show/legal-disclaimer/13/IOS/1";
+    //       break;
+
+    //     case API.ourmission:
+    //       apiPathString = "show/mission/13/IOS/1";
+    //       break;
+
+    //     case API.ourActivities:
+    //       apiPathString = "media_and_events_sorting/our-activities/23/IOS/1";
+    //       //"show/our-activities/23/IOS/1";
+    //       break;
+
+    //     case API.ourActivitiesObjectives:
+    //       apiPathString = "show/our-activities/13/IOS/1";
+    //       break;
+
+    //     case API.ourPolicies:
+    //       apiPathString = "show/our-policies/13/IOS/1";
+    //       break;
+
+    //     case API.leadershipTeam:
+    //       apiPathString = "show/message-from-leadership-team/13/IOS/1";
+    //       break;
+
+    //     case API.leadership:
+    //       apiPathString = "leaders/leadership/19/IOS/1";
+    //       //"show/leadership/19/IOS/1";
+    //       break;
+
+    //     case API.dataPrivacy:
+    //       apiPathString = "show/data-privacy/13/IOS/1";
+    //       break;
+
+    //     case API.newsRelease:
+    //       apiPathString = "media_and_events_sorting/news-releases/16/IOS/1";
+    //       //"show/news-releases/16/IOS/1";
+    //       break;
+    //     case API.newsletters:
+    //       apiPathString =
+    //           "media_and_events_sorting/newsletters-and-articles/23/IOS/1";
+    //       // "show/newsletters-and-articles/23/IOS/1";
+    //       break;
+    //     case API.merckfoundationinmedia:
+    //       apiPathString =
+    //           "media_and_events_sorting/merck-foundation-in-media/20/IOS/1";
+    //       //"show/merck-foundation-in-media/20/IOS/1";
+    //       break;
+    //     case API.callforapplication:
+    //       apiPathString =
+    //           "media_and_events_sorting/call-for-applications/9/Android/1";
+    //       //"call_for_app/call-for-application/9";
+    //       break;
+    //     case API.videoLibrary:
+    //       apiPathString = "/media_and_events_sorting/video-library/14/IOS/1";
+    //       //"show/Video-Library/14/IOS/1";
+    //       break;
+
+    //     case API.ourPartner:
+    //       apiPathString = "media_and_events_sorting/our-partners/17/IOS/1";
+    //       //"show/our-partners/17/IOS/1";
+    //       break;
+
+    //     case API.ourPartnerObjectives:
+    //       apiPathString = "media_and_events_sorting/our-partners/13/IOS/1";
+    //       // "show/our-partners/13/IOS/1";
+    //       break;
+
+    //     case API.getStories:
+    //       apiPathString = "media_and_events_sorting/stories/14/Android/1";
+    //       //"show/stories/14/IOS/1";
+    //       break;
+
+    //     case API.merckTestimonial:
+    //       apiPathString =
+    //           "media_and_events_sorting/merck-foundation-alumni-testimonials/14/Android/1";
+    //       break;
+
+    //     case API.strategy:
+    //       apiPathString = "show/strategy/13/IOS/1";
+    //       break;
+    //     case API.firstladiesinitiative:
+    //       apiPathString =
+    //           "show/merck-foundation-first-ladies-initiative-summit/13/IOS/1";
+    //       break;
+    //     case API.mmtmprogram:
+    //       apiPathString = "MMTM_Videos_list/merck-more-than-a-mother/IOS/1";
+    //       break;
+
+    //     case API.empoweringbernacontent:
+    //       apiPathString = "show/empowering-berna/13/IOS/1";
+    //       break;
+    //     case API.empoweringbernavideo:
+    //       apiPathString = "show/empowering-berna/14/IOS/1";
+    //       break;
+
+    //     case API.merckmotherSlider:
+    //       apiPathString = "show/merck-more-than-a-mother/5/IOS/1";
+    //       break;
+
+    //     case API.merckmotherContent:
+    //       apiPathString = "show/merck-more-than-a-mother/13/IOS/1";
+    //       break;
+
+    //     case API.merckmotherVideos:
+    //       apiPathString = "show/merck-more-than-a-mother/14/IOS/1";
+    //       break;
+
+    //     case API.merckmotherLatestUpdates:
+    //       apiPathString = "show/merck-more-than-a-mother/23/IOS/1";
+    //       break;
+
+    //     case API.merckmotherCallApplication:
+    //       apiPathString = "show/merck-more-than-a-mother/9/IOS/1";
+    //       break;
+
+    //     case API.merckmotherDigitalLib:
+    //       apiPathString = "show/merck-more-than-a-mother/22/IOS/1";
+    //       break;
+
+    //     case API.merckmotherMedia:
+    //       apiPathString = "show/merck-more-than-a-mother/20/IOS/1";
+    //       break;
+
+    //     case API.merckmotherTestimonial:
+    //       apiPathString = "show/merck-more-than-a-mother/18/IOS/1";
+    //       break;
+
+    //     case API.merckFertilityContent:
+    //       apiPathString =
+    //           "show/merck-fertility-and-embryology-training-program/13/IOS/1";
+    //       break;
+
+    //     case API.merckFertilityVideos:
+    //       apiPathString =
+    //           "show/merck-fertility-and-embryology-training-program/14/IOS/1";
+    //       break;
+
+    //     case API.merckFertilityTestimonials:
+    //       apiPathString =
+    //           "show/merck-fertility-and-embryology-training-program/18/IOS/1";
+    //       break;
+
+    //     case API.merckLocalSongsContent:
+    //       apiPathString = "media_and_events_sorting/stories/14/IOS/1";
+    //       //"show/local-songs-and-children-stories/13/IOS/1";
+    //       break;
+
+    //     case API.merckLocalSongsVideos:
+    //       apiPathString = "show/local-songs-and-children-stories/14/IOS/1";
+    //       break;
+
+    //     case API.merckLocalDigital:
+    //       apiPathString = "show/local-songs-and-children-stories/22/IOS/1";
+    //       break;
+
+    //     case API.merckAboutContent:
+    //       apiPathString = "show/about-merck-more-than-a-mother/13/IOS/1";
+    //       break;
+
+    //     case API.merckAboutVideos:
+    //       apiPathString = "show/about-merck-more-than-a-mother/14/IOS/1";
+    //       break;
+
+    //     case API.countrylist:
+    //       apiPathString = "getCountryList/1";
+    //       break;
+    //     case API.categoryList:
+    //       apiPathString = "getCategoryList/1";
+    //       break;
+    //     case API.ouraward:
+    //       apiPathString = "show/home/11/IOS/1";
+    //       break;
+    //     case API.filterlist:
+    //       apiPathString = "filter_data";
+    //       break;
+    //     case API.ourawarddetail:
+    //       apiPathString = "merck_awards";
+    //       break;
+    //     case API.testiomonailpro:
+    //       apiPathString = "merck_testimonials";
+    //       break;
+    //     case API.ourgallerydetail:
+    //       apiPathString = "mob_event_gallery";
+    //       break;
+    //     case API.programgalleryeducting:
+    //       apiPathString = "ProgramGallery/educating-linda-program/1";
+    //       break;
+    //     case API.programgallerymmtm:
+    //       apiPathString = "ProgramGallery/merck-more-than-a-mother/1";
+    //       break;
+    //     case API.programgallerycapacity:
+    //       apiPathString =
+    //           "ProgramGallery/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+    //       break;
+    //     case API.programgalleryfirstladey:
+    //       apiPathString =
+    //           "ProgramGallery/merck-foundation-first-ladies-initiative-summit/1";
+    //       break;
+    //     case API.programgallerystem:
+    //       apiPathString = "ProgramGallery/merck-stem-program/1";
+    //       break;
+    //     case API.programgallerysubstain:
+    //       apiPathString =
+    //           "ProgramGallery/merck-foundation-sustainability-initiative/1";
+    //       break;
+    //     case API.programgalleryafrica:
+    //       apiPathString = "ProgramGallery/merck-africa-asia-luminary/1";
+    //       break;
+
+    //     case API.watchvideommtm:
+    //       apiPathString = "watch_program_videos/merck-more-than-a-mother/1";
+    //       break;
+    //     case API.watchvideocancer:
+    //       apiPathString = "watch_program_videos/merck-cancer-access-program/1";
+    //       break;
+    //     case API.watchvideocapacity:
+    //       apiPathString =
+    //           "watch_program_videos/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+    //       break;
+    //     case API.watchvideosubstain:
+    //       apiPathString =
+    //           "watch_program_videos/merck-foundation-sustainability-initiative/1";
+    //       break;
+    //     case API.watchvdeoducation:
+    //       apiPathString = "watch_program_videos/educating-linda-program/1";
+    //       break;
+    //     case API.watchvideofirstlady:
+    //       apiPathString =
+    //           "watch_program_videos/merck-foundation-first-ladies-initiative-summit/1";
+    //       break;
+    //     case API.watchvideoafrica:
+    //       apiPathString = "watch_program_videos/merck-africa-asia-luminary/1";
+
+    //       break;
+    //     case API.watchvideostem:
+    //       apiPathString = "watch_program_videos/merck-stem-program/1";
+
+    //       break;
+    //     case API.digitalmmtm:
+    //       apiPathString = "digital_library/merck-more-than-a-mother/1";
+    //       break;
+    //     case API.digitalhome:
+    //       apiPathString = "digital_library/Home/1";
+    //       break;
+
+    //     case API.digitalcancer:
+    //       apiPathString = "digital_library/merck-cancer-access-program/1";
+    //       break;
+    //     case API.digitalcapacity:
+    //       apiPathString =
+    //           "digital_library/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+    //       break;
+
+    //     case API.digitalfirstlady:
+    //       apiPathString =
+    //           "digital_library/merck-foundation-first-ladies-initiative-summit/1";
+    //       break;
+    //     case API.digitalstem:
+    //       apiPathString = "digital_library/merck-stem-program/1";
+
+    //       break;
+    //     case API.digitaleducting:
+    //       apiPathString = "digital_library/educating-linda-program/1";
+
+    //       break;
+    //     case API.digitalsubstain:
+    //       apiPathString =
+    //           "digital_library/merck-foundation-sustainability-initiative/1";
+
+    //       break;
+    //     case API.digitalafrica:
+    //       apiPathString = "digital_library/merck-africa-asia-luminary/1";
+
+    //       break;
+
+    //     case API.watchhomemmtm:
+    //       apiPathString = "show_mmtm_gallery/home/1";
+
+    //       break;
+    //     case API.watchprogrammmtm:
+    //       apiPathString = "show_mmtm_gallery/merck-more-than-a-mother/1";
+
+    //       break;
+    //     case API.watchfirstladymmtm:
+    //       apiPathString =
+    //           "show_mmtm_gallery/merck-foundation-first-ladies-initiative-summit/1";
+
+    //       break;
+    //     case API.watchmediprogrammmtm:
+    //       apiPathString = "read_merck_media/merck-more-than-a-mother/1";
+
+    //       break;
+    //     case API.watchmediaprogramcancer:
+    //       apiPathString = "read_merck_media/merck-cancer-access-program/1";
+
+    //       break;
+    //     case API.watchmorelatestupmmtm:
+    //       apiPathString = "read_latest_updates/merck-more-than-a-mother/1";
+
+    //       break;
+    //     case API.watchmorelatestupcancer:
+    //       apiPathString = "read_latest_updates/merck-cancer-access-program/1";
+
+    //       break;
+    //     case API.watchmorelatestupstem:
+    //       apiPathString = "read_latest_updates/merck-stem-program/1";
+
+    //       break;
+    //     case API.watchmorelatestupafrica:
+    //       apiPathString = "read_latest_updates/merck-africa-asia-luminary/1";
+
+    //       break;
+
+    //     case API.watchmoretestimonialcancer:
+    //       apiPathString =
+    //           "merck_testimonials_list/merck-cancer-access-program/1";
+
+    //       break;
+    //     case API.watchmoretestimonialcapacity:
+    //       apiPathString =
+    //           "merck_testimonials_list/merck-capacity-advancement-and-nationwide-diabetes-blue-point-program/1";
+
+    //       break;
+    //     case API.watchmoretestimonialmmtm:
+    //       apiPathString = "merck_testimonials_list/merck-more-than-a-mother/1";
+
+    //       break;
+    //     case API.watchvideoaboutmmtm:
+    //       apiPathString =
+    //           "watch_program_videos/about-merck-more-than-a-mother/1";
+
+    //       break;
+    //     case API.watchvideoempoweringberna:
+    //       apiPathString = "watch_program_videos/empowering-berna/1";
+
+    //       break;
+    //     case API.watchvideolocalsong:
+    //       apiPathString =
+    //           "watch_program_videos/local-songs-and-children-stories/1";
+
+    //       break;
+    //     case API.watchvideofertility:
+    //       apiPathString =
+    //           "watch_program_videos/merck-fertility-and-embryology-training-program/1";
+
+    //       break;
+
+    //     case API.watchcallhome:
+    //       apiPathString = "read_call_for_app/Home/1";
+
+    //       break;
+    //     case API.watchcallmmtm:
+    //       apiPathString = "read_call_for_app/merck-more-than-a-mother/1";
+
+    //       break;
+    //     case API.watchcallstem:
+    //       apiPathString = "read_call_for_app/merck-stem-program/1";
+
+    //       break;
+    //     case API.watchcallafrica:
+    //       apiPathString = "read_call_for_app/merck-africa-asia-luminary/1";
+
+    //       break;
+    //     case API.merckoverview:
+    //       apiPathString = "merck_foundation_over_view";
+
+    //       break;
+    //     case API.viewallceomessagerasha:
+    //       apiPathString = "all_ceo_message/home/1";
+    //       break;
+    //     case API.stemprogramlist:
+    //       apiPathString = "get_luminary_pages/merck-stem-program/1";
+    //       break;
+    //     case API.covidvideo:
+    //       apiPathString = "covid_videos/1";
+    //       break;
+    //     case API.covidnews:
+    //       apiPathString = "covid_news/1";
+    //       break;
+    //     case API.yearwisegallery:
+    //       apiPathString = "year_wise_gallery/1";
+    //       break;
+    //     case API.africaprogramlist:
+    //       apiPathString = "get_luminary_pages/merck-africa-asia-luminary/1";
+    //       break;
+    //     default:
+    //       apiPathString = "";
+    //   }
+    //   print(apiBaseURL());
+    // }
 
     return this.apiBaseURL() + apiPathString;
 

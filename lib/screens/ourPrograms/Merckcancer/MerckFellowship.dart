@@ -31,6 +31,7 @@ import 'package:merckfoundation22dec/model/MerckFellowship.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/watchmorevideoambaassadar.dart';
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 
 class MerckFellowship extends StatefulWidget {
   @override
@@ -100,13 +101,13 @@ class OurProgramsDetailsState extends State<MerckFellowship>
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          // Navigator.pop(context);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 1,
-                      )));
+          Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 1,
+          //             )));
         },
         index: 2,
         title: "Our Programs",
@@ -123,7 +124,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
               shrinkWrap: true,
               physics: ScrollPhysics(),
               children: [
-                // slider(context),
+                slider(context),
                 Visibility(
                   visible: isMiddleSectionLoaded,
                   replacement: Center(child: CircularProgressIndicator()),
@@ -660,59 +661,64 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                   items: _productsAvailable.map((product) {
                     return new Builder(
                       builder: (BuildContext context) {
-                        return new Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "http://merckfoundation.org/merck/public/uploads/slider/" +
-                                          product['image']),
-                                  fit: BoxFit.cover)),
-                          width: SizeConfig.blockSizeHorizontal * 100,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 0, bottom: 15),
-                                child: Container(
-                                  color: Colors.white.withOpacity(0.5),
-                                  width: SizeConfig.blockSizeHorizontal * 100,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        FormLabel(
-                                          text: product['image_title'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.4),
-                                          maxLines: 2,
-                                          fontweight: FontWeight.w700,
-                                        ),
-                                        SizedBox(
-                                          height: 2,
-                                        ),
-                                        FormLabel(
-                                          text: product['image_desc'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.2),
-                                          fontweight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        return Slidercard(
+                          cardImage: GlobalLists.sliderurl + product['image'],
+                          cardTitle: product['image_title'],
+                          subTitle: product['image_desc'],
                         );
+                        //  new Container(
+                        //   decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(8),
+                        //       image: DecorationImage(
+                        //           image: NetworkImage(
+                        //               "http://merckfoundation.org/merck/public/uploads/slider/" +
+                        //                   product['image']),
+                        //           fit: BoxFit.cover)),
+                        //   width: SizeConfig.blockSizeHorizontal * 100,
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.end,
+                        //     children: <Widget>[
+                        //       Padding(
+                        //         padding:
+                        //             const EdgeInsets.only(right: 0, bottom: 15),
+                        //         child: Container(
+                        //           color: Colors.white.withOpacity(0.5),
+                        //           width: SizeConfig.blockSizeHorizontal * 100,
+                        //           child: Padding(
+                        //             padding: const EdgeInsets.only(
+                        //                 left: 10, right: 10, top: 5, bottom: 5),
+                        //             child: Column(
+                        //               mainAxisAlignment:
+                        //                   MainAxisAlignment.center,
+                        //               children: <Widget>[
+                        //                 FormLabel(
+                        //                   text: product['image_title'],
+                        //                   labelColor: Customcolor.pink_col,
+                        //                   fontSize:
+                        //                       ResponsiveFlutter.of(context)
+                        //                           .fontSize(1.4),
+                        //                   maxLines: 2,
+                        //                   fontweight: FontWeight.w700,
+                        //                 ),
+                        //                 SizedBox(
+                        //                   height: 2,
+                        //                 ),
+                        //                 FormLabel(
+                        //                   text: product['image_desc'],
+                        //                   labelColor: Customcolor.pink_col,
+                        //                   fontSize:
+                        //                       ResponsiveFlutter.of(context)
+                        //                           .fontSize(1.2),
+                        //                   fontweight: FontWeight.w500,
+                        //                 ),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // );
                       },
                     );
                   }).toList(),
@@ -870,8 +876,10 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                           .substring(GlobalLists
                                   .homevideolist[index].videoLink.length -
                               11);
-                      _launchInWebViewWithJavaScript(
+                      ShowDialogs.youtubevideolink(
                           "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                      // _launchInWebViewWithJavaScript(
+                      //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8, left: 10),
@@ -1567,25 +1575,25 @@ class OurProgramsDetailsState extends State<MerckFellowship>
         print(res);
         MerckFellowshipResponse homepageres =
             MerckFellowshipResponse.fromJson(res);
+        GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
+        slidersection = homepageres.sliderArea[0].slider.list;
+        slidersection.forEach((element) {
+          _productsAvailable.add({
+            "id": element.id,
+            "menu_id": element.menuId,
+            "image_title": element.imageTitle,
+            "image_desc": element.imageDesc,
+            "links": element.links,
+            "image": element.image,
+            "alt_text": element.altText,
+            "status": element.status,
+            "created_at": element.createdAt,
+            "updated_at": element.updatedAt
+          });
+        });
 
-        // slidersection = homepageres.sliderArea[0].slider.list;
-        // slidersection.forEach((element) {
-        //   _productsAvailable.add({
-        //     "id": element.id,
-        //     "menu_id": element.menuId,
-        //     "image_title": element.imageTitle,
-        //     "image_desc": element.imageDesc,
-        //     "links": element.links,
-        //     "image": element.image,
-        //     "alt_text": element.altText,
-        //     "status": element.status,
-        //     "created_at": element.createdAt,
-        //     "updated_at": element.updatedAt
-        //   });
-        // });
-
-        // print("sliderprogramsection");
-        // print(slidersection.length);
+        print("sliderprogramsection");
+        print(slidersection.length);
 
         Map<String, dynamic> section1 = homepageres.middleArea;
         //  Map<String, dynamic> lastsection = homepageres.rightArea;

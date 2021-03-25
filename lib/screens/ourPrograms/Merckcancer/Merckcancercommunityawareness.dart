@@ -101,13 +101,13 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          // Navigator.pop(context);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 1,
-                      )));
+          Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 1,
+          //             )));
         },
         index: 2,
         title: "Our Programs",
@@ -877,8 +877,10 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                           .substring(GlobalLists
                                   .homevideolist[index].videoLink.length -
                               11);
-                      _launchInWebViewWithJavaScript(
+                      ShowDialogs.youtubevideolink(
                           "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                      // _launchInWebViewWithJavaScript(
+                      //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8, left: 10),
@@ -1573,7 +1575,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
         print(res);
         CancersubprogramcommunityawaremnessResponse homepageres =
             CancersubprogramcommunityawaremnessResponse.fromJson(res);
-
+        //GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
         // slidersection = homepageres.sliderArea[0].slider.list;
 
         // slidersection.forEach((element) {

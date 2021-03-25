@@ -202,6 +202,8 @@ class GlobalLists {
   static List<dynamic> homedigitallib = [];
   static List<dynamic> homemmtm = [];
 
+  static String sliderurl = "";
+
   //mmtm
 
   static List<dynamic> mmtmmedialist = [];

@@ -161,7 +161,7 @@ class CovidResponseState extends State<CovidResponse>
                         )));
           },
           index: 2,
-          title: "Covid Response",
+          title: "COVID Response",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -295,8 +295,10 @@ class CovidResponseState extends State<CovidResponse>
                                         .substring(
                                             videolist[index].videoLink.length -
                                                 11);
-                                    _launchInWebViewWithJavaScript(
+                                    ShowDialogs.youtubevideolink(
                                         "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                    // _launchInWebViewWithJavaScript(
+                                    //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.only(
@@ -379,7 +381,7 @@ class CovidResponseState extends State<CovidResponse>
                           child: CustomHorizontalCard(
                             index: 1,
                             cardImage: "assets/newImages/ourvison.png",
-                            cardTitle: "Our Newsletter  ",
+                            cardTitle: "Latest Update",
                             btnTitle: "View More",
                             titleColor: Customcolor.pink_col,
                             onbtnTap: () {
@@ -420,6 +422,7 @@ class CovidResponseState extends State<CovidResponse>
                                     child: Stack(
                                       children: [
                                         Container(
+                                          height: 200,
                                           width:
                                               SizeConfig.blockSizeHorizontal *
                                                   86,
@@ -482,19 +485,19 @@ class CovidResponseState extends State<CovidResponse>
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 0, left: 0),
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Image.asset(
-                              "assets/newImages/flowers_footer.png",
-                              height: 170,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        )
+                        // Padding(
+                        //   padding: const EdgeInsets.only(right: 0, left: 0),
+                        //   child: Align(
+                        //     alignment: Alignment.topRight,
+                        //     child: Image.asset(
+                        //       "assets/newImages/flowers_footer.png",
+                        //       height: 170,
+                        //     ),
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: 10,
+                        // )
                       ],
                     ),
                   ),

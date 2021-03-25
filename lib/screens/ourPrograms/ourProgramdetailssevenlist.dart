@@ -85,350 +85,6 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
           ],
           controller: mabialaFABController,
         ),
-
-        ///[SEtting up the floating action button]
-        // floatingActionButton: AdvFab(
-        //   showLogs: true,
-        //   floatingActionButtonExpendedWidth: 80,
-        //   onFloatingActionButtonTapped: () {
-        //     mabialaFABController.setExpandedWidgetConfiguration(
-        //       showLogs: true,
-        //       heightToExpandTo: 44,
-        //       expendedBackgroundColor: Customcolor.programyellow,
-        //       withChild: Padding(
-        //         padding: const EdgeInsets.all(0.0),
-        //         child: Container(
-        //           width: (MediaQuery.of(context).size.width) * 50,
-
-        //           ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
-        //           ///in the next line we use 20%
-        //           height: 330,
-        //           child: Column(
-        //             crossAxisAlignment: CrossAxisAlignment.start,
-        //             children: <Widget>[
-        //               GestureDetector(
-        //                   onTap: () {
-        //                     mabialaFABController.setExpandedWidgetConfiguration(
-        //                       showLogs: true,
-        //                       heightToExpandTo: 80,
-        //                       expendedBackgroundColor:
-        //                           Customcolor.programyellow,
-        //                       withChild: Container(
-        //                         width: (MediaQuery.of(context).size.width) * 50,
-
-        //                         ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
-        //                         ///in the next line we use 20%
-        //                         height: 330,
-        //                         child: ListView(
-        //                           shrinkWrap: true,
-        //                           // crossAxisAlignment:
-        //                           //     CrossAxisAlignment.start,
-        //                           children: <Widget>[
-        //                             GestureDetector(
-        //                                 onTap: () {},
-        //                                 child: Align(
-        //                                     alignment: Alignment.topRight,
-        //                                     child: Icon(
-        //                                       Icons.close,
-        //                                       color: Customcolor.colorBlue,
-        //                                     ))),
-        //                             Expanded(
-        //                                 flex: 5,
-        //                                 child: Padding(
-        //                                   padding: const EdgeInsets.all(0.0),
-        //                                   child: Column(
-        //                                     crossAxisAlignment:
-        //                                         CrossAxisAlignment.start,
-        //                                     children: [
-        //                                       SizedBox(
-        //                                         height: 5,
-        //                                       ),
-        //                                       FormLabel(
-        //                                         text:
-        //                                             "Merck More Than A Mother",
-        //                                         labelColor:
-        //                                             Customcolor.text_darkblue,
-        //                                         fontweight: FontWeight.w600,
-        //                                         fontSize: ResponsiveFlutter.of(
-        //                                                 context)
-        //                                             .fontSize(1.8),
-        //                                       ),
-        //                                       Divider(
-        //                                         color: Customcolor.colorBlue,
-        //                                       ),
-        //                                       SizedBox(
-        //                                         height: 5,
-        //                                       ),
-        //                                       FormLabel(
-        //                                         text:
-        //                                             "Merck Cancer Access Program",
-        //                                         labelColor:
-        //                                             Customcolor.text_darkblue,
-        //                                         fontweight: FontWeight.w600,
-        //                                         fontSize: ResponsiveFlutter.of(
-        //                                                 context)
-        //                                             .fontSize(1.8),
-        //                                       ),
-        //                                       Divider(
-        //                                         color: Customcolor.colorBlue,
-        //                                       ),
-        //                                       SizedBox(
-        //                                         height: 5,
-        //                                       ),
-        //                                       FormLabel(
-        //                                         text:
-        //                                             "Merck Capacity Advancement and Diabetes Blue Point Program",
-        //                                         labelColor:
-        //                                             Customcolor.text_darkblue,
-        //                                         fontweight: FontWeight.w600,
-        //                                         fontSize: ResponsiveFlutter.of(
-        //                                                 context)
-        //                                             .fontSize(1.8),
-        //                                       ),
-        //                                       Divider(
-        //                                         color: Customcolor.colorBlue,
-        //                                       ),
-        //                                       SizedBox(
-        //                                         height: 5,
-        //                                       ),
-        //                                       FormLabel(
-        //                                         text:
-        //                                             "Merck Foundation First Ladies Initiative Summit",
-        //                                         labelColor:
-        //                                             Customcolor.text_darkblue,
-        //                                         fontweight: FontWeight.w600,
-        //                                         fontSize: ResponsiveFlutter.of(
-        //                                                 context)
-        //                                             .fontSize(1.8),
-        //                                       ),
-        //                                       Divider(
-        //                                         color: Customcolor.colorBlue,
-        //                                       ),
-        //                                       SizedBox(
-        //                                         height: 8,
-        //                                       ),
-        //                                       FormLabel(
-        //                                         text: "Merck STEM Program",
-        //                                         labelColor:
-        //                                             Customcolor.text_darkblue,
-        //                                         fontweight: FontWeight.w600,
-        //                                         fontSize: ResponsiveFlutter.of(
-        //                                                 context)
-        //                                             .fontSize(1.8),
-        //                                       ),
-        //                                       Divider(
-        //                                         color: Customcolor.colorBlue,
-        //                                       ),
-        //                                       SizedBox(
-        //                                         height: 8,
-        //                                       ),
-        //                                       FormLabel(
-        //                                         text: "Educating Linda Program",
-        //                                         labelColor:
-        //                                             Customcolor.text_darkblue,
-        //                                         fontweight: FontWeight.w600,
-        //                                         fontSize: ResponsiveFlutter.of(
-        //                                                 context)
-        //                                             .fontSize(1.8),
-        //                                       ),
-        //                                       Divider(
-        //                                         color: Customcolor.colorBlue,
-        //                                       ),
-        //                                       SizedBox(
-        //                                         height: 8,
-        //                                       ),
-        //                                       FormLabel(
-        //                                         text:
-        //                                             "Merck Foundation Sustainability Initiative",
-        //                                         labelColor:
-        //                                             Customcolor.text_darkblue,
-        //                                         fontweight: FontWeight.w600,
-        //                                         fontSize: ResponsiveFlutter.of(
-        //                                                 context)
-        //                                             .fontSize(1.8),
-        //                                       ),
-        //                                       Divider(
-        //                                         color: Customcolor.colorBlue,
-        //                                       ),
-        //                                       SizedBox(
-        //                                         height: 8,
-        //                                       ),
-        //                                       FormLabel(
-        //                                         text:
-        //                                             "Merck Africa Asia Luminary",
-        //                                         labelColor:
-        //                                             Customcolor.text_darkblue,
-        //                                         fontweight: FontWeight.w600,
-        //                                         fontSize: ResponsiveFlutter.of(
-        //                                                 context)
-        //                                             .fontSize(1.8),
-        //                                       ),
-        //                                       Divider(
-        //                                         color: Customcolor.colorBlue,
-        //                                       ),
-        //                                       SizedBox(
-        //                                         height: 8,
-        //                                       ),
-        //                                     ],
-        //                                   ),
-        //                                 ))
-        //                           ],
-        //                         ),
-        //                       ),
-        //                     );
-        //                     mabialaFABController.isCollapsed
-        //                         ? mabialaFABController.expandFAB()
-        //                         : mabialaFABController.collapseFAB();
-        //                   },
-        //                   child: Align(
-        //                       alignment: Alignment.topRight,
-        //                       child: Icon(
-        //                         Icons.close,
-        //                         color: Customcolor.colorBlue,
-        //                       ))),
-        //               Expanded(
-        //                   flex: 5,
-        //                   child: Padding(
-        //                     padding: const EdgeInsets.all(0.0),
-        //                     child: Column(
-        //                       crossAxisAlignment: CrossAxisAlignment.start,
-        //                       children: [
-        //                         SizedBox(
-        //                           height: 5,
-        //                         ),
-        //                         FormLabel(
-        //                           text: "Merck More Than A Mother",
-        //                           labelColor: Customcolor.text_darkblue,
-        //                           fontweight: FontWeight.w600,
-        //                           fontSize: ResponsiveFlutter.of(context)
-        //                               .fontSize(1.8),
-        //                         ),
-        //                         Divider(
-        //                           color: Customcolor.colorBlue,
-        //                         ),
-        //                         SizedBox(
-        //                           height: 5,
-        //                         ),
-        //                         FormLabel(
-        //                           text: "Merck Cancer Access Program",
-        //                           labelColor: Customcolor.text_darkblue,
-        //                           fontweight: FontWeight.w600,
-        //                           fontSize: ResponsiveFlutter.of(context)
-        //                               .fontSize(1.8),
-        //                         ),
-        //                         Divider(
-        //                           color: Customcolor.colorBlue,
-        //                         ),
-        //                         SizedBox(
-        //                           height: 5,
-        //                         ),
-        //                         FormLabel(
-        //                           text:
-        //                               "Merck Capacity Advancement and Diabetes Blue Point Program",
-        //                           labelColor: Customcolor.text_darkblue,
-        //                           fontweight: FontWeight.w600,
-        //                           fontSize: ResponsiveFlutter.of(context)
-        //                               .fontSize(1.8),
-        //                         ),
-        //                         Divider(
-        //                           color: Customcolor.colorBlue,
-        //                         ),
-        //                         SizedBox(
-        //                           height: 5,
-        //                         ),
-        //                         FormLabel(
-        //                           text:
-        //                               "Merck Foundation First Ladies Initiative Summit",
-        //                           labelColor: Customcolor.text_darkblue,
-        //                           fontweight: FontWeight.w600,
-        //                           fontSize: ResponsiveFlutter.of(context)
-        //                               .fontSize(1.8),
-        //                         ),
-        //                         Divider(
-        //                           color: Customcolor.colorBlue,
-        //                         ),
-        //                         SizedBox(
-        //                           height: 8,
-        //                         ),
-        //                         FormLabel(
-        //                           text: "Merck STEM Program",
-        //                           labelColor: Customcolor.text_darkblue,
-        //                           fontweight: FontWeight.w600,
-        //                           fontSize: ResponsiveFlutter.of(context)
-        //                               .fontSize(1.8),
-        //                         ),
-        //                         Divider(
-        //                           color: Customcolor.colorBlue,
-        //                         ),
-        //                         SizedBox(
-        //                           height: 8,
-        //                         ),
-        //                         FormLabel(
-        //                           text: "Educating Linda Program",
-        //                           labelColor: Customcolor.text_darkblue,
-        //                           fontweight: FontWeight.w600,
-        //                           fontSize: ResponsiveFlutter.of(context)
-        //                               .fontSize(1.8),
-        //                         ),
-        //                         Divider(
-        //                           color: Customcolor.colorBlue,
-        //                         ),
-        //                         SizedBox(
-        //                           height: 8,
-        //                         ),
-        //                         FormLabel(
-        //                           text:
-        //                               "Merck Foundation Sustainability Initiative",
-        //                           labelColor: Customcolor.text_darkblue,
-        //                           fontweight: FontWeight.w600,
-        //                           fontSize: ResponsiveFlutter.of(context)
-        //                               .fontSize(1.8),
-        //                         ),
-        //                         Divider(
-        //                           color: Customcolor.colorBlue,
-        //                         ),
-        //                         SizedBox(
-        //                           height: 8,
-        //                         ),
-        //                         FormLabel(
-        //                           text: "Merck Africa Asia Luminary",
-        //                           labelColor: Customcolor.text_darkblue,
-        //                           fontweight: FontWeight.w600,
-        //                           fontSize: ResponsiveFlutter.of(context)
-        //                               .fontSize(1.8),
-        //                         ),
-        //                         Divider(
-        //                           color: Customcolor.colorBlue,
-        //                         ),
-        //                         SizedBox(
-        //                           height: 8,
-        //                         ),
-        //                       ],
-        //                     ),
-        //                   ))
-        //             ],
-        //           ),
-        //         ),
-        //       ),
-        //     );
-        //     mabialaFABController.isCollapsed
-        //         ? mabialaFABController.expandFAB()
-        //         : mabialaFABController.collapseFAB();
-        //   },
-        //   floatingActionButtonIcon: Icons.menu,
-
-        //   floatingActionButtonIconColor: Customcolor.colorBlue,
-        //   navigationBarIconActiveColor: Colors.pink,
-        //   navigationBarIconInactiveColor: Colors.pink[200].withOpacity(0.6),
-        //   collapsedColor: Customcolor.programyellow,
-        //   // useAsFloatingSpaceBar: useFloatingSpaceBar,
-        //   useAsFloatingActionButton: useAsFloatingActionButton,
-        //   //useAsNavigationBar: useNavigationBar,
-        //   controller: mabialaFABController,
-        //   animationDuration: Duration(milliseconds: 150),
-        // )
-        // This trailing comma makes auto-formatting nicer for build methods.
-
         floatingActionButton: AdvFab(
           showLogs: true,
           floatingActionButtonExpendedWidth: 80,
@@ -536,13 +192,21 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                                 indexpass: 2,
                                                               )));
                                                 } else if (index == 6) {
+                                                  // Navigator.push(
+                                                  //     context,
+                                                  //     MaterialPageRoute(
+                                                  //         builder: (BuildContext
+                                                  //                 context) =>
+                                                  //             OurProgram(
+                                                  //               indexpass: 13,
+                                                  //             )));
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (BuildContext
                                                                   context) =>
-                                                              OurProgram(
-                                                                indexpass: 13,
+                                                              OurProgramSevenlist(
+                                                                indexpass: 4,
                                                               )));
                                                 } else if (index == 4) {
                                                   Navigator.push(
@@ -695,12 +359,19 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                   indexpass: 2,
                                                 )));
                                   } else if (index == 6) {
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (BuildContext context) =>
+                                    //             OurProgram(
+                                    //               indexpass: 13,
+                                    //             )));
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                OurProgram(
-                                                  indexpass: 13,
+                                                OurProgramSevenlist(
+                                                  indexpass: 4,
                                                 )));
                                   } else if (index == 4) {
                                     Navigator.push(

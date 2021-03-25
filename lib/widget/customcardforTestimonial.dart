@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
+import 'package:merckfoundation22dec/widget/customcolor.dart';
 
-class CustomeCard extends StatefulWidget {
+class CustomeCardforTestimonial extends StatefulWidget {
   final String cardTitle;
   final String cardImage;
   final String subTitle;
@@ -14,8 +15,10 @@ class CustomeCard extends StatefulWidget {
   final Color buttontitlecolor;
   final Function onBtnTap;
   final Function oncardtap;
+  final String testimonialname;
+  final String departmentname;
 
-  const CustomeCard(
+  const CustomeCardforTestimonial(
       {Key key,
       this.cardTitle,
       this.cardImage,
@@ -27,7 +30,9 @@ class CustomeCard extends StatefulWidget {
       this.buttontitle,
       this.onBtnTap,
       this.buttontitlecolor,
-      this.oncardtap})
+      this.oncardtap,
+      this.testimonialname,
+      this.departmentname})
       : super(key: key);
 
   @override
@@ -36,7 +41,7 @@ class CustomeCard extends StatefulWidget {
   }
 }
 
-class CustomCardState extends State<CustomeCard> {
+class CustomCardState extends State<CustomeCardforTestimonial> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -79,28 +84,14 @@ class CustomCardState extends State<CustomeCard> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                      image: NetworkImage(widget.cardImage),
-                      fit: BoxFit.cover)),
+                      image: NetworkImage(widget.cardImage), fit: BoxFit.fill)),
               child: Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Expanded(
-                      child: Text(
-                        widget.subTitle,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500),
-                        // fontSize: 17,
-                        // labelColor: Colors.white,
-                        // fontweight: FontWeight.w500,
-                      ),
-                    ),
+                    Expanded(child: Container()),
                     GestureDetector(
                       onTap: widget.onBtnTap,
                       child: Container(
@@ -124,16 +115,49 @@ class CustomCardState extends State<CustomeCard> {
               ),
             ),
           ),
-          // Text(
-          //   widget.subTitle,
-          //   overflow: TextOverflow.ellipsis,
-          //   maxLines: 2,
-          //   style: TextStyle(
-          //       fontSize: 17, color: Colors.black, fontWeight: FontWeight.w500),
-          //   // fontSize: 17,
-          //   // labelColor: Colors.white,
-          //   // fontweight: FontWeight.w500,
-          // ),
+          Center(
+            child: Text(
+              widget.testimonialname,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 17,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500),
+              // fontSize: 17,
+              // labelColor: Colors.white,
+              // fontweight: FontWeight.w500,
+            ),
+          ),
+          Center(
+            child: Text(
+              widget.departmentname,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 17,
+                  color: Customcolor.colorBlue,
+                  fontWeight: FontWeight.w500),
+              // fontSize: 17,
+              // labelColor: Colors.white,
+              // fontweight: FontWeight.w500,
+            ),
+          ),
+          Text(
+            widget.subTitle,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontWeight: FontWeight.w500),
+            // fontSize: 17,
+            // labelColor: Colors.white,
+            // fontweight: FontWeight.w500,
+          ),
         ],
       ),
     );

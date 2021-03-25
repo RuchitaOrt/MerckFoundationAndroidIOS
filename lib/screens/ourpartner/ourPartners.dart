@@ -29,18 +29,6 @@ class OurpatnerState extends State<Ourpatner> {
 
   @override
   Widget build(BuildContext context) {
-    List paravalue = [
-      "We are open to partner on programs that contribute to our goal of improving the health and wellbeing.",
-      "We care for people living in underserved communities and want to advance their lives through science and technology.",
-      "We are dedicated to sharing our expertise to jointly develop and implement those programs.",
-    ];
-    List imageAvailable = [
-      "assets/images/img1.jpg",
-      "assets/images/img2.jpg",
-      "assets/images/img1.jpg",
-      "assets/images/img2.jpg",
-      "assets/images/img1.jpg"
-    ];
     return Scaffold(
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
@@ -117,19 +105,19 @@ class OurpatnerState extends State<Ourpatner> {
                         //     "assets/newImages/flowers_footer.png",
                         //   ),
                         // ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 0, left: 0),
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Image.asset(
-                              "assets/newImages/flowers_footer.png",
-                              height: 170,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        )
+                        // Padding(
+                        //   padding: const EdgeInsets.only(right: 0, left: 0),
+                        //   child: Align(
+                        //     alignment: Alignment.topRight,
+                        //     child: Image.asset(
+                        //       "assets/newImages/flowers_footer.png",
+                        //       height: 170,
+                        //     ),
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: 10,
+                        // )
                       ],
                     ),
             ],

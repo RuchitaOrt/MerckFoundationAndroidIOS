@@ -84,7 +84,11 @@ class Art {
   String baseUrl;
 
   factory Art.fromJson(Map<String, dynamic> json) => Art(
-        list: List<ArtList>.from(json["list"].map((x) => ArtList.fromJson(x))),
+        list: json["list"] != null
+            ? List<ArtList>.from(json["list"].map((x) => ArtList.fromJson(x)))
+            : List<ArtList>(),
+
+        // List<ArtList>.from(json["list"].map((x) => ArtList.fromJson(x))),
         baseUrl: json["base_url"],
       );
 
@@ -132,24 +136,29 @@ class ArtList {
   String altText;
 
   factory ArtList.fromJson(Map<String, dynamic> json) => ArtList(
-        id: json["id"],
-        articleType: json["article_type"] == null ? null : json["article_type"],
-        title: json["title"] == null ? null : json["title"],
-        shortDescription: json["short_description"],
-        details: json["details"],
-        detailPageUrl: json["detail_page_url"],
-        image: json["image"],
+        id: json["id"] == null ? "" : json["id"],
+        articleType: json["article_type"] == null ? "" : json["article_type"],
+        title: json["title"] == null ? "" : json["title"],
+        shortDescription:
+            json["short_description"] == null ? "" : json["short_description"],
+        details: json["details"] == null ? "" : json["details"],
+        detailPageUrl:
+            json["detail_page_url"] == null ? "" : json["detail_page_url"],
+        image: json["image"] == null ? "" : json["image"],
         altTag: json["alt_tag"] == null ? null : json["alt_tag"],
-        metaKeyword: json["meta_keyword"],
-        metaDescription: json["meta_description"],
-        status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        metaKeyword: json["meta_keyword"] == null ? "" : json["meta_keyword"],
+        metaDescription:
+            json["meta_description"] == null ? "" : json["meta_description"],
+        status: json["status"] == null ? "" : json["status"],
+        createdAt: DateTime.parse(
+            json["created_at"] == null ? "" : json["created_at"]),
+        updatedAt: DateTime.parse(
+            json["updated_at"] == null ? "" : json["updated_at"]),
         testimonialName:
-            json["testimonial_name"] == null ? null : json["testimonial_name"],
+            json["testimonial_name"] == null ? "" : json["testimonial_name"],
         departmentName:
-            json["department_name"] == null ? null : json["department_name"],
-        altText: json["alt_text"] == null ? null : json["alt_text"],
+            json["department_name"] == null ? "" : json["department_name"],
+        altText: json["alt_text"] == null ? "" : json["alt_text"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -227,7 +236,7 @@ class DigitalLibraryList {
         id: json["id"],
         categoryType:
             json["category_type"] == null ? null : json["category_type"],
-        title: json["title"],
+        title: json["title"] == null ? "" : json["title"],
         image: json["image"],
         altText: json["alt_text"],
         document: json["document"] == null ? null : json["document"],
@@ -373,7 +382,8 @@ class MmtmList {
         photo: json["photo"],
         photoCategoryId: json["photo_category_id"],
         albumNameId: json["album_name_id"],
-        photoDescription: json["photo_description"],
+        photoDescription:
+            json["photo_description"] == null ? "" : json["photo_description"],
         altTag: json["alt_tag"],
         year: json["year"],
         featuredImage: json["featured_image"],
@@ -543,7 +553,7 @@ class CallForAppList {
 
   factory CallForAppList.fromJson(Map<String, dynamic> json) => CallForAppList(
         id: json["id"],
-        title: json["title"],
+        title: json["title"] == null ? "" : json["title"],
         eventType: json["event_type"],
         eventStartDate: DateTime.parse(json["event_start_date"]),
         eventEndDate: DateTime.parse(json["event_end_date"]),

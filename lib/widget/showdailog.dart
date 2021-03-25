@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -5,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_share_me/flutter_share_me.dart';
 
 class ShowDialogs {
   static Future<void> showLoadingDialog(BuildContext context, GlobalKey key,
@@ -74,6 +77,36 @@ class ShowDialogs {
     );
   }
 
+  static youtubevideolink(String videourl) async {
+    if (Platform.isIOS) {
+      _launchURL(videourl);
+    } else {
+      var response =
+          await FlutterShareMe().openinsta(url: videourl, msg: "Youtube");
+    }
+  }
+
+  static _launchURL(String videourl) async {
+    if (Platform.isIOS) {
+      if (await canLaunch(videourl)) {
+        await launch(videourl, forceSafariVC: false);
+      } else {
+        if (await canLaunch(videourl)) {
+          await launch(videourl);
+        } else {
+          throw 'Could not launch $videourl';
+        }
+      }
+    } else {
+      var url = videourl;
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+  }
+
   static Future<void> showLoadingDialogWithDelay(BuildContext context,
       GlobalKey key, String message, bool setForLightScreen) async {
     return showDialog<void>(
@@ -117,6 +150,14 @@ class ShowDialogs {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  static void bottomlink(BuildContext context) {
+    Container(
+      child: Text(
+        "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
+      ),
+    );
   }
 
   static void showSimpleDialog(

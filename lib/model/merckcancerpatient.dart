@@ -23,13 +23,18 @@ class MerckcancerpatientResponse {
 
   factory MerckcancerpatientResponse.fromJson(Map<String, dynamic> json) =>
       MerckcancerpatientResponse(
-        sliderArea: List<SliderArea>.from(
-            json["slider_area"].map((x) => SliderArea.fromJson(x))),
-        middleArea: Map.from(json["middle_area"]).map(
-            (k, v) => MapEntry<String, MiddleArea>(k, MiddleArea.fromJson(v))),
-        rightArea: Map.from(json["Right_area"]).map(
-            (k, v) => MapEntry<String, RightArea>(k, RightArea.fromJson(v))),
-      );
+          sliderArea: json["slider_area"] != null
+              ? List<SliderArea>.from(
+                  json["slider_area"].map((x) => SliderArea.fromJson(x)))
+              : List<SliderArea>(),
+          //  List<SliderArea>.from(
+          //     json["slider_area"].map((x) => SliderArea.fromJson(x))),
+          middleArea: Map.from(json["middle_area"]).map((k, v) =>
+              MapEntry<String, MiddleArea>(k, MiddleArea.fromJson(v))),
+          rightArea: json["Right_area"] != null
+              ? Map.from(json["Right_area"]).map((k, v) =>
+                  MapEntry<String, RightArea>(k, RightArea.fromJson(v)))
+              : {});
 
   Map<String, dynamic> toJson() => {
         "slider_area": List<dynamic>.from(sliderArea.map((x) => x.toJson())),

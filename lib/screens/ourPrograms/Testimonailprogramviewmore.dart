@@ -43,12 +43,13 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(
-                          index: 0,
-                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Dashboard(
+            //               index: 0,
+            //             )));
+            Navigator.pop(context);
           },
           index: 2,
           title: "Merck \nTestimonials",
@@ -80,7 +81,7 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
                                   Center(
                                     child: Container(
                                       height: 200,
-                                      width: 150,
+                                      width: 180,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(8)),
@@ -92,7 +93,7 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
                                                 GlobalLists
                                                     .testimonialprolist[index]
                                                     .image,
-                                        fit: BoxFit.cover,
+                                        fit: BoxFit.fill,
                                         height: 150,
                                       ),
                                     ),
@@ -131,16 +132,16 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
                               ));
                         },
                       ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                      height: 170,
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 0, left: 0),
+                //   child: Align(
+                //     alignment: Alignment.topRight,
+                //     child: Image.asset(
+                //       "assets/newImages/flowers_footer.png",
+                //       height: 170,
+                //     ),
+                //   ),
+                // ),
                 SizedBox(
                   height: 10,
                 )

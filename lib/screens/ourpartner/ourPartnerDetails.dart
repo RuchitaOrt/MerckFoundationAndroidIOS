@@ -10,6 +10,9 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:merckfoundation22dec/model/ourPartnerObjectivesResp.dart'
+    as objective;
 
 class Ourpatnerdetail extends StatefulWidget {
   const Ourpatnerdetail({
@@ -34,6 +37,7 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getOurPartnerObjectives();
     GlobalLists.ourPartnerList.clear();
     getOurPartnerData();
     _sc = new ScrollController()..addListener(_scrollListener);
@@ -126,6 +130,21 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
             physics: ScrollPhysics(),
             controller: _sc,
             children: [
+              GlobalLists.ourPartnerObjectives.length <= 0
+                  ? Container(
+                      child: Center(child: Container()),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10, right: 10, top: 8, bottom: 15),
+                      child: Html(
+                        data:
+                            """${GlobalLists.ourPartnerObjectives[0].pageContent} """,
+                        onLinkTap: (url) {
+                          print("Opening $url...");
+                        },
+                      ),
+                    ),
               SizedBox(
                 height: 15,
               ),
@@ -159,15 +178,18 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                                 padding: const EdgeInsets.only(right: 2.0),
                                 child: GestureDetector(
                                   onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                VideoPlayer(
-                                                  videoUrl: GlobalLists
-                                                      .ourPartnerList[index]
-                                                      .webUrl,
-                                                )));
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (BuildContext context) =>
+                                    //             VideoPlayer(
+                                    //               videoUrl: GlobalLists
+                                    //                   .ourPartnerList[index]
+                                    //                   .webUrl,
+                                    //             )));
+
+                                    ShowDialogs.launchURL(GlobalLists
+                                        .ourPartnerList[index].webUrl);
                                   },
                                   child: Card(
                                       shape: RoundedRectangleBorder(
@@ -244,16 +266,16 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                             }
                           }),
                         ),
-              Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 0, left: 0),
+              //   child: Align(
+              //     alignment: Alignment.topRight,
+              //     child: Image.asset(
+              //       "assets/newImages/flowers_footer.png",
+              //       height: 170,
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ));
@@ -317,6 +339,40 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
 
             setState(() {
               _isLoading = false;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          //  Navigator.of(_keyLoader.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  getOurPartnerObjectives() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+
+      APIManager().apiRequest(
+        context,
+        API.ourPartnerObjectives,
+        (response) async {
+          objective.OurpartnerobjectiveResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+          GlobalLists.ourPartnerObjectives.clear();
+          //    Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.ourPartnerObjectives = resp.data.list;
             });
           } else {
             ShowDialogs.showToast(resp.msg);

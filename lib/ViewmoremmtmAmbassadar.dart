@@ -115,12 +115,13 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
     return Scaffold(
       appBar: InnerAluminsCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 1,
-                      )));
+          Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 0,
+          //             )));
         },
         index: 1,
         title: "Merck More Than \nMother Ambassadors",

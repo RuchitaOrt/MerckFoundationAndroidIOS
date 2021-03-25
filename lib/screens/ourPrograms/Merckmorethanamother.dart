@@ -36,6 +36,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/TestimonialProgram.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 
 class OurProgramDetails extends StatefulWidget {
   @override
@@ -166,7 +167,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                     ],
                   ),
                   child: Container(
-                    height: 490,
+                    height: Constantstring.tabheight,
                     //color: Colors.amber,
                     child: Column(
                       children: [
@@ -273,7 +274,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -303,8 +304,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                                   .homeCallForAppBaseURL +
                                               product.appImg,
                                           fit: BoxFit.fill,
-                                          width: 240,
-                                          height: 290,
+                                          width: Constantstring.callimagewidth,
+                                          height:
+                                              Constantstring.callimageheight,
                                         ),
                                       ),
                                       SizedBox(
@@ -425,7 +427,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -453,8 +455,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                                   .homeDigitalLibraryBaseURL +
                                               product.image,
                                           fit: BoxFit.fill,
-                                          width: 240,
-                                          height: 290,
+                                          width: Constantstring.callimagewidth,
+                                          height:
+                                              Constantstring.callimageheight,
                                         ),
                                       ),
                                       SizedBox(
@@ -574,7 +577,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -595,8 +598,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                         image: GlobalLists.homeMMTMBaseURL +
                                             product.photo,
                                         fit: BoxFit.fill,
-                                        width: 240,
-                                        height: 290,
+                                        width: Constantstring.callimagewidth,
+                                        height: Constantstring.callimageheight,
                                       ),
                                     ),
                                     SizedBox(
@@ -1284,59 +1287,64 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                   items: _productsAvailable.map((product) {
                     return new Builder(
                       builder: (BuildContext context) {
-                        return new Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "http://merckfoundation.org/merck/public/uploads/slider/" +
-                                          product['image']),
-                                  fit: BoxFit.cover)),
-                          width: SizeConfig.blockSizeHorizontal * 100,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 0, bottom: 15),
-                                child: Container(
-                                  color: Colors.white.withOpacity(0.5),
-                                  width: SizeConfig.blockSizeHorizontal * 100,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        FormLabel(
-                                          text: product['image_title'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.4),
-                                          maxLines: 2,
-                                          fontweight: FontWeight.w700,
-                                        ),
-                                        SizedBox(
-                                          height: 2,
-                                        ),
-                                        FormLabel(
-                                          text: product['image_desc'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.2),
-                                          fontweight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        return Slidercard(
+                          cardImage: GlobalLists.sliderurl + product['image'],
+                          cardTitle: product['image_title'],
+                          subTitle: product['image_desc'],
                         );
+                        // new Container(
+                        //   decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(8),
+                        //       image: DecorationImage(
+                        //           image: NetworkImage(
+                        //               "http://merckfoundation.org/merck/public/uploads/slider/" +
+                        //                   product['image']),
+                        //           fit: BoxFit.cover)),
+                        //   width: SizeConfig.blockSizeHorizontal * 100,
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.end,
+                        //     children: <Widget>[
+                        //       Padding(
+                        //         padding:
+                        //             const EdgeInsets.only(right: 0, bottom: 15),
+                        //         child: Container(
+                        //           color: Colors.white.withOpacity(0.5),
+                        //           width: SizeConfig.blockSizeHorizontal * 100,
+                        //           child: Padding(
+                        //             padding: const EdgeInsets.only(
+                        //                 left: 10, right: 10, top: 5, bottom: 5),
+                        //             child: Column(
+                        //               mainAxisAlignment:
+                        //                   MainAxisAlignment.center,
+                        //               children: <Widget>[
+                        //                 FormLabel(
+                        //                   text: product['image_title'],
+                        //                   labelColor: Customcolor.pink_col,
+                        //                   fontSize:
+                        //                       ResponsiveFlutter.of(context)
+                        //                           .fontSize(1.4),
+                        //                   maxLines: 2,
+                        //                   fontweight: FontWeight.w700,
+                        //                 ),
+                        //                 SizedBox(
+                        //                   height: 2,
+                        //                 ),
+                        //                 FormLabel(
+                        //                   text: product['image_desc'],
+                        //                   labelColor: Customcolor.pink_col,
+                        //                   fontSize:
+                        //                       ResponsiveFlutter.of(context)
+                        //                           .fontSize(1.2),
+                        //                   fontweight: FontWeight.w500,
+                        //                 ),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // );
                       },
                     );
                   }).toList(),
@@ -1773,8 +1781,10 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                           .substring(GlobalLists
                                   .homevideolist[index].videoLink.length -
                               11);
-                      _launchInWebViewWithJavaScript(
+                      ShowDialogs.youtubevideolink(
                           "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                      // _launchInWebViewWithJavaScript(
+                      //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8, left: 10),
@@ -2238,7 +2248,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
         print("ff");
         print(res);
         MmtmMainResponse homepageres = MmtmMainResponse.fromJson(res);
-
+        GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
         slidersection = homepageres.sliderArea[0].slider.list;
         slidersection.forEach((element) {
           _productsAvailable.add({
@@ -2332,19 +2342,21 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
           if (rightsectioncategoryname.toString().toLowerCase() ==
               "call_for_app".toLowerCase()) {
             for (int j = 0;
-                j < homepageres.rightArea['${i + 1}'].callForApp.list.length;
+                j <
+                    homepageres
+                        .rightArea[rigthareakey[i]].callForApp.list.length;
                 j++) {
               var enddate = new DateTime.utc(
-                  homepageres.rightArea['${i + 1}'].callForApp.list[j]
+                  homepageres.rightArea[rigthareakey[i]].callForApp.list[j]
                       .eventEndDate.year,
-                  homepageres.rightArea['${i + 1}'].callForApp.list[j]
+                  homepageres.rightArea[rigthareakey[i]].callForApp.list[j]
                       .eventEndDate.month,
-                  homepageres.rightArea['${i + 1}'].callForApp.list[j]
+                  homepageres.rightArea[rigthareakey[i]].callForApp.list[j]
                       .eventEndDate.day);
 
               if (_todaysDate.isBefore(enddate)) {
-                GlobalLists.homecallforapp
-                    .add(homepageres.rightArea['${i + 1}'].callForApp.list[j]);
+                GlobalLists.homecallforapp.add(
+                    homepageres.rightArea[rigthareakey[i]].callForApp.list[j]);
                 print(GlobalLists.homecallforapp.length);
               }
             }

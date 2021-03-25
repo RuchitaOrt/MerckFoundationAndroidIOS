@@ -40,12 +40,13 @@ class DetailpageceoState extends State<Detailpageceo>
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(
-                          index: 0,
-                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Dashboard(
+            //               index: 0,
+            //             )));
+            Navigator.pop(context);
           },
           index: 2,
           title: "Leadership",
@@ -92,7 +93,11 @@ class DetailpageceoState extends State<Detailpageceo>
                               print("Opening $url...");
                             },
                             style: {
-                              "body": Style(textAlign: TextAlign.center),
+                              "body": Style(
+                                  textAlign: TextAlign.center,
+                                  color: Customcolor.violet_col,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: FontSize.larger),
                             },
                           ),
                         ),
@@ -140,20 +145,20 @@ class DetailpageceoState extends State<Detailpageceo>
                               //     "assets/newImages/flowers_footer.png",
                               //   ),
                               // ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 0, left: 0),
-                                child: Align(
-                                  alignment: Alignment.topRight,
-                                  child: Image.asset(
-                                    "assets/newImages/flowers_footer.png",
-                                    height: 170,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.only(right: 0, left: 0),
+                              //   child: Align(
+                              //     alignment: Alignment.topRight,
+                              //     child: Image.asset(
+                              //       "assets/newImages/flowers_footer.png",
+                              //       height: 170,
+                              //     ),
+                              //   ),
+                              // ),
+                              // SizedBox(
+                              //   height: 10,
+                              // )
                             ],
                           ),
                         ),

@@ -9,6 +9,9 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 
 class Videofilter extends StatefulWidget {
+  final String apptitle;
+
+  const Videofilter({Key key, this.apptitle}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return VideofilterState();
@@ -61,8 +64,9 @@ class VideofilterState extends State<Videofilter> {
                           index: 0,
                         )));
           },
-          index: 2,
-          title: "Video",
+          index: 1,
+          // forfilterindes: 3,
+          title: widget.apptitle,
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",
@@ -168,19 +172,19 @@ class VideofilterState extends State<Videofilter> {
               //     "assets/newImages/flowers_footer.png",
               //   ),
               // ),
-              Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              )
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 0, left: 0),
+              //   child: Align(
+              //     alignment: Alignment.topRight,
+              //     child: Image.asset(
+              //       "assets/newImages/flowers_footer.png",
+              //       height: 170,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 10,
+              // )
             ],
           ),
         ));

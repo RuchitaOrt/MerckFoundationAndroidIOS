@@ -25,6 +25,7 @@ import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetai
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/MerckFellowship.dart';
@@ -100,13 +101,13 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          // Navigator.pop(context);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 1,
-                      )));
+          Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 1,
+          //             )));
         },
         index: 2,
         title: "Our Programs",
@@ -123,7 +124,7 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
               shrinkWrap: true,
               physics: ScrollPhysics(),
               children: [
-                slider(context),
+                slidersection.length == 0 ? Container() : slider(context),
                 Visibility(
                   visible: isMiddleSectionLoaded,
                   replacement: Center(child: CircularProgressIndicator()),
@@ -660,59 +661,64 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                   items: _productsAvailable.map((product) {
                     return new Builder(
                       builder: (BuildContext context) {
-                        return new Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "http://merckfoundation.org/merck/public/uploads/slider/" +
-                                          product['image']),
-                                  fit: BoxFit.cover)),
-                          width: SizeConfig.blockSizeHorizontal * 100,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 0, bottom: 15),
-                                child: Container(
-                                  color: Colors.white.withOpacity(0.5),
-                                  width: SizeConfig.blockSizeHorizontal * 100,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        FormLabel(
-                                          text: product['image_title'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.4),
-                                          maxLines: 2,
-                                          fontweight: FontWeight.w700,
-                                        ),
-                                        SizedBox(
-                                          height: 2,
-                                        ),
-                                        FormLabel(
-                                          text: product['image_desc'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.2),
-                                          fontweight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        return Slidercard(
+                          cardImage: GlobalLists.sliderurl + product['image'],
+                          cardTitle: product['image_title'],
+                          subTitle: product['image_desc'],
                         );
+                        // new Container(
+                        //   decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(8),
+                        //       image: DecorationImage(
+                        //           image: NetworkImage(
+                        //               "http://merckfoundation.org/merck/public/uploads/slider/" +
+                        //                   product['image']),
+                        //           fit: BoxFit.cover)),
+                        //   width: SizeConfig.blockSizeHorizontal * 100,
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.end,
+                        //     children: <Widget>[
+                        //       Padding(
+                        //         padding:
+                        //             const EdgeInsets.only(right: 0, bottom: 15),
+                        //         child: Container(
+                        //           color: Colors.white.withOpacity(0.5),
+                        //           width: SizeConfig.blockSizeHorizontal * 100,
+                        //           child: Padding(
+                        //             padding: const EdgeInsets.only(
+                        //                 left: 10, right: 10, top: 5, bottom: 5),
+                        //             child: Column(
+                        //               mainAxisAlignment:
+                        //                   MainAxisAlignment.center,
+                        //               children: <Widget>[
+                        //                 FormLabel(
+                        //                   text: product['image_title'],
+                        //                   labelColor: Customcolor.pink_col,
+                        //                   fontSize:
+                        //                       ResponsiveFlutter.of(context)
+                        //                           .fontSize(1.4),
+                        //                   maxLines: 2,
+                        //                   fontweight: FontWeight.w700,
+                        //                 ),
+                        //                 SizedBox(
+                        //                   height: 2,
+                        //                 ),
+                        //                 FormLabel(
+                        //                   text: product['image_desc'],
+                        //                   labelColor: Customcolor.pink_col,
+                        //                   fontSize:
+                        //                       ResponsiveFlutter.of(context)
+                        //                           .fontSize(1.2),
+                        //                   fontweight: FontWeight.w500,
+                        //                 ),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // );
                       },
                     );
                   }).toList(),
@@ -870,8 +876,10 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                           .substring(GlobalLists
                                   .homevideolist[index].videoLink.length -
                               11);
-                      _launchInWebViewWithJavaScript(
+                      ShowDialogs.youtubevideolink(
                           "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                      // _launchInWebViewWithJavaScript(
+                      //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8, left: 10),
@@ -1566,23 +1574,25 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
         print(res);
         MerckcancerpatientResponse homepageres =
             MerckcancerpatientResponse.fromJson(res);
+        if (homepageres.sliderArea != null) {
+          GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
+          slidersection = homepageres.sliderArea[0].slider.list;
 
-        slidersection = homepageres.sliderArea[0].slider.list;
-        slidersection.forEach((element) {
-          _productsAvailable.add({
-            "id": element.id,
-            "menu_id": element.menuId,
-            "image_title": element.imageTitle,
-            "image_desc": element.imageDesc,
-            "links": element.links,
-            "image": element.image,
-            "alt_text": element.altText,
-            "status": element.status,
-            "created_at": element.createdAt,
-            "updated_at": element.updatedAt
+          slidersection.forEach((element) {
+            _productsAvailable.add({
+              "id": element.id,
+              "menu_id": element.menuId,
+              "image_title": element.imageTitle,
+              "image_desc": element.imageDesc,
+              "links": element.links,
+              "image": element.image,
+              "alt_text": element.altText,
+              "status": element.status,
+              "created_at": element.createdAt,
+              "updated_at": element.updatedAt
+            });
           });
-        });
-
+        }
         print("sliderprogramsection");
         print(slidersection.length);
 
@@ -1604,11 +1614,11 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
           print("TKey: ${section.keys.first}");
           var middlecategoryname = section.keys.first;
 
-          setState(() {
-            typewidet.add(middlecategoryname);
+          //setState(() {
+          typewidet.add(middlecategoryname);
 
-            print(typewidet);
-          });
+          print(typewidet);
+          // });
           if (middlecategoryname.toString().toLowerCase() ==
               "Videos".toLowerCase()) {
             GlobalLists.homevideolist =
@@ -1622,49 +1632,49 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
           }
         }
 
-        ///////right section
-        List<String> rigthareakey = [];
-        lastsection.keys.forEach((element) {
-          rigthareakey.add(element.toString());
-        });
-        print(middleareakey);
-        for (int i = 0; i < lastsection.length; i++) {
-          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-          //  print(categoryKeys.videos.type);
-          dynamic rightsection = res['Right_area'][rigthareakey[i]];
-          print("TKey: ${rightsection.keys.first}");
-          var rightsectioncategoryname = rightsection.keys.first;
+        // ///////right section
+        // List<String> rigthareakey = [];
+        // lastsection.keys.forEach((element) {
+        //   rigthareakey.add(element.toString());
+        // });
+        // print(middleareakey);
+        // for (int i = 0; i < lastsection.length; i++) {
+        //   //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+        //   //  print(categoryKeys.videos.type);
+        //   dynamic rightsection = res['Right_area'][rigthareakey[i]];
+        //   print("TKey: ${rightsection.keys.first}");
+        //   var rightsectioncategoryname = rightsection.keys.first;
 
-          setState(() {
-            typewidetofrightsection.add(rightsectioncategoryname);
-            _tabController = new TabController(
-                vsync: this, length: typewidetofrightsection.length);
-            print(typewidetofrightsection);
-          });
+        //   // setState(() {
+        //   typewidetofrightsection.add(rightsectioncategoryname);
+        //   _tabController = new TabController(
+        //       vsync: this, length: typewidetofrightsection.length);
+        //   print(typewidetofrightsection);
+        //   //});
 
-          if (rightsectioncategoryname.toString().toLowerCase() ==
-              "call_for_app".toLowerCase()) {
-            GlobalLists.homecallforapp =
-                homepageres.rightArea[rigthareakey[i]].callForApp.list;
-            GlobalLists.homeCallForAppBaseURL =
-                homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
-            print(GlobalLists.homecallforapp.length);
-          } else if (rightsectioncategoryname.toString().toLowerCase() ==
-              "mmtm".toLowerCase()) {
-            GlobalLists.homemmtm =
-                homepageres.rightArea[rigthareakey[i]].mmtm.list;
-            print(GlobalLists.homemmtm.length);
-            GlobalLists.homeMMTMBaseURL =
-                homepageres.rightArea[rigthareakey[i]].mmtm.baseUrl;
-          } else if (rightsectioncategoryname.toString().toLowerCase() ==
-              "digital_library".toLowerCase()) {
-            GlobalLists.homedigitallib =
-                homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
-            GlobalLists.homeDigitalLibraryBaseURL =
-                homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
-            print(GlobalLists.homedigitallib.length);
-          }
-        }
+        //   if (rightsectioncategoryname.toString().toLowerCase() ==
+        //       "call_for_app".toLowerCase()) {
+        //     GlobalLists.homecallforapp =
+        //         homepageres.rightArea[rigthareakey[i]].callForApp.list;
+        //     GlobalLists.homeCallForAppBaseURL =
+        //         homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
+        //     print(GlobalLists.homecallforapp.length);
+        //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
+        //       "mmtm".toLowerCase()) {
+        //     GlobalLists.homemmtm =
+        //         homepageres.rightArea[rigthareakey[i]].mmtm.list;
+        //     print(GlobalLists.homemmtm.length);
+        //     GlobalLists.homeMMTMBaseURL =
+        //         homepageres.rightArea[rigthareakey[i]].mmtm.baseUrl;
+        //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
+        //       "digital_library".toLowerCase()) {
+        //     GlobalLists.homedigitallib =
+        //         homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
+        //     GlobalLists.homeDigitalLibraryBaseURL =
+        //         homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
+        //     print(GlobalLists.homedigitallib.length);
+        //   }
+        // }
 
         setState(() {
           isMiddleSectionLoaded = true;

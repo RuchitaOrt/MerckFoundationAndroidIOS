@@ -18,6 +18,7 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/model/HomepageResponse.dart';
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -44,27 +45,29 @@ class _OurProgramState extends State<Ourprogram> {
   bool issliderSectionLoaded = false;
   List<programclass> _productsAvailable1 = [
     programclass(
-        programname: "Merck More Than A Mother", colors: Customcolor.text_blue),
+        programname: "Merck Foundation More Than A Mother",
+        colors: Customcolor.text_blue),
     programclass(
-        programname: "Merck Cancer Access Program",
+        programname: "Merck Foundation Cancer Access Program",
         colors: Customcolor.colorLightGreen),
     programclass(
         programname:
-            "Merck Capacity Advancement and Diabetes Blue Point Program",
+            "Merck Foundation Capacity Advancement and Diabetes Blue Point Program",
         colors: Customcolor.baby_blue),
     programclass(
         programname: "Merck Foundation First Ladies Initiative Summit",
         colors: Customcolor.pink_col),
     programclass(
-        programname: "Merck STEM Program", colors: Customcolor.colorVoilet),
+        programname: "Merck Foundation STEM Program",
+        colors: Customcolor.colorVoilet),
     programclass(
-        programname: "Educating Linda Program",
+        programname: "Merck Foundation Educating Linda Program",
         colors: Customcolor.colorLightBlue),
     programclass(
         programname: "Merck Foundation Sustainability Initiative",
         colors: Customcolor.colorLightGreen),
     programclass(
-        programname: "Merck Africa Asia Luminary",
+        programname: "Merck Foundation Africa Asia Luminary",
         colors: Customcolor.colorGreen),
   ];
 
@@ -119,19 +122,6 @@ class _OurProgramState extends State<Ourprogram> {
                 //     "assets/newImages/flowers_footer.png",
                 //   ),
                 // ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                      height: 170,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                )
               ],
             ),
           ),
@@ -155,7 +145,7 @@ class _OurProgramState extends State<Ourprogram> {
         print("ff");
         print(res);
         HomepageResponse homepageres = HomepageResponse.fromJson(res);
-
+        GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
         slidersection = homepageres.sliderArea[0].slider.list;
         slidersection.forEach((element) {
           _productsAvailable.add({
@@ -174,7 +164,6 @@ class _OurProgramState extends State<Ourprogram> {
 
         print("slidersection");
         print(slidersection.length);
-
         setState(() {
           issliderSectionLoaded = true;
         });
@@ -183,10 +172,14 @@ class _OurProgramState extends State<Ourprogram> {
       } else {
         ShowDialogs.showToast(GlobalLists.serverresp);
 
-        issliderSectionLoaded = true;
+        setState(() {
+          issliderSectionLoaded = true;
+        });
       }
     } else {
-      issliderSectionLoaded = true;
+      setState(() {
+        issliderSectionLoaded = true;
+      });
 
       ShowDialogs.showToast("Please check internet connection");
     }
@@ -333,10 +326,12 @@ class _OurProgramState extends State<Ourprogram> {
                           // crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Padding(
+                              // padding: const EdgeInsets.only(
+                              //     left: 16, right: 16, top: 25, bottom: 25),
                               padding: const EdgeInsets.only(
-                                  left: 16, right: 16, top: 25, bottom: 25),
+                                  left: 8, right: 8, top: 8, bottom: 8),
                               child: Container(
-                                width: SizeConfig.blockSizeHorizontal * 75,
+                                width: SizeConfig.blockSizeHorizontal * 80,
                                 child: FormLabel(
                                   text: _productsAvailable1[index].programname,
                                   labelColor: Colors.white,
@@ -389,59 +384,64 @@ class _OurProgramState extends State<Ourprogram> {
                   items: _productsAvailable.map((product) {
                     return new Builder(
                       builder: (BuildContext context) {
-                        return new Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "http://merckfoundation.org/merck/public/uploads/slider/" +
-                                          product['image']),
-                                  fit: BoxFit.cover)),
-                          width: SizeConfig.blockSizeHorizontal * 100,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 0, bottom: 15),
-                                child: Container(
-                                  color: Colors.white.withOpacity(0.5),
-                                  width: SizeConfig.blockSizeHorizontal * 100,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        FormLabel(
-                                          text: product['image_title'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.4),
-                                          maxLines: 2,
-                                          fontweight: FontWeight.w700,
-                                        ),
-                                        SizedBox(
-                                          height: 2,
-                                        ),
-                                        FormLabel(
-                                          text: product['image_desc'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.2),
-                                          fontweight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        return Slidercard(
+                          cardImage: GlobalLists.sliderurl + product['image'],
+                          cardTitle: product['image_title'],
+                          subTitle: product['image_desc'],
                         );
+                        //  new Container(
+                        //   decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(8),
+                        //       image: DecorationImage(
+                        //           image: NetworkImage(
+                        //               "http://merckfoundation.org/merck/public/uploads/slider/" +
+                        //                   product['image']),
+                        //           fit: BoxFit.cover)),
+                        //   width: SizeConfig.blockSizeHorizontal * 100,
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.end,
+                        //     children: <Widget>[
+                        //       Padding(
+                        //         padding:
+                        //             const EdgeInsets.only(right: 0, bottom: 15),
+                        //         child: Container(
+                        //           color: Colors.white.withOpacity(0.5),
+                        //           width: SizeConfig.blockSizeHorizontal * 100,
+                        //           child: Padding(
+                        //             padding: const EdgeInsets.only(
+                        //                 left: 10, right: 10, top: 5, bottom: 5),
+                        //             child: Column(
+                        //               mainAxisAlignment:
+                        //                   MainAxisAlignment.center,
+                        //               children: <Widget>[
+                        //                 FormLabel(
+                        //                   text: product['image_title'],
+                        //                   labelColor: Customcolor.pink_col,
+                        //                   fontSize:
+                        //                       ResponsiveFlutter.of(context)
+                        //                           .fontSize(1.4),
+                        //                   maxLines: 2,
+                        //                   fontweight: FontWeight.w700,
+                        //                 ),
+                        //                 SizedBox(
+                        //                   height: 2,
+                        //                 ),
+                        //                 FormLabel(
+                        //                   text: product['image_desc'],
+                        //                   labelColor: Customcolor.pink_col,
+                        //                   fontSize:
+                        //                       ResponsiveFlutter.of(context)
+                        //                           .fontSize(1.2),
+                        //                   fontweight: FontWeight.w500,
+                        //                 ),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // );
                       },
                     );
                   }).toList(),

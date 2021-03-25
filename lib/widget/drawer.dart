@@ -10,7 +10,7 @@ import 'package:merckfoundation22dec/screens/contactus/contactUs.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 
-import 'package:merckfoundation22dec/screens/ourpartner/ourPartners.dart';
+import 'package:merckfoundation22dec/screens/ourpartner/ourPartnerDetails.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -335,7 +335,8 @@ class _AppDrawerState extends State<AppDrawer> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => Ourpatner()));
+                              builder: (BuildContext context) =>
+                                  Ourpatnerdetail()));
                     },
                   ),
                   SizedBox(

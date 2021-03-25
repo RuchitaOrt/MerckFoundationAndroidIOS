@@ -158,7 +158,7 @@ class FirstLadiesInitiativeDetailsState
                     ],
                   ),
                   child: Container(
-                    height: 490,
+                    height: Constantstring.tabheight,
                     //color: Colors.amber,
                     child: Column(
                       children: [
@@ -545,7 +545,7 @@ class FirstLadiesInitiativeDetailsState
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -567,8 +567,8 @@ class FirstLadiesInitiativeDetailsState
                                             GlobalLists.homeCallForAppBaseURL +
                                                 product.appImg,
                                         fit: BoxFit.fill,
-                                        width: 240,
-                                        height: 290,
+                                        width: Constantstring.callimagewidth,
+                                        height: Constantstring.callimageheight,
                                       ),
                                     ),
                                     SizedBox(
@@ -680,7 +680,7 @@ class FirstLadiesInitiativeDetailsState
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -708,8 +708,9 @@ class FirstLadiesInitiativeDetailsState
                                                   .homeDigitalLibraryBaseURL +
                                               product.image,
                                           fit: BoxFit.fill,
-                                          width: 240,
-                                          height: 290,
+                                          width: Constantstring.callimagewidth,
+                                          height:
+                                              Constantstring.callimageheight,
                                         ),
                                       ),
                                       SizedBox(
@@ -828,7 +829,7 @@ class FirstLadiesInitiativeDetailsState
                               enlargeCenterPage: true,
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               viewportFraction: 1.0,
-                              height: 340,
+                              height: Constantstring.callcoursaheight,
                               onPageChanged: (index, reason) {
                                 setState(() {
                                   _current1 = index;
@@ -849,8 +850,8 @@ class FirstLadiesInitiativeDetailsState
                                         image: GlobalLists.homeMMTMBaseURL +
                                             product.photo,
                                         fit: BoxFit.fill,
-                                        width: 240,
-                                        height: 290,
+                                        width: Constantstring.callimagewidth,
+                                        height: Constantstring.callimageheight,
                                       ),
                                     ),
                                     SizedBox(
@@ -1362,8 +1363,10 @@ class FirstLadiesInitiativeDetailsState
                           .substring(GlobalLists
                                   .homevideolist[index].videoLink.length -
                               11);
-                      _launchInWebViewWithJavaScript(
+                      ShowDialogs.youtubevideolink(
                           "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                      // _launchInWebViewWithJavaScript(
+                      //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8, left: 10),

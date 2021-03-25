@@ -114,13 +114,16 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
 
         Map<String, dynamic> section1 = homepageres.middleArea;
 
-        print(section1);
-        print(section1['1']);
-
+        // print(section1);
+        // print(section1['1']);
+        List<String> middleareakey = [];
+        section1.keys.forEach((element) {
+          middleareakey.add(element.toString());
+        });
         for (int i = 0; i < section1.length; i++) {
           //  MiddleArea categoryKeys = section1[(i + 1).toString()];
           //  print(categoryKeys.videos.type);
-          dynamic section = res['middle_area']['${i + 1}'];
+          dynamic section = res['middle_area'][middleareakey[i]];
           print("TKey: ${section.keys.first}");
           var middlecategoryname = section.keys.first;
 
@@ -132,26 +135,28 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
           if (middlecategoryname.toString().toLowerCase() ==
               "Videos".toLowerCase()) {
             GlobalLists.homevideolist =
-                homepageres.middleArea['${i + 1}'].videos.list;
+                homepageres.middleArea[middleareakey[i]].videos.list;
             print(GlobalLists.homevideolist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "content".toLowerCase()) {
             GlobalLists.homecontentlist =
-                homepageres.middleArea['${i + 1}'].content.list;
+                homepageres.middleArea[middleareakey[i]].content.list;
             print(GlobalLists.homecontentlist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "gallery".toLowerCase()) {
             GlobalLists.homegallerybaseurl =
-                homepageres.middleArea['${i + 1}'].gallery.baseUrl;
+                homepageres.middleArea[middleareakey[i]].gallery.baseUrl;
             GlobalLists.homegallerylist =
-                homepageres.middleArea['${i + 1}'].gallery.list;
+                homepageres.middleArea[middleareakey[i]].gallery.list;
             print(GlobalLists.homegallerylist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
-              "ambasdars".toLowerCase()) {
+              "mmtm".toLowerCase()) {
+            //  if (homepageres.middleArea['${i + 1}'].ambasdars != null) {
             GlobalLists.ambasdarsbaseurl =
-                homepageres.middleArea['${i + 1}'].ambasdars.baseUrl;
+                homepageres.middleArea[middleareakey[i]].mmtm.baseUrl;
             GlobalLists.ambasdarslist =
-                homepageres.middleArea['${i + 1}'].ambasdars.list;
+                homepageres.middleArea[middleareakey[i]].mmtm.list;
+            //}
             print(GlobalLists.ambasdarslist.length);
           }
         }
@@ -304,8 +309,10 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                               .substring(GlobalLists
                                       .homevideolist[index].videoLink.length -
                                   11);
-                          _launchInWebViewWithJavaScript(
+                          ShowDialogs.youtubevideolink(
                               "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                          // _launchInWebViewWithJavaScript(
+                          //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(
@@ -516,7 +523,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
           ),
         );
       }
-      if (typewidet[i] == "ambasdars") {
+      if (typewidet[i] == "mmtm") {
         listofwiget.add(Padding(
           padding: const EdgeInsets.only(left: 10, top: 10),
           child: CustomHorizontalCard(

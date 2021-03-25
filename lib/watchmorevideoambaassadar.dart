@@ -141,12 +141,13 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
             _scaffoldKey1.currentState.openEndDrawer();
           },
           onTapval: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(
-                          index: 0,
-                        )));
+            Navigator.pop(context);
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Dashboard(
+            //               index: 0,
+            //             )));
           },
           index: 1,
           forfilterindes: 3,
@@ -165,16 +166,6 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
             controller: _sc,
             //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
-                child: FormLabel(
-                  text: "Videos",
-                  labelColor: Customcolor.colorblack,
-                  fontSize: ResponsiveFlutter.of(context).fontSize(2),
-                  maxLines: 2,
-                  fontweight: FontWeight.w800,
-                ),
-              ),
               (GlobalLists.videoviewmoreambasdarslist.length == 0 && _isLoading)
                   ? Center(
                       child: CircularProgressIndicator(),
@@ -223,8 +214,10 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
                                                     .videoLink
                                                     .length -
                                                 11);
-                                        _launchInWebViewWithJavaScript(
+                                        ShowDialogs.youtubevideolink(
                                             "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                        // _launchInWebViewWithJavaScript(
+                                        //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                                       },
                                       child: Container(
                                         color: Colors.transparent,
@@ -295,19 +288,19 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
               //     "assets/newImages/flowers_footer.png",
               //   ),
               // ),
-              Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              )
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 0, left: 0),
+              //   child: Align(
+              //     alignment: Alignment.topRight,
+              //     child: Image.asset(
+              //       "assets/newImages/flowers_footer.png",
+              //       height: 170,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 10,
+              // )
             ],
           ),
         ));

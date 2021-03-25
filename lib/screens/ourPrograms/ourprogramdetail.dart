@@ -40,9 +40,9 @@ class _MyHomePageState extends State<OurProgram> {
   List programvalue = [
     "About Merck More Than A Mother",
     "Strategy",
-    "Merck More Than a Mother Ambassadors",
-    "Merck Fertility and Embryology Training Program",
-    "Community Awareness and Awards Program",
+    "Merck Foundation More Than a Mother Ambassadors",
+    "Merck Foundation Fertility and Embryology Training Program",
+    "Merck Foundation Community Awareness and Awards Program",
     "Empowering Berna",
     "Local Songs and Children Stories",
     "Videos"

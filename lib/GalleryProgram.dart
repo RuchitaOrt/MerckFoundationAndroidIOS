@@ -115,12 +115,13 @@ class _GalleryProgramState extends State<GalleryProgram> {
     return Scaffold(
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 1,
-                      )));
+          Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 0,
+          //             )));
         },
         index: 1,
         title: "Photo Gallery",

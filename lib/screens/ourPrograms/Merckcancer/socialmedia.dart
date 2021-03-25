@@ -24,12 +24,13 @@ class SocialMediaState extends State<SocialMedia> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 0,
-                      )));
+          Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 0,
+          //             )));
         },
         index: 1,
         title: "Social Media",
@@ -175,13 +176,13 @@ class SocialMediaState extends State<SocialMedia> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Image.asset(
-              "assets/newImages/flowers_footer.png",
-              height: 170,
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.bottomRight,
+          //   child: Image.asset(
+          //     "assets/newImages/flowers_footer.png",
+          //     height: 170,
+          //   ),
+          // ),
         ],
       ),
     );

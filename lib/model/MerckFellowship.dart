@@ -13,19 +13,24 @@ String merckFellowshipResponseToJson(MerckFellowshipResponse data) =>
 class MerckFellowshipResponse {
   MerckFellowshipResponse({
     this.middleArea,
+    this.sliderArea,
   });
 
   Map<String, MiddleArea> middleArea;
+  List<SliderArea> sliderArea;
 
   factory MerckFellowshipResponse.fromJson(Map<String, dynamic> json) =>
       MerckFellowshipResponse(
         middleArea: Map.from(json["middle_area"]).map(
             (k, v) => MapEntry<String, MiddleArea>(k, MiddleArea.fromJson(v))),
+        sliderArea: List<SliderArea>.from(
+            json["slider_area"].map((x) => SliderArea.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "middle_area": Map.from(middleArea)
             .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+        "slider_area": List<dynamic>.from(sliderArea.map((x) => x.toJson())),
       };
 }
 
@@ -293,5 +298,94 @@ class VideosList {
         "status": status,
         "created_at": createdAt,
         "updated_at": updatedAt,
+      };
+}
+
+class SliderArea {
+  SliderArea({
+    this.slider,
+  });
+
+  Slider slider;
+
+  factory SliderArea.fromJson(Map<String, dynamic> json) => SliderArea(
+        slider: Slider.fromJson(json["slider"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "slider": slider.toJson(),
+      };
+}
+
+class Slider {
+  Slider({
+    this.list,
+    this.baseUrl,
+  });
+
+  List<SliderList> list;
+  String baseUrl;
+
+  factory Slider.fromJson(Map<String, dynamic> json) => Slider(
+        list: List<SliderList>.from(
+            json["list"].map((x) => SliderList.fromJson(x))),
+        baseUrl: json["base_url"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "base_url": baseUrl,
+      };
+}
+
+class SliderList {
+  SliderList({
+    this.id,
+    this.menuId,
+    this.imageTitle,
+    this.imageDesc,
+    this.links,
+    this.image,
+    this.altText,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+  });
+
+  String id;
+  String menuId;
+  String imageTitle;
+  String imageDesc;
+  String links;
+  String image;
+  String altText;
+  String status;
+  DateTime createdAt;
+  DateTime updatedAt;
+
+  factory SliderList.fromJson(Map<String, dynamic> json) => SliderList(
+        id: json["id"],
+        menuId: json["menu_id"],
+        imageTitle: json["image_title"],
+        imageDesc: json["image_desc"],
+        links: json["links"],
+        image: json["image"],
+        altText: json["alt_text"],
+        status: json["status"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "menu_id": menuId,
+        "image_title": imageTitle,
+        "image_desc": imageDesc,
+        "links": links,
+        "image": image,
+        "alt_text": altText,
+        "status": status,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
       };
 }

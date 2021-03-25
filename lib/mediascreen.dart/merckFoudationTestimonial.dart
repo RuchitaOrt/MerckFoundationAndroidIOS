@@ -16,6 +16,7 @@ import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
 import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:merckfoundation22dec/model/getMerckTestimonialResp.dart'
     as merckTestimonialResp;
 
@@ -166,16 +167,16 @@ class MerckFoundationTestimonialState
             controller: _sc,
             //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
-                child: FormLabel(
-                  text: "Merck Foundation Alumini's Testimonial",
-                  labelColor: Customcolor.colorblack,
-                  fontSize: ResponsiveFlutter.of(context).fontSize(2),
-                  maxLines: 2,
-                  fontweight: FontWeight.w800,
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
+              //   child: FormLabel(
+              //     text: "Merck Foundation Alumini's Testimonial",
+              //     labelColor: Customcolor.colorblack,
+              //     fontSize: ResponsiveFlutter.of(context).fontSize(2),
+              //     maxLines: 2,
+              //     fontweight: FontWeight.w800,
+              //   ),
+              // ),
               (GlobalLists.merckTestimonialList.length == 0 && _isLoading)
                   ? Center(
                       child: CircularProgressIndicator(),
@@ -230,8 +231,10 @@ class MerckFoundationTestimonialState
                                                     .videoLink
                                                     .length -
                                                 11);
-                                        _launchInWebViewWithJavaScript(
+                                        ShowDialogs.youtubevideolink(
                                             "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                        // _launchInWebViewWithJavaScript(
+                                        //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                                       },
                                       child: Container(
                                         color: Colors.transparent,
@@ -301,19 +304,19 @@ class MerckFoundationTestimonialState
               //     "assets/newImages/flowers_footer.png",
               //   ),
               // ),
-              Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              )
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 0, left: 0),
+              //   child: Align(
+              //     alignment: Alignment.topRight,
+              //     child: Image.asset(
+              //       "assets/newImages/flowers_footer.png",
+              //       height: 170,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 10,
+              // )
             ],
           ),
         ));
@@ -337,7 +340,7 @@ class MerckFoundationTestimonialState
 
     if (status1) {
       ShowDialogs.showLoadingDialog(context, _keyLoader);
-
+      print(API.merckTestimonial);
       APIManager().apiRequest(
         context,
         API.merckTestimonial,

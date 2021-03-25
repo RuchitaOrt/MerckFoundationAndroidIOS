@@ -140,6 +140,7 @@ class HomeceoState extends State<viewmoreHomeceo> {
                     builder: (BuildContext context) => Dashboard(
                           index: 0,
                         )));
+            //Navigator.pop(context);
           },
           index: 1,
           title: "Ceo Message",
@@ -189,10 +190,10 @@ class HomeceoState extends State<viewmoreHomeceo> {
                                           builder: (BuildContext context) =>
                                               Homeceomessage(
                                                 title: GlobalLists
-                                                    .homeceomsglist[index]
+                                                    .newsLettersList[index]
                                                     .title,
                                                 detail: GlobalLists
-                                                    .homeceomsglist[index]
+                                                    .newsLettersList[index]
                                                     .details,
                                               )));
                                 },
@@ -269,16 +270,16 @@ class HomeceoState extends State<viewmoreHomeceo> {
             //     "assets/newImages/flowers_footer.png",
             //   ),
             // ),
-            Padding(
-              padding: const EdgeInsets.only(right: 0, left: 0),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Image.asset(
-                  "assets/newImages/flowers_footer.png",
-                  height: 170,
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 0, left: 0),
+            //   child: Align(
+            //     alignment: Alignment.topRight,
+            //     child: Image.asset(
+            //       "assets/newImages/flowers_footer.png",
+            //       height: 170,
+            //     ),
+            //   ),
+            // ),
           ],
         ));
   }
