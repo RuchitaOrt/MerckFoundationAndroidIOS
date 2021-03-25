@@ -53,7 +53,7 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                         )));
           },
           index: 2,
-          title: "Merck \nTestimonials",
+          title: "Merck Testimonials",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -82,7 +82,7 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                               image: widget.baseurl +
                                   GlobalLists
                                       .mmttestimoniallist[widget.index].image,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                               height: 150,
                             ),
                           ),

@@ -125,7 +125,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
               shrinkWrap: true,
               physics: ScrollPhysics(),
               children: [
-                //  slidersection.length <= 0 ? Container() : slider(context),
+                slidersection.length <= 0 ? Container() : slider(context),
                 Visibility(
                   visible: isMiddleSectionLoaded,
                   replacement: Center(child: CircularProgressIndicator()),
@@ -1583,26 +1583,26 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
         print(res);
         CancersubprogramcommunityawaremnessResponse homepageres =
             CancersubprogramcommunityawaremnessResponse.fromJson(res);
-        // GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
-        // slidersection = homepageres.sliderArea[0].slider.list;
+        GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
+        slidersection = homepageres.sliderArea[0].slider.list;
 
-        // slidersection.forEach((element) {
-        //   _productsAvailable.add({
-        //     "id": element.id,
-        //     "menu_id": element.menuId,
-        //     "image_title": element.imageTitle,
-        //     "image_desc": element.imageDesc,
-        //     "links": element.links,
-        //     "image": element.image,
-        //     "alt_text": element.altText,
-        //     "status": element.status,
-        //     "created_at": element.createdAt,
-        //     "updated_at": element.updatedAt
-        //   });
-        // });
+        slidersection.forEach((element) {
+          _productsAvailable.add({
+            "id": element.id,
+            "menu_id": element.menuId,
+            "image_title": element.imageTitle,
+            "image_desc": element.imageDesc,
+            "links": element.links,
+            "image": element.image,
+            "alt_text": element.altText,
+            "status": element.status,
+            "created_at": element.createdAt,
+            "updated_at": element.updatedAt
+          });
+        });
 
-        // print("sliderprogramsection");
-        // print(slidersection.length);
+        print("sliderprogramsection");
+        print(slidersection.length);
 
         Map<String, dynamic> section1 = homepageres.middleArea;
 

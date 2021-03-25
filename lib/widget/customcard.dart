@@ -56,15 +56,15 @@ class CustomCardState extends State<CustomeCard> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                WidgetSpan(
-                  alignment: PlaceholderAlignment.bottom,
-                  child: Image.asset(
-                    //  widget.titleImg,
-                    "",
-                    width: 40,
-                    height: 25,
-                  ),
-                ),
+                // WidgetSpan(
+                //   alignment: PlaceholderAlignment.bottom,
+                //   child: Image.asset(
+                //     //  widget.titleImg,
+                //     "",
+                //     width: 40,
+                //     height: 25,
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -79,8 +79,7 @@ class CustomCardState extends State<CustomeCard> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                      image: NetworkImage(widget.cardImage),
-                      fit: BoxFit.cover)),
+                      image: NetworkImage(widget.cardImage), fit: BoxFit.fill)),
               child: Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
                 child: Row(

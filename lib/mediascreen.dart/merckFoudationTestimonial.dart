@@ -153,6 +153,7 @@ class MerckFoundationTestimonialState
                         )));
           },
           index: 2,
+          forfilterindes: 3,
           title: "Merck Foundation Alumini's Testimonial",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/filter.png",

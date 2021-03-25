@@ -52,7 +52,7 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
             Navigator.pop(context);
           },
           index: 2,
-          title: "Merck \nTestimonials",
+          title: "Merck Testimonials",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",

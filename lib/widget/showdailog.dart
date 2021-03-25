@@ -76,9 +76,15 @@ class ShowDialogs {
     );
   }
 
+//yuotube link
   static youtubevideolink(String videourl) async {
     var response =
         await FlutterShareMe().openinsta(url: videourl, msg: "Youtube");
+  }
+
+//follow link to specific app
+  static followuslink(String videourl, String msg) async {
+    var response = await FlutterShareMe().openinsta(url: videourl, msg: msg);
   }
 
   static youtbeicon(BuildContext context) {

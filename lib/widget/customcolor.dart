@@ -57,6 +57,60 @@ class AppFonts {
 }
 
 class Constantstring {
+//link to be shared on app directly
+
+  static String followinsta = "https://www.instagram.com/merckfoundation";
+  static String followfacebook = "https://www.facebook.com/merckfoundation/";
+  static String followtwitter = "https://twitter.com/MerckFoundation/";
+  static String followyoutube =
+      "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg";
+  static String followflicker = "https://www.flickr.com/photos/163124125@N08/";
+
+  //share who we are
+  static String sharevision =
+      "http://merckfoundation.org/mfindia/web/public/vision";
+  static String shareleadership =
+      "http://merckfoundation.org/mfindia/web/public/leadership";
+
+  static String sharemessagefromleadership =
+      "http://merckfoundation.org/mfindia/web/public/message-from-leadership-team";
+
+  //share what we do
+  static String sharemission =
+      "http://merckfoundation.org/mfindia/web/public/mission";
+
+  static String shareourpolicy =
+      "http://merckfoundation.org/mfindia/web/public/our-policies";
+
+  static String shareouractivity =
+      "http://merckfoundation.org/mfindia/web/public/our-activities";
+  static String sharelegaldisclaimer =
+      "http://merckfoundation.org/mfindia/web/public/legal-disclaimer";
+  static String sharedataprivacy =
+      "http://merckfoundation.org/mfindia/web/public/data-privacy";
+
+  //share ourpartner
+  static String shareourpartner =
+      "http://merckfoundation.org/mfindia/web/public/our-partners";
+
+  //share Media&events
+  static String sharevideolibrary =
+      "http://merckfoundation.org/mfindia/web/public/video-library";
+  static String sharestories =
+      "http://merckfoundation.org/mfindia/web/public/stories";
+  static String sharetestimonial =
+      "http://merckfoundation.org/mfindia/web/public/merck-foundation-alumni-testimonials";
+
+  static String sharenewsletter =
+      "http://merckfoundation.org/mfindia/web/public/newsletters-and-articles";
+  static String sharecallforapp =
+      "http://merckfoundation.org/mfindia/web/public/call-for-applications";
+  static String sharenewsrelease =
+      "http://merckfoundation.org/mfindia/web/public/news-releases";
+  static String sharemerckmedia =
+      "http://merckfoundation.org/mfindia/web/public/merck-foundation-in-media";
+
+  static String followmsg = "follow us";
   static String emptyData = "No Data Found";
   static String baseUrl = "";
   static double tabheight = 500;

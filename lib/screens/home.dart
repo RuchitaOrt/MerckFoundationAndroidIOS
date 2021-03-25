@@ -1317,39 +1317,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 children: [
                   GestureDetector(
                     onTap: () async {
-                      var response = await FlutterShareMe().openinsta(
-                          url: 'https://www.instagram.com/merckfoundation',
-                          msg: "Share");
-//                   var url = 'https://www.instagram.com/merckfoundation/';
-
-// if (await canLaunch(url)) {
-//   await launch(
-//     url,
-//     universalLinksOnly: true,
-//   );
-// } else {
-//   throw 'There was a problem to open the url: $url';
-// // }
-                      // _launchInWebViewWithJavaScript(
-                      //     "http://instagram.com/_u/merckfoundation");
-                      // if (Platform.isAndroid) {
-                      //   final AndroidIntent intent = AndroidIntent(
-                      //     action: 'Intent.ACTION_VIEW',
-                      //     package: "com.instagram.android",
-                      //     data:
-                      //         'https://instagram.com/merckfoundation/', // replace com.example.app with your applicationId
-                      //   );
-                      //   await intent.launch();
-                      // }
-
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (BuildContext context) => VideoPlayer(
-                      //               videoUrl:
-                      //                   " https://www.instagram.com/merckfoundation/",
-                      //             )));
-                      //  https://www.instagram.com/merckfoundation/
+                      ShowDialogs.followuslink(
+                          Constantstring.followinsta, Constantstring.followmsg);
                     },
                     child: Image.asset(
                       "assets/newImages/instagram.png",
@@ -1362,17 +1331,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (BuildContext context) => VideoPlayer(
-                      //               videoUrl:
-                      //                   "https://www.facebook.com/merckfoundation/",
-                      //             )));
-
-                      var response = await FlutterShareMe().openinsta(
-                          url: 'https://www.facebook.com/merckfoundation/',
-                          msg: "Share");
+                      ShowDialogs.followuslink(Constantstring.followfacebook,
+                          Constantstring.followmsg);
                     },
                     child: Image.asset(
                       "assets/newImages/facebook.png",
@@ -1385,16 +1345,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (BuildContext context) => VideoPlayer(
-                      //               videoUrl:
-                      //                   "https://twitter.com/MerckFoundation/",
-                      //             )));
-                      var response = await FlutterShareMe().openinsta(
-                          url: 'https://twitter.com/MerckFoundation/',
-                          msg: "Share");
+                      ShowDialogs.followuslink(Constantstring.followtwitter,
+                          Constantstring.followmsg);
                     },
                     child: Image.asset(
                       "assets/newImages/twitter.png",
@@ -1407,17 +1359,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (BuildContext context) => VideoPlayer(
-                      //               videoUrl:
-                      //                   "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg",
-                      //             )));
-                      var response = await FlutterShareMe().openinsta(
-                          url:
-                              'https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg',
-                          msg: "Share");
+                      ShowDialogs.followuslink(Constantstring.followyoutube,
+                          Constantstring.followmsg);
                     },
                     child: Image.asset(
                       "assets/newImages/youtube.png",
@@ -1430,16 +1373,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (BuildContext context) => VideoPlayer(
-                      //               videoUrl:
-                      //                   "https://www.flickr.com/photos/163124125@N08/",
-                      //             )));
-                      var response = await FlutterShareMe().openinsta(
-                          url: 'https://www.flickr.com/photos/163124125@N08/',
-                          msg: "Share");
+                      ShowDialogs.followuslink(Constantstring.followflicker,
+                          Constantstring.followmsg);
                     },
                     child: Image.asset(
                       "assets/newImages/flickr.png",
