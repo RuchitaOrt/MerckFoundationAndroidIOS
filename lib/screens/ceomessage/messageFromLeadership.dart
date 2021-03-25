@@ -61,7 +61,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Customcolor.background,
-      appBar: InnerMsgfromleadershipCustomAppBar(
+      appBar: InnerCustomAppBar(
         onTapval: () {
           Navigator.push(
               context,
@@ -71,7 +71,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                       )));
         },
         index: 2,
-        title: "Message from\nLeadershipTeam",
+        title: "Message from LeadershipTeam",
         titleImg: "assets/newImages/leadership_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",

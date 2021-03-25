@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
             left: 8,
             bottom: 20,
             child: Text(
-              "version 1.9.3",
+              "version 1.9.4",
               style: TextStyle(
                 color: Colors.black87,
               ),

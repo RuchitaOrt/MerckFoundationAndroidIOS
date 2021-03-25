@@ -113,7 +113,7 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: InnerAluminsCustomAppBar(
+      appBar: InnerCustomAppBar(
         onTapval: () {
           Navigator.pop(context);
           // Navigator.push(
@@ -124,7 +124,7 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
           //             )));
         },
         index: 1,
-        title: "Merck More Than \nMother Ambassadors",
+        title: "Merck More Than Mother Ambassadors",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
