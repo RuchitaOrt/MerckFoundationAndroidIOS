@@ -26,8 +26,10 @@ class WatchmoreVideoambassdar extends StatefulWidget {
   final String categoryid;
   final dynamic api;
   final String type;
+  final String headertitle;
 
-  const WatchmoreVideoambassdar({Key key, this.categoryid, this.api, this.type})
+  const WatchmoreVideoambassdar(
+      {Key key, this.categoryid, this.api, this.type, this.headertitle})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -152,7 +154,7 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
           },
           index: 1,
           forfilterindes: 3,
-          title: "Videos",
+          title: widget.headertitle,
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",

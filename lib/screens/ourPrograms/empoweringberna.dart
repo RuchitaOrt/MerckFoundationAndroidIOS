@@ -282,6 +282,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
                                   GlobalLists.homevideolist[0].categoryId,
                               api: APIManager.watchsubmenuvideoapi,
                               type: "",
+                              headertitle: "Empowering Berna videos",
                             )));
                 // Navigator.push(
                 //     context,

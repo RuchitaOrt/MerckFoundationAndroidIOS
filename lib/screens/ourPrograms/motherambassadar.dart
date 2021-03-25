@@ -391,6 +391,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                               .homevideolist[index].categoryId,
                                           api: APIManager.ambasadarvideoapi,
                                           type: "ambassadar",
+                                          headertitle: "Videos",
                                         )));
                             // ambasssadarvideoviewmore(
                             //     GlobalLists.homevideolist[index].categoryId);

@@ -211,6 +211,7 @@ class LocalSongsandChildrenStoriesState
                                   GlobalLists.homevideolist[0].categoryId,
                               api: APIManager.watchsubmenuvideoapi,
                               type: "",
+                              headertitle: "Videos",
                             )));
                 // Navigator.push(
                 //     context,

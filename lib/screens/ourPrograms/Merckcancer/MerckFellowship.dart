@@ -855,6 +855,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                                   GlobalLists.homevideolist[0].categoryId,
                               api: APIManager.watchsubmenuvideoapi,
                               type: "",
+                              headertitle: "Videos",
                             )));
               },
               titleColor: Customcolor.pink_col,

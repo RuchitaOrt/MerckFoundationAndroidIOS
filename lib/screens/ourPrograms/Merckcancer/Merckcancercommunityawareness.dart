@@ -29,6 +29,7 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/MerckFellowship.dart';
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/watchmorevideoambaassadar.dart';
@@ -124,7 +125,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
               shrinkWrap: true,
               physics: ScrollPhysics(),
               children: [
-                // slidersection.length <= 0 ? Container() : slider(context),
+                //  slidersection.length <= 0 ? Container() : slider(context),
                 Visibility(
                   visible: isMiddleSectionLoaded,
                   replacement: Center(child: CircularProgressIndicator()),
@@ -661,59 +662,64 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                   items: _productsAvailable.map((product) {
                     return new Builder(
                       builder: (BuildContext context) {
-                        return new Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "http://merckfoundation.org/merck/public/uploads/slider/" +
-                                          product['image']),
-                                  fit: BoxFit.cover)),
-                          width: SizeConfig.blockSizeHorizontal * 100,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 0, bottom: 15),
-                                child: Container(
-                                  color: Colors.white.withOpacity(0.5),
-                                  width: SizeConfig.blockSizeHorizontal * 100,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        FormLabel(
-                                          text: product['image_title'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.4),
-                                          maxLines: 2,
-                                          fontweight: FontWeight.w700,
-                                        ),
-                                        SizedBox(
-                                          height: 2,
-                                        ),
-                                        FormLabel(
-                                          text: product['image_desc'],
-                                          labelColor: Customcolor.pink_col,
-                                          fontSize:
-                                              ResponsiveFlutter.of(context)
-                                                  .fontSize(1.2),
-                                          fontweight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        return Slidercard(
+                          cardImage: GlobalLists.sliderurl + product['image'],
+                          cardTitle: product['image_title'],
+                          subTitle: product['image_desc'],
                         );
+                        //  new Container(
+                        //   decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(8),
+                        //       image: DecorationImage(
+                        //           image: NetworkImage(
+                        //               "http://merckfoundation.org/merck/public/uploads/slider/" +
+                        //                   product['image']),
+                        //           fit: BoxFit.cover)),
+                        //   width: SizeConfig.blockSizeHorizontal * 100,
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.end,
+                        //     children: <Widget>[
+                        //       Padding(
+                        //         padding:
+                        //             const EdgeInsets.only(right: 0, bottom: 15),
+                        //         child: Container(
+                        //           color: Colors.white.withOpacity(0.5),
+                        //           width: SizeConfig.blockSizeHorizontal * 100,
+                        //           child: Padding(
+                        //             padding: const EdgeInsets.only(
+                        //                 left: 10, right: 10, top: 5, bottom: 5),
+                        //             child: Column(
+                        //               mainAxisAlignment:
+                        //                   MainAxisAlignment.center,
+                        //               children: <Widget>[
+                        //                 FormLabel(
+                        //                   text: product['image_title'],
+                        //                   labelColor: Customcolor.pink_col,
+                        //                   fontSize:
+                        //                       ResponsiveFlutter.of(context)
+                        //                           .fontSize(1.4),
+                        //                   maxLines: 2,
+                        //                   fontweight: FontWeight.w700,
+                        //                 ),
+                        //                 SizedBox(
+                        //                   height: 2,
+                        //                 ),
+                        //                 FormLabel(
+                        //                   text: product['image_desc'],
+                        //                   labelColor: Customcolor.pink_col,
+                        //                   fontSize:
+                        //                       ResponsiveFlutter.of(context)
+                        //                           .fontSize(1.2),
+                        //                   fontweight: FontWeight.w500,
+                        //                 ),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // );
                       },
                     );
                   }).toList(),
@@ -856,6 +862,8 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                                   GlobalLists.homevideolist[0].categoryId,
                               api: APIManager.watchsubmenuvideoapi,
                               type: "",
+                              headertitle:
+                                  "Merck Foundation Community Awareness videos",
                             )));
               },
               titleColor: Customcolor.pink_col,
@@ -1575,7 +1583,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
         print(res);
         CancersubprogramcommunityawaremnessResponse homepageres =
             CancersubprogramcommunityawaremnessResponse.fromJson(res);
-        //GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
+        // GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
         // slidersection = homepageres.sliderArea[0].slider.list;
 
         // slidersection.forEach((element) {

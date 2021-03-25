@@ -52,7 +52,7 @@ class CommunitysupportState extends State<Communitysupport>
                         )));
           },
           index: 2,
-          title: "Covid",
+          title: "Merck Foundation Community Support",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -73,19 +73,19 @@ class CommunitysupportState extends State<Communitysupport>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Center(
-                          child: FormLabel(
-                            text: "Community Support",
-                            labelColor: Customcolor.violet_col,
-                            fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.5),
-                            fontweight: FontWeight.w600,
-                            textAlignment: TextAlign.center,
-                          ),
-                        ),
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
+                        // Center(
+                        //   child: FormLabel(
+                        //     text: "Community Support",
+                        //     labelColor: Customcolor.violet_col,
+                        //     fontSize:
+                        //         ResponsiveFlutter.of(context).fontSize(2.5),
+                        //     fontweight: FontWeight.w600,
+                        //     textAlignment: TextAlign.center,
+                        //   ),
+                        // ),
                         SizedBox(
                           height: 20,
                         ),

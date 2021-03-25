@@ -855,6 +855,7 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                                   GlobalLists.homevideolist[0].categoryId,
                               api: APIManager.watchsubmenuvideoapi,
                               type: "",
+                              headertitle: "Videos",
                             )));
               },
               titleColor: Customcolor.pink_col,
