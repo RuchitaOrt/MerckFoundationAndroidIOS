@@ -15,6 +15,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:flutter_html/style.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
+import 'package:social_share/social_share.dart';
 
 class OurVision extends StatefulWidget {
   @override
@@ -58,7 +59,8 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {
-            // print("hi");
+            print("hi");
+            
             // showModalBottomSheet<void>(
             //   shape: RoundedRectangleBorder(
             //     borderRadius: BorderRadius.vertical(top: Radius.circular(24.0)),
@@ -90,29 +92,33 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
             //                   //
             //                   GestureDetector(
             //                     onTap: () async {
-            //                       FlutterShareMe().shareToFacebook(
-            //                           url: 'https://github.com/lizhuoyuan',
-            //                           msg: "msg");
+            //                       // FlutterShareMe().shareToFacebook(
+            //                       //     url: 'https://github.com/lizhuoyuan',
+            //                       //     msg: "msg");
+                                
+            //                     await screenshotController
+            //                         .capture()
+            //                         .then((image) async {
+            //                       //facebook appId is mandatory for andorid or else share won't work
+
+            //                     });
+            //                     Platform.isAndroid
+            //                         ? SocialShare.shareFacebookStory(
+            //                           "",
+            //                           "#ffffff",
+            //                                 "#000000", "https://google.com",
+            //                                 appId: "870993726807583")
+            //                             .then((data) {
+            //                             print(data);
+            //                           })
+            //                         : SocialShare.shareFacebookStory(
+            //                           "",
+            //                           "#ffffff",
+            //                                 "#000000", "https://google.com")
+            //                             .then((data) {
+            //                             print(data);
+            //                           });
             //                     },
-            //                     // await screenshotController
-            //                     //     .capture()
-            //                     //     .then((image) async {
-            //                     //   //facebook appId is mandatory for andorid or else share won't work
-
-            //                     // });
-            //                     // Platform.isAndroid
-            //                     //     ? SocialShare.shareFacebookStory("#ffffff",
-            //                     //             "#000000", "https://google.com",
-            //                     //             appId: "870993726807583")
-            //                     //         .then((data) {
-            //                     //         print(data);
-            //                     //       })
-            //                     //     : SocialShare.shareFacebookStory("#ffffff",
-            //                     //             "#000000", "https://google.com")
-            //                     //         .then((data) {
-            //                     //         print(data);
-            //                     //       });
-
             //                     child: Image.asset(
             //                       "assets/newImages/facebook.png",
             //                       height: imgHeight,

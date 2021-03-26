@@ -280,6 +280,8 @@ class CovidResponseState extends State<CovidResponse>
                                       builder: (BuildContext context) =>
                                           WatchmoreVideolibrary(
                                             apiurl: API.covidvideo,
+                                            headertitle:
+                                                "MERCK FOUNDATION RESPONSE TO COVID-19 PANDEMIC",
                                           )));
                             },
                             titleColor: Customcolor.pink_col,

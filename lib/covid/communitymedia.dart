@@ -144,15 +144,16 @@ class CommunityMediaState extends State<CommunityMedia>
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {},
           onTapval: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(
-                          index: 0,
-                        )));
+            Navigator.pop(context);
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Dashboard(
+            //               index: 0,
+            //             )));
           },
           index: 2,
-          title: "Covid",
+          title: "Merck Foundation Community Awareness Through Media Awards",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -173,19 +174,19 @@ class CommunityMediaState extends State<CommunityMedia>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Center(
-                          child: FormLabel(
-                            text: "Community Awareness through Media awards",
-                            labelColor: Customcolor.violet_col,
-                            fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.5),
-                            fontweight: FontWeight.w600,
-                            textAlignment: TextAlign.center,
-                          ),
-                        ),
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
+                        // Center(
+                        //   child: FormLabel(
+                        //     text: "Community Awareness through Media awards",
+                        //     labelColor: Customcolor.violet_col,
+                        //     fontSize:
+                        //         ResponsiveFlutter.of(context).fontSize(2.5),
+                        //     fontweight: FontWeight.w600,
+                        //     textAlignment: TextAlign.center,
+                        //   ),
+                        // ),
                         SizedBox(
                           height: 20,
                         ),

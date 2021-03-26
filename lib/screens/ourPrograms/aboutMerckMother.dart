@@ -49,7 +49,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
           Navigator.pop(context);
         },
         index: 2,
-        title: "Our Program",
+        title: "About Merck Foundation More Than A Mother",
         titleImg: "assets/newImages/vision_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -277,6 +277,8 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideoaboutmmtm,
+                              headertitle:
+                                  "About Merck More Than A Mother Videos",
                             )));
               },
               titleColor: Customcolor.pink_col,

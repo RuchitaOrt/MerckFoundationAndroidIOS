@@ -68,7 +68,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
           Navigator.pop(context);
         },
         index: 2,
-        title: "Our Programs",
+        title: "Objective",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -97,46 +97,46 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                 SizedBox(
                   height: 8,
                 ),
-                Visibility(
-                  visible: isrightSectionLoaded,
-                  replacement: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CircularProgressIndicator()
-                    ],
-                  ),
-                  child: Container(
-                    height: 450,
-                    //color: Colors.amber,
-                    child: Column(
-                      children: [
-                        TabBar(
-                          isScrollable: true,
-                          unselectedLabelColor: Colors.grey,
-                          labelColor: Colors.black,
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          indicator: new BubbleTabIndicator(
-                            indicatorHeight: 35.0,
-                            indicatorRadius: 5,
-                            indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
-                            tabBarIndicatorSize: TabBarIndicatorSize.tab,
-                          ),
-                          tabs: tabs,
-                          controller: _tabController,
-                        ),
-                        // Expanded(
-                        //   flex: 3,
-                        //   child: TabBarView(
-                        //       physics: ScrollPhysics(),
-                        //       controller: _tabController,
-                        //       children: tablist()),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
+                // Visibility(
+                //   visible: isrightSectionLoaded,
+                //   replacement: Column(
+                //     children: [
+                //       SizedBox(
+                //         height: 20,
+                //       ),
+                //       CircularProgressIndicator()
+                //     ],
+                //   ),
+                //   child: Container(
+                //     height: 450,
+                //     //color: Colors.amber,
+                //     child: Column(
+                //       children: [
+                //         TabBar(
+                //           isScrollable: true,
+                //           unselectedLabelColor: Colors.grey,
+                //           labelColor: Colors.black,
+                //           indicatorSize: TabBarIndicatorSize.tab,
+                //           indicator: new BubbleTabIndicator(
+                //             indicatorHeight: 35.0,
+                //             indicatorRadius: 5,
+                //             indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
+                //             tabBarIndicatorSize: TabBarIndicatorSize.tab,
+                //           ),
+                //           tabs: tabs,
+                //           controller: _tabController,
+                //         ),
+                //         // Expanded(
+                //         //   flex: 3,
+                //         //   child: TabBarView(
+                //         //       physics: ScrollPhysics(),
+                //         //       controller: _tabController,
+                //         //       children: tablist()),
+                //         // ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 SizedBox(
                   height: 10,
                 ),

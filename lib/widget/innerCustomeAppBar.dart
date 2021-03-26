@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -5,6 +7,7 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/searchscreen/searchcategory.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:social_share/social_share.dart';
 
 class InnerCustomAppBar extends PreferredSize {
   // final Widget child;
@@ -38,8 +41,8 @@ class InnerCustomAppBar extends PreferredSize {
       @required this.height = kToolbarHeight});
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
-  // Size get preferredSize => Size.fromHeight(120);
-  Size get preferredSize => Size.fromHeight(height);
+  Size get preferredSize => Size.fromHeight(120);
+  // Size get preferredSize => Size.fromHeight(height);
   double imgHeight = 50;
   double whatsupheigth = 45;
   ScreenshotController screenshotController = ScreenshotController();
@@ -48,7 +51,7 @@ class InnerCustomAppBar extends PreferredSize {
     return Column(
       children: [
         Container(
-          height: height, //90
+          height: 90,
           color: Customcolor.baby_blue,
           alignment: Alignment.center,
           child: Padding(
@@ -75,39 +78,39 @@ class InnerCustomAppBar extends PreferredSize {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.only(top: 5, bottom: 5),
-                        //   child: Container(
-                        //     child: Image.asset(
-                        //       "assets/newImages/logoforheader.png",
-                        //       // width: 200,
-                        //       height: 80,
-                        //     ),
-                        //   ),
-                        // ),
-
-                        FormLabel(
-                          text: title,
-                          fontSize: 18,
-                          fontweight: FontWeight.w700,
-                          labelColor: Customcolor.text_blue,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Expanded(
-                          child: Image.asset(
-                            "assets/newImages/toolflowerfortext.png",
-                            height: 50,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5, bottom: 5),
+                          child: Container(
+                            child: Image.asset(
+                              "assets/newImages/logoforheader.png",
+                              // width: 200,
+                              height: 80,
+                            ),
                           ),
-                        )
+                        ),
+
+                        // FormLabel(
+                        //   text: title,
+                        //   fontSize: 18,
+                        //   fontweight: FontWeight.w700,
+                        //   labelColor: Customcolor.text_blue,
+                        // ),
+                        // SizedBox(
+                        //   width: 5,
+                        // ),
+                        // Expanded(
+                        //   child: Image.asset(
+                        //     "assets/newImages/toolflowerfortext.png",
+                        //     height: 50,
+                        //   ),
+                        // )
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
+                // SizedBox(
+                //   width: 20,
+                // ),
                 index != 1
                     ? forfilterindes == 3
                         ? GestureDetector(
@@ -158,10 +161,21 @@ class InnerCustomAppBar extends PreferredSize {
                                                 //
                                                 GestureDetector(
                                                   onTap: () async {
-                                                    FlutterShareMe()
-                                                        .shareToFacebook(
-                                                            url: facebooklink,
-                                                            msg: "msg");
+                                                    Platform.isAndroid
+                                                        ? FlutterShareMe()
+                                                            .shareToFacebook(
+                                                                url:
+                                                                    facebooklink,
+                                                                msg: "msg")
+                                                        : SocialShare
+                                                            .shareFacebookStory(
+                                                            "",
+                                                            "#ffffff",
+                                                            "#000000",
+                                                            facebooklink,
+                                                          ).then((data) {
+                                                            print(data);
+                                                          });
                                                   },
                                                   // await screenshotController
                                                   //     .capture()
@@ -433,19 +447,19 @@ class InnerCustomAppBar extends PreferredSize {
             ),
           ),
         ),
-        // Container(
-        //   height: 40,
-        //   color: Customcolor.colorVoilet,
-        //   alignment: Alignment.centerLeft,
-        //   child: Padding(
-        //     padding: const EdgeInsets.only(left: 10),
-        //     child: Text(
-        //       'Our Stories',
-        //       style:
-        //           TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        //     ),
-        //   ),
-        // )
+        Container(
+          height: 40,
+          color: Customcolor.colorVoilet,
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Text(
+              title,
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+        )
       ],
     );
   }
@@ -522,9 +536,9 @@ class InnerMsgfromleadershipCustomAppBar extends PreferredSize {
                 ),
               ),
             ),
-            SizedBox(
-              width: 20,
-            ),
+            // SizedBox(
+            //   width: 20,
+            // ),
             index != 1
                 ? GestureDetector(
                     onTap: () {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/Landingpage.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
+import 'package:merckfoundation22dec/utility/SPManager.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 import '../login.dart';
@@ -53,9 +54,22 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   onDoneLoading() async {
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Landingpage()));
-    // Navigator.pushReplacement(
-    //     context, MaterialPageRoute(builder: (context) => Dashboard(index: 0)));
+    SPManager().getAuthToken().then((value) async {
+      if (value == null)
+        // Navigator.pushReplacement(
+        //     context, MaterialPageRoute(builder: (context) => Welcome()));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Landingpage()));
+      else {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => Dashboard(index: 0)));
+      }
+    }
+
+        // Navigator.pushReplacement(
+        //     context, MaterialPageRoute(builder: (context) => Landingpage()));
+        // Navigator.pushReplacement(
+        //     context, MaterialPageRoute(builder: (context) => Dashboard(index: 0))
+        );
   }
 }

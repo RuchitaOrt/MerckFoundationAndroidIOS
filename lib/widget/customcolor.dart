@@ -60,7 +60,7 @@ class Constantstring {
   static String emptyData = "No Data Found";
   static String baseUrl = "";
   static double tabheight = 500;
-  static double callimageheight = 310;
+  static double callimageheight = 300;
   static double callimagewidth = 220;
   static double callcoursaheight = 360;
 }

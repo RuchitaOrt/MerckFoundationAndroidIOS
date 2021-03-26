@@ -13,8 +13,6 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
-import 'package:merckfoundation22dec/model/searchmodel/SearchvideocategoryResponse.dart';
-import 'package:merckfoundation22dec/model/searchmodel/SearchnewreleasecategoryResponse.dart';
 
 class Searchcategory extends StatefulWidget {
   @override

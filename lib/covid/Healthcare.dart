@@ -35,15 +35,16 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {},
           onTapval: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(
-                          index: 0,
-                        )));
+              Navigator.pop(context);
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Dashboard(
+            //               index: 0,
+            //             )));
           },
           index: 2,
-          title: "Covid",
+          title: "Merck Foundation Healthcare Capacity Building",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -64,19 +65,19 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Center(
-                          child: FormLabel(
-                            text: "Health Care Capacity Building",
-                            labelColor: Customcolor.violet_col,
-                            fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.5),
-                            fontweight: FontWeight.w600,
-                            textAlignment: TextAlign.center,
-                          ),
-                        ),
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
+                        // Center(
+                        //   child: FormLabel(
+                        //     text: "Health Care Capacity Building",
+                        //     labelColor: Customcolor.violet_col,
+                        //     fontSize:
+                        //         ResponsiveFlutter.of(context).fontSize(2.5),
+                        //     fontweight: FontWeight.w600,
+                        //     textAlignment: TextAlign.center,
+                        //   ),
+                        // ),
                         SizedBox(
                           height: 20,
                         ),

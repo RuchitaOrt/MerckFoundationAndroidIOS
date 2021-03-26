@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/utility/APIManager.dart';
-import 'package:merckfoundation22dec/utility/GlobalLists.dart';
-import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 
@@ -44,15 +38,16 @@ class CommunitysupportState extends State<Communitysupport>
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {},
           onTapval: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(
-                          index: 0,
-                        )));
+              Navigator.pop(context);
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Dashboard(
+            //               index: 0,
+            //             )));
           },
           index: 2,
-          title: "Covid",
+          title: "Merck Foundation Community Support",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -73,19 +68,19 @@ class CommunitysupportState extends State<Communitysupport>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Center(
-                          child: FormLabel(
-                            text: "Community Support",
-                            labelColor: Customcolor.violet_col,
-                            fontSize:
-                                ResponsiveFlutter.of(context).fontSize(2.5),
-                            fontweight: FontWeight.w600,
-                            textAlignment: TextAlign.center,
-                          ),
-                        ),
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
+                        // Center(
+                        //   child: FormLabel(
+                        //     text: "Community Support",
+                        //     labelColor: Customcolor.violet_col,
+                        //     fontSize:
+                        //         ResponsiveFlutter.of(context).fontSize(2.5),
+                        //     fontweight: FontWeight.w600,
+                        //     textAlignment: TextAlign.center,
+                        //   ),
+                        // ),
                         SizedBox(
                           height: 20,
                         ),

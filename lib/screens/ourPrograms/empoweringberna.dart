@@ -50,7 +50,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
           Navigator.pop(context);
         },
         index: 2,
-        title: "Our Program",
+        title: "Empowering Berna",
         titleImg: "assets/newImages/vision_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -282,6 +282,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
                                   GlobalLists.homevideolist[0].categoryId,
                               api: APIManager.watchsubmenuvideoapi,
                               type: "",
+                              headertitle: "Empowering Berna videos",
                             )));
                 // Navigator.push(
                 //     context,

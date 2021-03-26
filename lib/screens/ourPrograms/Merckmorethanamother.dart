@@ -120,7 +120,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation More Than A Mother",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -1760,6 +1760,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideommtm,
+                              headertitle:
+                                  "Merck Foundation More Than A Mother Videos",
                             )));
               },
               titleColor: Customcolor.pink_col,
@@ -1992,13 +1994,15 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => VideoPlayer(
-                                    videoUrl: GlobalLists
-                                        .mmtmmedialist[index].mediaUrl,
-                                  )));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (BuildContext context) => VideoPlayer(
+                      //               videoUrl: GlobalLists
+                      //                   .mmtmmedialist[index].mediaUrl,
+                      //             )));
+                      ShowDialogs.launchURL(
+                          GlobalLists.mmtmmedialist[index].mediaUrl);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8, left: 10),

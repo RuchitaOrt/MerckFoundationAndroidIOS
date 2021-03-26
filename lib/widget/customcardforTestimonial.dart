@@ -115,6 +115,9 @@ class CustomCardState extends State<CustomeCardforTestimonial> {
               ),
             ),
           ),
+          SizedBox(
+            height: 7,
+          ),
           Center(
             child: Text(
               widget.testimonialname,
@@ -129,6 +132,9 @@ class CustomCardState extends State<CustomeCardforTestimonial> {
               // labelColor: Colors.white,
               // fontweight: FontWeight.w500,
             ),
+          ),
+          SizedBox(
+            height: 5,
           ),
           Center(
             child: Text(

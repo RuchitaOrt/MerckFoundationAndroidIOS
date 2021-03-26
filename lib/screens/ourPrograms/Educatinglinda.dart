@@ -115,7 +115,7 @@ class EducatingLindaState extends State<EducatingLinda>
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation Educating Linda Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -1697,6 +1697,8 @@ class EducatingLindaState extends State<EducatingLinda>
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvdeoducation,
+                              headertitle:
+                                  "Merck Foundation Educating Linda Program",
                             )));
                 // Navigator.push(
                 //     context,

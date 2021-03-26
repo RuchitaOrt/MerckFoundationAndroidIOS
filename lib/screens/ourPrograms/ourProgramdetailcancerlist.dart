@@ -230,6 +230,8 @@ class _MyHomePageState extends State<OurProgramcancerlist> {
                                             builder: (BuildContext context) =>
                                                 WatchmoreVideolibrary(
                                                   apiurl: API.watchvideocancer,
+                                                  headertitle:
+                                                      "Merck Foundation Cancer Access Program Videos",
                                                 )));
                                   } else if (index == 5) {
                                     Navigator.push(

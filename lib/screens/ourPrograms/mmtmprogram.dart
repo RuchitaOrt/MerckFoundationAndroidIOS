@@ -111,11 +111,11 @@ class MMTMProgramState extends State<MMTMProgram> {
                 context,
                 MaterialPageRoute(
                     builder: (BuildContext context) => Dashboard(
-                          index: 0,
+                          index: 1,
                         )));
           },
           index: 1,
-          title: "Our Program",
+          title: "Merck Foundation More Than A Mother Videos",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",

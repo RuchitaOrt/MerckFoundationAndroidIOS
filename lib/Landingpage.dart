@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
-import 'package:merckfoundation22dec/widget/MycustomClipPath.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
 class Landingpage extends StatefulWidget {

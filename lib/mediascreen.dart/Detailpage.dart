@@ -36,13 +36,23 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
+              Navigator.pop(context);
             // Navigator.push(
             //     context,
             //     MaterialPageRoute(
             //         builder: (BuildContext context) => Dashboard(
             //               index: 0,
             //             )));
-            Navigator.pop(context);
+            // if (widget.callfrom == 1) {
+            //   Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //           builder: (BuildContext context) => Dashboard(
+            //                 index: 3,
+            //               )));
+            // } else {
+            //   Navigator.pop(context);
+            // }
           },
           index: 2,
           title: "Articles",

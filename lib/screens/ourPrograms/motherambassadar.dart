@@ -60,15 +60,16 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 1,
-                      )));
+            Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 1,
+          //             )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation More Than A Mother Ambassadors",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -370,7 +371,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 120),
+                                padding: EdgeInsets.only(top: 70, left: 120),
                                 child: Center(
                                     child: Image.asset(
                                         "assets/newImages/pause.png")),
@@ -391,6 +392,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                               .homevideolist[index].categoryId,
                                           api: APIManager.ambasadarvideoapi,
                                           type: "ambassadar",
+                                          headertitle: "Videos",
                                         )));
                             // ambasssadarvideoviewmore(
                             //     GlobalLists.homevideolist[index].categoryId);

@@ -110,7 +110,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
           //             )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation Oncology Fellowship Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -855,6 +855,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                                   GlobalLists.homevideolist[0].categoryId,
                               api: APIManager.watchsubmenuvideoapi,
                               type: "",
+                              headertitle: "Videos",
                             )));
               },
               titleColor: Customcolor.pink_col,

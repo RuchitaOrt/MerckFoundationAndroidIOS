@@ -113,16 +113,16 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          // Navigator.pop(context);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 1,
-                      )));
+           Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 1,
+          //             )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation Africa Asia Luminary",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -1431,6 +1431,8 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideoafrica,
+                              headertitle:
+                                  "Merck Foundation Africa Asia Luminary Videos",
                             )));
                 // Navigator.push(
                 //     context,

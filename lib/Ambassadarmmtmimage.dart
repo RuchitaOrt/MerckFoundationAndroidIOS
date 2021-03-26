@@ -37,7 +37,7 @@ class _PhotoGalleryPageState extends State<AmbassadarmmtmImagePage> {
           //             )));
         },
         index: 1,
-        title: "Merck \nAmbassadors",
+        title: "Merck Foundation More Than A Mother Ambassadors",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",

@@ -478,12 +478,16 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
           });
         } else {
           ShowDialogs.showToast(resp.msg);
-          isfilterLoaded = true;
+          setState(() {
+            isfilterLoaded = true;
+          });
         }
       }, (error) {
         print('ERR msg is $error');
         ShowDialogs.showToast("Server Not Responding");
-        isfilterLoaded = true;
+        setState(() {
+          isfilterLoaded = true;
+        });
         //  Navigator.of(_keyLoader.currentContext).pop();
       }, jsonval: json);
     } else {

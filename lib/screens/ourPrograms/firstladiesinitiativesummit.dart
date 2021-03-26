@@ -9,11 +9,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/ViewmoremmtmAmbassadar.dart';
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
-import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
 import 'package:merckfoundation22dec/model/FirstladiesRespose.dart'
     as firstlady;
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
@@ -121,7 +118,7 @@ class FirstLadiesInitiativeDetailsState
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation First Ladies Initiative Summit",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -1342,6 +1339,8 @@ class FirstLadiesInitiativeDetailsState
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideofirstlady,
+                              headertitle:
+                                  "Merck Foundation First Ladies Initiative Summit",
                             )));
               },
               titleColor: Customcolor.pink_col,

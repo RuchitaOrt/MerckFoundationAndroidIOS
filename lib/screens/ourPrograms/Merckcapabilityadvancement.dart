@@ -8,9 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/model/CapacityAdvancement.dart'
     as merckcapabilty;
@@ -28,9 +26,7 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:merckfoundation22dec/widget/Imagephotogalley.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
@@ -118,7 +114,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title:
+            "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Point Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -1326,6 +1323,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideocapacity,
+                              headertitle:
+                                  "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program Videos",
                             )));
               },
               titleColor: Customcolor.pink_col,

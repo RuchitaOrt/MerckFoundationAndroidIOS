@@ -50,15 +50,16 @@ class MerckFertilityState extends State<MerckFertility> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 1,
-                      )));
+            Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 1,
+          //             )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation Fertility And Embryology Training Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -294,6 +295,8 @@ class MerckFertilityState extends State<MerckFertility> {
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideofertility,
+                              headertitle:
+                                  "Merck Foundation Fertility And Embryology Training Program Videos",
                             )));
               },
               titleColor: Customcolor.pink_col,

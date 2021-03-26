@@ -115,7 +115,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                       )));
         },
         index: 2,
-        title: "Our Programs",
+        title: "Merck Foundation Cancer Access Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -829,6 +829,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                         builder: (BuildContext context) =>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideocancer,
+                              headertitle:
+                                  "Merck Foundation Cancer Access Program Videos",
                             )));
               },
               titleColor: Customcolor.pink_col,
