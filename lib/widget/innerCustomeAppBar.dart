@@ -37,8 +37,11 @@ class InnerCustomAppBar extends PreferredSize {
   double imgHeight = 50;
   double whatsupheigth = 45;
   ScreenshotController screenshotController = ScreenshotController();
+
   @override
   Widget build(BuildContext context) {
+    print("indexpass");
+    print(index);
     return Column(
       children: [
         Container(
@@ -104,14 +107,145 @@ class InnerCustomAppBar extends PreferredSize {
                 // ),
                 index != 1
                     ? forfilterindes == 3
-                        ? GestureDetector(
-                            onTap: onTapvalfilter,
-                            child: Image.asset(
-                              trallingImg1,
-                              // "assets/images/search_icon@2x.png",
-                              width: 23,
-                              height: 23,
-                            ),
+                        ? Row(
+                            children: [
+                              GestureDetector(
+                                onTap: onTapvalfilter,
+                                child: Image.asset(
+                                  trallingImg1,
+                                  // "assets/images/search_icon@2x.png",
+                                  width: 23,
+                                  height: 23,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              GestureDetector(
+                                onTap: () {
+                                  print("share");
+                                  showModalBottomSheet<void>(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(
+                                          top: Radius.circular(24.0)),
+                                    ),
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Screenshot(
+                                        controller: screenshotController,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10, bottom: 10),
+                                                child: FormLabel(
+                                                  text: "Share",
+                                                  labelColor:
+                                                      Customcolor.pink_col,
+                                                  fontSize:
+                                                      ResponsiveFlutter.of(
+                                                              context)
+                                                          .fontSize(2.5),
+                                                  fontweight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10, bottom: 10),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    //
+                                                    GestureDetector(
+                                                      onTap: () async {
+                                                        FlutterShareMe()
+                                                            .shareToFacebook(
+                                                                url: sharelink,
+                                                                msg: "msg");
+                                                      },
+                                                      child: Image.asset(
+                                                        "assets/newImages/facebook.png",
+                                                        height: imgHeight,
+                                                        width: imgHeight,
+                                                      ),
+                                                    ),
+
+                                                    SizedBox(
+                                                      width: 7,
+                                                    ),
+                                                    GestureDetector(
+                                                      onTap: () async {
+                                                        var response =
+                                                            await FlutterShareMe()
+                                                                .shareToTwitter(
+                                                                    url:
+                                                                        sharelink,
+                                                                    msg:
+                                                                        "Share");
+                                                        if (response ==
+                                                            'success') {
+                                                          print(
+                                                              'navigate success');
+                                                        }
+                                                      },
+                                                      child: Image.asset(
+                                                        "assets/newImages/twitter.png",
+                                                        height: imgHeight,
+                                                        width: imgHeight,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 7,
+                                                    ),
+                                                    GestureDetector(
+                                                      onTap: () async {
+                                                        var response =
+                                                            await FlutterShareMe()
+                                                                .shareToLinkedin(
+                                                                    url:
+                                                                        sharelink,
+                                                                    msg:
+                                                                        "Share");
+                                                      },
+                                                      child: Image.asset(
+                                                        "assets/newImages/linkedin.png",
+                                                        height: imgHeight,
+                                                        width: imgHeight,
+                                                      ),
+                                                    ),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        FlutterShareMe()
+                                                            .shareToWhatsApp(
+                                                                base64Image: "",
+                                                                msg: sharelink);
+                                                      },
+                                                      child: Image.asset(
+                                                        "assets/newImages/whatsapp.png",
+                                                        height: imgHeight,
+                                                        width: imgHeight,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).whenComplete(() {});
+                                },
+                                child: Image.asset(
+                                  "assets/newImages/share.png",
+                                  // "assets/images/search_icon@2x.png",
+                                  width: 23,
+                                  height: 23,
+                                ),
+                              )
+                            ],
                           )
                         : GestureDetector(
                             onTap: () {
@@ -223,114 +357,6 @@ class InnerCustomAppBar extends PreferredSize {
                                   );
                                 },
                               ).whenComplete(() {});
-                              // showModalBottomSheet<void>(
-                              //   shape: RoundedRectangleBorder(
-                              //     borderRadius: BorderRadius.vertical(
-                              //         top: Radius.circular(24.0)),
-                              //   ),
-                              //   context: context,
-                              //   builder: (BuildContext context) {
-                              //     return Padding(
-                              //       padding: const EdgeInsets.all(10.0),
-                              //       child: Column(
-                              //         mainAxisSize: MainAxisSize.min,
-                              //         children: [
-                              //           Padding(
-                              //             padding: const EdgeInsets.only(
-                              //                 top: 10, bottom: 10),
-                              //             child: FormLabel(
-                              //               text: "Share",
-                              //               labelColor: Customcolor.pink_col,
-                              //               fontSize:
-                              //                   ResponsiveFlutter.of(context)
-                              //                       .fontSize(2.5),
-                              //               fontweight: FontWeight.w500,
-                              //             ),
-                              //           ),
-                              //           Padding(
-                              //             padding: const EdgeInsets.only(
-                              //                 top: 10, bottom: 10),
-                              //             child: Row(
-                              //               mainAxisAlignment:
-                              //                   MainAxisAlignment.center,
-                              //               children: [
-                              //                 //
-                              //                 GestureDetector(
-                              //                   onTap: () async {
-                              //                     var response =
-                              //                         await FlutterShareMe()
-                              //                             .openinsta(
-                              //                                 url: facebooklink,
-                              //                                 msg: "Share");
-                              //                   },
-                              //                   child: Image.asset(
-                              //                     "assets/newImages/facebook.png",
-                              //                     height: imgHeight,
-                              //                     width: imgHeight,
-                              //                   ),
-                              //                 ),
-
-                              //                 SizedBox(
-                              //                   width: 7,
-                              //                 ),
-                              //                 GestureDetector(
-                              //                   onTap: () async {
-                              //                     var response =
-                              //                         await FlutterShareMe()
-                              //                             .openinsta(
-                              //                                 url: twitterlink,
-                              //                                 msg: "Share");
-                              //                     if (response == 'success') {
-                              //                       print('navigate success');
-                              //                     }
-                              //                   },
-                              //                   child: Image.asset(
-                              //                     "assets/newImages/twitter.png",
-                              //                     height: imgHeight,
-                              //                     width: imgHeight,
-                              //                   ),
-                              //                 ),
-                              //                 SizedBox(
-                              //                   width: 7,
-                              //                 ),
-                              //                 GestureDetector(
-                              //                   onTap: () async {
-                              //                     var response =
-                              //                         await FlutterShareMe()
-                              //                             .openinsta(
-                              //                                 url: linkedinlink,
-                              //                                 msg: "Share");
-                              //                   },
-                              //                   child: Image.asset(
-                              //                     "assets/newImages/linkedin.png",
-                              //                     height: imgHeight,
-                              //                     width: imgHeight,
-                              //                   ),
-                              //                 ),
-                              //                 SizedBox(
-                              //                   width: 7,
-                              //                 ),
-                              //                 GestureDetector(
-                              //                   onTap: () {
-                              //                     FlutterShareMe()
-                              //                         .shareToWhatsApp(
-                              //                             base64Image: "",
-                              //                             msg: whatsuplink);
-                              //                   },
-                              //                   child: Image.asset(
-                              //                     "assets/newImages/whatsapp.png",
-                              //                     height: imgHeight,
-                              //                     width: imgHeight,
-                              //                   ),
-                              //                 ),
-                              //               ],
-                              //             ),
-                              //           ),
-                              //         ],
-                              //       ),
-                              //     );
-                              //   },
-                              // ).whenComplete(() {});
                             },
                             child: Image.asset(
                               trallingImg1,
@@ -367,13 +393,15 @@ class InnerCustomAppBar extends PreferredSize {
           ),
         ),
         Container(
-          height: 40,
+          height: 50,
           color: Customcolor.colorVoilet,
           alignment: Alignment.centerLeft,
           child: Padding(
             padding: const EdgeInsets.only(left: 10),
             child: Text(
               title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 3,
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),

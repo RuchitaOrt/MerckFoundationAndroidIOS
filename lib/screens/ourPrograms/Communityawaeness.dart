@@ -50,6 +50,7 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
                       )));
         },
         index: 2,
+        sharelink: Constantstring.communityawarnessmmtm,
         title: "Merck Foundation Community Awareness And Awards Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -105,6 +106,7 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
       var response = await APIManager.fetchget(
         encoding: APIManager.subprogramcommunityawareness,
       );
+      print(APIManager.subprogramcommunityawareness);
       print("response");
       print(response);
       if (response.statusCode == 200) {
@@ -153,7 +155,7 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
           isMiddleSectionLoaded = true;
         });
 
-        ShowDialogs.showToast(GlobalLists.serverresp);
+        ShowDialogs.showToast("server");
       }
     } else {
       setState(() {

@@ -490,6 +490,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                         builder: (BuildContext context) =>
                                             WatchDigitalLibrary(
                                               apiurl: API.digitalmmtm,
+                                              digitallink: Constantstring
+                                                  .sharedigitalmmtm,
                                             )));
                               },
                               child: Container(

@@ -39,6 +39,7 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                       )));
         },
         index: 1,
+        //sharelink: Constantstring.photogalleryyearwise,
         title: "Photo Gallery",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -63,7 +64,7 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
           cardImage: "assets/newImages/ourvison.png",
           cardTitle: galleryDetailsResponse.list.keys.elementAt(i),
           btnTitle: "View More",
-          titleColor: Customcolor.pink_col,
+          titleColor: Customcolor.text_blue,
           titleImg: "assets/newImages/flowers-3.png",
           list: ListView.builder(
             itemCount: galleryDetailsResponse

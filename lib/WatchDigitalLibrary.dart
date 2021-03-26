@@ -18,10 +18,12 @@ import 'package:url_launcher/url_launcher.dart';
 class WatchDigitalLibrary extends StatefulWidget {
   String appBarTitle;
   final dynamic apiurl;
+  final String digitallink;
 
   WatchDigitalLibrary({
     Key key,
     this.apiurl,
+    this.digitallink,
   }) : super(key: key);
   @override
   _DigitalLibraryState createState() => _DigitalLibraryState();
@@ -60,7 +62,8 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
           //             )));
           Navigator.pop(context);
         },
-        index: 1,
+        index: 2,
+        sharelink: widget.digitallink,
         title: "Digital Library",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",

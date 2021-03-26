@@ -98,7 +98,8 @@ class _AppDrawerState extends State<AppDrawer> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.asset(
-                              'assets/newImages/logo_menu.png',
+                              "assets/newImages/logoforheader.png",
+                              // 'assets/newImages/logo_menu.png',
                               width: 200,
                               height: 140,
                             ),
@@ -440,7 +441,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Call For Application',
+                          value: 'Upcoming Programs & Call For Application',
                           onTapfun: () {
                             print('ontap');
                             Navigator.push(

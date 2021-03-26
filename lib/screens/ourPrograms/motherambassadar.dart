@@ -68,6 +68,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                       )));
         },
         index: 2,
+        sharelink: Constantstring.merckambassadar,
         title: "Merck Foundation More Than A Mother Ambassadors",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",

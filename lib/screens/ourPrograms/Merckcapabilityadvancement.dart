@@ -447,6 +447,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                                         builder: (BuildContext context) =>
                                             WatchDigitalLibrary(
                                               apiurl: API.digitalcapacity,
+                                              digitallink: Constantstring
+                                                  .sharedigitalcapacity,
                                             )));
                               },
                               child: Container(

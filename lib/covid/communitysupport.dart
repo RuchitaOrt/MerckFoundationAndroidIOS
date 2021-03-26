@@ -44,12 +44,13 @@ class CommunitysupportState extends State<Communitysupport>
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {},
           onTapval: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(
-                          index: 0,
-                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Dashboard(
+            //               index: 0,
+            //             )));
+            Navigator.pop(context);
           },
           index: 2,
           title: "Merck Foundation Community Support",
@@ -165,8 +166,8 @@ class CommunitysupportState extends State<Communitysupport>
                         SizedBox(
                           height: 10,
                         ),
-                        Image.network(
-                          "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YID8&feoid=00Nw0000009EtWJ&refid=0EM1r000002evEJ",
+                        Image.asset(
+                          "assets/newImages/cs1.jpeg",
                           height: 290,
                         ),
                         SizedBox(
@@ -203,8 +204,8 @@ class CommunitysupportState extends State<Communitysupport>
                         SizedBox(
                           height: 10,
                         ),
-                        Image.network(
-                          "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YID8&feoid=00Nw0000009EtWJ&refid=0EM1r000002evFR",
+                        Image.asset(
+                          "assets/newImages/cs2.jpeg",
                           height: 290,
                         ),
                         SizedBox(
@@ -241,8 +242,8 @@ class CommunitysupportState extends State<Communitysupport>
                         SizedBox(
                           height: 10,
                         ),
-                        Image.network(
-                          "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YID8&feoid=00Nw0000009EtWJ&refid=0EM1r000002evGP",
+                        Image.asset(
+                          "assets/newImages/cs3.jpeg",
                           height: 290,
                         ),
                         SizedBox(

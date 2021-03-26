@@ -36,7 +36,7 @@ class OurActivtyDetailState extends State<OurAwardDetail> {
                         )));
           },
           index: 2,
-          title: "Our Award",
+          title: widget.detaill[0].title,
           titleImg: "assets/newImages/leadership_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -48,15 +48,15 @@ class OurActivtyDetailState extends State<OurAwardDetail> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Html(
-                  data: """${widget.detaill[0].title} """,
-                  onLinkTap: (url) {
-                    print("Opening $url...");
-                  },
-                  style: {
-                    "body": Style(textAlign: TextAlign.start),
-                  },
-                ),
+                // Html(
+                //   data: """${widget.detaill[0].title} """,
+                //   onLinkTap: (url) {
+                //     print("Opening $url...");
+                //   },
+                //   style: {
+                //     "body": Style(textAlign: TextAlign.start),
+                //   },
+                // ),
                 Html(
                   data: """${widget.detaill[0].pageContent} """,
                   onLinkTap: (url) {

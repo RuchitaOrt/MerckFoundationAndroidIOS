@@ -763,6 +763,8 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                         builder: (BuildContext context) =>
                                             WatchDigitalLibrary(
                                               apiurl: API.digitalafrica,
+                                              digitallink: Constantstring
+                                                  .sharedigitalafrica,
                                             )));
                               },
                               child: Container(

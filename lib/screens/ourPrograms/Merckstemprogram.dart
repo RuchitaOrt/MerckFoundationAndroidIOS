@@ -1860,6 +1860,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
                                         builder: (BuildContext context) =>
                                             WatchDigitalLibrary(
                                               apiurl: API.digitalstem,
+                                              digitallink: Constantstring
+                                                  .sharedigitalstem,
                                             )));
                               },
                               child: Container(

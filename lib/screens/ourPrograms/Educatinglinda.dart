@@ -748,6 +748,8 @@ class EducatingLindaState extends State<EducatingLinda>
                                         builder: (BuildContext context) =>
                                             WatchDigitalLibrary(
                                               apiurl: API.digitaleducting,
+                                              digitallink: Constantstring
+                                                  .sharedigitaleducating,
                                             )));
                               },
                               child: Container(

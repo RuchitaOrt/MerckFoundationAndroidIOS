@@ -58,6 +58,7 @@ class MerckFertilityState extends State<MerckFertility> {
                       )));
         },
         index: 2,
+        sharelink: Constantstring.fertility,
         title: "Merck Foundation Fertility And Embryology Training Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",

@@ -142,8 +142,9 @@ class HomeceoState extends State<viewmoreHomeceo> {
                         )));
             //Navigator.pop(context);
           },
-          index: 1,
-          title: "Ceo Message",
+          index: 2,
+          sharelink: Constantstring.shareceoviewmore,
+          title: "Message From Dr. Rasha Kelej, CEO Of Merck Foundation",
           titleImg: "assets/newImages/news_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -195,6 +196,9 @@ class HomeceoState extends State<viewmoreHomeceo> {
                                                 detail: GlobalLists
                                                     .newsLettersList[index]
                                                     .details,
+                                                detailpageurl: GlobalLists
+                                                    .homeceomsglist[0]
+                                                    .detailPageUrl,
                                               )));
                                 },
                                 child: Card(
