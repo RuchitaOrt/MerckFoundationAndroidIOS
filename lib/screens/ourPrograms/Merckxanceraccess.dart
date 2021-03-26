@@ -114,7 +114,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                         index: 1,
                       )));
         },
-        index: 2,
+        index: 1,
         title: "Merck Foundation Cancer Access Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -820,7 +820,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/gallery.png",
-              cardTitle: "Our Videos  ",
+              cardsubtitle: "Our ",
+              cardTitle: "Videos  ",
               btnTitle: "Watch More",
               onbtnTap: () {
                 Navigator.push(
@@ -930,6 +931,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
+              cardsubtitle: "",
               cardTitle: "",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
@@ -1037,7 +1039,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Latest Updates  ",
+              cardsubtitle: "Latest ",
+              cardTitle: "Updates",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1135,7 +1138,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/mqdefault.png",
-              cardTitle: "Merck Foundation In Media  ",
+              cardsubtitle: "Merck Foundation In ",
+              cardTitle: "Media  ",
               titleColor: Customcolor.pink_col,
               btnTitle: "View More",
               titleImg: "assets/newImages/flowers-3.png",
@@ -1228,6 +1232,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
             child: CustomHorizontalCard(
                 index: 1,
                 cardImage: "assets/newImages/mqdefault.png",
+                cardsubtitle: "Merck Foundation ",
                 cardTitle: "Alumini Testimonials  ",
                 titleColor: Customcolor.pink_col,
                 onbtnTap: () {
@@ -1767,8 +1772,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                           textAlign: TextAlign.center,
                                           maxLines: 2,
                                           style: TextStyle(
-                                            fontSize: 17,
-                                          )),
+                                              fontSize: 17,
+                                              fontFamily: AppFonts.normal)),
                                     )
                                   ],
                                 );
@@ -1909,8 +1914,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                             textAlign: TextAlign.center,
                                             maxLines: 2,
                                             style: TextStyle(
-                                              fontSize: 17,
-                                            )),
+                                                fontSize: 17,
+                                                fontFamily: AppFonts.normal)),
                                       )
                                     ],
                                   ),
@@ -2184,7 +2189,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
         // }
         if (typewidetofrightsection[i] == "digital_library") {
           tabs.add(
-            new Tab(text: "Digital Library"),
+            new Tab(
+              child: Digitaltext(),
+            ),
           );
           listoftabwiget.add(digitalLibraryLastSection());
         }

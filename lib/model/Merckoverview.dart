@@ -75,7 +75,7 @@ class ListClass {
   factory ListClass.fromJson(Map<String, dynamic> json) => ListClass(
         id: json["id"],
         contentType: json["content_type"],
-        pageContent: json["page_content"],
+        pageContent: json["page_content"] == null ? "" : json["page_content"],
         title: json["title"],
         shortDescription: json["short_description"],
         image: json["image"],

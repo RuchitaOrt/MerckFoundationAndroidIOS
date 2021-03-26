@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/widget/customcolor.dart';
 
 class FormLabel extends StatelessWidget {
   String text;
@@ -35,7 +36,7 @@ class FormLabel extends StatelessWidget {
           color: labelColor,
           fontSize: fontSize,
           fontWeight: fontweight,
-          fontFamily: fontfamily),
+          fontFamily: AppFonts.normal),
     );
   }
 }

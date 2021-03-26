@@ -76,7 +76,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
         height: 85,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+        padding: const EdgeInsets.only(top: 15, left: 10, right: 20),
         child: ListView(
           shrinkWrap: true,
           //  crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,6 +193,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
+              isheading: 1,
               cardTitle:
                   "Acknowledging the efforts of First Ladies as Ambassador of Merck More Than a Mother",
               showviewmore: 1,
@@ -282,6 +283,8 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/gallery.png",
+              cardsubtitle: "",
+              isheading: 1,
               cardTitle:
                   "Watch below some of the latest videos of Dr. Rasha Kelej and the the First Ladies of Africa, Ambassadors of Merck More Than a Mother",
               btnTitle: "Watch More",
@@ -440,7 +443,8 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Latest Updates  ",
+              cardsubtitle: "Latest ",
+              cardTitle: "Updates",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               onbtnTap: () {
@@ -532,6 +536,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
             index: 1,
             cardImage: "assets/newImages/ourvison.png",
             cardTitle: "",
+            cardsubtitle: "",
             btnTitle: "View More",
             showviewmore: 1,
             titleColor: Customcolor.pink_col,

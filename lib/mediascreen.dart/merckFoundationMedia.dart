@@ -138,7 +138,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Customcolor.background,
-      appBar: InnerMsgfromleadershipCustomAppBar(
+      appBar: InnerCustomAppBar(
         onTapval: () {
             Navigator.pop(context);
           // Navigator.push(
@@ -148,8 +148,9 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
           //               index: 0,
           //             )));
         },
-        index: 1,
-        title: "Merck Foundation \nin Media",
+        index: 2,
+        sharelink: Constantstring.sharemerckmedia,
+        title: "Merck Foundation in Media",
         titleImg: "assets/newImages/newsarticle_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",

@@ -84,3 +84,94 @@ class PauseImage extends StatelessWidget {
     );
   }
 }
+
+class Callforapptext extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return RichText(
+      text: TextSpan(
+        children: [
+          TextSpan(
+            text: "Call For ",
+            style: TextStyle(
+              color: Customcolor.textsubtitlecolor,
+              fontSize: 18,
+              fontWeight: FontWeight.w300,
+              fontFamily: 'times new roman',
+            ),
+          ),
+          TextSpan(
+            text: "Application",
+            style: TextStyle(
+              color: Customcolor.pink_col,
+              fontSize: 18,
+              fontFamily: 'times new roman',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Merckmtmtext extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        children: [
+          TextSpan(
+            text: "Merck More Than A Mother ",
+            style: TextStyle(
+              color: Customcolor.textsubtitlecolor,
+              fontSize: 18,
+              fontWeight: FontWeight.w300,
+              fontFamily: 'times new roman',
+            ),
+          ),
+          TextSpan(
+            text: "Ambassadors",
+            style: TextStyle(
+              color: Customcolor.pink_col,
+              fontSize: 18,
+              fontFamily: 'times new roman',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Digitaltext extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        children: [
+          TextSpan(
+            text: "Digital ",
+            style: TextStyle(
+              color: Customcolor.textsubtitlecolor,
+              fontSize: 18,
+              fontWeight: FontWeight.w300,
+              fontFamily: 'times new roman',
+            ),
+          ),
+          TextSpan(
+            text: "Library",
+            style: TextStyle(
+              color: Customcolor.pink_col,
+              fontSize: 18,
+              fontFamily: 'times new roman',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

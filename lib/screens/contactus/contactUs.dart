@@ -5,6 +5,7 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class ContactUs extends StatefulWidget {
   @override
@@ -117,15 +118,8 @@ class ContactusState extends State<ContactUs> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      VideoPlayer(
-                                        videoUrl:
-                                            " https://www.instagram.com/merckfoundation/",
-                                      )));
-                          //  https://www.instagram.com/merckfoundation/
+                          ShowDialogs.followuslink(Constantstring.followinsta,
+                              Constantstring.followmsg);
                         },
                         child: Image.asset(
                           "assets/newImages/instagram.png",
@@ -138,14 +132,9 @@ class ContactusState extends State<ContactUs> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      VideoPlayer(
-                                        videoUrl:
-                                            "https://www.facebook.com/merckfoundation/",
-                                      )));
+                          ShowDialogs.followuslink(
+                              Constantstring.followfacebook,
+                              Constantstring.followmsg);
                         },
                         child: Image.asset(
                           "assets/newImages/facebook.png",
@@ -158,14 +147,8 @@ class ContactusState extends State<ContactUs> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      VideoPlayer(
-                                        videoUrl:
-                                            "https://twitter.com/MerckFoundation",
-                                      )));
+                          ShowDialogs.followuslink(Constantstring.followtwitter,
+                              Constantstring.followmsg);
                         },
                         child: Image.asset(
                           "assets/newImages/twitter.png",
@@ -178,14 +161,8 @@ class ContactusState extends State<ContactUs> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      VideoPlayer(
-                                        videoUrl:
-                                            "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg",
-                                      )));
+                          ShowDialogs.followuslink(Constantstring.followyoutube,
+                              Constantstring.followmsg);
                         },
                         child: Image.asset(
                           "assets/newImages/youtube.png",
@@ -198,14 +175,8 @@ class ContactusState extends State<ContactUs> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      VideoPlayer(
-                                        videoUrl:
-                                            "https://www.flickr.com/photos/163124125@N08/",
-                                      )));
+                          ShowDialogs.followuslink(Constantstring.followflicker,
+                              Constantstring.followmsg);
                         },
                         child: Image.asset(
                           "assets/newImages/flickr.png",

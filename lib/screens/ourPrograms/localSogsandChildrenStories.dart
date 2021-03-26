@@ -113,7 +113,8 @@ class LocalSongsandChildrenStoriesState
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Our Gallery  ",
+              cardsubtitle: "Photo ",
+              cardTitle: "Gallery",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -200,7 +201,9 @@ class LocalSongsandChildrenStoriesState
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/gallery.png",
-              cardTitle: "Our Videos  ",
+              cardsubtitle: "",
+              isheading: 1,
+              cardTitle: "Watch Below videos :",
               btnTitle: "Watch More",
               onbtnTap: () {
                 Navigator.push(
@@ -339,7 +342,8 @@ class LocalSongsandChildrenStoriesState
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Latest Updates  ",
+              cardsubtitle: "Latest ",
+              cardTitle: "Updates",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               onbtnTap: () {
@@ -434,20 +438,21 @@ class LocalSongsandChildrenStoriesState
               ),
               FormLabel(
                 text: "Children Stories",
-                labelColor: Customcolor.pink_col,
+                labelColor: Customcolor.text_blue,
                 fontSize: ResponsiveFlutter.of(context).fontSize(2),
                 maxLines: 2,
                 textAlignment: TextAlign.left,
                 fontweight: FontWeight.w800,
               ),
               SizedBox(
-                height: 5,
+                height: 10,
               ),
               FormLabel(
                 text:
                     "Merck Foundation in partnership with African First Ladies, launched a children storybook to emphasize strong family values of love and respect from young age which will reflect on eliminating the stigma of infertility and resulted domestic violence in the future. The storybooks have been localized for each country to have a better connect with the young readers.",
-                labelColor: Colors.black54,
-                fontSize: ResponsiveFlutter.of(context).fontSize(1.6),
+                labelColor: Colors.black,
+                fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
+                textAlignment: TextAlign.justify,
                 maxLines: 2,
                 fontweight: FontWeight.w400,
               ),

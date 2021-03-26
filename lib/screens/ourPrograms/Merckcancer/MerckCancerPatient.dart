@@ -298,8 +298,8 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                                           textAlign: TextAlign.center,
                                           maxLines: 2,
                                           style: TextStyle(
-                                            fontSize: 17,
-                                          )),
+                                              fontSize: 17,
+                                              fontFamily: AppFonts.normal)),
                                     )
                                   ],
                                 );
@@ -411,8 +411,8 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                                     textAlign: TextAlign.center,
                                     maxLines: 2,
                                     style: TextStyle(
-                                      fontSize: 17,
-                                    )),
+                                        fontSize: 17,
+                                        fontFamily: AppFonts.normal)),
                               )
                             ],
                           );
@@ -1423,7 +1423,9 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
       for (int i = 0; i < typewidetofrightsection.length; i++) {
         if (typewidetofrightsection[i] == "call_for_app") {
           tabs.add(
-            new Tab(text: "Call for Application"),
+            new Tab(
+              child: Callforapptext(),
+            ),
           );
 
           listoftabwiget.add(
@@ -1432,13 +1434,17 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
         }
         if (typewidetofrightsection[i] == "mmtm") {
           tabs.add(
-            new Tab(text: "Merck More Than A Mother Ambassadors"),
+            new Tab(
+              child: Merckmtmtext(),
+            ),
           );
           listoftabwiget.add(getMMTMS(context));
         }
         if (typewidetofrightsection[i] == "digital_library") {
           tabs.add(
-            new Tab(text: "Digital Library"),
+            new Tab(
+              child: Digitaltext(),
+            ),
           );
           listoftabwiget.add(digitalLibraryLastSection());
         }

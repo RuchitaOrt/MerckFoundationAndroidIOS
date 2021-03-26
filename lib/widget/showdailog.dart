@@ -78,6 +78,7 @@ class ShowDialogs {
     );
   }
 
+//yuotube link
   static youtubevideolink(String videourl) async {
     if (Platform.isIOS) {
       _launchURL(videourl);
@@ -90,8 +91,10 @@ class ShowDialogs {
   static _launchURL(String videourl) async {
     if (Platform.isIOS) {
       if (await canLaunch(videourl)) {
-        await launch(videourl, forceSafariVC: false);
+        print("in if");
+        await launch(videourl, forceSafariVC: false, forceWebView: false);
       } else {
+        print("in else");
         if (await canLaunch(videourl)) {
           await launch(videourl);
         } else {
@@ -105,6 +108,28 @@ class ShowDialogs {
       } else {
         throw 'Could not launch $url';
       }
+    }
+  }
+
+  static _launchSocial(String url, String fallbackUrl) async {
+    // Don't use canLaunch because of fbProtocolUrl (fb://)
+    try {
+      bool launched =
+          await launch(url, forceSafariVC: false, forceWebView: false);
+      if (!launched) {
+        await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
+      }
+    } catch (e) {
+      await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
+    }
+  }
+
+//follow link to specific app
+  static followuslink(String videourl, String msg) async {
+    if (Platform.isIOS) {
+      _launchURL(videourl);
+    } else {
+      var response = await FlutterShareMe().openinsta(url: videourl, msg: msg);
     }
   }
 

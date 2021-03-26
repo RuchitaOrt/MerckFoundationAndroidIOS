@@ -8,6 +8,7 @@ class CustomeCardforTestimonial extends StatefulWidget {
   final String cardImage;
   final String subTitle;
   final String btnTitle;
+  final String cardsubtitle;
   final Color titleColor;
   final String titleImg;
   final int index;
@@ -32,7 +33,8 @@ class CustomeCardforTestimonial extends StatefulWidget {
       this.buttontitlecolor,
       this.oncardtap,
       this.testimonialname,
-      this.departmentname})
+      this.departmentname,
+      this.cardsubtitle})
       : super(key: key);
 
   @override
@@ -54,22 +56,40 @@ class CustomCardState extends State<CustomeCardforTestimonial> {
             text: TextSpan(
               children: [
                 TextSpan(
+                  text: widget.cardsubtitle,
+                  style: TextStyle(
+                    color: Customcolor.textsubtitlecolor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300,
+                    fontFamily: 'times new roman',
+                  ),
+                ),
+                TextSpan(
                   text: widget.cardTitle,
                   style: TextStyle(
-                    color: widget.titleColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+                    color: Customcolor.pink_col,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'times new roman',
                   ),
                 ),
-                WidgetSpan(
-                  alignment: PlaceholderAlignment.bottom,
-                  child: Image.asset(
-                    //  widget.titleImg,
-                    "",
-                    width: 40,
-                    height: 25,
-                  ),
-                ),
+                // TextSpan(
+                //   text: widget.cardTitle,
+                //   style: TextStyle(
+                //     color: widget.titleColor,
+                //     fontSize: 18,
+                //     fontWeight: FontWeight.w600,
+                //   ),
+                // ),
+                // WidgetSpan(
+                //   alignment: PlaceholderAlignment.bottom,
+                //   child: Image.asset(
+                //     //  widget.titleImg,
+                //     "",
+                //     width: 40,
+                //     height: 25,
+                //   ),
+                // ),
               ],
             ),
           ),

@@ -122,7 +122,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Customcolor.background,
-      appBar: InnerMsgfromleadershipCustomAppBar(
+      appBar: InnerCustomAppBar(
         onTapval: () {
           Navigator.pop(context);
           // Navigator.push(
@@ -133,7 +133,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
           //             )));
         },
         index: 1,
-        title: "Merck Foundation \nin Media",
+        title: "Merck Foundation in Media",
         titleImg: "assets/newImages/newsarticle_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",

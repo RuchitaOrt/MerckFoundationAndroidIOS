@@ -116,6 +116,7 @@ class OurActivityState extends State<OurActivity> {
         },
         index: 2,
         title: "Our Activities",
+        sharelink: Constantstring.shareouractivity,
         titleImg: "assets/newImages/vision_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",

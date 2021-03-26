@@ -47,6 +47,7 @@ class OurDataprivacyState extends State<OurDataprivacy>
           },
           index: 2,
           title: "Data Privacy",
+          sharelink: Constantstring.sharedataprivacy,
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",

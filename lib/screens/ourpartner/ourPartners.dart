@@ -43,6 +43,7 @@ class OurpatnerState extends State<Ourpatner> {
           index: 2,
           title: "Our Partners",
           titleImg: "assets/newImages/ourPartner_logo.png",
+          sharelink: Constantstring.shareourpartner,
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
           height: 85,

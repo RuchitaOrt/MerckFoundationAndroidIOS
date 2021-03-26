@@ -92,7 +92,7 @@ class _OurProgramState extends State<Ourprogram> {
                         index: 0,
                       )));
         },
-        index: 2,
+        index: 1,
         title: "Our Programs",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -335,8 +335,8 @@ class _OurProgramState extends State<Ourprogram> {
                                 child: FormLabel(
                                   text: _productsAvailable1[index].programname,
                                   labelColor: Colors.white,
-                                  fontSize:
-                                      ResponsiveFlutter.of(context).fontSize(2),
+                                  fontSize: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                   fontweight: FontWeight.bold,
                                 ),
                               ),

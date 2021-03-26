@@ -138,7 +138,7 @@ class MerckFoundationTestimonialState
             index: 3,
           ),
         ),
-        appBar: InnerAluminsCustomAppBar(
+        appBar: InnerCustomAppBar(
           onTapvalfilter: () {
             print("videokk");
             // _scaffoldKey1.currentState.openDrawer();
@@ -154,7 +154,8 @@ class MerckFoundationTestimonialState
             //             )));
           },
           index: 2,
-          title: "Merck Foundation \nAlumini's \nTestimonial",
+          forfilterindes: 3,
+          title: "Merck Foundation Alumini's Testimonial",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",

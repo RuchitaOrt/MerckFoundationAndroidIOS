@@ -2,6 +2,16 @@ PODS:
   - connectivity (0.0.1):
     - Flutter
     - Reachability
+  - FBSDKCoreKit (9.1.0):
+    - FBSDKCoreKit/Basics (= 9.1.0)
+    - FBSDKCoreKit/Core (= 9.1.0)
+  - FBSDKCoreKit/Basics (9.1.0)
+  - FBSDKCoreKit/Core (9.1.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKShareKit (9.1.0):
+    - FBSDKShareKit/Share (= 9.1.0)
+  - FBSDKShareKit/Share (9.1.0):
+    - FBSDKCoreKit (~> 9.1.0)
   - Flutter (1.0.0)
   - flutter_inappwebview (0.0.1):
     - Flutter
@@ -17,7 +27,9 @@ PODS:
   - Reachability (3.2)
   - shared_preferences (0.0.1):
     - Flutter
-  - social_share (0.0.1):
+  - social_share_plugin (0.3.1):
+    - FBSDKCoreKit
+    - FBSDKShareKit
     - Flutter
   - Toast (4.0.0)
   - url_launcher (0.0.1):
@@ -38,7 +50,7 @@ DEPENDENCIES:
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - pdf_viewer_plugin (from `.symlinks/plugins/pdf_viewer_plugin/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
-  - social_share (from `.symlinks/plugins/social_share/ios`)
+  - social_share_plugin (from `.symlinks/plugins/social_share_plugin/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
   - video_player (from `.symlinks/plugins/video_player/ios`)
   - wakelock (from `.symlinks/plugins/wakelock/ios`)
@@ -46,6 +58,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - FBSDKCoreKit
+    - FBSDKShareKit
     - Reachability
     - Toast
 
@@ -66,8 +80,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/pdf_viewer_plugin/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
-  social_share:
-    :path: ".symlinks/plugins/social_share/ios"
+  social_share_plugin:
+    :path: ".symlinks/plugins/social_share_plugin/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
   video_player:
@@ -79,6 +93,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
+  FBSDKCoreKit: a00fe2efd780c195a5e09201bf51c56106245b40
+  FBSDKShareKit: d5aafc35870083f53c15ec0eb9eda4dfe8037d11
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_inappwebview: 69dfbac46157b336ffbec19ca6dfd4638c7bf189
   flutter_share_me: dd04bcb65a595f76bd2fa0537df08fffc5a04903
@@ -87,7 +103,7 @@ SPEC CHECKSUMS:
   pdf_viewer_plugin: 96ce5d974dd18dd3a5f17a3f50641d178e355434
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
-  social_share: 702a5e3842addd22db515aa9e1e00a4b80a0296d
+  social_share_plugin: f9dc03c1137b137e6efb1f3608f449c4cb153a7a
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
   video_player: 9cc823b1d9da7e8427ee591e8438bfbcde500e6e

@@ -7,7 +7,7 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/searchscreen/searchcategory.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:social_share/social_share.dart';
+import 'package:social_share_plugin/social_share_plugin.dart';
 
 class InnerCustomAppBar extends PreferredSize {
   // final Widget child;
@@ -20,16 +20,10 @@ class InnerCustomAppBar extends PreferredSize {
   final String trallingImg2;
   final Function onTapvalfilter;
   final int forfilterindes;
-  final String facebooklink;
-  final String twitterlink;
-  final String linkedinlink;
-  final String whatsuplink;
+  final String sharelink;
 
   InnerCustomAppBar(
-      {this.facebooklink,
-      this.twitterlink,
-      this.linkedinlink,
-      this.whatsuplink,
+      {this.sharelink,
       this.onTapvalfilter,
       this.onTapval,
       this.index,
@@ -161,98 +155,66 @@ class InnerCustomAppBar extends PreferredSize {
                                                 //
                                                 GestureDetector(
                                                   onTap: () async {
+                                                    print("on tap fb");
                                                     Platform.isAndroid
                                                         ? FlutterShareMe()
                                                             .shareToFacebook(
-                                                                url:
-                                                                    facebooklink,
+                                                                url: sharelink,
                                                                 msg: "msg")
-                                                        : SocialShare
-                                                            .shareFacebookStory(
-                                                            "",
-                                                            "#ffffff",
-                                                            "#000000",
-                                                            facebooklink,
-                                                          ).then((data) {
-                                                            print(data);
-                                                          });
+                                                        : await SocialSharePlugin
+                                                            .shareToFeedFacebookLink(
+                                                            quote:
+                                                                "",
+                                                            url: sharelink,
+                                                            onSuccess: (_) {
+                                                              print(
+                                                                  'FACEBOOK SUCCESS');
+                                                              return;
+                                                            },
+                                                            onCancel: () {
+                                                              print(
+                                                                  'FACEBOOK CANCELLED');
+                                                              return;
+                                                            },
+                                                            onError: (error) {
+                                                              print(
+                                                                  'FACEBOOK ERROR $error');
+                                                              return;
+                                                            },
+                                                          );
                                                   },
-                                                  // await screenshotController
-                                                  //     .capture()
-                                                  //     .then((image) async {
-                                                  //   //facebook appId is mandatory for andorid or else share won't work
-
-                                                  // });
-                                                  // Platform.isAndroid
-                                                  //     ? SocialShare.shareFacebookStory("#ffffff",
-                                                  //             "#000000", "https://google.com",
-                                                  //             appId: "870993726807583")
-                                                  //         .then((data) {
-                                                  //         print(data);
-                                                  //       })
-                                                  //     : SocialShare.shareFacebookStory("#ffffff",
-                                                  //             "#000000", "https://google.com")
-                                                  //         .then((data) {
-                                                  //         print(data);
-                                                  //       });
-
                                                   child: Image.asset(
                                                     "assets/newImages/facebook.png",
                                                     height: imgHeight,
                                                     width: imgHeight,
                                                   ),
                                                 ),
-                                                // RaisedButton(
-                                                //   onPressed: () async {
-                                                //     await screenshotController
-                                                //         .capture()
-                                                //         .then((image) async {
-                                                //       //facebook appId is mandatory for andorid or else share won't work
-                                                //       Platform.isAndroid
-                                                //           ? SocialShare.shareFacebookStory(
-                                                //                   image.path,
-                                                //                   "#ffffff",
-                                                //                   "#000000",
-                                                //                   "https://google.com",
-                                                //                   appId: "870993726807583")
-                                                //               .then((data) {
-                                                //               print(data);
-                                                //             })
-                                                //           : SocialShare.shareFacebookStory(
-                                                //                   image.path,
-                                                //                   "#ffffff",
-                                                //                   "#000000",
-                                                //                   "https://google.com")
-                                                //               .then((data) {
-                                                //               print(data);
-                                                //             });
-                                                //     });
-                                                //   },
-                                                //   child: Text("Share On Facebook Story"),
-                                                // ),
+
                                                 SizedBox(
                                                   width: 7,
                                                 ),
                                                 GestureDetector(
-                                                  onTap: ()
-                                                      // SocialShare.shareTwitter(
-                                                      //         "This is Social Share twitter example",
-                                                      //         hashtags: ["hello", "world", "foo", "bar"],
-                                                      //         url: "https://google.com/#/hello",
-                                                      //         trailingText: "\nhello")
-                                                      //     .then((data) {
-                                                      //   print(data);
-                                                      // });
-                                                      async {
-                                                    var response =
-                                                        await FlutterShareMe()
+                                                  onTap: () async {
+                                                    Platform.isAndroid
+                                                        ? await FlutterShareMe()
                                                             .shareToTwitter(
-                                                                url:
-                                                                    twitterlink,
-                                                                msg: "Share");
-                                                    if (response == 'success') {
-                                                      print('navigate success');
-                                                    }
+                                                                url: sharelink,
+                                                                msg: "Share")
+                                                        : await SocialSharePlugin
+                                                            .shareToTwitterLink(
+                                                                text:
+                                                                    "",
+                                                                url: sharelink,
+                                                                onSuccess: (_) {
+                                                                  print(
+                                                                      'TWITTER SUCCESS');
+                                                                  return;
+                                                                },
+                                                                onCancel: () {
+                                                                  print(
+                                                                      'TWITTER CANCELLED');
+                                                                  return;
+                                                                });
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/twitter.png",
@@ -265,18 +227,11 @@ class InnerCustomAppBar extends PreferredSize {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () async {
-                                                    // SocialShare.shareLinkedin(
-                                                    //         "Hello World \n https://google.com")
-                                                    //     .then((data) {
-                                                    //   print(data);
-                                                    // });
-                                                    //uncomment theese code
-                                                    var response =
-                                                        await FlutterShareMe()
-                                                            .shareToLinkedin(
-                                                                url:
-                                                                    linkedinlink,
-                                                                msg: "Share");
+                                                    // Platform.isAndroid
+                                                    await FlutterShareMe()
+                                                        .shareToLinkedin(
+                                                            url: sharelink,
+                                                            msg: "Share");
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/linkedin.png",
@@ -286,10 +241,18 @@ class InnerCustomAppBar extends PreferredSize {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () {
+                                                    // Platform.isAndroid?
                                                     FlutterShareMe()
                                                         .shareToWhatsApp(
                                                             base64Image: "",
-                                                            msg: whatsuplink);
+                                                            msg: sharelink);
+                                                    // :
+                                                    //  SocialShare
+                                                    //     .shareWhatsapp(
+                                                    //     sharelink,
+                                                    //   ).then((data) {
+                                                    //     print(data);
+                                                    //   });
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/whatsapp.png",
@@ -324,8 +287,9 @@ class InnerCustomAppBar extends PreferredSize {
                               //             child: FormLabel(
                               //               text: "Share",
                               //               labelColor: Customcolor.pink_col,
-                              //               fontSize: ResponsiveFlutter.of(context)
-                              //                   .fontSize(2.5),
+                              //               fontSize:
+                              //                   ResponsiveFlutter.of(context)
+                              //                       .fontSize(2.5),
                               //               fontweight: FontWeight.w500,
                               //             ),
                               //           ),
@@ -394,9 +358,10 @@ class InnerCustomAppBar extends PreferredSize {
                               //                 ),
                               //                 GestureDetector(
                               //                   onTap: () {
-                              //                     FlutterShareMe().shareToWhatsApp(
-                              //                         base64Image: "",
-                              //                         msg: whatsuplink);
+                              //                     FlutterShareMe()
+                              //                         .shareToWhatsApp(
+                              //                             base64Image: "",
+                              //                             msg: whatsuplink);
                               //                   },
                               //                   child: Image.asset(
                               //                     "assets/newImages/whatsapp.png",

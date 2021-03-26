@@ -113,7 +113,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                         index: 1,
                       )));
         },
-        index: 2,
+        index: 1,
         title:
             "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Point Program",
         titleImg: "assets/newImages/our_programsLogo.png",
@@ -279,8 +279,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                                           textAlign: TextAlign.center,
                                           maxLines: 2,
                                           style: TextStyle(
-                                            fontSize: 17,
-                                          )),
+                                              fontSize: 17,
+                                              fontFamily: AppFonts.normal)),
                                     )
                                   ],
                                 );
@@ -421,8 +421,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                                             textAlign: TextAlign.center,
                                             maxLines: 2,
                                             style: TextStyle(
-                                              fontSize: 17,
-                                            )),
+                                                fontSize: 17,
+                                                fontFamily: AppFonts.normal)),
                                       )
                                     ],
                                   ),
@@ -1221,7 +1221,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Our Gallery  ",
+              cardsubtitle: "Photo ",
+              cardTitle: "Gallery",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1314,7 +1315,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/gallery.png",
-              cardTitle: "Our Videos  ",
+              cardsubtitle: "Our ",
+              cardTitle: "Videos",
               btnTitle: "Watch More",
               onbtnTap: () {
                 Navigator.push(
@@ -1424,7 +1426,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Our Awards  ",
+              cardsubtitle: "",
+              cardTitle: "",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1531,7 +1534,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Latest Updates  ",
+              cardsubtitle: "Latest ",
+              cardTitle: "Updates",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1623,7 +1627,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/mqdefault.png",
-              cardTitle: "Merck Foundation In Media  ",
+              cardsubtitle: "Merck Foundation In ",
+              cardTitle: "Media",
               titleColor: Customcolor.pink_col,
               btnTitle: "View More",
               titleImg: "assets/newImages/flowers-3.png",
@@ -1715,6 +1720,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
             child: CustomHorizontalCard(
                 index: 1,
                 cardImage: "assets/newImages/mqdefault.png",
+                cardsubtitle: "Merck Foundation ",
                 cardTitle: "Alumini Testimonials  ",
                 titleColor: Customcolor.pink_col,
                 onbtnTap: () {
@@ -1868,7 +1874,9 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
         // }
         if (typewidetofrightsection[i] == "digital_library") {
           tabs.add(
-            new Tab(text: "Digital Library"),
+            new Tab(
+              child: Digitaltext(),
+            ),
           );
           listoftabwiget.add(digitalLibraryLastSection());
         }

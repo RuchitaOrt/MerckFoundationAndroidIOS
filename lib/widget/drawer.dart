@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/AnnualReport.dart';
 
 import 'package:merckfoundation22dec/mediascreen.dart/newReleases.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
@@ -482,6 +483,12 @@ class _AppDrawerState extends State<AppDrawer> {
                           value: 'Annual Report',
                           onTapfun: () {
                             print('ontap');
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        AnnualReport()));
                           },
                         ),
                       ],
@@ -517,13 +524,8 @@ class _AppDrawerState extends State<AppDrawer> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => VideoPlayer(
-                                      videoUrl:
-                                          " https://www.instagram.com/merckfoundation/",
-                                    )));
+                        ShowDialogs.followuslink(Constantstring.followinsta,
+                            Constantstring.followmsg);
                       },
                       child: Image.asset(
                         "assets/newImages/instagram.png",
@@ -536,13 +538,8 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => VideoPlayer(
-                                      videoUrl:
-                                          "https://www.facebook.com/merckfoundation/",
-                                    )));
+                        ShowDialogs.followuslink(Constantstring.followfacebook,
+                            Constantstring.followmsg);
                       },
                       child: Image.asset(
                         "assets/newImages/facebook.png",
@@ -555,13 +552,8 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => VideoPlayer(
-                                      videoUrl:
-                                          "https://twitter.com/MerckFoundation",
-                                    )));
+                        ShowDialogs.followuslink(Constantstring.followtwitter,
+                            Constantstring.followmsg);
                       },
                       child: Image.asset(
                         "assets/newImages/twitter.png",
@@ -574,13 +566,8 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => VideoPlayer(
-                                      videoUrl:
-                                          "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg",
-                                    )));
+                        ShowDialogs.followuslink(Constantstring.followyoutube,
+                            Constantstring.followmsg);
                       },
                       child: Image.asset(
                         "assets/newImages/youtube.png",
@@ -593,13 +580,8 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => VideoPlayer(
-                                      videoUrl:
-                                          "https://www.flickr.com/photos/163124125@N08/",
-                                    )));
+                        ShowDialogs.followuslink(Constantstring.followflicker,
+                            Constantstring.followmsg);
                       },
                       child: Image.asset(
                         "assets/newImages/flickr.png",

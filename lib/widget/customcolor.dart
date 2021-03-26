@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 class Customcolor {
+  static const textsubtitlecolor = const Color(0xFF4b4e53);
   static const colorPrimary = const Color(0xffFFBD00);
   static const colorPrimaryDark = const Color(0xff89cff0);
   static const yellow_transparent = const Color(0x10FFFFFF);
@@ -43,7 +44,7 @@ class Customcolor {
   static const skyblue_col = const Color(0xff9CD4D1);
 
   //new colo®
-  static const text_blue = const Color(0xff115CAB);
+  static const text_blue = const Color(0xff125CAB);
   static const text_grey = const Color(0xff888888);
   static const text_darkblue = const Color(0xff115CAB);
   static const text_darkgrey = const Color(0xff333333);
@@ -57,6 +58,92 @@ class AppFonts {
 }
 
 class Constantstring {
+//link to be shared on app directly
+
+  static String followinsta = "https://www.instagram.com/merckfoundation";
+  static String followfacebook = "https://www.facebook.com/merckfoundation/";
+  static String followtwitter = "https://twitter.com/MerckFoundation/";
+  static String followyoutube =
+      "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg";
+  static String followflicker = "https://www.flickr.com/photos/163124125@N08/";
+
+  //share who we are
+  static String sharevision =
+      "http://merckfoundation.org/mfindia/web/public/vision";
+  static String shareleadership =
+      "http://merckfoundation.org/mfindia/web/public/leadership";
+
+  static String sharemessagefromleadership =
+      "http://merckfoundation.org/mfindia/web/public/message-from-leadership-team";
+
+  //share what we do
+  static String sharemission =
+      "http://merckfoundation.org/mfindia/web/public/mission";
+
+  static String shareourpolicy =
+      "http://merckfoundation.org/mfindia/web/public/our-policies";
+
+  static String shareouractivity =
+      "http://merckfoundation.org/mfindia/web/public/our-activities";
+  static String sharelegaldisclaimer =
+      "http://merckfoundation.org/mfindia/web/public/legal-disclaimer";
+  static String sharedataprivacy =
+      "http://merckfoundation.org/mfindia/web/public/data-privacy";
+
+  //share ourpartner
+  static String shareourpartner =
+      "http://merckfoundation.org/mfindia/web/public/our-partners";
+
+  //share Media&events
+  static String sharevideolibrary =
+      "http://merckfoundation.org/mfindia/web/public/video-library";
+  static String sharestories =
+      "http://merckfoundation.org/mfindia/web/public/stories";
+  static String sharetestimonial =
+      "http://merckfoundation.org/mfindia/web/public/merck-foundation-alumni-testimonials";
+
+  static String sharenewsletter =
+      "http://merckfoundation.org/mfindia/web/public/newsletters-and-articles";
+  static String sharecallforapp =
+      "http://merckfoundation.org/mfindia/web/public/call-for-applications";
+  static String sharenewsrelease =
+      "http://merckfoundation.org/mfindia/web/public/news-releases";
+  static String sharemerckmedia =
+      "http://merckfoundation.org/mfindia/web/public/merck-foundation-in-media";
+
+  //subprogram link
+  //mmtm
+  static String aboutmmtm =
+      "http://merckfoundation.org/mfindia/web/public/about-merck-more-than-a-mother";
+  static String strategy =
+      "http://merckfoundation.org/mfindia/web/public/strategy";
+  static String merckambassadar =
+      "http://merckfoundation.org/mfindia/web/public/merck-foundation-more-than-a-mother-ambassadors";
+  static String fertility =
+      "http://merckfoundation.org/mfindia/web/public/merck-foundation-fertility-and-embryology-training-program";
+  static String communityawarnessmmtm =
+      "http://merckfoundation.org/mfindia/web/public/community-awareness-and-awards-program";
+  static String empoweringberna =
+      "http://merckfoundation.org/mfindia/web/public/empowering-berna";
+  static String localsong =
+      "http://merckfoundation.org/mfindia/web/public/local-songs-and-children-stories";
+  static String videommtm =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-more-than-a-mother";
+
+  //cancer
+  static String cancerobjective =
+      "http://merckfoundation.org/mfindia/web/public/objectives";
+  static String cancerfellowship =
+      "http://merckfoundation.org/mfindia/web/public/merck-foundation-oncology-fellowship-program";
+  static String cancerpatient =
+      "http://merckfoundation.org/mfindia/web/public/merck-foundation-more-than-a-patient";
+  static String cancercommunityawareness =
+      "http://merckfoundation.org/mfindia/web/public/merck-foundation-community-awareness";
+  static String cancervideo =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-cancer-access-program";
+  //award
+
+  static String followmsg = "follow us";
   static String emptyData = "No Data Found";
   static String baseUrl = "";
   static double tabheight = 500;

@@ -48,6 +48,7 @@ class OurMissionState extends State<OurMission> with TickerProviderStateMixin {
           },
           index: 2,
           title: "Our Mission",
+          sharelink: Constantstring.sharemission,
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",

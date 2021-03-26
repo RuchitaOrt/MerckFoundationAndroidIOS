@@ -15,7 +15,6 @@ import 'package:screenshot/screenshot.dart';
 import 'package:flutter_html/style.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
-import 'package:social_share/social_share.dart';
 
 class OurVision extends StatefulWidget {
   @override
@@ -236,10 +235,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                         )));
           },
           index: 2,
-          facebooklink: "http://merckfoundation.org/mfindia/web/public/vision",
-          linkedinlink: "http://merckfoundation.org/mfindia/web/public/vision",
-          whatsuplink: "http://merckfoundation.org/mfindia/web/public/vision",
-          twitterlink: "http://merckfoundation.org/mfindia/web/public/vision",
+          sharelink: Constantstring.sharevision,
           title: "Our Vision",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",

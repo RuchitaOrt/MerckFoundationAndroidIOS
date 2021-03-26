@@ -49,19 +49,40 @@
 
 </dict>
 
-<key>LSApplicationQueriesSchemes</key>
-	<array>
-	<string>instagram-stories</string>
-	<string>facebook-stories</string>
-	<string>facebook</string>
-	<string>instagram</string>
-	<string>twitter</string>
-	<string>whatsapp</string>
-    <string>tg</string>
-	</array>
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <!--
+              Replace "000000000000" with your Facebook App ID here.
+              **NOTE**: The scheme needs to start with `fb` and then your ID.
+            -->
+            <string>fb870993726807583</string>
+        </array>
+    </dict>
+</array>
 
-	<key>FacebookAppID</key>
+<key>FacebookAppID</key>
+
+<!-- Replace "000000000000" with your Facebook App ID here. -->
 <string>870993726807583</string>
+<key>FacebookDisplayName</key>
 
+<!-- Replace "YOUR_APP_NAME" with your Facebook App name. -->
+<string>Merck Foundation</string>
+
+
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>instagram</string>
+    <string>fbapi</string>
+    <string>fb-messenger-share-api</string>
+    <string>fbauth2</string>
+    <string>fbshareextension</string>
+    <string>twitter</string>
+</array>
+
+	
 </dict>
 </plist>
