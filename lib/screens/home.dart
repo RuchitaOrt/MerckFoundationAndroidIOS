@@ -530,8 +530,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                                 textAlign: TextAlign.center,
                                                 maxLines: 2,
                                                 style: TextStyle(
-                                                  fontSize: 17,
-                                                )),
+                                                    fontSize: 17,
+                                                    fontFamily:
+                                                        AppFonts.normal)),
                                       )
                                     ],
                                   ),
@@ -688,8 +689,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                                 textAlign: TextAlign.center,
                                                 maxLines: 2,
                                                 style: TextStyle(
-                                                  fontSize: 17,
-                                                )),
+                                                    fontSize: 17,
+                                                    fontFamily:
+                                                        AppFonts.normal)),
                                       )
                                     ],
                                   ),
@@ -832,8 +834,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                               textAlign: TextAlign.center,
                                               maxLines: 2,
                                               style: TextStyle(
-                                                fontSize: 17,
-                                              )),
+                                                  fontSize: 17,
+                                                  fontFamily: AppFonts.normal)),
                                     )
                                   ],
                                 );
@@ -1307,6 +1309,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       style: TextStyle(
                           fontSize: ResponsiveFlutter.of(context).fontSize(2.5),
                           fontWeight: FontWeight.w700,
+                          fontFamily: AppFonts.normal,
                           color: Customcolor.text_blue)),
                 ],
               ),
@@ -2012,7 +2015,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               index: 1,
               cardImage: GlobalLists.mmttestimonialbaseurl +
                   GlobalLists.mmttestimoniallist[0].image,
-              cardTitle: "Alumini Testimonials  ",
+              cardsubtitle: "Alumini ",
+              cardTitle: "Testimonials  ",
               testimonialname:
                   GlobalLists.mmttestimoniallist[0].testimonialName,
               titleColor: Customcolor.text_darkblue,
@@ -2171,9 +2175,12 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 ShowDialogs.youtubevideolink(
                     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
               },
+              youtubeicon: 0,
               cardImage:
                   'https://img.youtube.com/vi/${GlobalLists.homevideolist[0].videoLink.substring(GlobalLists.homevideolist[0].videoLink.length - 11)}/mqdefault.jpg',
-              cardTitle: "Our Stories   ",
+              cardsubtitle: "Hear Our ",
+              cardTitle: "Stories   ",
+
               titleColor: Customcolor.text_darkblue,
               titleImg: "assets/newImages/flowers-2.png",
               subTitle: GlobalLists.homevideolist[0].videoDesc,
@@ -2218,7 +2225,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 index: 3,
                 cardImage: GlobalLists.homegallerybaseurl +
                     GlobalLists.homegallerylist[0].photo,
-                cardTitle: "Photo Gallery   ",
+                youtubeicon: 1,
+                cardsubtitle: "Photo ",
+                cardTitle: "Gallery   ",
                 titleColor: Customcolor.text_darkblue,
                 titleImg: "assets/newImages/flowers-3.png",
                 subTitle: GlobalLists.homegallerylist[0].photoDescription,
@@ -2240,9 +2249,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               index: 1,
               cardImage: GlobalLists.homeceomsgbaseurl +
                   GlobalLists.homeceomsglist[0].image,
-              cardTitle:
-                  "Message Form Dr.Rasha Kelej, \nCEO of Merck Foundation   ",
+              cardsubtitle: "Message Form ",
+              cardTitle: "Senator, Dr.Rasha Kelej, CEO of Merck Foundation   ",
               titleColor: Customcolor.text_darkblue,
+              youtubeicon: 1,
               titleImg: "assets/newImages/flowers-2.png",
               subTitle: GlobalLists.homeceomsglist[0].title,
               buttontitle: "View More ",
@@ -2282,22 +2292,28 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       for (int i = 0; i < typewidetofrightsection.length; i++) {
         if (typewidetofrightsection[i] == "call_for_app") {
           tabs.add(
-            new Tab(text: "Call for Application"),
+            new Tab(
+              child: Callforapptext(),
+            ),
           );
-
+//child: ShowDialogs.callforapptext(context)
           listoftabwiget.add(
             getcallforapp(context),
           );
         }
         if (typewidetofrightsection[i] == "mmtm") {
           tabs.add(
-            new Tab(text: "Merck More Than A Mother Ambassadors"),
+            new Tab(
+              child: Merckmtmtext(),
+            ),
           );
           listoftabwiget.add(getMMTMS(context));
         }
         if (typewidetofrightsection[i] == "digital_library") {
           tabs.add(
-            new Tab(text: "Digital Library"),
+            new Tab(
+              child: Digitaltext(),
+            ),
           );
           listoftabwiget.add(digitalLibraryLastSection());
         }

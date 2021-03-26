@@ -141,7 +141,8 @@ class NewsState extends State<NewsPage> {
             //               index: 0,
             //             )));
           },
-          index: 1,
+          index: 2,
+          sharelink: Constantstring.sharenewsletter,
           title: "Articles",
           titleImg: "assets/newImages/news_logo.png",
           trallingImg1: "assets/newImages/share.png",

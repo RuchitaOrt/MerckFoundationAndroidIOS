@@ -72,6 +72,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
         },
         index: 2,
         title: "Message from LeadershipTeam",
+        sharelink: Constantstring.sharemessagefromleadership,
         titleImg: "assets/newImages/leadership_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",

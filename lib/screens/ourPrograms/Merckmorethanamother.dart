@@ -119,7 +119,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                         index: 1,
                       )));
         },
-        index: 2,
+        index: 1,
         title: "Merck Foundation More Than A Mother",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -317,8 +317,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                             textAlign: TextAlign.center,
                                             maxLines: 2,
                                             style: TextStyle(
-                                              fontSize: 17,
-                                            )),
+                                                fontSize: 17,
+                                                fontFamily: AppFonts.normal)),
                                       )
                                     ],
                                   ),
@@ -468,8 +468,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                             textAlign: TextAlign.center,
                                             maxLines: 2,
                                             style: TextStyle(
-                                              fontSize: 17,
-                                            )),
+                                                fontSize: 17,
+                                                fontFamily: AppFonts.normal)),
                                       )
                                     ],
                                   ),
@@ -1658,7 +1658,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Our Gallery  ",
+              cardsubtitle: "Photo ",
+              cardTitle: "Gallery  ",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1751,7 +1752,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/gallery.png",
-              cardTitle: "Our Videos  ",
+              cardsubtitle: "Our ",
+              cardTitle: "Videos",
               btnTitle: "Watch More",
               onbtnTap: () {
                 Navigator.push(
@@ -1871,7 +1873,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Latest Updates  ",
+              cardsubtitle: "Latest ",
+              cardTitle: "Updates  ",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               onbtnTap: () {
@@ -1976,7 +1979,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/mqdefault.png",
-              cardTitle: "Merck Foundation In Media  ",
+              cardsubtitle: "Merck Foundation In ",
+              cardTitle: "Media  ",
               titleColor: Customcolor.pink_col,
               onbtnTap: () {
                 Navigator.push(
@@ -2071,6 +2075,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             child: CustomHorizontalCard(
                 index: 1,
                 cardImage: "assets/newImages/mqdefault.png",
+                cardsubtitle: "Merck Foundation ",
                 cardTitle: "Alumini Testimonials  ",
                 titleColor: Customcolor.pink_col,
                 onbtnTap: () {
@@ -2210,7 +2215,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
       for (int i = 0; i < typewidetofrightsection.length; i++) {
         if (typewidetofrightsection[i] == "call_for_app") {
           tabs.add(
-            new Tab(text: "Call for Application"),
+            new Tab(
+              child: Callforapptext(),
+            ),
           );
 
           listoftabwiget.add(
@@ -2219,13 +2226,17 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
         }
         if (typewidetofrightsection[i] == "mmtm") {
           tabs.add(
-            new Tab(text: "Merck More Than A Mother Ambassadors"),
+            new Tab(
+              child: Merckmtmtext(),
+            ),
           );
           listoftabwiget.add(getMMTMS(context));
         }
         if (typewidetofrightsection[i] == "digital_library") {
           tabs.add(
-            new Tab(text: "Digital Library"),
+            new Tab(
+              child: Digitaltext(),
+            ),
           );
           listoftabwiget.add(digitalLibraryLastSection());
         }

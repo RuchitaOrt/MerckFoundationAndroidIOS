@@ -177,7 +177,7 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
                           crossAxisCount: 2,
-                          childAspectRatio: 0.8,
+                          childAspectRatio: 0.9,
                           children: List.generate(
                               GlobalLists.watchvideolibrary.length, (index) {
                             if (GlobalLists.watchvideolibrary.length - 1 ==

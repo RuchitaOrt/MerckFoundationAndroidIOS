@@ -147,7 +147,8 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                         index: 0,
                       )));
         },
-        index: 1,
+        index: 2,
+        sharelink: Constantstring.sharemerckmedia,
         title: "Merck Foundation in Media",
         titleImg: "assets/newImages/newsarticle_logo.png",
         trallingImg1: "assets/newImages/share.png",

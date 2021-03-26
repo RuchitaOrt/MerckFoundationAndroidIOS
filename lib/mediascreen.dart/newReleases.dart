@@ -125,7 +125,8 @@ class NewsReleaseState extends State<NewsRelease> {
                           index: 0,
                         )));
           },
-          index: 1,
+          index: 2,
+          sharelink: Constantstring.sharenewsrelease,
           title: "News Releases",
           titleImg: "assets/newImages/newsarticle_logo.png",
           trallingImg1: "assets/newImages/share.png",

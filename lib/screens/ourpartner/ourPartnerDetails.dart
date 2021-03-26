@@ -121,6 +121,7 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
           titleImg: "assets/newImages/ourPartner_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
+          sharelink: Constantstring.shareourpartner,
           height: 85,
         ),
         body: Padding(

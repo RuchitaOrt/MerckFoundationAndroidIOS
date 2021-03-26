@@ -66,15 +66,16 @@ class CallApplicationState extends State<CallforApplication>
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (BuildContext context) => Dashboard(
-          //               index: 0,
-          //             )));
-          Navigator.pop(context);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => Dashboard(
+                        index: 0,
+                      )));
+          // Navigator.pop(context);
         },
-        index: 1,
+        index: 2,
+        sharelink: Constantstring.sharecallforapp,
         title: "Call For Application",
         titleImg: "assets/newImages/application_logo.png",
         trallingImg1: "assets/newImages/share.png",

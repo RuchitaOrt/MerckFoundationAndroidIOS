@@ -120,7 +120,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                         index: 1,
                       )));
         },
-        index: 2,
+        index: 1,
         title: "Merck Foundation STEM Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -754,7 +754,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Our Gallery  ",
+              cardsubtitle: "Photo ",
+              cardTitle: "Gallery",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -847,7 +848,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/gallery.png",
-              cardTitle: "Our Videos  ",
+              cardsubtitle: "Our ",
+              cardTitle: "Videos",
               btnTitle: "Watch More",
               onbtnTap: () {
                 Navigator.push(
@@ -961,7 +963,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Our Awards  ",
+              cardsubtitle: "",
+              cardTitle: "",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1068,7 +1071,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Latest Updates  ",
+              cardsubtitle: "Latest ",
+              cardTitle: "Updates",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1166,7 +1170,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/mqdefault.png",
-              cardTitle: "Merck Foundation In Media  ",
+              cardsubtitle: "Merck Foundation In ",
+              cardTitle: "Media",
               titleColor: Customcolor.pink_col,
               btnTitle: "View More",
               titleImg: "assets/newImages/flowers-3.png",
@@ -1258,6 +1263,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
             child: CustomHorizontalCard(
                 index: 1,
                 cardImage: "assets/newImages/mqdefault.png",
+                cardsubtitle: "Merck Foundation ",
                 cardTitle: "Alumini Testimonials  ",
                 titleColor: Customcolor.pink_col,
                 onbtnTap: () {
@@ -1432,7 +1438,9 @@ class MerckstemprogramState extends State<Merckstemprogram>
       for (int i = 0; i < typewidetofrightsection.length; i++) {
         if (typewidetofrightsection[i] == "call_for_app") {
           tabs.add(
-            new Tab(text: "Call for Application"),
+            new Tab(
+              child: Callforapptext(),
+            ),
           );
 
           listoftabwiget.add(
@@ -1447,7 +1455,9 @@ class MerckstemprogramState extends State<Merckstemprogram>
         // }
         if (typewidetofrightsection[i] == "digital_library") {
           tabs.add(
-            new Tab(text: "Digital Library"),
+            new Tab(
+              child: Digitaltext(),
+            ),
           );
           listoftabwiget.add(digitalLibraryLastSection());
         }
@@ -1677,8 +1687,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
                                             textAlign: TextAlign.center,
                                             maxLines: 2,
                                             style: TextStyle(
-                                              fontSize: 17,
-                                            )),
+                                                fontSize: 17,
+                                                fontFamily: AppFonts.normal)),
                                       )
                                     ],
                                   ),
@@ -1828,8 +1838,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
                                             textAlign: TextAlign.center,
                                             maxLines: 2,
                                             style: TextStyle(
-                                              fontSize: 17,
-                                            )),
+                                                fontSize: 17,
+                                                fontFamily: AppFonts.normal)),
                                       )
                                     ],
                                   ),

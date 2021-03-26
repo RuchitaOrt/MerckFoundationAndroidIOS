@@ -49,6 +49,7 @@ class OurPolicyState extends State<OurPolicy> with TickerProviderStateMixin {
           index: 2,
           title: "Our Policy",
           titleImg: "assets/newImages/vision_logo.png",
+          sharelink: Constantstring.shareourpolicy,
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
           height: 85,

@@ -50,6 +50,7 @@ class OurProgramstrategyState extends State<StrategyDetails> {
                       )));
         },
         index: 2,
+        sharelink: Constantstring.strategy,
         title: "Strategy",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",

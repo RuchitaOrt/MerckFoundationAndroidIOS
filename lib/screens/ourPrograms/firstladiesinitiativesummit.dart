@@ -32,6 +32,7 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'dart:convert';
 
 import 'package:flutter_html/flutter_html.dart';
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
@@ -120,7 +121,7 @@ class FirstLadiesInitiativeDetailsState
                         index: 1,
                       )));
         },
-        index: 2,
+        index: 1,
         title: "Merck Foundation First Ladies Initiative Summit",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -579,8 +580,8 @@ class FirstLadiesInitiativeDetailsState
                                           textAlign: TextAlign.center,
                                           maxLines: 2,
                                           style: TextStyle(
-                                            fontSize: 17,
-                                          )),
+                                              fontSize: 17,
+                                              fontFamily: AppFonts.normal)),
                                     )
                                   ],
                                 );
@@ -721,8 +722,8 @@ class FirstLadiesInitiativeDetailsState
                                             textAlign: TextAlign.center,
                                             maxLines: 2,
                                             style: TextStyle(
-                                              fontSize: 17,
-                                            )),
+                                                fontSize: 17,
+                                                fontFamily: AppFonts.normal)),
                                       )
                                     ],
                                   ),
@@ -1236,7 +1237,8 @@ class FirstLadiesInitiativeDetailsState
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Our Gallery  ",
+              cardsubtitle: "Photo ",
+              cardTitle: "Gallery",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1329,7 +1331,8 @@ class FirstLadiesInitiativeDetailsState
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/gallery.png",
-              cardTitle: "Our Videos  ",
+              cardsubtitle: "Our ",
+              cardTitle: "Videos",
               btnTitle: "Watch More",
               onbtnTap: () {
                 // Navigator.push(
@@ -1443,7 +1446,8 @@ class FirstLadiesInitiativeDetailsState
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Our Awards  ",
+              cardsubtitle: "",
+              cardTitle: "",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1550,7 +1554,8 @@ class FirstLadiesInitiativeDetailsState
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Latest Updates  ",
+              cardsubtitle: "Latest ",
+              cardTitle: "Updates",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -1642,7 +1647,8 @@ class FirstLadiesInitiativeDetailsState
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/mqdefault.png",
-              cardTitle: "Merck Foundation In Media  ",
+              cardsubtitle: "Merck Foundation In ",
+              cardTitle: "Media  ",
               titleColor: Customcolor.pink_col,
               btnTitle: "View More",
               titleImg: "assets/newImages/flowers-3.png",
@@ -1734,6 +1740,7 @@ class FirstLadiesInitiativeDetailsState
             child: CustomHorizontalCard(
                 index: 1,
                 cardImage: "assets/newImages/mqdefault.png",
+                cardsubtitle: "Merck Foundation ",
                 cardTitle: "Alumini Testimonials  ",
                 titleColor: Customcolor.pink_col,
                 onbtnTap: () {
@@ -1879,13 +1886,17 @@ class FirstLadiesInitiativeDetailsState
         // }
         if (typewidetofrightsection[i] == "mmtm") {
           tabs.add(
-            new Tab(text: "Merck More Than A Mother Ambassadors"),
+            new Tab(
+              child: Merckmtmtext(),
+            ),
           );
           listoftabwiget.add(getMMTMS(context));
         }
         if (typewidetofrightsection[i] == "digital_library") {
           tabs.add(
-            new Tab(text: "Digital Library"),
+            new Tab(
+              child: Digitaltext(),
+            ),
           );
           listoftabwiget.add(digitalLibraryLastSection());
         }

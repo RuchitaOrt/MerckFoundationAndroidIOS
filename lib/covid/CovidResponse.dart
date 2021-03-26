@@ -271,7 +271,8 @@ class CovidResponseState extends State<CovidResponse>
                           child: CustomHorizontalCard(
                             index: 1,
                             cardImage: "assets/newImages/gallery.png",
-                            cardTitle: "Our Videos  ",
+                            cardsubtitle: "Our ",
+                            cardTitle: "Videos",
                             btnTitle: "Watch More",
                             onbtnTap: () {
                               Navigator.push(
@@ -383,7 +384,8 @@ class CovidResponseState extends State<CovidResponse>
                           child: CustomHorizontalCard(
                             index: 1,
                             cardImage: "assets/newImages/ourvison.png",
-                            cardTitle: "Latest Update",
+                            cardsubtitle: "Latest ",
+                            cardTitle: "Update",
                             btnTitle: "View More",
                             titleColor: Customcolor.pink_col,
                             onbtnTap: () {

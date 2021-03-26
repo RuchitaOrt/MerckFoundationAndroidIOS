@@ -17,6 +17,8 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'dart:convert';
 
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
+
 class CancerobjectiveDetails extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -280,7 +282,9 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
       for (int i = 0; i < typewidetofrightsection.length; i++) {
         if (typewidetofrightsection[i] == "call_for_app") {
           tabs.add(
-            new Tab(text: "Call for Application"),
+            new Tab(
+              child: Callforapptext(),
+            ),
           );
 
           listoftabwiget.add(
@@ -288,14 +292,16 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
           );
         }
         if (typewidetofrightsection[i] == "mmtm") {
-          tabs.add(
-            new Tab(text: "Merck More Than A Mother Ambassadors"),
-          );
+          tabs.add(new Tab(
+            child: Merckmtmtext(),
+          ));
           listoftabwiget.add(getMMTMS(context));
         }
         if (typewidetofrightsection[i] == "digital_library") {
           tabs.add(
-            new Tab(text: "Digital Library"),
+            new Tab(
+              child: Digitaltext(),
+            ),
           );
           listoftabwiget.add(digitalLibraryLastSection());
         }
@@ -645,8 +651,8 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                                           textAlign: TextAlign.center,
                                           maxLines: 2,
                                           style: TextStyle(
-                                            fontSize: 17,
-                                          )),
+                                              fontSize: 17,
+                                              fontFamily: AppFonts.normal)),
                                     )
                                   ],
                                 );
@@ -793,8 +799,8 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                                     textAlign: TextAlign.center,
                                     maxLines: 2,
                                     style: TextStyle(
-                                      fontSize: 17,
-                                    )),
+                                        fontSize: 17,
+                                        fontFamily: AppFonts.normal)),
                               )
                             ],
                           );

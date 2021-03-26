@@ -46,6 +46,7 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
                         )));
           },
           index: 2,
+          sharelink: Constantstring.sharelegaldisclaimer,
           title: "Legal Disclaimer",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",

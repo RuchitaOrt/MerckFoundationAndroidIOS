@@ -49,6 +49,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
           Navigator.pop(context);
         },
         index: 2,
+        sharelink: Constantstring.aboutmmtm,
         title: "About Merck Foundation More Than A Mother",
         titleImg: "assets/newImages/vision_logo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -176,7 +177,8 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Our Gallery  ",
+              cardsubtitle: "Photo ",
+              cardTitle: "Gallery",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -263,6 +265,8 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/gallery.png",
+              cardsubtitle: "",
+              isheading: 1,
               cardTitle:
                   "Watch Below videos of Merck More Than a Mother Launch in African Countries :",
               btnTitle: "Watch More",
@@ -388,7 +392,8 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardTitle: "Latest Updates  ",
+              cardsubtitle: "Latest ",
+              cardTitle: "Updates",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               onbtnTap: () {
