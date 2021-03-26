@@ -27,6 +27,7 @@ class ourawardState extends State<Ouraward> {
     "Merck more than a mother Fashion Award"
   ];
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+  Color color;
   @override
   void initState() {
     // TODO: implement initState
@@ -67,11 +68,30 @@ class ourawardState extends State<Ouraward> {
               shrinkWrap: true,
               physics: ScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
+                // if (index % 6 == 0) {
+                //   print("index");
+                //   print(index % 3);
+                //   color = Color(0xff96d7d2);
+                // } else if (index % 6 == 1) {
+                //   color = Color(0xff149b5f);
+                // } else if (index % 6 == 2) {
+                //   color = Color(0xffa349a4);
+                // } else if (index % 6 == 3) {
+                //   color = Color(0xff0f69af);
+                // } else if (index % 6 == 4) {
+                //   color = Color(0xffabcc43);
+                // } else if (index % 6 == 5) {
+                //   color = Color(0xffe50044);
+                // } else if (index % 6 == 6) {
+                //   color = Color(0xffeb1489);
+                // }
+
                 return Padding(
                   padding: const EdgeInsets.only(left: 8, right: 8, bottom: 6),
                   child: GestureDetector(
                     onTap: () {},
                     child: Card(
+                      //  color: color,
                       elevation: 2,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
@@ -93,6 +113,7 @@ class ourawardState extends State<Ouraward> {
                               style: {
                                 "body": Style(
                                     textAlign: TextAlign.start,
+                                    // color: Colors.white,
                                     color: Customcolor.pink_col,
                                     fontSize: FontSize.large,
                                     fontWeight: FontWeight.w500),

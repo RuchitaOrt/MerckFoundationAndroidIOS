@@ -1936,6 +1936,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                         builder: (BuildContext context) =>
                                             WatchDigitalLibrary(
                                               apiurl: API.digitalcancer,
+                                              digitallink: Constantstring
+                                                  .sharedigitalcancer,
                                             )));
                               },
                               child: Container(

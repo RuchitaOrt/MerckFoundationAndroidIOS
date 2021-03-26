@@ -155,6 +155,7 @@ class MerckFoundationTestimonialState
           },
           index: 2,
           forfilterindes: 3,
+          sharelink: Constantstring.sharetestimonial,
           title: "Merck Foundation Alumini's Testimonial",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/filter.png",
@@ -354,7 +355,7 @@ class MerckFoundationTestimonialState
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
-      ShowDialogs.showLoadingDialog(context, _keyLoader);
+      // ShowDialogs.showLoadingDialog(context, _keyLoader);
       print(API.merckTestimonial);
       APIManager().apiRequest(
         context,
@@ -364,7 +365,7 @@ class MerckFoundationTestimonialState
           print(response);
           print('Resp : $resp');
 
-          Navigator.of(_keyLoader.currentContext).pop();
+          //Navigator.of(_keyLoader.currentContext).pop();
 
           if (resp.success == "True") {
             setState(() {
@@ -427,7 +428,7 @@ class MerckFoundationTestimonialState
           setState(() {
             _isLoading = false;
           });
-          Navigator.of(_keyLoader.currentContext).pop();
+          //  Navigator.of(_keyLoader.currentContext).pop();
         },
       );
     } else {
@@ -480,12 +481,12 @@ class MerckFoundationTestimonialState
 
       APIManager().apiRequest(
         context,
-        API.categoryList,
+        API.filterlisttestimonial,
         (response) async {
           CategorylistResponse resp = response;
           print(response);
           print('Resp : $resp');
-
+          print(API.filterlisttestimonial);
           //  Navigator.of(_keyLoader.currentContext).pop();
 
           if (resp.success == "True") {

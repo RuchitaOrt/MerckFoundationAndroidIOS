@@ -163,8 +163,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                                 msg: "msg")
                                                         : await SocialSharePlugin
                                                             .shareToFeedFacebookLink(
-                                                            quote:
-                                                                "",
+                                                            quote: "",
                                                             url: sharelink,
                                                             onSuccess: (_) {
                                                               print(
@@ -202,8 +201,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                                 msg: "Share")
                                                         : await SocialSharePlugin
                                                             .shareToTwitterLink(
-                                                                text:
-                                                                    "",
+                                                                text: "",
                                                                 url: sharelink,
                                                                 onSuccess: (_) {
                                                                   print(

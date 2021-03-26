@@ -10,8 +10,10 @@ import 'package:flutter_html/style.dart';
 class Homeceomessage extends StatefulWidget {
   final String detail;
   final String title;
+  final String detailpageurl;
 
-  const Homeceomessage({Key key, this.detail, this.title}) : super(key: key);
+  const Homeceomessage({Key key, this.detail, this.title, this.detailpageurl})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return OurVisionState();
@@ -63,6 +65,8 @@ class OurVisionState extends State<Homeceomessage>
             Navigator.pop(context);
           },
           index: 2,
+          sharelink:
+              Constantstring.shareceohomeeodetailpage + widget.detailpageurl,
           title: "Ceo Message",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",

@@ -77,19 +77,19 @@ class CovidResponseState extends State<CovidResponse>
   ];
   List<Description> list = [
     Description(
-        title: "Community Support:",
+        title: "Merck Foundation Community Support:",
         detail:
             "Merck Foundation partners with African First Ladies to support livelihood of thousands of women and casual workers affected by Coronavirus lockdown."),
     Description(
-        title: "Healthcare Capacity Building:",
+        title: "Merck Foundation Healthcare Capacity Building:",
         detail:
             "Merck Foundation started Coronavirus healthcare capacity building by providing online one-year diplomas and two-yea master’s degree in Respiratory Medicines and Acute Medicines for African Doctors"),
     Description(
-        title: "Community Awareness through media Awards:",
+        title: "Merck Foundation Community Awareness through media Awards:",
         detail:
             "Merck Foundation announced, ‘Stay at Home’ Media Recognition Awards in Africa, Middle East, Asia & Latin America to raise awareness about Coronavirus."),
     Description(
-        title: "Community awareness for Children and Youth:",
+        title: "Merck Foundation Community awareness for Children and Youth:",
         detail:
             "Merck Foundation launched an inspiring storybook ‘Making the Right Choice’ in partnership with African First Ladies to sensitize children and youth about Coronavirus"),
   ];
@@ -161,7 +161,7 @@ class CovidResponseState extends State<CovidResponse>
                         )));
           },
           index: 2,
-          title: "COVID Response",
+          title: "MERCK FOUNDATION RESPONSE TO COVID-19 PANDEMIC",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -188,14 +188,14 @@ class CovidResponseState extends State<CovidResponse>
                         //     print("Opening $url...");
                         //   },
                         // ),
-                        FormLabel(
-                          text:
-                              "MERCK FOUNDATION RESPONSE TO COVID-19 PANDEMIC",
-                          labelColor: Customcolor.violet_col,
-                          fontSize: ResponsiveFlutter.of(context).fontSize(2),
-                          fontweight: FontWeight.w400,
-                          textAlignment: TextAlign.center,
-                        ),
+                        // FormLabel(
+                        //   text:
+                        //       "MERCK FOUNDATION RESPONSE TO COVID-19 PANDEMIC",
+                        //   labelColor: Customcolor.violet_col,
+                        //   fontSize: ResponsiveFlutter.of(context).fontSize(2),
+                        //   fontweight: FontWeight.w400,
+                        //   textAlignment: TextAlign.center,
+                        // ),
                         SizedBox(
                           height: 10,
                         ),
@@ -596,7 +596,7 @@ class CovidResponseState extends State<CovidResponse>
                         )),
                     child: Center(
                         child: Text(
-                      "Community awareness through Media awards",
+                      "Merck Foundation Community awareness through Media awards",
                       style: TextStyle(fontSize: 18, color: Colors.white),
                       textAlign: TextAlign.center,
                     )))
@@ -701,7 +701,7 @@ class CovidResponseState extends State<CovidResponse>
                           )),
                       child: Center(
                           child: Text(
-                        "Community awareness for Children and Youth",
+                        "Merck Foundation Community awareness for Children and Youth",
                         style: TextStyle(fontSize: 18, color: Colors.white),
                         textAlign: TextAlign.center,
                       ))),
@@ -791,7 +791,7 @@ class CovidResponseState extends State<CovidResponse>
                           )),
                       child: Center(
                           child: Text(
-                        "Community Support",
+                        "Merck Foundation Community Support",
                         style: TextStyle(fontSize: 18, color: Colors.white),
                         textAlign: TextAlign.center,
                       ))),
@@ -881,7 +881,7 @@ class CovidResponseState extends State<CovidResponse>
                           )),
                       child: Center(
                           child: Text(
-                        "Health Care Capacity Building",
+                        "Merck Foundation Health Care Capacity Building",
                         style: TextStyle(fontSize: 18, color: Colors.white),
                         textAlign: TextAlign.center,
                       ))),

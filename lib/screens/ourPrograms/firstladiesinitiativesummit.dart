@@ -740,7 +740,10 @@ class FirstLadiesInitiativeDetailsState
                                     MaterialPageRoute(
                                         builder: (BuildContext context) =>
                                             WatchDigitalLibrary(
-                                                apiurl: API.digitalfirstlady)));
+                                              apiurl: API.digitalfirstlady,
+                                              digitallink: Constantstring
+                                                  .sharedigitalfirst,
+                                            )));
                               },
                               child: Container(
                                 width: 120,

@@ -5,6 +5,7 @@ import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:flutter_html/style.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class Detailpage extends StatefulWidget {
   final int indexIs;
@@ -54,8 +55,12 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
             //   Navigator.pop(context);
             // }
           },
-          index: 2,
-          title: "Articles",
+          index: widget.callfrom == 1 ? 2 : 1,
+          sharelink: Constantstring.sharearticledetailpage +
+              GlobalLists.newsLettersList[widget.indexIs].detailPageUrl,
+          title: widget.callfrom == 1
+              ? GlobalLists.newsLettersList[widget.indexIs].detailPageUrl
+              : "Articles",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -82,6 +87,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                     """${GlobalLists.newsLettersList[widget.indexIs].details} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                               ),
                               SizedBox(
@@ -92,6 +98,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                     """${GlobalLists.newsLettersList[widget.indexIs].detailPageUrl} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                               ),
                               // Padding(

@@ -33,10 +33,11 @@ class FormLabel extends StatelessWidget {
       maxLines: 10,
       textAlign: textAlignment,
       style: TextStyle(
-          color: labelColor,
-          fontSize: fontSize,
-          fontWeight: fontweight,
-          fontFamily: AppFonts.normal),
+        color: labelColor,
+        fontSize: fontSize,
+        fontWeight: fontweight,
+        //fontFamily: AppFonts.normal
+      ),
     );
   }
 }

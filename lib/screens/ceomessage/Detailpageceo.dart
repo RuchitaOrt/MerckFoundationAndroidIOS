@@ -5,6 +5,7 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class Detailpageceo extends StatefulWidget {
   final List list;
@@ -49,7 +50,9 @@ class DetailpageceoState extends State<Detailpageceo>
             Navigator.pop(context);
           },
           index: 2,
-          title: "Leadership",
+          sharelink:
+              Constantstring.shareceodetailpage + widget.list[widget.index].id,
+          title: widget.list[widget.index].leaderName,
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -70,6 +73,18 @@ class DetailpageceoState extends State<Detailpageceo>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Html(
+                          data: """${widget.list[widget.index].leaderLang} """,
+                          onLinkTap: (url) {
+                            print("Opening $url...");
+                            ShowDialogs.launchURL(url);
+                          },
+                          style: {
+                            "body": Style(
+                              textAlign: TextAlign.right,
+                            ),
+                          },
+                        ),
                         Center(
                           child: Container(
                             height: 200,

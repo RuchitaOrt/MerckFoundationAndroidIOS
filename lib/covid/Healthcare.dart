@@ -3,6 +3,8 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
 class Healthcare extends StatefulWidget {
@@ -35,13 +37,13 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {},
           onTapval: () {
-              Navigator.pop(context);
             // Navigator.push(
             //     context,
             //     MaterialPageRoute(
             //         builder: (BuildContext context) => Dashboard(
             //               index: 0,
             //             )));
+            Navigator.pop(context);
           },
           index: 2,
           title: "Merck Foundation Healthcare Capacity Building",
@@ -132,8 +134,8 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
                           height: 20,
                         ),
                         Center(
-                          child: Image.network(
-                            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDD&feoid=00Nw0000009EtWJ&refid=0EM1r000002ewVB",
+                          child: Image.asset(
+                            "assets/newImages/healthcare1.jpeg",
                             height: 290,
                           ),
                         ),
@@ -141,12 +143,18 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
                           height: 20,
                         ),
                         Center(
-                          child: FormLabel(
-                            text: "Download here",
-                            labelColor: Colors.black54,
-                            fontSize: 14,
-                            fontweight: FontWeight.w500,
-                            textAlignment: TextAlign.center,
+                          child: GestureDetector(
+                            onTap: () {
+                              ShowDialogs.launchURL(
+                                  "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDD&feoid=00Nw0000009EtWJ&refid=0EM1r000002ewVB");
+                            },
+                            child: FormLabel(
+                              text: "Download here",
+                              labelColor: Colors.black54,
+                              fontSize: 14,
+                              fontweight: FontWeight.w500,
+                              textAlignment: TextAlign.center,
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -164,8 +172,8 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
                           height: 20,
                         ),
                         Center(
-                          child: Image.network(
-                            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDD&feoid=00Nw0000009EtWJ&refid=0EM1r000002evsJ",
+                          child: Image.asset(
+                            "assets/newImages/healthcare2.jpeg",
                             height: 290,
                           ),
                         ),
@@ -173,12 +181,18 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
                           height: 20,
                         ),
                         Center(
-                          child: FormLabel(
-                            text: "Download here",
-                            labelColor: Colors.black54,
-                            fontSize: 14,
-                            fontweight: FontWeight.w500,
-                            textAlignment: TextAlign.center,
+                          child: GestureDetector(
+                            onTap: () {
+                              ShowDialogs.launchURL(
+                                  "https://www.merck-foundation.com/servlet/servlet.FileDownload?retURL=%2Fapex%2FMF_MainPage&file=00P1r00002ZUFcjEAH");
+                            },
+                            child: FormLabel(
+                              text: "Download here",
+                              labelColor: Colors.black54,
+                              fontSize: 14,
+                              fontweight: FontWeight.w500,
+                              textAlignment: TextAlign.center,
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -196,8 +210,8 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
                           height: 20,
                         ),
                         Center(
-                          child: Image.network(
-                            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDD&feoid=00Nw0000009EtWJ&refid=0EM1r000002evtq",
+                          child: Image.asset(
+                            "assets/newImages/healthcare3.jpeg",
                             height: 290,
                           ),
                         ),
@@ -205,12 +219,18 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
                           height: 20,
                         ),
                         Center(
-                          child: FormLabel(
-                            text: "Download here",
-                            labelColor: Colors.black54,
-                            fontSize: 14,
-                            fontweight: FontWeight.w500,
-                            textAlignment: TextAlign.center,
+                          child: GestureDetector(
+                            onTap: () {
+                              ShowDialogs.launchURL(
+                                  "https://www.merck-foundation.com/servlet/servlet.FileDownload?retURL=%2Fapex%2FMF_MainPage&file=00P1r00002ZUPwCEAX");
+                            },
+                            child: FormLabel(
+                              text: "Download here",
+                              labelColor: Colors.black54,
+                              fontSize: 14,
+                              fontweight: FontWeight.w500,
+                              textAlignment: TextAlign.center,
+                            ),
                           ),
                         ),
                         // Padding(

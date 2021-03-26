@@ -40,7 +40,8 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
                         index: 0,
                       )));
         },
-        index: 1,
+        index: 2,
+        sharelink: Constantstring.photogalleryviewall,
         title: "Photo Gallery",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",

@@ -16,6 +16,7 @@ import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/model/HomepageResponse.dart';
+import 'package:merckfoundation22dec/model/homeheader.dart';
 import 'package:merckfoundation22dec/ouraward.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/photo_gallery.dart';
@@ -161,7 +162,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     //     });
     //   }
     // });
-
+    getheader();
     gethomeapi();
     getmerckoverview();
     _controller = new AnimationController(
@@ -230,7 +231,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               children: [
                 Visibility(
                   visible: issliderSectionLoaded,
-                  replacement: Center(child: CircularProgressIndicator()),
+                  replacement: Center(child: Container()),
                   child: slider(context),
                 ),
                 SizedBox(
@@ -255,7 +256,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   replacement: (isMiddleSectionLoaded == false &&
                           stats.toString() ==
                               ConnectivityResult.none.toString())
-                      ? Container()
+                      ? CircularProgressIndicator()
                       : (isMiddleSectionLoaded == false &&
                               stats.toString() !=
                                   ConnectivityResult.none.toString())
@@ -277,7 +278,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 ),
                 Visibility(
                     visible: isbottomSectionLoaded,
-                    replacement: Center(child: CircularProgressIndicator()),
+                    replacement: Center(child: Container()),
                     child: ListView(
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
@@ -294,7 +295,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       SizedBox(
                         height: 20,
                       ),
-                      CircularProgressIndicator()
+                      Container()
                     ],
                   ),
                   child: Container(
@@ -354,7 +355,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 SizedBox(
                   height: 10,
                 ),
-                Bottomcardlink(),
+                // Bottomcardlink(),
                 // Container(
                 //   child: Text(
                 //     "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
@@ -712,6 +713,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                         builder: (BuildContext context) =>
                                             WatchDigitalLibrary(
                                               apiurl: API.digitalhome,
+                                              digitallink: Constantstring
+                                                  .sharedigitalhome,
                                             )));
                               },
                               child: Container(
@@ -1405,29 +1408,31 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   Widget _buildComplexMarquee() {
-    return Container(
-      height: 30,
-      child: Marquee(
-        text:
-            'Call for Application-UNESCO MARS 2020          Save the Date-Merck Foundation "Stay at home" Media recognization award 2020-online edtion for africa and latin america',
-        style: TextStyle(
-            fontWeight: FontWeight.w700, color: Customcolor.text_blue),
-        scrollAxis: Axis.horizontal,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        blankSpace: 20.0,
-        velocity: 40.0,
-        pauseAfterRound: Duration(seconds: 1),
-        showFadingOnlyWhenScrolling: true,
-        fadingEdgeStartFraction: 0.1,
-        fadingEdgeEndFraction: 0.1,
-        numberOfRounds: null,
-        startPadding: 10.0,
-        accelerationDuration: Duration(seconds: 1),
-        accelerationCurve: Curves.linear,
-        decelerationDuration: Duration(milliseconds: 500),
-        decelerationCurve: Curves.easeOut,
-      ),
-    );
+    return Constantstring.homeheader == ""
+        ? Container()
+        : Container(
+            height: 30,
+            child: Marquee(
+              text: Constantstring.homeheader,
+              // 'Call for Application-UNESCO MARS 2020          Save the Date-Merck Foundation "Stay at home" Media recognization award 2020-online edtion for africa and latin america',
+              style: TextStyle(
+                  fontWeight: FontWeight.w700, color: Customcolor.text_blue),
+              scrollAxis: Axis.horizontal,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              blankSpace: 20.0,
+              velocity: 40.0,
+              pauseAfterRound: Duration(seconds: 1),
+              showFadingOnlyWhenScrolling: true,
+              fadingEdgeStartFraction: 0.1,
+              fadingEdgeEndFraction: 0.1,
+              numberOfRounds: null,
+              startPadding: 10.0,
+              accelerationDuration: Duration(seconds: 1),
+              accelerationCurve: Curves.linear,
+              decelerationDuration: Duration(milliseconds: 500),
+              decelerationCurve: Curves.easeOut,
+            ),
+          );
   }
 
   Widget _wrapWithStuff(Widget child) {
@@ -1450,6 +1455,37 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     }
   }
 
+  getheader() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      APIManager().apiRequest(
+        context,
+        API.homeheader,
+        (response) async {
+          HomeheaderResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+          setState(() {
+            Constantstring.homeheader = resp.marque.list[0].marque;
+          });
+
+          // if (resp.success == "True") {
+          //   setState(() {
+          //    Constantstring.homeheader=resp.
+          //   });
+          // } else {
+          //   ShowDialogs.showToast(resp.msg);
+          // }
+        },
+        (error) {
+          print('ERR msg is $error');
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
   // Widget newSlider(BuildContext context) {
   //   return Stack(
   //     children: <Widget>[
@@ -1624,6 +1660,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
     if (status1) {
       print("home api");
+      print(APIManager.homeurl);
       var response = await APIManager.fetchget(
         encoding: APIManager.homeurl,
       );
@@ -2271,6 +2308,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                         builder: (BuildContext context) => Homeceomessage(
                               title: GlobalLists.homeceomsglist[0].title,
                               detail: GlobalLists.homeceomsglist[0].details,
+                              detailpageurl:
+                                  GlobalLists.homeceomsglist[0].detailPageUrl,
                             )));
               },
             ),

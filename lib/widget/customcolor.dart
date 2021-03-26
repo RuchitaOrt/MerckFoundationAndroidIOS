@@ -59,6 +59,8 @@ class AppFonts {
 
 class Constantstring {
 //link to be shared on app directly
+//merck foundation on
+  static String homeheader = "";
 
   static String followinsta = "https://www.instagram.com/merckfoundation";
   static String followfacebook = "https://www.facebook.com/merckfoundation/";
@@ -142,6 +144,58 @@ class Constantstring {
   static String cancervideo =
       "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-cancer-access-program";
   //award
+
+  //detail pages
+
+  //leadership detail
+  static String shareceodetailpage =
+      "http://merckfoundation.org/mfindia/web/public/get_details/";
+  static String shareceohomeeodetailpage =
+      "http://merckfoundation.org/mfindia/web/public/CEO-Message/";
+  static String shareceoviewmore =
+      "http://merckfoundation.org/mfindia/web/public/CEO-Message";
+  static String sharearticledetailpage =
+      "http://merckfoundation.org/mfindia/web/public/news-articles/";
+
+  static String photogalleryviewall =
+      "http://merckfoundation.org/mfindia/web/public/MF_AlbumList";
+  static String photogalleryyearwise =
+      "http://merckfoundation.org/mfindia/web/public/Photo_Gallery/";
+
+  //digital share
+  static String sharedigitalhome =
+      "http://merckfoundation.org/mfindia/web/public/Digital-Library/Home";
+  static String sharedigitalmmtm =
+      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-more-than-a-mother";
+  static String sharedigitalcancer =
+      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-cancer-access-program";
+  static String sharedigitalcapacity =
+      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program";
+  static String sharedigitalfirst =
+      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-first-ladies-initiative-summit";
+  static String sharedigitalstem =
+      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-stem-program";
+  static String sharedigitalsubstain =
+      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-sustainability-initiative";
+  static String sharedigitalafrica =
+      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-africa-asia-luminary";
+  static String sharedigitaleducating =
+      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-educating-linda-program";
+
+  //share call for app
+
+  static String sharecallforapphome = "";
+
+  //followus Merck Foundation More Than a Mother
+  static String followmmtminsta =
+      "https://www.instagram.com/merckmorethanamother ";
+  static String followmmtmfacebook =
+      "https://www.facebook.com/merckmorethanamother";
+  static String followmmtmtwitter = "https://www.twitter.com/merckandmothers";
+  static String followmmtmyoutube =
+      "https://www.youtube.com/c/merckmorethanamothers";
+  // static String followmmtmflicker =
+  //     "https://www.flickr.com/photos/163124125@N08/";
 
   static String followmsg = "follow us";
   static String emptyData = "No Data Found";

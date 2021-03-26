@@ -259,7 +259,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                       getfilterdata("1", countryid, catid);
                     } else if (widget.index == 3) {
                       //for alumina
-                      title = "Merck Foundation \nAlumini's \nTestimonial";
+                      title = "Merck Foundation Alumini's Testimonial";
                       getfilterdata("3", countryid, catid);
                     }
                   },

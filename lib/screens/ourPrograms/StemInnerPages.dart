@@ -31,7 +31,7 @@ class StemInnerPagesState extends State<StemInnerPages>
 
   @override
   void initState() {
-    getvision();
+    // getvision();
     super.initState();
 
     _controller = new AnimationController(
@@ -86,25 +86,25 @@ class StemInnerPagesState extends State<StemInnerPages>
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Center(
-                                child: Html(
-                                  data: """${widget.title} """,
-                                  onLinkTap: (url) {
-                                    print("Opening $url...");
-                                  },
-                                  style: {
-                                    "body": Style(
-                                        textAlign: TextAlign.start,
-                                        color: Customcolor.colorVoilet,
-                                        fontSize: FontSize.larger,
-                                        alignment: Alignment.center,
-                                        fontWeight: FontWeight.w600),
-                                  },
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
+                              // Center(
+                              //   child: Html(
+                              //     data: """${widget.title} """,
+                              //     onLinkTap: (url) {
+                              //       print("Opening $url...");
+                              //     },
+                              //     style: {
+                              //       "body": Style(
+                              //           textAlign: TextAlign.start,
+                              //           color: Customcolor.colorVoilet,
+                              //           fontSize: FontSize.larger,
+                              //           alignment: Alignment.center,
+                              //           fontWeight: FontWeight.w600),
+                              //     },
+                              //   ),
+                              // ),
+                              // SizedBox(
+                              //   height: 15,
+                              // ),
                               Html(
                                 data: """${widget.details} """,
                                 onLinkTap: (url) {
@@ -139,37 +139,37 @@ class StemInnerPagesState extends State<StemInnerPages>
         ));
   }
 
-  getvision() async {
-    var status1 = await ConnectionDetector.checkInternetConnection();
+  // getvision() async {
+  //   var status1 = await ConnectionDetector.checkInternetConnection();
 
-    if (status1) {
-      ShowDialogs.showLoadingDialog(context, _keyLoader);
+  //   if (status1) {
+  //     ShowDialogs.showLoadingDialog(context, _keyLoader);
 
-      APIManager().apiRequest(
-        context,
-        API.vision,
-        (response) async {
-          VisionResponse resp = response;
-          print(response);
-          print('Resp : $resp');
-          GlobalLists.vision.clear();
-          Navigator.of(_keyLoader.currentContext).pop();
+  //     APIManager().apiRequest(
+  //       context,
+  //       API.vision,
+  //       (response) async {
+  //         VisionResponse resp = response;
+  //         print(response);
+  //         print('Resp : $resp');
+  //         GlobalLists.vision.clear();
+  //         Navigator.of(_keyLoader.currentContext).pop();
 
-          if (resp.success == "True") {
-            setState(() {
-              GlobalLists.vision = resp.data.list;
-            });
-          } else {
-            ShowDialogs.showToast(resp.msg);
-          }
-        },
-        (error) {
-          print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
-        },
-      );
-    } else {
-      ShowDialogs.showToast("Please check internet connection");
-    }
-  }
+  //         if (resp.success == "True") {
+  //           setState(() {
+  //             GlobalLists.vision = resp.data.list;
+  //           });
+  //         } else {
+  //           ShowDialogs.showToast(resp.msg);
+  //         }
+  //       },
+  //       (error) {
+  //         print('ERR msg is $error');
+  //         Navigator.of(_keyLoader.currentContext).pop();
+  //       },
+  //     );
+  //   } else {
+  //     ShowDialogs.showToast("Please check internet connection");
+  //   }
+  // }
 }

@@ -37,13 +37,13 @@ class ChildrenyouthState extends State<Childrenyouth>
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {},
           onTapval: () {
-            Navigator.pop(context);
             // Navigator.push(
             //     context,
             //     MaterialPageRoute(
             //         builder: (BuildContext context) => Dashboard(
             //               index: 0,
             //             )));
+            Navigator.pop(context);
           },
           index: 2,
           title: "Merck Foundation Community Awareness for Children and Youth",
@@ -130,20 +130,22 @@ class ChildrenyouthState extends State<Childrenyouth>
                           height: 20,
                         ),
                         Center(
-                          child: Image.network(
-                            "https://www.merck-foundation.com/servlet/rtaImage?eid=a2t1r000004YIDN&feoid=00Nw0000009EtWJ&refid=0EM1r000002ew0S",
+                          child: Image.asset(
+                            "assets/newImages/youth.jpeg",
                             height: 290,
                           ),
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        FormLabel(
-                          text:
-                              "Make the Right Choice English | French | Portuguese",
-                          labelColor: Colors.black54,
-                          fontSize: 14,
-                          fontweight: FontWeight.w500,
+                        Center(
+                          child: FormLabel(
+                            text:
+                                "Make the Right Choice English | French | Portuguese",
+                            labelColor: Colors.black54,
+                            fontSize: 14,
+                            fontweight: FontWeight.w500,
+                          ),
                         ),
                         // Padding(
                         //   padding: const EdgeInsets.only(right: 0, left: 0),

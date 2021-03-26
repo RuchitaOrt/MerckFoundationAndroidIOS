@@ -35,6 +35,7 @@ import 'package:merckfoundation22dec/model/ourActivitiesObjectiveResp.dart';
 import 'package:merckfoundation22dec/model/ourActivitiesResponse.dart';
 import 'package:merckfoundation22dec/model/ourPartnerObjectivesResp.dart';
 import 'package:merckfoundation22dec/model/ourPartnerResponse.dart';
+import 'package:merckfoundation22dec/model/homeheader.dart';
 import 'package:merckfoundation22dec/model/ourmissionResponse.dart';
 import 'package:merckfoundation22dec/model/ourpolicy.dart';
 import 'package:merckfoundation22dec/model/stemsubmenuprogramlist.dart';
@@ -125,7 +126,7 @@ enum API {
   countrylist,
   categoryList,
   filterlist,
-
+  filterlisttestimonial,
   //awardsection
   ouraward,
   ourawarddetail,
@@ -210,7 +211,8 @@ enum API {
   covidnews,
 
   //yearwise photo
-  yearwisegallery
+  yearwisegallery,
+  homeheader
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -318,7 +320,8 @@ class APIManager {
   static String subprogrammmtmambasadar =
       "SubProgramPageApi/merck-foundation-more-than-a-mother-ambassadors/Android/1";
   static String subprogramcommunityawareness =
-      "SubProgramPageApi/community-awareness-and-awards-program/Android/1";
+      "SubProgramPageApi/merck-foundation-community-awareness-and-awards-program/Android/1";
+  // "SubProgramPageApi/community-awareness-and-awards-program/Android/1";
   static String subprogramlocalsong =
       "SubProgramPageApi/local-songs-and-children-stories/Android/1";
   static String subprocancerobjtive = "SubProgramPageApi/objectives/Android/1";
@@ -388,7 +391,9 @@ class APIManager {
         break;
       case API.callforapplication:
         apiPathString =
-            "media_and_events_sorting/call-for-applications/9/Android/1";
+            "media_and_events_sorting/upcoming-programs-&-calls-for-applications/9/Android/1";
+        //  "media_and_events_sorting/call-for-applications/9/Android/1";
+
         //"call_for_app/call-for-application/9";
         break;
       case API.videoLibrary:
@@ -511,6 +516,9 @@ class APIManager {
         break;
       case API.filterlist:
         apiPathString = "filter_data";
+        break;
+      case API.filterlisttestimonial:
+        apiPathString = "getTestimonialCategoryList";
         break;
       case API.ourawarddetail:
         apiPathString = "merck_awards";
@@ -743,8 +751,11 @@ class APIManager {
         apiPathString =
             "get_luminary_pages/merck-foundation-africa-asia-luminary/1";
         break;
+      case API.homeheader:
+        apiPathString = "program_page_api/header/Android/1";
+        break;
       default:
-        apiPathString = "";
+        apiPathString = "HomeheaderResponse";
     }
     //   print(apiBaseURL());
     // } else if (Platform.isIOS) {
@@ -1330,6 +1341,7 @@ class APIManager {
         break;
 
       case API.categoryList:
+      case API.filterlisttestimonial:
         className = "CategorylistResponse";
         break;
 
@@ -1342,6 +1354,7 @@ class APIManager {
       case API.filterlist:
         className = "FilterdataResponse";
         break;
+
       case API.ourawarddetail:
         className = "OurawarddetailResponse";
         break;
@@ -1410,6 +1423,9 @@ class APIManager {
         break;
       case API.yearwisegallery:
         className = "YearwisePhotogalleryResponse";
+        break;
+      case API.homeheader:
+        className = "HomeheaderResponse";
         break;
       default:
         className = 'CommonResponse';
@@ -1609,6 +1625,10 @@ class APIManager {
     if (className == "YearwisePhotogalleryResponse") {
       //enterhere
       responseObj = YearwisePhotogalleryResponse.fromJson(json);
+    }
+    if (className == "HomeheaderResponse") {
+      //enterhere
+      responseObj = HomeheaderResponse.fromJson(json);
     }
 
     return responseObj;

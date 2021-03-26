@@ -738,6 +738,8 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                                         builder: (BuildContext context) =>
                                             WatchDigitalLibrary(
                                               apiurl: API.digitalsubstain,
+                                              digitallink: Constantstring
+                                                  .sharedigitalsubstain,
                                             )));
                               },
                               child: Container(

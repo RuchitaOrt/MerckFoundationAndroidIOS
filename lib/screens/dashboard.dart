@@ -161,7 +161,7 @@ class _DashboardState extends State<Dashboard>
               height: 25,
             ),
             title: Text(
-              'Call for application',
+              'Upcoming Programs & Call for application',
               style: style,
               maxLines: 2,
             ),
