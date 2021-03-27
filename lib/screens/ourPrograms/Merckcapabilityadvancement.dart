@@ -1811,15 +1811,26 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                                         SizedBox(
                                           height: 4,
                                         ),
-                                        FormLabel(
-                                          text: GlobalLists
+                                        Html(
+                                          data: GlobalLists
                                               .mmttestimoniallist[index]
                                               .departmentName,
-                                          labelColor: Colors.black87,
-                                          fontSize: 13,
-                                          fontweight: FontWeight.w600,
-                                          maxLines: 2,
+                                          style: {
+                                            "body": Style(
+                                                fontSize: FontSize(13.0),
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.w600),
+                                          },
                                         ),
+                                        // FormLabel(
+                                        //   text: GlobalLists
+                                        //       .mmttestimoniallist[index]
+                                        //       .departmentName,
+                                        //   labelColor: Colors.black87,
+                                        //   fontSize: 13,
+                                        //   fontweight: FontWeight.w600,
+                                        //   maxLines: 2,
+                                        // ),
                                         SizedBox(
                                           height: 7,
                                         ),

@@ -1321,15 +1321,24 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                         SizedBox(
                                           height: 4,
                                         ),
-                                        FormLabel(
-                                          text: GlobalLists
-                                              .mmttestimoniallist[index]
-                                              .departmentName,
-                                          labelColor: Colors.black87,
-                                          fontSize: 13,
-                                          fontweight: FontWeight.w600,
-                                          maxLines: 2,
-                                        ),
+                                         Html(
+            data: GlobalLists.mmttestimoniallist[index].departmentName,
+            style: {
+              "body": Style(
+                  fontSize: FontSize(13.0),
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600),
+            },
+          ),
+                                        // FormLabel(
+                                        //   text: GlobalLists
+                                        //       .mmttestimoniallist[index]
+                                        //       .departmentName,
+                                        //   labelColor: Colors.black87,
+                                        //   fontSize: 13,
+                                        //   fontweight: FontWeight.w600,
+                                        //   maxLines: 2,
+                                        // ),
                                         SizedBox(
                                           height: 7,
                                         ),

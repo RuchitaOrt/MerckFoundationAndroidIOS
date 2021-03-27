@@ -376,7 +376,7 @@ class APIManager {
         break;
 
       case API.newsRelease:
-        apiPathString = "media_and_events_sorting/news-releases/16/Android/1";
+        apiPathString = "media_and_events_sorting/news-release/16/Android/1";
         // "show/news-releases/16/Android/1";
         break;
       case API.newsletters:
