@@ -184,7 +184,20 @@ class Constantstring {
 
   //share call for app
 
-  static String sharecallforapphome = "";
+  static String sharecallforapphome =
+      "http://merckfoundation.org/mfindia/web/public/call-for-applications";
+  static String sharecallforappmmtm =
+      "http://merckfoundation.org/mfindia/web/public/Call-For-Application/merck-foundation-more-than-a-mother";
+  static String sharecallforappstem =
+      "http://merckfoundation.org/mfindia/web/public/Call-For-Application/merck-foundation-stem-program";
+  static String sharecallforappafrica =
+      "http://merckfoundation.org/mfindia/web/public/Call-For-Application/merck-foundation-africa-asia-luminary";
+
+  //share mmtmambassadar
+  static String sharemmtmambassadarhome =
+      "http://merckfoundation.org/mfindia/web/public/Merck-More-Than-a-Mother-Ambassadors/Home";
+  static String sharemmtmambassadarmmtm = "";
+  static String sharemmtmambassadarfirstlady = "";
 
   //followus Merck Foundation More Than a Mother
   static String followmmtminsta =

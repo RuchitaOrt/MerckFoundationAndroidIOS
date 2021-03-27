@@ -441,7 +441,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Upcoming Programs & Call For Application',
+                          value: 'Upcoming Programs & \nCall For Application',
                           onTapfun: () {
                             print('ontap');
                             Navigator.push(
