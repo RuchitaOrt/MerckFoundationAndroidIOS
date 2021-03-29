@@ -59,7 +59,7 @@ class VideofilterState extends State<Videofilter> {
             _scaffoldKey1.currentState.openEndDrawer();
           },
           onTapval: () {
-              Navigator.pop(context);
+            Navigator.pop(context);
             // Navigator.push(
             //     context,
             //     MaterialPageRoute(
@@ -91,7 +91,7 @@ class VideofilterState extends State<Videofilter> {
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
                       crossAxisCount: 2,
-                      childAspectRatio: 0.8,
+                      childAspectRatio: 0.9,
                       children: List.generate(
                           GlobalLists.filterdatalisting.length, (index) {
                         return Padding(

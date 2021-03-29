@@ -954,6 +954,7 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );

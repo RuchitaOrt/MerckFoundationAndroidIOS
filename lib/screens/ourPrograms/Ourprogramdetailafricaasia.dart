@@ -19,10 +19,14 @@ import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 
 class OurProgramAfrica extends StatefulWidget {
-  OurProgramAfrica({Key key, this.title, this.indexpass}) : super(key: key);
+  OurProgramAfrica(
+      {Key key, this.title, this.indexpass, this.innertitle, this.innerdetail})
+      : super(key: key);
 
   final String title;
   final int indexpass;
+  final String innertitle;
+  final String innerdetail;
 
   @override
   _MyHomePageState createState() => _MyHomePageState(this.indexpass);
@@ -82,7 +86,14 @@ class _MyHomePageState extends State<OurProgramAfrica> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: AdvFabBottomBarBody(
-          screens: <Widget>[MerckAfricaasialuminar()],
+          screens: <Widget>[
+            widget.indexpass == 3
+                ? StemInnerPages(
+                    title: widget.innertitle,
+                    details: widget.innerdetail,
+                  )
+                : MerckAfricaasialuminar()
+          ],
           controller: mabialaFABController,
         ),
         floatingActionButton: AdvFab(
@@ -642,7 +653,7 @@ class _MyHomePageState extends State<OurProgramAfrica> {
         APIManager.steminnerpages,
         bodyData,
       );
-
+      print(APIManager.steminnerpages);
       var res = json.decode(response.body);
       print("res");
       print(res);
@@ -653,10 +664,16 @@ class _MyHomePageState extends State<OurProgramAfrica> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (BuildContext context) => StemInnerPages(
-                        title: res['list']['p_name'],
-                        details: res['list']['p_details'],
-                      )));
+                  builder: (BuildContext context) => OurProgramAfrica(
+                      indexpass: 3,
+                      innertitle: res['list']['p_name'],
+                      innerdetail: res['list']['p_details'])
+
+                  //  StemInnerPages(
+                  //       title: res['list']['p_name'],
+                  //       details: res['list']['p_details'],
+                  //     )
+                  ));
         } else {
           setState(() {
             ShowDialogs.showToast(res['msg']);

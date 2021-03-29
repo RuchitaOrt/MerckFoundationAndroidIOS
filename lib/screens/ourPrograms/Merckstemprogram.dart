@@ -112,13 +112,13 @@ class MerckstemprogramState extends State<Merckstemprogram>
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          // Navigator.pop(context);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 1,
-                      )));
+          Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 1,
+          //             )));
         },
         index: 1,
         title: "Merck Foundation STEM Program",
@@ -996,6 +996,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                                     """${GlobalLists.merckcancerawardlist[index].title} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 style: {
                                   "body": Style(
@@ -1060,6 +1061,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );
@@ -1710,6 +1712,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
                                         builder: (BuildContext context) =>
                                             CallforApplication(
                                               apiurl: API.watchcallstem,
+                                              sharelink: Constantstring
+                                                  .sharecallforappstem,
                                             )));
                               },
                               child: Container(

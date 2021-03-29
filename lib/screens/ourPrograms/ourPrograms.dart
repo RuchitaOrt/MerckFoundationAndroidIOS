@@ -91,6 +91,7 @@ class _OurProgramState extends State<Ourprogram> {
                   builder: (BuildContext context) => Dashboard(
                         index: 0,
                       )));
+          // Navigator.pop(context);
         },
         index: 1,
         title: "Our Programs",
@@ -219,11 +220,14 @@ class _OurProgramState extends State<Ourprogram> {
                         //         builder: (BuildContext context) => OurProgram(
                         //               indexpass: 1,
                         //             )));
+                        //for cancer index is from 21 to 27
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    OurProgramcancerlist()));
+                                    OurProgramcancerlist(
+                                      indexpass: 21,
+                                    )));
                       } else if (index == 2) {
                         // Navigator.push(
                         //     context,

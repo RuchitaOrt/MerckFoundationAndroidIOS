@@ -4,6 +4,7 @@ import 'package:flutter_html/style.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class OurAwardDetail extends StatefulWidget {
   final List detaill;
@@ -28,7 +29,7 @@ class OurActivtyDetailState extends State<OurAwardDetail> {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-              Navigator.pop(context);
+            Navigator.pop(context);
             // Navigator.push(
             //     context,
             //     MaterialPageRoute(
@@ -37,6 +38,8 @@ class OurActivtyDetailState extends State<OurAwardDetail> {
             //             )));
           },
           index: 2,
+          // sharelink:
+          //     Constantstring.shareawarddetailpage + widget.detaill[0].title,
           title: widget.detaill[0].title,
           titleImg: "assets/newImages/leadership_logo.png",
           trallingImg1: "assets/newImages/share.png",
@@ -62,6 +65,7 @@ class OurActivtyDetailState extends State<OurAwardDetail> {
                   data: """${widget.detaill[0].pageContent} """,
                   onLinkTap: (url) {
                     print("Opening $url...");
+                    ShowDialogs.launchURL(url);
                   },
                   style: {
                     "body": Style(textAlign: TextAlign.start),

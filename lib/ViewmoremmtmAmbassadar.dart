@@ -20,8 +20,10 @@ import 'package:merckfoundation22dec/model/viewmoreMMTMResponse.dart'
 class ViewmoremmtmAmbassadar extends StatefulWidget {
   final dynamic apiurl;
   String appBarTitle;
+  final dynamic sharelink;
 
-  ViewmoremmtmAmbassadar({Key key, this.apiurl}) : super(key: key);
+  ViewmoremmtmAmbassadar({Key key, this.apiurl, this.sharelink})
+      : super(key: key);
   @override
   _viewmoremmtmaState createState() => _viewmoremmtmaState();
 }
@@ -123,7 +125,8 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
           //               index: 0,
           //             )));
         },
-        index: 1,
+        index: 2,
+        sharelink: widget.sharelink,
         title: "Merck More Than Mother Ambassadors",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",

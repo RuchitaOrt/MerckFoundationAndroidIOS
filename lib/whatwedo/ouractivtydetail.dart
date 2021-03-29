@@ -4,12 +4,15 @@ import 'package:flutter_html/style.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class OurActivtyDetail extends StatefulWidget {
   final String activtydetaill;
   final String activtytitle;
+  final String detailpageurl;
 
-  const OurActivtyDetail({Key key, this.activtydetaill, this.activtytitle})
+  const OurActivtyDetail(
+      {Key key, this.activtydetaill, this.activtytitle, this.detailpageurl})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -36,9 +39,11 @@ class OurActivtyDetailState extends State<OurActivtyDetail> {
                     builder: (BuildContext context) => Dashboard(
                           index: 0,
                         )));
-           // Navigator.pop(context);
+            // Navigator.pop(context);
           },
           index: 2,
+          sharelink:
+              Constantstring.shareouractivitydetail + widget.detailpageurl,
           title: "Our Activties",
           titleImg: "assets/newImages/leadership_logo.png",
           trallingImg1: "assets/newImages/share.png",
@@ -55,6 +60,7 @@ class OurActivtyDetailState extends State<OurActivtyDetail> {
                   data: """${widget.activtytitle} """,
                   onLinkTap: (url) {
                     print("Opening $url...");
+                    ShowDialogs.launchURL(url);
                   },
                   style: {
                     "body": Style(
@@ -68,6 +74,7 @@ class OurActivtyDetailState extends State<OurActivtyDetail> {
                   data: """${widget.activtydetaill} """,
                   onLinkTap: (url) {
                     print("Opening $url...");
+                    ShowDialogs.launchURL(url);
                   },
                   style: {
                     "body": Style(textAlign: TextAlign.start),

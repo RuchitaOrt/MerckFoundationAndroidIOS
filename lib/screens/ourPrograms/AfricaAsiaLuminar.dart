@@ -113,7 +113,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-           Navigator.pop(context);
+          Navigator.pop(context);
           // Navigator.push(
           //     context,
           //     MaterialPageRoute(
@@ -613,6 +613,8 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                         builder: (BuildContext context) =>
                                             CallforApplication(
                                               apiurl: API.watchcallafrica,
+                                              sharelink: Constantstring
+                                                  .sharecallforappafrica,
                                             )));
                               },
                               child: Container(
@@ -1572,6 +1574,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                     """${GlobalLists.merckcancerawardlist[index].title} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 style: {
                                   "body": Style(
@@ -1636,6 +1639,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );
@@ -1926,15 +1930,17 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                         SizedBox(
                                           height: 4,
                                         ),
-                                            Html(
-            data: GlobalLists.mmttestimoniallist[index].departmentName,
-            style: {
-              "body": Style(
-                  fontSize: FontSize(13.0),
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w600),
-            },
-          ),
+                                        Html(
+                                          data: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .departmentName,
+                                          style: {
+                                            "body": Style(
+                                                fontSize: FontSize(13.0),
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.w600),
+                                          },
+                                        ),
                                         // FormLabel(
                                         //   text: GlobalLists
                                         //       .mmttestimoniallist[index]

@@ -957,6 +957,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );
@@ -1150,15 +1151,17 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                                         SizedBox(
                                           height: 4,
                                         ),
-                                         Html(
-            data: GlobalLists.mmttestimoniallist[index].departmentName,
-            style: {
-              "body": Style(
-                  fontSize: FontSize(13.0),
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w600),
-            },
-          ),
+                                        Html(
+                                          data: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .departmentName,
+                                          style: {
+                                            "body": Style(
+                                                fontSize: FontSize(13.0),
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.w600),
+                                          },
+                                        ),
                                         // FormLabel(
                                         //   text: GlobalLists
                                         //       .mmttestimoniallist[index]

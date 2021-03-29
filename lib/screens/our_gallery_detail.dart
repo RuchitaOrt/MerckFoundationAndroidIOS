@@ -31,15 +31,18 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 0,
-                      )));
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 0,
+          //             )));
+          Navigator.pop(context);
         },
-        index: 1,
-        //sharelink: Constantstring.photogalleryyearwise,
+        index: 2,
+        sharelink: Constantstring.photogalleryyearwise +
+            galleryDetailsResponse
+                .list[galleryDetailsResponse.list.keys.elementAt(0)][0].url,
         title: "Photo Gallery",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -105,7 +108,7 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                         children: [
                           Container(
                             width: SizeConfig.blockSizeHorizontal * 86,
-                            height: SizeConfig.blockSizeHorizontal * 45,
+                            height: SizeConfig.blockSizeHorizontal * 40,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image: galleryDetailsResponse.baseUrl +

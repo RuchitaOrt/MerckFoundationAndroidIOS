@@ -552,8 +552,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            Dashboard(index: 4)));
+                                        builder: (context) => Dashboard(
+                                              index: 4,
+                                            )));
                                 // Navigator.push(
                                 //     context,
                                 //     MaterialPageRoute(
@@ -858,6 +859,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                         builder: (BuildContext context) =>
                                             ViewmoremmtmAmbassadar(
                                               apiurl: API.watchhomemmtm,
+                                              sharelink: Constantstring
+                                                  .sharemmtmambassadarhome,
                                             )));
                               },
                               child: Container(
@@ -1307,7 +1310,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             children: [
               Row(
                 children: [
-                  Text("Follow Us on",
+                  Text("Follow Us",
                       textAlign: TextAlign.start,
                       style: TextStyle(
                           fontSize: ResponsiveFlutter.of(context).fontSize(2.5),
@@ -1812,11 +1815,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           print("TKey: ${bottomendsection.keys.first}");
           var bottomectioncategoryname = bottomendsection.keys.first;
 
-          setState(() {
-            typewidetofbottomsection.add(bottomectioncategoryname);
+          //  setState(() {
+          typewidetofbottomsection.add(bottomectioncategoryname);
 
-            print(typewidetofbottomsection);
-          });
+          print(typewidetofbottomsection);
+          //  });
 
           if (bottomectioncategoryname.toString().toLowerCase() ==
               "media".toLowerCase()) {
@@ -2071,6 +2074,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                         builder: (BuildContext context) =>
                             Testimonialprogramviewmore(
                               apiurl: API.testiomonailpro,
+                              sharelink:
+                                  Constantstring.sharetestimonialviewmorehome,
                             )));
               },
               oncardtap: () {

@@ -933,6 +933,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
               cardImage: "assets/newImages/ourvison.png",
               cardsubtitle: "",
               cardTitle: "",
+              showviewmore: 1,
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
@@ -964,6 +965,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                     """${GlobalLists.merckcancerawardlist[index].title} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 style: {
                                   "body": Style(
@@ -1028,6 +1030,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );
@@ -1242,6 +1245,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                           builder: (BuildContext context) =>
                               Testimonialprogramviewmore(
                                 apiurl: API.watchmoretestimonialcancer,
+                                sharelink: Constantstring
+                                    .sharetestimonialviewmorecancer,
                               )));
                   // Navigator.push(
                   //     context,
@@ -1321,15 +1326,17 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                         SizedBox(
                                           height: 4,
                                         ),
-                                         Html(
-            data: GlobalLists.mmttestimoniallist[index].departmentName,
-            style: {
-              "body": Style(
-                  fontSize: FontSize(13.0),
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w600),
-            },
-          ),
+                                        Html(
+                                          data: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .departmentName,
+                                          style: {
+                                            "body": Style(
+                                                fontSize: FontSize(13.0),
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.w600),
+                                          },
+                                        ),
                                         // FormLabel(
                                         //   text: GlobalLists
                                         //       .mmttestimoniallist[index]

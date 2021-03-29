@@ -60,7 +60,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-            Navigator.pop(context);
+          Navigator.pop(context);
           // Navigator.push(
           //     context,
           //     MaterialPageRoute(
@@ -77,7 +77,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
         height: 85,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 15, left: 10, right: 20),
+        padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
         child: ListView(
           shrinkWrap: true,
           //  crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,7 +190,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
       if (typewidet[i] == "gallery") {
         listofwiget.add(
           Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
+            padding: const EdgeInsets.only(left: 8, top: 10),
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
@@ -280,7 +280,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
       if (typewidet[i] == "videos") {
         listofwiget.add(
           Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
+            padding: const EdgeInsets.only(left: 8, top: 10),
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/gallery.png",
@@ -332,6 +332,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                   image:
                                       "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
                                   fit: BoxFit.fill,
+                                  //   height: SizeConfig.blockSizeVertical * 30,
                                 ),
                               ),
                               Positioned(
@@ -402,14 +403,15 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                             //     GlobalLists.homevideolist[index].categoryId);
                           },
                           child: Container(
-                            width: 120,
+                            width: 180,
                             height: 40,
                             decoration: BoxDecoration(
                                 color: Colors.amber,
                                 borderRadius: BorderRadius.circular(5)),
                             child: Center(
                               child: Text(
-                                "View All",
+                                "Watch More Videos",
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Customcolor.colorBlue,
                                     fontSize: 15,
@@ -433,6 +435,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );

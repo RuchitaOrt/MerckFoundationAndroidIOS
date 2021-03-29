@@ -341,6 +341,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                         builder: (BuildContext context) =>
                                             CallforApplication(
                                               apiurl: API.watchcallmmtm,
+                                              sharelink: Constantstring
+                                                  .sharecallforappmmtm,
                                             )));
                               },
                               child: Container(
@@ -634,6 +636,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                         builder: (BuildContext context) =>
                                             ViewmoremmtmAmbassadar(
                                               apiurl: API.watchprogrammmtm,
+                                              sharelink: Constantstring
+                                                  .sharemmtmambassadarmmtm,
                                             )));
                               },
                               child: Container(
@@ -1865,6 +1869,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );
@@ -2093,6 +2098,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                           builder: (BuildContext context) =>
                               Testimonialprogramviewmore(
                                 apiurl: API.watchmoretestimonialmmtm,
+                                sharelink:
+                                    Constantstring.sharetestimonialviewmoremmtm,
                               )));
                   // getMerckprogramTestimonial();
                 },
@@ -2170,14 +2177,16 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                         ),
 
                                         Html(
-            data: GlobalLists.mmttestimoniallist[index].departmentName,
-            style: {
-              "body": Style(
-                  fontSize: FontSize(13.0),
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w600),
-            },
-          ),
+                                          data: GlobalLists
+                                              .mmttestimoniallist[index]
+                                              .departmentName,
+                                          style: {
+                                            "body": Style(
+                                                fontSize: FontSize(13.0),
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.w600),
+                                          },
+                                        ),
                                         // FormLabel(
                                         //   text: GlobalLists
                                         //       .mmttestimoniallist[index]

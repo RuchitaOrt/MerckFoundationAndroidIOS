@@ -286,6 +286,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                   data: """${product.shortDescription} """,
                                   onLinkTap: (url) {
                                     print("Opening $url...");
+                                    ShowDialogs.launchURL(url);
                                   },
                                   style: {
                                     "body": Style(textAlign: TextAlign.center),
@@ -318,6 +319,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                       data: """${product.pageContent} """,
                                       onLinkTap: (url) {
                                         print("Opening $url...");
+                                        ShowDialogs.launchURL(url);
                                       },
                                     ),
                                     SizedBox(height: 10.0),

@@ -10,6 +10,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 //TODO:
 //index == 0 (MiddleArea from getHomeAPI -> View More in Photo Gallery)
@@ -33,12 +34,14 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
     return Scaffold(
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 0,
-                      )));
+          Navigator.pop(context);
+
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 0,
+          //             )));
         },
         index: 2,
         sharelink: Constantstring.photogalleryviewall,
@@ -55,7 +58,7 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
           crossAxisSpacing: 0,
           mainAxisSpacing: 2,
           crossAxisCount: 2,
-          childAspectRatio: Platform.isIOS ? 0.86 : 0.8,
+          childAspectRatio: 0.9,
           children: widget.photosList.map((photo) {
             if (widget.index == 0) {
               print(widget.baseURL + photo.photo);
@@ -82,17 +85,15 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              height: 160,
+              //  height: 160,
+              width: SizeConfig.blockSizeHorizontal * 100,
+              height: SizeConfig.blockSizeVertical * 19,
               margin: EdgeInsets.all(5),
               child: FadeInImage.assetNetwork(
                 placeholder: 'assets/newImages/placeholder_3.jpg',
                 image: imageurl,
                 fit: BoxFit.fill,
-                height: 160,
               ),
-            ),
-            SizedBox(
-              height: 5,
             ),
             Text(
               title,
@@ -105,7 +106,7 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
               maxLines: 2,
             ),
             SizedBox(
-              height: 10,
+              height: 2,
             )
           ],
         ),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/visionResponse.dart';
@@ -72,64 +71,61 @@ class StemInnerPagesState extends State<StemInnerPages>
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 1),
-              child: GlobalLists.vision.length <= 0
-                  ? Container(
-                      child: Center(child: Text(Constantstring.emptyData)),
-                    )
-                  : ListView(
-                      shrinkWrap: true,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
+              child: ListView(
+                shrinkWrap: true,
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 15, right: 8, top: 8, bottom: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 15, right: 8, top: 8, bottom: 15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Center(
-                              //   child: Html(
-                              //     data: """${widget.title} """,
-                              //     onLinkTap: (url) {
-                              //       print("Opening $url...");
-                              //     },
-                              //     style: {
-                              //       "body": Style(
-                              //           textAlign: TextAlign.start,
-                              //           color: Customcolor.colorVoilet,
-                              //           fontSize: FontSize.larger,
-                              //           alignment: Alignment.center,
-                              //           fontWeight: FontWeight.w600),
-                              //     },
-                              //   ),
-                              // ),
-                              // SizedBox(
-                              //   height: 15,
-                              // ),
-                              Html(
-                                data: """${widget.details} """,
-                                onLinkTap: (url) {
-                                  print("Opening $url...");
-                                },
-                              ),
-                              // Padding(
-                              //   padding:
-                              //       const EdgeInsets.only(right: 0, left: 0),
-                              //   child: Align(
-                              //     alignment: Alignment.topRight,
-                              //     child: Image.asset(
-                              //       "assets/newImages/flowers_footer.png",
-                              //       height: 170,
-                              //     ),
-                              //   ),
-                              // ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
+                        // Center(
+                        //   child: Html(
+                        //     data: """${widget.title} """,
+                        //     onLinkTap: (url) {
+                        //       print("Opening $url...");
+                        //     },
+                        //     style: {
+                        //       "body": Style(
+                        //           textAlign: TextAlign.start,
+                        //           color: Customcolor.colorVoilet,
+                        //           fontSize: FontSize.larger,
+                        //           alignment: Alignment.center,
+                        //           fontWeight: FontWeight.w600),
+                        //     },
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: 15,
+                        // ),
+                        Html(
+                          data: """${widget.details} """,
+                          onLinkTap: (url) {
+                            print("Opening $url...");
+                            ShowDialogs.launchURL(url);
+                          },
                         ),
+                        // Padding(
+                        //   padding:
+                        //       const EdgeInsets.only(right: 0, left: 0),
+                        //   child: Align(
+                        //     alignment: Alignment.topRight,
+                        //     child: Image.asset(
+                        //       "assets/newImages/flowers_footer.png",
+                        //       height: 170,
+                        //     ),
+                        //   ),
+                        // ),
+                        SizedBox(
+                          height: 10,
+                        )
                       ],
                     ),
+                  ),
+                ],
+              ),
             ),
 
             // TextSpan(

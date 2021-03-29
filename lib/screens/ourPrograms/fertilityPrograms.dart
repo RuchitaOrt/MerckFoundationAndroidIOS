@@ -50,7 +50,7 @@ class MerckFertilityState extends State<MerckFertility> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-            Navigator.pop(context);
+          Navigator.pop(context);
           // Navigator.push(
           //     context,
           //     MaterialPageRoute(
@@ -67,13 +67,13 @@ class MerckFertilityState extends State<MerckFertility> {
         height: 85,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+        padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
         child: ListView(
           shrinkWrap: true,
           physics: ScrollPhysics(),
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+              padding: const EdgeInsets.only(top: 15, left: 5, right: 5),
               child: ListView(
                 shrinkWrap: true,
                 physics: ScrollPhysics(),
@@ -398,6 +398,7 @@ class MerckFertilityState extends State<MerckFertility> {
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );

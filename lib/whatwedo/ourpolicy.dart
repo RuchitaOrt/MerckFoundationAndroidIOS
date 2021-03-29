@@ -78,6 +78,7 @@ class OurPolicyState extends State<OurPolicy> with TickerProviderStateMixin {
                                     """${GlobalLists.ourpolicy[0].pageContent} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 // style: {
                                 //   "body": Style(

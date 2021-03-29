@@ -59,7 +59,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {
             print("hi");
-            
+
             // showModalBottomSheet<void>(
             //   shape: RoundedRectangleBorder(
             //     borderRadius: BorderRadius.vertical(top: Radius.circular(24.0)),
@@ -94,7 +94,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
             //                       // FlutterShareMe().shareToFacebook(
             //                       //     url: 'https://github.com/lizhuoyuan',
             //                       //     msg: "msg");
-                                
+
             //                     await screenshotController
             //                         .capture()
             //                         .then((image) async {
@@ -288,6 +288,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                 data: """${GlobalLists.vision[0].title} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 style: {
                                   "body": Style(
@@ -313,6 +314,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                     """${GlobalLists.vision[0].pageContent} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 style: {
                                   "body": Style(

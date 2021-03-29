@@ -106,7 +106,9 @@ class CustomCardState extends State<CustomeCardforTestimonial> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                      image: NetworkImage(widget.cardImage), fit: BoxFit.fill)),
+                    image: NetworkImage(widget.cardImage),
+                    fit: BoxFit.fill,
+                  )),
               child: Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
                 child: Row(
@@ -158,31 +160,16 @@ class CustomCardState extends State<CustomeCardforTestimonial> {
           SizedBox(
             height: 2,
           ),
-          Center(
-              child: Html(
+          Html(
             data: widget.departmentname,
             style: {
               "body": Style(
                   fontSize: FontSize(17.0),
                   color: Customcolor.colorBlue,
+                  textAlign: TextAlign.center,
                   fontWeight: FontWeight.w500),
             },
-          )
-
-              // Text(
-              //   widget.departmentname,
-              //   overflow: TextOverflow.ellipsis,
-              //   maxLines: 2,
-              //   textAlign: TextAlign.center,
-              //   style: TextStyle(
-              //       fontSize: 17,
-              //       color: Customcolor.colorBlue,
-              //       fontWeight: FontWeight.w500),
-              //   // fontSize: 17,
-              //   // labelColor: Colors.white,
-              //   // fontweight: FontWeight.w500,
-              // ),
-              ),
+          ),
           Text(
             widget.subTitle,
             overflow: TextOverflow.ellipsis,

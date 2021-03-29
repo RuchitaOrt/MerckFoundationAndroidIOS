@@ -154,7 +154,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 2,
                       crossAxisCount: 2,
-                      childAspectRatio: Platform.isIOS ? 0.75 : 0.8,
+                      childAspectRatio: 0.9,
                       children: List.generate(
                           GlobalLists.programgallerylist.length, (index) {
                         if (GlobalLists.programgallerylist.length - 1 ==
@@ -200,7 +200,9 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                             width:
                                                 SizeConfig.blockSizeHorizontal *
                                                     100,
-                                            height: 150,
+                                            height:
+                                                SizeConfig.blockSizeVertical *
+                                                    16,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -214,29 +216,32 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                                         .programgallerylist[
                                                             index]
                                                         .photo),
-                                                fit: BoxFit.contain,
+                                                fit: BoxFit.fill,
                                               ),
                                             ),
                                           ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
-                                          child: Text(
-                                            GlobalLists
-                                                .programgallerylist[index]
-                                                .photoDescription,
-                                            textAlign: TextAlign.center,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: ResponsiveFlutter.of(
-                                                        context)
-                                                    .fontSize(1.4),
-                                                fontWeight: FontWeight.w500),
-                                            maxLines: 3,
+                                          child: Center(
+                                            child: Text(
+                                              GlobalLists
+                                                  .programgallerylist[index]
+                                                  .photoDescription,
+                                              textAlign: TextAlign.center,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize:
+                                                      ResponsiveFlutter.of(
+                                                              context)
+                                                          .fontSize(1.4),
+                                                  fontWeight: FontWeight.w500),
+                                              maxLines: 3,
+                                            ),
                                           ),
                                         ),
-                                        SizedBox(height: 5),
+                                        //SizedBox(height: 5),
                                       ],
                                     ),
                                   ),

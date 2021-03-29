@@ -61,7 +61,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
         physics: ScrollPhysics(),
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
             child: ListView(
               shrinkWrap: true,
               physics: ScrollPhysics(),
@@ -390,6 +390,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );

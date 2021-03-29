@@ -66,11 +66,32 @@ class _MyHomePageState extends State<OurProgramcancerlist> {
     });
   }
 
+  //for cancer index is from 21 to 27
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: AdvFabBottomBarBody(
-          screens: <Widget>[MerckCanceraccess()],
+          screens: <Widget>[
+            widget.indexpass == 21
+                ? MerckCanceraccess()
+                : widget.indexpass == 22
+                    ? CancerobjectiveDetails()
+                    : widget.indexpass == 23
+                        ? MerckFellowship()
+                        : widget.indexpass == 24
+                            ? MerckCancerPatient()
+                            : widget.indexpass == 25
+                                ? Merckcancercommunityawareness()
+                                : widget.indexpass == 26
+                                    ? WatchmoreVideolibrary(
+                                        apiurl: API.watchvideocancer,
+                                        headertitle:
+                                            "Merck Foundation Cancer Access Program Videos",
+                                      )
+                                    : widget.indexpass == 27
+                                        ? SocialMedia()
+                                        : Container()
+          ],
           controller: mabialaFABController,
         ),
         floatingActionButton: AdvFab(
@@ -204,41 +225,59 @@ class _MyHomePageState extends State<OurProgramcancerlist> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                CancerobjectiveDetails()));
+                                                OurProgramcancerlist(
+                                                  indexpass: 22,
+                                                )
+                                            //CancerobjectiveDetails()
+                                            ));
                                   } else if (index == 1) {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                MerckFellowship()));
+                                                OurProgramcancerlist(
+                                                  indexpass: 23,
+                                                )
+                                            //   MerckFellowship()
+                                            ));
                                   } else if (index == 2) {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                MerckCancerPatient()));
+                                                OurProgramcancerlist(
+                                                  indexpass: 24,
+                                                )
+                                            // MerckCancerPatient()
+                                            ));
                                   } else if (index == 3) {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                Merckcancercommunityawareness()));
+                                                OurProgramcancerlist(
+                                                  indexpass: 25,
+                                                )
+                                            //  Merckcancercommunityawareness()
+                                            ));
                                   } else if (index == 4) {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                WatchmoreVideolibrary(
-                                                  apiurl: API.watchvideocancer,
-                                                  headertitle:
-                                                      "Merck Foundation Cancer Access Program Videos",
+                                                OurProgramcancerlist(
+                                                  indexpass: 26,
                                                 )));
                                   } else if (index == 5) {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                SocialMedia()));
+                                                OurProgramcancerlist(
+                                                  indexpass: 27,
+                                                )
+                                            //SocialMedia()
+                                            ));
                                   }
                                 },
                                 child: Container(

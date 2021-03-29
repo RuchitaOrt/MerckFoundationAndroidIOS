@@ -68,7 +68,9 @@ class OurActivityState extends State<OurActivity> {
                     GlobalLists.ourActivitiesData.add(listdata.ListElement(
                         id: resp.data.list[i].id,
                         title: resp.data.list[i].title,
-                        image: resp.data.list[i].image));
+                        image: resp.data.list[i].image,
+                        detailPageUrl: resp.data.list[i].detailPageUrl,
+                        details: resp.data.list[i].details));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -127,49 +129,47 @@ class OurActivityState extends State<OurActivity> {
         controller: _sc,
         physics: ScrollPhysics(),
         children: [
+          SizedBox(
+            height: 10,
+          ),
 
-
-           SizedBox(
-                  height: 10,
+          GlobalLists.ourActivitiesObjectives.length <= 0
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+                  child: Container(
+                    child: Center(child: Text(Constantstring.emptyData)),
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+                  child: Html(
+                    data:
+                        """${GlobalLists.ourActivitiesObjectives[0].pageContent} """,
+                    onLinkTap: (url) {
+                      print("Opening $url...");
+                      ShowDialogs.launchURL(url);
+                    },
+                    // style: {
+                    //   "body": Style(
+                    //     fontSize: FontSize(
+                    //         ResponsiveFlutter.of(context).fontSize(2.2)),
+                    //     fontWeight: FontWeight.w600,
+                    //     color: Customcolor.pink_col,
+                    //   ),
+                    // },
+                  ),
                 ),
+          SizedBox(
+            height: 15,
+          ),
 
-
-                   GlobalLists.ourActivitiesObjectives.length <= 0
-                    ? Padding(
-                      padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-                      child: Container(
-                          child: Center(child: Text(Constantstring.emptyData)),
-                        ),
-                    )
-                    : Padding(
-                    padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-                      child: Html(
-                          data:
-                              """${GlobalLists.ourActivitiesObjectives[0].pageContent} """,
-                          onLinkTap: (url) {
-                            print("Opening $url...");
-                          },
-                          // style: {
-                          //   "body": Style(
-                          //     fontSize: FontSize(
-                          //         ResponsiveFlutter.of(context).fontSize(2.2)),
-                          //     fontWeight: FontWeight.w600,
-                          //     color: Customcolor.pink_col,
-                          //   ),
-                          // },
-                        ),
-                    ),
-                SizedBox(
-                  height: 15,
-                ),
-          
           // Padding(
           //   padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
           //   child: ListView(
           //     shrinkWrap: true,
           //     //  crossAxisAlignment: CrossAxisAlignment.start,
           //     children: [
-             
+
           //       GlobalLists.ourActivitiesObjectives.length <= 0
           //           ? Container(
           //               child: Center(child: Text(Constantstring.emptyData)),
@@ -202,15 +202,15 @@ class OurActivityState extends State<OurActivity> {
           //     ],
           //   ),
           // ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
-            child: FormLabel(
-              text: "Our Activities",
-              labelColor: Customcolor.colorPink,
-              fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
-              fontweight: FontWeight.w500,
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
+          //   child: FormLabel(
+          //     text: "Our Activities",
+          //     labelColor: Customcolor.colorPink,
+          //     fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+          //     fontweight: FontWeight.w500,
+          //   ),
+          // ),
           (GlobalLists.ourActivitiesData.length == 0 && _isLoading)
               ? Center(
                   child: CircularProgressIndicator(),
@@ -239,6 +239,9 @@ class OurActivityState extends State<OurActivity> {
                             padding: const EdgeInsets.only(right: 5.0, left: 5),
                             child: GestureDetector(
                               onTap: () {
+                                print("our activity");
+                                print(GlobalLists
+                                    .ourActivitiesData[index].details);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -250,6 +253,9 @@ class OurActivityState extends State<OurActivity> {
                                               activtytitle: GlobalLists
                                                   .ourActivitiesData[index]
                                                   .title,
+                                              detailpageurl: GlobalLists
+                                                  .ourActivitiesData[index]
+                                                  .detailPageUrl,
                                             )));
                               },
                               child: Card(
@@ -546,7 +552,8 @@ class OurActivityState extends State<OurActivity> {
 
     if (status1) {
       //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
+      print("inapi");
+      print(API.ourActivities);
       APIManager().apiRequest(
         context,
         API.ourActivities,
@@ -564,9 +571,10 @@ class OurActivityState extends State<OurActivity> {
               for (int i = offset; i < resp.data.list.length; i++) {
                 setState(() {
                   GlobalLists.ourActivitiesData.add(listdata.ListElement(
-                      id: resp.data.list[i].id,
-                      title: resp.data.list[i].title,
-                      image: resp.data.list[i].image));
+                    id: resp.data.list[i].id,
+                    title: resp.data.list[i].title,
+                    image: resp.data.list[i].image,
+                  ));
                 });
               }
             } else {
@@ -575,7 +583,9 @@ class OurActivityState extends State<OurActivity> {
                   GlobalLists.ourActivitiesData.add(listdata.ListElement(
                       id: resp.data.list[i].id,
                       title: resp.data.list[i].title,
-                      image: resp.data.list[i].image));
+                      image: resp.data.list[i].image,
+                      detailPageUrl: resp.data.list[i].detailPageUrl,
+                      details: resp.data.list[i].details));
                 });
               }
             }

@@ -1511,6 +1511,7 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                                     """${GlobalLists.merckcancerawardlist[index].title} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 style: {
                                   "body": Style(
@@ -1575,6 +1576,7 @@ class MerckSubstantionalState extends State<MerckSubstantional>
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );

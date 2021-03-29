@@ -77,6 +77,7 @@ class OurDataprivacyState extends State<OurDataprivacy>
                                     """${GlobalLists.dataprivacy[0].pageContent} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 // style: {
                                 //   "body": Style(

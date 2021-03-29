@@ -96,6 +96,7 @@ class CeomessageState extends State<Ceomessage> {
                                         """${GlobalLists.ceolisting[index].leaderName} """,
                                     onLinkTap: (url) {
                                       print("Opening $url...");
+                                      ShowDialogs.launchURL(url);
                                     },
                                     style: {
                                       "body": Style(
@@ -110,6 +111,7 @@ class CeomessageState extends State<Ceomessage> {
                                         """${GlobalLists.ceolisting[index].shortBiodata} """,
                                     onLinkTap: (url) {
                                       print("Opening $url...");
+                                      ShowDialogs.launchURL(url);
                                     },
                                     style: {
                                       "body": Style(textAlign: TextAlign.start),
@@ -133,6 +135,7 @@ class CeomessageState extends State<Ceomessage> {
                                       data: "((View Bio))",
                                       onLinkTap: (url) {
                                         print("Opening $url...");
+                                        ShowDialogs.launchURL(url);
                                       },
                                       style: {
                                         "body": Style(
@@ -201,6 +204,7 @@ class CeomessageState extends State<Ceomessage> {
                                             """${GlobalLists.boardoftrust[index].leaderName} """,
                                         onLinkTap: (url) {
                                           print("Opening $url...");
+                                          ShowDialogs.launchURL(url);
                                         },
                                         style: {
                                           "body": Style(
@@ -215,6 +219,7 @@ class CeomessageState extends State<Ceomessage> {
                                             """${GlobalLists.boardoftrust[index].shortBiodata} """,
                                         onLinkTap: (url) {
                                           print("Opening $url...");
+                                          ShowDialogs.launchURL(url);
                                         },
                                         style: {
                                           "body":
@@ -241,6 +246,7 @@ class CeomessageState extends State<Ceomessage> {
                                           data: "((View Bio))",
                                           onLinkTap: (url) {
                                             print("Opening $url...");
+                                            ShowDialogs.launchURL(url);
                                           },
                                           style: {
                                             "body": Style(

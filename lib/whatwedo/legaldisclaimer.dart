@@ -77,6 +77,7 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
                                     """${GlobalLists.legaldisclaimer[0].pageContent} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 // style: {
                                 //   "body": Style(

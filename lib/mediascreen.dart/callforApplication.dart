@@ -14,8 +14,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class CallforApplication extends StatefulWidget {
   final dynamic apiurl;
+  final dynamic sharelink;
 
-  const CallforApplication({Key key, this.apiurl}) : super(key: key);
+  const CallforApplication({Key key, this.apiurl, this.sharelink})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return CallApplicationState();
@@ -75,7 +77,7 @@ class CallApplicationState extends State<CallforApplication>
           // Navigator.pop(context);
         },
         index: 2,
-        sharelink: Constantstring.sharecallforapp,
+        sharelink: widget.sharelink,
         title: "Upcoming Programs & Call For Applications",
         titleImg: "assets/newImages/application_logo.png",
         trallingImg1: "assets/newImages/share.png",

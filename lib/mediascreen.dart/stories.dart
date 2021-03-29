@@ -138,7 +138,7 @@ class StoriesState extends State<Stories> {
             _scaffoldKey1.currentState.openEndDrawer();
           },
           onTapval: () {
-              Navigator.pop(context);
+            Navigator.pop(context);
             // Navigator.push(
             //     context,
             //     MaterialPageRoute(

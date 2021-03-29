@@ -51,7 +51,7 @@ class LocalSongsandChildrenStoriesState
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-            Navigator.pop(context);
+          Navigator.pop(context);
           // Navigator.push(
           //     context,
           //     MaterialPageRoute(
@@ -68,7 +68,7 @@ class LocalSongsandChildrenStoriesState
         height: 85,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+        padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
         child: ListView(
           shrinkWrap: true,
           //  crossAxisAlignment: CrossAxisAlignment.start,
@@ -324,12 +324,14 @@ class LocalSongsandChildrenStoriesState
                 data: """${GlobalLists.homecontentlist[0].pageContent} """,
                 onLinkTap: (url) {
                   print("Opening $url...");
+                  ShowDialogs.launchURL(url);
                 },
               ),
               Html(
                 data: """${GlobalLists.homecontentlist[1].pageContent} """,
                 onLinkTap: (url) {
                   print("Opening $url...");
+                  ShowDialogs.launchURL(url);
                 },
               ),
             ],
@@ -431,150 +433,154 @@ class LocalSongsandChildrenStoriesState
       }
       if (typewidet[i] == "digital_library") {
         listofwiget.add(
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              FormLabel(
-                text: "Children Stories",
-                labelColor: Customcolor.text_blue,
-                fontSize: ResponsiveFlutter.of(context).fontSize(2),
-                maxLines: 2,
-                textAlignment: TextAlign.left,
-                fontweight: FontWeight.w800,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              FormLabel(
-                text:
-                    "Merck Foundation in partnership with African First Ladies, launched a children storybook to emphasize strong family values of love and respect from young age which will reflect on eliminating the stigma of infertility and resulted domestic violence in the future. The storybooks have been localized for each country to have a better connect with the young readers.",
-                labelColor: Colors.black,
-                fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
-                textAlignment: TextAlign.justify,
-                maxLines: 2,
-                fontweight: FontWeight.w400,
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Container(
-                height: 340,
-                // color: Colors.grey.shade800,
-                //  padding: EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Swiper(
-                        fade: 0.0,
-                        itemBuilder: (BuildContext context, int index) {
-                          return GestureDetector(
-                            onTap: () {
-                              print("pdf");
-                              print(GlobalLists
-                                  .programdigitalcontentlist[index].document);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          VideoPlayer(
-                                            videoUrl: GlobalLists
-                                                    .programdigitalcontentbaseurl +
-                                                GlobalLists
-                                                    .programdigitalcontentlist[
-                                                        index]
-                                                    .document,
-                                          )));
-                            },
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: Card(
-                                    elevation: 5,
-                                    color: Colors.white,
-                                    child: Column(
-                                      children: <Widget>[
-                                        Container(
-                                          padding: EdgeInsets.all(6),
-                                          width:
-                                              SizeConfig.blockSizeHorizontal *
-                                                  60,
-                                          child: Text(
-                                            GlobalLists
-                                                .programdigitalcontentlist[
-                                                    index]
-                                                .title,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                color: Colors.black54,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700),
-                                            maxLines: 3,
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            // height: SizeConfig.blockSizeVertical * 40,
-                                            width: double.infinity,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            child: FadeInImage.assetNetwork(
-                                              placeholder:
-                                                  'assets/newImages/placeholder_3.jpg',
-                                              image:
-                                                  "${GlobalLists.programdigitalcontentbaseurl + GlobalLists.programdigitalcontentlist[index].image}",
-                                              fit: BoxFit.fill,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                FormLabel(
+                  text: "Children Stories",
+                  labelColor: Customcolor.text_blue,
+                  fontSize: ResponsiveFlutter.of(context).fontSize(2),
+                  maxLines: 2,
+                  textAlignment: TextAlign.left,
+                  fontweight: FontWeight.w800,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                FormLabel(
+                  text:
+                      "Merck Foundation in partnership with African First Ladies, launched a children storybook to emphasize strong family values of love and respect from young age which will reflect on eliminating the stigma of infertility and resulted domestic violence in the future. The storybooks have been localized for each country to have a better connect with the young readers.",
+                  labelColor: Colors.black,
+                  fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
+                  textAlignment: TextAlign.justify,
+                  maxLines: 2,
+                  fontweight: FontWeight.w400,
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Container(
+                  height: 340,
+                  // color: Colors.grey.shade800,
+                  //  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Swiper(
+                          fade: 0.0,
+                          itemBuilder: (BuildContext context, int index) {
+                            return GestureDetector(
+                              onTap: () {
+                                print("pdf");
+                                print(GlobalLists
+                                    .programdigitalcontentlist[index].document);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            VideoPlayer(
+                                              videoUrl: GlobalLists
+                                                      .programdigitalcontentbaseurl +
+                                                  GlobalLists
+                                                      .programdigitalcontentlist[
+                                                          index]
+                                                      .document,
+                                            )));
+                              },
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Card(
+                                      elevation: 5,
+                                      color: Colors.white,
+                                      child: Column(
+                                        children: <Widget>[
+                                          Container(
+                                            padding: EdgeInsets.all(6),
+                                            width:
+                                                SizeConfig.blockSizeHorizontal *
+                                                    60,
+                                            child: Text(
+                                              GlobalLists
+                                                  .programdigitalcontentlist[
+                                                      index]
+                                                  .title,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  color: Colors.black54,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700),
+                                              maxLines: 3,
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                          Expanded(
+                                            child: Container(
+                                              // height: SizeConfig.blockSizeVertical * 40,
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              child: FadeInImage.assetNetwork(
+                                                placeholder:
+                                                    'assets/newImages/placeholder_3.jpg',
+                                                image:
+                                                    "${GlobalLists.programdigitalcontentbaseurl + GlobalLists.programdigitalcontentlist[index].image}",
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        itemCount: GlobalLists.programdigitalcontentlist.length,
-                        viewportFraction: 0.7,
-                        layout: SwiperLayout.DEFAULT,
+                                ],
+                              ),
+                            );
+                          },
+                          itemCount:
+                              GlobalLists.programdigitalcontentlist.length,
+                          viewportFraction: 0.7,
+                          layout: SwiperLayout.DEFAULT,
 
-                        scale: 0.9,
-                        //outer: true,
-                        //  itemWidth: 300.0,
-                        //itemHeight: 400,
-                        //itemHeight: 300,
+                          scale: 0.9,
+                          //outer: true,
+                          //  itemWidth: 300.0,
+                          //itemHeight: 400,
+                          //itemHeight: 300,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              // Center(
-              //   child: Container(
-              //     width: 120,
-              //     height: 40,
-              //     decoration: BoxDecoration(
-              //         color: Colors.amber,
-              //         borderRadius: BorderRadius.circular(5)),
-              //     child: Center(
-              //       child: Text(
-              //         "Watch More",
-              //         style: TextStyle(
-              //             color: Customcolor.colorBlue,
-              //             fontSize: 15,
-              //             fontWeight: FontWeight.w500),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ],
+                SizedBox(
+                  height: 10,
+                ),
+                // Center(
+                //   child: Container(
+                //     width: 120,
+                //     height: 40,
+                //     decoration: BoxDecoration(
+                //         color: Colors.amber,
+                //         borderRadius: BorderRadius.circular(5)),
+                //     child: Center(
+                //       child: Text(
+                //         "Watch More",
+                //         style: TextStyle(
+                //             color: Customcolor.colorBlue,
+                //             fontSize: 15,
+                //             fontWeight: FontWeight.w500),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
           ),
         );
       }

@@ -1377,6 +1377,7 @@ Radio</span></span></span></p>
 			<p>Merck Foundation Communication and Community Awareness Manager</p> """,
                           onLinkTap: (url) {
                             print("Opening $url...");
+                            ShowDialogs.launchURL(url);
                           },
                           // style: {
                           //   "body": Style(

@@ -12,6 +12,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+import 'dart:io';
 
 class OurProgramSevenlist extends StatefulWidget {
   OurProgramSevenlist({Key key, this.title, this.indexpass}) : super(key: key);
@@ -42,14 +43,14 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
   }
 
   List programvalue = [
-    "Merck More Than A Mother",
-    "Merck Cancer Access Program",
-    "Merck Capacity Advancement and Diabetes Blue Point Program",
+    "Merck Foundation More Than A Mother",
+    "Merck Foundation Cancer Access Program",
+    "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
     "Merck Foundation First Ladies Initiative Summit",
-    "Merck STEM Program",
-    "Educating Linda Program",
+    "Merck Foundation STEM Program",
+    "Merck Foundation Educating Linda Program",
     "Merck Foundation Sustainability Initiative",
-    "Merck Africa Asia LuminaryLocal Songs and Children Stories",
+    "Merck Foundation Africa Asia Luminary",
   ];
 
   bool useAsFloatingActionButton = true;
@@ -91,10 +92,11 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
           onFloatingActionButtonTapped: () {
             mabialaFABController.setExpandedWidgetConfiguration(
               showLogs: true,
-              heightToExpandTo: 80,
+              heightToExpandTo: 50,
               expendedBackgroundColor: Customcolor.programyellow,
               withChild: Padding(
-                padding: const EdgeInsets.only(top: 8,left: 8, right:8, bottom:20),
+                padding: const EdgeInsets.only(
+                    top: 8, left: 8, right: 8, bottom: 20),
                 child: Container(
                   width: (MediaQuery.of(context).size.width) * 70,
 

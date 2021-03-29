@@ -78,6 +78,7 @@ class OurMissionState extends State<OurMission> with TickerProviderStateMixin {
                                     """${GlobalLists.ourmission[0].pageContent} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 // style: {
                                 //   "body": Style(

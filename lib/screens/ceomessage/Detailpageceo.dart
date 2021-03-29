@@ -106,6 +106,7 @@ class DetailpageceoState extends State<Detailpageceo>
                                 """${widget.list[widget.index].leaderName} """,
                             onLinkTap: (url) {
                               print("Opening $url...");
+                              ShowDialogs.launchURL(url);
                             },
                             style: {
                               "body": Style(
@@ -122,6 +123,7 @@ class DetailpageceoState extends State<Detailpageceo>
                                 """${widget.list[widget.index].shortBiodata} """,
                             onLinkTap: (url) {
                               print("Opening $url...");
+                              ShowDialogs.launchURL(url);
                             },
                             style: {
                               "body": Style(textAlign: TextAlign.center),
@@ -147,6 +149,7 @@ class DetailpageceoState extends State<Detailpageceo>
                                     """${widget.list[widget.index].detailBiodata} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                               ),
                               SizedBox(height: 10.0),

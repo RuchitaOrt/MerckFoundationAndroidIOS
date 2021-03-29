@@ -143,6 +143,7 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                             """${GlobalLists.ourPartnerObjectives[0].pageContent} """,
                         onLinkTap: (url) {
                           print("Opening $url...");
+                          ShowDialogs.launchURL(url);
                         },
                       ),
                     ),

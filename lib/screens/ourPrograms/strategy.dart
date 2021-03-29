@@ -42,7 +42,7 @@ class OurProgramstrategyState extends State<StrategyDetails> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-            Navigator.pop(context);
+          Navigator.pop(context);
           // Navigator.push(
           //     context,
           //     MaterialPageRoute(
@@ -63,7 +63,7 @@ class OurProgramstrategyState extends State<StrategyDetails> {
         physics: ScrollPhysics(),
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
             child: ListView(
               shrinkWrap: true,
               physics: ScrollPhysics(),
@@ -176,6 +176,7 @@ class OurProgramstrategyState extends State<StrategyDetails> {
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );

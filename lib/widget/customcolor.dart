@@ -94,6 +94,9 @@ class Constantstring {
   static String sharedataprivacy =
       "http://merckfoundation.org/mfindia/web/public/data-privacy";
 
+  static String shareouractivitydetail =
+      "http://merckfoundation.org/mfindia/web/public/news-articles/";
+
   //share ourpartner
   static String shareourpartner =
       "http://merckfoundation.org/mfindia/web/public/our-partners";
@@ -147,7 +150,21 @@ class Constantstring {
       "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-cancer-access-program";
   //award
 
-  //detail pages
+  //award detail pages
+  static String shareawarddetailpage =
+      "http://merckfoundation.org/mfindia/web/public/awards/";
+  //testimonial viewmore page
+  static String sharetestimonialviewmorehome =
+      "http://merckfoundation.org/mfindia/web/public/Testimonials";
+  static String sharetestimonialviewmorecapacity =
+      "http://merckfoundation.org/mfindia/web/public/Testimonials/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program";
+  static String sharetestimonialviewmoremmtm =
+      "http://merckfoundation.org/mfindia/web/public/Testimonials/merck-foundation-more-than-a-mother";
+  static String sharetestimonialviewmorecancer =
+      "http://merckfoundation.org/mfindia/web/public/Testimonials/merck-foundation-cancer-access-program";
+  //testimonial detail page
+  static String sharetestimonialdetailpage =
+      "http://merckfoundation.org/mfindia/web/public/Merck_Testimonials/";
 
   //leadership detail
   static String shareceodetailpage =
@@ -198,8 +215,10 @@ class Constantstring {
   //share mmtmambassadar
   static String sharemmtmambassadarhome =
       "http://merckfoundation.org/mfindia/web/public/Merck-More-Than-a-Mother-Ambassadors/Home";
-  static String sharemmtmambassadarmmtm = "";
-  static String sharemmtmambassadarfirstlady = "";
+  static String sharemmtmambassadarmmtm =
+      "http://merckfoundation.org/mfindia/web/public/Merck-More-Than-a-Mother-Ambassadors/merck-foundation-more-than-a-mother";
+  static String sharemmtmambassadarfirstlady =
+      "http://merckfoundation.org/mfindia/web/public/Merck-More-Than-a-Mother-Ambassadors/merck-foundation-first-ladies-initiative-summit";
 
   //followus Merck Foundation More Than a Mother
   static String followmmtminsta =

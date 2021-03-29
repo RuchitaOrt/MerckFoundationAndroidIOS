@@ -6,6 +6,7 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:flutter_html/style.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class Homeceomessage extends StatefulWidget {
   final String detail;
@@ -92,6 +93,7 @@ class OurVisionState extends State<Homeceomessage>
                           data: """${widget.title} """,
                           onLinkTap: (url) {
                             print("Opening $url...");
+                            ShowDialogs.launchURL(url);
                           },
                           style: {
                             "body": Style(
@@ -109,6 +111,7 @@ class OurVisionState extends State<Homeceomessage>
                           data: """${widget.detail} """,
                           onLinkTap: (url) {
                             print("Opening $url...");
+                            ShowDialogs.launchURL(url);
                           },
                         ),
                         SizedBox(

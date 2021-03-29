@@ -5,6 +5,7 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class Testimonialprogramdetailpage extends StatefulWidget {
   final int index;
@@ -50,7 +51,9 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
             //             )));
           },
           index: 2,
-          title: "Merck Testimonials",
+          sharelink: Constantstring.sharetestimonialdetailpage +
+              GlobalLists.mmttestimoniallist[widget.index].detailPageUrl,
+          title: GlobalLists.mmttestimoniallist[widget.index].testimonialName,
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -67,19 +70,38 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                     padding: const EdgeInsets.only(
                         left: 8, right: 8, bottom: 6, top: 10),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
+                        // Center(
+                        //   child: Container(
+                        //     height: 200,
+                        //     width: 150,
+                        //     decoration: BoxDecoration(
+                        //         borderRadius: BorderRadius.circular(8)),
+                        //     child: FadeInImage.assetNetwork(
+                        //       placeholder: 'assets/newImages/placeholder_3.jpg',
+                        //       image: widget.baseurl +
+                        //           GlobalLists
+                        //               .mmttestimoniallist[widget.index].image,
+                        //       fit: BoxFit.fill,
+                        //       height: 150,
+                        //     ),
+                        //   ),
+                        // ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
                           child: Container(
                             height: 200,
-                            width: 150,
+                            width: 250,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8)),
+                                borderRadius: BorderRadius.circular(10)),
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image: widget.baseurl +
                                   GlobalLists
                                       .mmttestimoniallist[widget.index].image,
                               fit: BoxFit.fill,
+                              imageScale: 1,
                               height: 150,
                             ),
                           ),
@@ -89,9 +111,17 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                               """${GlobalLists.mmttestimoniallist[widget.index].testimonialName} """,
                           onLinkTap: (url) {
                             print("Opening $url...");
+                            ShowDialogs.launchURL(url);
                           },
+                          // style: {
+                          //   "body": Style(textAlign: TextAlign.start),
+                          // },
                           style: {
-                            "body": Style(textAlign: TextAlign.start),
+                            "body": Style(
+                                fontSize: FontSize(17.0),
+                                color: Customcolor.colorBlue,
+                                textAlign: TextAlign.start,
+                                fontWeight: FontWeight.w500),
                           },
                         ),
                         Html(
@@ -99,6 +129,7 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                               """${GlobalLists.mmttestimoniallist[widget.index].departmentName} """,
                           onLinkTap: (url) {
                             print("Opening $url...");
+                            ShowDialogs.launchURL(url);
                           },
                           style: {
                             "body": Style(textAlign: TextAlign.start),
@@ -109,6 +140,7 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                               """${GlobalLists.mmttestimoniallist[widget.index].details} """,
                           onLinkTap: (url) {
                             print("Opening $url...");
+                            ShowDialogs.launchURL(url);
                           },
                           style: {
                             "body": Style(textAlign: TextAlign.start),

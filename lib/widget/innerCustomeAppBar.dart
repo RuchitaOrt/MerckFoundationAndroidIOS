@@ -240,8 +240,9 @@ class InnerCustomAppBar extends PreferredSize {
                                                         // Platform.isAndroid
                                                         await FlutterShareMe()
                                                             .shareToLinkedin(
-                                                                url: sharelink,
-                                                                msg: "Share");
+                                                                url:
+                                                                    "sharelink",
+                                                                msg: sharelink);
                                                       },
                                                       child: Image.asset(
                                                         "assets/newImages/linkedin.png",
@@ -401,8 +402,8 @@ class InnerCustomAppBar extends PreferredSize {
                                                     // Platform.isAndroid
                                                     await FlutterShareMe()
                                                         .shareToLinkedin(
-                                                            url: sharelink,
-                                                            msg: "Share");
+                                                            url: "sharelink",
+                                                            msg: sharelink);
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/linkedin.png",

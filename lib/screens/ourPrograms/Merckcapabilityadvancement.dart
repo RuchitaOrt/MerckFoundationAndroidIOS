@@ -105,7 +105,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          // Navigator.pop(context);
+          //  Navigator.pop(context);
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -1461,6 +1461,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                                     """${GlobalLists.merckcancerawardlist[index].title} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 style: {
                                   "body": Style(
@@ -1525,6 +1526,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );
@@ -1732,6 +1734,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                           builder: (BuildContext context) =>
                               Testimonialprogramviewmore(
                                 apiurl: API.watchmoretestimonialcapacity,
+                                sharelink: Constantstring
+                                    .sharetestimonialviewmorecapacity,
                               )));
                   // Navigator.push(
                   //     context,

@@ -37,7 +37,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-              Navigator.pop(context);
+            Navigator.pop(context);
             // Navigator.push(
             //     context,
             //     MaterialPageRoute(
@@ -137,6 +137,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                         """${GlobalLists.homeceomsglist[widget.indexIs].title} """,
                                     onLinkTap: (url) {
                                       print("Opening $url...");
+                                      ShowDialogs.launchURL(url);
                                     },
                                     style: {
                                       "body": Style(
@@ -151,6 +152,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                         """${GlobalLists.homeceomsglist[widget.indexIs].details} """,
                                     onLinkTap: (url) {
                                       print("Opening $url...");
+                                      ShowDialogs.launchURL(url);
                                     },
                                   ),
                                   SizedBox(
@@ -192,6 +194,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                         """${GlobalLists.searcharticlelisting[widget.indexIs]['detail_page_url']} """,
                                     onLinkTap: (url) {
                                       print("Opening $url...");
+                                      ShowDialogs.launchURL(url);
                                     },
                                   ),
                                   SizedBox(

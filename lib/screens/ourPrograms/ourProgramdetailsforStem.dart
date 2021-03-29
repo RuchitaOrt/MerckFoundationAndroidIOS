@@ -19,10 +19,14 @@ import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 
 class OurProgramStem extends StatefulWidget {
-  OurProgramStem({Key key, this.title, this.indexpass}) : super(key: key);
+  OurProgramStem(
+      {Key key, this.title, this.indexpass, this.innertitle, this.innerdetail})
+      : super(key: key);
 
   final String title;
   final int indexpass;
+  final String innertitle;
+  final String innerdetail;
 
   @override
   _MyHomePageState createState() => _MyHomePageState(this.indexpass);
@@ -52,6 +56,7 @@ class _MyHomePageState extends State<OurProgramStem> {
   @override
   void initState() {
     super.initState();
+
     getstemprogram();
     mabialaFABController = AdvFabController();
   }
@@ -66,7 +71,14 @@ class _MyHomePageState extends State<OurProgramStem> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: AdvFabBottomBarBody(
-          screens: <Widget>[Merckstemprogram()],
+          screens: <Widget>[
+            widget.indexpass == 2
+                ? StemInnerPages(
+                    title: widget.innertitle,
+                    details: widget.innerdetail,
+                  )
+                : Merckstemprogram()
+          ],
           controller: mabialaFABController,
         ),
 
@@ -639,10 +651,16 @@ class _MyHomePageState extends State<OurProgramStem> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (BuildContext context) => StemInnerPages(
-                        title: res['list']['p_name'],
-                        details: res['list']['p_details'],
-                      )));
+                  builder: (BuildContext context) => OurProgramStem(
+                        indexpass: 2,
+                        innertitle: res['list']['p_name'],
+                        innerdetail: res['list']['p_details'],
+                      )
+                  //  StemInnerPages(
+                  //       title: res['list']['p_name'],
+                  //       details: res['list']['p_details'],
+                  //     )
+                  ));
         } else {
           setState(() {
             ShowDialogs.showToast(res['msg']);

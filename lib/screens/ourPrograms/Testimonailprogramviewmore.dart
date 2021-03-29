@@ -12,9 +12,11 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class Testimonialprogramviewmore extends StatefulWidget {
   final dynamic apiurl;
+  final dynamic sharelink;
   const Testimonialprogramviewmore({
     Key key,
     this.apiurl,
+    this.sharelink,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -52,7 +54,8 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
             Navigator.pop(context);
           },
           index: 2,
-          title: "Merck Testimonials",
+          sharelink: widget.sharelink,
+          title: "Merck Foundation Alumni Testimonials",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -77,42 +80,45 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
                               padding: const EdgeInsets.only(
                                   left: 8, right: 8, bottom: 6, top: 10),
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Center(
-                                    child: Container(
-                                      height: 200,
-                                      width: 180,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                            'assets/newImages/placeholder_3.jpg',
-                                        image:
-                                            GlobalLists.testimonialprobaseurl +
-                                                GlobalLists
-                                                    .testimonialprolist[index]
-                                                    .image,
-                                        fit: BoxFit.fill,
-                                        height: 150,
-                                      ),
+                                  Container(
+                                    height: 200,
+                                    width: 250,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder:
+                                          'assets/newImages/placeholder_3.jpg',
+                                      image: GlobalLists.testimonialprobaseurl +
+                                          GlobalLists
+                                              .testimonialprolist[index].image,
+                                      fit: BoxFit.fill,
+                                      imageScale: 1,
+                                      height: 150,
                                     ),
                                   ),
                                   Html(
-                                    data:
-                                        """${GlobalLists.testimonialprolist[index].testimonialName} """,
-                                    onLinkTap: (url) {
-                                      print("Opening $url...");
-                                    },
-                                    style: {
-                                      "body": Style(textAlign: TextAlign.start),
-                                    },
-                                  ),
+                                      data:
+                                          """${GlobalLists.testimonialprolist[index].testimonialName} """,
+                                      onLinkTap: (url) {
+                                        print("Opening $url...");
+                                        ShowDialogs.launchURL(url);
+                                      },
+                                      style: {
+                                        "body": Style(
+                                            fontSize: FontSize(17.0),
+                                            color: Customcolor.colorBlue,
+                                            textAlign: TextAlign.start,
+                                            fontWeight: FontWeight.w500),
+                                      }),
                                   Html(
                                     data:
                                         """${GlobalLists.testimonialprolist[index].departmentName} """,
                                     onLinkTap: (url) {
                                       print("Opening $url...");
+                                      ShowDialogs.launchURL(url);
                                     },
                                     style: {
                                       "body": Style(textAlign: TextAlign.start),
@@ -123,6 +129,7 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
                                         """${GlobalLists.testimonialprolist[index].details} """,
                                     onLinkTap: (url) {
                                       print("Opening $url...");
+                                      ShowDialogs.launchURL(url);
                                     },
                                     style: {
                                       "body": Style(textAlign: TextAlign.start),

@@ -884,6 +884,8 @@ class FirstLadiesInitiativeDetailsState
                                         builder: (BuildContext context) =>
                                             ViewmoremmtmAmbassadar(
                                               apiurl: API.watchfirstladymmtm,
+                                              sharelink: Constantstring
+                                                  .sharemmtmambassadarfirstlady,
                                             )));
                               },
                               child: Container(
@@ -1479,6 +1481,7 @@ class FirstLadiesInitiativeDetailsState
                                     """${GlobalLists.merckcancerawardlist[index].title} """,
                                 onLinkTap: (url) {
                                   print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
                                 },
                                 style: {
                                   "body": Style(
@@ -1543,6 +1546,7 @@ class FirstLadiesInitiativeDetailsState
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );

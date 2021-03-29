@@ -1805,6 +1805,7 @@ class EducatingLindaState extends State<EducatingLinda>
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );

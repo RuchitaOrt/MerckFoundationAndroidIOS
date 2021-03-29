@@ -109,6 +109,7 @@ class ourawardState extends State<Ouraward> {
                                   """${GlobalLists.awardlisting[index].title} """,
                               onLinkTap: (url) {
                                 print("Opening $url...");
+                                ShowDialogs.launchURL(url);
                               },
                               style: {
                                 "body": Style(

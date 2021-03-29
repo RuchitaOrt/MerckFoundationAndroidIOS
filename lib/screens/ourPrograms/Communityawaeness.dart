@@ -13,7 +13,6 @@ import 'package:merckfoundation22dec/model/subproaboutmmtmResponse.dart'
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 class CommunityAwareness extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -39,7 +38,7 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-            Navigator.pop(context);
+          Navigator.pop(context);
           // Navigator.push(
           //     context,
           //     MaterialPageRoute(
@@ -60,7 +59,7 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
         physics: ScrollPhysics(),
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
             child: ListView(
               shrinkWrap: true,
               physics: ScrollPhysics(),
@@ -174,6 +173,7 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
             onLinkTap: (url) {
               print("Opening $url...");
+              ShowDialogs.launchURL(url);
             },
           ),
         );
