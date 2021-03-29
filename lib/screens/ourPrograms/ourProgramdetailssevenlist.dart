@@ -91,10 +91,10 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
           onFloatingActionButtonTapped: () {
             mabialaFABController.setExpandedWidgetConfiguration(
               showLogs: true,
-              heightToExpandTo: 50,
+              heightToExpandTo: 80,
               expendedBackgroundColor: Customcolor.programyellow,
               withChild: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(top: 8,left: 8, right:8, bottom:20),
                 child: Container(
                   width: (MediaQuery.of(context).size.width) * 70,
 
@@ -108,7 +108,7 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                           onTap: () {
                             mabialaFABController.setExpandedWidgetConfiguration(
                               showLogs: true,
-                              heightToExpandTo: 50,
+                              heightToExpandTo: 80,
                               expendedBackgroundColor:
                                   Customcolor.programyellow,
                               withChild: Padding(

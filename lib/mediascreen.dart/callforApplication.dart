@@ -76,7 +76,7 @@ class CallApplicationState extends State<CallforApplication>
         },
         index: 2,
         sharelink: Constantstring.sharecallforapp,
-        title: "Upcoming Programa & Call For Application",
+        title: "Upcoming Programs & Call For Applications",
         titleImg: "assets/newImages/application_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -102,7 +102,7 @@ class CallApplicationState extends State<CallforApplication>
               tabs: <Widget>[
                 Tab(
                   child: Text(
-                    "Upcoming Call for \nApplication",
+                    "Upcoming Call for \nApplications",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         //   color: Customcolor.colorBlue,
@@ -112,7 +112,7 @@ class CallApplicationState extends State<CallforApplication>
                 ),
                 Tab(
                   child: Text(
-                    "Past Call for \nApplication",
+                    "Past Call for \nApplications",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                   ),

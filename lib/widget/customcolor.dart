@@ -51,6 +51,8 @@ class Customcolor {
   static const pinkbg = const Color(0xffFFA4D3);
   static const cardbg = const Color(0xffCEF5FF);
   static const stemskyblue = const Color(0xffA9E2FC);
+
+  static const purple = const Color(0xffb284be);
 }
 
 class AppFonts {

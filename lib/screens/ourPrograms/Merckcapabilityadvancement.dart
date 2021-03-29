@@ -8,9 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/model/CapacityAdvancement.dart'
     as merckcapabilty;
@@ -28,9 +26,7 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:merckfoundation22dec/widget/Imagephotogalley.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
@@ -1815,15 +1811,26 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                                         SizedBox(
                                           height: 4,
                                         ),
-                                        FormLabel(
-                                          text: GlobalLists
+                                        Html(
+                                          data: GlobalLists
                                               .mmttestimoniallist[index]
                                               .departmentName,
-                                          labelColor: Colors.black87,
-                                          fontSize: 13,
-                                          fontweight: FontWeight.w600,
-                                          maxLines: 2,
+                                          style: {
+                                            "body": Style(
+                                                fontSize: FontSize(13.0),
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.w600),
+                                          },
                                         ),
+                                        // FormLabel(
+                                        //   text: GlobalLists
+                                        //       .mmttestimoniallist[index]
+                                        //       .departmentName,
+                                        //   labelColor: Colors.black87,
+                                        //   fontSize: 13,
+                                        //   fontweight: FontWeight.w600,
+                                        //   maxLines: 2,
+                                        // ),
                                         SizedBox(
                                           height: 7,
                                         ),

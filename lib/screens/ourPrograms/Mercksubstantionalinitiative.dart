@@ -8,11 +8,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
-import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
 import 'package:merckfoundation22dec/model/Merckfoundationsubstaintion.dart'
     as mercksubstaintion;
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
@@ -30,7 +27,6 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 import 'package:flutter_html/flutter_html.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';

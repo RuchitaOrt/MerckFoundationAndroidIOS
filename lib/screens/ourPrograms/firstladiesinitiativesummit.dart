@@ -9,11 +9,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/ViewmoremmtmAmbassadar.dart';
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
-import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
 import 'package:merckfoundation22dec/model/FirstladiesRespose.dart'
     as firstlady;
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';

@@ -45,29 +45,29 @@ class _OurProgramState extends State<Ourprogram> {
   bool issliderSectionLoaded = false;
   List<programclass> _productsAvailable1 = [
     programclass(
-        programname: "Merck Foundation More Than A Mother",
+        programname: "Merck Foundation More Than A Mother         ",
         colors: Customcolor.text_blue),
     programclass(
-        programname: "Merck Foundation Cancer Access Program",
+        programname: "Merck Foundation Cancer Access Program     ",
         colors: Customcolor.colorLightGreen),
     programclass(
         programname:
             "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
-        colors: Customcolor.baby_blue),
+        colors: Customcolor.purple),
     programclass(
         programname: "Merck Foundation First Ladies Initiative Summit",
         colors: Customcolor.pink_col),
     programclass(
-        programname: "Merck Foundation STEM Program",
+        programname: "Merck Foundation STEM Program                  ",
         colors: Customcolor.colorVoilet),
     programclass(
         programname: "Merck Foundation Educating Linda Program",
-        colors: Customcolor.colorLightBlue),
+        colors: Customcolor.purple),
     programclass(
-        programname: "Merck Foundation Sustainability Initiative",
+        programname: "Merck Foundation Sustainability Initiative   ",
         colors: Customcolor.colorLightGreen),
     programclass(
-        programname: "Merck Foundation Africa Asia Luminary",
+        programname: "Merck Foundation Africa Asia Luminary      ",
         colors: Customcolor.colorGreen),
   ];
 
@@ -329,15 +329,19 @@ class _OurProgramState extends State<Ourprogram> {
                               // padding: const EdgeInsets.only(
                               //     left: 16, right: 16, top: 25, bottom: 25),
                               padding: const EdgeInsets.only(
-                                  left: 8, right: 8, top: 8, bottom: 8),
+                                  left: 5, right: 8, top: 4, bottom: 4),
                               child: Container(
                                 width: SizeConfig.blockSizeHorizontal * 80,
-                                child: FormLabel(
-                                  text: _productsAvailable1[index].programname,
-                                  labelColor: Colors.white,
-                                  fontSize: ResponsiveFlutter.of(context)
-                                      .fontSize(1.8),
-                                  fontweight: FontWeight.bold,
+                                height: 58,
+                                child: Center(
+                                  child: FormLabel(
+                                    text:
+                                        _productsAvailable1[index].programname,
+                                    labelColor: Colors.white,
+                                    fontSize: ResponsiveFlutter.of(context)
+                                        .fontSize(1.9),
+                                    fontweight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ),

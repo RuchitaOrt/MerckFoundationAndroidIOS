@@ -46,7 +46,7 @@ class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
             Navigator.pop(context);
           },
           index: 2,
-          title: "Merck Foundation Healthcare Capacity BUilding",
+          title: "Merck Foundation Healthcare Capacity Building",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",

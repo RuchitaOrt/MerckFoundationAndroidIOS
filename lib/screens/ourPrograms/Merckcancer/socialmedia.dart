@@ -1,11 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:flutter_share_me/flutter_share_me.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:social_share_plugin/social_share_plugin.dart';
 
 class SocialMedia extends StatefulWidget {
   @override
@@ -61,9 +62,21 @@ class SocialMediaState extends State<SocialMedia> {
                     children: [
                       GestureDetector(
                         onTap: () async {
-                          var response = await FlutterShareMe().openinsta(
-                              url: 'https://twitter.com/merck_mccp/',
-                              msg: "Share");
+                          Platform.isAndroid
+                              ? await FlutterShareMe().openinsta(
+                                  url: 'https://twitter.com/merck_mccp/',
+                                  msg: "Share")
+                              : await SocialSharePlugin.shareToTwitterLink(
+                                  text: "Share",
+                                  url: "https://twitter.com/merck_mccp/",
+                                  onSuccess: (_) {
+                                    print('TWITTER SUCCESS');
+                                    return;
+                                  },
+                                  onCancel: () {
+                                    print('TWITTER CANCELLED');
+                                    return;
+                                  });
                         },
                         child: Image.asset(
                           "assets/newImages/twitter.png",
@@ -76,10 +89,28 @@ class SocialMediaState extends State<SocialMedia> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          var response = await FlutterShareMe().openinsta(
-                              url:
-                                  'https://www.facebook.com/MerckCancerControlProgram/',
-                              msg: "Share");
+                          Platform.isAndroid
+                              ? await FlutterShareMe().openinsta(
+                                  url:
+                                      'https://www.facebook.com/MerckCancerControlProgram/',
+                                  msg: "Share")
+                              : await SocialSharePlugin.shareToFeedFacebookLink(
+                                  quote: "Share",
+                                  url:
+                                      "https://www.facebook.com/MerckCancerControlProgram/",
+                                  onSuccess: (_) {
+                                    print('FACEBOOK SUCCESS');
+                                    return;
+                                  },
+                                  onCancel: () {
+                                    print('FACEBOOK CANCELLED');
+                                    return;
+                                  },
+                                  onError: (error) {
+                                    print('FACEBOOK ERROR $error');
+                                    return;
+                                  },
+                                );
                         },
                         child: Image.asset(
                           "assets/newImages/facebook.png",
@@ -92,10 +123,13 @@ class SocialMediaState extends State<SocialMedia> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          var response = await FlutterShareMe().openinsta(
-                              url:
-                                  'https://www.youtube.com/channel/UCokfpTgsO86UV4YzUXXqDAw',
-                              msg: "Share");
+                          Platform.isAndroid
+                              ? await FlutterShareMe().openinsta(
+                                  url:
+                                      'https://www.youtube.com/channel/UCokfpTgsO86UV4YzUXXqDAw',
+                                  msg: "Share")
+                              : ShowDialogs.youtubevideolink(
+                                  "https://www.youtube.com/channel/UCokfpTgsO86UV4YzUXXqDAw");
                         },
                         child: Image.asset(
                           "assets/newImages/youtube.png",
@@ -125,10 +159,28 @@ class SocialMediaState extends State<SocialMedia> {
                     children: [
                       GestureDetector(
                         onTap: () async {
-                          var response = await FlutterShareMe().openinsta(
-                              url:
-                                  'https://www.facebook.com/Merckmorethanapatient/',
-                              msg: "Share");
+                          Platform.isAndroid
+                              ? await FlutterShareMe().openinsta(
+                                  url:
+                                      'https://www.facebook.com/Merckmorethanapatient/',
+                                  msg: "Share")
+                              : await SocialSharePlugin.shareToFeedFacebookLink(
+                                  quote: "Share",
+                                  url:
+                                      "https://www.facebook.com/Merckmorethanapatient/",
+                                  onSuccess: (_) {
+                                    print('FACEBOOK SUCCESS');
+                                    return;
+                                  },
+                                  onCancel: () {
+                                    print('FACEBOOK CANCELLED');
+                                    return;
+                                  },
+                                  onError: (error) {
+                                    print('FACEBOOK ERROR $error');
+                                    return;
+                                  },
+                                );
                         },
                         child: Image.asset(
                           "assets/newImages/facebook.png",
@@ -141,9 +193,21 @@ class SocialMediaState extends State<SocialMedia> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          var response = await FlutterShareMe().openinsta(
-                              url: 'https://twitter.com/merck4patients',
-                              msg: "Share");
+                          Platform.isAndroid
+                              ? await FlutterShareMe().openinsta(
+                                  url: 'https://twitter.com/merck4patients',
+                                  msg: "Share")
+                              : await SocialSharePlugin.shareToTwitterLink(
+                                  text: "Share",
+                                  url: "https://twitter.com/merck4patients",
+                                  onSuccess: (_) {
+                                    print('TWITTER SUCCESS');
+                                    return;
+                                  },
+                                  onCancel: () {
+                                    print('TWITTER CANCELLED');
+                                    return;
+                                  });
                         },
                         child: Image.asset(
                           "assets/newImages/twitter.png",
@@ -156,10 +220,22 @@ class SocialMediaState extends State<SocialMedia> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          var response = await FlutterShareMe().openinsta(
-                              url:
-                                  'https://www.facebook.com/Merckmorethanapatient/',
-                              msg: "Share");
+                          Platform.isAndroid
+                              ? await FlutterShareMe().openinsta(
+                                  url:
+                                      'https://www.facebook.com/Merckmorethanapatient/',
+                                  msg: "Share")
+                              : await SocialSharePlugin.shareToFeedInstagram(
+                                  path:
+                                      "https://www.facebook.com/Merckmorethanapatient/",
+                                  onSuccess: (_) {
+                                    print('TWITTER SUCCESS');
+                                    return;
+                                  },
+                                  onCancel: () {
+                                    print('TWITTER CANCELLED');
+                                    return;
+                                  });
                         },
                         child: Image.asset(
                           "assets/newImages/instagram.png",

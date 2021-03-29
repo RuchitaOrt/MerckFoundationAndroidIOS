@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/style.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -154,23 +156,33 @@ class CustomCardState extends State<CustomeCardforTestimonial> {
             ),
           ),
           SizedBox(
-            height: 5,
+            height: 2,
           ),
           Center(
-            child: Text(
-              widget.departmentname,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 17,
+              child: Html(
+            data: widget.departmentname,
+            style: {
+              "body": Style(
+                  fontSize: FontSize(17.0),
                   color: Customcolor.colorBlue,
                   fontWeight: FontWeight.w500),
-              // fontSize: 17,
-              // labelColor: Colors.white,
-              // fontweight: FontWeight.w500,
-            ),
-          ),
+            },
+          )
+
+              // Text(
+              //   widget.departmentname,
+              //   overflow: TextOverflow.ellipsis,
+              //   maxLines: 2,
+              //   textAlign: TextAlign.center,
+              //   style: TextStyle(
+              //       fontSize: 17,
+              //       color: Customcolor.colorBlue,
+              //       fontWeight: FontWeight.w500),
+              //   // fontSize: 17,
+              //   // labelColor: Colors.white,
+              //   // fontweight: FontWeight.w500,
+              // ),
+              ),
           Text(
             widget.subTitle,
             overflow: TextOverflow.ellipsis,

@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/utility/APIManager.dart';
-import 'package:merckfoundation22dec/utility/GlobalLists.dart';
-import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 

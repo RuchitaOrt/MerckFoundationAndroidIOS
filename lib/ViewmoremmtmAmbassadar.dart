@@ -154,7 +154,7 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 2,
                       crossAxisCount: 2,
-                      childAspectRatio: Platform.isIOS ? 0.86 : 0.8,
+                      childAspectRatio: Platform.isIOS ? 0.75 : 0.8,
                       children: List.generate(
                           GlobalLists.viewmoremmtmlist.length, (index) {
                         if (GlobalLists.viewmoremmtmlist.length - 1 == index &&

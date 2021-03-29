@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
-import 'package:merckfoundation22dec/widget/MycustomClipPath.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
 class Landingpage extends StatefulWidget {
@@ -32,17 +29,17 @@ class _LandingpageState extends State<Landingpage> {
         physics: ScrollPhysics(),
         children: <Widget>[
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           Center(
             child: Image.asset(
               'assets/newImages/logo_menu.png',
               width: 200,
-              height: 140,
+              height: 125,
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           Center(
             child: FormLabel(
@@ -70,7 +67,7 @@ class _LandingpageState extends State<Landingpage> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Container(
-              height: 380,
+              height: 370,
               decoration: BoxDecoration(
                   //borderRadius: BorderRadius.all(Radius.circular(50.0)),
                   image: new DecorationImage(
@@ -106,7 +103,7 @@ class _LandingpageState extends State<Landingpage> {
             // ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 90, right: 90, top: 40),
+            padding: const EdgeInsets.only(left: 90, right: 90, top: 10),
             child: FlatButton(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),

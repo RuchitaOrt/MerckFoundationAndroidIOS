@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/style.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/GalleryProgram.dart';
@@ -2167,15 +2168,25 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                         SizedBox(
                                           height: 4,
                                         ),
-                                        FormLabel(
-                                          text: GlobalLists
-                                              .mmttestimoniallist[index]
-                                              .departmentName,
-                                          labelColor: Colors.black87,
-                                          fontSize: 13,
-                                          fontweight: FontWeight.w600,
-                                          maxLines: 2,
-                                        ),
+
+                                        Html(
+            data: GlobalLists.mmttestimoniallist[index].departmentName,
+            style: {
+              "body": Style(
+                  fontSize: FontSize(13.0),
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600),
+            },
+          ),
+                                        // FormLabel(
+                                        //   text: GlobalLists
+                                        //       .mmttestimoniallist[index]
+                                        //       .departmentName,
+                                        //   labelColor: Colors.black87,
+                                        //   fontSize: 13,
+                                        //   fontweight: FontWeight.w600,
+                                        //   maxLines: 2,
+                                        // ),
                                         SizedBox(
                                           height: 7,
                                         ),

@@ -1,10 +1,7 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:merckfoundation22dec/model/visionResponse.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -13,8 +10,6 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:flutter_html/style.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
 
 class StemInnerPages extends StatefulWidget {
   final String title;

@@ -3,16 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/Landingpage.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/screens/home.dart';
 import 'package:merckfoundation22dec/utility/SPManager.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
-import 'package:merckfoundation22dec/utility/APIManager.dart';
-import 'package:merckfoundation22dec/model/homeheader.dart';
-import 'package:merckfoundation22dec/widget/customcolor.dart';
 
-import '../login.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

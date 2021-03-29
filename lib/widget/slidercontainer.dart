@@ -102,7 +102,7 @@ class Callforapptext extends StatelessWidget {
             ),
           ),
           TextSpan(
-            text: "Application",
+            text: "Applications",
             style: TextStyle(
               color: Customcolor.pink_col,
               fontSize: 18,

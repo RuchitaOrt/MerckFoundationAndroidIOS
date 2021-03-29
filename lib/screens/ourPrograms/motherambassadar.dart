@@ -60,12 +60,13 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 1,
-                      )));
+            Navigator.pop(context);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => Dashboard(
+          //               index: 1,
+          //             )));
         },
         index: 2,
         sharelink: Constantstring.merckambassadar,

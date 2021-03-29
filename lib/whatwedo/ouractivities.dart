@@ -127,47 +127,81 @@ class OurActivityState extends State<OurActivity> {
         controller: _sc,
         physics: ScrollPhysics(),
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-            child: ListView(
-              shrinkWrap: true,
-              //  crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
+
+
+           SizedBox(
                   height: 10,
                 ),
-                GlobalLists.ourActivitiesObjectives.length <= 0
-                    ? Container(
-                        child: Center(child: Text(Constantstring.emptyData)),
-                      )
-                    : Html(
-                        data:
-                            """${GlobalLists.ourActivitiesObjectives[0].pageContent} """,
-                        onLinkTap: (url) {
-                          print("Opening $url...");
-                        },
-                        // style: {
-                        //   "body": Style(
-                        //     fontSize: FontSize(
-                        //         ResponsiveFlutter.of(context).fontSize(2.2)),
-                        //     fontWeight: FontWeight.w600,
-                        //     color: Customcolor.pink_col,
-                        //   ),
-                        // },
-                      ),
+
+
+                   GlobalLists.ourActivitiesObjectives.length <= 0
+                    ? Padding(
+                      padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+                      child: Container(
+                          child: Center(child: Text(Constantstring.emptyData)),
+                        ),
+                    )
+                    : Padding(
+                    padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+                      child: Html(
+                          data:
+                              """${GlobalLists.ourActivitiesObjectives[0].pageContent} """,
+                          onLinkTap: (url) {
+                            print("Opening $url...");
+                          },
+                          // style: {
+                          //   "body": Style(
+                          //     fontSize: FontSize(
+                          //         ResponsiveFlutter.of(context).fontSize(2.2)),
+                          //     fontWeight: FontWeight.w600,
+                          //     color: Customcolor.pink_col,
+                          //   ),
+                          // },
+                        ),
+                    ),
                 SizedBox(
                   height: 15,
                 ),
-                // FormLabel(
-                //   text:
-                //       "The Merck Foundation focuses on activities that will contribute towards the Sustainable Development Goals (SDGs) as outlined by the United Nations.",
-                //   labelColor: Customcolor.text_darkgrey,
-                //   fontweight: FontWeight.w400,
-                //   fontSize: ResponsiveFlutter.of(context).fontSize(1.9),
-                // ),
-              ],
-            ),
-          ),
+          
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+          //   child: ListView(
+          //     shrinkWrap: true,
+          //     //  crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+             
+          //       GlobalLists.ourActivitiesObjectives.length <= 0
+          //           ? Container(
+          //               child: Center(child: Text(Constantstring.emptyData)),
+          //             )
+          //           : Html(
+          //               data:
+          //                   """${GlobalLists.ourActivitiesObjectives[0].pageContent} """,
+          //               onLinkTap: (url) {
+          //                 print("Opening $url...");
+          //               },
+          //               // style: {
+          //               //   "body": Style(
+          //               //     fontSize: FontSize(
+          //               //         ResponsiveFlutter.of(context).fontSize(2.2)),
+          //               //     fontWeight: FontWeight.w600,
+          //               //     color: Customcolor.pink_col,
+          //               //   ),
+          //               // },
+          //             ),
+          //       SizedBox(
+          //         height: 15,
+          //       ),
+          //       // FormLabel(
+          //       //   text:
+          //       //       "The Merck Foundation focuses on activities that will contribute towards the Sustainable Development Goals (SDGs) as outlined by the United Nations.",
+          //       //   labelColor: Customcolor.text_darkgrey,
+          //       //   fontweight: FontWeight.w400,
+          //       //   fontSize: ResponsiveFlutter.of(context).fontSize(1.9),
+          //       // ),
+          //     ],
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
             child: FormLabel(
