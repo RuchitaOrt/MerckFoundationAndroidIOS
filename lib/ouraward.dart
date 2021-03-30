@@ -256,6 +256,7 @@ class ourawardState extends State<Ouraward> {
                 MaterialPageRoute(
                     builder: (BuildContext context) => OurAwardDetail(
                           detaill: GlobalLists.awarddetallisting,
+                          pageurl: pageurl,
                         )));
           });
         } else {

@@ -87,99 +87,127 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                         child: Center(child: Text(Constantstring.emptyData)),
                       ),
                     )
-                  : GridView.count(
+                  : ListView(
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
-                      padding: const EdgeInsets.all(5),
-                      crossAxisSpacing: 0,
-                      mainAxisSpacing: 2,
-                      crossAxisCount: 2,
-                      childAspectRatio: Platform.isIOS ? 0.75 : 0.8,
-                      children: List.generate(
-                          GlobalLists.digitallibraryviewlist.length, (index) {
-                        if (GlobalLists.digitallibraryviewlist.length - 1 ==
-                                index &&
-                            _isLoading) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 2.0),
-                            child: Card(
-                                elevation: 2,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(1),
+                      children: [
+                        GridView.count(
+                          shrinkWrap: true,
+                          physics: ScrollPhysics(),
+                          padding: const EdgeInsets.all(5),
+                          crossAxisSpacing: 0,
+                          mainAxisSpacing: 2,
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.9,
+                          children: List.generate(
+                              GlobalLists.digitallibraryviewlist.length,
+                              (index) {
+                            // if (GlobalLists.digitallibraryviewlist.length - 1 ==
+                            //         index &&
+                            //     _isLoading) {
+                            //   return Center(
+                            //     child: CircularProgressIndicator(),
+                            //   );
+                            // } else {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 2.0),
+                              child: Card(
+                                  elevation: 2,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(1),
+                                    ),
                                   ),
-                                ),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    _launchURL(GlobalLists
-                                            .programdigitalcontentbaseurl +
-                                        GlobalLists
-                                            .digitallibraryviewlist[index]
-                                            .document);
-                                  },
-                                  child: Container(
-                                    color: Colors.transparent,
-                                    width: SizeConfig.blockSizeHorizontal * 50,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            width:
-                                                SizeConfig.blockSizeHorizontal *
-                                                    100,
-                                            height: 150,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              // border: Border.all(
-                                              //   width: 1,
-                                              // ),
-                                              image: new DecorationImage(
-                                                image: new NetworkImage(GlobalLists
-                                                        .programdigitalcontentbaseurl +
-                                                    GlobalLists
-                                                        .digitallibraryviewlist[
-                                                            index]
-                                                        .image),
-                                                fit: BoxFit.contain,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      _launchURL(GlobalLists
+                                              .programdigitalcontentbaseurl +
+                                          GlobalLists
+                                              .digitallibraryviewlist[index]
+                                              .document);
+                                    },
+                                    child: Container(
+                                      color: Colors.transparent,
+                                      width:
+                                          SizeConfig.blockSizeHorizontal * 50,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              width: SizeConfig
+                                                      .blockSizeHorizontal *
+                                                  100,
+                                              height:
+                                                  SizeConfig.blockSizeVertical *
+                                                      16,
+                                              // width:
+                                              //     SizeConfig.blockSizeHorizontal *
+                                              //         100,
+                                              // height: 150,
+
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                // border: Border.all(
+                                                //   width: 1,
+                                                // ),
+                                                image: new DecorationImage(
+                                                  image: new NetworkImage(GlobalLists
+                                                          .programdigitalcontentbaseurl +
+                                                      GlobalLists
+                                                          .digitallibraryviewlist[
+                                                              index]
+                                                          .image),
+                                                  fit: BoxFit.contain,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: Text(
-                                            GlobalLists
-                                                .digitallibraryviewlist[index]
-                                                .title,
-                                            textAlign: TextAlign.center,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: ResponsiveFlutter.of(
-                                                        context)
-                                                    .fontSize(1.4),
-                                                fontWeight: FontWeight.w500),
-                                            maxLines: 3,
+                                          Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: Center(
+                                              child: Text(
+                                                GlobalLists
+                                                    .digitallibraryviewlist[
+                                                        index]
+                                                    .title,
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize:
+                                                        ResponsiveFlutter.of(
+                                                                context)
+                                                            .fontSize(1.4),
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                                maxLines: 3,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(height: 5),
-                                      ],
+                                          SizedBox(height: 5),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                )),
-                          );
-                        }
-                      }),
+                                  )),
+                            );
+                            // }
+                          }),
+                        ),
+                        _isLoading
+                            ? Center(
+                                child: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 10, bottom: 10),
+                                child: CircularProgressIndicator(),
+                              ))
+                            : Container()
+                      ],
                     ),
         ],
       ),

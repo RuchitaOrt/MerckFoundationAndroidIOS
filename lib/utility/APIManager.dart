@@ -62,6 +62,7 @@ import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
 import 'package:merckfoundation22dec/model/TestimonialProgram.dart';
 import 'package:merckfoundation22dec/model/our_gallery_detail_response.dart';
 import 'package:merckfoundation22dec/model/Merckoverview.dart';
+import 'package:merckfoundation22dec/model/CreategallerymobileResponse.dart';
 
 //Note URL need to change in configuration.json and also in these file fetchget method
 enum API {
@@ -212,7 +213,10 @@ enum API {
 
   //yearwise photo
   yearwisegallery,
-  homeheader
+  homeheader,
+
+  //create gallery viewmore
+  creategallerymobile
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -754,6 +758,10 @@ class APIManager {
       case API.homeheader:
         apiPathString = "program_page_api/header/Android/1";
         break;
+      case API.creategallerymobile:
+        apiPathString = "create_gallery_mobile";
+        break;
+
       default:
         apiPathString = "HomeheaderResponse";
     }
@@ -1169,6 +1177,7 @@ class APIManager {
       case API.filterlist:
       case API.ourawarddetail:
       case API.ourgallerydetail:
+      case API.creategallerymobile:
         // case API.legaldisclaimer:
         //  case API.mission:
         //  case API.ourActivities:
@@ -1427,6 +1436,9 @@ class APIManager {
       case API.homeheader:
         className = "HomeheaderResponse";
         break;
+      case API.creategallerymobile:
+        className = "CreategallerymobileResponse";
+        break;
       default:
         className = 'CommonResponse';
     }
@@ -1629,6 +1641,10 @@ class APIManager {
     if (className == "HomeheaderResponse") {
       //enterhere
       responseObj = HomeheaderResponse.fromJson(json);
+    }
+    if (className == "CreategallerymobileResponse") {
+      //enterhere
+      responseObj = CreategallerymobileResponse.fromJson(json);
     }
 
     return responseObj;

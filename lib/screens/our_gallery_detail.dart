@@ -67,6 +67,9 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
           cardImage: "assets/newImages/ourvison.png",
           cardTitle: galleryDetailsResponse.list.keys.elementAt(i),
           btnTitle: "View More",
+          onbtnTap: () {
+            //need to do code here
+          },
           titleColor: Customcolor.text_blue,
           titleImg: "assets/newImages/flowers-3.png",
           list: ListView.builder(
@@ -357,26 +360,26 @@ class CustomCard extends StatelessWidget {
         SizedBox(
           height: 9,
         ),
-        // Center(
-        //   child: GestureDetector(
-        //     onTap: onbtnTap,
-        //     child: Container(
-        //       width: 120,
-        //       height: 40,
-        //       decoration: BoxDecoration(
-        //           color: Colors.amber, borderRadius: BorderRadius.circular(5)),
-        //       child: Center(
-        //         child: Text(
-        //           btnTitle,
-        //           style: TextStyle(
-        //               color: Customcolor.colorBlue,
-        //               fontSize: 15,
-        //               fontWeight: FontWeight.w500),
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
+        Center(
+          child: GestureDetector(
+            onTap: onbtnTap,
+            child: Container(
+              width: 120,
+              height: 40,
+              decoration: BoxDecoration(
+                  color: Colors.amber, borderRadius: BorderRadius.circular(5)),
+              child: Center(
+                child: Text(
+                  btnTitle,
+                  style: TextStyle(
+                      color: Customcolor.colorBlue,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }

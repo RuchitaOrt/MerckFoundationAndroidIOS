@@ -1848,17 +1848,21 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       } else {
         ShowDialogs.showToast(GlobalLists.serverresp);
         _tabController = new TabController(vsync: this, length: 0);
-        isbottomSectionLoaded = true;
-        isMiddleSectionLoaded = true;
-        isrightSectionLoaded = true;
-        issliderSectionLoaded = true;
+        setState(() {
+          isbottomSectionLoaded = true;
+          isMiddleSectionLoaded = true;
+          isrightSectionLoaded = true;
+          issliderSectionLoaded = true;
+        });
       }
     } else {
       _tabController = new TabController(vsync: this, length: 0);
-      isMiddleSectionLoaded = true;
-      issliderSectionLoaded = true;
-      isrightSectionLoaded = true;
-      isbottomSectionLoaded = true;
+      setState(() {
+        isMiddleSectionLoaded = true;
+        issliderSectionLoaded = true;
+        isrightSectionLoaded = true;
+        isbottomSectionLoaded = true;
+      });
       ShowDialogs.showToast("Please check internet connection");
     }
   }

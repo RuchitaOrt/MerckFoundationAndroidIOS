@@ -141,110 +141,127 @@ class MMTMProgramState extends State<MMTMProgram> {
                                 Center(child: Text(Constantstring.emptyData)),
                           ),
                         )
-                      : GridView.count(
+                      : ListView(
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.9,
-                          children: List.generate(GlobalLists.mmtmlist.length,
-                              (index) {
-                            if (GlobalLists.mmtmlist.length - 1 == index &&
-                                _isLoading) {
-                              return Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            } else {
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 2.0),
-                                child: Card(
-                                    elevation: 2,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(1),
+                          children: [
+                            GridView.count(
+                              shrinkWrap: true,
+                              physics: ScrollPhysics(),
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.9,
+                              children: List.generate(
+                                  GlobalLists.mmtmlist.length, (index) {
+                                // if (GlobalLists.mmtmlist.length - 1 == index &&
+                                //     _isLoading) {
+                                //   return Center(
+                                //     child: CircularProgressIndicator(),
+                                //   );
+                                // } else {
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 2.0),
+                                  child: Card(
+                                      elevation: 2,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(1),
+                                        ),
                                       ),
-                                    ),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        var storykey = GlobalLists
-                                            .mmtmlist[index].videoLink
-                                            .substring(GlobalLists
-                                                    .mmtmlist[index]
-                                                    .videoLink
-                                                    .length -
-                                                11);
-                                        ShowDialogs.youtubevideolink(
-                                            "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-                                        // _launchInWebViewWithJavaScript(
-                                        //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (BuildContext context) =>
-                                        //             VideoPlayer(
-                                        //               videoUrl: GlobalLists
-                                        //                   .mmtmlist[index].videoLink,
-                                        //             )));
-                                      },
-                                      child: Container(
-                                        color: Colors.transparent,
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 50,
-                                        child: ListView(
-                                          shrinkWrap: true,
-                                          physics: ScrollPhysics(),
-                                          // mainAxisAlignment: MainAxisAlignment.start,
-                                          // crossAxisAlignment:
-                                          //     CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Container(
-                                                width: SizeConfig
-                                                        .blockSizeHorizontal *
-                                                    100,
-                                                height: 120,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  // border: Border.all(
-                                                  //   width: 1,
-                                                  // ),
-                                                  image: new DecorationImage(
-                                                    image: new NetworkImage(
-                                                        'https://img.youtube.com/vi/${GlobalLists.mmtmlist[index].videoLink.substring(GlobalLists.mmtmlist[index].videoLink.length - 11)}/mqdefault.jpg'),
-                                                    fit: BoxFit.cover,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          var storykey = GlobalLists
+                                              .mmtmlist[index].videoLink
+                                              .substring(GlobalLists
+                                                      .mmtmlist[index]
+                                                      .videoLink
+                                                      .length -
+                                                  11);
+                                          ShowDialogs.youtubevideolink(
+                                              "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                          // _launchInWebViewWithJavaScript(
+                                          //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder: (BuildContext context) =>
+                                          //             VideoPlayer(
+                                          //               videoUrl: GlobalLists
+                                          //                   .mmtmlist[index].videoLink,
+                                          //             )));
+                                        },
+                                        child: Container(
+                                          color: Colors.transparent,
+                                          width:
+                                              SizeConfig.blockSizeHorizontal *
+                                                  50,
+                                          child: ListView(
+                                            shrinkWrap: true,
+                                            physics: ScrollPhysics(),
+                                            // mainAxisAlignment: MainAxisAlignment.start,
+                                            // crossAxisAlignment:
+                                            //     CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Container(
+                                                  width: SizeConfig
+                                                          .blockSizeHorizontal *
+                                                      100,
+                                                  height: 120,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    // border: Border.all(
+                                                    //   width: 1,
+                                                    // ),
+                                                    image: new DecorationImage(
+                                                      image: new NetworkImage(
+                                                          'https://img.youtube.com/vi/${GlobalLists.mmtmlist[index].videoLink.substring(GlobalLists.mmtmlist[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(4.0),
-                                              child: Text(
-                                                GlobalLists
-                                                    .mmtmlist[index].videoDesc,
-                                                textAlign: TextAlign.center,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize:
-                                                        ResponsiveFlutter.of(
-                                                                context)
-                                                            .fontSize(1.4),
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                                maxLines: 3,
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Text(
+                                                  GlobalLists.mmtmlist[index]
+                                                      .videoDesc,
+                                                  textAlign: TextAlign.center,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize:
+                                                          ResponsiveFlutter.of(
+                                                                  context)
+                                                              .fontSize(1.4),
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  maxLines: 3,
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(height: 5),
-                                          ],
+                                              SizedBox(height: 5),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    )),
-                              );
-                            }
-                          }),
+                                      )),
+                                );
+                                //}
+                              }),
+                            ),
+                            _isLoading
+                                ? Center(
+                                    child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 10, bottom: 10),
+                                    child: CircularProgressIndicator(),
+                                  ))
+                                : Container()
+                          ],
                         ),
               // Padding(
               //   padding: const EdgeInsets.only(

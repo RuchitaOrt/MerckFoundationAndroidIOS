@@ -138,13 +138,13 @@ class StoriesState extends State<Stories> {
             _scaffoldKey1.currentState.openEndDrawer();
           },
           onTapval: () {
-            Navigator.pop(context);
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (BuildContext context) => Dashboard(
-            //               index: 0,
-            //             )));
+            //  Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Dashboard(
+                          index: 0,
+                        )));
           },
           index: 2,
           forfilterindes: 3,
@@ -185,203 +185,221 @@ class StoriesState extends State<Stories> {
                                 Center(child: Text(Constantstring.emptyData)),
                           ),
                         )
-                      : GridView.builder(
+                      : ListView(
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
-                          //controller: _sc,
-                          // crossAxisCount: 2,
-                          // childAspectRatio: 0.8,
-                          itemCount: GlobalLists.storiesList.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.9,
-                          ),
-                          itemBuilder: (BuildContext context, index) {
-                            if (GlobalLists.storiesList.length - 1 == index &&
-                                _isLoading) {
-                              return Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            } else {
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 2.0),
-                                child: Card(
-                                    elevation: 2,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(1),
-                                      ),
-                                    ),
-                                    child: GestureDetector(
-                                      onTap: () async {
-                                        var storykey = GlobalLists
-                                            .storiesList[index].videoLink
-                                            .substring(GlobalLists
-                                                    .storiesList[index]
-                                                    .videoLink
-                                                    .length -
-                                                11);
-                                        ShowDialogs.youtubevideolink(
-                                            "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-                                        // var response = await FlutterShareMe()
-                                        //     .openinsta(
-                                        //         url:
-                                        //             'https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1',
-                                        //         msg: "Youtube");
-                                        // _launchInWebViewWithJavaScript(
-                                        //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-                                      },
-                                      child: Container(
-                                        color: Colors.transparent,
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 50,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Stack(
-                                                children: [
-                                                  Container(
-                                                    width: SizeConfig
-                                                            .blockSizeHorizontal *
-                                                        100,
-                                                    height: SizeConfig
-                                                            .blockSizeVertical *
-                                                        15,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      // border: Border.all(
-                                                      //   width: 1,
-                                                      // ),
-                                                      image:
-                                                          new DecorationImage(
-                                                        image: new NetworkImage(
-                                                            'https://img.youtube.com/vi/${GlobalLists.storiesList[index].videoLink.substring(GlobalLists.storiesList[index].videoLink.length - 11)}/mqdefault.jpg'),
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  PauseImage()
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(4.0),
-                                              child: Text(
-                                                GlobalLists.storiesList[index]
-                                                    .videoDesc,
-                                                textAlign: TextAlign.center,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize:
-                                                        ResponsiveFlutter.of(
-                                                                context)
-                                                            .fontSize(1.4),
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                                maxLines: 3,
-                                              ),
-                                            ),
-                                            SizedBox(height: 5),
-                                          ],
+                          children: [
+                            GridView.builder(
+                                shrinkWrap: true,
+                                physics: ScrollPhysics(),
+                                //controller: _sc,
+                                // crossAxisCount: 2,
+                                // childAspectRatio: 0.8,
+                                itemCount: GlobalLists.storiesList.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 0.9,
+                                ),
+                                itemBuilder: (BuildContext context, index) {
+                                  // if (GlobalLists.storiesList.length - 1 == index &&
+                                  //     _isLoading) {
+                                  //   return Center(
+                                  //     child: CircularProgressIndicator(),
+                                  //   );
+                                  // } else {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(right: 2.0),
+                                    child: Card(
+                                        elevation: 2,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(1),
+                                          ),
                                         ),
-                                      ),
-                                    )),
-                              );
-                            }
-                          }
-                          // children: List.generate(
-                          //     GlobalLists.storiesList.length, (index) {
-                          //   return Padding(
-                          //     padding: const EdgeInsets.only(right: 2.0),
-                          //     child: Card(
-                          //         elevation: 2,
-                          //         shape: RoundedRectangleBorder(
-                          //           borderRadius: BorderRadius.all(
-                          //             Radius.circular(1),
-                          //           ),
-                          //         ),
-                          //         child: GestureDetector(
-                          //           onTap: () {
-                          //             var storykey = GlobalLists
-                          //                 .storiesList[index].videoLink
-                          //                 .substring(GlobalLists
-                          //                         .storiesList[index]
-                          //                         .videoLink
-                          //                         .length -
-                          //                     11);
-                          //             _launchInWebViewWithJavaScript(
-                          //                 "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-                          //           },
-                          //           child: Container(
-                          //             color: Colors.transparent,
-                          //             width:
-                          //                 SizeConfig.blockSizeHorizontal * 50,
-                          //             child: Column(
-                          //               mainAxisAlignment:
-                          //                   MainAxisAlignment.start,
-                          //               crossAxisAlignment:
-                          //                   CrossAxisAlignment.start,
-                          //               children: <Widget>[
-                          //                 Padding(
-                          //                   padding:
-                          //                       const EdgeInsets.all(8.0),
-                          //                   child: Container(
-                          //                     width: SizeConfig
-                          //                             .blockSizeHorizontal *
-                          //                         100,
-                          //                     height: 120,
-                          //                     decoration: BoxDecoration(
-                          //                       borderRadius:
-                          //                           BorderRadius.circular(5),
-                          //                       // border: Border.all(
-                          //                       //   width: 1,
-                          //                       // ),
-                          //                       image: new DecorationImage(
-                          //                         image: new NetworkImage(
-                          //                             'https://img.youtube.com/vi/${GlobalLists.storiesList[index].videoLink.substring(GlobalLists.storiesList[index].videoLink.length - 11)}/mqdefault.jpg'),
-                          //                         fit: BoxFit.cover,
-                          //                       ),
-                          //                     ),
-                          //                   ),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding:
-                          //                       const EdgeInsets.all(4.0),
-                          //                   child: Text(
-                          //                     GlobalLists.storiesList[index]
-                          //                         .videoDesc,
-                          //                     textAlign: TextAlign.center,
-                          //                     overflow: TextOverflow.ellipsis,
-                          //                     style: TextStyle(
-                          //                         color: Colors.black,
-                          //                         fontSize:
-                          //                             ResponsiveFlutter.of(
-                          //                                     context)
-                          //                                 .fontSize(1.4),
-                          //                         fontWeight:
-                          //                             FontWeight.w500),
-                          //                     maxLines: 3,
-                          //                   ),
-                          //                 ),
-                          //                 SizedBox(height: 5),
-                          //               ],
-                          //             ),
-                          //           ),
-                          //         )),
-                          //   );
-                          // }),
-                          ),
+                                        child: GestureDetector(
+                                          onTap: () async {
+                                            var storykey = GlobalLists
+                                                .storiesList[index].videoLink
+                                                .substring(GlobalLists
+                                                        .storiesList[index]
+                                                        .videoLink
+                                                        .length -
+                                                    11);
+                                            ShowDialogs.youtubevideolink(
+                                                "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                            // var response = await FlutterShareMe()
+                                            //     .openinsta(
+                                            //         url:
+                                            //             'https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1',
+                                            //         msg: "Youtube");
+                                            // _launchInWebViewWithJavaScript(
+                                            //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                          },
+                                          child: Container(
+                                            color: Colors.transparent,
+                                            width:
+                                                SizeConfig.blockSizeHorizontal *
+                                                    50,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Stack(
+                                                    children: [
+                                                      Container(
+                                                        width: SizeConfig
+                                                                .blockSizeHorizontal *
+                                                            100,
+                                                        height: SizeConfig
+                                                                .blockSizeVertical *
+                                                            15,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          // border: Border.all(
+                                                          //   width: 1,
+                                                          // ),
+                                                          image:
+                                                              new DecorationImage(
+                                                            image: new NetworkImage(
+                                                                'https://img.youtube.com/vi/${GlobalLists.storiesList[index].videoLink.substring(GlobalLists.storiesList[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      PauseImage()
+                                                    ],
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(4.0),
+                                                  child: Text(
+                                                    GlobalLists
+                                                        .storiesList[index]
+                                                        .videoDesc,
+                                                    textAlign: TextAlign.center,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize:
+                                                            ResponsiveFlutter
+                                                                    .of(context)
+                                                                .fontSize(1.4),
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                    maxLines: 3,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 5),
+                                              ],
+                                            ),
+                                          ),
+                                        )),
+                                  );
+                                  //}
+                                }
+                                // children: List.generate(
+                                //     GlobalLists.storiesList.length, (index) {
+                                //   return Padding(
+                                //     padding: const EdgeInsets.only(right: 2.0),
+                                //     child: Card(
+                                //         elevation: 2,
+                                //         shape: RoundedRectangleBorder(
+                                //           borderRadius: BorderRadius.all(
+                                //             Radius.circular(1),
+                                //           ),
+                                //         ),
+                                //         child: GestureDetector(
+                                //           onTap: () {
+                                //             var storykey = GlobalLists
+                                //                 .storiesList[index].videoLink
+                                //                 .substring(GlobalLists
+                                //                         .storiesList[index]
+                                //                         .videoLink
+                                //                         .length -
+                                //                     11);
+                                //             _launchInWebViewWithJavaScript(
+                                //                 "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                //           },
+                                //           child: Container(
+                                //             color: Colors.transparent,
+                                //             width:
+                                //                 SizeConfig.blockSizeHorizontal * 50,
+                                //             child: Column(
+                                //               mainAxisAlignment:
+                                //                   MainAxisAlignment.start,
+                                //               crossAxisAlignment:
+                                //                   CrossAxisAlignment.start,
+                                //               children: <Widget>[
+                                //                 Padding(
+                                //                   padding:
+                                //                       const EdgeInsets.all(8.0),
+                                //                   child: Container(
+                                //                     width: SizeConfig
+                                //                             .blockSizeHorizontal *
+                                //                         100,
+                                //                     height: 120,
+                                //                     decoration: BoxDecoration(
+                                //                       borderRadius:
+                                //                           BorderRadius.circular(5),
+                                //                       // border: Border.all(
+                                //                       //   width: 1,
+                                //                       // ),
+                                //                       image: new DecorationImage(
+                                //                         image: new NetworkImage(
+                                //                             'https://img.youtube.com/vi/${GlobalLists.storiesList[index].videoLink.substring(GlobalLists.storiesList[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                //                         fit: BoxFit.cover,
+                                //                       ),
+                                //                     ),
+                                //                   ),
+                                //                 ),
+                                //                 Padding(
+                                //                   padding:
+                                //                       const EdgeInsets.all(4.0),
+                                //                   child: Text(
+                                //                     GlobalLists.storiesList[index]
+                                //                         .videoDesc,
+                                //                     textAlign: TextAlign.center,
+                                //                     overflow: TextOverflow.ellipsis,
+                                //                     style: TextStyle(
+                                //                         color: Colors.black,
+                                //                         fontSize:
+                                //                             ResponsiveFlutter.of(
+                                //                                     context)
+                                //                                 .fontSize(1.4),
+                                //                         fontWeight:
+                                //                             FontWeight.w500),
+                                //                     maxLines: 3,
+                                //                   ),
+                                //                 ),
+                                //                 SizedBox(height: 5),
+                                //               ],
+                                //             ),
+                                //           ),
+                                //         )),
+                                //   );
+                                // }),
+                                ),
+                            _isLoading
+                                ? Center(
+                                    child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 10, bottom: 10),
+                                    child: CircularProgressIndicator(),
+                                  ))
+                                : Container()
+                          ],
+                        ),
               // Padding(
               //   padding: const EdgeInsets.only(
               //       left: 60, right: 60, top: 20, bottom: 10),

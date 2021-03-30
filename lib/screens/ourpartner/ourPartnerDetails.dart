@@ -162,111 +162,129 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                                 Center(child: Text(Constantstring.emptyData)),
                           ),
                         )
-                      : GridView.count(
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.9,
-                          physics: ScrollPhysics(),
+                      : ListView(
                           shrinkWrap: true,
-                          children: List.generate(
-                              GlobalLists.ourPartnerList.length, (index) {
-                            if (GlobalLists.ourPartnerList.length - 1 ==
-                                    index &&
-                                _isLoading) {
-                              return Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            } else {
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 2.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (BuildContext context) =>
-                                    //             VideoPlayer(
-                                    //               videoUrl: GlobalLists
-                                    //                   .ourPartnerList[index]
-                                    //                   .webUrl,
-                                    //             )));
+                          physics: ScrollPhysics(),
+                          children: [
+                            GridView.count(
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.9,
+                              physics: ScrollPhysics(),
+                              shrinkWrap: true,
+                              children: List.generate(
+                                  GlobalLists.ourPartnerList.length, (index) {
+                                // if (GlobalLists.ourPartnerList.length - 1 ==
+                                //         index &&
+                                //     _isLoading) {
+                                //   return Center(
+                                //     child: CircularProgressIndicator(),
+                                //   );
+                                // } else {
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 2.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (BuildContext context) =>
+                                      //             VideoPlayer(
+                                      //               videoUrl: GlobalLists
+                                      //                   .ourPartnerList[index]
+                                      //                   .webUrl,
+                                      //             )));
 
-                                    ShowDialogs.launchURL(GlobalLists
-                                        .ourPartnerList[index].webUrl);
-                                  },
-                                  child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(5),
+                                      ShowDialogs.launchURL(GlobalLists
+                                          .ourPartnerList[index].webUrl);
+                                    },
+                                    child: Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(5),
+                                          ),
                                         ),
-                                      ),
-                                      child: Container(
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 50,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Container(
-                                              width: SizeConfig
-                                                      .blockSizeHorizontal *
-                                                  90,
-                                              height: 130,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                // image: DecorationImage(
-                                                //     image: AssetImage(
-                                                //         _productsAvailable[index].image),
-                                                //     fit: BoxFit.cover),
-                                              ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(18.0),
-                                                child: FadeInImage.assetNetwork(
-                                                  placeholder:
-                                                      'assets/newImages/placeholder_3.jpg',
-                                                  image: Constantstring
-                                                          .baseUrl +
-                                                      GlobalLists
-                                                          .ourPartnerList[index]
-                                                          .image,
-                                                  fit: BoxFit.cover,
+                                        child: Container(
+                                          width:
+                                              SizeConfig.blockSizeHorizontal *
+                                                  50,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Container(
+                                                width: SizeConfig
+                                                        .blockSizeHorizontal *
+                                                    90,
+                                                height: 130,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  // image: DecorationImage(
+                                                  //     image: AssetImage(
+                                                  //         _productsAvailable[index].image),
+                                                  //     fit: BoxFit.cover),
                                                 ),
-                                              ),
-                                            ),
-                                            Center(
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(4.0),
-                                                child: Text(
-                                                  GlobalLists
-                                                      .ourPartnerList[index]
-                                                      .title,
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    color: Customcolor
-                                                        .text_darkblue,
-                                                    fontSize:
-                                                        ResponsiveFlutter.of(
-                                                                context)
-                                                            .fontSize(1.6),
-                                                    fontWeight: FontWeight.w500,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      18.0),
+                                                  child:
+                                                      FadeInImage.assetNetwork(
+                                                    placeholder:
+                                                        'assets/newImages/placeholder_3.jpg',
+                                                    image:
+                                                        Constantstring.baseUrl +
+                                                            GlobalLists
+                                                                .ourPartnerList[
+                                                                    index]
+                                                                .image,
+                                                    fit: BoxFit.contain,
                                                   ),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  maxLines: 3,
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      )),
-                                ),
-                              );
-                            }
-                          }),
+                                              Center(
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(4.0),
+                                                  child: Text(
+                                                    GlobalLists
+                                                        .ourPartnerList[index]
+                                                        .title,
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color: Customcolor
+                                                          .text_darkblue,
+                                                      fontSize:
+                                                          ResponsiveFlutter.of(
+                                                                  context)
+                                                              .fontSize(1.6),
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 3,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                );
+                                // }
+                              }),
+                            ),
+                            _isLoading
+                                ? Center(
+                                    child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 10, bottom: 10),
+                                    child: CircularProgressIndicator(),
+                                  ))
+                                : Container()
+                          ],
                         ),
               // Padding(
               //   padding: const EdgeInsets.only(right: 0, left: 0),

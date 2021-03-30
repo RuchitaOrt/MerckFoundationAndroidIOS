@@ -222,110 +222,130 @@ class OurActivityState extends State<OurActivity> {
                         child: Center(child: Text(Constantstring.emptyData)),
                       ),
                     )
-                  : GridView.count(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.9,
-                      physics: ScrollPhysics(),
+                  : ListView(
                       shrinkWrap: true,
-                      children: List.generate(
-                          GlobalLists.ourActivitiesData.length, (index) {
-                        if (GlobalLists.ourActivitiesData.length - 1 == index &&
-                            _isLoading) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 5.0, left: 5),
-                            child: GestureDetector(
-                              onTap: () {
-                                print("our activity");
-                                print(GlobalLists
-                                    .ourActivitiesData[index].details);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            OurActivtyDetail(
-                                              activtydetaill: GlobalLists
-                                                  .ourActivitiesData[index]
-                                                  .details,
-                                              activtytitle: GlobalLists
-                                                  .ourActivitiesData[index]
-                                                  .title,
-                                              detailpageurl: GlobalLists
-                                                  .ourActivitiesData[index]
-                                                  .detailPageUrl,
-                                            )));
-                              },
-                              child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(5),
+                      physics: ScrollPhysics(),
+                      children: [
+                        GridView.count(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.9,
+                          physics: ScrollPhysics(),
+                          shrinkWrap: true,
+                          children: List.generate(
+                              GlobalLists.ourActivitiesData.length, (index) {
+                            // if (GlobalLists.ourActivitiesData.length - 1 == index &&
+                            //     _isLoading) {
+                            //   return Center(
+                            //     child: CircularProgressIndicator(),
+                            //   );
+                            // } else {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 5.0, left: 5),
+                              child: GestureDetector(
+                                onTap: () {
+                                  print("our activity");
+                                  print(GlobalLists
+                                      .ourActivitiesData[index].details);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              OurActivtyDetail(
+                                                activtydetaill: GlobalLists
+                                                    .ourActivitiesData[index]
+                                                    .details,
+                                                activtytitle: GlobalLists
+                                                    .ourActivitiesData[index]
+                                                    .title,
+                                                detailpageurl: GlobalLists
+                                                    .ourActivitiesData[index]
+                                                    .detailPageUrl,
+                                              )));
+                                },
+                                child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(5),
+                                      ),
                                     ),
-                                  ),
-                                  child: Container(
-                                    width: SizeConfig.blockSizeHorizontal * 50,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Container(
-                                          width:
-                                              SizeConfig.blockSizeHorizontal *
-                                                  90,
-                                          height: 130,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            // image: DecorationImage(
-                                            //     image: AssetImage(
-                                            //         _productsAvailable[index].image),
-                                            //     fit: BoxFit.cover),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: FadeInImage.assetNetwork(
-                                              placeholder:
-                                                  'assets/newImages/placeholder_3.jpg',
-                                              image: Constantstring.baseUrl +
-                                                  GlobalLists
-                                                      .ourActivitiesData[index]
-                                                      .image,
-                                              fit: BoxFit.fill,
+                                    child: Container(
+                                      width:
+                                          SizeConfig.blockSizeHorizontal * 50,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Container(
+                                            width:
+                                                SizeConfig.blockSizeHorizontal *
+                                                    90,
+                                            height: 130,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              // image: DecorationImage(
+                                              //     image: AssetImage(
+                                              //         _productsAvailable[index].image),
+                                              //     fit: BoxFit.cover),
                                             ),
-                                          ),
-                                        ),
-                                        Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(4.0),
-                                            child: Text(
-                                              GlobalLists
-                                                  .ourActivitiesData[index]
-                                                  .title,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color:
-                                                    Customcolor.text_darkblue,
-                                                fontSize: ResponsiveFlutter.of(
-                                                        context)
-                                                    .fontSize(1.6),
-                                                fontWeight: FontWeight.w500,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: FadeInImage.assetNetwork(
+                                                placeholder:
+                                                    'assets/newImages/placeholder_3.jpg',
+                                                image: Constantstring.baseUrl +
+                                                    GlobalLists
+                                                        .ourActivitiesData[
+                                                            index]
+                                                        .image,
+                                                fit: BoxFit.fill,
                                               ),
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 3,
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
-                            ),
-                          );
-                        }
-                      }),
+                                          Center(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              child: Text(
+                                                GlobalLists
+                                                    .ourActivitiesData[index]
+                                                    .title,
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  color:
+                                                      Customcolor.text_darkblue,
+                                                  fontSize:
+                                                      ResponsiveFlutter.of(
+                                                              context)
+                                                          .fontSize(1.6),
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 3,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            );
+                            //  }
+                          }),
+                        ),
+                        _isLoading
+                            ? Center(
+                                child: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 10, bottom: 10),
+                                child: CircularProgressIndicator(),
+                              ))
+                            : Container()
+                      ],
                     ),
           // GlobalLists.ourActivitiesData.length <= 0
           //     ? Container(

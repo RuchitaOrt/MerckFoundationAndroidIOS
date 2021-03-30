@@ -479,18 +479,23 @@ class LocalSongsandChildrenStoriesState
                                 print("pdf");
                                 print(GlobalLists
                                     .programdigitalcontentlist[index].document);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            VideoPlayer(
-                                              videoUrl: GlobalLists
-                                                      .programdigitalcontentbaseurl +
-                                                  GlobalLists
-                                                      .programdigitalcontentlist[
-                                                          index]
-                                                      .document,
-                                            )));
+                                ShowDialogs.launchURL(
+                                    GlobalLists.programdigitalcontentbaseurl +
+                                        GlobalLists
+                                            .programdigitalcontentlist[index]
+                                            .document);
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (BuildContext context) =>
+                                //             VideoPlayer(
+                                //               videoUrl: GlobalLists
+                                //                       .programdigitalcontentbaseurl +
+                                //                   GlobalLists
+                                //                       .programdigitalcontentlist[
+                                //                           index]
+                                //                       .document,
+                                //             )));
                               },
                               child: Column(
                                 children: [

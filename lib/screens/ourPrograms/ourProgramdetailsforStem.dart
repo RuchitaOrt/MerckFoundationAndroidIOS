@@ -640,7 +640,8 @@ class _MyHomePageState extends State<OurProgramStem> {
         APIManager.steminnerpages,
         bodyData,
       );
-
+      print(APIManager.steminnerpages);
+      print(bodyData);
       var res = json.decode(response.body);
       print("res");
       print(res);

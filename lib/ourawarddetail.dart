@@ -8,8 +8,9 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class OurAwardDetail extends StatefulWidget {
   final List detaill;
+  final dynamic pageurl;
 
-  const OurAwardDetail({Key key, this.detaill}) : super(key: key);
+  const OurAwardDetail({Key key, this.detaill, this.pageurl}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return OurActivtyDetailState();
@@ -38,8 +39,7 @@ class OurActivtyDetailState extends State<OurAwardDetail> {
             //             )));
           },
           index: 2,
-          // sharelink:
-          //     Constantstring.shareawarddetailpage + widget.detaill[0].title,
+          sharelink: Constantstring.shareawarddetailpage + widget.pageurl,
           title: widget.detaill[0].title,
           titleImg: "assets/newImages/leadership_logo.png",
           trallingImg1: "assets/newImages/share.png",
