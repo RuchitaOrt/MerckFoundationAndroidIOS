@@ -455,7 +455,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'News Releases',
+                          value: 'News Release',
                           onTapfun: () {
                             Navigator.push(
                                 context,

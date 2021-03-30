@@ -97,6 +97,8 @@ import 'package:merckfoundation22dec/model/Merckoverview.dart'
     as merckoverviewapi;
 import 'package:merckfoundation22dec/model/stemsubmenuprogramlist.dart'
     as stemsubmenu;
+import 'package:merckfoundation22dec/model/CreategallerymobileResponse.dart'
+    as album;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -252,4 +254,7 @@ class GlobalLists {
   //stemprogram list
 
   static List<stemsubmenu.ListElement> stemprogramlistsubmenu = [];
+
+  //create gallery album
+  static List<album.ListElement> viewmorealbum = [];
 }

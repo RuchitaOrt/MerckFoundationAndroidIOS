@@ -128,6 +128,7 @@ enum API {
   categoryList,
   filterlist,
   filterlisttestimonial,
+  getCategoryWiseCountryList,
   //awardsection
   ouraward,
   ourawarddetail,
@@ -287,6 +288,7 @@ class APIManager {
     }
   }
 
+  static String viewmorealbum = baseURL + "create_gallery_mobile";
   static String steminnerpages = baseURL + "LuminaryStemBarPages";
   static String searchapi = baseURL + "mobile_search";
   //video view all section
@@ -511,6 +513,10 @@ class APIManager {
 
       case API.countrylist:
         apiPathString = "getCountryList/1";
+        break;
+
+      case API.getCategoryWiseCountryList:
+        apiPathString = "getCategoryWiseCountryList";
         break;
       case API.categoryList:
         apiPathString = "getCategoryList/1";
@@ -1178,6 +1184,7 @@ class APIManager {
       case API.ourawarddetail:
       case API.ourgallerydetail:
       case API.creategallerymobile:
+      case API.getCategoryWiseCountryList:
         // case API.legaldisclaimer:
         //  case API.mission:
         //  case API.ourActivities:
@@ -1346,6 +1353,7 @@ class APIManager {
         className = "getMerckAboutVideosResp";
         break;
       case API.countrylist:
+      case API.getCategoryWiseCountryList:
         className = "CountrylistResponse";
         break;
 

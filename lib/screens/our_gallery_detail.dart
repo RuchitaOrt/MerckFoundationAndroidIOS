@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/ViewmoreAlbum.dart';
+import 'package:merckfoundation22dec/ViewmoremmtmAmbassadar.dart';
 import 'package:merckfoundation22dec/model/our_gallery_detail_response.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -69,6 +72,26 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
           btnTitle: "View More",
           onbtnTap: () {
             //need to do code here
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => ViewmoreAlbum(
+                          apiurl: APIManager.viewmorealbum,
+                          albumtitle:
+                              galleryDetailsResponse.list.keys.elementAt(i),
+                          sharelink: Constantstring.sharemmtmambassadarmmtm,
+                          albumurl: galleryDetailsResponse
+                              .list[galleryDetailsResponse.list.keys
+                                  .elementAt(i)][0]
+                              .url,
+                        )));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => ViewmoremmtmAmbassadar(
+            //               apiurl: API.creategallerymobile,
+            //               sharelink: Constantstring.sharemmtmambassadarmmtm,
+            //             )));
           },
           titleColor: Customcolor.text_blue,
           titleImg: "assets/newImages/flowers-3.png",
@@ -81,18 +104,6 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                 padding: const EdgeInsets.only(right: 8, left: 10),
                 child: GestureDetector(
                   onTap: () {
-                    //   _showImageDialog(
-                    //       context: context,
-                    //       image: galleryDetailsResponse.baseUrl +
-                    //           galleryDetailsResponse
-                    //               .list[galleryDetailsResponse.list.keys
-                    //                   .elementAt(i)][index]
-                    //               .photo,
-                    //       description: galleryDetailsResponse
-                    //           .list[galleryDetailsResponse.list.keys.elementAt(i)]
-                    //               [index]
-                    //           .photoDescription);
-
                     ShowDialogs.showImageDialog(
                         context: context,
                         image: galleryDetailsResponse.baseUrl +
@@ -110,8 +121,8 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                       Stack(
                         children: [
                           Container(
-                            width: SizeConfig.blockSizeHorizontal * 86,
-                            height: SizeConfig.blockSizeHorizontal * 40,
+                            width: SizeConfig.blockSizeHorizontal * 50,
+                            height: SizeConfig.blockSizeHorizontal * 50,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image: galleryDetailsResponse.baseUrl +
@@ -175,7 +186,7 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: SizeConfig.blockSizeHorizontal * 85,
+                                width: SizeConfig.blockSizeHorizontal * 50,
                                 // color: Colors.black.withOpacity(0.7),
                                 child: Text(
                                   galleryDetailsResponse
@@ -185,9 +196,10 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                                       "",
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      color: Colors.black,
+                                      color: Customcolor.descriptiontext,
                                       fontSize: 14,
-                                      fontWeight: FontWeight.w700),
+                                      fontFamily: "verdana",
+                                      fontWeight: FontWeight.w500),
                                   maxLines: 3,
                                 ),
                               ),
@@ -356,7 +368,7 @@ class CustomCard extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Container(height: SizeConfig.blockSizeVertical * 30, child: list),
+        Container(height: SizeConfig.blockSizeVertical * 35, child: list),
         SizedBox(
           height: 9,
         ),

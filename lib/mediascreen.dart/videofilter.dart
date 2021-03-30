@@ -12,8 +12,9 @@ import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 
 class Videofilter extends StatefulWidget {
   final String apptitle;
-
-  const Videofilter({Key key, this.apptitle}) : super(key: key);
+  final int filterindex;
+  const Videofilter({Key key, this.apptitle, this.filterindex})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return VideofilterState();
@@ -49,7 +50,7 @@ class VideofilterState extends State<Videofilter> {
           data: Theme.of(context)
               .copyWith(canvasColor: Colors.white, primaryColor: Colors.white),
           child: AppDrawerfilter(
-            index: 1,
+            index: widget.filterindex,
           ),
         ),
         appBar: InnerCustomAppBar(
@@ -67,7 +68,16 @@ class VideofilterState extends State<Videofilter> {
             //               index: 0,
             //             )));
           },
-          index: 1,
+          //index: 1,
+          index: 2,
+          forfilterindes: 3,
+          sharelink: widget.filterindex == 1
+              ? Constantstring.sharevideolibrary
+              : widget.filterindex == 2
+                  ? Constantstring.sharestories
+                  : widget.filterindex == 3
+                      ? Constantstring.sharemerckmedia
+                      : Constantstring.sharestories,
           // forfilterindes: 3,
           title: widget.apptitle,
           titleImg: "assets/newImages/ourstoriesLogo.png",

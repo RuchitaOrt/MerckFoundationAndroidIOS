@@ -201,6 +201,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
+              heigthoflist: SizeConfig.safeBlockVertical * 35,
               onbtnTap: () {
                 //  getprogramgallery();
               },
@@ -223,7 +224,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                       child: Stack(
                         children: [
                           Container(
-                            width: SizeConfig.blockSizeHorizontal * 86,
+                            width: SizeConfig.blockSizeHorizontal * 80,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
@@ -567,7 +568,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                       children: [
                         Container(
                           width: SizeConfig.blockSizeHorizontal * 50,
-                          height: 240,
+                          height: 260,
                           child: FadeInImage.assetNetwork(
                             placeholder: 'assets/newImages/placeholder_3.jpg',
                             image:

@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -6,6 +7,7 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactUs extends StatefulWidget {
   @override
@@ -74,10 +76,15 @@ class ContactusState extends State<ContactUs> {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Text(
-                                  "info@merck-foundation.com",
-                                  style: TextStyle(
-                                      color: Customcolor.text_darkgrey),
+                                GestureDetector(
+                                  onTap: () {
+                                    // _launchmail();
+                                  },
+                                  child: Text(
+                                    "info@merck-foundation.com",
+                                    style: TextStyle(
+                                        color: Customcolor.text_darkgrey),
+                                  ),
                                 )
                               ],
                             ),
@@ -93,9 +100,42 @@ class ContactusState extends State<ContactUs> {
                                 SizedBox(
                                   width: 8,
                                 ),
-                                Text("+91 22 6210 1916 /+254 20 271 4617",
-                                    style: TextStyle(
-                                        color: Customcolor.text_darkgrey))
+                                // Text("+91 22 6210 1916 /+254 20 271 4617",
+                                //     style: TextStyle(
+                                //         color: Customcolor.text_darkgrey))
+                                RichText(
+                                  textAlign: TextAlign.justify,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: "+91 22 6210 1916",
+                                        style: TextStyle(
+                                          color: Customcolor.text_darkgrey,
+                                        ),
+                                        recognizer: new TapGestureRecognizer()
+                                          ..onTap = () {
+                                            _launchCaller();
+                                          },
+                                      ),
+                                      TextSpan(
+                                        text: " / ",
+                                        style: TextStyle(
+                                          color: Customcolor.text_darkgrey,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: "+254 20 271 4617",
+                                        style: TextStyle(
+                                          color: Customcolor.text_darkgrey,
+                                        ),
+                                        recognizer: new TapGestureRecognizer()
+                                          ..onTap = () {
+                                            _launchCaller1();
+                                          },
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             )
                           ]),
@@ -244,5 +284,37 @@ class ContactusState extends State<ContactUs> {
         ],
       ),
     );
+  }
+
+  _launchCaller() async {
+    const url = "tel:+91 22 6210 1916";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchCaller1() async {
+    const url = "tel:+254 20 271 4617";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  final Uri _emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'info@merck-foundation.com',
+      queryParameters: {'subject': 'MerckFoundation'});
+
+  _launchmail() async {
+    const url = "mail:info@merck-foundation.com ";
+    if (await canLaunch(url)) {
+      var emailLaunchUri = _emailLaunchUri;
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

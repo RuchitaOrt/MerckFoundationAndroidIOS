@@ -48,6 +48,7 @@ class Customcolor {
   static const text_grey = const Color(0xff888888);
   static const text_darkblue = const Color(0xff115CAB);
   static const text_darkgrey = const Color(0xff333333);
+  static const descriptiontext = const Color(0xff4B4E5E);
   static const pinkbg = const Color(0xffFFA4D3);
   static const cardbg = const Color(0xffCEF5FF);
   static const stemskyblue = const Color(0xffA9E2FC);
@@ -204,7 +205,7 @@ class Constantstring {
   //share call for app
 
   static String sharecallforapphome =
-      "http://merckfoundation.org/mfindia/web/public/call-for-applications";
+      "http://merckfoundation.org/mfindia/web/public/call-for-applications/upcoming-programs-&-calls-for-applications";
   static String sharecallforappmmtm =
       "http://merckfoundation.org/mfindia/web/public/Call-For-Application/merck-foundation-more-than-a-mother";
   static String sharecallforappstem =
@@ -219,6 +220,34 @@ class Constantstring {
       "http://merckfoundation.org/mfindia/web/public/Merck-More-Than-a-Mother-Ambassadors/merck-foundation-more-than-a-mother";
   static String sharemmtmambassadarfirstlady =
       "http://merckfoundation.org/mfindia/web/public/Merck-More-Than-a-Mother-Ambassadors/merck-foundation-first-ladies-initiative-summit";
+
+  //share watch all videos
+  static String sharewatchallvideocovid =
+      "http://merckfoundation.org/mfindia/web/public/Covid-Videos";
+  static String sharewatchallvideoaboutmmtm =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/about-merck-more-than-a-mother";
+  static String sharewatchallvideoafrica =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-africa-asia-luminary";
+  static String sharewatchallvideoeducatinglinda =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-educating-linda-program";
+  static String sharewatchallvideofertility =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-fertility-and-embryology-training-program";
+  static String sharewatchallvideofirstlady =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-first-ladies-initiative-summit";
+
+  static String sharewatchallvideocapaity =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program";
+  static String sharewatchallvideommtm =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-more-than-a-mother";
+  static String sharewatchallvideostem =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-stem-program";
+  static String sharewatchallvideosubstain = "";
+  static String sharewatchallvideocancer =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-cancer-access-program";
+  static String sharewatchallvideovideommtm =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-more-than-a-mother";
+  static String sharewatchallvideovideocancer =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-cancer-access-program";
 
   //followus Merck Foundation More Than a Mother
   static String followmmtminsta =

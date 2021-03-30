@@ -585,13 +585,15 @@ class InnerCustomAppBar extends PreferredSize {
           ),
         ),
         Container(
-          height: 40,
+          height: 47,
           color: Customcolor.colorVoilet,
           alignment: Alignment.centerLeft,
           child: Padding(
             padding: const EdgeInsets.only(left: 10),
             child: Text(
               title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 3,
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videofilter.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
+import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
 import 'package:merckfoundation22dec/model/FilterdataResponse.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -53,39 +54,6 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                         padding: const EdgeInsets.fromLTRB(20, 60, 20, 0),
                         shrinkWrap: true,
                         children: [
-                          Text("Country"),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 80,
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  print("in state");
-                                  iscountryexpanded = !iscountryexpanded;
-                                });
-                              },
-                              child: TextField(
-                                enabled: false,
-                                controller: countryController,
-                                decoration: InputDecoration(
-                                    // contentPadding:
-                                    //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
-                                    hintText: "Select Country",
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5.0)),
-                                    suffixIcon: Icon(Icons.arrow_drop_down)),
-                              ),
-                            ),
-                          ),
-                          iscountryexpanded == true
-                              ? coutryDropdown()
-                              : Container(),
-                          SizedBox(
-                            height: 15,
-                          ),
                           Text("Video Categories"),
                           SizedBox(
                             height: 10,
@@ -116,6 +84,39 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                           ),
                           isvideocategoryexpanded == true
                               ? videocategoriesDropdown()
+                              : Container(),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text("Country"),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 80,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  print("in state");
+                                  iscountryexpanded = !iscountryexpanded;
+                                });
+                              },
+                              child: TextField(
+                                enabled: false,
+                                controller: countryController,
+                                decoration: InputDecoration(
+                                    // contentPadding:
+                                    //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
+                                    hintText: "Select Country",
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0)),
+                                    suffixIcon: Icon(Icons.arrow_drop_down)),
+                              ),
+                            ),
+                          ),
+                          iscountryexpanded == true
+                              ? coutryDropdown()
                               : Container(),
                           SizedBox(
                             height: 15,
@@ -360,6 +361,8 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                                 GlobalLists.categorylisting[index].categoryName;
                             catid = GlobalLists.categorylisting[index].id;
                             isvideocategoryexpanded = false;
+                            countryController.text = "";
+                            getcountrylist(catid);
                           });
                         },
                         child: Container(
@@ -474,6 +477,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                 MaterialPageRoute(
                     builder: (BuildContext context) => Videofilter(
                           apptitle: title,
+                          filterindex: widget.index,
                         )));
           });
         } else {
@@ -492,6 +496,46 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
       }, jsonval: json);
     } else {
       isfilterLoaded = true;
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  getcountrylist(String catid) async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      // ShowDialogs.showLoadingDialog(context, _keyLoader);
+      GlobalLists.countrylisting.clear();
+      var json = {
+        'video_category_id': catid,
+      };
+      print("catid");
+      print(catid);
+      APIManager().apiRequest(
+        context,
+        API.getCategoryWiseCountryList,
+        (response) async {
+          CountrylistResponse resp = response;
+          print(response);
+          print('Resp : $resp');
+
+          //  Navigator.of(_keyLoader.currentContext).pop();
+
+          if (resp.success == "True") {
+            setState(() {
+              GlobalLists.countrylisting = resp.data.list;
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          // Navigator.of(_keyLoader.currentContext).pop();
+        },
+        jsonval: json,
+      );
+    } else {
       ShowDialogs.showToast("Please check internet connection");
     }
   }
