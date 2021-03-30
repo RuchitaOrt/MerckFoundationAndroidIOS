@@ -1,11 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -159,8 +158,13 @@ class ContactusState extends State<ContactUs> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          ShowDialogs.followuslink(Constantstring.followinsta,
-                              Constantstring.followmsg);
+                          Platform.isAndroid
+                              ? ShowDialogs.followuslink(
+                                  Constantstring.followinsta,
+                                  Constantstring.followmsg)
+                              : ShowDialogs.launchInstagram(
+                                  Constantstring.followinsta,
+                                  "merckfoundation");
                         },
                         child: Image.asset(
                           "assets/newImages/instagram.png",
@@ -173,9 +177,13 @@ class ContactusState extends State<ContactUs> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          ShowDialogs.followuslink(
-                              Constantstring.followfacebook,
-                              Constantstring.followmsg);
+                          Platform.isAndroid
+                              ? ShowDialogs.followuslink(
+                                  Constantstring.followfacebook,
+                                  Constantstring.followmsg)
+                              : ShowDialogs.launchFacebook(
+                                  Constantstring.followfacebook,
+                                  "1053979038068008");
                         },
                         child: Image.asset(
                           "assets/newImages/facebook.png",
@@ -188,8 +196,12 @@ class ContactusState extends State<ContactUs> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          ShowDialogs.followuslink(Constantstring.followtwitter,
-                              Constantstring.followmsg);
+                          Platform.isAndroid
+                              ? ShowDialogs.followuslink(
+                                  Constantstring.followtwitter,
+                                  Constantstring.followmsg)
+                              : ShowDialogs.launchTwitter(
+                                  Constantstring.followtwitter);
                         },
                         child: Image.asset(
                           "assets/newImages/twitter.png",
@@ -202,8 +214,12 @@ class ContactusState extends State<ContactUs> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          ShowDialogs.followuslink(Constantstring.followyoutube,
-                              Constantstring.followmsg);
+                          Platform.isAndroid
+                              ? ShowDialogs.followuslink(
+                                  Constantstring.followyoutube,
+                                  Constantstring.followmsg)
+                              : ShowDialogs.youtubevideolink(
+                                  Constantstring.followyoutube);
                         },
                         child: Image.asset(
                           "assets/newImages/youtube.png",
@@ -216,8 +232,12 @@ class ContactusState extends State<ContactUs> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          ShowDialogs.followuslink(Constantstring.followflicker,
-                              Constantstring.followmsg);
+                          Platform.isAndroid
+                              ? ShowDialogs.followuslink(
+                                  Constantstring.followflicker,
+                                  Constantstring.followmsg)
+                              : ShowDialogs.launchURL(
+                                  Constantstring.followflicker);
                         },
                         child: Image.asset(
                           "assets/newImages/flickr.png",
@@ -287,7 +307,8 @@ class ContactusState extends State<ContactUs> {
   }
 
   _launchCaller() async {
-    const url = "tel:+91 22 6210 1916";
+    print("on launch");
+    const url = "tel:+912262101916";
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -296,7 +317,7 @@ class ContactusState extends State<ContactUs> {
   }
 
   _launchCaller1() async {
-    const url = "tel:+254 20 271 4617";
+    const url = "tel:+254202714617";
     if (await canLaunch(url)) {
       await launch(url);
     } else {

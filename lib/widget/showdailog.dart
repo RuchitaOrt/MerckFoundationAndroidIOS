@@ -92,7 +92,10 @@ class ShowDialogs {
     if (Platform.isIOS) {
       if (await canLaunch(videourl)) {
         print("in if");
-        await launch(videourl, forceSafariVC: false, forceWebView: false);
+        await launch(videourl,
+            forceSafariVC: false,
+            forceWebView: false,
+            universalLinksOnly: true);
       } else {
         print("in else");
         if (await canLaunch(videourl)) {
@@ -111,26 +114,66 @@ class ShowDialogs {
     }
   }
 
-  static _launchSocial(String url, String fallbackUrl) async {
-    // Don't use canLaunch because of fbProtocolUrl (fb://)
+  static launchFacebook(String url, String pageId) async {
+    String fbProtocolUrl;
+    if (Platform.isIOS) {
+      fbProtocolUrl = "fb://profile/$pageId"; //'fb://profile/1053979038068008';
+    } else {
+      fbProtocolUrl = 'fb://page/1053979038068008';
+    }
+
+    String fallbackUrl = url;
+
     try {
-      bool launched =
-          await launch(url, forceSafariVC: false, forceWebView: false);
+      bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
+
       if (!launched) {
-        await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
+        await launch(fallbackUrl, forceSafariVC: false);
       }
     } catch (e) {
-      await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
+      await launch(fallbackUrl, forceSafariVC: false);
+    }
+  }
+
+  static launchInstagram(String url, String username) async {
+    String fbProtocolUrl;
+
+    fbProtocolUrl = 'instagram://user?username=$username';
+
+    String fallbackUrl = url;
+
+    try {
+      bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
+
+      if (!launched) {
+        await launch(fallbackUrl, forceSafariVC: false);
+      }
+    } catch (e) {
+      await launch(fallbackUrl, forceSafariVC: false);
+    }
+  }
+
+  static launchTwitter(String url) async {
+    String fbProtocolUrl;
+
+    fbProtocolUrl = 'twitter://user?screen_name=merckfoundation';
+
+    String fallbackUrl = url;
+
+    try {
+      bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
+
+      if (!launched) {
+        await launch(fallbackUrl, forceSafariVC: false);
+      }
+    } catch (e) {
+      await launch(fallbackUrl, forceSafariVC: false);
     }
   }
 
 //follow link to specific app
   static followuslink(String videourl, String msg) async {
-    if (Platform.isIOS) {
-      _launchURL(videourl);
-    } else {
-      var response = await FlutterShareMe().openinsta(url: videourl, msg: msg);
-    }
+    var response = await FlutterShareMe().openinsta(url: videourl, msg: msg);
   }
 
   static youtbeicon(BuildContext context) {

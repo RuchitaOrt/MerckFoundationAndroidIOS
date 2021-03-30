@@ -937,7 +937,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-              heigthoflist: SizeConfig.blockSizeVertical * 18,
+              heigthoflist: 140.0,//SizeConfig.blockSizeVertical * 19,
               list: ListView.builder(
                 itemCount: GlobalLists.merckcancerawardlist.length,
                 scrollDirection: Axis.horizontal,
@@ -959,6 +959,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                               bottom: 0, left: 10, right: 10, top: 8),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Html(
                                 data:

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
@@ -525,8 +527,12 @@ class _AppDrawerState extends State<AppDrawer> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
-                        ShowDialogs.followuslink(Constantstring.followinsta,
-                            Constantstring.followmsg);
+                        Platform.isAndroid
+                            ? ShowDialogs.followuslink(
+                                Constantstring.followinsta,
+                                Constantstring.followmsg)
+                            : ShowDialogs.launchInstagram(
+                                Constantstring.followinsta, "merckfoundation");
                       },
                       child: Image.asset(
                         "assets/newImages/instagram.png",
@@ -539,8 +545,13 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        ShowDialogs.followuslink(Constantstring.followfacebook,
-                            Constantstring.followmsg);
+                        Platform.isAndroid
+                            ? ShowDialogs.followuslink(
+                                Constantstring.followfacebook,
+                                Constantstring.followmsg)
+                            : ShowDialogs.launchFacebook(
+                                Constantstring.followfacebook,
+                                "1053979038068008");
                       },
                       child: Image.asset(
                         "assets/newImages/facebook.png",
@@ -553,8 +564,12 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        ShowDialogs.followuslink(Constantstring.followtwitter,
-                            Constantstring.followmsg);
+                        Platform.isAndroid
+                            ? ShowDialogs.followuslink(
+                                Constantstring.followtwitter,
+                                Constantstring.followmsg)
+                            : ShowDialogs.launchTwitter(
+                                Constantstring.followtwitter);
                       },
                       child: Image.asset(
                         "assets/newImages/twitter.png",
@@ -567,8 +582,12 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        ShowDialogs.followuslink(Constantstring.followyoutube,
-                            Constantstring.followmsg);
+                        Platform.isAndroid
+                            ? ShowDialogs.followuslink(
+                                Constantstring.followyoutube,
+                                Constantstring.followmsg)
+                            : ShowDialogs.youtubevideolink(
+                                Constantstring.followyoutube);
                       },
                       child: Image.asset(
                         "assets/newImages/youtube.png",
@@ -581,8 +600,12 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        ShowDialogs.followuslink(Constantstring.followflicker,
-                            Constantstring.followmsg);
+                        Platform.isAndroid
+                            ? ShowDialogs.followuslink(
+                                Constantstring.followflicker,
+                                Constantstring.followmsg)
+                            : ShowDialogs.launchURL(
+                                Constantstring.followflicker);
                       },
                       child: Image.asset(
                         "assets/newImages/flickr.png",

@@ -66,17 +66,8 @@ class SocialMediaState extends State<SocialMedia> {
                               ? await FlutterShareMe().openinsta(
                                   url: 'https://twitter.com/merck_mccp/',
                                   msg: "Share")
-                              : await SocialSharePlugin.shareToTwitterLink(
-                                  text: "Share",
-                                  url: "https://twitter.com/merck_mccp/",
-                                  onSuccess: (_) {
-                                    print('TWITTER SUCCESS');
-                                    return;
-                                  },
-                                  onCancel: () {
-                                    print('TWITTER CANCELLED');
-                                    return;
-                                  });
+                              : ShowDialogs.launchTwitter(
+                                  "https://twitter.com/merck_mccp/");
                         },
                         child: Image.asset(
                           "assets/newImages/twitter.png",
@@ -94,23 +85,9 @@ class SocialMediaState extends State<SocialMedia> {
                                   url:
                                       'https://www.facebook.com/MerckCancerControlProgram/',
                                   msg: "Share")
-                              : await SocialSharePlugin.shareToFeedFacebookLink(
-                                  quote: "Share",
-                                  url:
-                                      "https://www.facebook.com/MerckCancerControlProgram/",
-                                  onSuccess: (_) {
-                                    print('FACEBOOK SUCCESS');
-                                    return;
-                                  },
-                                  onCancel: () {
-                                    print('FACEBOOK CANCELLED');
-                                    return;
-                                  },
-                                  onError: (error) {
-                                    print('FACEBOOK ERROR $error');
-                                    return;
-                                  },
-                                );
+                              : ShowDialogs.launchFacebook(
+                                  "https://www.facebook.com/MerckCancerControlProgram/",
+                                  "1595566227361051");
                         },
                         child: Image.asset(
                           "assets/newImages/facebook.png",
@@ -164,23 +141,9 @@ class SocialMediaState extends State<SocialMedia> {
                                   url:
                                       'https://www.facebook.com/Merckmorethanapatient/',
                                   msg: "Share")
-                              : await SocialSharePlugin.shareToFeedFacebookLink(
-                                  quote: "Share",
-                                  url:
-                                      "https://www.facebook.com/Merckmorethanapatient/",
-                                  onSuccess: (_) {
-                                    print('FACEBOOK SUCCESS');
-                                    return;
-                                  },
-                                  onCancel: () {
-                                    print('FACEBOOK CANCELLED');
-                                    return;
-                                  },
-                                  onError: (error) {
-                                    print('FACEBOOK ERROR $error');
-                                    return;
-                                  },
-                                );
+                              : ShowDialogs.launchFacebook(
+                                  "https://www.facebook.com/Merckmorethanapatient/",
+                                  "1503172516365806");
                         },
                         child: Image.asset(
                           "assets/newImages/facebook.png",
@@ -197,17 +160,8 @@ class SocialMediaState extends State<SocialMedia> {
                               ? await FlutterShareMe().openinsta(
                                   url: 'https://twitter.com/merck4patients',
                                   msg: "Share")
-                              : await SocialSharePlugin.shareToTwitterLink(
-                                  text: "Share",
-                                  url: "https://twitter.com/merck4patients",
-                                  onSuccess: (_) {
-                                    print('TWITTER SUCCESS');
-                                    return;
-                                  },
-                                  onCancel: () {
-                                    print('TWITTER CANCELLED');
-                                    return;
-                                  });
+                              : ShowDialogs.launchTwitter(
+                                  "https://twitter.com/merck4patients");
                         },
                         child: Image.asset(
                           "assets/newImages/twitter.png",
@@ -225,17 +179,9 @@ class SocialMediaState extends State<SocialMedia> {
                                   url:
                                       'https://www.facebook.com/Merckmorethanapatient/',
                                   msg: "Share")
-                              : await SocialSharePlugin.shareToFeedInstagram(
-                                  path:
-                                      "https://www.facebook.com/Merckmorethanapatient/",
-                                  onSuccess: (_) {
-                                    print('TWITTER SUCCESS');
-                                    return;
-                                  },
-                                  onCancel: () {
-                                    print('TWITTER CANCELLED');
-                                    return;
-                                  });
+                              : ShowDialogs.launchInstagram(
+                                  "https://www.facebook.com/Merckmorethanapatient/",
+                                  "Merckmorethanapatient");
                         },
                         child: Image.asset(
                           "assets/newImages/instagram.png",
