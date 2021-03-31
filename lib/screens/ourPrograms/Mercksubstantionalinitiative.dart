@@ -33,6 +33,7 @@ import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetai
 import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 class MerckSubstantional extends StatefulWidget {
   @override
@@ -184,6 +185,7 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                 SizedBox(
                   height: 10,
                 ),
+                Bottomcardlink(),
               ])),
     );
   }

@@ -36,6 +36,7 @@ import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewm
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
 import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 class FirstLadiesInitiativeDetails extends StatefulWidget {
   @override
@@ -188,6 +189,7 @@ class FirstLadiesInitiativeDetailsState
                 SizedBox(
                   height: 10,
                 ),
+                Bottomcardlink(),
               ])),
     );
   }

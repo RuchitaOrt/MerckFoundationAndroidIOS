@@ -34,6 +34,7 @@ import 'package:merckfoundation22dec/model/EducatingLindaResponse.dart'
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 class EducatingLinda extends StatefulWidget {
   @override
@@ -194,6 +195,7 @@ class EducatingLindaState extends State<EducatingLinda>
                 SizedBox(
                   height: 10,
                 ),
+                Bottomcardlink(),
               ])),
     );
   }
