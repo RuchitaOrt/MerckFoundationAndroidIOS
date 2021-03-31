@@ -11,9 +11,11 @@ class Bottomcardlink extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Container(
+      padding: EdgeInsets.only(top: 10, bottom: 10),
+      color: Customcolor.colorBlue,
       child: Text(
-        "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
-        style: TextStyle(color: Customcolor.colorBlue, fontSize: 12),
+        "© Merck Foundation is a German Non-Profit limited liability Company, established on 31 May 2017",
+        style: TextStyle(color: Colors.white, fontSize: 12),
         textAlign: TextAlign.center,
       ),
     );

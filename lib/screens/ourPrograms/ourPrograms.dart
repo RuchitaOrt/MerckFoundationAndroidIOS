@@ -46,29 +46,29 @@ class _OurProgramState extends State<Ourprogram> {
   List<programclass> _productsAvailable1 = [
     programclass(
         programname: "Merck Foundation More Than A Mother         ",
-        colors: Customcolor.text_blue),
+        colors: Customcolor.prog1),
     programclass(
         programname: "Merck Foundation Cancer Access Program     ",
-        colors: Customcolor.colorLightGreen),
+        colors: Customcolor.prog2),
     programclass(
         programname:
             "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
-        colors: Customcolor.purple),
+        colors: Customcolor.prog3),
     programclass(
         programname: "Merck Foundation First Ladies Initiative Summit",
-        colors: Customcolor.pink_col),
+        colors: Customcolor.prog4),
     programclass(
         programname: "Merck Foundation STEM Program                  ",
-        colors: Customcolor.colorVoilet),
+        colors: Customcolor.prog5),
     programclass(
         programname: "Merck Foundation Educating Linda Program",
-        colors: Customcolor.purple),
+        colors: Customcolor.prog6),
     programclass(
         programname: "Merck Foundation Sustainability Initiative   ",
-        colors: Customcolor.colorLightGreen),
+        colors: Customcolor.prog7),
     programclass(
         programname: "Merck Foundation Africa Asia Luminary      ",
-        colors: Customcolor.colorGreen),
+        colors: Customcolor.prog8),
   ];
 
   @override
@@ -336,7 +336,9 @@ class _OurProgramState extends State<Ourprogram> {
                                   left: 5, right: 8, top: 4, bottom: 4),
                               child: Container(
                                 width: SizeConfig.blockSizeHorizontal * 80,
-                                height: 58,
+                                padding: const EdgeInsets.only(
+                                    left: 5, right: 8, top: 4, bottom: 4),
+                                // height: 28,
                                 child: Center(
                                   child: FormLabel(
                                     text:

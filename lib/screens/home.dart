@@ -196,6 +196,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             1,
             height: 120,
           ),
+          // bottomNavigationBar: Bottomcardlink(),
           drawer: Theme(
             data: Theme.of(context).copyWith(
               canvasColor: Colors.transparent,
@@ -355,7 +356,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 SizedBox(
                   height: 10,
                 ),
-                // Bottomcardlink(),
+                Bottomcardlink(),
                 // Container(
                 //   child: Text(
                 //     "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
@@ -2065,7 +2066,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               cardsubtitle: "Alumini ",
               cardTitle: "Testimonials  ",
               testimonialname:
-                  GlobalLists.mmttestimoniallist[0].testimonialName,
+                  GlobalLists.mmttestimoniallist[1].testimonialName,
               titleColor: Customcolor.text_darkblue,
               departmentname:
                   // "Gynecologic Oncology Fellow | 2018 \nMerck Foundation Alumni",

@@ -131,7 +131,7 @@ class CustomHorizontalCard extends StatelessWidget {
           ),
           Container(
               height: heigthoflist == null
-                  ? SizeConfig.blockSizeVertical * 25
+                  ? SizeConfig.blockSizeVertical * 27
                   : heigthoflist,
               child: list),
           SizedBox(

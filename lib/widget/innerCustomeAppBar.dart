@@ -5,6 +5,7 @@ import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/searchscreen/searchcategory.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:social_share_plugin/social_share_plugin.dart';
@@ -252,11 +253,12 @@ class InnerCustomAppBar extends PreferredSize {
                                                     ),
                                                     GestureDetector(
                                                       onTap: () {
-                                                        // Platform.isAndroid?
+                                                         Platform.isAndroid?
                                                         FlutterShareMe()
                                                             .shareToWhatsApp(
                                                                 base64Image: "",
-                                                                msg: sharelink);
+                                                                msg: sharelink):ShowDialogs.launchWhatsappshare(sharelink);
+
                                                         // :
                                                         //  SocialShare
                                                         //     .shareWhatsapp(
@@ -264,7 +266,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                         //   ).then((data) {
                                                         //     print(data);
                                                         //   });
-                                                      },
+                                                      },    
                                                       child: Image.asset(
                                                         "assets/newImages/whatsapp.png",
                                                         height: imgHeight,
@@ -413,11 +415,12 @@ class InnerCustomAppBar extends PreferredSize {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () {
-                                                    // Platform.isAndroid?
-                                                    FlutterShareMe()
-                                                        .shareToWhatsApp(
-                                                            base64Image: "",
-                                                            msg: sharelink);
+                                                     Platform.isAndroid?
+                                                        FlutterShareMe()
+                                                            .shareToWhatsApp(
+                                                                base64Image: "",
+                                                                msg: sharelink):ShowDialogs.launchWhatsappshare(sharelink);
+
                                                     // :
                                                     //  SocialShare
                                                     //     .shareWhatsapp(

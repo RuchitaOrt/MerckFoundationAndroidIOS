@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/ViewmoreAlbum.dart';
 import 'package:merckfoundation22dec/model/stemsubmenuprogramlist.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/AfricaAsiaLuminar.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/StemInnerPages.dart';
@@ -377,6 +378,39 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                               .stemprogramlistsubmenu[
                                                                   index]
                                                               .menuUrl);
+                                                    } else if (GlobalLists
+                                                        .stemprogramlistsubmenu[
+                                                            index]
+                                                        .menuUrl
+                                                        .contains(".png")) {
+                                                      print("pdf");
+                                                      ShowDialogs.launchURL(
+                                                          GlobalLists
+                                                              .stemprogramlistsubmenu[
+                                                                  index]
+                                                              .menuUrl);
+                                                    } else if (GlobalLists
+                                                        .stemprogramlistsubmenu[
+                                                            index]
+                                                        .menuUrl
+                                                        .contains(".jpg")) {
+                                                      print("pdf");
+                                                      ShowDialogs.launchURL(
+                                                          GlobalLists
+                                                              .stemprogramlistsubmenu[
+                                                                  index]
+                                                              .menuUrl);
+                                                    } else if (GlobalLists
+                                                        .stemprogramlistsubmenu[
+                                                            index]
+                                                        .menuUrl
+                                                        .contains(".jpeg")) {
+                                                      print("pdf");
+                                                      ShowDialogs.launchURL(
+                                                          GlobalLists
+                                                              .stemprogramlistsubmenu[
+                                                                  index]
+                                                              .menuUrl);
                                                     } else {
                                                       print("detail");
                                                       getsteminnerapi(GlobalLists
@@ -524,10 +558,45 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                               if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".pdf")) {
                                                                                 print("pdf");
                                                                                 ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
+                                                                              } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".png")) {
+                                                                                ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
+                                                                              } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".jpg")) {
+                                                                                ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
+                                                                              } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".jpeg")) {
+                                                                                ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
+                                                                              } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photos")) {
+                                                                                print("call api here");
+                                                                                String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
+                                                                                print(menuurl.split('http://merckfoundation.org/mfindia/web/public/Merck_Events_Gallery/'));
+                                                                                List<String> replacemenu = menuurl.split('http://merckfoundation.org/mfindia/web/public/Merck_Events_Gallery/');
+                                                                                print(replacemenu.toString());
+                                                                                String firstreplace = replacemenu.toString();
+                                                                                String first = firstreplace.replaceAll('[', "");
+                                                                                String seconfreplace = first.toString();
+                                                                                String second = seconfreplace.replaceAll(',', "");
+                                                                                String thirdreplace = second.toString();
+                                                                                String pageurl = thirdreplace.replaceAll(']', "");
+                                                                                print(pageurl);
+                                                                                Navigator.push(
+                                                                                    context,
+                                                                                    MaterialPageRoute(
+                                                                                        builder: (BuildContext context) => ViewmoreAlbum(
+                                                                                              apiurl: APIManager.viewmorealbum,
+                                                                                              albumtitle: pageurl,
+                                                                                              sharelink: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl,
+                                                                                              albumurl: pageurl.trim(),
+                                                                                            )));
                                                                               } else {
                                                                                 print("detail");
                                                                                 getsteminnerapi(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
                                                                               }
+                                                                              // if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".pdf")) {
+                                                                              //   print("pdf");
+                                                                              //   ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
+                                                                              // } else {
+                                                                              //   print("detail");
+                                                                              //   getsteminnerapi(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
+                                                                              // }
                                                                             },
                                                                             child:
                                                                                 FormLabel(

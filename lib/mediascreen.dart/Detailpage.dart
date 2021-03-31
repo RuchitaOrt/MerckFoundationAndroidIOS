@@ -56,8 +56,10 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
             // }
           },
           index: widget.callfrom == 1 ? 2 : 1,
-          sharelink: Constantstring.sharearticledetailpage +
-              GlobalLists.newsLettersList[widget.indexIs].detailPageUrl,
+          sharelink: widget.callfrom == 1
+              ? Constantstring.sharearticledetailpage +
+                  GlobalLists.newsLettersList[widget.indexIs].detailPageUrl
+              : "",
           title: widget.callfrom == 1
               ? GlobalLists.newsLettersList[widget.indexIs].detailPageUrl
               : "Articles",

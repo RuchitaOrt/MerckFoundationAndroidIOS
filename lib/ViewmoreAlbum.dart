@@ -301,6 +301,7 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
       resp = creategallerymobileResponseFromJson(response.body);
       if (response.statusCode == 200) {
         if (res['success'] == "true") {
+          Constantstring.baseUrl = resp.baseUrl;
           // GlobalLists.videoviewmoreambasdarslist = resp.list;
           if (resp.list.length < 10) {
             for (int i = offset; i < resp.list.length; i++) {

@@ -173,7 +173,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
       if (typewidet[i] == "gallery") {
         listofwiget.add(
           Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
+            padding: const EdgeInsets.only(left: 5, top: 5),
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
@@ -204,12 +204,12 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
                       child: Stack(
                         children: [
                           Container(
-                            width: SizeConfig.blockSizeHorizontal * 86,
+                            //  width: SizeConfig.blockSizeHorizontal * 86,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
                                   "${GlobalLists.homegallerybaseurl + GlobalLists.homegallerylist[index].photo}",
-                              fit: BoxFit.fill,
+                              fit: BoxFit.contain,
                             ),
                           ),
                           Align(
@@ -283,6 +283,8 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
                               apiurl: API.watchvideoaboutmmtm,
                               headertitle:
                                   "About Merck More Than A Mother Videos",
+                              sharelink:
+                                  Constantstring.sharewatchallvideoaboutmmtm,
                             )));
               },
               titleColor: Customcolor.pink_col,

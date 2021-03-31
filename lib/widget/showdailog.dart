@@ -235,6 +235,17 @@ class ShowDialogs {
     }
   }
 
+
+  static launchWhatsappshare(String msg) async {
+    print("on launch");
+    var url = "whatsapp://send?text=$msg";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   static void bottomlink(BuildContext context) {
     Container(
       child: Text(

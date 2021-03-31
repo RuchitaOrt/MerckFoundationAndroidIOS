@@ -15,6 +15,7 @@ import 'package:merckfoundation22dec/model/Merckcanceraccess.dart'
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
 import 'package:merckfoundation22dec/ourawarddetail.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailcancerlist.dart';
 import 'package:merckfoundation22dec/screens/watchmorevideolibray.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -832,6 +833,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                               apiurl: API.watchvideocancer,
                               headertitle:
                                   "Merck Foundation Cancer Access Program Videos",
+                              sharelink:
+                                  Constantstring.sharewatchallvideocancer,
                             )));
               },
               titleColor: Customcolor.pink_col,
@@ -937,14 +940,14 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-              heigthoflist: 140.0,//SizeConfig.blockSizeVertical * 19,
+              heigthoflist: 140.0,
               list: ListView.builder(
                 itemCount: GlobalLists.merckcancerawardlist.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding:
-                        const EdgeInsets.only(left: 8, right: 8, bottom: 6),
+                        const EdgeInsets.only(left: 8, right: 8, bottom: 0),
                     child: GestureDetector(
                       onTap: () {},
                       child: Card(
@@ -956,7 +959,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                         ),
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              bottom: 0, left: 10, right: 10, top: 8),
+                              bottom: 0, left: 10, right: 10, top: 0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -985,8 +988,55 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      getawarddetail(GlobalLists
-                                          .merckcancerawardlist[index].pageUrl);
+                                      // getawarddetail(GlobalLists
+                                      //     .merckcancerawardlist[index].pageUrl);
+                                      if (GlobalLists
+                                              .merckcancerawardlist[index]
+                                              .pageUrl ==
+                                          "merck-foundation-oncology-fellowship-program") {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        OurProgramcancerlist(
+                                                          indexpass: 23,
+                                                        )
+                                                //   MerckFellowship()
+                                                ));
+                                      } else if (GlobalLists
+                                              .merckcancerawardlist[index]
+                                              .pageUrl ==
+                                          "merck-foundation-more-than-a-patient") {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        OurProgramcancerlist(
+                                                          indexpass: 24,
+                                                        )
+                                                // MerckCancerPatient()
+                                                ));
+                                      } else if (GlobalLists
+                                              .merckcancerawardlist[index]
+                                              .pageUrl ==
+                                          "merck-foundation-community-awareness") {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        OurProgramcancerlist(
+                                                          indexpass: 25,
+                                                        )
+                                                //  Merckcancercommunityawareness()
+                                                ));
+                                      } else {
+                                        getawarddetail(GlobalLists
+                                            .merckcancerawardlist[index]
+                                            .pageUrl);
+                                      }
                                     },
                                     child: Container(
                                       width: 110,
@@ -1161,13 +1211,15 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => VideoPlayer(
-                                    videoUrl: GlobalLists
-                                        .mmtmmedialist[index].mediaUrl,
-                                  )));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (BuildContext context) => VideoPlayer(
+                      //               videoUrl: GlobalLists
+                      //                   .mmtmmedialist[index].mediaUrl,
+                      //             )));
+                      ShowDialogs.launchURL(
+                          GlobalLists.mmtmmedialist[index].mediaUrl);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8, left: 10),
@@ -2558,11 +2610,18 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
           setState(() {
             GlobalLists.awarddetallisting = resp.data.list;
             // GlobalLists.awarddetallisting[0].title
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => OurAwardDetail(
+            //               detaill: GlobalLists.awarddetallisting,
+            //             )));
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (BuildContext context) => OurAwardDetail(
                           detaill: GlobalLists.awarddetallisting,
+                          pageurl: pageurl,
                         )));
           });
         } else {

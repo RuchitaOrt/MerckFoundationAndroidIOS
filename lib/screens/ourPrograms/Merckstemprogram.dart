@@ -783,16 +783,16 @@ class MerckstemprogramState extends State<Merckstemprogram>
                       );
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      padding: const EdgeInsets.only(right: 5, left: 5),
                       child: Stack(
                         children: [
                           Container(
-                            width: SizeConfig.blockSizeHorizontal * 86,
+                            //  width: SizeConfig.blockSizeHorizontal * 86,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
                                   "${GlobalLists.homegallerybaseurl + GlobalLists.homegallerylist[index].photo}",
-                              fit: BoxFit.fill,
+                              fit: BoxFit.contain,
                             ),
                           ),
                           Align(
@@ -860,6 +860,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                               apiurl: API.watchvideostem,
                               headertitle:
                                   "Merck Foundation Stem Program Videos",
+                              sharelink: Constantstring.sharewatchallvideostem,
                             )));
                 // Navigator.push(
                 //     context,

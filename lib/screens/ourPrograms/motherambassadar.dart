@@ -201,7 +201,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-              heigthoflist: SizeConfig.safeBlockVertical * 35,
+              //heigthoflist: SizeConfig.safeBlockVertical * 35,
               onbtnTap: () {
                 //  getprogramgallery();
               },
@@ -220,16 +220,16 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                       );
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      padding: const EdgeInsets.only(right: 5, left: 5),
                       child: Stack(
                         children: [
                           Container(
-                            width: SizeConfig.blockSizeHorizontal * 80,
+                            //width: SizeConfig.blockSizeHorizontal * 80,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
                                   "${GlobalLists.homegallerybaseurl + GlobalLists.homegallerylist[index].photo}",
-                              fit: BoxFit.fill,
+                              fit: BoxFit.contain,
                             ),
                           ),
                           Align(
@@ -567,13 +567,13 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                     child: Column(
                       children: [
                         Container(
-                          width: SizeConfig.blockSizeHorizontal * 50,
+                          // width: SizeConfig.blockSizeHorizontal * 50,
                           height: 260,
                           child: FadeInImage.assetNetwork(
                             placeholder: 'assets/newImages/placeholder_3.jpg',
                             image:
                                 "${GlobalLists.ambasdarsbaseurl + GlobalLists.ambasdarslist[index].photo}",
-                            fit: BoxFit.fill,
+                            fit: BoxFit.contain,
                           ),
                         ),
                         SizedBox(
