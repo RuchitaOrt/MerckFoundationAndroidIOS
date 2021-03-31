@@ -171,6 +171,25 @@ class ShowDialogs {
     }
   }
 
+
+  static launchLinkdin(String url) async {
+    String fbProtocolUrl;
+
+    fbProtocolUrl = 'https://www.linkedin.com/shareArticle/?mini=true&url=${url}';
+
+    String fallbackUrl = url;
+
+    try {
+      bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
+
+      if (!launched) {
+        await launch(fallbackUrl, forceSafariVC: false);
+      }
+    } catch (e) {
+      await launch(fallbackUrl, forceSafariVC: false);
+    }
+  }
+
 //follow link to specific app
   static followuslink(String videourl, String msg) async {
     var response = await FlutterShareMe().openinsta(url: videourl, msg: msg);

@@ -38,6 +38,7 @@ import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetai
 import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 class Merckstemprogram extends StatefulWidget {
   @override
@@ -191,6 +192,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                 SizedBox(
                   height: 10,
                 ),
+                Bottomcardlink(),
               ])),
     );
   }

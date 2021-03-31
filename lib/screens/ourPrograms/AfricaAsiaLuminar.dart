@@ -39,6 +39,7 @@ import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewm
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
 import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 class MerckAfricaasialuminar extends StatefulWidget {
   @override
@@ -192,6 +193,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                 SizedBox(
                   height: 10,
                 ),
+                Bottomcardlink(),
               ])),
     );
   }

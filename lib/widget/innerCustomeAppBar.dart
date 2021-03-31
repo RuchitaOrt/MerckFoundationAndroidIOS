@@ -238,12 +238,12 @@ class InnerCustomAppBar extends PreferredSize {
                                                     ),
                                                     GestureDetector(
                                                       onTap: () async {
-                                                        // Platform.isAndroid
+                                                         Platform.isAndroid?
                                                         await FlutterShareMe()
                                                             .shareToLinkedin(
                                                                 url:
                                                                     "sharelink",
-                                                                msg: sharelink);
+                                                                msg: sharelink):ShowDialogs.launchLinkdin(sharelink);
                                                       },
                                                       child: Image.asset(
                                                         "assets/newImages/linkedin.png",
@@ -401,11 +401,12 @@ class InnerCustomAppBar extends PreferredSize {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () async {
-                                                    // Platform.isAndroid
-                                                    await FlutterShareMe()
-                                                        .shareToLinkedin(
-                                                            url: "sharelink",
-                                                            msg: sharelink);
+                                                     Platform.isAndroid?
+                                                        await FlutterShareMe()
+                                                            .shareToLinkedin(
+                                                                url:
+                                                                    "sharelink",
+                                                                msg: sharelink):ShowDialogs.launchLinkdin(sharelink);
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/linkedin.png",

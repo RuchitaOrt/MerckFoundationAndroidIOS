@@ -34,6 +34,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 class MerckCanceraccess extends StatefulWidget {
   @override
@@ -122,6 +123,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
         trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
+      // bottomNavigationBar: Bottomcardlink(),
       body: Container(
           width: double.infinity,
           height: double.infinity,
@@ -186,6 +188,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                 SizedBox(
                   height: 10,
                 ),
+                Bottomcardlink(),
               ])),
     );
   }
