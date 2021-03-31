@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -253,11 +254,8 @@ class SocialMediaState extends State<SocialMedia> {
             ),
           ),
           // Align(
-          //   alignment: Alignment.bottomRight,
-          //   child: Image.asset(
-          //     "assets/newImages/flowers_footer.png",
-          //     height: 170,
-          //   ),
+          //   alignment: Alignment.bottomCenter,
+          //   child: Bottomcardlink(),
           // ),
         ],
       ),

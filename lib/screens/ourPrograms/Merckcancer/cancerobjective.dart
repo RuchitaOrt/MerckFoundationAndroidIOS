@@ -7,6 +7,7 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -76,88 +77,96 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
         trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
-      body: ListView(
-        shrinkWrap: true,
-        physics: ScrollPhysics(),
+      //  bottomNavigationBar: Bottomcardlink(),
+      body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
-            child: ListView(
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              //  crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Visibility(
-                  visible: isMiddleSectionLoaded,
-                  replacement: Center(child: CircularProgressIndicator()),
-                  child: ListView(
-                      shrinkWrap: true,
-                      physics: ScrollPhysics(),
-                      // scrollDirection: Axis.horizontal,
-                      children: list()),
+          ListView(
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  //  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Visibility(
+                      visible: isMiddleSectionLoaded,
+                      replacement: Center(child: CircularProgressIndicator()),
+                      child: ListView(
+                          shrinkWrap: true,
+                          physics: ScrollPhysics(),
+                          // scrollDirection: Axis.horizontal,
+                          children: list()),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    // Visibility(
+                    //   visible: isrightSectionLoaded,
+                    //   replacement: Column(
+                    //     children: [
+                    //       SizedBox(
+                    //         height: 20,
+                    //       ),
+                    //       CircularProgressIndicator()
+                    //     ],
+                    //   ),
+                    //   child: Container(
+                    //     height: 450,
+                    //     //color: Colors.amber,
+                    //     child: Column(
+                    //       children: [
+                    //         TabBar(
+                    //           isScrollable: true,
+                    //           unselectedLabelColor: Colors.grey,
+                    //           labelColor: Colors.black,
+                    //           indicatorSize: TabBarIndicatorSize.tab,
+                    //           indicator: new BubbleTabIndicator(
+                    //             indicatorHeight: 35.0,
+                    //             indicatorRadius: 5,
+                    //             indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
+                    //             tabBarIndicatorSize: TabBarIndicatorSize.tab,
+                    //           ),
+                    //           tabs: tabs,
+                    //           controller: _tabController,
+                    //         ),
+                    //         // Expanded(
+                    //         //   flex: 3,
+                    //         //   child: TabBarView(
+                    //         //       physics: ScrollPhysics(),
+                    //         //       controller: _tabController,
+                    //         //       children: tablist()),
+                    //         // ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 8,
-                ),
-                // Visibility(
-                //   visible: isrightSectionLoaded,
-                //   replacement: Column(
-                //     children: [
-                //       SizedBox(
-                //         height: 20,
-                //       ),
-                //       CircularProgressIndicator()
-                //     ],
-                //   ),
-                //   child: Container(
-                //     height: 450,
-                //     //color: Colors.amber,
-                //     child: Column(
-                //       children: [
-                //         TabBar(
-                //           isScrollable: true,
-                //           unselectedLabelColor: Colors.grey,
-                //           labelColor: Colors.black,
-                //           indicatorSize: TabBarIndicatorSize.tab,
-                //           indicator: new BubbleTabIndicator(
-                //             indicatorHeight: 35.0,
-                //             indicatorRadius: 5,
-                //             indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
-                //             tabBarIndicatorSize: TabBarIndicatorSize.tab,
-                //           ),
-                //           tabs: tabs,
-                //           controller: _tabController,
-                //         ),
-                //         // Expanded(
-                //         //   flex: 3,
-                //         //   child: TabBarView(
-                //         //       physics: ScrollPhysics(),
-                //         //       controller: _tabController,
-                //         //       children: tablist()),
-                //         // ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 0, left: 0),
+              //   child:
+              //       Align(alignment: Alignment.bottomCenter, child: Bottomcardlink()
+
+              //           // Image.asset(
+              //           //   "assets/newImages/flowers_footer.png",
+              //           //   height: 170,
+              //           // ),
+              //           ),
+              // ),
+              SizedBox(
+                height: 10,
+              ),
+              // Bottomcardlink()
+            ],
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(right: 0, left: 0),
-          //   child: Align(
-          //     alignment: Alignment.topRight,
-          //     child: Image.asset(
-          //       "assets/newImages/flowers_footer.png",
-          //       height: 170,
-          //     ),
-          //   ),
-          // ),
-          SizedBox(
-            height: 10,
-          )
+          // Align(alignment: Alignment.bottomCenter, child: Bottomcardlink())
         ],
       ),
     );

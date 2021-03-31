@@ -185,7 +185,7 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                 SizedBox(
                   height: 10,
                 ),
-                Bottomcardlink(),
+                //   Bottomcardlink(),
               ])),
     );
   }

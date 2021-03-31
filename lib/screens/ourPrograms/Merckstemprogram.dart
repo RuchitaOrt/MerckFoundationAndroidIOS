@@ -192,7 +192,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                 SizedBox(
                   height: 10,
                 ),
-                Bottomcardlink(),
+                // Bottomcardlink(),
               ])),
     );
   }

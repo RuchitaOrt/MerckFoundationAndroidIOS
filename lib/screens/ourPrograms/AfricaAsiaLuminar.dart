@@ -193,7 +193,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                 SizedBox(
                   height: 10,
                 ),
-                Bottomcardlink(),
+                //  Bottomcardlink(),
               ])),
     );
   }
