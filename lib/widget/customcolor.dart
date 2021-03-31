@@ -241,7 +241,8 @@ class Constantstring {
       "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-more-than-a-mother";
   static String sharewatchallvideostem =
       "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-stem-program";
-  static String sharewatchallvideosubstain = "";
+  static String sharewatchallvideosubstain =
+      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-sustainability-initiative";
   static String sharewatchallvideocancer =
       "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-cancer-access-program";
   static String sharewatchallvideovideommtm =

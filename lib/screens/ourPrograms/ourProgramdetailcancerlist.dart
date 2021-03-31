@@ -87,6 +87,8 @@ class _MyHomePageState extends State<OurProgramcancerlist> {
                                         apiurl: API.watchvideocancer,
                                         headertitle:
                                             "Merck Foundation Cancer Access Program Videos",
+                                        sharelink: Constantstring
+                                            .sharewatchallvideovideocancer,
                                       )
                                     : widget.indexpass == 27
                                         ? SocialMedia()

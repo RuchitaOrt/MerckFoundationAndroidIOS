@@ -283,6 +283,8 @@ class CovidResponseState extends State<CovidResponse>
                                             apiurl: API.covidvideo,
                                             headertitle:
                                                 "MERCK FOUNDATION RESPONSE TO COVID-19 PANDEMIC",
+                                            sharelink: Constantstring
+                                                .sharewatchallvideocovid,
                                           )));
                             },
                             titleColor: Customcolor.pink_col,

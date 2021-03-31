@@ -97,7 +97,12 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
           titleImg: "assets/newImages/flowers-3.png",
           list: ListView.builder(
             itemCount: galleryDetailsResponse
-                .list[galleryDetailsResponse.list.keys.elementAt(i)].length,
+                        .list[galleryDetailsResponse.list.keys.elementAt(i)]
+                        .length <
+                    4
+                ? galleryDetailsResponse
+                    .list[galleryDetailsResponse.list.keys.elementAt(i)].length
+                : 4,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
@@ -130,7 +135,8 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                                       .list[galleryDetailsResponse.list.keys
                                           .elementAt(i)][index]
                                       .photo,
-                              fit: BoxFit.fill,
+                              fit: BoxFit.contain,
+                              // width: SizeConfig.blockSizeHorizontal * 20,
                             ),
                           ),
                           // Align(
@@ -368,7 +374,10 @@ class CustomCard extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Container(height: SizeConfig.blockSizeVertical * 35, child: list),
+        Container(
+            width: SizeConfig.blockSizeHorizontal * 100,
+            height: SizeConfig.blockSizeVertical * 35,
+            child: list),
         SizedBox(
           height: 9,
         ),

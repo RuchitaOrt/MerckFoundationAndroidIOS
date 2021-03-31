@@ -1362,54 +1362,54 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                       );
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      padding: const EdgeInsets.only(right: 5, left: 5),
                       child: Stack(
                         children: [
                           Container(
-                            width: SizeConfig.blockSizeHorizontal * 86,
+                            //   width: SizeConfig.blockSizeHorizontal * 70,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
                                   "${GlobalLists.homegallerybaseurl + GlobalLists.homegallerylist[index].photo}",
-                              fit: BoxFit.fill,
+                              fit: BoxFit.contain,
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      // Container(
-                                      //   width:
-                                      //       SizeConfig.blockSizeHorizontal * 80,
-                                      //   child: Text(
-                                      //     GlobalLists.homegallerylist[index].title,
-                                      //     overflow: TextOverflow.ellipsis,
-                                      //     style: TextStyle(
-                                      //         color: Colors.white,
-                                      //         fontSize: 14,
-                                      //         fontWeight: FontWeight.w700),
-                                      //     maxLines: 3,
-                                      //   ),
-                                      // ),
-                                      SizedBox(
-                                        height: 8,
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                          // Align(
+                          //   alignment: Alignment.bottomCenter,
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.only(
+                          //         left: 10, right: 10, bottom: 10),
+                          //     child: Row(
+                          //       crossAxisAlignment: CrossAxisAlignment.end,
+                          //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //       children: [
+                          //         Column(
+                          //           mainAxisAlignment: MainAxisAlignment.end,
+                          //           crossAxisAlignment:
+                          //               CrossAxisAlignment.start,
+                          //           children: [
+                          //             // Container(
+                          //             //   width:
+                          //             //       SizeConfig.blockSizeHorizontal * 80,
+                          //             //   child: Text(
+                          //             //     GlobalLists.homegallerylist[index].title,
+                          //             //     overflow: TextOverflow.ellipsis,
+                          //             //     style: TextStyle(
+                          //             //         color: Colors.white,
+                          //             //         fontSize: 14,
+                          //             //         fontWeight: FontWeight.w700),
+                          //             //     maxLines: 3,
+                          //             //   ),
+                          //             // ),
+                          //             SizedBox(
+                          //               height: 8,
+                          //             )
+                          //           ],
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -1439,6 +1439,8 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                               apiurl: API.watchvideoafrica,
                               headertitle:
                                   "Merck Foundation Africa Asia Luminary Videos",
+                              sharelink:
+                                  Constantstring.sharewatchallvideoafrica,
                             )));
                 // Navigator.push(
                 //     context,

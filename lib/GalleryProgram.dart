@@ -223,7 +223,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                                           .programgallerylist[
                                                               index]
                                                           .photo),
-                                                  fit: BoxFit.fill,
+                                                  fit: BoxFit.contain,
                                                 ),
                                               ),
                                             ),

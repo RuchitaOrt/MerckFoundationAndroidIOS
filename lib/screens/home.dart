@@ -2062,7 +2062,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               cardsubtitle: "Alumini ",
               cardTitle: "Testimonials  ",
               testimonialname:
-                  GlobalLists.mmttestimoniallist[0].testimonialName,
+                  GlobalLists.mmttestimoniallist[1].testimonialName,
               titleColor: Customcolor.text_darkblue,
               departmentname:
                   // "Gynecologic Oncology Fellow | 2018 \nMerck Foundation Alumni",

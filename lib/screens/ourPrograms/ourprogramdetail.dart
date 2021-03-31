@@ -98,6 +98,8 @@ class _MyHomePageState extends State<OurProgram> {
                                                             API.watchvideommtm,
                                                         headertitle:
                                                             "Merck Foundation More Than A Mother Videos",
+                                                        sharelink: Constantstring
+                                                            .sharewatchallvideovideommtm,
                                                       )
                                                     : indexpass == 6
                                                         ? LocalSongsandChildrenStories()

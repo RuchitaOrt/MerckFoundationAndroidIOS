@@ -101,14 +101,14 @@ class CustomCardState extends State<CustomeCardforTestimonial> {
           GestureDetector(
             onTap: widget.oncardtap,
             child: Container(
-              height: SizeConfig.blockSizeVertical * 25,
+              height: SizeConfig.blockSizeVertical * 32,
               width: SizeConfig.blockSizeHorizontal * 100,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  //  borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: NetworkImage(widget.cardImage),
-                    fit: BoxFit.fill,
-                  )),
+                image: NetworkImage(widget.cardImage),
+                fit: BoxFit.fill,
+              )),
               child: Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
                 child: Row(

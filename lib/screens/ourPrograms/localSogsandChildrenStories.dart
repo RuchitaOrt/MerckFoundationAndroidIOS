@@ -110,7 +110,7 @@ class LocalSongsandChildrenStoriesState
       if (typewidet[i] == "gallery") {
         listofwiget.add(
           Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
+            padding: const EdgeInsets.only(left: 5, top: 5),
             child: CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
@@ -141,12 +141,12 @@ class LocalSongsandChildrenStoriesState
                       child: Stack(
                         children: [
                           Container(
-                            width: SizeConfig.blockSizeHorizontal * 86,
+                            //width: SizeConfig.blockSizeHorizontal * 86,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
                                   "${GlobalLists.homegallerybaseurl + GlobalLists.homegallerylist[index].photo}",
-                              fit: BoxFit.fill,
+                              fit: BoxFit.contain,
                             ),
                           ),
                           Align(

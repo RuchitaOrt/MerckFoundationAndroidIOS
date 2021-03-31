@@ -6,7 +6,6 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/SPManager.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
-
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -28,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/images/splash.jpg'),
+                  image: AssetImage('assets/newImages/splashnew.png'),
                   fit: BoxFit.fill),
             ),
           ),
@@ -36,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             left: 8,
             bottom: 20,
             child: Text(
-              "version 1.9.5",
+              "version 1.9.6",
               style: TextStyle(
                 color: Colors.black87,
               ),
