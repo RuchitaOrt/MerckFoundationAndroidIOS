@@ -6,6 +6,7 @@ import 'package:merckfoundation22dec/screens/ourPrograms/Merckcancer/MerckFellow
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckcancer/MerckCancerPatient.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckcancer/Merckcancercommunityawareness.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckcancer/socialmedia.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';

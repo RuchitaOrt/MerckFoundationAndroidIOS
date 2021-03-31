@@ -202,7 +202,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                 SizedBox(
                   height: 10,
                 ),
-                Bottomcardlink(),
+                //  Bottomcardlink(),
               ])),
     );
   }

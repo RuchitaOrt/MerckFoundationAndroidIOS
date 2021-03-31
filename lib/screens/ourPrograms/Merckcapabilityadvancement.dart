@@ -186,7 +186,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                 SizedBox(
                   height: 10,
                 ),
-                Bottomcardlink(),
+                //Bottomcardlink(),
               ])),
     );
   }

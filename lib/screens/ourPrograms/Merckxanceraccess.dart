@@ -188,7 +188,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                 SizedBox(
                   height: 10,
                 ),
-                Bottomcardlink(),
+                // Bottomcardlink(),
               ])),
     );
   }

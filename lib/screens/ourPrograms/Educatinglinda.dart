@@ -195,7 +195,7 @@ class EducatingLindaState extends State<EducatingLinda>
                 SizedBox(
                   height: 10,
                 ),
-                Bottomcardlink(),
+                //    Bottomcardlink(),
               ])),
     );
   }

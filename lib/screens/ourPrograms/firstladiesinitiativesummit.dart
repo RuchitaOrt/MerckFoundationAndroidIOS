@@ -189,7 +189,7 @@ class FirstLadiesInitiativeDetailsState
                 SizedBox(
                   height: 10,
                 ),
-                Bottomcardlink(),
+                //  Bottomcardlink(),
               ])),
     );
   }

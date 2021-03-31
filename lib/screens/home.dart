@@ -356,7 +356,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 SizedBox(
                   height: 10,
                 ),
-                Bottomcardlink(),
+                // Bottomcardlink(),
                 // Container(
                 //   child: Text(
                 //     "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",

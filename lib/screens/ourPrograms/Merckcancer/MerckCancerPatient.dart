@@ -16,6 +16,7 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
@@ -189,6 +190,7 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                 SizedBox(
                   height: 10,
                 ),
+                //  Bottomcardlink()
               ])),
     );
   }
