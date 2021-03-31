@@ -123,7 +123,7 @@ class Merckmtmtext extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: "Merck More Than A Mother ",
+            text: "Merck Foundation More Than A Mother ",
             style: TextStyle(
               color: Customcolor.textsubtitlecolor,
               fontSize: 18,

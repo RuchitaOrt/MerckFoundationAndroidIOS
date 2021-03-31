@@ -23,6 +23,7 @@ import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/viewMoreMedia.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
@@ -127,6 +128,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
         trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
+      // bottomNavigationBar: Bottomcardlink(),
       body: Container(
           width: double.infinity,
           height: double.infinity,
@@ -200,6 +202,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                 SizedBox(
                   height: 10,
                 ),
+                Bottomcardlink(),
               ])),
     );
   }

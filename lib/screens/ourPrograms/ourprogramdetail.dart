@@ -119,253 +119,261 @@ class _MyHomePageState extends State<OurProgram> {
         ),
 
         ///[SEtting up the floating action button]
-        floatingActionButton: AdvFab(
-          showLogs: true,
-          floatingActionButtonExpendedWidth: 80,
-          onFloatingActionButtonTapped: () {
-            mabialaFABController.setExpandedWidgetConfiguration(
-              showLogs: true,
-              heightToExpandTo: 50,
-              expendedBackgroundColor: Customcolor.programyellow,
-              withChild: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: (MediaQuery.of(context).size.width) * 70,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(bottom: 40),
+          child: AdvFab(
+            showLogs: true,
+            floatingActionButtonExpendedWidth: 80,
+            onFloatingActionButtonTapped: () {
+              mabialaFABController.setExpandedWidgetConfiguration(
+                showLogs: true,
+                heightToExpandTo: 50,
+                expendedBackgroundColor: Customcolor.programyellow,
+                withChild: Padding(
+                  padding: const EdgeInsets.all(8),
+                  //  padding: const EdgeInsets.only(bottom: 60, left: 8, right: 8),
+                  child: Container(
+                    width: (MediaQuery.of(context).size.width) * 70,
 
-                  ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
-                  ///in the next line we use 20%
-                  height: 330,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      GestureDetector(
-                          onTap: () {
-                            mabialaFABController.setExpandedWidgetConfiguration(
-                              showLogs: true,
-                              heightToExpandTo: 50,
-                              expendedBackgroundColor:
-                                  Customcolor.programyellow,
-                              withChild: Padding(
+                    ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
+                    ///in the next line we use 20%
+                    height: 330,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        GestureDetector(
+                            onTap: () {
+                              mabialaFABController
+                                  .setExpandedWidgetConfiguration(
+                                showLogs: true,
+                                heightToExpandTo: 50,
+                                expendedBackgroundColor:
+                                    Customcolor.programyellow,
+                                withChild: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    width: (MediaQuery.of(context).size.width) *
+                                        70,
+
+                                    ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
+                                    ///in the next line we use 20%
+                                    height: 330,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        GestureDetector(
+                                            onTap: () {},
+                                            child: Align(
+                                                alignment: Alignment.topRight,
+                                                child: Icon(
+                                                  Icons.close,
+                                                  color: Customcolor.colorBlue,
+                                                ))),
+                                        Expanded(
+                                          //   flex: 5,
+                                          child: ListView.builder(
+                                            padding: EdgeInsets.all(0),
+                                            physics: BouncingScrollPhysics(),
+                                            itemCount: programvalue.length,
+                                            scrollDirection: Axis.vertical,
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              return Container(
+                                                child: Column(
+                                                  children: [
+                                                    FormLabel(
+                                                      text: programvalue[index],
+                                                      labelColor: Customcolor
+                                                          .text_darkblue,
+                                                      fontweight:
+                                                          FontWeight.w600,
+                                                      fontSize:
+                                                          ResponsiveFlutter.of(
+                                                                  context)
+                                                              .fontSize(1.8),
+                                                    ),
+
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+
+                                                    Container(
+                                                      width: SizeConfig
+                                                              .blockSizeHorizontal *
+                                                          80,
+                                                      height: 1.0,
+                                                      color: Customcolor
+                                                          .text_darkblue,
+                                                    )
+                                                    // Divider(
+                                                    //   color:
+                                                    //       Customcolor.colorBlue,
+                                                    // )
+                                                  ],
+                                                ),
+
+                                                //height: (MediaQuery.of(context).size.height/100)*9,
+                                              );
+                                            },
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                              mabialaFABController.isCollapsed
+                                  ? mabialaFABController.expandFAB()
+                                  : mabialaFABController.collapseFAB();
+                            },
+                            child: Align(
+                                alignment: Alignment.topRight,
+                                child: Icon(
+                                  Icons.close,
+                                  color: Customcolor.colorBlue,
+                                ))),
+                        Expanded(
+                          flex: 5,
+                          child: ListView.builder(
+                            physics: BouncingScrollPhysics(),
+                            itemCount: programvalue.length,
+                            scrollDirection: Axis.vertical,
+                            padding: EdgeInsets.zero,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  width:
-                                      (MediaQuery.of(context).size.width) * 70,
-
-                                  ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
-                                  ///in the next line we use 20%
-                                  height: 330,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      GestureDetector(
-                                          onTap: () {},
-                                          child: Align(
-                                              alignment: Alignment.topRight,
-                                              child: Icon(
-                                                Icons.close,
-                                                color: Customcolor.colorBlue,
-                                              ))),
-                                      Expanded(
-                                        //   flex: 5,
-                                        child: ListView.builder(
-                                          padding: EdgeInsets.all(0),
-                                          physics: BouncingScrollPhysics(),
-                                          itemCount: programvalue.length,
-                                          scrollDirection: Axis.vertical,
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return Container(
-                                              child: Column(
-                                                children: [
-                                                  FormLabel(
-                                                    text: programvalue[index],
-                                                    labelColor: Customcolor
-                                                        .text_darkblue,
-                                                    fontweight: FontWeight.w600,
-                                                    fontSize:
-                                                        ResponsiveFlutter.of(
-                                                                context)
-                                                            .fontSize(1.8),
-                                                  ),
-
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-
-                                                  Container(
-                                                    width: SizeConfig
-                                                            .blockSizeHorizontal *
-                                                        80,
-                                                    height: 1.0,
-                                                    color: Customcolor
-                                                        .text_darkblue,
-                                                  )
-                                                  // Divider(
-                                                  //   color:
-                                                  //       Customcolor.colorBlue,
-                                                  // )
-                                                ],
-                                              ),
-
-                                              //height: (MediaQuery.of(context).size.height/100)*9,
-                                            );
-                                          },
+                                child: GestureDetector(
+                                  onTap: () {
+                                    if (index == 0) {
+                                      //aboutmerckmorethanmother
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  OurProgram(
+                                                    indexpass: 8,
+                                                  )));
+                                    } else if (index == 1) {
+                                      //strategy
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  OurProgram(
+                                                    indexpass: 9,
+                                                  )));
+                                    } else if (index == 2) {
+                                      //MotherAmbassadarDetails
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  OurProgram(
+                                                    indexpass: 10,
+                                                  )));
+                                    } else if (index == 3) {
+                                      //fertility
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  OurProgram(
+                                                    indexpass: 11,
+                                                  )));
+                                    } else if (index == 4) {
+                                      //community
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  OurProgram(
+                                                    indexpass: 15,
+                                                  )));
+                                    } else if (index == 5) {
+                                      //empowring berna
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  OurProgram(
+                                                    indexpass: 5,
+                                                  )));
+                                    } else if (index == 6) {
+                                      //Local songs
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  OurProgram(
+                                                    indexpass: 6,
+                                                  )));
+                                    } else if (index == 7) {
+                                      //video
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  OurProgram(
+                                                    indexpass: 7,
+                                                  )));
+                                    }
+                                  },
+                                  child: Container(
+                                    color: Colors.transparent,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        FormLabel(
+                                          text: programvalue[index],
+                                          labelColor: Customcolor.text_darkblue,
+                                          fontweight: FontWeight.w600,
+                                          fontSize:
+                                              ResponsiveFlutter.of(context)
+                                                  .fontSize(1.8),
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                            mabialaFABController.isCollapsed
-                                ? mabialaFABController.expandFAB()
-                                : mabialaFABController.collapseFAB();
-                          },
-                          child: Align(
-                              alignment: Alignment.topRight,
-                              child: Icon(
-                                Icons.close,
-                                color: Customcolor.colorBlue,
-                              ))),
-                      Expanded(
-                        flex: 5,
-                        child: ListView.builder(
-                          physics: BouncingScrollPhysics(),
-                          itemCount: programvalue.length,
-                          scrollDirection: Axis.vertical,
-                          padding: EdgeInsets.zero,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GestureDetector(
-                                onTap: () {
-                                  if (index == 0) {
-                                    //aboutmerckmorethanmother
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                OurProgram(
-                                                  indexpass: 8,
-                                                )));
-                                  } else if (index == 1) {
-                                    //strategy
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                OurProgram(
-                                                  indexpass: 9,
-                                                )));
-                                  } else if (index == 2) {
-                                    //MotherAmbassadarDetails
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                OurProgram(
-                                                  indexpass: 10,
-                                                )));
-                                  } else if (index == 3) {
-                                    //fertility
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                OurProgram(
-                                                  indexpass: 11,
-                                                )));
-                                  } else if (index == 4) {
-                                    //community
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                OurProgram(
-                                                  indexpass: 15,
-                                                )));
-                                  } else if (index == 5) {
-                                    //empowring berna
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                OurProgram(
-                                                  indexpass: 5,
-                                                )));
-                                  } else if (index == 6) {
-                                    //Local songs
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                OurProgram(
-                                                  indexpass: 6,
-                                                )));
-                                  } else if (index == 7) {
-                                    //video
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                OurProgram(
-                                                  indexpass: 7,
-                                                )));
-                                  }
-                                },
-                                child: Container(
-                                  color: Colors.transparent,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      FormLabel(
-                                        text: programvalue[index],
-                                        labelColor: Customcolor.text_darkblue,
-                                        fontweight: FontWeight.w600,
-                                        fontSize: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Container(
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        height: 1.0,
-                                        color: Customcolor.text_darkblue,
-                                      )
-                                    ],
-                                  ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Container(
+                                          width:
+                                              SizeConfig.blockSizeHorizontal *
+                                                  80,
+                                          height: 1.0,
+                                          color: Customcolor.text_darkblue,
+                                        )
+                                      ],
+                                    ),
 
-                                  //height: (MediaQuery.of(context).size.height/100)*9,
+                                    //height: (MediaQuery.of(context).size.height/100)*9,
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                      )
-                    ],
+                              );
+                            },
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            );
-            mabialaFABController.isCollapsed
-                ? mabialaFABController.expandFAB()
-                : mabialaFABController.collapseFAB();
-          },
-          floatingActionButtonIcon: Icons.menu,
+              );
+              mabialaFABController.isCollapsed
+                  ? mabialaFABController.expandFAB()
+                  : mabialaFABController.collapseFAB();
+            },
+            floatingActionButtonIcon: Icons.menu,
 
-          floatingActionButtonIconColor: Customcolor.colorBlue,
-          navigationBarIconActiveColor: Colors.pink,
-          navigationBarIconInactiveColor: Colors.pink[200].withOpacity(0.6),
-          collapsedColor: Customcolor.programyellow,
-          // useAsFloatingSpaceBar: useFloatingSpaceBar,
-          useAsFloatingActionButton: useAsFloatingActionButton,
-          //useAsNavigationBar: useNavigationBar,
-          controller: mabialaFABController,
-          animationDuration: Duration(milliseconds: 150),
+            floatingActionButtonIconColor: Customcolor.colorBlue,
+            navigationBarIconActiveColor: Colors.pink,
+            navigationBarIconInactiveColor: Colors.pink[200].withOpacity(0.6),
+            collapsedColor: Customcolor.programyellow,
+            // useAsFloatingSpaceBar: useFloatingSpaceBar,
+            useAsFloatingActionButton: useAsFloatingActionButton,
+            //useAsNavigationBar: useNavigationBar,
+            controller: mabialaFABController,
+            animationDuration: Duration(milliseconds: 150),
+          ),
         )
         // This trailing comma makes auto-formatting nicer for build methods.
         );

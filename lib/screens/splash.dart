@@ -27,20 +27,45 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/newImages/splashnew.png'),
+                  image: AssetImage('assets/newImages/splashbg.png'),
                   fit: BoxFit.fill),
+            ),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Image.asset(
+                  'assets/newImages/splashlogo.png',
+                  width: 250,
+                  height: 250,
+                ),
+              ),
             ),
           ),
           Positioned(
             left: 8,
-            bottom: 20,
-            child: Text(
-              "version 1.9.6",
-              style: TextStyle(
-                color: Colors.black87,
-              ),
+            bottom: 5,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  width: SizeConfig.blockSizeHorizontal * 55,
+                  child: Text(
+                    "version 1.9.7",
+                    style: TextStyle(
+                      color: Colors.black87,
+                    ),
+                  ),
+                ),
+                //   Expanded(child: Container()),
+                Image.asset(
+                  'assets/newImages/splashflower.png',
+                  width: SizeConfig.blockSizeHorizontal * 40,
+                  height: SizeConfig.blockSizeHorizontal * 50,
+                ),
+              ],
             ),
-          )
+          ),
         ],
       ),
     );
