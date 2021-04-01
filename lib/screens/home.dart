@@ -6,11 +6,9 @@ import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:http/http.dart' as http;
 import 'package:marquee/marquee.dart';
-import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/ViewmoremmtmAmbassadar.dart';
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
@@ -26,32 +24,27 @@ import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/model/Merckoverview.dart';
 import 'package:merckfoundation22dec/model/yearwisephotogallery.dart';
-import 'package:merckfoundation22dec/screens/ceomessage/Detailpageceo.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/SPManager.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
 import 'package:merckfoundation22dec/whatwedo/ourpolicy.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/widget/customcard.dart';
 import 'package:merckfoundation22dec/widget/customcardforTestimonial.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawer.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
-import 'package:photo_view/photo_view.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/callforApplication.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
-import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:intl/intl.dart';
 import 'package:merckfoundation22dec/viewmorehomeceo.dart';
 import 'package:merckfoundation22dec/covid/CovidResponse.dart';
-import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -333,16 +326,17 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
-
-                SizedBox(
-                  height: 10,
-                ),
                 // Padding(
                 //   padding: const EdgeInsets.only(right: 60, left: 60),
                 //   child: Image.asset(
                 //     "assets/newImages/flowers_footer.png",
                 //   ),
                 // ),
+
+                SizedBox(
+                  height: 10,
+                ),
+                
                 Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
                   child: Align(
@@ -356,7 +350,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 SizedBox(
                   height: 10,
                 ),
-                // Bottomcardlink(),
+                Bottomcardlink(),
                 // Container(
                 //   child: Text(
                 //     "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
@@ -786,7 +780,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 child: Center(child: Text(Constantstring.emptyData)),
               )
             : Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(top: 8,bottom: 8),
                 child: Container(
                     //color: Colors.amber,
                     width: SizeConfig.blockSizeHorizontal * 100,
@@ -825,7 +819,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                         image: GlobalLists.homeMMTMBaseURL +
                                             product.photo,
                                         fit: BoxFit.fill,
-                                        width: Constantstring.callimagewidth,
+                                        width: Constantstring.callAmbassadarimagewidth,
                                         height: Constantstring.callimageheight,
                                       ),
                                     ),
@@ -1600,7 +1594,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       } else if (index == 3) {
                         //our award
                         Navigator.push(
-                            context,
+                            context,   
                             MaterialPageRoute(
                                 builder: (BuildContext context) => Ouraward()));
                       } else if (index == 4) {
@@ -2296,7 +2290,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
             child: CustomeCard(
-              index: 1,
+              index: 1,    
               cardImage: GlobalLists.homeceomsgbaseurl +
                   GlobalLists.homeceomsglist[0].image,
               cardsubtitle: "Message Form ",

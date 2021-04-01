@@ -7,6 +7,7 @@ import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
@@ -39,13 +40,13 @@ class OurPolicyState extends State<OurPolicy> with TickerProviderStateMixin {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            Navigator.pop(context);
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (BuildContext context) => Dashboard(
-            //               index: 0,
-            //             )));
+          //  Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Dashboard(
+                          index: 0,
+                        )));
           },
           index: 2,
           title: "Our Policy",
@@ -70,7 +71,7 @@ class OurPolicyState extends State<OurPolicy> with TickerProviderStateMixin {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(
-                              left: 15, right: 8, top: 8, bottom: 15),
+                              left: 15, right: 8, top: 8, bottom: 0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -114,6 +115,22 @@ class OurPolicyState extends State<OurPolicy> with TickerProviderStateMixin {
                             ],
                           ),
                         ),
+
+                           Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Bottomcardlink(),
+         
                       ],
                     ),
             ),

@@ -7,19 +7,16 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
-import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/callforApplication.dart';
 import 'package:merckfoundation22dec/model/AfricaAsialuminar.dart'
     as africaasia;
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 import 'package:merckfoundation22dec/ourawarddetail.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/watchmorevideolibray.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -33,13 +30,11 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'dart:convert';
 
 import 'package:flutter_html/flutter_html.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
 import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
-import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 class MerckAfricaasialuminar extends StatefulWidget {
   @override
@@ -193,6 +188,21 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                 SizedBox(
                   height: 10,
                 ),
+
+                  Padding(
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Bottomcardlink(),
                 //  Bottomcardlink(),
               ])),
     );

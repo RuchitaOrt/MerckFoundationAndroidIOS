@@ -55,6 +55,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
   List _productsAvailable = [];
   bool isMiddleSectionLoaded = false;
   bool isrightSectionLoaded = false;
+  Color color;
 
   List<Widget> listofwiget = [];
   List<Widget> listoftabwiget = [];
@@ -188,6 +189,21 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                 SizedBox(
                   height: 10,
                 ),
+
+                Padding(
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Bottomcardlink(),
                 // Bottomcardlink(),
               ])),
     );
@@ -948,12 +964,33 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                 itemCount: GlobalLists.merckcancerawardlist.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
+                  if (index % 7 == 0) {
+                    print("index");
+                    print(index % 3);
+                    color = Customcolor.prog1;
+                  } else if (index % 7 == 1) {
+                    color = Customcolor.prog2;
+                  } else if (index % 7 == 2) {
+                    color = Customcolor.prog3;
+                  } else if (index % 7 == 3) {
+                    color = Customcolor.prog4;
+                  } else if (index % 7 == 4) {
+                    color = Customcolor.prog5;
+                  } else if (index % 7 == 5) {
+                    color = Customcolor.prog6;
+                  } else if (index % 7 == 6) {
+                    color = Customcolor.prog7;
+                  } else if (index % 7 == 7) {
+                    color = Customcolor.prog8;
+                  }
+
                   return Padding(
                     padding:
                         const EdgeInsets.only(left: 8, right: 8, bottom: 0),
                     child: GestureDetector(
                       onTap: () {},
                       child: Card(
+                        color: color,
                         elevation: 2,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
@@ -977,7 +1014,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                 style: {
                                   "body": Style(
                                       textAlign: TextAlign.start,
-                                      color: Customcolor.pink_col,
+                                      color:
+                                          Colors.white, //Customcolor.pink_col,
                                       fontSize: FontSize.large,
                                       fontWeight: FontWeight.w500),
                                 },

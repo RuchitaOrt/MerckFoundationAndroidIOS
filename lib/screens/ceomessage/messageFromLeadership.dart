@@ -8,6 +8,7 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
@@ -63,13 +64,13 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.pop(context);
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (BuildContext context) => Dashboard(
-          //               index: 0,
-          //             )));
+         // Navigator.pop(context);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => Dashboard(
+                        index: 0,
+                      )));
         },
         index: 2,
         title: "Message from LeadershipTeam",
@@ -237,7 +238,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                     return new Builder(
                       builder: (BuildContext context) {
                         return new Container(
-                          width: SizeConfig.blockSizeHorizontal * 96,
+                          width: SizeConfig.blockSizeHorizontal * 100,
 
                           child: ListView(
                             shrinkWrap: true,
@@ -290,7 +291,9 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                     ShowDialogs.launchURL(url);
                                   },
                                   style: {
-                                    "body": Style(textAlign: TextAlign.center),
+                                    "body": Style(textAlign: TextAlign.center, 
+                                    //fontSize: FontSize(16.0)
+                                    ),
                                   },
                                   // style: {
                                   //   "body": Style(
@@ -327,6 +330,9 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                     SizedBox(
                                       height: 15,
                                     ),
+
+
+                                    
                                     // Padding(
                                     //   padding:
                                     //       const EdgeInsets.only(right: 60, left: 60),
@@ -394,6 +400,23 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                               //     ),
                               //   ],
                               // ),
+
+
+                                 Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Bottomcardlink(),
+         
                             ],
                           ),
                           //child: new Text('text $i', style: new TextStyle(fontSize: 16.0,color: Colors.black),)

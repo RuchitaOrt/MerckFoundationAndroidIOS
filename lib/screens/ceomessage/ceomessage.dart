@@ -7,6 +7,7 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
@@ -36,13 +37,13 @@ class CeomessageState extends State<Ceomessage> {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            Navigator.pop(context);
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (BuildContext context) => Dashboard(
-            //               index: 0,
-            //             )));
+          //  Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Dashboard(
+                          index: 0,
+                        )));
           },
           index: 2,
           title: "Leadership",
@@ -52,18 +53,18 @@ class CeomessageState extends State<Ceomessage> {
           trallingImg2: "assets/newImages/search.png",
           height: 85,
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              // physics: ScrollPhysics(),
-              // shrinkWrap: true,
-              // scrollDirection: Axis.vertical,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GlobalLists.ceolisting.length <= 0
-                    ? Container()
-                    : ListView.builder(
+        body: SingleChildScrollView(
+          child: Column(
+            // physics: ScrollPhysics(),
+            // shrinkWrap: true,
+            // scrollDirection: Axis.vertical,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GlobalLists.ceolisting.length <= 0
+                  ? Container()
+                  : Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: ListView.builder(
                         itemCount: GlobalLists.ceolisting.length,
                         scrollDirection: Axis.vertical,
                         physics: NeverScrollableScrollPhysics(),
@@ -114,7 +115,7 @@ class CeomessageState extends State<Ceomessage> {
                                       ShowDialogs.launchURL(url);
                                     },
                                     style: {
-                                      "body": Style(textAlign: TextAlign.start),
+                                      "body": Style(textAlign: TextAlign.center),
                                     },
                                   ),
                                   GestureDetector(
@@ -150,16 +151,19 @@ class CeomessageState extends State<Ceomessage> {
                               ));
                         },
                       ),
-                GlobalLists.boardoftrust.length <= 0
-                    ? Container()
-                    : Column(
+                  ),
+              GlobalLists.boardoftrust.length <= 0
+                  ? Container()
+                  : Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           //Text("Board of Trustees of Merck Foundation"),
 
                           Padding(
                             padding: const EdgeInsets.only(
-                                top: 10, bottom: 10, left: 5),
+                                top: 30, bottom: 15, left: 5),
                             child: FormLabel(
                               text: "Board of Trustees of Merck Foundation",
                               labelColor: Customcolor.pink_col,
@@ -223,7 +227,7 @@ class CeomessageState extends State<Ceomessage> {
                                         },
                                         style: {
                                           "body":
-                                              Style(textAlign: TextAlign.start),
+                                              Style(textAlign: TextAlign.center),
                                         },
                                       ),
                                       GestureDetector(
@@ -257,34 +261,55 @@ class CeomessageState extends State<Ceomessage> {
                                           },
                                         ),
                                       ),
+
+                                      SizedBox(
+                                        height: 50,
+                                      )
                                     ],
                                   ));
                             },
                           ),
                         ],
                       ),
-                // Padding(
-                //   padding: const EdgeInsets.only(
-                //       left: 60, right: 60, top: 20, bottom: 10),
-                //   child: Image.asset(
-                //     "assets/newImages/flowers_footer.png",
-                //   ),
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.only(right: 0, left: 0),
-                //   child: Align(
-                //     alignment: Alignment.topRight,
-                //     child: Image.asset(
-                //       "assets/newImages/flowers_footer.png",
-                //       height: 170,
-                //     ),
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 10,
-                // )
-              ],
-            ),
+                  ),
+              // Padding(
+              //   padding: const EdgeInsets.only(
+              //       left: 60, right: 60, top: 20, bottom: 10),
+              //   child: Image.asset(
+              //     "assets/newImages/flowers_footer.png",
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 0, left: 0),
+              //   child: Align(
+              //     alignment: Alignment.topRight,
+              //     child: Image.asset(
+              //       "assets/newImages/flowers_footer.png",
+              //       height: 170,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 10,
+              // )
+
+
+               Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Bottomcardlink(),
+         
+            ],
           ),
         ));
   }

@@ -62,7 +62,7 @@ class _DashboardState extends State<Dashboard>
           children: <Widget>[
             Home(),
             Ourprogram(),
-            Stories(),
+            Stories(),    
             NewsPage(
               apiurl: API.newsletters,
             ),

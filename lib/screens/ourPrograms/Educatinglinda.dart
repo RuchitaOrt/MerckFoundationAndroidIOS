@@ -195,6 +195,21 @@ class EducatingLindaState extends State<EducatingLinda>
                 SizedBox(
                   height: 10,
                 ),
+
+                Padding(
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Bottomcardlink(),
                 //    Bottomcardlink(),
               ])),
     );

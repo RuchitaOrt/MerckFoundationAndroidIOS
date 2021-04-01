@@ -279,4 +279,7 @@ class Constantstring {
   static double callimageheight = 300;
   static double callimagewidth = 220;
   static double callcoursaheight = 360;
+
+  //call ambassdar width as per client 
+  static double callAmbassadarimagewidth = 240;
 }

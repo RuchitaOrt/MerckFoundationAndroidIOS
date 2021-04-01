@@ -3,6 +3,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
@@ -143,13 +144,13 @@ class VideolibraryState extends State<Videolibrary> {
             _scaffoldKey1.currentState.openEndDrawer();
           },
           onTapval: () {
-            Navigator.pop(context);
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (BuildContext context) => Dashboard(
-            //               index: 0,
-            //             )));
+          //  Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Dashboard(
+                          index: 0,
+                        )));
           },
           index: 2,
           forfilterindes: 3,
@@ -161,37 +162,38 @@ class VideolibraryState extends State<Videolibrary> {
           height: 85,
         ),
         backgroundColor: Customcolor.background,
-        body: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: ListView(
-            physics: ScrollPhysics(),
-            shrinkWrap: true,
-            controller: _sc,
-            //crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
-              //   child: FormLabel(
-              //     text: "Video Library",
-              //     labelColor: Customcolor.colorblack,
-              //     fontSize: ResponsiveFlutter.of(context).fontSize(2),
-              //     maxLines: 2,
-              //     fontweight: FontWeight.w800,
-              //   ),
-              // ),
-              (GlobalLists.videolibrary.length == 0 && _isLoading)
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : (GlobalLists.videolibrary.length == 0 &&
-                          _isLoading == false)
-                      ? Center(
-                          child: Container(
-                            child:
-                                Center(child: Text(Constantstring.emptyData)),
-                          ),
-                        )
-                      : ListView(
+        body: ListView(
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+          controller: _sc,
+          //crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
+            //   child: FormLabel(
+            //     text: "Video Library",
+            //     labelColor: Customcolor.colorblack,
+            //     fontSize: ResponsiveFlutter.of(context).fontSize(2),
+            //     maxLines: 2,
+            //     fontweight: FontWeight.w800,
+            //   ),
+            // ),
+            (GlobalLists.videolibrary.length == 0 && _isLoading)
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : (GlobalLists.videolibrary.length == 0 &&
+                        _isLoading == false)
+                    ? Center(
+                        child: Container(
+                          child:
+                              Center(child: Text(Constantstring.emptyData)),
+                        ),
+                      )
+                    : Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+         
+                      child: ListView(
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
                           children: [
@@ -332,28 +334,45 @@ class VideolibraryState extends State<Videolibrary> {
                                 : Container()
                           ],
                         ),
-              // Padding(
-              //   padding: const EdgeInsets.only(
-              //       left: 60, right: 60, top: 20, bottom: 10),
-              //   child: Image.asset(
-              //     "assets/newImages/flowers_footer.png",
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.only(right: 0, left: 0),
-              //   child: Align(
-              //     alignment: Alignment.topRight,
-              //     child: Image.asset(
-              //       "assets/newImages/flowers_footer.png",
-              //       height: 170,
-              //     ),
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 10,
-              // )
-            ],
-          ),
+                    ),
+            // Padding(
+            //   padding: const EdgeInsets.only(
+            //       left: 60, right: 60, top: 20, bottom: 10),
+            //   child: Image.asset(
+            //     "assets/newImages/flowers_footer.png",
+            //   ),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 0, left: 0),
+            //   child: Align(
+            //     alignment: Alignment.topRight,
+            //     child: Image.asset(
+            //       "assets/newImages/flowers_footer.png",
+            //       height: 170,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // )
+
+
+             Padding(
+             padding: const EdgeInsets.only(right: 0, left: 0),
+             child: Align(
+               alignment: Alignment.topRight,
+               child: Image.asset(
+                 "assets/newImages/flowers_footer.png",
+                 height: 170,
+               ),
+             ),
+           ),
+           SizedBox(
+             height: 10,
+           ),
+           Bottomcardlink(),
+        
+          ],
         ));
   }
 

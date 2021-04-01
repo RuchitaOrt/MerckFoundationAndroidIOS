@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
@@ -85,68 +86,74 @@ class CallApplicationState extends State<CallforApplication>
         height: 85,
       ),
       body: Column(
-        // Column
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(top: 15),
-            color: Customcolor.background, // Tab Bar color change
-            child: TabBar(
-              // TabBar
+          // Column
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(top: 15),
+              color: Customcolor.background, // Tab Bar color change
+              child: TabBar(
+                // TabBar
 
-              controller: _tabController,
-              labelColor: Customcolor.text_darkblue,
-              unselectedLabelColor: Customcolor.text_grey,
-              indicatorSize: TabBarIndicatorSize.label,
+                controller: _tabController,
+                labelColor: Customcolor.text_darkblue,
+                unselectedLabelColor: Customcolor.text_grey,
+                indicatorSize: TabBarIndicatorSize.label,
 
-              indicatorWeight: 2,
-              indicatorColor: Customcolor.text_darkblue,
+                indicatorWeight: 2,
+                indicatorColor: Customcolor.text_darkblue,
 
-              tabs: <Widget>[
-                Tab(
-                  child: Text(
-                    "Upcoming Call for \nApplications",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        //   color: Customcolor.colorBlue,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700),
-                  ),
-                ),
-                Tab(
-                  child: Text(
-                    "Past Call for \nApplications",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Expanded(
-            flex: 3,
-            child: TabBarView(
-              // Tab Bar View
-              physics: NeverScrollableScrollPhysics(),
-              controller: _tabController,
-              children: <Widget>[
-                GlobalLists.upcomingevent.length <= 0
-                    ? Container(
-                        child: Center(child: Text(Constantstring.emptyData)),
-                      )
-                    : upcomingEvents(),
-                GlobalLists.pastevent.length <= 0
-                    ? Container(
-                        child: Center(child: Text(Constantstring.emptyData)),
-                      )
-                    : pastEvents()
-              ],
-            ),
-          ),
-        ],
+                tabs: <Widget>[
+      Tab(
+        child: Text(
+          "Upcoming Call for \nApplications",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              //   color: Customcolor.colorBlue,
+              fontSize: 15,
+              fontWeight: FontWeight.w700),
+        ),
       ),
+      Tab(
+        child: Text(
+          "Past Call for \nApplications",
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+        ),
+      ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              flex: 3,
+              child: TabBarView(
+                // Tab Bar View
+                physics: NeverScrollableScrollPhysics(),
+                controller: _tabController,
+                children: <Widget>[
+      GlobalLists.upcomingevent.length <= 0
+          ? Container(
+              child: Center(child: Text(Constantstring.emptyData)),
+            )
+          : upcomingEvents(),
+      GlobalLists.pastevent.length <= 0
+          ? Container(
+              child: Center(child: Text(Constantstring.emptyData)),
+            )
+          : pastEvents()
+                ],
+              ),
+            ),
+
+             
+
+          //  Bottomcardlink()
+
+            
+          ],
+        ),
     );
 
     //  new TabBarView(

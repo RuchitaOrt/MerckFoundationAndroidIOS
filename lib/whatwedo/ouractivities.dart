@@ -3,6 +3,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/ourActivitiesObjectiveResp.dart';
 import 'package:merckfoundation22dec/model/ourActivitiesResponse.dart'
     as listdata;
+import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -114,7 +115,14 @@ class OurActivityState extends State<OurActivity> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.pop(context);
+        //  Navigator.pop(context);
+
+         Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Dashboard(
+                          index: 0,
+                        )));
         },
         index: 2,
         title: "Our Activities",

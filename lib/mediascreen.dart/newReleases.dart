@@ -4,6 +4,7 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
@@ -118,13 +119,13 @@ class NewsReleaseState extends State<NewsRelease> {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            Navigator.pop(context);
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (BuildContext context) => Dashboard(
-            //               index: 0,
-            //             )));
+         //   Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Dashboard(
+                          index: 0,
+                        )));
           },
           index: 2,
           sharelink: Constantstring.sharenewsrelease,
@@ -264,6 +265,21 @@ class NewsReleaseState extends State<NewsRelease> {
                 //     ),
                 //   ),
                 // ),
+
+                 Padding(
+            padding: const EdgeInsets.only(right: 0, left: 0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Image.asset(
+                "assets/newImages/flowers_footer.png",
+                height: 170,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Bottomcardlink(),
               ],
             ),
             // Align(

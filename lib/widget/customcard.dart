@@ -90,7 +90,7 @@ class CustomCardState extends State<CustomeCard> {
             child: Stack(
               children: [
                 Container(
-                  height: SizeConfig.blockSizeVertical * 25,
+                  height: SizeConfig.blockSizeVertical * 31,
                   width: SizeConfig.blockSizeHorizontal * 100,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -144,7 +144,7 @@ class CustomCardState extends State<CustomeCard> {
                     ? Padding(
                         padding: EdgeInsets.only(
                             left: SizeConfig.blockSizeHorizontal * 5,
-                            top: SizeConfig.blockSizeVertical * 8),
+                            top: SizeConfig.blockSizeVertical * 12),
                         child: Center(
                             child: Image.asset("assets/newImages/pause.png")),
                       )

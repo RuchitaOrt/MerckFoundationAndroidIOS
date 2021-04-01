@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -154,27 +155,26 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
           height: 85,
         ),
         backgroundColor: Customcolor.background,
-        body: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: ListView(
-            physics: ScrollPhysics(),
-            shrinkWrap: true,
-            controller: _sc,
-            //crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              (GlobalLists.watchvideolibrary.length == 0 && _isLoading)
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : (GlobalLists.watchvideolibrary.length == 0 &&
-                          _isLoading == false)
-                      ? Center(
-                          child: Container(
-                            child:
-                                Center(child: Text(Constantstring.emptyData)),
-                          ),
-                        )
-                      : ListView(
+        body: ListView(
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+          controller: _sc,
+          //crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            (GlobalLists.watchvideolibrary.length == 0 && _isLoading)
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : (GlobalLists.watchvideolibrary.length == 0 &&
+                        _isLoading == false)
+                    ? Center(
+                        child: Container(
+                          child: Center(child: Text(Constantstring.emptyData)),
+                        ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: ListView(
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
                           children: [
@@ -182,7 +182,7 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
                               shrinkWrap: true,
                               physics: ScrollPhysics(),
                               crossAxisCount: 2,
-                              childAspectRatio: 0.9,
+                              childAspectRatio: 0.87,
                               children: List.generate(
                                   GlobalLists.watchvideolibrary.length,
                                   (index) {
@@ -314,28 +314,43 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
                                 : Container()
                           ],
                         ),
-              // Padding(
-              //   padding: const EdgeInsets.only(
-              //       left: 60, right: 60, top: 20, bottom: 10),
-              //   child: Image.asset(
-              //     "assets/newImages/flowers_footer.png",
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.only(right: 0, left: 0),
-              //   child: Align(
-              //     alignment: Alignment.topRight,
-              //     child: Image.asset(
-              //       "assets/newImages/flowers_footer.png",
-              //       height: 170,
-              //     ),
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 10,
-              // )
-            ],
-          ),
+                      ),
+            // Padding(
+            //   padding: const EdgeInsets.only(
+            //       left: 60, right: 60, top: 20, bottom: 10),
+            //   child: Image.asset(
+            //     "assets/newImages/flowers_footer.png",
+            //   ),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 0, left: 0),
+            //   child: Align(
+            //     alignment: Alignment.topRight,
+            //     child: Image.asset(
+            //       "assets/newImages/flowers_footer.png",
+            //       height: 170,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // )
+
+            Padding(
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Bottomcardlink(),
+          ],
         ));
   }
 

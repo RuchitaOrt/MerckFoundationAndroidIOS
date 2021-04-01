@@ -43,7 +43,7 @@ class Slidercard extends StatelessWidget {
                     FormLabel(
                         text: cardTitle,
                         labelColor: Customcolor.pink_col,
-                        fontSize: ResponsiveFlutter.of(context).fontSize(1.4),
+                        fontSize: ResponsiveFlutter.of(context).fontSize(1.6),
                         maxLines: 2,
                         fontweight: FontWeight.bold,
                         textAlignment: TextAlign.center),
@@ -53,7 +53,7 @@ class Slidercard extends StatelessWidget {
                     FormLabel(
                         text: subTitle,
                         labelColor: Customcolor.colorBlue,
-                        fontSize: ResponsiveFlutter.of(context).fontSize(1.2),
+                        fontSize: ResponsiveFlutter.of(context).fontSize(1.4),
                         fontweight: FontWeight.bold,
                         textAlignment: TextAlign.center),
                   ],
@@ -72,8 +72,8 @@ class PauseImage extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Positioned(
-      top: SizeConfig.blockSizeVertical * 5,
-      left: SizeConfig.blockSizeVertical * 9,
+      top: SizeConfig.blockSizeVertical * 5.5,
+      left: SizeConfig.blockSizeVertical * 7.5,
       child: Center(
         child: Image.asset(
           "assets/newImages/pause.png",

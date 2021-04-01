@@ -100,8 +100,8 @@ class _AppDrawerState extends State<AppDrawer> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.asset(
-                              "assets/newImages/logoforheader.png",
-                              // 'assets/newImages/logo_menu.png',
+                             // "assets/newImages/logoforheader.png",
+                               'assets/newImages/logo_menu.png',
                               width: 200,
                               height: 140,
                             ),
@@ -187,7 +187,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         DrawerWidget(
                           image: '',
                           value: 'Our Vision',
-                          onTapfun: () {
+                          onTapfun: () {    
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -417,7 +417,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Merck Foundation Aluminis \nTestimonies',
+                          value: "Merck Foundation Alumni's \nTestimonies",
                           onTapfun: () {
                             print('ontap1');
                             Navigator.push(
@@ -468,7 +468,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Merck foundation in Media',
+                          value: 'Merck Foundation in Media',
                           onTapfun: () {
                             Navigator.push(
                                 context,

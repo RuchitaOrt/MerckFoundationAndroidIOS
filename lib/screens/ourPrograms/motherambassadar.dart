@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -76,24 +77,44 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
         trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
-        child: ListView(
-          shrinkWrap: true,
-          //  crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Visibility(
-              visible: isMiddleSectionLoaded,
-              replacement: Center(child: CircularProgressIndicator()),
-              child: ListView(
-                  shrinkWrap: true,
-                  physics: ScrollPhysics(),
-                  // scrollDirection: Axis.horizontal,
-                  children: list()),
-            ),
-          ],
-        ),
-      ),
+      body: ListView(
+         shrinkWrap: true,
+         //  crossAxisAlignment: CrossAxisAlignment.start,
+         children: [
+           Padding(
+               padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+       
+             child: Visibility(
+               visible: isMiddleSectionLoaded,
+               replacement: Center(child: CircularProgressIndicator()),
+               child: ListView(
+                   shrinkWrap: true,
+                   physics: ScrollPhysics(),
+                   // scrollDirection: Axis.horizontal,
+                   children: list(),
+                   
+                   
+                   ),
+             ),
+           ),
+
+
+             Padding(
+                 padding: const EdgeInsets.only(right: 0, left: 0),
+                 child: Align(
+                   alignment: Alignment.topRight,
+                   child: Image.asset(
+                     "assets/newImages/flowers_footer.png",
+                     height: 170,
+                   ),
+                 ),
+               ),
+               SizedBox(
+                 height: 10,
+               ),
+               Bottomcardlink(),
+         ],
+       ),
     );
   }
 

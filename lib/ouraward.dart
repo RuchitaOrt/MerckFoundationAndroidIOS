@@ -5,6 +5,7 @@ import 'package:merckfoundation22dec/model/OurawardResponse.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
@@ -68,30 +69,32 @@ class ourawardState extends State<Ouraward> {
               shrinkWrap: true,
               physics: ScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
-                // if (index % 6 == 0) {
-                //   print("index");
-                //   print(index % 3);
-                //   color = Color(0xff96d7d2);
-                // } else if (index % 6 == 1) {
-                //   color = Color(0xff149b5f);
-                // } else if (index % 6 == 2) {
-                //   color = Color(0xffa349a4);
-                // } else if (index % 6 == 3) {
-                //   color = Color(0xff0f69af);
-                // } else if (index % 6 == 4) {
-                //   color = Color(0xffabcc43);
-                // } else if (index % 6 == 5) {
-                //   color = Color(0xffe50044);
-                // } else if (index % 6 == 6) {
-                //   color = Color(0xffeb1489);
-                // }
+                if (index % 7 == 0) {
+                  print("index");
+                  print(index % 3);
+                  color = Customcolor.prog1;
+                } else if (index % 7 == 1) {
+                  color = Customcolor.prog2;
+                } else if (index % 7 == 2) {
+                  color = Customcolor.prog3;
+                } else if (index % 7 == 3) {
+                  color = Customcolor.prog4;
+                } else if (index % 7 == 4) {
+                  color = Customcolor.prog5;
+                } else if (index % 7 == 5) {
+                  color = Customcolor.prog6;
+                } else if (index % 7 == 6) {
+                  color = Customcolor.prog7;
+                }else if (index % 7 == 7) {
+                  color = Customcolor.prog8;
+                }
 
                 return Padding(
                   padding: const EdgeInsets.only(left: 8, right: 8, bottom: 6),
                   child: GestureDetector(
                     onTap: () {},
                     child: Card(
-                      //  color: color,
+                        color: color,
                       elevation: 2,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
@@ -114,8 +117,8 @@ class ourawardState extends State<Ouraward> {
                               style: {
                                 "body": Style(
                                     textAlign: TextAlign.start,
-                                    // color: Colors.white,
-                                    color: Customcolor.pink_col,
+                                     color: Colors.white,
+                                   // color: Customcolor.pink_col,
                                     fontSize: FontSize.large,
                                     fontWeight: FontWeight.w500),
                               },
@@ -193,6 +196,25 @@ class ourawardState extends State<Ouraward> {
             //     ),
             //   ),
             // ),
+             SizedBox(
+                  height: 20,
+                ),
+
+               Padding(
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Bottomcardlink(),
+           
           ],
         ));
   }

@@ -163,10 +163,32 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
               SizedBox(
                 height: 10,
               ),
-              // Bottomcardlink()
+
+ Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
+                    ),
+                  ),
+                ),
+          ),
+             
+              //  Align(
+              //    alignment: Alignment.bottomCenter,
+              //    child: Bottomcardlink())
+
+
             ],
           ),
-          // Align(alignment: Alignment.bottomCenter, child: Bottomcardlink())
+
+         
+           
+           Align(alignment: Alignment.bottomCenter, child: Bottomcardlink())
         ],
       ),
     );
