@@ -56,7 +56,7 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
           },
           index: 2,
           sharelink: widget.sharelink,
-          title: "Merck Foundation Alumni Testimonials",
+          title: "Testimonials of Merck Foundation Alumni",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",

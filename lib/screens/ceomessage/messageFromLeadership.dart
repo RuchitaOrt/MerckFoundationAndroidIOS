@@ -64,7 +64,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-         // Navigator.pop(context);
+          // Navigator.pop(context);
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -291,8 +291,9 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                     ShowDialogs.launchURL(url);
                                   },
                                   style: {
-                                    "body": Style(textAlign: TextAlign.center, 
-                                    //fontSize: FontSize(16.0)
+                                    "body": Style(
+                                      textAlign: TextAlign.center,
+                                      // fontSize: FontSize(15.0)
                                     ),
                                   },
                                   // style: {
@@ -331,8 +332,6 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                       height: 15,
                                     ),
 
-
-                                    
                                     // Padding(
                                     //   padding:
                                     //       const EdgeInsets.only(right: 60, left: 60),
@@ -401,22 +400,21 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                               //   ],
                               // ),
 
-
-                                 Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Bottomcardlink(),
-         
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 0, left: 0),
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: Image.asset(
+                                    "assets/newImages/flowers_footer.png",
+                                    height: 170,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Bottomcardlink(),
                             ],
                           ),
                           //child: new Text('text $i', style: new TextStyle(fontSize: 16.0,color: Colors.black),)

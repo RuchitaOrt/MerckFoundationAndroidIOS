@@ -260,10 +260,10 @@ class CeomessageState extends State<Ceomessage> {
                                                 fontWeight: FontWeight.w600),
                                           },
                                         ),
-                                      ),
+                                       ),
 
                                       SizedBox(
-                                        height: 50,
+                                        height: 30,
                                       )
                                     ],
                                   ));

@@ -1833,7 +1833,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                             alignment: Alignment.bottomCenter,
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
+                                  left: 0, right: 10, bottom: 10, top: 5),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1851,14 +1851,14 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                               .homevideolist[index].videoDesc,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.black87,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w700),
                                           maxLines: 3,
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 25,
+                                        height: 5,
                                       )
                                     ],
                                   ),
@@ -1867,7 +1867,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 120),
+                            padding: EdgeInsets.only(left: 120, bottom: 80),
                             child: Center(
                                 child:
                                     Image.asset("assets/newImages/pause.png")),
@@ -1904,6 +1904,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
               cardTitle: "Updates  ",
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
+              heigthoflist: SizeConfig.blockSizeVertical * 36,
               onbtnTap: () {
                 // Navigator.push(
                 //     context,
@@ -1932,12 +1933,16 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                     callfrom: 2,
                                   )));
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 8, left: 10),
-                      child: Stack(
-                        children: [
-                          Container(
+                    child: Column(
+                      // shrinkWrap: true,
+                      // physics: ScrollPhysics(),
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8, left: 0),
+                          child: Container(
                             width: SizeConfig.blockSizeHorizontal * 86,
+                            height: SizeConfig.blockSizeVertical * 27,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
@@ -1945,45 +1950,26 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               fit: BoxFit.fill,
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        child: Text(
-                                          GlobalLists
-                                              .homeceomsglist[index].title,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700),
-                                          maxLines: 3,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Container(
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Text(
+                            GlobalLists.homeceomsglist[index].title,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                            maxLines: 3,
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        )
+                      ],
                     ),
                   );
                 },
@@ -2009,6 +1995,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
               cardsubtitle: "Merck Foundation In ",
               cardTitle: "Media  ",
               titleColor: Customcolor.pink_col,
+              heigthoflist: SizeConfig.blockSizeVertical * 36 ,
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -2037,10 +2024,12 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8, left: 10),
-                      child: Stack(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             width: SizeConfig.blockSizeHorizontal * 86,
+                            height: SizeConfig.blockSizeVertical * 27 ,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
@@ -2048,21 +2037,11 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               fit: BoxFit.fill,
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
+                            SizedBox(
+                                        height: 8,
+                                      ),
+
+                           Container(
                                         width:
                                             SizeConfig.blockSizeHorizontal * 80,
                                         child: Text(
@@ -2070,7 +2049,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                               .mmtmmedialist[index].title,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.black87,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w700),
                                           maxLines: 3,
@@ -2079,12 +2058,43 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                       SizedBox(
                                         height: 8,
                                       )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                          // Align(
+                          //   alignment: Alignment.bottomCenter,
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.only(
+                          //         left: 10, right: 10, bottom: 10),
+                          //     child: Row(
+                          //       crossAxisAlignment: CrossAxisAlignment.end,
+                          //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //       children: [
+                          //         Column(
+                          //           mainAxisAlignment: MainAxisAlignment.end,
+                          //           crossAxisAlignment:
+                          //               CrossAxisAlignment.start,
+                          //           children: [
+                          //             Container(
+                          //               width:
+                          //                   SizeConfig.blockSizeHorizontal * 80,
+                          //               child: Text(
+                          //                 GlobalLists
+                          //                     .mmtmmedialist[index].title,
+                          //                 overflow: TextOverflow.ellipsis,
+                          //                 style: TextStyle(
+                          //                     color: Colors.white,
+                          //                     fontSize: 14,
+                          //                     fontWeight: FontWeight.w700),
+                          //                 maxLines: 3,
+                          //               ),
+                          //             ),
+                          //             SizedBox(
+                          //               height: 8,
+                          //             )
+                          //           ],
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

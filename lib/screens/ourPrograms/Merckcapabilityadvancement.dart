@@ -1391,7 +1391,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                             alignment: Alignment.bottomCenter,
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
+                                  left: 0, right: 10, bottom: 10),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1409,7 +1409,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                                               .homevideolist[index].videoDesc,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.black87,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w700),
                                           maxLines: 3,
@@ -1425,7 +1425,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 120),
+                            padding: EdgeInsets.only(left: 120, bottom: 90),
                             child: Center(
                                 child:
                                     Image.asset("assets/newImages/pause.png")),

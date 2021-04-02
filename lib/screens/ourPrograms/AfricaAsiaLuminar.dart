@@ -189,7 +189,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                   height: 10,
                 ),
 
-                  Padding(
+                Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
                   child: Align(
                     alignment: Alignment.topRight,
@@ -1442,6 +1442,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
               cardsubtitle: "Our ",
               cardTitle: "Videos",
               btnTitle: "Watch More",
+              heigthoflist: SizeConfig.blockSizeVertical * 28,
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -1483,64 +1484,86 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                       // _launchInWebViewWithJavaScript(
                       //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 8, left: 10),
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: SizeConfig.blockSizeHorizontal * 86,
-                            child: FadeInImage.assetNetwork(
-                              placeholder: 'assets/newImages/placeholder_3.jpg',
-                              image:
-                                  "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        child: Text(
-                                          GlobalLists
-                                              .homevideolist[index].videoDesc,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700),
-                                          maxLines: 3,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 25,
-                                      )
-                                    ],
-                                  ),
-                                ],
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8, left: 10),
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: SizeConfig.blockSizeHorizontal * 86,
+                                child: FadeInImage.assetNetwork(
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
+                                  image:
+                                      "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
+                                  fit: BoxFit.fill,
+                                ),
                               ),
-                            ),
+                              // Align(
+                              //   alignment: Alignment.bottomCenter,
+                              //   child: Padding(
+                              //     padding: const EdgeInsets.only(
+                              //         left: 10, right: 10, bottom: 10),
+                              //     child: Row(
+                              //       crossAxisAlignment: CrossAxisAlignment.end,
+                              //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              //       children: [
+                              //         Column(
+                              //           mainAxisAlignment: MainAxisAlignment.end,
+                              //           crossAxisAlignment:
+                              //               CrossAxisAlignment.start,
+                              //           children: [
+                              //             Container(
+                              //               width:
+                              //                   SizeConfig.blockSizeHorizontal * 80,
+                              //               child: Text(
+                              //                 GlobalLists
+                              //                     .homevideolist[index].videoDesc,
+                              //                 overflow: TextOverflow.ellipsis,
+                              //                 style: TextStyle(
+                              //                     color: Colors.black87,
+                              //                     fontSize: 14,
+                              //                     fontWeight: FontWeight.w700),
+                              //                 maxLines: 3,
+                              //               ),
+                              //             ),
+                              //             SizedBox(
+                              //               height: 25,
+                              //             )
+                              //           ],
+                              //         ),
+                              //       ],
+                              //     ),
+                              //   ),
+                              // ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 120, top: 70),
+                                child: Center(
+                                    child: Image.asset(
+                                        "assets/newImages/pause.png")),
+                              )
+                            ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 120),
-                            child: Center(
-                                child:
-                                    Image.asset("assets/newImages/pause.png")),
-                          )
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 9),
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Text(
+                            GlobalLists.homevideolist[index].videoDesc,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                            maxLines: 3,
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 },
@@ -1670,6 +1693,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
+              heigthoflist: SizeConfig.blockSizeVertical * 33,
               onbtnTap: () {
                 // Navigator.push(
                 //     context,
@@ -1697,58 +1721,83 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                     callfrom: 2,
                                   )));
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 8, left: 10),
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: SizeConfig.blockSizeHorizontal * 86,
-                            child: FadeInImage.assetNetwork(
-                              placeholder: 'assets/newImages/placeholder_3.jpg',
-                              image:
-                                  "${GlobalLists.homeceomsgbaseurl + GlobalLists.homeceomsglist[index].image}",
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        child: Text(
-                                          GlobalLists
-                                              .homeceomsglist[index].title,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700),
-                                          maxLines: 3,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      )
-                                    ],
-                                  ),
-                                ],
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8, left: 10),
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: SizeConfig.blockSizeHorizontal * 86,
+                                child: FadeInImage.assetNetwork(
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
+                                  image:
+                                      "${GlobalLists.homeceomsgbaseurl + GlobalLists.homeceomsglist[index].image}",
+                                  fit: BoxFit.fill,
+                                ),
                               ),
-                            ),
+                              // Align(
+                              //   alignment: Alignment.bottomCenter,
+                              //   child: Padding(
+                              //     padding: const EdgeInsets.only(
+                              //         left: 10, right: 10, bottom: 10),
+                              //     child: Row(
+                              //       crossAxisAlignment: CrossAxisAlignment.end,
+                              //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              //       children: [
+                              //         Column(
+                              //           mainAxisAlignment: MainAxisAlignment.end,
+                              //           crossAxisAlignment:
+                              //               CrossAxisAlignment.start,
+                              //           children: [
+                              //             Container(
+                              //               width:
+                              //                   SizeConfig.blockSizeHorizontal * 80,
+                              //               child: Text(
+                              //                 GlobalLists
+                              //                     .homeceomsglist[index].title,
+                              //                 overflow: TextOverflow.ellipsis,
+                              //                 style: TextStyle(
+                              //                     color: Colors.white,
+                              //                     fontSize: 14,
+                              //                     fontWeight: FontWeight.w700),
+                              //                 maxLines: 3,
+                              //               ),
+                              //             ),
+                              //             SizedBox(
+                              //               height: 8,
+                              //             )
+                              //           ],
+                              //         ),
+                              //       ],
+                              //     ),
+                              //   ),
+                              // ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 9),
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Text(
+                            GlobalLists.homeceomsglist[index].title,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                            maxLines: 3,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 0,
+                        )
+                      ],
                     ),
                   );
                 },

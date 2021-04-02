@@ -157,7 +157,7 @@ class MerckFoundationTestimonialState
           index: 2,
           forfilterindes: 3,
           sharelink: Constantstring.sharetestimonial,
-          title: "Merck Foundation Alumini's Testimonial",
+          title: "Merck Foundation Alumni’s Testimonies",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",

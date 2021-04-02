@@ -143,6 +143,8 @@ class _MyHomePageState extends State<OurProgram> {
                       children: <Widget>[
                         GestureDetector(
                             onTap: () {
+                              print("on trapping.......");
+
                               mabialaFABController
                                   .setExpandedWidgetConfiguration(
                                 showLogs: true,
@@ -245,6 +247,8 @@ class _MyHomePageState extends State<OurProgram> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: GestureDetector(
                                   onTap: () {
+                                    print("on trapping234234");
+                                    mabialaFABController.collapseFAB();
                                     if (index == 0) {
                                       //aboutmerckmorethanmother
                                       Navigator.push(
@@ -254,6 +258,8 @@ class _MyHomePageState extends State<OurProgram> {
                                                   OurProgram(
                                                     indexpass: 8,
                                                   )));
+
+
                                     } else if (index == 1) {
                                       //strategy
                                       Navigator.push(

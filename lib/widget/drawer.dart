@@ -101,7 +101,7 @@ class _AppDrawerState extends State<AppDrawer> {
                           children: [
                             Image.asset(
                              // "assets/newImages/logoforheader.png",
-                               'assets/newImages/logo_menu.png',
+                               'assets/newImages/drawer_img.png',
                               width: 200,
                               height: 140,
                             ),
@@ -404,7 +404,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Our Stories',
+                          value: 'Stories',
                           onTapfun: () {
                             Navigator.push(
                                 context,

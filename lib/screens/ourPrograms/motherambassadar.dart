@@ -320,7 +320,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-              heigthoflist: SizeConfig.blockSizeVertical * 30,
+              heigthoflist: SizeConfig.blockSizeVertical * 38,
               list: ListView.builder(
                 itemCount: GlobalLists.homevideolist.length,
                 scrollDirection: Axis.horizontal,
@@ -341,39 +341,80 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                           // _launchInWebViewWithJavaScript(
                           //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              right: 8, left: 10, bottom: 10),
-                          child: Stack(
-                            children: [
-                              Container(
-                                width: SizeConfig.blockSizeHorizontal * 86,
-                                child: FadeInImage.assetNetwork(
-                                  placeholder:
-                                      'assets/newImages/placeholder_3.jpg',
-                                  image:
-                                      "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
-                                  fit: BoxFit.fill,
-                                  //   height: SizeConfig.blockSizeVertical * 30,
-                                ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  right: 8, left: 10, bottom: 10),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    width: SizeConfig.blockSizeHorizontal * 86,
+                                    height: SizeConfig.blockSizeVertical * 24,
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder:
+                                          'assets/newImages/placeholder_3.jpg',
+                                      image:
+                                          "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
+                                      fit: BoxFit.fill,
+                                      //   height: SizeConfig.blockSizeVertical * 30,
+                                    ),
+                                  ),
+                                  // Positioned(
+                                  //   top: SizeConfig.blockSizeVertical * 18,
+                                  //   // alignment: Alignment.bottomCenter,
+                                  //   child: Padding(
+                                  //     padding: const EdgeInsets.only(
+                                  //         left: 10, right: 10, bottom: 20),
+                                  //     child: Row(
+                                  //       crossAxisAlignment: CrossAxisAlignment.end,
+                                  //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  //       children: [
+                                  //         Column(
+                                  //           mainAxisAlignment:
+                                  //               MainAxisAlignment.end,
+                                  //           crossAxisAlignment:
+                                  //               CrossAxisAlignment.start,
+                                  //           children: [
+                                  //             Container(
+                                  //               width:
+                                  //                   SizeConfig.blockSizeHorizontal *
+                                  //                       80,
+                                  //               child: Text(
+                                  //                 GlobalLists.homevideolist[index]
+                                  //                     .videoDesc,
+                                  //                 overflow: TextOverflow.ellipsis,
+                                  //                 style: TextStyle(
+                                  //                     color: Colors.white,
+                                  //                     fontSize: 14,
+                                  //                     fontWeight: FontWeight.w700),
+                                  //                 maxLines: 3,
+                                  //               ),
+                                  //             ),
+                                  //             SizedBox(
+                                  //               height: 25,
+                                  //             )
+                                  //           ],
+                                  //         ),
+                                  //       ],
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 70, left: 120),
+                                    child: Center(
+                                        child: Image.asset(
+                                            "assets/newImages/pause.png")),
+                                  )
+                                ],
                               ),
-                              Positioned(
-                                top: SizeConfig.blockSizeVertical * 18,
-                                // alignment: Alignment.bottomCenter,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 10, bottom: 20),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
+                            ),
+
+                           SizedBox(
+                                            height: 7,
+                                          ),
+
+                       Container(
                                             width:
                                                 SizeConfig.blockSizeHorizontal *
                                                     80,
@@ -382,29 +423,17 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                                   .videoDesc,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                  color: Colors.white,
+                                                  color: Colors.black87,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w700),
-                                              maxLines: 3,
+                                              maxLines: 2,
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 25,
+                                            height: 5,
                                           )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 70, left: 120),
-                                child: Center(
-                                    child: Image.asset(
-                                        "assets/newImages/pause.png")),
-                              )
-                            ],
-                          ),
+                   
+                          ],
                         ),
                       ),
                       Center(
@@ -443,7 +472,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                           ),
                         ),
                       ),
-                    ],
+                        ],
                   );
                 },
               ),
@@ -512,7 +541,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                             alignment: Alignment.bottomCenter,
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
+                                  left: 0, right: 10, bottom: 10),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -567,7 +596,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
             showviewmore: 1,
             titleColor: Customcolor.pink_col,
             onbtnTap: () {},
-            heigthoflist: SizeConfig.blockSizeVertical * 40,
+            heigthoflist: SizeConfig.blockSizeVertical * 43,
             titleImg: "assets/newImages/flowers-3.png",
             list: ListView.builder(
               itemCount: GlobalLists.ambasdarslist.length,

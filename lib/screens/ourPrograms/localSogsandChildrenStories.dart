@@ -221,7 +221,7 @@ class LocalSongsandChildrenStoriesState
               isheading: 1,
               cardTitle: "Watch Below videos :",
               btnTitle: "Watch More",
-              onbtnTap: () {
+              onbtnTap: () {  
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -282,7 +282,7 @@ class LocalSongsandChildrenStoriesState
                             alignment: Alignment.bottomCenter,
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
+                                  left: 0, right: 10, bottom: 10),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -300,7 +300,7 @@ class LocalSongsandChildrenStoriesState
                                               .homevideolist[index].videoDesc,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.black87,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w700),
                                           maxLines: 3,

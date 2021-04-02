@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/model/getNewsRelease.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -142,6 +143,209 @@ class NewsReleaseState extends State<NewsRelease> {
               physics: ScrollPhysics(),
               controller: _sc,
               children: [
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 8,bottom: 8,left: 10,right: 10 ),
+                  child: Card(
+                   
+                    color: Customcolor.prog1,
+                    elevation: 5,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text("NEWS RELEASE - FOR MEDIA ENQUIRIES CONTACT", style: TextStyle(color: Colors.white, fontSize: 17, fontFamily:"verdana", fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center,
+                        ),
+
+                         SizedBox(
+                          height: 15,
+                        ),
+
+
+                         Text("Ms.Mehak Handa", style: TextStyle(color: Color(0xffffcb04), fontSize: 17, fontFamily:"verdana", fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center,
+                        ),
+
+                           SizedBox(
+                          height: 8,
+                        ),
+
+
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.call,color: Colors.white,),
+                SizedBox(
+                    width: 8,
+                ),
+              
+                RichText(
+                    textAlign: TextAlign.justify,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "+91 93196 06669",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () {
+                              _launchCaller();
+                            },
+                        ),
+                        
+                      ],
+                    ),
+                ),
+              ],
+              ), 
+
+              SizedBox(
+                height: 5,
+              ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.mail, color: Colors.white),
+                SizedBox(
+                    width: 10,
+                ),
+                GestureDetector(
+                    onTap: () {
+                      // _launchmail();
+                    },
+                    child: Text(
+                      "mehak.handa@external.merckgroup.com",
+                      style: TextStyle(
+                          color: Colors.white),
+                    ),
+                )
+              ],
+              ),
+              SizedBox(
+                height: 12,
+              ),
+
+
+                Text("Ms. Ekta Pal", style: TextStyle(color: Color(0xffffcb04), fontSize: 17, fontFamily:"verdana", fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center,
+                        ),
+
+                           SizedBox(
+                          height: 8,
+                        ),
+
+                          Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.mail, color: Colors.white),
+                SizedBox(
+                    width: 10,
+                ),
+                GestureDetector(
+                    onTap: () {
+                      // _launchmail();
+                    },
+                    child: Text(
+                      "ektapalconsultant@gmail.com",
+                      style: TextStyle(
+                          color: Colors.white),
+                    ),
+                )
+              ],
+              ),
+
+
+  SizedBox(
+                          height: 12,
+                        ),
+
+
+                         Text("Ms. Linda Aryeetey", style: TextStyle(color: Color(0xffffcb04), fontSize: 17, fontFamily:"verdana", fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center,
+                        ),
+
+                           SizedBox(
+                          height: 8,
+                        ),
+
+
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.call,color: Colors.white,),
+                SizedBox(
+                    width: 8,
+                ),
+              
+                RichText(
+                    textAlign: TextAlign.justify,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "+233 26 474 6400",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () {
+                              _launchCaller1();
+                            },
+                        ),
+                        
+                      ],
+                    ),
+                ),
+              ],
+              ), 
+
+              SizedBox(
+                height: 8,
+              ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.mail, color: Colors.white),
+                SizedBox(
+                    width: 10,
+                ),
+                GestureDetector(
+                    onTap: () {
+                      // _launchmail();
+                    },
+                    child: Text(
+                      " audrey5aryeetey@gmail.com",
+                      style: TextStyle(
+                          color: Colors.white),
+                    ),
+                )
+              ],
+              ),
+
+
+               SizedBox(
+                          height: 8,
+                        ),
+
+
+
+
+
+
+
+                      ],
+                    ),
+                  ),
+                ),
+
+
+
                 (GlobalLists.newsReleaseList.length == 0 && _isLoading)
                     ? Center(
                         child: CircularProgressIndicator(),
@@ -302,6 +506,26 @@ class NewsReleaseState extends State<NewsRelease> {
             // ),
           ],
         ));
+  }
+
+
+   _launchCaller() async {
+    print("on launch");
+    const url = "tel:+919319606669";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+   _launchCaller1() async {
+    const url = "tel: +233264746400";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   static Future<bool> enquirySMDialog(BuildContext context) async {

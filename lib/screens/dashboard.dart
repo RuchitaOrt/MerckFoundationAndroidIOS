@@ -121,7 +121,7 @@ class _DashboardState extends State<Dashboard>
               height: 25,
             ),
             title: Text(
-              'Our Stories',
+              'Stories',
               style: style,
             ),
             activeColor: Colors.blue,
@@ -138,7 +138,7 @@ class _DashboardState extends State<Dashboard>
               height: 25,
             ),
             title: Text(
-              'News',
+              'Articles',
               style: style,
             ),
             activeColor: Colors.blue,

@@ -336,7 +336,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 SizedBox(
                   height: 10,
                 ),
-                
+
                 Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
                   child: Align(
@@ -780,7 +780,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 child: Center(child: Text(Constantstring.emptyData)),
               )
             : Padding(
-                padding: const EdgeInsets.only(top: 8,bottom: 8),
+                padding: const EdgeInsets.only(top: 8, bottom: 8),
                 child: Container(
                     //color: Colors.amber,
                     width: SizeConfig.blockSizeHorizontal * 100,
@@ -819,7 +819,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                         image: GlobalLists.homeMMTMBaseURL +
                                             product.photo,
                                         fit: BoxFit.fill,
-                                        width: Constantstring.callAmbassadarimagewidth,
+                                        width: Constantstring
+                                            .callAmbassadarimagewidth,
                                         height: Constantstring.callimageheight,
                                       ),
                                     ),
@@ -1321,9 +1322,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 children: [
                   GestureDetector(
                     onTap: () async {
-                      Platform.isAndroid?ShowDialogs.followuslink(Constantstring.followinsta,
-                              Constantstring.followmsg):ShowDialogs.launchInstagram(Constantstring.followinsta,"merckfoundation");
-
+                      Platform.isAndroid
+                          ? ShowDialogs.followuslink(Constantstring.followinsta,
+                              Constantstring.followmsg)
+                          : ShowDialogs.launchInstagram(
+                              Constantstring.followinsta, "merckfoundation");
                     },
                     child: Image.asset(
                       "assets/newImages/instagram.png",
@@ -1336,9 +1339,13 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      Platform.isAndroid?ShowDialogs.followuslink(
+                      Platform.isAndroid
+                          ? ShowDialogs.followuslink(
                               Constantstring.followfacebook,
-                              Constantstring.followmsg): ShowDialogs.launchFacebook(Constantstring.followfacebook,"1053979038068008");
+                              Constantstring.followmsg)
+                          : ShowDialogs.launchFacebook(
+                              Constantstring.followfacebook,
+                              "1053979038068008");
                     },
                     child: Image.asset(
                       "assets/newImages/facebook.png",
@@ -1351,8 +1358,12 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      Platform.isAndroid?ShowDialogs.followuslink(Constantstring.followtwitter,
-                              Constantstring.followmsg):ShowDialogs.launchTwitter(Constantstring.followtwitter);
+                      Platform.isAndroid
+                          ? ShowDialogs.followuslink(
+                              Constantstring.followtwitter,
+                              Constantstring.followmsg)
+                          : ShowDialogs.launchTwitter(
+                              Constantstring.followtwitter);
                     },
                     child: Image.asset(
                       "assets/newImages/twitter.png",
@@ -1365,8 +1376,12 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      Platform.isAndroid?ShowDialogs.followuslink(Constantstring.followyoutube,
-                              Constantstring.followmsg):ShowDialogs.youtubevideolink(Constantstring.followyoutube);
+                      Platform.isAndroid
+                          ? ShowDialogs.followuslink(
+                              Constantstring.followyoutube,
+                              Constantstring.followmsg)
+                          : ShowDialogs.youtubevideolink(
+                              Constantstring.followyoutube);
                     },
                     child: Image.asset(
                       "assets/newImages/youtube.png",
@@ -1379,9 +1394,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   ),
                   GestureDetector(
                     onTap: () async {
-                     Platform.isAndroid? ShowDialogs.followuslink(Constantstring.followflicker,
-                              Constantstring.followmsg):ShowDialogs.launchURL(Constantstring.followflicker);
-
+                      Platform.isAndroid
+                          ? ShowDialogs.followuslink(
+                              Constantstring.followflicker,
+                              Constantstring.followmsg)
+                          : ShowDialogs.launchURL(Constantstring.followflicker);
                     },
                     child: Image.asset(
                       "assets/newImages/flickr.png",
@@ -1594,7 +1611,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       } else if (index == 3) {
                         //our award
                         Navigator.push(
-                            context,   
+                            context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) => Ouraward()));
                       } else if (index == 4) {
@@ -2290,10 +2307,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
             child: CustomeCard(
-              index: 1,    
+              index: 1,
               cardImage: GlobalLists.homeceomsgbaseurl +
                   GlobalLists.homeceomsglist[0].image,
-              cardsubtitle: "Message Form ",
+              cardsubtitle: "Messages Form ",
               cardTitle: "Senator, Dr.Rasha Kelej, CEO of Merck Foundation   ",
               titleColor: Customcolor.text_darkblue,
               youtubeicon: 1,

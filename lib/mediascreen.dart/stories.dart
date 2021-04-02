@@ -150,7 +150,7 @@ class StoriesState extends State<Stories> {
           index: 2,
           forfilterindes: 3,
           sharelink: Constantstring.sharestories,
-          title: "Our Stories",
+          title: "Stories",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",

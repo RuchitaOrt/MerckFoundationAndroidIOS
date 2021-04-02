@@ -227,6 +227,7 @@ class _MyHomePageState extends State<OurProgramcancerlist> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: GestureDetector(
                                   onTap: () {
+                                    mabialaFABController.collapseFAB();
                                     if (index == 0) {
                                       Navigator.push(
                                           context,

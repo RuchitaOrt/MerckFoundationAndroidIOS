@@ -110,6 +110,7 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                       children: <Widget>[
                         GestureDetector(
                             onTap: () {
+                              print("on trap");
                               mabialaFABController
                                   .setExpandedWidgetConfiguration(
                                 showLogs: true,
@@ -148,7 +149,10 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                 int index) {
                                               return GestureDetector(
                                                 onTap: () {
+                                                  mabialaFABController.collapseFAB();
                                                   if (index == 0) {
+                                                    print("on trap");
+
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
@@ -320,7 +324,10 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: GestureDetector(
                                   onTap: () {
+                                        mabialaFABController.collapseFAB();
+                                  
                                     if (index == 0) {
+                                        print("on trap");
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(

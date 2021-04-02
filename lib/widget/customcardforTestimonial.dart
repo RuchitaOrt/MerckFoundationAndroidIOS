@@ -142,12 +142,13 @@ class CustomCardState extends State<CustomeCardforTestimonial> {
           SizedBox(
             height: 7,
           ),
-          Center(
+          Padding(
+            padding: const EdgeInsets.only(left: 7),
             child: Text(
               widget.testimonialname,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
-              textAlign: TextAlign.center,
+             // textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 17,
                   color: Colors.black,
@@ -162,11 +163,13 @@ class CustomCardState extends State<CustomeCardforTestimonial> {
           ),
           Html(
             data: widget.departmentname,
+            
             style: {
               "body": Style(
+                
                   fontSize: FontSize(17.0),
                   color: Customcolor.colorBlue,
-                  textAlign: TextAlign.center,
+                  //textAlign: TextAlign.center,
                   fontWeight: FontWeight.w500),
             },
           ),
@@ -174,7 +177,7 @@ class CustomCardState extends State<CustomeCardforTestimonial> {
             widget.subTitle,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
-            textAlign: TextAlign.center,
+            //textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 14,
                 color: Colors.black54,

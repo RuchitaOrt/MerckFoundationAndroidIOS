@@ -355,6 +355,8 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                     0
                                                 ? GestureDetector(
                                                     onTap: () {
+                                                      mabialaFABController
+                                                          .collapseFAB();
                                                       if (GlobalLists
                                                           .stemprogramlistsubmenu[
                                                               index]

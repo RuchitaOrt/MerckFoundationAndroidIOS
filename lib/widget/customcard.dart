@@ -104,20 +104,20 @@ class CustomCardState extends State<CustomeCard> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Expanded(
-                          child: Text(
-                            widget.subTitle,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: TextStyle(
-                                fontSize: 17,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                            // fontSize: 17,
-                            // labelColor: Colors.white,
-                            // fontweight: FontWeight.w500,
-                          ),
-                        ),
+                        // Expanded(
+                        //   child: Text(
+                        //     widget.subTitle,
+                        //     overflow: TextOverflow.ellipsis,
+                        //     maxLines: 2,
+                        //     style: TextStyle(
+                        //         fontSize: 17,
+                        //         color: Colors.white,
+                        //         fontWeight: FontWeight.w500),
+                        //     // fontSize: 17,
+                        //     // labelColor: Colors.white,
+                        //     // fontweight: FontWeight.w500,
+                        //   ),
+                        // ),
                         GestureDetector(
                           onTap: widget.onBtnTap,
                           child: Container(
@@ -152,16 +152,19 @@ class CustomCardState extends State<CustomeCard> {
               ],
             ),
           ),
-          // Text(
-          //   widget.subTitle,
-          //   overflow: TextOverflow.ellipsis,
-          //   maxLines: 2,
-          //   style: TextStyle(
-          //       fontSize: 17, color: Colors.black, fontWeight: FontWeight.w500),
-          //   // fontSize: 17,
-          //   // labelColor: Colors.white,
-          //   // fontweight: FontWeight.w500,
-          // ),
+          Padding(
+                padding: const EdgeInsets.only(left: 7),
+            child: Text(
+              widget.subTitle,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: TextStyle(
+                  fontSize: 17, color: Colors.black87, fontWeight: FontWeight.w500),
+              // fontSize: 17,
+              // labelColor: Colors.white,
+              // fontweight: FontWeight.w500,
+            ),
+          ),
         ],
       ),
     );
