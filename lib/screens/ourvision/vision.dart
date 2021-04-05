@@ -243,7 +243,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
         body: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 1),
+              padding: const EdgeInsets.only(bottom: 0),
               child: GlobalLists.vision.length <= 0
                   ? Container(
                       child: Center(child: Text(Constantstring.emptyData)),
