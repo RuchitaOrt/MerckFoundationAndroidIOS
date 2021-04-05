@@ -275,6 +275,7 @@ class CovidResponseState extends State<CovidResponse>
                             cardsubtitle: "Our ",
                             cardTitle: "Videos",
                             btnTitle: "Watch More",
+                            heigthoflist: SizeConfig.blockSizeVertical * 34,
                             onbtnTap: () {
                               Navigator.push(
                                   context,
@@ -306,76 +307,107 @@ class CovidResponseState extends State<CovidResponse>
                                     // _launchInWebViewWithJavaScript(
                                     //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                                   },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 8, left: 10),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          width:
-                                              SizeConfig.blockSizeHorizontal *
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 8, left: 10),
+                                        child: Stack(
+                                          children: [
+                                            Container(
+                                              width: SizeConfig
+                                                      .blockSizeHorizontal *
                                                   86,
-                                          child: FadeInImage.assetNetwork(
-                                            placeholder:
-                                                'assets/newImages/placeholder_3.jpg',
-                                            image:
-                                                "https://img.youtube.com/vi/${videolist[index].videoLink.substring(videolist[index].videoLink.length - 11)}/mqdefault.jpg",
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: Alignment.bottomCenter,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10,
-                                                right: 10,
-                                                bottom: 10),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: SizeConfig
-                                                              .blockSizeHorizontal *
-                                                          80,
-                                                      child: Text(
-                                                        videolist[index]
-                                                            .videoDesc,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700),
-                                                        maxLines: 3,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 25,
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
+                                              height:
+                                                  SizeConfig.blockSizeVertical *
+                                                      25,
+                                              child: FadeInImage.assetNetwork(
+                                                placeholder:
+                                                    'assets/newImages/placeholder_3.jpg',
+                                                image:
+                                                    "https://img.youtube.com/vi/${videolist[index].videoLink.substring(videolist[index].videoLink.length - 11)}/mqdefault.jpg",
+                                                fit: BoxFit.fill,
+                                              ),
                                             ),
-                                          ),
+                                            // Align(
+                                            //   alignment: Alignment.bottomCenter,
+                                            //   child: Padding(
+                                            //     padding: const EdgeInsets.only(
+                                            //         left: 10,
+                                            //         right: 10,
+                                            //         bottom: 10),
+                                            //     child: Row(
+                                            //       crossAxisAlignment:
+                                            //           CrossAxisAlignment.end,
+                                            //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            //       children: [
+                                            //         Column(
+                                            //           mainAxisAlignment:
+                                            //               MainAxisAlignment.end,
+                                            //           crossAxisAlignment:
+                                            //               CrossAxisAlignment.start,
+                                            //           children: [
+                                            //             Container(
+                                            //               width: SizeConfig
+                                            //                       .blockSizeHorizontal *
+                                            //                   80,
+                                            //               child: Text(
+                                            //                 videolist[index]
+                                            //                     .videoDesc,
+                                            //                 overflow: TextOverflow
+                                            //                     .ellipsis,
+                                            //                 style: TextStyle(
+                                            //                     color:
+                                            //                         Colors.black87,
+                                            //                     fontSize: 14,
+                                            //                     fontWeight:
+                                            //                         FontWeight
+                                            //                             .w700),
+                                            //                 maxLines: 3,
+                                            //               ),
+                                            //             ),
+                                            //             SizedBox(
+                                            //               height: 25,
+                                            //             )
+                                            //           ],
+                                            //         ),
+                                            //       ],
+                                            //     ),
+                                            //   ),
+                                            // ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 120, top: 70),
+                                              child: Center(
+                                                  child: Image.asset(
+                                                      "assets/newImages/pause.png")),
+                                            )
+                                          ],
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.only(left: 120),
-                                          child: Center(
-                                              child: Image.asset(
-                                                  "assets/newImages/pause.png")),
-                                        )
-                                      ],
-                                    ),
+                                      ),
+                                      SizedBox(
+                                        height: 4,
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.only(left: 9),
+                                        width:
+                                            SizeConfig.blockSizeHorizontal * 80,
+                                        child: Text(
+                                          videolist[index].videoDesc,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700),
+                                          maxLines: 3,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      )
+                                    ],
                                   ),
                                 );
                               },
@@ -391,6 +423,7 @@ class CovidResponseState extends State<CovidResponse>
                             cardTitle: "Update",
                             btnTitle: "View More",
                             titleColor: Customcolor.pink_col,
+                            heigthoflist: SizeConfig.blockSizeVertical * 34,
                             onbtnTap: () {
                               Navigator.push(
                                   context,
@@ -426,64 +459,89 @@ class CovidResponseState extends State<CovidResponse>
                                   child: Padding(
                                     padding: const EdgeInsets.only(
                                         right: 8, left: 10),
-                                    child: Stack(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Container(
-                                          height: 200,
+                                          height:
+                                              SizeConfig.blockSizeVertical * 25,
                                           width:
                                               SizeConfig.blockSizeHorizontal *
                                                   86,
-                                          child: FadeInImage.assetNetwork(   
+                                          child: FadeInImage.assetNetwork(
                                             placeholder:
                                                 'assets/newImages/placeholder_3.jpg',
                                             image: newslist[index].imge,
                                             fit: BoxFit.fill,
                                           ),
                                         ),
-                                        Align(
-                                          alignment: Alignment.bottomCenter,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10,
-                                                right: 10,
-                                                bottom: 10),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: SizeConfig
-                                                              .blockSizeHorizontal *
-                                                          80,
-                                                      child: Text(
-                                                        newslist[index].title,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700),
-                                                        maxLines: 3,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 8,
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+
+                                        Container(
+                                          width:
+                                              SizeConfig.blockSizeHorizontal *
+                                                  80,
+                                          child: Text(
+                                            newslist[index].title,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                color: Colors.black87,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w700),
+                                            maxLines: 3,
                                           ),
                                         ),
+                                        SizedBox(
+                                          height: 8,
+                                        )
+                                        // Align(
+                                        //   alignment: Alignment.bottomCenter,
+                                        //   child: Padding(
+                                        //     padding: const EdgeInsets.only(
+                                        //         left: 10,
+                                        //         right: 10,
+                                        //         bottom: 10),
+                                        //     child: Row(
+                                        //       crossAxisAlignment:
+                                        //           CrossAxisAlignment.end,
+                                        //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        //       children: [
+                                        //         Column(
+                                        //           mainAxisAlignment:
+                                        //               MainAxisAlignment.end,
+                                        //           crossAxisAlignment:
+                                        //               CrossAxisAlignment.start,
+                                        //           children: [
+                                        //             Container(
+                                        //               width: SizeConfig
+                                        //                       .blockSizeHorizontal *
+                                        //                   80,
+                                        //               child: Text(
+                                        //                 newslist[index].title,
+                                        //                 overflow: TextOverflow
+                                        //                     .ellipsis,
+                                        //                 style: TextStyle(
+                                        //                     color:
+                                        //                         Colors.black87,
+                                        //                     fontSize: 14,
+                                        //                     fontWeight:
+                                        //                         FontWeight
+                                        //                             .w700),
+                                        //                 maxLines: 3,
+                                        //               ),
+                                        //             ),
+                                        //             SizedBox(
+                                        //               height: 8,
+                                        //             )
+                                        //           ],
+                                        //         ),
+                                        //       ],
+                                        //     ),
+                                        //   ),
+                                        // ),
                                       ],
                                     ),
                                   ),
@@ -505,26 +563,23 @@ class CovidResponseState extends State<CovidResponse>
                         // SizedBox(
                         //   height: 10,
                         // )
-
-                          
                       ],
                     ),
                   ),
-
                   Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                      height: 170,
+                    padding: const EdgeInsets.only(right: 0, left: 0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Image.asset(
+                        "assets/newImages/flowers_footer.png",
+                        height: 170,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Bottomcardlink(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Bottomcardlink(),
                 ],
               ),
             ),

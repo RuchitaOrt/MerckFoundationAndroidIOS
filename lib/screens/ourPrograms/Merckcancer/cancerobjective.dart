@@ -71,6 +71,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
           Navigator.pop(context);
         },
         index: 2,
+        sharelink: Constantstring.cancerobjective,
         title: "Objective",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -164,9 +165,9 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                 height: 10,
               ),
 
- Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
                   child: Align(
                     alignment: Alignment.bottomRight,
@@ -176,19 +177,14 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                     ),
                   ),
                 ),
-          ),
-             
+              ),
+
               //  Align(
               //    alignment: Alignment.bottomCenter,
               //    child: Bottomcardlink())
-
-
             ],
           ),
-
-         
-           
-           Align(alignment: Alignment.bottomCenter, child: Bottomcardlink())
+          Align(alignment: Alignment.bottomCenter, child: Bottomcardlink())
         ],
       ),
     );

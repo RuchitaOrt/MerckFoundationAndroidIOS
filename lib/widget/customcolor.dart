@@ -160,6 +160,9 @@ class Constantstring {
       "http://merckfoundation.org/mfindia/web/public/merck-foundation-community-awareness";
   static String cancervideo =
       "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-cancer-access-program";
+  static String cancersocial =
+      "http://merck-foundation.com/our-programs/Merck-Foundation-Cancer-Access-Program/Social-Media";
+
   //award
 
   //award detail pages
@@ -272,10 +275,7 @@ class Constantstring {
   // static String followmmtmflicker =
   //     "https://www.flickr.com/photos/163124125@N08/";
 
-
-
-
-  //followus merck cancer access program 
+  //followus merck cancer access program
   static String followmmerckCancerFb =
       "https://www.facebook.com/merckcancercontrolprogram";
   static String followmmerckCancertwitter =
@@ -284,28 +284,22 @@ class Constantstring {
   static String followmmerckCanceryoutube =
       "https://www.youtube.com/channel/UCokfpTgsO86UV4YzUXXqDAw";
 
-
 //follow us Merck Capacity Advancement & Nationwide
-static String followmmerckAdvancementFb =
-      "https://www.facebook.com/merckcap";
+  static String followmmerckAdvancementFb = "https://www.facebook.com/merckcap";
   static String followmmerckAdvancementtwitter =
       "https://www.twitter.com/merckcap";
-  static String followmmerckAdvancementinstagram = "https://www.instagram.com/merckcap";
+  static String followmmerckAdvancementinstagram =
+      "https://www.instagram.com/merckcap";
   static String followmmerckAdvancementyoutube =
       "https://www.youtube.com/channel/UCs2EmCvezkOC_KPDeGNcB9Q";
 
-
- //followus on merck stem program
-       static String followmmerckStemFb =
+  //followus on merck stem program
+  static String followmmerckStemFb =
       "https://www.facebook.com/merckafricaresearchsummit";
-  static String followmmerckStemtwitter =
-      "https://www.twitter.com/merck_mars";
+  static String followmmerckStemtwitter = "https://www.twitter.com/merck_mars";
   static String followmmerckStemgmailPlus = "unescomars@gmail.com";
   static String followmmerckStemyoutube =
       "https://www.youtube.com/channel/UCtXbhRueJd8Zftd1tIFu2BQ";
-
-
-
 
   static String followmsg = "follow us";
   static String emptyData = "No Data Found";
@@ -315,6 +309,6 @@ static String followmmerckAdvancementFb =
   static double callimagewidth = 220;
   static double callcoursaheight = 360;
 
-  //call ambassdar width as per client 
+  //call ambassdar width as per client
   static double callAmbassadarimagewidth = 240;
 }

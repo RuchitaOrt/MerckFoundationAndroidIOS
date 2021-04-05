@@ -299,7 +299,7 @@ class MerckFertilityState extends State<MerckFertility> {
               cardsubtitle: "Our ",
               cardTitle: "Videos",
               btnTitle: "Watch More",
-              heigthoflist: SizeConfig.blockSizeVertical * 33,
+              //heigthoflist: SizeConfig.blockSizeVertical * 34,
               onbtnTap: () {
                 // Navigator.push(
                 //     context,
@@ -350,6 +350,7 @@ class MerckFertilityState extends State<MerckFertility> {
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
+                                  height: SizeConfig.blockSizeVertical * 25,
                                 child: FadeInImage.assetNetwork(
                                   placeholder: 'assets/newImages/placeholder_3.jpg',
                                   image:
@@ -405,7 +406,7 @@ class MerckFertilityState extends State<MerckFertility> {
                         ),
 
                          SizedBox(
-                          height: 7,
+                          height: 2,
                         ),
 
                          Container(
@@ -424,7 +425,7 @@ class MerckFertilityState extends State<MerckFertility> {
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 25,
+                                            height: 5,
                                           )
                       ],
                     ),

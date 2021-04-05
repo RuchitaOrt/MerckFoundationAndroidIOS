@@ -100,10 +100,10 @@ class _AppDrawerState extends State<AppDrawer> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.asset(
-                             // "assets/newImages/logoforheader.png",
-                               'assets/newImages/drawer_img.png',
+                              // "assets/newImages/logoforheader.png",
+                              'assets/newImages/drawer_img.png',
                               width: 200,
-                              height: 140,
+                              height: 130,
                             ),
                             GestureDetector(
                               onTap: () {
@@ -187,7 +187,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         DrawerWidget(
                           image: '',
                           value: 'Our Vision',
-                          onTapfun: () {    
+                          onTapfun: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -549,9 +549,8 @@ class _AppDrawerState extends State<AppDrawer> {
                         //     ? ShowDialogs.followuslink(
                         //         Constantstring.followfacebook,
                         //         Constantstring.followmsg):
-                            ShowDialogs.launchFacebook(
-                                Constantstring.followfacebook,
-                                "1053979038068008");
+                        ShowDialogs.launchFacebook(
+                            Constantstring.followfacebook, "1053979038068008");
                       },
                       child: Image.asset(
                         "assets/newImages/facebook.png",

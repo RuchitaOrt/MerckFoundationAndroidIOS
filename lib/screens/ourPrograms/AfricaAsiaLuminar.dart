@@ -191,7 +191,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                   height: 10,
                 ),
                 followUs(),
-                 SizedBox(
+                SizedBox(
                   height: 10,
                 ),
 
@@ -228,13 +228,16 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
             children: [
               Row(
                 children: [
-                  Text("Follow Merck Foundation on",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 11,//ResponsiveFlutter.of(context).fontSize(1.7),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: AppFonts.normal,
-                          color: Colors.black87),)
+                  Text(
+                    "Follow Merck Foundation on",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize:
+                            11, //ResponsiveFlutter.of(context).fontSize(1.7),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: AppFonts.normal,
+                        color: Colors.black87),
+                  )
                 ],
               ),
               SizedBox(
@@ -265,9 +268,8 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                       //     ? ShowDialogs.followuslink(
                       //         Constantstring.followfacebook,
                       //         Constantstring.followmsg):
-                           ShowDialogs.launchFacebook(
-                              Constantstring.followfacebook,
-                              "1053979038068008");
+                      ShowDialogs.launchFacebook(
+                          Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
                       "assets/newImages/facebook.png",
@@ -1581,7 +1583,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
               cardsubtitle: "Our ",
               cardTitle: "Videos",
               btnTitle: "Watch More",
-              heigthoflist: SizeConfig.blockSizeVertical * 28,
+              //   heigthoflist: SizeConfig.blockSizeVertical * 28,
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -1832,7 +1834,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-              heigthoflist: SizeConfig.blockSizeVertical * 33,
+              heigthoflist: SizeConfig.blockSizeVertical * 36,
               onbtnTap: () {
                 // Navigator.push(
                 //     context,
@@ -1869,6 +1871,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
+                                height: SizeConfig.blockSizeVertical * 27,
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
                                       'assets/newImages/placeholder_3.jpg',

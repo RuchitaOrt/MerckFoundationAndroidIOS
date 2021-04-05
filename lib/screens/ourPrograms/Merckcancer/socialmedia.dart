@@ -34,7 +34,8 @@ class SocialMediaState extends State<SocialMedia> {
           //               index: 0,
           //             )));
         },
-        index: 1,
+        index: 2,
+        sharelink: Constantstring.cancersocial,
         title: "Social Media",
         titleImg: "assets/newImages/contactus_logo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -195,20 +196,18 @@ class SocialMediaState extends State<SocialMedia> {
                       ),
                     ],
                   ),
-
                   Expanded(
-                                      child: Padding(
-                                              padding: const EdgeInsets.only(right: 0, left: 0),
-                                              child: Align(
-                                                alignment: Alignment.bottomRight,
-                                                child: Image.asset(
-                                                  "assets/newImages/flowers_footer.png",
-                                                  height: 170,
-                                                ),
-                                              ),
-                                          ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 0, left: 0),
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Image.asset(
+                          "assets/newImages/flowers_footer.png",
+                          height: 170,
+                        ),
+                      ),
+                    ),
                   ),
-
                   SizedBox(
                     height: 70,
                   )
@@ -216,9 +215,6 @@ class SocialMediaState extends State<SocialMedia> {
               ),
             ),
           ),
-
- 
-           
           Align(
             alignment: Alignment.bottomCenter,
             child: Bottomcardlink(),

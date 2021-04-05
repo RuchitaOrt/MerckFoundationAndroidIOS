@@ -222,7 +222,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-              //heigthoflist: SizeConfig.safeBlockVertical * 35,
+            //  heigthoflist: SizeConfig.safeBlockVertical * 38,
               onbtnTap: () {
                 //  getprogramgallery();
               },
@@ -246,6 +246,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                         children: [
                           Container(
                             //width: SizeConfig.blockSizeHorizontal * 80,
+                          //  height: SizeConfig.safeBlockVertical * 27,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
@@ -320,7 +321,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-              heigthoflist: SizeConfig.blockSizeVertical * 38,
+              heigthoflist: SizeConfig.blockSizeVertical * 37,
               list: ListView.builder(
                 itemCount: GlobalLists.homevideolist.length,
                 scrollDirection: Axis.horizontal,
@@ -345,7 +346,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(
-                                  right: 8, left: 10, bottom: 10),
+                                  right: 8, left: 10, bottom: 2),
                               child: Stack(
                                 children: [
                                   Container(
@@ -411,7 +412,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                             ),
 
                            SizedBox(
-                                            height: 7,
+                                            height: 2,
                                           ),
 
                        Container(

@@ -57,150 +57,156 @@ class ourawardState extends State<Ouraward> {
           trallingImg2: "assets/newImages/search.png",
           height: 85,
         ),
-        body: ListView(
-          shrinkWrap: true,
-          physics: ScrollPhysics(),
+        body: Stack(
           children: [
-            SizedBox(
-              height: 10,
-            ),
-            ListView.builder(
-              itemCount: GlobalLists.awardlisting.length,
+            ListView(
               shrinkWrap: true,
               physics: ScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                if (index % 7 == 0) {
-                  print("index");
-                  print(index % 3);
-                  color = Customcolor.prog1;
-                } else if (index % 7 == 1) {
-                  color = Customcolor.prog2;
-                } else if (index % 7 == 2) {
-                  color = Customcolor.prog3;
-                } else if (index % 7 == 3) {
-                  color = Customcolor.prog4;
-                } else if (index % 7 == 4) {
-                  color = Customcolor.prog5;
-                } else if (index % 7 == 5) {
-                  color = Customcolor.prog6;
-                } else if (index % 7 == 6) {
-                  color = Customcolor.prog7;
-                }else if (index % 7 == 7) {
-                  color = Customcolor.prog8;
-                }
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                ListView.builder(
+                  itemCount: GlobalLists.awardlisting.length,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index % 7 == 0) {
+                      print("index");
+                      print(index % 3);
+                      color = Customcolor.prog1;
+                    } else if (index % 7 == 1) {
+                      color = Customcolor.prog2;
+                    } else if (index % 7 == 2) {
+                      color = Customcolor.prog3;
+                    } else if (index % 7 == 3) {
+                      color = Customcolor.prog4;
+                    } else if (index % 7 == 4) {
+                      color = Customcolor.prog5;
+                    } else if (index % 7 == 5) {
+                      color = Customcolor.prog6;
+                    } else if (index % 7 == 6) {
+                      color = Customcolor.prog7;
+                    } else if (index % 7 == 7) {
+                      color = Customcolor.prog8;
+                    }
 
-                return Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8, bottom: 6),
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Card(
-                        color: color,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 0, left: 10, right: 10, top: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Html(
-                              data:
-                                  """${GlobalLists.awardlisting[index].title} """,
-                              onLinkTap: (url) {
-                                print("Opening $url...");
-                                ShowDialogs.launchURL(url);
-                              },
-                              style: {
-                                "body": Style(
-                                    textAlign: TextAlign.start,
-                                     color: Colors.white,
-                                   // color: Customcolor.pink_col,
-                                    fontSize: FontSize.large,
-                                    fontWeight: FontWeight.w500),
-                              },
+                    return Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 6),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Card(
+                          color: color,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(4),
                             ),
-                            // Text(
-                            //   GlobalLists.awardlisting[index].title,
-                            //   overflow: TextOverflow.ellipsis,
-                            //   style: TextStyle(
-                            //       color: Customcolor.pink_col,
-                            //       fontSize:
-                            //           ResponsiveFlutter.of(context).fontSize(2),
-                            //       fontWeight: FontWeight.w500),
-                            //   maxLines: 4,
-                            // ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 0, left: 10, right: 10, top: 8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    getawarddetail(GlobalLists
-                                        .awardlisting[index].pageUrl);
+                                Html(
+                                  data:
+                                      """${GlobalLists.awardlisting[index].title} """,
+                                  onLinkTap: (url) {
+                                    print("Opening $url...");
+                                    ShowDialogs.launchURL(url);
                                   },
-                                  child: Container(
-                                    width: 110,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                        color: Colors.amber,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: Center(
-                                      child: Text(
-                                        "Read More",
-                                        style: TextStyle(
-                                            color: Customcolor.text_darkblue,
-                                            fontWeight: FontWeight.w500),
+                                  style: {
+                                    "body": Style(
+                                        textAlign: TextAlign.start,
+                                        color: Colors.white,
+                                        // color: Customcolor.pink_col,
+                                        fontSize: FontSize.large,
+                                        fontWeight: FontWeight.w500),
+                                  },
+                                ),
+                                // Text(
+                                //   GlobalLists.awardlisting[index].title,
+                                //   overflow: TextOverflow.ellipsis,
+                                //   style: TextStyle(
+                                //       color: Customcolor.pink_col,
+                                //       fontSize:
+                                //           ResponsiveFlutter.of(context).fontSize(2),
+                                //       fontWeight: FontWeight.w500),
+                                //   maxLines: 4,
+                                // ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        getawarddetail(GlobalLists
+                                            .awardlisting[index].pageUrl);
+                                      },
+                                      child: Container(
+                                        width: 110,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: Colors.amber,
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: Center(
+                                          child: Text(
+                                            "Read More",
+                                            style: TextStyle(
+                                                color:
+                                                    Customcolor.text_darkblue,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ),
 
-                                // Image.asset(
-                                //   "assets/images/trophy.png",
-                                //   width: 70,
-                                //   height: 70,
-                                // )
+                                    // Image.asset(
+                                    //   "assets/images/trophy.png",
+                                    //   width: 70,
+                                    //   height: 70,
+                                    // )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
                               ],
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                );
-              },
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.only(
-            //       left: 60, right: 60, top: 20, bottom: 10),
-            //   child: Image.asset(
-            //     "assets/newImages/flowers_footer.png",
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 0, left: 0),
-            //   child: Align(
-            //     alignment: Alignment.topRight,
-            //     child: Image.asset(
-            //       "assets/newImages/flowers_footer.png",
-            //       height: 170,
-            //     ),
-            //   ),
-            // ),
-             SizedBox(
+                    );
+                  },
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(
+                //       left: 60, right: 60, top: 20, bottom: 10),
+                //   child: Image.asset(
+                //     "assets/newImages/flowers_footer.png",
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 0, left: 0),
+                //   child: Align(
+                //     alignment: Alignment.topRight,
+                //     child: Image.asset(
+                //       "assets/newImages/flowers_footer.png",
+                //       height: 170,
+                //     ),
+                //   ),
+                // ),
+                SizedBox(
                   height: 20,
                 ),
 
-               Padding(
+                Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
                   child: Align(
                     alignment: Alignment.topRight,
@@ -213,8 +219,9 @@ class ourawardState extends State<Ouraward> {
                 SizedBox(
                   height: 10,
                 ),
-                Bottomcardlink(),
-           
+              ],
+            ),
+            Align(alignment: Alignment.bottomCenter, child: Bottomcardlink()),
           ],
         ));
   }

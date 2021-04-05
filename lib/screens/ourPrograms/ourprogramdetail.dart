@@ -38,7 +38,7 @@ class _MyHomePageState extends State<OurProgram> {
 
   bool useAsFloatingActionButton = true;
   List programvalue = [
-    "About Merck More Than A Mother",
+    "About Merck Foundation More Than A Mother",
     "Strategy",
     "Merck Foundation More Than a Mother Ambassadors",
     "Merck Foundation Fertility and Embryology Training Program",
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<OurProgram> {
   ];
 
   List programvalueforStem = [
-    "About Merck More Than A Mother",
+    "About Merck Foundation More Than A Mother",
     "Strategy",
     "Merck More Than a Mother Ambassadors",
     "Merck Fertility and Embryology Training Program",
@@ -258,8 +258,6 @@ class _MyHomePageState extends State<OurProgram> {
                                                   OurProgram(
                                                     indexpass: 8,
                                                   )));
-
-
                                     } else if (index == 1) {
                                       //strategy
                                       Navigator.push(

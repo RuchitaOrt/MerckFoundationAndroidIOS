@@ -113,6 +113,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
           //             )));
         },
         index: 2,
+        sharelink: Constantstring.cancercommunityawareness,
         title: "Merck Foundation Community Awareness",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -868,7 +869,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
               cardsubtitle: "Our ",
               cardTitle: "Videos",
               btnTitle: "Watch More",
-              heigthoflist: SizeConfig.blockSizeVertical * 32,
+              heigthoflist: SizeConfig.blockSizeVertical * 35,
               onbtnTap: () {
                 //   Navigator.push(
                 //       context,
@@ -912,16 +913,18 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                       //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
                     child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 8, left: 10),
                           child: Stack(
                             children: [
                               Container(
+                                height: SizeConfig.blockSizeVertical * 26,
                                 width: SizeConfig.blockSizeHorizontal * 86,
                                 child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/newImages/placeholder_3.jpg',
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
                                   image:
                                       "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
                                   fit: BoxFit.fill,
@@ -930,11 +933,11 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                               Align(
                                 alignment: Alignment.center,
                                 child: Padding(
-                                padding: EdgeInsets.only(left: 140, top: 70),
-                                child: Center(
-                                  child:
-                                      Image.asset("assets/newImages/pause.png")),
-                              ),
+                                  padding: EdgeInsets.only(left: 140, top: 70),
+                                  child: Center(
+                                      child: Image.asset(
+                                          "assets/newImages/pause.png")),
+                                ),
                               ),
                               // Padding(
                               //   padding: EdgeInsets.only(left: 120),
@@ -945,26 +948,22 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                             ],
                           ),
                         ),
-
                         SizedBox(
-                          height: 7,
+                          height: 2,
                         ),
-
-                         Container(
-                           padding: EdgeInsets.only(left: 9),
-                                            width:
-                                                SizeConfig.blockSizeHorizontal * 80,
-                                            child: Text(
-                                              GlobalLists
-                                                  .homevideolist[index].videoDesc,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                  color: Colors.black87,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w700),
-                                              maxLines: 3,
-                                            ),
-                                          ),
+                        Container(
+                          padding: EdgeInsets.only(left: 9),
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Text(
+                            GlobalLists.homevideolist[index].videoDesc,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                            maxLines: 3,
+                          ),
+                        ),
                       ],
                     ),
                   );
