@@ -559,7 +559,7 @@ class CallForApp {
   List<CallForAppList> list;
   String baseUrl;
 
-  factory CallForApp.fromJson(Map<String, dynamic> json) => CallForApp(
+  factory CallForApp.fromJson(Map<dynamic, dynamic> json) => CallForApp(
         list: List<CallForAppList>.from(
             json["list"].map((x) => CallForAppList.fromJson(x))),
         baseUrl: json["base_url"],

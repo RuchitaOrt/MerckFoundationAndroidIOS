@@ -129,9 +129,12 @@ class _MyHomePageState extends State<OurProgramStem> {
                                           onTap: () {},
                                           child: Align(
                                               alignment: Alignment.topRight,
-                                              child: Icon(
-                                                Icons.close,
-                                                color: Customcolor.colorBlue,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(right: 10, top: 10),
+                                                child: Icon(
+                                                  Icons.close,
+                                                  color: Customcolor.colorBlue,
+                                                ),
                                               ))),
                                       Expanded(
                                           flex: 5,
@@ -208,8 +211,19 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                           0
                                                                       ? Colors
                                                                           .transparent
-                                                                      : Color(
-                                                                          0xffC1DEA4),
+                                                                      : index % 3 ==
+                                                                              0
+                                                                          ? Color(
+                                                                              0xffC1DEA4)
+                                                                          : index % 3 == 1
+                                                                              ? Color(0xffA9E2FC)
+                                                                              : index % 3 == 2
+                                                                                  ? Color(0xffE0C0CB)
+                                                                                  : Color(0xffC1DEA4),
+
+                                                                  // Color(
+                                                                  //     0xffC1DEA4),
+
                                                                   child: Theme(
                                                                     data: Theme.of(
                                                                             context)
@@ -220,11 +234,23 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                     ),
                                                                     child:
                                                                         ExpansionTile(
-                                                                      backgroundColor: GlobalLists.stemprogramlistsubmenu[index].children.length == 0
+                                                                      backgroundColor: GlobalLists.stemprogramlistsubmenu[index].children.length ==
+                                                                              0
                                                                           ? Colors
                                                                               .transparent
-                                                                          : Color(
-                                                                              0xffC1DEA4),
+                                                                          : index % 3 == 0
+                                                            ? Color(0xffA9E2FC)
+                                                            : index % 3 == 1
+                                                                ? Color(
+                                                                    0xffC1DEA4)
+                                                                : index % 3 == 2
+                                                                    ? Color(
+                                                                        0xffE0C0CB)
+                                                                    : Color(
+                                                                        0xffC1DEA4),
+
+                                                                      // Color(
+                                                                      //     0xffC1DEA4),
                                                                       // trailing: null,
                                                                       tilePadding:
                                                                           EdgeInsets.all(
@@ -322,9 +348,12 @@ class _MyHomePageState extends State<OurProgramStem> {
                             },
                             child: Align(
                                 alignment: Alignment.topRight,
-                                child: Icon(
-                                  Icons.close,
-                                  color: Customcolor.colorBlue,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 10, top: 10),
+                                  child: Icon(
+                                    Icons.close,
+                                    color: Customcolor.colorBlue,
+                                  ),
                                 ))),
                         //here need to do code
                         Expanded(
@@ -451,7 +480,18 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                 .length ==
                                                             0
                                                         ? Colors.transparent
-                                                        : Color(0xffC1DEA4),
+                                                        : index % 3 == 0
+                                                            ? Color(0xffA9E2FC)
+                                                            : index % 3 == 1
+                                                                ? Color(
+                                                                    0xffC1DEA4)
+                                                                : index % 3 == 2
+                                                                    ? Color(
+                                                                        0xffE0C0CB)
+                                                                    : Color(
+                                                                        0xffC1DEA4),
+
+                                                    //Color(0xffC1DEA4),
                                                     child: Theme(
                                                       data: Theme.of(context)
                                                           .copyWith(
@@ -466,7 +506,18 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                     .length ==
                                                                 0
                                                             ? Colors.transparent
-                                                            : Color(0xffC1DEA4),
+                                                            : index % 3 == 0
+                                                            ? Color(0xffA9E2FC)
+                                                            : index % 3 == 1
+                                                                ? Color(
+                                                                    0xffC1DEA4)
+                                                                : index % 3 == 2
+                                                                    ? Color(
+                                                                        0xffE0C0CB)
+                                                                    : Color(
+                                                                        0xffC1DEA4),
+
+                                                        //Color(0xffC1DEA4),
                                                         // trailing: null,
                                                         tilePadding:
                                                             EdgeInsets.all(0.0),

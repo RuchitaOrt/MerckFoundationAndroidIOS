@@ -119,7 +119,7 @@ class ShowDialogs {
     if (Platform.isIOS) {
       fbProtocolUrl = "fb://profile/$pageId"; //'fb://profile/1053979038068008';
     } else {
-      fbProtocolUrl = 'fb://page/1053979038068008';
+      fbProtocolUrl = 'fb://page/$pageId';
     }
 
     String fallbackUrl = url;

@@ -70,12 +70,124 @@ class CeomessageState extends State<Ceomessage> {
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 8, right: 8, bottom: 6),
-                              child: Column(
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10, right: 8, bottom: 6),
+                                child: Container(
+                                  height: 200,
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(8)),
+                                  child: FadeInImage.assetNetwork(
+                                    placeholder:
+                                        'assets/newImages/placeholder_3.jpg',
+                                    image: Constantstring.baseUrl +
+                                        GlobalLists.ceolisting[index].image,
+                                    fit: BoxFit.cover,
+                                    height: 150,
+                                  ),
+                                ),
+                              ),
+                              Html(
+                                data:
+                                    """${GlobalLists.ceolisting[index].leaderName} """,
+                                onLinkTap: (url) {
+                                  print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
+                                },
+                                style: {
+                                  "body": Style(
+                                      textAlign: TextAlign.start,
+                                      color: Customcolor.violet_col,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: FontSize.larger),
+                                },
+                              ),
+                              Html(
+                                data:
+                                    """${GlobalLists.ceolisting[index].shortBiodata} """,
+                                onLinkTap: (url) {
+                                  print("Opening $url...");
+                                  ShowDialogs.launchURL(url);
+                                },
+                                style: {
+                                  "body": Style(textAlign: TextAlign.start),
+                                },
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              Detailpageceo(
+                                                list:
+                                                    GlobalLists.ceolisting,
+                                                imageurl:
+                                                    Constantstring.baseUrl,
+                                                index: index,
+                                              )));
+                                },
+                                child: Html(
+                                  data: "((View Bio))",
+                                  onLinkTap: (url) {
+                                    print("Opening $url...");
+                                    ShowDialogs.launchURL(url);
+                                  },
+                                  style: {
+                                    "body": Style(
+                                        textAlign: TextAlign.start,
+                                        color: Customcolor.pink_col,
+                                        fontSize: FontSize.larger,
+                                        fontWeight: FontWeight.w600),
+                                  },
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                  ),
+              GlobalLists.boardoftrust.length <= 0
+                  ? Container()
+                  : Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //Text("Board of Trustees of Merck Foundation"),
+
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 30, bottom: 25, left: 5),
+                            child: FormLabel(
+                              text: "Board of Trustees of Merck Foundation",
+                              labelColor: Customcolor.pink_col,
+                              fontSize:
+                                  ResponsiveFlutter.of(context).fontSize(2),
+                              maxLines: 2,
+                              fontweight: FontWeight.w800,
+                              textAlignment: TextAlign.left,
+                            ),
+                          ),
+
+                         
+                          ListView.builder(
+                            itemCount: GlobalLists.boardoftrust.length,
+                            scrollDirection: Axis.vertical,
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Center(
+                                  Padding(
+                                       padding: const EdgeInsets.only(
+                                      left: 10, right: 8, bottom: 6),
                                     child: Container(
                                       height: 200,
                                       width: 150,
@@ -86,7 +198,8 @@ class CeomessageState extends State<Ceomessage> {
                                         placeholder:
                                             'assets/newImages/placeholder_3.jpg',
                                         image: Constantstring.baseUrl +
-                                            GlobalLists.ceolisting[index].image,
+                                            GlobalLists
+                                                .boardoftrust[index].image,
                                         fit: BoxFit.cover,
                                         height: 150,
                                       ),
@@ -94,14 +207,15 @@ class CeomessageState extends State<Ceomessage> {
                                   ),
                                   Html(
                                     data:
-                                        """${GlobalLists.ceolisting[index].leaderName} """,
+                                        """${GlobalLists.boardoftrust[index].leaderName} """,
                                     onLinkTap: (url) {
                                       print("Opening $url...");
                                       ShowDialogs.launchURL(url);
                                     },
                                     style: {
                                       "body": Style(
-                                          textAlign: TextAlign.center,
+                                        padding: EdgeInsets.all(0),
+                                          textAlign: TextAlign.start,
                                           color: Customcolor.violet_col,
                                           fontWeight: FontWeight.bold,
                                           fontSize: FontSize.larger),
@@ -109,13 +223,14 @@ class CeomessageState extends State<Ceomessage> {
                                   ),
                                   Html(
                                     data:
-                                        """${GlobalLists.ceolisting[index].shortBiodata} """,
+                                        """${GlobalLists.boardoftrust[index].shortBiodata} """,
                                     onLinkTap: (url) {
                                       print("Opening $url...");
                                       ShowDialogs.launchURL(url);
                                     },
                                     style: {
-                                      "body": Style(textAlign: TextAlign.center),
+                                      "body":
+                                          Style(textAlign: TextAlign.start),
                                     },
                                   ),
                                   GestureDetector(
@@ -123,14 +238,16 @@ class CeomessageState extends State<Ceomessage> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  Detailpageceo(
-                                                    list:
-                                                        GlobalLists.ceolisting,
-                                                    imageurl:
-                                                        Constantstring.baseUrl,
-                                                    index: index,
-                                                  )));
+                                              builder:
+                                                  (BuildContext context) =>
+                                                      Detailpageceo(
+                                                        list: GlobalLists
+                                                            .boardoftrust,
+                                                        imageurl:
+                                                            Constantstring
+                                                                .baseUrl,
+                                                        index: index,
+                                                      )));
                                     },
                                     child: Html(
                                       data: "((View Bio))",
@@ -146,127 +263,13 @@ class CeomessageState extends State<Ceomessage> {
                                             fontWeight: FontWeight.w600),
                                       },
                                     ),
-                                  ),
+                                   ),
+
+                                  SizedBox(
+                                    height: 30,
+                                  )
                                 ],
-                              ));
-                        },
-                      ),
-                  ),
-              GlobalLists.boardoftrust.length <= 0
-                  ? Container()
-                  : Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          //Text("Board of Trustees of Merck Foundation"),
-
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 30, bottom: 15, left: 5),
-                            child: FormLabel(
-                              text: "Board of Trustees of Merck Foundation",
-                              labelColor: Customcolor.pink_col,
-                              fontSize:
-                                  ResponsiveFlutter.of(context).fontSize(2),
-                              maxLines: 2,
-                              fontweight: FontWeight.w800,
-                              textAlignment: TextAlign.left,
-                            ),
-                          ),
-                          ListView.builder(
-                            itemCount: GlobalLists.boardoftrust.length,
-                            scrollDirection: Axis.vertical,
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8, right: 8, bottom: 6),
-                                  child: Column(
-                                    children: [
-                                      Center(
-                                        child: Container(
-                                          height: 200,
-                                          width: 150,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
-                                          child: FadeInImage.assetNetwork(
-                                            placeholder:
-                                                'assets/newImages/placeholder_3.jpg',
-                                            image: Constantstring.baseUrl +
-                                                GlobalLists
-                                                    .boardoftrust[index].image,
-                                            fit: BoxFit.cover,
-                                            height: 150,
-                                          ),
-                                        ),
-                                      ),
-                                      Html(
-                                        data:
-                                            """${GlobalLists.boardoftrust[index].leaderName} """,
-                                        onLinkTap: (url) {
-                                          print("Opening $url...");
-                                          ShowDialogs.launchURL(url);
-                                        },
-                                        style: {
-                                          "body": Style(
-                                              textAlign: TextAlign.center,
-                                              color: Customcolor.violet_col,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: FontSize.larger),
-                                        },
-                                      ),
-                                      Html(
-                                        data:
-                                            """${GlobalLists.boardoftrust[index].shortBiodata} """,
-                                        onLinkTap: (url) {
-                                          print("Opening $url...");
-                                          ShowDialogs.launchURL(url);
-                                        },
-                                        style: {
-                                          "body":
-                                              Style(textAlign: TextAlign.center),
-                                        },
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          Detailpageceo(
-                                                            list: GlobalLists
-                                                                .boardoftrust,
-                                                            imageurl:
-                                                                Constantstring
-                                                                    .baseUrl,
-                                                            index: index,
-                                                          )));
-                                        },
-                                        child: Html(
-                                          data: "((View Bio))",
-                                          onLinkTap: (url) {
-                                            print("Opening $url...");
-                                            ShowDialogs.launchURL(url);
-                                          },
-                                          style: {
-                                            "body": Style(
-                                                textAlign: TextAlign.start,
-                                                color: Customcolor.pink_col,
-                                                fontSize: FontSize.larger,
-                                                fontWeight: FontWeight.w600),
-                                          },
-                                        ),
-                                       ),
-
-                                      SizedBox(
-                                        height: 30,
-                                      )
-                                    ],
-                                  ));
+                              );
                             },
                           ),
                         ],

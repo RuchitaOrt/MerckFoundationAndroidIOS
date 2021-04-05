@@ -2,13 +2,15 @@
     "environment": "development",
     "version": "1",
     "development": {
-        "hostUrl": "http://merckfoundation.org/mfindia/web/public/api/",
+        "hostUrl": "http://merck-foundation.com/api/", 
         "timeout": 120,
         "retry": 3
     },
     "production": {
-        "hostUrl": "http://localhost:3000/api/v1",
+        "hostUrl": "http://merck-foundation.com/api",
         "timeout": 120,
         "retry": 3
     }
 }
+
+ 

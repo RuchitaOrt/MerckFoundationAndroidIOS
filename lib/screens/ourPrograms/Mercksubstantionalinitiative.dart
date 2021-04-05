@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -185,6 +186,10 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                 SizedBox(
                   height: 10,
                 ),
+followUs(),
+SizedBox(
+                  height: 10,
+                ),
 
                  Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
@@ -202,6 +207,139 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                 Bottomcardlink(),
                 //   Bottomcardlink(),
               ])),
+    );
+  }
+
+  double imgHeight = 30;
+
+  Widget followUs() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8, top: 15),
+      child: Container(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text("Follow Merck Foundation on",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          fontSize: 11,//ResponsiveFlutter.of(context).fontSize(1.7),
+                          fontWeight: FontWeight.w700,
+                          fontFamily: AppFonts.normal,
+                          color: Colors.black87),)
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () async {
+                      Platform.isAndroid
+                          ? ShowDialogs.followuslink(Constantstring.followinsta,
+                              Constantstring.followmsg)
+                          : ShowDialogs.launchInstagram(
+                              Constantstring.followinsta, "merckfoundation");
+                    },
+                    child: Image.asset(
+                      "assets/newImages/instagram.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      // Platform.isAndroid
+                      //     ? ShowDialogs.followuslink(
+                      //         Constantstring.followfacebook,
+                      //         Constantstring.followmsg):
+                           ShowDialogs.launchFacebook(
+                              Constantstring.followfacebook,
+                              "1053979038068008");
+                    },
+                    child: Image.asset(
+                      "assets/newImages/facebook.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      Platform.isAndroid
+                          ? ShowDialogs.followuslink(
+                              Constantstring.followtwitter,
+                              Constantstring.followmsg)
+                          : ShowDialogs.launchTwitter(
+                              Constantstring.followtwitter);
+                    },
+                    child: Image.asset(
+                      "assets/newImages/twitter.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      Platform.isAndroid
+                          ? ShowDialogs.followuslink(
+                              Constantstring.followyoutube,
+                              Constantstring.followmsg)
+                          : ShowDialogs.youtubevideolink(
+                              Constantstring.followyoutube);
+                    },
+                    child: Image.asset(
+                      "assets/newImages/youtube.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      Platform.isAndroid
+                          ? ShowDialogs.followuslink(
+                              Constantstring.followflicker,
+                              Constantstring.followmsg)
+                          : ShowDialogs.launchURL(Constantstring.followflicker);
+                    },
+                    child: Image.asset(
+                      "assets/newImages/flickr.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  // SizedBox(
+                  //   width: 7,
+                  // ),
+                ],
+              )
+            ],
+          ),
+          // Expanded(
+          //   child: Image.asset(
+          //     "assets/newImages/hometoolbar.png",
+          //     height: 100,
+          //     width: 80,
+          //   ),
+          // )
+        ],
+      )),
     );
   }
 

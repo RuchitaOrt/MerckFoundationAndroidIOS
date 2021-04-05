@@ -263,14 +263,49 @@ class Constantstring {
 
   //followus Merck Foundation More Than a Mother
   static String followmmtminsta =
-      "https://www.instagram.com/merckmorethanamother ";
+      "https://www.instagram.com/merckmorethanamother";
   static String followmmtmfacebook =
       "https://www.facebook.com/merckmorethanamother";
   static String followmmtmtwitter = "https://www.twitter.com/merckandmothers";
   static String followmmtmyoutube =
-      "https://www.youtube.com/c/merckmorethanamothers";
+      "https://www.youtube.com/c/merckmorethanamother";
   // static String followmmtmflicker =
   //     "https://www.flickr.com/photos/163124125@N08/";
+
+
+
+
+  //followus merck cancer access program 
+  static String followmmerckCancerFb =
+      "https://www.facebook.com/merckcancercontrolprogram";
+  static String followmmerckCancertwitter =
+      "https://www.twitter.com/merck_mccp";
+  static String followmmerckCancergmailPlus = "merckmccp@gmail.com";
+  static String followmmerckCanceryoutube =
+      "https://www.youtube.com/channel/UCokfpTgsO86UV4YzUXXqDAw";
+
+
+//follow us Merck Capacity Advancement & Nationwide
+static String followmmerckAdvancementFb =
+      "https://www.facebook.com/merckcap";
+  static String followmmerckAdvancementtwitter =
+      "https://www.twitter.com/merckcap";
+  static String followmmerckAdvancementinstagram = "https://www.instagram.com/merckcap";
+  static String followmmerckAdvancementyoutube =
+      "https://www.youtube.com/channel/UCs2EmCvezkOC_KPDeGNcB9Q";
+
+
+ //followus on merck stem program
+       static String followmmerckStemFb =
+      "https://www.facebook.com/merckafricaresearchsummit";
+  static String followmmerckStemtwitter =
+      "https://www.twitter.com/merck_mars";
+  static String followmmerckStemgmailPlus = "unescomars@gmail.com";
+  static String followmmerckStemyoutube =
+      "https://www.youtube.com/channel/UCtXbhRueJd8Zftd1tIFu2BQ";
+
+
+
 
   static String followmsg = "follow us";
   static String emptyData = "No Data Found";

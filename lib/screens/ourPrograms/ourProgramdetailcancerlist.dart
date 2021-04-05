@@ -143,9 +143,15 @@ class _MyHomePageState extends State<OurProgramcancerlist> {
                                             onTap: () {},
                                             child: Align(
                                                 alignment: Alignment.topRight,
-                                                child: Icon(
-                                                  Icons.close,
-                                                  color: Customcolor.colorBlue,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10, top: 10),
+                                                  child: Icon(
+                                                    Icons.close,
+                                                    color:
+                                                        Customcolor.colorBlue,
+                                                  ),
                                                 ))),
                                         Expanded(
                                           //   flex: 5,
@@ -211,9 +217,13 @@ class _MyHomePageState extends State<OurProgramcancerlist> {
                             },
                             child: Align(
                                 alignment: Alignment.topRight,
-                                child: Icon(
-                                  Icons.close,
-                                  color: Customcolor.colorBlue,
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(right: 10, top: 10),
+                                  child: Icon(
+                                    Icons.close,
+                                    color: Customcolor.colorBlue,
+                                  ),
                                 ))),
                         Expanded(
                           flex: 5,

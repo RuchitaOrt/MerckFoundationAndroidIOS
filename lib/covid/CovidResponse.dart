@@ -433,7 +433,7 @@ class CovidResponseState extends State<CovidResponse>
                                           width:
                                               SizeConfig.blockSizeHorizontal *
                                                   86,
-                                          child: FadeInImage.assetNetwork(
+                                          child: FadeInImage.assetNetwork(   
                                             placeholder:
                                                 'assets/newImages/placeholder_3.jpg',
                                             image: newslist[index].imge,

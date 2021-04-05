@@ -1339,11 +1339,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      Platform.isAndroid
-                          ? ShowDialogs.followuslink(
-                              Constantstring.followfacebook,
-                              Constantstring.followmsg)
-                          : ShowDialogs.launchFacebook(
+                      // Platform.isAndroid
+                      //     ? ShowDialogs.followuslink(
+                      //         Constantstring.followfacebook,
+                      //         Constantstring.followmsg):
+                           ShowDialogs.launchFacebook(
                               Constantstring.followfacebook,
                               "1053979038068008");
                     },
