@@ -3,6 +3,7 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 
@@ -167,12 +168,58 @@ class CommunitysupportState extends State<Communitysupport>
                         SizedBox(
                           height: 20,
                         ),
-                        FormLabel(
-                          text: "Visit Photo Gallery to view all pictures",
-                          labelColor: Colors.black54,
-                          fontSize: 14,
-                          fontweight: FontWeight.w500,
-                          textAlignment: TextAlign.start,
+                        GestureDetector(
+                          onTap: () {
+                            ShowDialogs.launchURL(
+                                "http://merck-foundation.com/Merck_Events_Gallery/Merck-Foundation-and-FL-of-Liberia-support-retired-people-affected-by-Coronavirus");
+                          },
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "Visit ",
+                                  style: TextStyle(
+                                    color: Colors.black54,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: "Photo Gallery ",
+                                  style: TextStyle(
+                                    color: Customcolor.pink_col,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: "to view all pictures",
+                                  style: TextStyle(
+                                    color: Colors.black54,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                // WidgetSpan(
+                                //   alignment: PlaceholderAlignment.bottom,
+                                //   child: Image.asset(
+                                //     //  widget.titleImg,
+                                //     "",
+                                //     width: 40,
+                                //     height: 25,
+                                //   ),
+                                // ),
+                              ],
+                            ),
+                          ),
+
+                          //  FormLabel(
+                          //   text: "Visit Photo Gallery to view all pictures",
+                          //   labelColor: Colors.black54,
+                          //   fontSize: 14,
+                          //   fontweight: FontWeight.w500,
+                          //   textAlignment: TextAlign.start,
+                          // ),
                         ),
                         SizedBox(
                           height: 10,
@@ -205,13 +252,52 @@ class CommunitysupportState extends State<Communitysupport>
                         SizedBox(
                           height: 20,
                         ),
-                        FormLabel(
-                          text: "Visit Photo Gallery to view all pictures",
-                          labelColor: Colors.black54,
-                          fontSize: 14,
-                          fontweight: FontWeight.w500,
-                          textAlignment: TextAlign.start,
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "Visit ",
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              TextSpan(
+                                text: "Photo Gallery ",
+                                style: TextStyle(
+                                  color: Customcolor.pink_col,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              TextSpan(
+                                text: "to view all pictures",
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              // WidgetSpan(
+                              //   alignment: PlaceholderAlignment.bottom,
+                              //   child: Image.asset(
+                              //     //  widget.titleImg,
+                              //     "",
+                              //     width: 40,
+                              //     height: 25,
+                              //   ),
+                              // ),
+                            ],
+                          ),
                         ),
+                        // FormLabel(
+                        //   text: "Visit Photo Gallery to view all pictures",
+                        //   labelColor: Colors.black54,
+                        //   fontSize: 14,
+                        //   fontweight: FontWeight.w500,
+                        //   textAlignment: TextAlign.start,
+                        // ),
                         SizedBox(
                           height: 10,
                         ),
@@ -243,13 +329,52 @@ class CommunitysupportState extends State<Communitysupport>
                         SizedBox(
                           height: 20,
                         ),
-                        FormLabel(
-                          text: "Visit Photo Gallery to view all pictures",
-                          labelColor: Colors.black54,
-                          fontSize: 14,
-                          fontweight: FontWeight.w500,
-                          textAlignment: TextAlign.start,
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "Visit ",
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              TextSpan(
+                                text: "Photo Gallery ",
+                                style: TextStyle(
+                                  color: Customcolor.pink_col,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              TextSpan(
+                                text: "to view all pictures",
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              // WidgetSpan(
+                              //   alignment: PlaceholderAlignment.bottom,
+                              //   child: Image.asset(
+                              //     //  widget.titleImg,
+                              //     "",
+                              //     width: 40,
+                              //     height: 25,
+                              //   ),
+                              // ),
+                            ],
+                          ),
                         ),
+                        // FormLabel(
+                        //   text: "Visit Photo Gallery to view all pictures",
+                        //   labelColor: Colors.black54,
+                        //   fontSize: 14,
+                        //   fontweight: FontWeight.w500,
+                        //   textAlignment: TextAlign.start,
+                        // ),
                         // Padding(
                         //   padding: const EdgeInsets.only(right: 0, left: 0),
                         //   child: Align(
