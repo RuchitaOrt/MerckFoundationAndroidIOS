@@ -869,7 +869,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
               cardsubtitle: "Our ",
               cardTitle: "Videos",
               btnTitle: "Watch More",
-              heigthoflist: SizeConfig.blockSizeVertical * 32,
+              heigthoflist: SizeConfig.blockSizeVertical * 35,
               onbtnTap: () {
                 //   Navigator.push(
                 //       context,
@@ -920,6 +920,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                           child: Stack(
                             children: [
                               Container(
+                                height: SizeConfig.blockSizeVertical * 26,
                                 width: SizeConfig.blockSizeHorizontal * 86,
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
@@ -948,7 +949,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                           ),
                         ),
                         SizedBox(
-                          height: 7,
+                          height: 2,
                         ),
                         Container(
                           padding: EdgeInsets.only(left: 9),

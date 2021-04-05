@@ -2110,7 +2110,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
-                                height: SizeConfig.blockSizeVertical * 26,
+                                height: SizeConfig.blockSizeVertical * 25,
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
                                       'assets/newImages/placeholder_3.jpg',
@@ -2306,7 +2306,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
               cardsubtitle: "Merck Foundation In ",
               cardTitle: "Media  ",
               titleColor: Customcolor.pink_col,
-              heigthoflist: SizeConfig.blockSizeVertical * 36,
+              //  heigthoflist: SizeConfig.blockSizeVertical * 35,
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -2340,7 +2340,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                         children: [
                           Container(
                             width: SizeConfig.blockSizeHorizontal * 86,
-                            height: SizeConfig.blockSizeVertical * 27,
+                            height: SizeConfig.blockSizeVertical * 25,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
@@ -2467,48 +2467,34 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                             fit: BoxFit.fill,
                           ),
                         ),
-                        Container(
-                          width: SizeConfig.blockSizeHorizontal * 80,
-                          child: Html(
-                            data: GlobalLists
-                                .mmttestimoniallist[index].testimonialName,
-                            style: {
-                              "body": Style(
-                                  fontSize: FontSize(14.0),
-                                  color: Colors.black87,
-                                  // lineHeight: 2.0,
-                                  //textAlign: TextAlign.center,
-                                  fontWeight: FontWeight.w500),
-                            },
-                          ),
+
+                        Html(
+                          data: GlobalLists
+                              .mmttestimoniallist[index].testimonialName,
+                          style: {
+                            "body": Style(
+                                fontSize: FontSize(14.0),
+                                color: Colors.black87,
+
+                                //textAlign: TextAlign.center,
+                                fontWeight: FontWeight.w500),
+                          },
                         ),
                         // SizedBox(
                         //   height: 5,
                         // ),
-                        Container(
-                          width: SizeConfig.blockSizeHorizontal * 80,
-                          child: Html(
-                            data: GlobalLists
-                                .mmttestimoniallist[index].departmentName,
-                            style: {
-                              "body": Style(
-                                  fontSize: FontSize(14.0),
-                                  color: Customcolor.colorBlue,
-                                  lineHeight: 1.0,
-                                  //textAlign: TextAlign.center,
-                                  fontWeight: FontWeight.w500),
-                            },
-                          ),
-                          //  Text(
-                          //   GlobalLists
-                          //       .mmttestimoniallist[index].departmentName,
-                          //   overflow: TextOverflow.ellipsis,
-                          //   style: TextStyle(
-                          //       color: Colors.black87,
-                          //       fontSize: 14,
-                          //       fontWeight: FontWeight.w700),
-                          //   maxLines: 3,
-                          // ),
+                        Html(
+                          data: GlobalLists
+                              .mmttestimoniallist[index].departmentName,
+                          style: {
+                            "body": Style(
+                                lineHeight: 1.0,
+                                fontSize: FontSize(14.0),
+                                color: Customcolor.colorBlue,
+
+                                //textAlign: TextAlign.center,
+                                fontWeight: FontWeight.w500),
+                          },
                         ),
                       ],
                     ),

@@ -859,7 +859,7 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
               cardImage: "assets/newImages/gallery.png",
               cardTitle: "Our Videos  ",
               btnTitle: "Watch More",
-              heigthoflist: SizeConfig.blockSizeVertical * 32,
+              heigthoflist: SizeConfig.blockSizeVertical * 35,
               onbtnTap: () {
                 // Navigator.push(
                 //     context,
@@ -910,6 +910,7 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
+                                height: SizeConfig.blockSizeVertical * 26,
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
                                       'assets/newImages/placeholder_3.jpg',
@@ -980,9 +981,9 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                             maxLines: 3,
                           ),
                         ),
-                        SizedBox(
-                          height: 15,
-                        )
+                        // SizedBox(
+                        //   height: 15,
+                        // )
                       ],
                     ),
                   );

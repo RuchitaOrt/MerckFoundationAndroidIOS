@@ -206,6 +206,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
                       child: Stack(
                         children: [
                           Container(
+                          //  height: SizeConfig.blockSizeVertical *,
                             //  width: SizeConfig.blockSizeHorizontal * 86,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
@@ -272,6 +273,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
               cardTitle:
                   "Watch Below videos of Merck More Than a Mother Launch in African Countries :",
               btnTitle: "Watch More",
+              heigthoflist: SizeConfig.blockSizeVertical * 34,
               
               onbtnTap: () {
                 // Navigator.push(
@@ -323,6 +325,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
+                                height: SizeConfig.blockSizeVertical * 25,
                                 child: FadeInImage.assetNetwork(
                                   placeholder: 'assets/newImages/placeholder_3.jpg',
                                   image:

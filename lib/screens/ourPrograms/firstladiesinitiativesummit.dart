@@ -1535,12 +1535,12 @@ double imgHeight = 30;
                       // _launchInWebViewWithJavaScript(
                       //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 8, left: 10),
-                      child: Stack(
-                        children: [
-                          Column(
-                               crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8, left: 10),
+                          child: Stack(
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
@@ -1554,9 +1554,56 @@ double imgHeight = 30;
   SizedBox(
                                         height: 7,
                                       ),
+                              // Align(
+                              //   alignment: Alignment.bottomCenter,
+                              //   child: Padding(
+                              //     padding: const EdgeInsets.only(
+                              //         left: 10, right: 10, bottom: 10),
+                              //     child: Row(
+                              //       crossAxisAlignment: CrossAxisAlignment.end,
+                              //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              //       children: [
+                              //         Column(
+                              //           mainAxisAlignment: MainAxisAlignment.end,
+                              //           crossAxisAlignment:
+                              //               CrossAxisAlignment.start,
+                              //           children: [
+                              //             Container(
+                              //               width:
+                              //                   SizeConfig.blockSizeHorizontal * 80,
+                              //               child: Text(
+                              //                 GlobalLists
+                              //                     .homevideolist[index].videoDesc,
+                              //                 overflow: TextOverflow.ellipsis,
+                              //                 style: TextStyle(
+                              //                     color: Colors.white,
+                              //                     fontSize: 14,
+                              //                     fontWeight: FontWeight.w700),
+                              //                 maxLines: 3,
+                              //               ),
+                              //             ),
+                              //             SizedBox(
+                              //               height: 25,
+                              //             )
+                              //           ],
+                              //         ),
+                              //       ],
+                              //     ),
+                              //   ),
+                              // ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 120,top: 70),
+                                child: Center(
+                                    child:
+                                        Image.asset("assets/newImages/pause.png")),
+                              )
+                            ],
+                          ),
+                        ),
+
 
                                  Container(
-                                    padding: EdgeInsets.only(left: 2),
+                                    padding: EdgeInsets.only(left: 9,top: 7),
                                         width:
                                             SizeConfig.blockSizeHorizontal * 80,
                                         child: Text(
@@ -1573,53 +1620,7 @@ double imgHeight = 30;
                                       SizedBox(
                                         height: 15,
                                       )
-                            ],
-                          ),
-                          // Align(
-                          //   alignment: Alignment.bottomCenter,
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.only(
-                          //         left: 10, right: 10, bottom: 10),
-                          //     child: Row(
-                          //       crossAxisAlignment: CrossAxisAlignment.end,
-                          //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //       children: [
-                          //         Column(
-                          //           mainAxisAlignment: MainAxisAlignment.end,
-                          //           crossAxisAlignment:
-                          //               CrossAxisAlignment.start,
-                          //           children: [
-                          //             Container(
-                          //               width:
-                          //                   SizeConfig.blockSizeHorizontal * 80,
-                          //               child: Text(
-                          //                 GlobalLists
-                          //                     .homevideolist[index].videoDesc,
-                          //                 overflow: TextOverflow.ellipsis,
-                          //                 style: TextStyle(
-                          //                     color: Colors.white,
-                          //                     fontSize: 14,
-                          //                     fontWeight: FontWeight.w700),
-                          //                 maxLines: 3,
-                          //               ),
-                          //             ),
-                          //             SizedBox(
-                          //               height: 25,
-                          //             )
-                          //           ],
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 120,bottom: 60),
-                            child: Center(
-                                child:
-                                    Image.asset("assets/newImages/pause.png")),
-                          )
-                        ],
-                      ),
+                      ],
                     ),
                   );
                 },

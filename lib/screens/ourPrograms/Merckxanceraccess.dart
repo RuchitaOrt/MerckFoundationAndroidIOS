@@ -1123,6 +1123,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
               cardsubtitle: "Our ",
               cardTitle: "Videos  ",
               btnTitle: "Watch More",
+              heigthoflist: SizeConfig.blockSizeVertical * 34,
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -1169,6 +1170,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
+                                height: SizeConfig.blockSizeVertical * 26,
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
                                       'assets/newImages/placeholder_3.jpg',
@@ -1236,12 +1238,12 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                 color: Colors.black87,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700),
-                            maxLines: 3,
+                            maxLines: 2,
                           ),
                         ),
-                        SizedBox(
-                          height: 5,
-                        )
+                        // SizedBox(
+                        //   height: 5,
+                        // )
                       ],
                     ),
                   );
@@ -1518,9 +1520,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                               maxLines: 3,
                             ),
                           ),
-                          SizedBox(
-                            height: 8,
-                          )
+                          // SizedBox(
+                          //   height: 8,
+                          // )
                           // Align(
                           //   alignment: Alignment.bottomCenter,
                           //   child: Padding(
@@ -1638,9 +1640,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                               maxLines: 3,
                             ),
                           ),
-                          SizedBox(
-                            height: 8,
-                          )
+                          // SizedBox(
+                          //   height: 8,
+                          // )
                           // Align(
                           //   alignment: Alignment.bottomCenter,
                           //   child: Padding(
@@ -1698,7 +1700,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
               cardsubtitle: "Merck Foundation ",
               cardTitle: "Alumini Testimonials  ",
               titleColor: Customcolor.pink_col,
-              heigthoflist: SizeConfig.blockSizeVertical * 40,
+              heigthoflist: SizeConfig.blockSizeVertical * 42,
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -1747,48 +1749,34 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                               fit: BoxFit.fill,
                             ),
                           ),
-                          Container(
-                            width: SizeConfig.blockSizeHorizontal * 80,
-                            child: Html(
-                              data: GlobalLists
-                                  .mmttestimoniallist[index].testimonialName,
-                              style: {
-                                "body": Style(
-                                    fontSize: FontSize(14.0),
-                                    color: Colors.black87,
+                          Html(
+                            data: GlobalLists
+                                .mmttestimoniallist[index].testimonialName,
+                            style: {
+                              "body": Style(
+                                  fontSize: FontSize(14.0),
+                                  color: Colors.black87,
+                                  lineHeight: 1.0,
 
-                                    //textAlign: TextAlign.center,
-                                    fontWeight: FontWeight.w500),
-                              },
-                            ),
+                                  //textAlign: TextAlign.center,
+                                  fontWeight: FontWeight.w500),
+                            },
                           ),
                           // SizedBox(
                           //   height: 5,
                           // ),
-                          Container(
-                            width: SizeConfig.blockSizeHorizontal * 80,
-                            child: Html(
-                              data: GlobalLists
-                                  .mmttestimoniallist[index].departmentName,
-                              style: {
-                                "body": Style(
-                                    fontSize: FontSize(14.0),
-                                    color: Customcolor.colorBlue,
+                          Html(
+                            data: GlobalLists
+                                .mmttestimoniallist[index].departmentName,
+                            style: {
+                              "body": Style(
+                                  fontSize: FontSize(14.0),
+                                  color: Customcolor.colorBlue,
+lineHeight: 1.0,
 
-                                    //textAlign: TextAlign.center,
-                                    fontWeight: FontWeight.w500),
-                              },
-                            ),
-                            //  Text(
-                            //   GlobalLists
-                            //       .mmttestimoniallist[index].departmentName,
-                            //   overflow: TextOverflow.ellipsis,
-                            //   style: TextStyle(
-                            //       color: Colors.black87,
-                            //       fontSize: 14,
-                            //       fontWeight: FontWeight.w700),
-                            //   maxLines: 3,
-                            // ),
+                                  //textAlign: TextAlign.center,
+                                  fontWeight: FontWeight.w500),
+                            },
                           ),
                         ],
                       ),

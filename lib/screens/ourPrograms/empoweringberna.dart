@@ -312,6 +312,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
+            //  heigthoflist: SizeConfig.blockSizeVertical * 36,
               list: ListView.builder(
                 itemCount: GlobalLists.homevideolist.length,
                 scrollDirection: Axis.horizontal,
@@ -343,6 +344,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
+                                  height: SizeConfig.blockSizeVertical * 25,
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
                                       'assets/newImages/placeholder_3.jpg',

@@ -1635,7 +1635,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-              // heigthoflist: SizeConfig.blockSizeVertical * 35,
+              //  heigthoflist: SizeConfig.blockSizeVertical * 34,
               list: ListView.builder(
                 itemCount: GlobalLists.homevideolist.length,
                 scrollDirection: Axis.horizontal,
@@ -1735,9 +1735,6 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                             maxLines: 3,
                           ),
                         ),
-                        SizedBox(
-                          height: 5,
-                        )
                       ],
                     ),
                   );
