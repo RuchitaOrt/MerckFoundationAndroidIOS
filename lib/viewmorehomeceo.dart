@@ -144,7 +144,7 @@ class HomeceoState extends State<viewmoreHomeceo> {
           },
           index: 2,
           sharelink: Constantstring.shareceoviewmore,
-          title: "Message From Dr. Rasha Kelej, CEO Of Merck Foundation",
+          title: "Messages From Dr. Rasha Kelej, CEO Of Merck Foundation",
           titleImg: "assets/newImages/news_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",

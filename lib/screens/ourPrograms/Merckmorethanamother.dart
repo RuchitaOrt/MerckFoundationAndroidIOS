@@ -26,6 +26,8 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/viewMoreMedia.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
+import 'package:merckfoundation22dec/widget/customcardforTestimonial.dart';
+import 'package:merckfoundation22dec/widget/customcardforTestimoniallist.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 
@@ -151,7 +153,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                 Visibility(
                     visible: isbottomSectionLoaded,
                     replacement: Center(child: CircularProgressIndicator()),
-                    child: ListView(    
+                    child: ListView(
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
                       // scrollDirection: Axis.horizontal,
@@ -200,13 +202,11 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                     ),
                   ),
                 ),
-                  SizedBox(
+                SizedBox(
                   height: 10,
                 ),
 
                 followUs(),
-
-
 
                 SizedBox(
                   height: 10,
@@ -237,7 +237,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
     );
   }
 
-   double imgHeight = 30;
+  double imgHeight = 30;
 
   Widget followUs() {
     return Padding(
@@ -251,13 +251,16 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             children: [
               Row(
                 children: [
-                  Text("Follow Merck Foundation on",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 11,//ResponsiveFlutter.of(context).fontSize(1.7),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: AppFonts.normal,
-                          color: Colors.black87),)
+                  Text(
+                    "Follow Merck Foundation on",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize:
+                            11, //ResponsiveFlutter.of(context).fontSize(1.7),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: AppFonts.normal,
+                        color: Colors.black87),
+                  )
                 ],
               ),
               SizedBox(
@@ -288,9 +291,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       //     ? ShowDialogs.followuslink(
                       //         Constantstring.followfacebook,
                       //         Constantstring.followmsg):
-                           ShowDialogs.launchFacebook(
-                              Constantstring.followfacebook,
-                              "1053979038068008");
+                      ShowDialogs.launchFacebook(
+                          Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
                       "assets/newImages/facebook.png",
@@ -370,7 +372,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
     );
   }
 
- Widget followUsformerckmother() {
+  Widget followUsformerckmother() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
       child: Container(
@@ -380,30 +382,30 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Text("Follow Merck Foundation More Than a Mother on",
-                      textAlign: TextAlign.start,
-                      maxLines: 2,
-                      style: TextStyle(
-                        
-                          fontSize: 11,//ResponsiveFlutter.of(context).fontSize(1.7),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: AppFonts.normal,
-                          color: Colors.black87),),
+              Text(
+                "Follow Merck Foundation More Than a Mother on",
+                textAlign: TextAlign.start,
+                maxLines: 2,
+                style: TextStyle(
+                    fontSize: 11, //ResponsiveFlutter.of(context).fontSize(1.7),
+                    fontWeight: FontWeight.w700,
+                    fontFamily: AppFonts.normal,
+                    color: Colors.black87),
+              ),
               SizedBox(
                 height: 10,
               ),
               Row(
                 children: [
-                 
                   GestureDetector(
                     onTap: () async {
                       // Platform.isAndroid
                       //     ? ShowDialogs.followuslink(
                       //         Constantstring.followmmerckCancerFb,
                       //         Constantstring.followmsg):
-                           ShowDialogs.launchFacebook(
-                              Constantstring.followmmtmfacebook,
-                              "1438845759757442");
+                      ShowDialogs.launchFacebook(
+                          Constantstring.followmmtmfacebook,
+                          "1438845759757442");
                     },
                     child: Image.asset(
                       "assets/newImages/facebook.png",
@@ -433,13 +435,15 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                     width: 5,
                   ),
 
-                   GestureDetector(
+                  GestureDetector(
                     onTap: () async {
                       Platform.isAndroid
-                          ? ShowDialogs.followuslink(Constantstring.followmmtminsta,
+                          ? ShowDialogs.followuslink(
+                              Constantstring.followmmtminsta,
                               Constantstring.followmsg)
                           : ShowDialogs.launchInstagram(
-                              Constantstring.followmmtminsta, "merckmorethanamother");
+                              Constantstring.followmmtminsta,
+                              "merckmorethanamother");
                     },
                     child: Image.asset(
                       "assets/newImages/instagram.png",
@@ -2216,7 +2220,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                     child: Column(
                       // shrinkWrap: true,
                       // physics: ScrollPhysics(),
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 8, left: 0),
@@ -2275,7 +2279,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
               cardsubtitle: "Merck Foundation In ",
               cardTitle: "Media  ",
               titleColor: Customcolor.pink_col,
-              heigthoflist: SizeConfig.blockSizeVertical * 36 ,
+              heigthoflist: SizeConfig.blockSizeVertical * 36,
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -2309,7 +2313,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                         children: [
                           Container(
                             width: SizeConfig.blockSizeHorizontal * 86,
-                            height: SizeConfig.blockSizeVertical * 27 ,
+                            height: SizeConfig.blockSizeVertical * 27,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
@@ -2317,27 +2321,25 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               fit: BoxFit.fill,
                             ),
                           ),
-                            SizedBox(
-                                        height: 8,
-                                      ),
+                          SizedBox(
+                            height: 8,
+                          ),
 
-                           Container(
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        child: Text(
-                                          GlobalLists
-                                              .mmtmmedialist[index].title,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700),
-                                          maxLines: 3,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      )
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 80,
+                            child: Text(
+                              GlobalLists.mmtmmedialist[index].title,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700),
+                              maxLines: 3,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          )
                           // Align(
                           //   alignment: Alignment.bottomCenter,
                           //   child: Padding(
@@ -2386,151 +2388,268 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
         );
       }
       if (typewidetofbottomsection[i] == "testimonial") {
-        listofbottomwiget.add(
-          Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
-            child: CustomHorizontalCard(
-                index: 1,
-                cardImage: "assets/newImages/mqdefault.png",
-                cardsubtitle: "Merck Foundation ",
-                cardTitle: "Alumini Testimonials  ",
-                titleColor: Customcolor.pink_col,
-                onbtnTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (BuildContext context) =>
-                  //             MerckFoundationTestimonial()));
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              Testimonialprogramviewmore(
-                                apiurl: API.watchmoretestimonialmmtm,
-                                sharelink:
-                                    Constantstring.sharetestimonialviewmoremmtm,
-                              )));
-                  // getMerckprogramTestimonial();
-                },
-                btnTitle: "View More",
-                titleImg: "assets/newImages/flowers-3.png",
-                list: Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Container(
-                    height: 160,
-                    child: ListView.builder(
-                      itemCount: GlobalLists.mmttestimoniallist.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 8, right: 8),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          Testimonialprogramdetailpage(
-                                            index: index,
-                                            baseurl: GlobalLists
-                                                .mmttestimonialbaseurl,
-                                          )));
-                            },
-                            child: Container(
-                              height: SizeConfig.blockSizeVertical * 15,
-                              width: SizeConfig.blockSizeHorizontal * 80,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Colors.white),
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 5, bottom: 3, left: 8, right: 8),
-                                    child: Container(
-                                      // height: 220,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        //color: Colors.amber,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                            'assets/newImages/placeholder_3.jpg',
-                                        image:
-                                            "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[index].image}",
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: ListView(
-                                      shrinkWrap: true,
-                                      // crossAxisAlignment:
-                                      //     CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          height: 12,
-                                        ),
-                                        FormLabel(
-                                          text: GlobalLists
-                                              .mmttestimoniallist[index]
-                                              .testimonialName,
-                                          labelColor: Customcolor.colorPink,
-                                          fontSize: 17,
-                                          maxLines: 1,
-                                          fontweight: FontWeight.w700,
-                                        ),
-                                        SizedBox(
-                                          height: 4,
-                                        ),
-
-                                        Html(
-                                          data: GlobalLists
-                                              .mmttestimoniallist[index]
-                                              .departmentName,
-                                          style: {
-                                            "body": Style(
-                                                fontSize: FontSize(13.0),
-                                                color: Colors.black87,
-                                                fontWeight: FontWeight.w600),
-                                          },
-                                        ),
-                                        // FormLabel(
-                                        //   text: GlobalLists
-                                        //       .mmttestimoniallist[index]
-                                        //       .departmentName,
-                                        //   labelColor: Colors.black87,
-                                        //   fontSize: 13,
-                                        //   fontweight: FontWeight.w600,
-                                        //   maxLines: 2,
-                                        // ),
-                                        SizedBox(
-                                          height: 7,
-                                        ),
-                                        FormLabel(
-                                          text: GlobalLists
-                                              .mmttestimoniallist[index]
-                                              .shortDescription,
-                                          labelColor: Colors.black54,
-                                          fontSize: 13,
-                                          fontweight: FontWeight.w500,
-                                          maxLines: 4,
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
+        listofbottomwiget.add(Padding(
+          padding: const EdgeInsets.only(left: 10, top: 10),
+          child: CustomHorizontalCard(
+            index: 1,
+            cardImage: "assets/newImages/mqdefault.png",
+            cardsubtitle: "Merck Foundation ",
+            cardTitle: "Alumini Testimonials  ",
+            titleColor: Customcolor.pink_col,
+            heigthoflist: SizeConfig.blockSizeVertical * 40,
+            onbtnTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          Testimonialprogramviewmore(
+                            apiurl: API.testiomonailpro,
+                            sharelink:
+                                Constantstring.sharetestimonialviewmorehome,
+                          )));
+            },
+            btnTitle: "View More",
+            titleImg: "assets/newImages/flowers-3.png",
+            list: ListView.builder(
+              itemCount: GlobalLists.mmttestimoniallist.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Testimonialprogramdetailpage(
+                                  index: index,
+                                  baseurl: GlobalLists.mmttestimonialbaseurl,
+                                )));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8, left: 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: SizeConfig.blockSizeHorizontal * 86,
+                          height: SizeConfig.blockSizeVertical * 28,
+                          child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/newImages/placeholder_3.jpg',
+                            image:
+                                "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[index].image}",
+                            fit: BoxFit.fill,
                           ),
-                        );
-                      },
+                        ),
+                        Container(
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Html(
+                            data: GlobalLists
+                                .mmttestimoniallist[index].testimonialName,
+                            style: {
+                              "body": Style(
+                                  fontSize: FontSize(14.0),
+                                  color: Colors.black87,
+
+                                  //textAlign: TextAlign.center,
+                                  fontWeight: FontWeight.w500),
+                            },
+                          ),
+                        ),
+                        // SizedBox(
+                        //   height: 5,
+                        // ),
+                        Container(
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Html(
+                            data: GlobalLists
+                                .mmttestimoniallist[index].departmentName,
+                            style: {
+                              "body": Style(
+                                  fontSize: FontSize(14.0),
+                                  color: Customcolor.colorBlue,
+
+                                  //textAlign: TextAlign.center,
+                                  fontWeight: FontWeight.w500),
+                            },
+                          ),
+                          //  Text(
+                          //   GlobalLists
+                          //       .mmttestimoniallist[index].departmentName,
+                          //   overflow: TextOverflow.ellipsis,
+                          //   style: TextStyle(
+                          //       color: Colors.black87,
+                          //       fontSize: 14,
+                          //       fontWeight: FontWeight.w700),
+                          //   maxLines: 3,
+                          // ),
+                        ),
+                      ],
                     ),
                   ),
-                )),
+                );
+              },
+            ),
+            //  Padding(
+            //   padding: const EdgeInsets.only(left: 8),
+            //   child: Container(
+            //     height: 160,
+            //     child: ListView.builder(
+            //       itemCount: GlobalLists.mmttestimoniallist.length,
+            //       scrollDirection: Axis.horizontal,
+            //       itemBuilder: (BuildContext context, int index) {
+            //         return Padding(
+            //           padding: const EdgeInsets.only(top: 15.0),
+            //           child: CustomeCardforTestimoniallist(
+            //             index: 1,
+            //             cardImage: GlobalLists.mmttestimonialbaseurl +
+            //                 GlobalLists.mmttestimoniallist[index].image,
+            //             cardsubtitle: "Alumini ",
+            //             cardTitle: "Testimonials  ",
+            //             testimonialname: GlobalLists
+            //                 .mmttestimoniallist[index].testimonialName,
+            //             titleColor: Customcolor.text_darkblue,
+            //             departmentname:
+            //                 // "Gynecologic Oncology Fellow | 2018 \nMerck Foundation Alumni",
+            //                 GlobalLists
+            //                     .mmttestimoniallist[index].departmentName,
+            //             titleImg: "assets/newImages/flowers-2.png",
+            //             subTitle: "",
+            //             buttontitle: "View More ",
+            //             buttontitlecolor: Customcolor.text_darkblue,
+            //             onBtnTap: () {
+            //               Navigator.push(
+            //                   context,
+            //                   MaterialPageRoute(
+            //                       builder: (BuildContext context) =>
+            //                           Testimonialprogramviewmore(
+            //                             apiurl: API.testiomonailpro,
+            //                             sharelink: Constantstring
+            //                                 .sharetestimonialviewmorehome,
+            //                           )));
+            //             },
+            //             oncardtap: () {
+            //               Navigator.push(
+            //                   context,
+            //                   MaterialPageRoute(
+            //                       builder: (BuildContext context) =>
+            //                           Testimonialprogramdetailpage(
+            //                             index: index,
+            //                             baseurl: GlobalLists
+            //                                 .mmttestimonialbaseurl,
+            //                           )));
+            //             },
+            //           ),
+            //         );
+
+            //         // Padding(
+            //         //   padding: const EdgeInsets.only(left: 8, right: 8),
+            //         //   child: GestureDetector(
+            //         //     onTap: () {
+            //         //       Navigator.push(
+            //         //           context,
+            //         //           MaterialPageRoute(
+            //         //               builder: (BuildContext context) =>
+            //         //                   Testimonialprogramdetailpage(
+            //         //                     index: index,
+            //         //                     baseurl: GlobalLists
+            //         //                         .mmttestimonialbaseurl,
+            //         //                   )));
+            //         //     },
+            //         //     child: Container(
+            //         //       height: SizeConfig.blockSizeVertical * 15,
+            //         //       width: SizeConfig.blockSizeHorizontal * 80,
+            //         //       decoration: BoxDecoration(
+            //         //           borderRadius: BorderRadius.circular(5),
+            //         //           color: Colors.white),
+            //         //       child: Row(
+            //         //         children: [
+            //         //           Padding(
+            //         //             padding: const EdgeInsets.only(
+            //         //                 top: 5, bottom: 3, left: 8, right: 8),
+            //         //             child: Container(
+            //         //               // height: 220,
+            //         //               width: 100,
+            //         //               decoration: BoxDecoration(
+            //         //                 //color: Colors.amber,
+            //         //                 borderRadius: BorderRadius.circular(10),
+            //         //               ),
+            //         //               child: FadeInImage.assetNetwork(
+            //         //                 placeholder:
+            //         //                     'assets/newImages/placeholder_3.jpg',
+            //         //                 image:
+            //         //                     "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[index].image}",
+            //         //                 fit: BoxFit.cover,
+            //         //               ),
+            //         //             ),
+            //         //           ),
+            //         //           Expanded(
+            //         //             child: ListView(
+            //         //               shrinkWrap: true,
+            //         //               // crossAxisAlignment:
+            //         //               //     CrossAxisAlignment.start,
+            //         //               children: [
+            //         //                 SizedBox(
+            //         //                   height: 12,
+            //         //                 ),
+            //         //                 FormLabel(
+            //         //                   text: GlobalLists
+            //         //                       .mmttestimoniallist[index]
+            //         //                       .testimonialName,
+            //         //                   labelColor: Customcolor.colorPink,
+            //         //                   fontSize: 17,
+            //         //                   maxLines: 1,
+            //         //                   fontweight: FontWeight.w700,
+            //         //                 ),
+            //         //                 SizedBox(
+            //         //                   height: 4,
+            //         //                 ),
+
+            //         //                 Html(
+            //         //                   data: GlobalLists
+            //         //                       .mmttestimoniallist[index]
+            //         //                       .departmentName,
+            //         //                   style: {
+            //         //                     "body": Style(
+            //         //                         fontSize: FontSize(13.0),
+            //         //                         color: Colors.black87,
+            //         //                         fontWeight: FontWeight.w600),
+            //         //                   },
+            //         //                 ),
+            //         //                 // FormLabel(
+            //         //                 //   text: GlobalLists
+            //         //                 //       .mmttestimoniallist[index]
+            //         //                 //       .departmentName,
+            //         //                 //   labelColor: Colors.black87,
+            //         //                 //   fontSize: 13,
+            //         //                 //   fontweight: FontWeight.w600,
+            //         //                 //   maxLines: 2,
+            //         //                 // ),
+            //         //                 SizedBox(
+            //         //                   height: 7,
+            //         //                 ),
+            //         //                 FormLabel(
+            //         //                   text: GlobalLists
+            //         //                       .mmttestimoniallist[index]
+            //         //                       .shortDescription,
+            //         //                   labelColor: Colors.black54,
+            //         //                   fontSize: 13,
+            //         //                   fontweight: FontWeight.w500,
+            //         //                   maxLines: 4,
+            //         //                 ),
+            //         //               ],
+            //         //             ),
+            //         //           )
+            //         //         ],
+            //         //       ),
+            //         //     ),
+            //         //   ),
+            //         // );
+            //       },
+            //     ),
+            //   ),
+            // )),
           ),
-        );
+        ));
       }
     }
     return listofbottomwiget;

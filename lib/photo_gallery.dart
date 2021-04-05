@@ -11,6 +11,7 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 //TODO:
 //index == 0 (MiddleArea from getHomeAPI -> View More in Photo Gallery)
@@ -52,22 +53,44 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
         height: 85,
       ),
       backgroundColor: Customcolor.background,
-      body: GridView.count(
-          primary: false,
-          padding: const EdgeInsets.all(5),
-          crossAxisSpacing: 0,
-          mainAxisSpacing: 2,
-          crossAxisCount: 2,
-          childAspectRatio: 0.9,
-          children: widget.photosList.map((photo) {
-            if (widget.index == 0) {
-              print(widget.baseURL + photo.photo);
-              return photoWidget(
-                  imageurl: widget.baseURL + photo.photo,
-                  title: photo.photoCatgName,
-                  categpryID: photo.photoCategoryId);
-            }
-          }).toList()),
+      body: ListView(
+        shrinkWrap: true,
+        physics: ScrollPhysics(),
+        children: [
+          GridView.count(
+              primary: false,
+              padding: const EdgeInsets.all(5),
+              crossAxisSpacing: 0,
+              mainAxisSpacing: 2,
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              childAspectRatio: 0.9,
+              children: widget.photosList.map((photo) {
+                if (widget.index == 0) {
+                  print(widget.baseURL + photo.photo);
+                  return photoWidget(
+                      imageurl: widget.baseURL + photo.photo,
+                      title: photo.photoCatgName,
+                      categpryID: photo.photoCategoryId);
+                }
+              }).toList()),
+          Padding(
+            padding: const EdgeInsets.only(right: 0, left: 0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Image.asset(
+                "assets/newImages/flowers_footer.png",
+                height: 170,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Bottomcardlink(),
+        ],
+      ),
     );
   }
 

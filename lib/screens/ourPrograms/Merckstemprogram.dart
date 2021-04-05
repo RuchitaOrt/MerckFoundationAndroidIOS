@@ -191,14 +191,12 @@ class MerckstemprogramState extends State<Merckstemprogram>
                     ),
                   ),
                 ),
-                
+
                 SizedBox(
                   height: 10,
                 ),
 
-                  followUs(),
-
-
+                followUs(),
 
                 SizedBox(
                   height: 10,
@@ -210,7 +208,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                   height: 10,
                 ),
 
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
                   child: Align(
                     alignment: Alignment.topRight,
@@ -229,7 +227,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
     );
   }
 
-   double imgHeight = 30;
+  double imgHeight = 30;
 
   Widget followUs() {
     return Padding(
@@ -243,13 +241,16 @@ class MerckstemprogramState extends State<Merckstemprogram>
             children: [
               Row(
                 children: [
-                  Text("Follow Merck Foundation on",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 11,//ResponsiveFlutter.of(context).fontSize(1.7),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: AppFonts.normal,
-                          color: Colors.black87),)
+                  Text(
+                    "Follow Merck Foundation on",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize:
+                            11, //ResponsiveFlutter.of(context).fontSize(1.7),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: AppFonts.normal,
+                        color: Colors.black87),
+                  )
                 ],
               ),
               SizedBox(
@@ -280,9 +281,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
                       //     ? ShowDialogs.followuslink(
                       //         Constantstring.followfacebook,
                       //         Constantstring.followmsg):
-                           ShowDialogs.launchFacebook(
-                              Constantstring.followfacebook,
-                              "1053979038068008");
+                      ShowDialogs.launchFacebook(
+                          Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
                       "assets/newImages/facebook.png",
@@ -362,7 +362,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
     );
   }
 
- Widget followUsformerckStem() {
+  Widget followUsformerckStem() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
       child: Container(
@@ -372,30 +372,30 @@ class MerckstemprogramState extends State<Merckstemprogram>
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Text("Follow Merck Foundation Africa Research Summit on",
-                      textAlign: TextAlign.start,
-                      maxLines: 2,
-                      style: TextStyle(
-                        
-                          fontSize: 11,//ResponsiveFlutter.of(context).fontSize(1.7),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: AppFonts.normal,
-                          color: Colors.black87),),
+              Text(
+                "Follow Merck Foundation Africa Research Summit on",
+                textAlign: TextAlign.start,
+                maxLines: 2,
+                style: TextStyle(
+                    fontSize: 11, //ResponsiveFlutter.of(context).fontSize(1.7),
+                    fontWeight: FontWeight.w700,
+                    fontFamily: AppFonts.normal,
+                    color: Colors.black87),
+              ),
               SizedBox(
                 height: 10,
               ),
               Row(
                 children: [
-                 
                   GestureDetector(
                     onTap: () async {
                       // Platform.isAndroid
                       //     ? ShowDialogs.followuslink(
                       //         Constantstring.followmmerckCancerFb,
                       //         Constantstring.followmsg):
-                           ShowDialogs.launchFacebook(
-                              Constantstring.followmmerckStemFb,
-                              "1467678506860517");
+                      ShowDialogs.launchFacebook(
+                          Constantstring.followmmerckStemFb,
+                          "1467678506860517");
                     },
                     child: Image.asset(
                       "assets/newImages/facebook.png",
@@ -425,7 +425,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                     width: 5,
                   ),
 
-                   GestureDetector(
+                  GestureDetector(
                     onTap: () async {
                       // Platform.isAndroid
                       //     ? ShowDialogs.followuslink(Constantstring.followinsta,
@@ -493,7 +493,6 @@ class MerckstemprogramState extends State<Merckstemprogram>
       )),
     );
   }
-
 
   // Widget callforApplication() {
   //   return Padding(
@@ -1201,7 +1200,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
                                 child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/newImages/placeholder_3.jpg',
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
                                   image:
                                       "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
                                   fit: BoxFit.fill,
@@ -1245,39 +1245,33 @@ class MerckstemprogramState extends State<Merckstemprogram>
                               //   ),
                               // ),
                               Padding(
-                                padding: EdgeInsets.only(left: 120,top: 70),
+                                padding: EdgeInsets.only(left: 120, top: 70),
                                 child: Center(
-                                    child:
-                                        Image.asset("assets/newImages/pause.png")),
+                                    child: Image.asset(
+                                        "assets/newImages/pause.png")),
                               )
                             ],
                           ),
                         ),
-
-                          SizedBox(
-                                        height: 7,
-                                      ),
-
-
-                         Container(
-                           padding: EdgeInsets.only(left: 9),
-
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        child: Text(
-                                          GlobalLists
-                                              .homevideolist[index].videoDesc,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700),
-                                          maxLines: 3,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      )
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 9),
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Text(
+                            GlobalLists.homevideolist[index].videoDesc,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                            maxLines: 3,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        )
                       ],
                     ),
                   );
@@ -1442,9 +1436,9 @@ class MerckstemprogramState extends State<Merckstemprogram>
                       children: [
                         Container(
                           width: SizeConfig.blockSizeHorizontal * 86,
-height: SizeConfig.blockSizeVertical * 27,
+                          height: SizeConfig.blockSizeVertical * 27,
                           child: Padding(
-                              padding: const EdgeInsets.only(right: 8, left: 10),
+                            padding: const EdgeInsets.only(right: 8, left: 10),
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
@@ -1453,29 +1447,25 @@ height: SizeConfig.blockSizeVertical * 27,
                             ),
                           ),
                         ),
-
-SizedBox(
-                                        height: 8,
-                                      ),
-
-                         Container(
-                             padding: const EdgeInsets.only( left: 9),
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        child: Text(
-                                          GlobalLists
-                                              .homeceomsglist[index].title,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700),
-                                          maxLines: 3,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      )
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(left: 9),
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Text(
+                            GlobalLists.homeceomsglist[index].title,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                            maxLines: 3,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        )
                       ],
                     ),
                   );

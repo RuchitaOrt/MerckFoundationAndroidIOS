@@ -223,7 +223,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
             // });
           },
           onTapval: () {
-           // Navigator.pop(context);
+            // Navigator.pop(context);
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -243,7 +243,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
         body: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 1),
+              padding: const EdgeInsets.only(bottom: 0),
               child: GlobalLists.vision.length <= 0
                   ? Container(
                       child: Center(child: Text(Constantstring.emptyData)),
@@ -377,28 +377,23 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                               SizedBox(
                                 height: 10,
                               ),
-
-
-                             
-                      
                             ],
                           ),
                         ),
-                         Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                      height: 170,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Bottomcardlink(),
-           
+                        Padding(
+                          padding: const EdgeInsets.only(right: 0, left: 0),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Image.asset(
+                              "assets/newImages/flowers_footer.png",
+                              height: 170,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Bottomcardlink(),
                       ],
                     ),
             ),

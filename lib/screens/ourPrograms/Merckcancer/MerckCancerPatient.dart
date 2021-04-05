@@ -111,6 +111,7 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
           //             )));
         },
         index: 2,
+        sharelink: Constantstring.cancerpatient,
         title: "Merck Foundation More Than A Patient",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -191,8 +192,7 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                   height: 10,
                 ),
 
-
-                  Padding(
+                Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
                   child: Align(
                     alignment: Alignment.topRight,
@@ -859,7 +859,7 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
               cardImage: "assets/newImages/gallery.png",
               cardTitle: "Our Videos  ",
               btnTitle: "Watch More",
-               heigthoflist: SizeConfig.blockSizeVertical * 32,
+              heigthoflist: SizeConfig.blockSizeVertical * 32,
               onbtnTap: () {
                 // Navigator.push(
                 //     context,
@@ -902,7 +902,7 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                       //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
                     child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 8, left: 10),
@@ -911,7 +911,8 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
                                 child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/newImages/placeholder_3.jpg',
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
                                   image:
                                       "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
                                   fit: BoxFit.fill,
@@ -957,34 +958,31 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
                               Padding(
                                 padding: EdgeInsets.only(left: 120, top: 70),
                                 child: Center(
-                                    child:
-                                        Image.asset("assets/newImages/pause.png")),
+                                    child: Image.asset(
+                                        "assets/newImages/pause.png")),
                               )
                             ],
                           ),
                         ),
-                                      SizedBox(
-                                        height: 7,
-                                      ),
-
+                        SizedBox(
+                          height: 7,
+                        ),
                         Container(
-                           padding: EdgeInsets.only(left: 9),
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        child: Text(
-                                          GlobalLists
-                                              .homevideolist[index].videoDesc,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700),
-                                          maxLines: 3,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      )
+                          padding: EdgeInsets.only(left: 9),
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Text(
+                            GlobalLists.homevideolist[index].videoDesc,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                            maxLines: 3,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        )
                       ],
                     ),
                   );

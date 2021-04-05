@@ -351,7 +351,8 @@ class CovidResponseState extends State<CovidResponse>
                                                         overflow: TextOverflow
                                                             .ellipsis,
                                                         style: TextStyle(
-                                                            color: Colors.white,
+                                                            color:
+                                                                Colors.black87,
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight
@@ -433,7 +434,7 @@ class CovidResponseState extends State<CovidResponse>
                                           width:
                                               SizeConfig.blockSizeHorizontal *
                                                   86,
-                                          child: FadeInImage.assetNetwork(   
+                                          child: FadeInImage.assetNetwork(
                                             placeholder:
                                                 'assets/newImages/placeholder_3.jpg',
                                             image: newslist[index].imge,
@@ -467,7 +468,8 @@ class CovidResponseState extends State<CovidResponse>
                                                         overflow: TextOverflow
                                                             .ellipsis,
                                                         style: TextStyle(
-                                                            color: Colors.white,
+                                                            color:
+                                                                Colors.black87,
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight
@@ -505,26 +507,23 @@ class CovidResponseState extends State<CovidResponse>
                         // SizedBox(
                         //   height: 10,
                         // )
-
-                          
                       ],
                     ),
                   ),
-
                   Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                      height: 170,
+                    padding: const EdgeInsets.only(right: 0, left: 0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Image.asset(
+                        "assets/newImages/flowers_footer.png",
+                        height: 170,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Bottomcardlink(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Bottomcardlink(),
                 ],
               ),
             ),

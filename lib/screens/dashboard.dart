@@ -62,7 +62,7 @@ class _DashboardState extends State<Dashboard>
           children: <Widget>[
             Home(),
             Ourprogram(),
-            Stories(),    
+            Stories(),
             NewsPage(
               apiurl: API.newsletters,
             ),
@@ -162,7 +162,7 @@ class _DashboardState extends State<Dashboard>
               height: 25,
             ),
             title: Text(
-              'Upcoming Programs & Call for applications',
+              'Upcoming Programs \n& Call for applications',
               style: style,
               maxLines: 2,
             ),

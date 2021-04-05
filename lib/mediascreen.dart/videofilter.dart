@@ -126,8 +126,10 @@ class VideofilterState extends State<Videofilter> {
                                   //             )));
                                   var storykey = GlobalLists
                                       .filterdatalisting[index].videoLink
-                                      .substring(GlobalLists.storiesList[index]
-                                              .videoLink.length -
+                                      .substring(GlobalLists
+                                              .filterdatalisting[index]
+                                              .videoLink
+                                              .length -
                                           11);
                                   ShowDialogs.youtubevideolink(
                                       "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");

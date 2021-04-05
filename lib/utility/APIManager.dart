@@ -273,8 +273,7 @@ class APIManager {
     //http://merckfoundation.org/mfindia/web/public/api/
     // var uri = Uri.http(
     //     'onerooftechnologiesllp.com', '/mfindia/web/public/api/$encoding');
-    var uri =
-        Uri.http('merck-foundation.com', 'api/$encoding');
+    var uri = Uri.http('merck-foundation.com', 'api/$encoding');
     final response = await ioClient.get(uri);
     print(uri.toString());
     if (response.statusCode == 401) {
@@ -321,7 +320,7 @@ class APIManager {
   static String fertilityprogram =
       "SubProgramPageApi/merck-foundation-fertility-and-embryology-training-program/Android/1";
   static String subproaboutmmtm =
-      "SubProgramPageApi/about-merck-more-than-a-mother/Android/1";
+      "SubProgramPageApi/about-merck-foundation-more-than-a-mother/Android/1";
   static String subprogramstrategy = "SubProgramPageApi/strategy/Android/1";
   static String subprogrammmtmambasadar =
       "SubProgramPageApi/merck-foundation-more-than-a-mother-ambassadors/Android/1";

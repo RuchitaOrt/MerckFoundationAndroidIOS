@@ -9,6 +9,7 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 class OurGalleryDetailsPage extends StatefulWidget {
   String categoryID;
@@ -54,7 +55,28 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
       ),
       body: ListView(
         shrinkWrap: true,
-        children: widgetList(),
+        physics: ScrollPhysics(),
+        children: [
+          ListView(
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
+            children: widgetList(),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 0, left: 0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Image.asset(
+                "assets/newImages/flowers_footer.png",
+                height: 170,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Bottomcardlink(),
+        ],
       ),
     );
   }
@@ -376,11 +398,11 @@ class CustomCard extends StatelessWidget {
         ),
         Container(
             width: SizeConfig.blockSizeHorizontal * 100,
-            height: SizeConfig.blockSizeVertical * 35,
+            height: SizeConfig.blockSizeVertical * 33,
             child: list),
-        SizedBox(
-          height: 9,
-        ),
+        // SizedBox(
+        //   height: 4,
+        // ),
         Center(
           child: GestureDetector(
             onTap: onbtnTap,
