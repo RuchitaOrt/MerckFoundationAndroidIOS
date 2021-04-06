@@ -66,13 +66,14 @@ class OurVisionState extends State<Homeceomessage>
             Navigator.pop(context);
           },
           index: 2,
+          titleshowingindex: "1",
           sharelink:
               Constantstring.shareceohomeeodetailpage + widget.detailpageurl,
           title: "Ceo Message",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
-          height: 85,
+          height: 80,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: Stack(
@@ -99,8 +100,9 @@ class OurVisionState extends State<Homeceomessage>
                             "body": Style(
                               fontSize: FontSize(
                                   ResponsiveFlutter.of(context).fontSize(2)),
-                              fontWeight: FontWeight.w400,
-                              color: Customcolor.pink_col,
+                              fontWeight: FontWeight.w600,
+                              textAlign: TextAlign.start,
+                              color: Customcolor.colorVoilet,
                             ),
                           },
                         ),

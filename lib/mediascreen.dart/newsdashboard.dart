@@ -1,32 +1,31 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:merckfoundation22dec/model/viewmorehomeceoResponse.dart';
+
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-import 'package:merckfoundation22dec/Homescreenceo.dart';
-import 'package:merckfoundation22dec/widget/botttomlink.dart';
+import 'package:merckfoundation22dec/model/viewmorehomeceoResponse.dart';
+import 'dart:convert';
 
-class viewmoreHomeceo extends StatefulWidget {
+class NewsPageDashboard extends StatefulWidget {
   final dynamic apiurl;
 
-  const viewmoreHomeceo({Key key, this.apiurl}) : super(key: key);
+  const NewsPageDashboard({Key key, this.apiurl}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return HomeceoState();
+    return NewsState();
   }
 }
 
-class HomeceoState extends State<viewmoreHomeceo> {
+class NewsState extends State<NewsPageDashboard> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   // List<ListElement> list = [];
   ScrollController _sc = new ScrollController();
@@ -35,8 +34,6 @@ class HomeceoState extends State<viewmoreHomeceo> {
   int page = 10;
   int offset = 0;
   bool _isLoading = true;
-  int pagenoforceo = 1;
-  int totallengthofceo;
   List _productsAvailable = [
     "assets/newImages/img3.jpg",
     "assets/newImages/img4.jpg",
@@ -46,12 +43,15 @@ class HomeceoState extends State<viewmoreHomeceo> {
     "assets/newImages/leader1.png",
     "assets/newImages/leader2.png",
   ];
-
+  int pagenoforceo = 1;
+  int totallengthofceo;
   @override
   void initState() {
-    print("here");
     GlobalLists.homeceoList.clear();
     getNewsLetteranArticles(pagenoforceo);
+    // TODO: implement initState
+    // GlobalLists.newsLettersList.clear();
+    // getNewsLetteranArticles(widget.apiurl);
     // this._gpageetMoreData(page);
 //     super.initState();
     // _sc.addListener(() {
@@ -63,7 +63,6 @@ class HomeceoState extends State<viewmoreHomeceo> {
     //   // }
     //   getNewsLetteranArticles();
     // });
-
     _sc = new ScrollController()..addListener(_scrollListener);
     super.initState();
   }
@@ -78,14 +77,8 @@ class HomeceoState extends State<viewmoreHomeceo> {
           getNewsLetteranArticles(pagenoforceo);
         }
       }
-    }
-    // if (_sc.position.extentAfter < 50) {
-    // if (GlobalLists.homeceoList.length < totallengthofceo) {
-    //   getNewsLetteranArticles(pagenoforceo);
-    // } else {
-    //   print("nodata");
-    // }
-
+//       if (!_isLoading && totalcount > GlobalLists.newsLettersList.length) {
+//         // getNewsLetteranArticles();
 //         setState(() {
 //           _isLoading = true;
 //         });
@@ -143,8 +136,9 @@ class HomeceoState extends State<viewmoreHomeceo> {
 //               });
 //             }
 //           });
-//});
-    //}
+//         });
+//       }
+    }
   }
 
   @override
@@ -153,18 +147,17 @@ class HomeceoState extends State<viewmoreHomeceo> {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
+            // Navigator.pop(context);
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (BuildContext context) => Dashboard(
                           index: 0,
                         )));
-            //Navigator.pop(context);
           },
           index: 2,
-          sharelink: Constantstring.shareceoviewmore,
-          title:
-              "Messages From Senator, Dr. Rasha Kelej, CEO Of Merck Foundation",
+          sharelink: Constantstring.sharenewsletter,
+          title: "Articles",
           titleImg: "assets/newImages/news_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -210,14 +203,9 @@ class HomeceoState extends State<viewmoreHomeceo> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              Homeceomessage(
-                                                title: GlobalLists
-                                                    .homeceoList[index].title,
-                                                detail: GlobalLists
-                                                    .homeceoList[index].details,
-                                                detailpageurl: GlobalLists
-                                                    .homeceomsglist[0]
-                                                    .detailPageUrl,
+                                              Detailpage(
+                                                indexIs: index,
+                                                callfrom: 1,
                                               )));
                                 },
                                 child: Card(
@@ -286,6 +274,10 @@ class HomeceoState extends State<viewmoreHomeceo> {
                           }
                         },
                       ),
+
+            SizedBox(
+              height: 10,
+            ),
             Padding(
               padding: const EdgeInsets.only(right: 0, left: 0),
               child: Align(
@@ -331,9 +323,9 @@ class HomeceoState extends State<viewmoreHomeceo> {
       });
       print("hi");
       var response = await APIManager.fetchget(
-        encoding: APIManager.viewhomeceomsg + "/${pageno.toString()}",
+        encoding: APIManager.mediaarticle + "/${pageno.toString()}",
       );
-      print(APIManager.viewhomeceomsg + "/${pageno.toString()}");
+      print(APIManager.mediaarticle + "/${pageno.toString()}");
       print(response);
       // APIManager().apiRequest(
       //   context,
@@ -442,4 +434,102 @@ class HomeceoState extends State<viewmoreHomeceo> {
       ShowDialogs.showToast("Please check internet connection");
     }
   }
+//   getNewsLetteranArticles(dynamic api) async {
+//     var status1 = await ConnectionDetector.checkInternetConnection();
+
+//     if (status1) {
+// //ShowDialogs.showLoadingDialog(context, _keyLoader);
+//       setState(() {
+//         _isLoading = true;
+//       });
+//       APIManager().apiRequest(
+//         context,
+//         api,
+//         (response) async {
+//           resp = response;
+//           print(resp);
+//           print(resp.data.list.length); //48
+
+//           //        Navigator.of(_keyLoader.currentContext).pop();
+
+//           if (resp.success == "True") {
+//             setState(() {
+//               print("here");
+//               // list = new List();
+//               // list = resp.data.list;
+//               //totalcount 10
+//               if (resp.data.list.length < 10) {
+//                 for (int i = offset; i < resp.data.list.length; i++) {
+//                   setState(() {
+//                     GlobalLists.newsLettersList.add(ListElement(
+//                         image: resp.data.list[i].image,
+//                         title: resp.data.list[i].title,
+//                         id: resp.data.list[i].id,
+//                         shortDescription: resp.data.list[i].shortDescription,
+//                         details: resp.data.list[i].details,
+//                         detailPageUrl: resp.data.list[i].detailPageUrl));
+//                   });
+
+//                   // GlobalLists.newsLettersList.add(resp.data.list);
+
+//                 }
+//               } else {
+//                 for (int i = offset; i < totalcount; i++) {
+//                   setState(() {
+//                     GlobalLists.newsLettersList.add(ListElement(
+//                         image: resp.data.list[i].image,
+//                         title: resp.data.list[i].title,
+//                         id: resp.data.list[i].id,
+//                         shortDescription: resp.data.list[i].shortDescription,
+//                         details: resp.data.list[i].details,
+//                         detailPageUrl: resp.data.list[i].detailPageUrl));
+//                   });
+
+//                   // GlobalLists.newsLettersList.add(resp.data.list);
+
+//                 }
+//               }
+
+//               offset = totalcount;
+//               int remem = resp.data.list.length - totalcount;
+//               print("remem");
+//               print(remem);
+//               if (remem < 10) {
+//                 totalcount = totalcount + remem;
+//               } else {
+//                 totalcount = totalcount + 10;
+//               }
+//               // // GlobalLists.newsLettersList = resp.data.list;
+//               Constantstring.baseUrl = resp.baseUrl;
+//               print("-----------------------------------");
+//               print(totalcount);
+//               print(GlobalLists.newsLettersList.length);
+//             });
+
+//             setState(() {
+//               _isLoading = false;
+//             });
+//           } else {
+//             ShowDialogs.showToast(resp.msg);
+//             setState(() {
+//               _isLoading = false;
+//             });
+//           }
+//         },
+//         (error) {
+//           setState(() {
+//             _isLoading = false;
+//           });
+
+//           print('ERR msg is $error');
+//           //  Navigator.of(_keyLoader.currentContext).pop();
+//         },
+//       );
+//     } else {
+//       setState(() {
+//         _isLoading = false;
+//       });
+//       ShowDialogs.showToast("Please check internet connection");
+//     }
+//   }
 }

@@ -1772,7 +1772,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                               "body": Style(
                                   fontSize: FontSize(14.0),
                                   color: Customcolor.colorBlue,
-lineHeight: 1.0,
+                                  lineHeight: 1.0,
 
                                   //textAlign: TextAlign.center,
                                   fontWeight: FontWeight.w500),

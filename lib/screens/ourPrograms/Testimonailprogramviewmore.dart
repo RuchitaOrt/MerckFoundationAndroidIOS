@@ -64,7 +64,7 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
+          padding: const EdgeInsets.only(left: 0, right: 0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,20 +154,20 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
                   height: 10,
                 ),
 
-                 Padding(
-                 padding: const EdgeInsets.only(right: 0, left: 0),
-                 child: Align(
-                   alignment: Alignment.topRight,
-                   child: Image.asset(
-                     "assets/newImages/flowers_footer.png",
-                     height: 170,
-                   ),
-                 ),
-               ),
-               SizedBox(
-                 height: 10,
-               ),
-               Bottomcardlink(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Bottomcardlink(),
               ],
             ),
           ),

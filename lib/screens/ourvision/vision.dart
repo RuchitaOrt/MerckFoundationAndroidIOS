@@ -393,11 +393,11 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                         SizedBox(
                           height: 10,
                         ),
-                        Bottomcardlink(),
+                        //  Bottomcardlink(),
                       ],
                     ),
             ),
-
+            Align(alignment: Alignment.bottomCenter, child: Bottomcardlink()),
             // TextSpan(
 
             // ),

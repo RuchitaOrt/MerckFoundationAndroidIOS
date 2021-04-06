@@ -1343,9 +1343,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       //     ? ShowDialogs.followuslink(
                       //         Constantstring.followfacebook,
                       //         Constantstring.followmsg):
-                           ShowDialogs.launchFacebook(
-                              Constantstring.followfacebook,
-                              "1053979038068008");
+                      ShowDialogs.launchFacebook(
+                          Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
                       "assets/newImages/facebook.png",
@@ -2322,8 +2321,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => viewmoreHomeceo(
-                            apiurl: API.viewallceomessagerasha)));
+                        builder: (BuildContext context) => viewmoreHomeceo()));
               },
               oncardtap: () {
                 Navigator.push(

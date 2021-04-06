@@ -11,6 +11,8 @@ import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
+import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 
 class Search extends StatefulWidget {
   //1-video 2-News_Release
@@ -68,7 +70,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                     shrinkWrap: true,
                     physics: ScrollPhysics(),
                     crossAxisCount: 2,
-                    childAspectRatio: 0.8,
+                    childAspectRatio: 0.9,
                     children: List.generate(
                         GlobalLists.searchvideollisting.length, (index) {
                       return Padding(
@@ -82,15 +84,24 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                             ),
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            VideoPlayer(
-                                              videoUrl: GlobalLists
-                                                      .searchvideollisting[
-                                                  index]['video_link'],
-                                            )));
+                                var storykey = GlobalLists
+                                    .searchvideollisting[index]['video_link']
+                                    .substring(GlobalLists
+                                            .searchvideollisting[index]
+                                                ['video_link']
+                                            .length -
+                                        11);
+                                ShowDialogs.youtubevideolink(
+                                    "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (BuildContext context) =>
+                                //             VideoPlayer(
+                                //               videoUrl: GlobalLists
+                                //                       .searchvideollisting[
+                                //                   index]['video_link'],
+                                //             )));
                               },
                               child: Container(
                                 color: Colors.transparent,
@@ -101,22 +112,30 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                   children: <Widget>[
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        width: SizeConfig.blockSizeHorizontal *
-                                            100,
-                                        height: 120,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          // border: Border.all(
-                                          //   width: 1,
-                                          // ),
-                                          image: new DecorationImage(
-                                            image: new NetworkImage(
-                                                'https://img.youtube.com/vi/${GlobalLists.searchvideollisting[index]['video_link'].substring(GlobalLists.searchvideollisting[index]['video_link'].length - 11)}/mqdefault.jpg'),
-                                            fit: BoxFit.cover,
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            width:
+                                                SizeConfig.blockSizeHorizontal *
+                                                    100,
+                                            height:
+                                                SizeConfig.blockSizeVertical *
+                                                    16,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              // border: Border.all(
+                                              //   width: 1,
+                                              // ),
+                                              image: new DecorationImage(
+                                                image: new NetworkImage(
+                                                    'https://img.youtube.com/vi/${GlobalLists.searchvideollisting[index]['video_link'].substring(GlobalLists.searchvideollisting[index]['video_link'].length - 11)}/mqdefault.jpg'),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          PauseImage()
+                                        ],
                                       ),
                                     ),
                                     Padding(
@@ -135,7 +154,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                         maxLines: 3,
                                       ),
                                     ),
-                                    SizedBox(height: 5),
+                                    //  SizedBox(height: 5),
                                   ],
                                 ),
                               ),

@@ -237,54 +237,67 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 5, left: 5),
-                      child: Stack(
+                      child: Column(
                         children: [
                           Container(
-                            //width: SizeConfig.blockSizeHorizontal * 80,
-                            //  height: SizeConfig.safeBlockVertical * 27,
+                            width: SizeConfig.blockSizeHorizontal * 70,
+                            height: SizeConfig.safeBlockVertical * 25,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
                               image:
                                   "${GlobalLists.homegallerybaseurl + GlobalLists.homegallerylist[index].photo}",
-                              fit: BoxFit.contain,
+                              fit: BoxFit.fill,
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      // Container(
-                                      //   width:
-                                      //       SizeConfig.blockSizeHorizontal * 80,
-                                      //   child: Text(
-                                      //     GlobalLists.homegallerylist[index].title,
-                                      //     overflow: TextOverflow.ellipsis,
-                                      //     style: TextStyle(
-                                      //         color: Colors.white,
-                                      //         fontSize: 14,
-                                      //         fontWeight: FontWeight.w700),
-                                      //     maxLines: 3,
-                                      //   ),
-                                      // ),
-                                      SizedBox(
-                                        height: 8,
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 70,
+                            child: Text(
+                              GlobalLists
+                                  .homegallerylist[index].photoDescription,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700),
+                              maxLines: 3,
                             ),
                           ),
+                          // Align(
+                          //   alignment: Alignment.bottomCenter,
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.only(
+                          //         left: 10, right: 10, bottom: 10),
+                          //     child: Row(
+                          //       crossAxisAlignment: CrossAxisAlignment.end,
+                          //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //       children: [
+                          //         Column(
+                          //           mainAxisAlignment: MainAxisAlignment.end,
+                          //           crossAxisAlignment:
+                          //               CrossAxisAlignment.start,
+                          //           children: [
+                          //             // Container(
+                          //             //   width:
+                          //             //       SizeConfig.blockSizeHorizontal * 80,
+                          //             //   child: Text(
+                          //             //     GlobalLists.homegallerylist[index].title,
+                          //             //     overflow: TextOverflow.ellipsis,
+                          //             //     style: TextStyle(
+                          //             //         color: Colors.white,
+                          //             //         fontSize: 14,
+                          //             //         fontWeight: FontWeight.w700),
+                          //             //     maxLines: 3,
+                          //             //   ),
+                          //             // ),
+                          //             SizedBox(
+                          //               height: 8,
+                          //             )
+                          //           ],
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
