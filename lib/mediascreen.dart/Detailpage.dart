@@ -6,6 +6,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:flutter_html/style.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:responsive_flutter/responsive_flutter.dart';
 
 class Detailpage extends StatefulWidget {
   final int indexIs;
@@ -56,12 +57,13 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
             // }
           },
           index: widget.callfrom == 1 ? 2 : 1,
+          titleshowingindex: "1",
           sharelink: widget.callfrom == 1
               ? Constantstring.sharearticledetailpage +
                   GlobalLists.newsLettersList[widget.indexIs].detailPageUrl
               : "",
           title: widget.callfrom == 1
-              ? GlobalLists.newsLettersList[widget.indexIs].detailPageUrl
+              ? GlobalLists.newsLettersList[widget.indexIs].title
               : "Articles",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
@@ -84,6 +86,17 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Text(
+                                GlobalLists
+                                    .newsLettersList[widget.indexIs].title,
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize:
+                                      ResponsiveFlutter.of(context).fontSize(2),
+                                  fontWeight: FontWeight.w600,
+                                  color: Customcolor.colorVoilet,
+                                ),
+                              ),
                               Html(
                                 data:
                                     """${GlobalLists.newsLettersList[widget.indexIs].details} """,

@@ -190,6 +190,7 @@ enum API {
   watchmoretestimonialcapacity,
   watchmoretestimonialcancer,
   watchmoretestimonialmmtm,
+  watchmoretestimonialcancerfellowship,
 
   //watchmore callfor app
   watchcallhome,
@@ -321,6 +322,8 @@ class APIManager {
       "SubProgramPageApi/merck-foundation-fertility-and-embryology-training-program/Android/1";
   static String subproaboutmmtm =
       "SubProgramPageApi/about-merck-foundation-more-than-a-mother/Android/1";
+  static String viewhomeceomsg = "ceo_message_mob";
+  static String mediaarticle = "new_letters_and_articles_mob";
   static String subprogramstrategy = "SubProgramPageApi/strategy/Android/1";
   static String subprogrammmtmambasadar =
       "SubProgramPageApi/merck-foundation-more-than-a-mother-ambassadors/Android/1";
@@ -683,6 +686,11 @@ class APIManager {
       case API.watchmoretestimonialcancer:
         apiPathString =
             "merck_testimonials_list/merck-foundation-cancer-access-program/1";
+
+        break;
+      case API.watchmoretestimonialcancerfellowship:
+        apiPathString =
+            "merck_testimonials_list/merck-foundation-oncology-fellowship-program/1";
 
         break;
       case API.watchmoretestimonialcapacity:
@@ -1378,6 +1386,7 @@ class APIManager {
       case API.watchmoretestimonialcancer:
       case API.watchmoretestimonialcapacity:
       case API.watchmoretestimonialmmtm:
+      case API.watchmoretestimonialcancerfellowship:
         className = "TestimonialprogramResponse";
         break;
       case API.ourgallerydetail:

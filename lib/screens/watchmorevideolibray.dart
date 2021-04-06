@@ -131,28 +131,26 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
         //   ),
         // ),
         appBar: InnerCustomAppBar(
-          onTapvalfilter: () {
-            print("videokk");
-            // _scaffoldKey1.currentState.openDrawer();
-            _scaffoldKey1.currentState.openEndDrawer();
-          },
-          // onTapval: () {
-          //   Navigator.pop(context);
-          //   // Navigator.push(
-          //   //     context,
-          //   //     MaterialPageRoute(
-          //   //         builder: (BuildContext context) => Dashboard(
-          //   //               index: 0,
-          //   //             )));
+          // onTapvalfilter: () {
+          //   print("videokk");
+          //   // _scaffoldKey1.currentState.openDrawer();
+          //   _scaffoldKey1.currentState.openEndDrawer();
           // },
+          onTapval: () {
+            Navigator.pop(context);
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Dashboard(
+            //               index: 0,
+            //             )));
+          },
           index: 2,
           sharelink: widget.sharelink,
-          //  forfilterindes: 3,
+          // forfilterindes: 3,
           title: widget.headertitle,
           titleImg: "assets/newImages/ourstoriesLogo.png",
-         
-
- trallingImg1: "assets/newImages/share.png",
+          trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
 
 

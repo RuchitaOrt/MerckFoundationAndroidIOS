@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/callforApplication.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/stories.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/newsdashboard.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -63,7 +64,7 @@ class _DashboardState extends State<Dashboard>
             Home(),
             Ourprogram(),
             Stories(),
-            NewsPage(
+            NewsPageDashboard(
               apiurl: API.newsletters,
             ),
             CallforApplication(

@@ -209,6 +209,7 @@ class SearchcategoryState extends State<Searchcategory>
     var status = await ConnectionDetector.checkInternetConnection();
 
     if (status) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
       dynamic bodyData = {
         'search': keywordController.text,
         'search_type': categoryController.text
@@ -226,6 +227,7 @@ class SearchcategoryState extends State<Searchcategory>
       print(res);
       //1-video 2-News_Release 3-Article 4-Events 5-Testimonials 6-Photo  7-Media 8-ceomeaasage 9-award
       if (response.statusCode == 200) {
+        Navigator.of(_keyLoader.currentContext).pop();
         if (res['success'] == "True") {
           if (categoryController.text == "Video") {
             setState(() {
@@ -343,10 +345,12 @@ class SearchcategoryState extends State<Searchcategory>
         }
       } else {
         ShowDialogs.showToast("Server Not Responding");
+        Navigator.of(_keyLoader.currentContext).pop();
       }
     } else {
       setState(() {
         ShowDialogs.showToast("Please check Internet Connection.");
+        Navigator.of(_keyLoader.currentContext).pop();
       });
     }
   }

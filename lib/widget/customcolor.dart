@@ -177,6 +177,8 @@ class Constantstring {
       "http://merckfoundation.org/mfindia/web/public/Testimonials/merck-foundation-more-than-a-mother";
   static String sharetestimonialviewmorecancer =
       "http://merckfoundation.org/mfindia/web/public/Testimonials/merck-foundation-cancer-access-program";
+  static String sharetestimonialviewmorecancerfellowship =
+      "http://merck-foundation.com/our-programs/Merck-Foundation-Cancer-Access-Program/Merck-Oncology-Fellowship-Program";
   //testimonial detail page
   static String sharetestimonialdetailpage =
       "http://merckfoundation.org/mfindia/web/public/Merck_Testimonials/";

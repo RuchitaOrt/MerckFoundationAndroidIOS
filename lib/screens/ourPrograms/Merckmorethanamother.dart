@@ -2064,7 +2064,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
               cardsubtitle: "Our ",
               cardTitle: "Videos",
               btnTitle: "Watch More",
-              heigthoflist: SizeConfig.blockSizeVertical * 33,
+              heigthoflist: SizeConfig.blockSizeVertical * 34,
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -2110,7 +2110,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
-                                height: SizeConfig.blockSizeVertical * 25,
+                                height: SizeConfig.blockSizeVertical * 26,
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
                                       'assets/newImages/placeholder_3.jpg',

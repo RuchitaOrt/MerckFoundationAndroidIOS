@@ -63,116 +63,115 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
           height: 85,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        body: SingleChildScrollView(
-           child: Column(
-             crossAxisAlignment: CrossAxisAlignment.start,
-             children: [
-               GlobalLists.testimonialprolist.length <= 0
-                   ? Container()
-                   : Padding(
-                     padding: const EdgeInsets.only(left: 10, right: 10),
-          
-                     child: ListView.builder(
-                         itemCount: GlobalLists.testimonialprolist.length,
-                         scrollDirection: Axis.vertical,
-                         physics: NeverScrollableScrollPhysics(),
-                         shrinkWrap: true,
-                         itemBuilder: (BuildContext context, int index) {
-                           return Padding(
-                               padding: const EdgeInsets.only(
-                                   left: 8, right: 8, bottom: 6, top: 10),
-                               child: Column(
-                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                 children: [
-                                   Container(
-                                     height: 200,
-                                     width: 250,
-                                     decoration: BoxDecoration(
-                                         borderRadius:
-                                             BorderRadius.circular(10)),
-                                     child: FadeInImage.assetNetwork(
-                                       placeholder:
-                                           'assets/newImages/placeholder_3.jpg',
-                                       image: GlobalLists.testimonialprobaseurl +
-                                           GlobalLists
-                                               .testimonialprolist[index].image,
-                                       fit: BoxFit.fill,
-                                       imageScale: 1,
-                                       height: 150,
-                                     ),
-                                   ),
-                                   Html(
-                                       data:
-                                           """${GlobalLists.testimonialprolist[index].testimonialName} """,
-                                       onLinkTap: (url) {
-                                         print("Opening $url...");
-                                         ShowDialogs.launchURL(url);
-                                       },
-                                       style: {
-                                         "body": Style(
-                                             fontSize: FontSize(17.0),
-                                             color: Customcolor.colorBlue,
-                                             textAlign: TextAlign.start,
-                                             fontWeight: FontWeight.w500),
-                                       }),
-                                   Html(
-                                     data:
-                                         """${GlobalLists.testimonialprolist[index].departmentName} """,
-                                     onLinkTap: (url) {
-                                       print("Opening $url...");
-                                       ShowDialogs.launchURL(url);
-                                     },
-                                     style: {
-                                       "body": Style(textAlign: TextAlign.start),
-                                     },
-                                   ),
-                                   Html(
-                                     data:
-                                         """${GlobalLists.testimonialprolist[index].details} """,
-                                     onLinkTap: (url) {
-                                       print("Opening $url...");
-                                       ShowDialogs.launchURL(url);
-                                     },
-                                     style: {
-                                       "body": Style(textAlign: TextAlign.start),
-                                     },
-                                   ),
-                                 ],
-                               ));
-                         },
-                       ),
-                   ),
-               // Padding(
-               //   padding: const EdgeInsets.only(right: 0, left: 0),
-               //   child: Align(
-               //     alignment: Alignment.topRight,
-               //     child: Image.asset(
-               //       "assets/newImages/flowers_footer.png",
-               //       height: 170,
-               //     ),
-               //   ),
-               // ),
-               SizedBox(
-                 height: 10,
-               ),
+        body: Padding(
+          padding: const EdgeInsets.only(left: 0, right: 0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GlobalLists.testimonialprolist.length <= 0
+                    ? Container()
+                    : ListView.builder(
+                        itemCount: GlobalLists.testimonialprolist.length,
+                        scrollDirection: Axis.vertical,
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 8, right: 8, bottom: 6, top: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    height: 200,
+                                    width: 250,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder:
+                                          'assets/newImages/placeholder_3.jpg',
+                                      image: GlobalLists.testimonialprobaseurl +
+                                          GlobalLists
+                                              .testimonialprolist[index].image,
+                                      fit: BoxFit.fill,
+                                      imageScale: 1,
+                                      height: 150,
+                                    ),
+                                  ),
+                                  Html(
+                                      data:
+                                          """${GlobalLists.testimonialprolist[index].testimonialName} """,
+                                      onLinkTap: (url) {
+                                        print("Opening $url...");
+                                        ShowDialogs.launchURL(url);
+                                      },
+                                      style: {
+                                        "body": Style(
+                                            fontSize: FontSize(17.0),
+                                            color: Customcolor.colorBlue,
+                                            textAlign: TextAlign.start,
+                                            fontWeight: FontWeight.w500),
+                                      }),
+                                  Html(
+                                    data:
+                                        """${GlobalLists.testimonialprolist[index].departmentName} """,
+                                    onLinkTap: (url) {
+                                      print("Opening $url...");
+                                      ShowDialogs.launchURL(url);
+                                    },
+                                    style: {
+                                      "body": Style(textAlign: TextAlign.start),
+                                    },
+                                  ),
+                                  Html(
+                                    data:
+                                        """${GlobalLists.testimonialprolist[index].details} """,
+                                    onLinkTap: (url) {
+                                      print("Opening $url...");
+                                      ShowDialogs.launchURL(url);
+                                    },
+                                    style: {
+                                      "body": Style(textAlign: TextAlign.start),
+                                    },
+                                  ),
+                                ],
+                              ));
+                        },
+                      ),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 0, left: 0),
+                //   child: Align(
+                //     alignment: Alignment.topRight,
+                //     child: Image.asset(
+                //       "assets/newImages/flowers_footer.png",
+                //       height: 170,
+                //     ),
+                //   ),
+                // ),
+                SizedBox(
+                  height: 10,
+                ),
 
                 Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Bottomcardlink(),
-             ],
-           ),
-         ));
+                SizedBox(
+                  height: 10,
+                ),
+                Bottomcardlink(),
+              ],
+            ),
+          ),
+        ));
   }
 
   getMerckprogramTestimonial(dynamic api) async {

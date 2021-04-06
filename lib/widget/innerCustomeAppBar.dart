@@ -9,6 +9,7 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:social_share_plugin/social_share_plugin.dart';
+import 'package:merckfoundation22dec/screens/dashboard.dart';
 
 class InnerCustomAppBar extends PreferredSize {
   // final Widget child;
@@ -22,6 +23,7 @@ class InnerCustomAppBar extends PreferredSize {
   final Function onTapvalfilter;
   final int forfilterindes;
   final String sharelink;
+  final String titleshowingindex;
 
   InnerCustomAppBar(
       {this.sharelink,
@@ -33,10 +35,12 @@ class InnerCustomAppBar extends PreferredSize {
       this.trallingImg1,
       this.trallingImg2,
       this.forfilterindes,
+      this.titleshowingindex,
       @required this.height = kToolbarHeight});
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
-  Size get preferredSize => Size.fromHeight(120);
+  Size get preferredSize =>
+      titleshowingindex == "1" ? Size.fromHeight(height) : Size.fromHeight(120);
   // Size get preferredSize => Size.fromHeight(height);
   double imgHeight = 50;
   double whatsupheigth = 45;
@@ -73,13 +77,24 @@ class InnerCustomAppBar extends PreferredSize {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5, bottom: 5),
-                          child: Container(
-                            child: Image.asset(
-                              "assets/newImages/logoforheader.png",
-                              // width: 200,
-                              height: 80,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        Dashboard(
+                                          index: 0,
+                                        )));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 5, bottom: 5),
+                            child: Container(
+                              child: Image.asset(
+                                "assets/newImages/logoforheader.png",
+                                // width: 200,
+                                height: 80,
+                              ),
                             ),
                           ),
                         ),
@@ -238,12 +253,16 @@ class InnerCustomAppBar extends PreferredSize {
                                                     ),
                                                     GestureDetector(
                                                       onTap: () async {
-                                                         Platform.isAndroid?
-                                                        await FlutterShareMe()
-                                                            .shareToLinkedin(
-                                                                url:
-                                                                    "sharelink",
-                                                                msg: sharelink):ShowDialogs.launchLinkdin(sharelink);
+                                                        Platform.isAndroid
+                                                            ? await FlutterShareMe()
+                                                                .shareToLinkedin(
+                                                                    url:
+                                                                        "sharelink",
+                                                                    msg:
+                                                                        sharelink)
+                                                            : ShowDialogs
+                                                                .launchLinkdin(
+                                                                    sharelink);
                                                       },
                                                       child: Image.asset(
                                                         "assets/newImages/linkedin.png",
@@ -253,11 +272,16 @@ class InnerCustomAppBar extends PreferredSize {
                                                     ),
                                                     GestureDetector(
                                                       onTap: () {
-                                                         Platform.isAndroid?
-                                                        FlutterShareMe()
-                                                            .shareToWhatsApp(
-                                                                base64Image: "",
-                                                                msg: sharelink):ShowDialogs.launchWhatsappshare(sharelink);
+                                                        Platform.isAndroid
+                                                            ? FlutterShareMe()
+                                                                .shareToWhatsApp(
+                                                                    base64Image:
+                                                                        "",
+                                                                    msg:
+                                                                        sharelink)
+                                                            : ShowDialogs
+                                                                .launchWhatsappshare(
+                                                                    sharelink);
 
                                                         // :
                                                         //  SocialShare
@@ -266,7 +290,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                         //   ).then((data) {
                                                         //     print(data);
                                                         //   });
-                                                      },    
+                                                      },
                                                       child: Image.asset(
                                                         "assets/newImages/whatsapp.png",
                                                         height: imgHeight,
@@ -401,12 +425,15 @@ class InnerCustomAppBar extends PreferredSize {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () async {
-                                                     Platform.isAndroid?
-                                                        await FlutterShareMe()
+                                                    Platform.isAndroid
+                                                        ? await FlutterShareMe()
                                                             .shareToLinkedin(
                                                                 url:
                                                                     "sharelink",
-                                                                msg: sharelink):ShowDialogs.launchLinkdin(sharelink);
+                                                                msg: sharelink)
+                                                        : ShowDialogs
+                                                            .launchLinkdin(
+                                                                sharelink);
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/linkedin.png",
@@ -416,11 +443,14 @@ class InnerCustomAppBar extends PreferredSize {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () {
-                                                     Platform.isAndroid?
-                                                        FlutterShareMe()
+                                                    Platform.isAndroid
+                                                        ? FlutterShareMe()
                                                             .shareToWhatsApp(
                                                                 base64Image: "",
-                                                                msg: sharelink):ShowDialogs.launchWhatsappshare(sharelink);
+                                                                msg: sharelink)
+                                                        : ShowDialogs
+                                                            .launchWhatsappshare(
+                                                                sharelink);
 
                                                     // :
                                                     //  SocialShare
@@ -588,21 +618,23 @@ class InnerCustomAppBar extends PreferredSize {
             ),
           ),
         ),
-        Container(
-          height: 47,
-          color: Customcolor.colorVoilet,
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Text(
-              title,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 3,
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          ),
-        )
+        titleshowingindex == "1"
+            ? Container()
+            : Container(
+                height: 47,
+                color: Customcolor.colorVoilet,
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              )
       ],
     );
   }

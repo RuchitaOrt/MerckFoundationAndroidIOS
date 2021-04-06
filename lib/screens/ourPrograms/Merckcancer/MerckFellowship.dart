@@ -862,7 +862,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
               cardsubtitle: "Our ",
               cardTitle: "Videos  ",
               btnTitle: "Watch More",
-           //   heigthoflist: SizeConfig.blockSizeVertical * 32,
+              // heigthoflist: SizeConfig.blockSizeVertical * 32,
               onbtnTap: () {
                 // Navigator.push(
                 //     context,
@@ -1112,18 +1112,27 @@ class OurProgramsDetailsState extends State<MerckFellowship>
               cardTitle: "Alumini Testimonials  ",
               titleColor: Customcolor.pink_col,
               heigthoflist: SizeConfig.blockSizeVertical * 44,
-              showviewmore: 1,
+              //  showviewmore: 1,
               onbtnTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            Testimonialprogramviewmore(
+                              apiurl: API.watchmoretestimonialcancerfellowship,
+                              sharelink: Constantstring
+                                  .sharetestimonialviewmorecancerfellowship,
+                            )));
                 // Navigator.push(
                 //     context,
                 //     MaterialPageRoute(
                 //         builder: (BuildContext context) =>
                 //             MerckFoundationTestimonial()));
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            Testimonialprogramviewmore()));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) =>
+                //             Testimonialprogramviewmore()));
                 // getMerckprogramTestimonial();
               },
               btnTitle: "View More",
