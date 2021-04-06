@@ -419,7 +419,7 @@ class CovidResponseState extends State<CovidResponse>
                           child: CustomHorizontalCard(
                             index: 1,
                             cardImage: "assets/newImages/ourvison.png",
-                            cardsubtitle: "Latest ",
+                            cardsubtitle: "COVID 19 Latest ",
                             cardTitle: "Update",
                             btnTitle: "View More",
                             titleColor: Customcolor.pink_col,

@@ -123,35 +123,39 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _scaffoldKey1,
-        endDrawer: Theme(
-          data: Theme.of(context)
-              .copyWith(canvasColor: Colors.white, primaryColor: Colors.white),
-          child: AppDrawerfilter(
-            index: 1,
-          ),
-        ),
+        // endDrawer: Theme(
+        //   data: Theme.of(context)
+        //       .copyWith(canvasColor: Colors.white, primaryColor: Colors.white),
+        //   child: AppDrawerfilter(
+        //     index: 1,
+        //   ),
+        // ),
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {
             print("videokk");
             // _scaffoldKey1.currentState.openDrawer();
             _scaffoldKey1.currentState.openEndDrawer();
           },
-          onTapval: () {
-            Navigator.pop(context);
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (BuildContext context) => Dashboard(
-            //               index: 0,
-            //             )));
-          },
+          // onTapval: () {
+          //   Navigator.pop(context);
+          //   // Navigator.push(
+          //   //     context,
+          //   //     MaterialPageRoute(
+          //   //         builder: (BuildContext context) => Dashboard(
+          //   //               index: 0,
+          //   //             )));
+          // },
           index: 2,
           sharelink: widget.sharelink,
-          forfilterindes: 3,
+          //  forfilterindes: 3,
           title: widget.headertitle,
           titleImg: "assets/newImages/ourstoriesLogo.png",
-          trallingImg1: "assets/newImages/filter.png",
+         
+
+ trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
+
+
           height: 85,
         ),
         backgroundColor: Customcolor.background,

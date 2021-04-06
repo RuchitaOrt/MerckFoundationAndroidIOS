@@ -862,7 +862,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
               cardsubtitle: "Our ",
               cardTitle: "Videos  ",
               btnTitle: "Watch More",
-              heigthoflist: SizeConfig.blockSizeVertical * 32,
+           //   heigthoflist: SizeConfig.blockSizeVertical * 32,
               onbtnTap: () {
                 // Navigator.push(
                 //     context,
@@ -913,6 +913,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
+                                height: SizeConfig.blockSizeVertical * 25,
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
                                       'assets/newImages/placeholder_3.jpg',
@@ -981,11 +982,11 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                                 color: Colors.black87,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700),
-                            maxLines: 3,
+                            maxLines: 2,
                           ),
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 5,
                         )
                       ],
                     ),
