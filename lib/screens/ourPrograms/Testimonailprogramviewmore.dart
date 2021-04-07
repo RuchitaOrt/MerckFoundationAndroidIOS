@@ -179,7 +179,6 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
 
     if (status1) {
       ShowDialogs.showLoadingDialog(context, _keyLoader);
-
       APIManager().apiRequest(
         context,
         api,

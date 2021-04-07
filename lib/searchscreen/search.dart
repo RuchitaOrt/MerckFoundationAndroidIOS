@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/Homescreenceo.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
+import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
+import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
+import 'package:merckfoundation22dec/ourawarddetail.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/searchscreen/DetailSearchtestimonial.dart';
+import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -18,8 +25,9 @@ class Search extends StatefulWidget {
   //1-video 2-News_Release
 
   final int categorytype;
+  final String baseurl;
 
-  const Search({Key key, this.categorytype}) : super(key: key);
+  const Search({Key key, this.categorytype, this.baseurl}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return SearchState();
@@ -29,7 +37,7 @@ class Search extends StatefulWidget {
 class SearchState extends State<Search> with TickerProviderStateMixin {
   AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
-
+  Color color;
   @override
   void initState() {
     super.initState();
@@ -404,100 +412,116 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                     physics: ScrollPhysics(),
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10, top: 10),
-                                        child: Container(
-                                          height:
-                                              SizeConfig.blockSizeVertical * 15,
-                                          width:
-                                              SizeConfig.blockSizeHorizontal *
-                                                  80,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: Colors.white),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 5,
-                                                    bottom: 3,
-                                                    left: 8,
-                                                    right: 8),
-                                                child: Container(
-                                                  // height: 220,
-                                                  width: 100,
-                                                  decoration: BoxDecoration(
-                                                    //color: Colors.amber,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                  ),
-                                                  child:
-                                                      FadeInImage.assetNetwork(
-                                                    placeholder:
-                                                        'assets/newImages/placeholder_3.jpg',
-                                                    image:
-                                                        "${Constantstring.baseUrl + GlobalLists.searchtestimoniallisting[index]['image']}",
-                                                    fit: BoxFit.cover,
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (BuildContext
+                                                          context) =>
+                                                      DetailSearchTestimonialPage(
+                                                        index: index,
+                                                        baseurl: widget.baseurl,
+                                                      )));
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 10, top: 10),
+                                          child: Container(
+                                            height:
+                                                SizeConfig.blockSizeVertical *
+                                                    15,
+                                            width:
+                                                SizeConfig.blockSizeHorizontal *
+                                                    80,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                color: Colors.white),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 5,
+                                                          bottom: 3,
+                                                          left: 8,
+                                                          right: 8),
+                                                  child: Container(
+                                                    // height: 220,
+                                                    width: 100,
+                                                    decoration: BoxDecoration(
+                                                      //color: Colors.amber,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: FadeInImage
+                                                        .assetNetwork(
+                                                      placeholder:
+                                                          'assets/newImages/placeholder_3.jpg',
+                                                      image:
+                                                          "${Constantstring.baseUrl + GlobalLists.searchtestimoniallisting[index]['image']}",
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              Expanded(
-                                                child: ListView(
-                                                  shrinkWrap: true,
-                                                  // crossAxisAlignment:
-                                                  //     CrossAxisAlignment.start,
-                                                  children: [
-                                                    SizedBox(
-                                                      height: 12,
-                                                    ),
-                                                    FormLabel(
-                                                      text: GlobalLists
-                                                                  .searchtestimoniallisting[
-                                                              index]
-                                                          ['testimonial_name'],
-                                                      labelColor:
-                                                          Customcolor.colorPink,
-                                                      fontSize: 17,
-                                                      maxLines: 1,
-                                                      fontweight:
-                                                          FontWeight.w700,
-                                                    ),
-                                                    SizedBox(
-                                                      height: 4,
-                                                    ),
-                                                    FormLabel(
-                                                      text: GlobalLists
-                                                              .searchtestimoniallisting[
-                                                          index]['department_name'],
-                                                      labelColor:
-                                                          Colors.black87,
-                                                      fontSize: 13,
-                                                      fontweight:
-                                                          FontWeight.w600,
-                                                      maxLines: 2,
-                                                    ),
-                                                    SizedBox(
-                                                      height: 7,
-                                                    ),
-                                                    FormLabel(
-                                                      text: GlobalLists
-                                                                  .searchtestimoniallisting[
-                                                              index]
-                                                          ['short_description'],
-                                                      labelColor:
-                                                          Colors.black54,
-                                                      fontSize: 13,
-                                                      fontweight:
-                                                          FontWeight.w500,
-                                                      maxLines: 4,
-                                                    ),
-                                                  ],
+                                                Expanded(
+                                                  child: ListView(
+                                                    shrinkWrap: true,
+                                                    // crossAxisAlignment:
+                                                    //     CrossAxisAlignment.start,
+                                                    children: [
+                                                      SizedBox(
+                                                        height: 12,
+                                                      ),
+                                                      FormLabel(
+                                                        text: GlobalLists
+                                                                    .searchtestimoniallisting[
+                                                                index][
+                                                            'testimonial_name'],
+                                                        labelColor: Customcolor
+                                                            .colorPink,
+                                                        fontSize: 17,
+                                                        maxLines: 1,
+                                                        fontweight:
+                                                            FontWeight.w700,
+                                                      ),
+                                                      SizedBox(
+                                                        height: 4,
+                                                      ),
+                                                      FormLabel(
+                                                        text: GlobalLists
+                                                                    .searchtestimoniallisting[
+                                                                index]
+                                                            ['department_name'],
+                                                        labelColor:
+                                                            Colors.black87,
+                                                        fontSize: 13,
+                                                        fontweight:
+                                                            FontWeight.w600,
+                                                        maxLines: 2,
+                                                      ),
+                                                      SizedBox(
+                                                        height: 7,
+                                                      ),
+                                                      FormLabel(
+                                                        text: GlobalLists
+                                                                    .searchtestimoniallisting[
+                                                                index][
+                                                            'short_description'],
+                                                        labelColor:
+                                                            Colors.black54,
+                                                        fontSize: 13,
+                                                        fontweight:
+                                                            FontWeight.w500,
+                                                        maxLines: 4,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       );
@@ -536,16 +560,14 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                   onTap: () {
                                                     ShowDialogs.showImageDialog(
                                                       context: context,
-                                                      image: Constantstring
-                                                              .baseUrl +
+                                                      image: widget.baseurl +
                                                           GlobalLists
-                                                              .searchphotolisting[
-                                                                  index]
-                                                              .photo,
+                                                                  .searchphotolisting[
+                                                              index]['photo'],
                                                       description: GlobalLists
-                                                          .searchphotolisting[
+                                                                  .searchphotolisting[
                                                               index]
-                                                          .photoDescription,
+                                                          ['photo_description'],
                                                     );
                                                   },
                                                   child: Container(
@@ -587,12 +609,12 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                               // ),
                                                               image:
                                                                   new DecorationImage(
-                                                                image: new NetworkImage(Constantstring
-                                                                        .baseUrl +
-                                                                    GlobalLists
-                                                                        .searchphotolisting[
+                                                                image: new NetworkImage(widget
+                                                                        .baseurl +
+                                                                    GlobalLists.searchphotolisting[
                                                                             index]
-                                                                        .photo),
+                                                                        [
+                                                                        'photo']),
                                                                 fit:
                                                                     BoxFit.fill,
                                                               ),
@@ -604,10 +626,9 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                               const EdgeInsets
                                                                   .all(4.0),
                                                           child: Text(
-                                                            GlobalLists
-                                                                .searchphotolisting[
-                                                                    index]
-                                                                .photoDescription,
+                                                            GlobalLists.searchphotolisting[
+                                                                    index][
+                                                                'photo_description'],
                                                             textAlign: TextAlign
                                                                 .center,
                                                             overflow:
@@ -756,16 +777,25 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                             bottom: 6),
                                                     child: GestureDetector(
                                                       onTap: () {
-                                                        // Navigator.push(
-                                                        //     context,
-                                                        //     MaterialPageRoute(
-                                                        //         builder: (BuildContext
-                                                        //                 context) =>
-                                                        //             Detailpage(
-                                                        //               indexIs:
-                                                        //                   index,
-                                                        //               callfrom: 2,
-                                                        //             )));
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    Homeceomessage(
+                                                                      detail: GlobalLists
+                                                                              .searchceomeassagelisting[index]
+                                                                          [
+                                                                          'details'],
+                                                                      detailpageurl:
+                                                                          GlobalLists.searchceomeassagelisting[index]
+                                                                              [
+                                                                              'detail_page_url'],
+                                                                      title: GlobalLists
+                                                                              .searchceomeassagelisting[index]
+                                                                          [
+                                                                          'title'],
+                                                                    )));
                                                       },
                                                       child: Card(
                                                         elevation: 2,
@@ -850,6 +880,40 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                     itemBuilder:
                                                         (BuildContext context,
                                                             int index) {
+                                                      if (index % 7 == 0) {
+                                                        print("index");
+                                                        print(index % 3);
+                                                        color =
+                                                            Customcolor.prog1;
+                                                      } else if (index % 7 ==
+                                                          1) {
+                                                        color =
+                                                            Customcolor.prog2;
+                                                      } else if (index % 7 ==
+                                                          2) {
+                                                        color =
+                                                            Customcolor.prog3;
+                                                      } else if (index % 7 ==
+                                                          3) {
+                                                        color =
+                                                            Customcolor.prog4;
+                                                      } else if (index % 7 ==
+                                                          4) {
+                                                        color =
+                                                            Customcolor.prog5;
+                                                      } else if (index % 7 ==
+                                                          5) {
+                                                        color =
+                                                            Customcolor.prog6;
+                                                      } else if (index % 7 ==
+                                                          6) {
+                                                        color =
+                                                            Customcolor.prog7;
+                                                      } else if (index % 7 ==
+                                                          7) {
+                                                        color =
+                                                            Customcolor.prog8;
+                                                      }
                                                       return Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -861,6 +925,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                           onTap: () {},
                                                           child: Card(
                                                             elevation: 2,
+                                                            color: color,
                                                             shape:
                                                                 RoundedRectangleBorder(
                                                               borderRadius:
@@ -895,8 +960,8 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                                       "body": Style(
                                                                           textAlign: TextAlign
                                                                               .start,
-                                                                          color: Customcolor
-                                                                              .pink_col,
+                                                                          color: Colors
+                                                                              .white,
                                                                           fontSize: FontSize
                                                                               .large,
                                                                           fontWeight:
@@ -914,10 +979,9 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                                       GestureDetector(
                                                                         onTap:
                                                                             () {
-                                                                          // getawarddetail(GlobalLists
-                                                                          //     .awardlisting[
-                                                                          //         index]
-                                                                          //     .pageUrl);
+                                                                          getawarddetail(GlobalLists.searchawardlisting[index]
+                                                                              [
+                                                                              'page_url']);
                                                                         },
                                                                         child:
                                                                             Container(
@@ -938,16 +1002,19 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      Image
-                                                                          .asset(
-                                                                        "assets/images/trophy.png",
-                                                                        width:
-                                                                            70,
-                                                                        height:
-                                                                            70,
-                                                                      )
+                                                                      // Image
+                                                                      //     .asset(
+                                                                      //   "assets/images/trophy.png",
+                                                                      //   width:
+                                                                      //       70,
+                                                                      //   height:
+                                                                      //       70,
+                                                                      // )
                                                                     ],
                                                                   ),
+                                                                  SizedBox(
+                                                                    height: 8,
+                                                                  )
                                                                 ],
                                                               ),
                                                             ),
@@ -967,6 +1034,46 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
       await launch(url);
     } else {
       throw 'Could not launch $url';
+    }
+  }
+
+  getawarddetail(String pageurl) async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _keyLoader);
+      final json = {
+        'page_url': pageurl,
+      };
+      print(json);
+      APIManager().apiRequest(context, API.ourawarddetail, (response) async {
+        OurawarddetailResponse resp = response;
+        print(response);
+        print('Resp : $resp');
+
+        Navigator.of(_keyLoader.currentContext).pop();
+
+        if (resp.success == "True") {
+          setState(() {
+            GlobalLists.awarddetallisting = resp.data.list;
+            // GlobalLists.awarddetallisting[0].title
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => OurAwardDetail(
+                          detaill: GlobalLists.awarddetallisting,
+                          pageurl: pageurl,
+                        )));
+          });
+        } else {
+          ShowDialogs.showToast(resp.msg);
+        }
+      }, (error) {
+        print('ERR msg is $error');
+        Navigator.of(_keyLoader.currentContext).pop();
+      }, jsonval: json);
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
     }
   }
 }

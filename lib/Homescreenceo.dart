@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:screenshot/screenshot.dart';
@@ -79,7 +80,7 @@ class OurVisionState extends State<Homeceomessage>
         body: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 1),
+              padding: const EdgeInsets.only(bottom: 0),
               child: ListView(
                 shrinkWrap: true,
                 // crossAxisAlignment: CrossAxisAlignment.center,
@@ -117,7 +118,7 @@ class OurVisionState extends State<Homeceomessage>
                           },
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 5,
                         ),
                         // Padding(
                         //   padding: const EdgeInsets.only(right: 0, left: 0),
@@ -132,12 +133,28 @@ class OurVisionState extends State<Homeceomessage>
                         // SizedBox(
                         //   height: 10,
                         // )
+
+                        Padding(
+                          padding: const EdgeInsets.only(right: 0, left: 0),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Image.asset(
+                              "assets/newImages/flowers_footer.png",
+                              height: 170,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
                 ],
               ),
             ),
+
+            Align(alignment: Alignment.bottomCenter, child: Bottomcardlink()),
 
             // TextSpan(
 

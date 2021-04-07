@@ -121,8 +121,8 @@ class Constantstring {
   static String sharetestimonial =
       "http://merckfoundation.org/mfindia/web/public/merck-foundation-alumni-testimonials";
 
-  static String sharenewsletter =
-      "http://merckfoundation.org/mfindia/web/public/newsletters-and-articles";
+  static String sharenewsletter = "http://merck-foundation.com/News-Articles";
+
   static String sharecallforapp =
       "http://merckfoundation.org/mfindia/web/public/call-for-applications";
   static String sharenewsrelease =

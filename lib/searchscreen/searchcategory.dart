@@ -226,6 +226,8 @@ class SearchcategoryState extends State<Searchcategory>
 
       // String body = json.encode(bodyData);
       print(bodyData);
+
+      print(APIManager.searchapi);
       var response = await fetchPostWithBodyResponse(
         APIManager.searchapi,
         bodyData,
@@ -295,6 +297,7 @@ class SearchcategoryState extends State<Searchcategory>
                   MaterialPageRoute(
                       builder: (BuildContext context) => Search(
                             categorytype: 5,
+                            baseurl: res['base_url'],
                           )));
             });
           } else if (categoryController.text == "Photo") {
@@ -307,6 +310,7 @@ class SearchcategoryState extends State<Searchcategory>
                   MaterialPageRoute(
                       builder: (BuildContext context) => Search(
                             categorytype: 6,
+                            baseurl: res['base_url'],
                           )));
             });
           } else if (categoryController.text == "Media") {
@@ -331,6 +335,7 @@ class SearchcategoryState extends State<Searchcategory>
                   MaterialPageRoute(
                       builder: (BuildContext context) => Search(
                             categorytype: 8,
+                            baseurl: res['base_url'],
                           )));
             });
           } else if (categoryController.text == "Awards") {
