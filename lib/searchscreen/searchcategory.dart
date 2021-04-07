@@ -28,9 +28,9 @@ class SearchcategoryState extends State<Searchcategory>
   bool isexpanded = false;
   List searchcategorylist = [
     "Video",
-    "News_Release",
+    "News Release",
     "Articles",
-    "Ceo_Message",
+    "Ceo Message",
     "Events",
     "Photo",
     "Media",
@@ -109,7 +109,7 @@ class SearchcategoryState extends State<Searchcategory>
                 left: 20,
                 right: 20,
               ),
-              child: TextField(
+              child: TextFormField(
                 enabled: true,
                 controller: keywordController,
                 decoration: InputDecoration(
@@ -128,7 +128,12 @@ class SearchcategoryState extends State<Searchcategory>
                 height: 60,
                 child: GestureDetector(
                   onTap: () {
-                    search();
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    if (keywordController.text == "") {
+                      ShowDialogs.showToast("Please Select Keyword");
+                    } else {
+                      search();
+                    }
                   },
                   child: Container(
                     width: 110,
@@ -212,11 +217,17 @@ class SearchcategoryState extends State<Searchcategory>
       ShowDialogs.showLoadingDialog(context, _keyLoader);
       dynamic bodyData = {
         'search': keywordController.text,
-        'search_type': categoryController.text
+        'search_type': categoryController.text == "News Release"
+            ? "News_Release"
+            : categoryController.text == "Ceo Message"
+                ? "Ceo_Message"
+                : categoryController.text
       };
 
       // String body = json.encode(bodyData);
       print(bodyData);
+
+      print(APIManager.searchapi);
       var response = await fetchPostWithBodyResponse(
         APIManager.searchapi,
         bodyData,
@@ -240,7 +251,7 @@ class SearchcategoryState extends State<Searchcategory>
                             categorytype: 1,
                           )));
             });
-          } else if (categoryController.text == "News_Release") {
+          } else if (categoryController.text == "News Release") {
             // SearchnewreleasecategoryResponse resp = res;
             setState(() {
               Constantstring.baseUrl = res['base_url'];
@@ -286,6 +297,7 @@ class SearchcategoryState extends State<Searchcategory>
                   MaterialPageRoute(
                       builder: (BuildContext context) => Search(
                             categorytype: 5,
+                            baseurl: res['base_url'],
                           )));
             });
           } else if (categoryController.text == "Photo") {
@@ -298,6 +310,7 @@ class SearchcategoryState extends State<Searchcategory>
                   MaterialPageRoute(
                       builder: (BuildContext context) => Search(
                             categorytype: 6,
+                            baseurl: res['base_url'],
                           )));
             });
           } else if (categoryController.text == "Media") {
@@ -312,7 +325,7 @@ class SearchcategoryState extends State<Searchcategory>
                             categorytype: 7,
                           )));
             });
-          } else if (categoryController.text == "Ceo_Message") {
+          } else if (categoryController.text == "Ceo Message") {
             // SearchnewreleasecategoryResponse resp = res;
             setState(() {
               Constantstring.baseUrl = res['base_url'];
@@ -322,6 +335,7 @@ class SearchcategoryState extends State<Searchcategory>
                   MaterialPageRoute(
                       builder: (BuildContext context) => Search(
                             categorytype: 8,
+                            baseurl: res['base_url'],
                           )));
             });
           } else if (categoryController.text == "Awards") {
