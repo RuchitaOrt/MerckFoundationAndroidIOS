@@ -503,108 +503,142 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                       );
                                     },
                                   )
-                                : widget.categorytype == 7
-                                    ? ListView.builder(
-                                        itemCount: GlobalLists
-                                            .searchmedialisting.length,
+                                : widget.categorytype == 6
+                                    ? GridView.count(
                                         shrinkWrap: true,
                                         physics: ScrollPhysics(),
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
+                                        padding: const EdgeInsets.all(5),
+                                        crossAxisSpacing: 0,
+                                        mainAxisSpacing: 2,
+                                        crossAxisCount: 2,
+                                        childAspectRatio: 0.9,
+                                        children: List.generate(
+                                            GlobalLists.searchphotolisting
+                                                .length, (index) {
+                                          // if (GlobalLists.viewmoremmtmlist.length - 1 == index &&
+                                          //     _isLoading) {
+                                          //   return Center(
+                                          //     child: CircularProgressIndicator(),
+                                          //   );
+                                          // } else {
                                           return Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 8, right: 8, bottom: 6),
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            VideoPlayer(
-                                                              videoUrl: GlobalLists
-                                                                          .searchmedialisting[
-                                                                      index]
-                                                                  ['media_url'],
-                                                            )));
-                                                // _launchURL(
-                                                //     GlobalLists.merckinMediaList[index].mediaUrl);
-                                              },
-                                              child: Card(
+                                                right: 2.0),
+                                            child: Card(
                                                 elevation: 2,
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.all(
-                                                    Radius.circular(5),
+                                                    Radius.circular(1),
                                                   ),
                                                 ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10,
-                                                          right: 10,
-                                                          top: 8,
-                                                          bottom: 8),
-                                                  child: Column(
-                                                    children: [
-                                                      Row(
-                                                        // mainAxisAlignment: MainAxisAlignment.start,
-                                                        //crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          ClipRect(
-                                                            child: FadeInImage
-                                                                .assetNetwork(
-                                                              placeholder:
-                                                                  'assets/newImages/placeholder_3.jpg',
-                                                              image: Constantstring
-                                                                      .baseUrl +
-                                                                  GlobalLists.searchmedialisting[
-                                                                          index]
-                                                                      ['image'],
-                                                              fit: BoxFit.cover,
-                                                              height: 80,
-                                                              width: 80,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    ShowDialogs.showImageDialog(
+                                                      context: context,
+                                                      image: Constantstring
+                                                              .baseUrl +
+                                                          GlobalLists
+                                                              .searchphotolisting[
+                                                                  index]
+                                                              .photo,
+                                                      description: GlobalLists
+                                                          .searchphotolisting[
+                                                              index]
+                                                          .photoDescription,
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    color: Colors.transparent,
+                                                    width: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        50,
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: <Widget>[
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Container(
+                                                            // width:
+                                                            //     SizeConfig.blockSizeHorizontal *
+                                                            //         100,
+                                                            // height: 150,
+                                                            width: SizeConfig
+                                                                    .blockSizeHorizontal *
+                                                                100,
+                                                            height: SizeConfig
+                                                                    .blockSizeVertical *
+                                                                16,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
+                                                              // border: Border.all(
+                                                              //   width: 1,
+                                                              // ),
+                                                              image:
+                                                                  new DecorationImage(
+                                                                image: new NetworkImage(Constantstring
+                                                                        .baseUrl +
+                                                                    GlobalLists
+                                                                        .searchphotolisting[
+                                                                            index]
+                                                                        .photo),
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                              ),
                                                             ),
                                                           ),
-                                                          SizedBox(
-                                                            width: 10,
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(4.0),
+                                                          child: Text(
+                                                            GlobalLists
+                                                                .searchphotolisting[
+                                                                    index]
+                                                                .photoDescription,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: ResponsiveFlutter.of(
+                                                                        context)
+                                                                    .fontSize(
+                                                                        1.4),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                            maxLines: 3,
                                                           ),
-                                                          Expanded(
-                                                            child: Text(
-                                                              GlobalLists
-                                                                      .searchmedialisting[
-                                                                  index]['title'],
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: ResponsiveFlutter.of(
-                                                                          context)
-                                                                      .fontSize(
-                                                                          1.8),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                              maxLines: 4,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
+                                                        ),
+                                                        SizedBox(height: 5),
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
-                                            ),
+                                                )),
                                           );
-                                        },
+                                          // }
+                                        }),
                                       )
-                                    : widget.categorytype == 8
+                                    : widget.categorytype == 7
                                         ? ListView.builder(
                                             itemCount: GlobalLists
-                                                .searchceomeassagelisting
-                                                .length,
+                                                .searchmedialisting.length,
                                             shrinkWrap: true,
                                             physics: ScrollPhysics(),
                                             itemBuilder: (BuildContext context,
@@ -616,16 +650,20 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                     bottom: 6),
                                                 child: GestureDetector(
                                                   onTap: () {
-                                                    // Navigator.push(
-                                                    //     context,
-                                                    //     MaterialPageRoute(
-                                                    //         builder: (BuildContext
-                                                    //                 context) =>
-                                                    //             Detailpage(
-                                                    //               indexIs:
-                                                    //                   index,
-                                                    //               callfrom: 2,
-                                                    //             )));
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                VideoPlayer(
+                                                                  videoUrl: GlobalLists
+                                                                              .searchmedialisting[
+                                                                          index]
+                                                                      [
+                                                                      'media_url'],
+                                                                )));
+                                                    // _launchURL(
+                                                    //     GlobalLists.merckinMediaList[index].mediaUrl);
                                                   },
                                                   child: Card(
                                                     elevation: 2,
@@ -633,16 +671,16 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                         RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.all(
-                                                        Radius.circular(10),
+                                                        Radius.circular(5),
                                                       ),
                                                     ),
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              bottom: 8,
                                                               left: 10,
                                                               right: 10,
-                                                              top: 8),
+                                                              top: 8,
+                                                              bottom: 8),
                                                       child: Column(
                                                         children: [
                                                           Row(
@@ -657,7 +695,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                                   image: Constantstring
                                                                           .baseUrl +
                                                                       GlobalLists
-                                                                              .searchceomeassagelisting[index]
+                                                                              .searchmedialisting[index]
                                                                           [
                                                                           'image'],
                                                                   fit: BoxFit
@@ -670,27 +708,24 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                                 width: 10,
                                                               ),
                                                               Expanded(
-                                                                child: Column(
-                                                                  children: [
-                                                                    Text(
-                                                                      GlobalLists
-                                                                              .searchceomeassagelisting[index]
-                                                                          [
-                                                                          'title'],
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      style: TextStyle(
-                                                                          color: Customcolor
-                                                                              .colorblack,
-                                                                          fontSize: ResponsiveFlutter.of(context).fontSize(
+                                                                child: Text(
+                                                                  GlobalLists.searchmedialisting[
+                                                                          index]
+                                                                      ['title'],
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize: ResponsiveFlutter.of(
+                                                                              context)
+                                                                          .fontSize(
                                                                               1.8),
-                                                                          fontWeight:
-                                                                              FontWeight.w500),
-                                                                      maxLines:
-                                                                          4,
-                                                                    ),
-                                                                  ],
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500),
+                                                                  maxLines: 4,
                                                                 ),
                                                               ),
                                                             ],
@@ -703,10 +738,11 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                               );
                                             },
                                           )
-                                        : widget.categorytype == 9
+                                        : widget.categorytype == 8
                                             ? ListView.builder(
                                                 itemCount: GlobalLists
-                                                    .searchawardlisting.length,
+                                                    .searchceomeassagelisting
+                                                    .length,
                                                 shrinkWrap: true,
                                                 physics: ScrollPhysics(),
                                                 itemBuilder:
@@ -719,95 +755,81 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                             right: 8,
                                                             bottom: 6),
                                                     child: GestureDetector(
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                        // Navigator.push(
+                                                        //     context,
+                                                        //     MaterialPageRoute(
+                                                        //         builder: (BuildContext
+                                                        //                 context) =>
+                                                        //             Detailpage(
+                                                        //               indexIs:
+                                                        //                   index,
+                                                        //               callfrom: 2,
+                                                        //             )));
+                                                      },
                                                       child: Card(
                                                         elevation: 2,
                                                         shape:
                                                             RoundedRectangleBorder(
                                                           borderRadius:
                                                               BorderRadius.all(
-                                                            Radius.circular(4),
+                                                            Radius.circular(10),
                                                           ),
                                                         ),
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets
                                                                       .only(
-                                                                  bottom: 0,
+                                                                  bottom: 8,
                                                                   left: 10,
                                                                   right: 10,
                                                                   top: 8),
                                                           child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
                                                             children: [
-                                                              Html(
-                                                                data:
-                                                                    """${GlobalLists.searchawardlisting[index]['title']} """,
-                                                                onLinkTap:
-                                                                    (url) {
-                                                                  print(
-                                                                      "Opening $url...");
-                                                                },
-                                                                style: {
-                                                                  "body": Style(
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .start,
-                                                                      color: Customcolor
-                                                                          .pink_col,
-                                                                      fontSize:
-                                                                          FontSize
-                                                                              .large,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500),
-                                                                },
-                                                              ),
-                                                              SizedBox(
-                                                                height: 10,
-                                                              ),
                                                               Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
+                                                                // mainAxisAlignment: MainAxisAlignment.start,
+                                                                //crossAxisAlignment: CrossAxisAlignment.start,
                                                                 children: [
-                                                                  GestureDetector(
-                                                                    onTap: () {
-                                                                      // getawarddetail(GlobalLists
-                                                                      //     .awardlisting[
-                                                                      //         index]
-                                                                      //     .pageUrl);
-                                                                    },
-                                                                    child:
-                                                                        Container(
-                                                                      width:
-                                                                          110,
+                                                                  ClipRect(
+                                                                    child: FadeInImage
+                                                                        .assetNetwork(
+                                                                      placeholder:
+                                                                          'assets/newImages/placeholder_3.jpg',
+                                                                      image: Constantstring
+                                                                              .baseUrl +
+                                                                          GlobalLists.searchceomeassagelisting[index]
+                                                                              [
+                                                                              'image'],
+                                                                      fit: BoxFit
+                                                                          .cover,
                                                                       height:
-                                                                          40,
-                                                                      decoration: BoxDecoration(
-                                                                          color: Colors
-                                                                              .amber,
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(5)),
-                                                                      child:
-                                                                          Center(
-                                                                        child:
-                                                                            Text(
-                                                                          "Read More",
-                                                                          style: TextStyle(
-                                                                              color: Customcolor.text_darkblue,
-                                                                              fontWeight: FontWeight.w500),
-                                                                        ),
-                                                                      ),
+                                                                          80,
+                                                                      width: 80,
                                                                     ),
                                                                   ),
-                                                                  Image.asset(
-                                                                    "assets/images/trophy.png",
-                                                                    width: 70,
-                                                                    height: 70,
-                                                                  )
+                                                                  SizedBox(
+                                                                    width: 10,
+                                                                  ),
+                                                                  Expanded(
+                                                                    child:
+                                                                        Column(
+                                                                      children: [
+                                                                        Text(
+                                                                          GlobalLists.searchceomeassagelisting[index]
+                                                                              [
+                                                                              'title'],
+                                                                          overflow:
+                                                                              TextOverflow.ellipsis,
+                                                                          style: TextStyle(
+                                                                              color: Customcolor.colorblack,
+                                                                              fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
+                                                                              fontWeight: FontWeight.w500),
+                                                                          maxLines:
+                                                                              4,
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
                                                                 ],
                                                               ),
                                                             ],
@@ -818,7 +840,123 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                   );
                                                 },
                                               )
-                                            : Container()
+                                            : widget.categorytype == 9
+                                                ? ListView.builder(
+                                                    itemCount: GlobalLists
+                                                        .searchawardlisting
+                                                        .length,
+                                                    shrinkWrap: true,
+                                                    physics: ScrollPhysics(),
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 8,
+                                                                right: 8,
+                                                                bottom: 6),
+                                                        child: GestureDetector(
+                                                          onTap: () {},
+                                                          child: Card(
+                                                            elevation: 2,
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .all(
+                                                                Radius.circular(
+                                                                    4),
+                                                              ),
+                                                            ),
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      bottom: 0,
+                                                                      left: 10,
+                                                                      right: 10,
+                                                                      top: 8),
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Html(
+                                                                    data:
+                                                                        """${GlobalLists.searchawardlisting[index]['title']} """,
+                                                                    onLinkTap:
+                                                                        (url) {
+                                                                      print(
+                                                                          "Opening $url...");
+                                                                    },
+                                                                    style: {
+                                                                      "body": Style(
+                                                                          textAlign: TextAlign
+                                                                              .start,
+                                                                          color: Customcolor
+                                                                              .pink_col,
+                                                                          fontSize: FontSize
+                                                                              .large,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    },
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          // getawarddetail(GlobalLists
+                                                                          //     .awardlisting[
+                                                                          //         index]
+                                                                          //     .pageUrl);
+                                                                        },
+                                                                        child:
+                                                                            Container(
+                                                                          width:
+                                                                              110,
+                                                                          height:
+                                                                              40,
+                                                                          decoration: BoxDecoration(
+                                                                              color: Colors.amber,
+                                                                              borderRadius: BorderRadius.circular(5)),
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Text(
+                                                                              "Read More",
+                                                                              style: TextStyle(color: Customcolor.text_darkblue, fontWeight: FontWeight.w500),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      Image
+                                                                          .asset(
+                                                                        "assets/images/trophy.png",
+                                                                        width:
+                                                                            70,
+                                                                        height:
+                                                                            70,
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  )
+                                                : Container()
           ],
         ));
   }

@@ -56,15 +56,24 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
             //   Navigator.pop(context);
             // }
           },
-          index: widget.callfrom == 1 ? 2 : 1,
+          index: widget.callfrom == 1
+              ? 2
+              : widget.callfrom == 3
+                  ? 2
+                  : 1,
           titleshowingindex: "1",
           sharelink: widget.callfrom == 1
               ? Constantstring.sharearticledetailpage +
                   GlobalLists.newsLettersList[widget.indexIs].detailPageUrl
-              : "",
+              : widget.callfrom == 3
+                  ? Constantstring.sharearticledetailpage +
+                      GlobalLists.homeceoList[widget.indexIs].detailPageUrl
+                  : "",
           title: widget.callfrom == 1
               ? GlobalLists.newsLettersList[widget.indexIs].title
-              : "Articles",
+              : widget.callfrom == 3
+                  ? GlobalLists.homeceoList[widget.indexIs].title
+                  : "Articles",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -198,54 +207,114 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                 ],
                               ),
                             )
-                          : Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 15, right: 8, top: 8, bottom: 15),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Html(
-                                    data:
-                                        """${GlobalLists.searcharticlelisting[widget.indexIs]['detail_page_url']} """,
-                                    onLinkTap: (url) {
-                                      print("Opening $url...");
-                                      ShowDialogs.launchURL(url);
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  // Html(
-                                  //   data:
-                                  //       """${GlobalLists.newsLettersList[widget.indexIs].detailPageUrl} """,
-                                  //   onLinkTap: (url) {
-                                  //     print("Opening $url...");
-                                  //   },
-                                  // ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.only(
-                                  //       right: 60, left: 60, top: 20),
-                                  //   child: Image.asset(
-                                  //     "assets/newImages/flowers_footer.png",
-                                  //   ),
-                                  // ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 0, left: 0),
-                                    child: Align(
-                                      alignment: Alignment.topRight,
-                                      child: Image.asset(
-                                        "assets/newImages/flowers_footer.png",
-                                        height: 170,
+                          : widget.callfrom == 3
+                              ? Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 8, right: 8, top: 8, bottom: 15),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Html(
+                                        data:
+                                            """${GlobalLists.homeceoList[widget.indexIs].title} """,
+                                        onLinkTap: (url) {
+                                          print("Opening $url...");
+                                          ShowDialogs.launchURL(url);
+                                        },
+                                        style: {
+                                          "body": Style(
+                                              textAlign: TextAlign.center,
+                                              color: Customcolor.colorVoilet,
+                                              fontSize: FontSize.larger,
+                                              fontWeight: FontWeight.w600),
+                                        },
                                       ),
-                                    ),
+                                      Html(
+                                        data:
+                                            """${GlobalLists.homeceoList[widget.indexIs].details} """,
+                                        onLinkTap: (url) {
+                                          print("Opening $url...");
+                                          ShowDialogs.launchURL(url);
+                                        },
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+
+                                      // Padding(
+                                      //   padding: const EdgeInsets.only(
+                                      //       right: 60, left: 60, top: 20),
+                                      //   child: Image.asset(
+                                      //     "assets/newImages/flowers_footer.png",
+                                      //   ),
+                                      // ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 0, left: 0),
+                                        child: Align(
+                                          alignment: Alignment.topRight,
+                                          child: Image.asset(
+                                            "assets/newImages/flowers_footer.png",
+                                            height: 170,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      )
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  )
-                                ],
-                              ),
-                            )
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 15, right: 8, top: 8, bottom: 15),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Html(
+                                        data:
+                                            """${GlobalLists.searcharticlelisting[widget.indexIs]['detail_page_url']} """,
+                                        onLinkTap: (url) {
+                                          print("Opening $url...");
+                                          ShowDialogs.launchURL(url);
+                                        },
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      // Html(
+                                      //   data:
+                                      //       """${GlobalLists.newsLettersList[widget.indexIs].detailPageUrl} """,
+                                      //   onLinkTap: (url) {
+                                      //     print("Opening $url...");
+                                      //   },
+                                      // ),
+                                      // Padding(
+                                      //   padding: const EdgeInsets.only(
+                                      //       right: 60, left: 60, top: 20),
+                                      //   child: Image.asset(
+                                      //     "assets/newImages/flowers_footer.png",
+                                      //   ),
+                                      // ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 0, left: 0),
+                                        child: Align(
+                                          alignment: Alignment.topRight,
+                                          child: Image.asset(
+                                            "assets/newImages/flowers_footer.png",
+                                            height: 170,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      )
+                                    ],
+                                  ),
+                                )
                 ],
               ),
             ),

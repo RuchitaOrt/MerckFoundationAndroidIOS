@@ -205,7 +205,7 @@ class NewsState extends State<NewsPageDashboard> {
                                           builder: (BuildContext context) =>
                                               Detailpage(
                                                 indexIs: index,
-                                                callfrom: 1,
+                                                callfrom: 3,
                                               )));
                                 },
                                 child: Card(
