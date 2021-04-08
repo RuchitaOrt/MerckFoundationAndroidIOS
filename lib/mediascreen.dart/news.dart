@@ -134,13 +134,13 @@ class NewsState extends State<NewsPage> {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-            // Navigator.pop(context);
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(
-                          index: 0,
-                        )));
+            Navigator.pop(context);
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Dashboard(
+            //               index: 0,
+            //             )));
           },
           index: 1,
           sharelink: Constantstring.sharenewsletter,
