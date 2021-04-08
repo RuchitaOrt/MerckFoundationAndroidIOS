@@ -40,6 +40,8 @@ class CallApplicationState extends State<CallforApplication>
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   @override
   void initState() {
+    GlobalLists.upcomingevent.clear();
+    GlobalLists.pastevent.clear();
     // API.callforapplication
     getcallforapp(widget.apiurl);
     super.initState();
@@ -86,74 +88,70 @@ class CallApplicationState extends State<CallforApplication>
         height: 85,
       ),
       body: Column(
-          // Column
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(top: 15),
-              color: Customcolor.background, // Tab Bar color change
-              child: TabBar(
-                // TabBar
+        // Column
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(top: 15),
+            color: Customcolor.background, // Tab Bar color change
+            child: TabBar(
+              // TabBar
 
-                controller: _tabController,
-                labelColor: Customcolor.text_darkblue,
-                unselectedLabelColor: Customcolor.text_grey,
-                indicatorSize: TabBarIndicatorSize.label,
+              controller: _tabController,
+              labelColor: Customcolor.text_darkblue,
+              unselectedLabelColor: Customcolor.text_grey,
+              indicatorSize: TabBarIndicatorSize.label,
 
-                indicatorWeight: 2,
-                indicatorColor: Customcolor.text_darkblue,
+              indicatorWeight: 2,
+              indicatorColor: Customcolor.text_darkblue,
 
-                tabs: <Widget>[
-      Tab(
-        child: Text(
-          "Upcoming Call for \nApplications",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              //   color: Customcolor.colorBlue,
-              fontSize: 15,
-              fontWeight: FontWeight.w700),
-        ),
-      ),
-      Tab(
-        child: Text(
-          "Past Call for \nApplications",
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
-        ),
-      ),
-                ],
-              ),
+              tabs: <Widget>[
+                Tab(
+                  child: Text(
+                    "Upcoming Call for \nApplications",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        //   color: Customcolor.colorBlue,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Past Call for \nApplications",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 20,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            flex: 3,
+            child: TabBarView(
+              // Tab Bar View
+              physics: NeverScrollableScrollPhysics(),
+              controller: _tabController,
+              children: <Widget>[
+                GlobalLists.upcomingevent.length <= 0
+                    ? Container(
+                        child: Center(child: Text(Constantstring.emptyData)),
+                      )
+                    : upcomingEvents(),
+                GlobalLists.pastevent.length <= 0
+                    ? Container(
+                        child: Center(child: Text(Constantstring.emptyData)),
+                      )
+                    : pastEvents()
+              ],
             ),
-            Expanded(
-              flex: 3,
-              child: TabBarView(
-                // Tab Bar View
-                physics: NeverScrollableScrollPhysics(),
-                controller: _tabController,
-                children: <Widget>[
-      GlobalLists.upcomingevent.length <= 0
-          ? Container(
-              child: Center(child: Text(Constantstring.emptyData)),
-            )
-          : upcomingEvents(),
-      GlobalLists.pastevent.length <= 0
-          ? Container(
-              child: Center(child: Text(Constantstring.emptyData)),
-            )
-          : pastEvents()
-                ],
-              ),
-            ),
-
-             
+          ),
 
           //  Bottomcardlink()
-
-            
-          ],
-        ),
+        ],
+      ),
     );
 
     //  new TabBarView(
@@ -166,7 +164,7 @@ class CallApplicationState extends State<CallforApplication>
     return Container(
       height: double.infinity,
       // color: Colors.grey.shade800,
-     // padding: EdgeInsets.only(left: 8, right: 8, top: 8),
+      // padding: EdgeInsets.only(left: 8, right: 8, top: 8),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -278,20 +276,20 @@ class CallApplicationState extends State<CallforApplication>
             //   height: 10,
             // )
 
-             Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                      height: 170,
-                    ),
-                  ),
+            Padding(
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Bottomcardlink(),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Bottomcardlink(),
           ],
         ),
       ),
@@ -302,7 +300,7 @@ class CallApplicationState extends State<CallforApplication>
     return Container(
       height: double.infinity,
       // color: Colors.grey.shade800,
-    //  padding: EdgeInsets.only(left: 8, right: 8, top: 8),
+      //  padding: EdgeInsets.only(left: 8, right: 8, top: 8),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -416,21 +414,20 @@ class CallApplicationState extends State<CallforApplication>
             //   height: 10,
             // )
 
-
-             Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                      height: 170,
-                    ),
-                  ),
+            Padding(
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Bottomcardlink(),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Bottomcardlink(),
           ],
         ),
       ),
