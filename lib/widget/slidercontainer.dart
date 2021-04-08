@@ -72,8 +72,8 @@ class PauseImage extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Positioned(
-      top: SizeConfig.blockSizeVertical * 5.5,
-      left: SizeConfig.blockSizeVertical * 7.5,
+      top: SizeConfig.blockSizeVertical * 6.2,
+      left: SizeConfig.blockSizeVertical * 10.0,
       child: Center(
         child: Image.asset(
           "assets/newImages/pause.png",
