@@ -437,6 +437,100 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                 .stemprogramlistsubmenu[
                                                                     index]
                                                                 .menuUrl);
+                                                      } else if (GlobalLists
+                                                              .stemprogramlistsubmenu[
+                                                                  index]
+                                                              .menuUrl ==
+                                                          "Photos") {
+                                                        print("call api here");
+                                                        String menuurl = GlobalLists
+                                                            .stemprogramlistsubmenu[
+                                                                index]
+                                                            .menuUrl;
+                                                        //
+                                                        List<String> splits =
+                                                            menuurl.split('/');
+                                                        print("last elemt");
+                                                        print(splits[
+                                                            splits.length - 1]);
+                                                        String pageurl = splits[
+                                                            splits.length - 1];
+
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    ViewmoreAlbum(
+                                                                      apiurl: APIManager
+                                                                          .viewmorealbum,
+                                                                      albumtitle:
+                                                                          pageurl,
+                                                                      sharelink: GlobalLists
+                                                                          .stemprogramlistsubmenu[
+                                                                              index]
+                                                                          .menuUrl,
+                                                                      albumurl:
+                                                                          pageurl
+                                                                              .trim(),
+                                                                    )));
+                                                      } else if (GlobalLists
+                                                              .stemprogramlistsubmenu[
+                                                                  index]
+                                                              .menuName ==
+                                                          "Photo") {
+                                                        print("call api here");
+                                                        String menuurl = GlobalLists
+                                                            .stemprogramlistsubmenu[
+                                                                index]
+                                                            .menuUrl;
+                                                        //
+                                                        List<String> splits =
+                                                            menuurl.split('/');
+                                                        print("last elemt");
+                                                        print(splits[
+                                                            splits.length - 1]);
+                                                        String pageurl = splits[
+                                                            splits.length - 1];
+
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    ViewmoreAlbum(
+                                                                      apiurl: APIManager
+                                                                          .viewmorealbum,
+                                                                      albumtitle:
+                                                                          pageurl,
+                                                                      sharelink: GlobalLists
+                                                                          .stemprogramlistsubmenu[
+                                                                              index]
+                                                                          .menuUrl,
+                                                                      albumurl:
+                                                                          pageurl
+                                                                              .trim(),
+                                                                    )));
+                                                      } else if (GlobalLists
+                                                              .stemprogramlistsubmenu[
+                                                                  index]
+                                                              .menuName ==
+                                                          "Photo Gallery") {
+                                                        print("call api here");
+                                                        String menuurl = GlobalLists
+                                                            .stemprogramlistsubmenu[
+                                                                index]
+                                                            .menuUrl;
+
+                                                        List<String> splits =
+                                                            menuurl.split('/');
+                                                        print("last elemt");
+                                                        print(splits[
+                                                            splits.length - 1]);
+                                                        String pageurl = splits[
+                                                            splits.length - 1];
+                                                        print(pageurl);
+                                                        getphotodetail(pageurl);
                                                       } else {
                                                         print("detail");
                                                         getsteminnerapi(GlobalLists
