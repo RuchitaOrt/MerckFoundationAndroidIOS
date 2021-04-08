@@ -4,9 +4,11 @@ import 'dart:io';
 import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/ViewmoreAlbum.dart';
+import 'package:merckfoundation22dec/model/our_gallery_detail_response.dart';
 import 'package:merckfoundation22dec/model/stemsubmenuprogramlist.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckstemprogram.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/StemInnerPages.dart';
+import 'package:merckfoundation22dec/screens/our_gallery_detail.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -614,16 +616,21 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                                 } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photos")) {
                                                                                   print("call api here");
                                                                                   String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
-                                                                                  print(menuurl.split('${Constantstring.baseurllink}Merck_Events_Gallery/'));
-                                                                                  List<String> replacemenu = menuurl.split('${Constantstring.baseurllink}Merck_Events_Gallery/');
-                                                                                  print(replacemenu.toString());
-                                                                                  String firstreplace = replacemenu.toString();
-                                                                                  String first = firstreplace.replaceAll('[', "");
-                                                                                  String seconfreplace = first.toString();
-                                                                                  String second = seconfreplace.replaceAll(',', "");
-                                                                                  String thirdreplace = second.toString();
-                                                                                  String pageurl = thirdreplace.replaceAll(']', "");
-                                                                                  print(pageurl);
+                                                                                  //
+                                                                                  List<String> splits = menuurl.split('/');
+                                                                                  print("last elemt");
+                                                                                  print(splits[splits.length - 1]);
+                                                                                  String pageurl = splits[splits.length - 1];
+                                                                                  // print(menuurl.split('${Constantstring.baseurllink}Merck_Events_Gallery/'));
+                                                                                  // List<String> replacemenu = menuurl.split('${Constantstring.baseurllink}Merck_Events_Gallery/');
+                                                                                  // print(replacemenu.toString());
+                                                                                  // String firstreplace = replacemenu.toString();
+                                                                                  // String first = firstreplace.replaceAll('[', "");
+                                                                                  // String seconfreplace = first.toString();
+                                                                                  // String second = seconfreplace.replaceAll(',', "");
+                                                                                  // String thirdreplace = second.toString();
+                                                                                  // String pageurl = thirdreplace.replaceAll(']', "");
+                                                                                  // print(pageurl);
                                                                                   Navigator.push(
                                                                                       context,
                                                                                       MaterialPageRoute(
@@ -633,6 +640,16 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                                                 sharelink: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl,
                                                                                                 albumurl: pageurl.trim(),
                                                                                               )));
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photo Gallery")) {
+                                                                                  print("call api here");
+                                                                                  String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
+
+                                                                                  List<String> splits = menuurl.split('/');
+                                                                                  print("last elemt");
+                                                                                  print(splits[splits.length - 1]);
+                                                                                  String pageurl = splits[splits.length - 1];
+                                                                                  print(pageurl);
+                                                                                  getphotodetail(pageurl);
                                                                                 } else {
                                                                                   print("detail");
                                                                                   getsteminnerapi(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
@@ -697,6 +714,43 @@ class _MyHomePageState extends State<OurProgramStem> {
         )
         // This trailing comma makes auto-formatting nicer for build methods.
         );
+  }
+
+  getphotodetail(String categoryID) async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+    if (status1) {
+      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+      final json = {'category_id': categoryID, 'type': "2"};
+      print(json);
+      APIManager().apiRequest(context, API.ourgallerydetail, (response) async {
+        OurGalleryDetailsResponse resp = response;
+        print(response);
+        print('Resp : $resp');
+        print(API.ourgallerydetail);
+        //  Navigator.of(_keyLoader.currentContext).pop();
+        if (resp.success == "True".toLowerCase()) {
+          setState(() {
+            print(resp.list);
+            // GlobalLists.awarddetallisting[0].title
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => OurGalleryDetailsPage(
+                          categoryID: categoryID,
+                          galleryDetailsResponse: resp,
+                        )));
+          });
+        } else {
+          ShowDialogs.showToast(resp.msg);
+        }
+      }, (error) {
+        print('ERR msg is $error');
+        ShowDialogs.showToast("Server Not Responding");
+        //  Navigator.of(_keyLoader.currentContext).pop();
+      }, jsonval: json);
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 
   getstemprogram() async {

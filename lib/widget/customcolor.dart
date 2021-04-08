@@ -203,8 +203,8 @@ class Constantstring {
 
   //digital share
   static String sharedigitalhome =
-      "http://merckfoundation.org/mfindia/web/public/Digital-Library/Home";
-      
+      "${baseurllink}Digital-Library";
+
   static String sharedigitalmmtm =
       "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Digital-Library";
   static String sharedigitalcancer =
@@ -214,7 +214,7 @@ class Constantstring {
  
  
   static String sharedigitalfirst =
-      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-first-ladies-initiative-summit";
+      "${baseurllink}our-programs/Merck-Foundation-First-Ladies-Initiative-Summit-MFFLI/Digital-Library";
 
 
 
@@ -252,28 +252,28 @@ class Constantstring {
   static String sharewatchallvideoaboutmmtm =
       "${baseurllink}watch_all_videos/about-merck-foundation-more-than-a-mother";
   static String sharewatchallvideoafrica =
-      "${baseurllink}";
+      "${baseurllink}our-programs/Merck-Foundation-Africa-Asia-Luminary/Video";
   static String sharewatchallvideoeducatinglinda =
       "${baseurllink}our-programs/Merck-Foundation-Educating-Linda-Program/Video";
   static String sharewatchallvideofertility =
       "${baseurllink}watch_all_videos/merck-foundation-fertility-and-embryology-training-program";
   static String sharewatchallvideofirstlady =
-      "${baseurllink}our-programs/Merck-Foundation-First-Ladies-Initiative-Summit-MFFLI/Videos";
+      "${baseurllink}our-programs/Merck-Foundation-First-Ladies-Initiative-Summit-MFFLI/Video";
 
   static String sharewatchallvideocapaity =
-      "${baseurllink}our-programs/Merck-Foundation-Capacity-Advancement-Nationwide-Diabetes-Blue-Points-Program/Videos";
+      "${baseurllink}our-programs/Merck-Foundation-Capacity-Advancement-Nationwide-Diabetes-Blue-Points-Program/Video";
   static String sharewatchallvideommtm =
-      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Videos";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Video";
   static String sharewatchallvideostem =
       "${baseurllink}our-programs/Merck-Foundation-STEM-Program/Video";
   static String sharewatchallvideosubstain =
       "${baseurllink}";
   static String sharewatchallvideocancer =
-      "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Videos";
+      "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Video";
   static String sharewatchallvideovideommtm =
-      "${baseurllink}";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Video";
   static String sharewatchallvideovideocancer =
-      "${baseurllink}";
+      "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Video";
 
   //followus Merck Foundation More Than a Mother
   static String followmmtminsta =
