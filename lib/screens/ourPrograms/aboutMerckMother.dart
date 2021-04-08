@@ -273,7 +273,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
               cardTitle:
                   "Watch Below videos of Merck More Than a Mother Launch in African Countries :",
               btnTitle: "Watch More",
-              heigthoflist: SizeConfig.blockSizeVertical * 34,
+               heigthoflist: SizeConfig.blockSizeVertical * 36,
               
               onbtnTap: () {
                 // Navigator.push(
@@ -399,7 +399,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 15,
+                                            height: 5,
                                           )
                       ],
                     ),
