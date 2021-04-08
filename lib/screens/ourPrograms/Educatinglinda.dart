@@ -120,7 +120,7 @@ class EducatingLindaState extends State<EducatingLinda>
         title: "Merck Foundation Educating Linda Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
-        trallingImg2: "assets/newImages/search.png",
+        trallingImg2: "assets/newImages/search.png", 
         height: 85,
       ),
       body: Container(
@@ -1851,7 +1851,7 @@ SizedBox(
               cardsubtitle: "Our ",
               cardTitle: "Videos",
               btnTitle: "Watch More",
-              heigthoflist: SizeConfig.blockSizeVertical * 32,
+             // heigthoflist: SizeConfig.blockSizeVertical * 32,
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -1902,6 +1902,7 @@ SizedBox(
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
+                                height: SizeConfig.blockSizeVertical * 25,
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
                                       'assets/newImages/placeholder_3.jpg',
@@ -1969,7 +1970,7 @@ SizedBox(
                                 color: Colors.black87,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700),
-                            maxLines: 3,
+                            maxLines: 2,
                           ),
                         ),
                        

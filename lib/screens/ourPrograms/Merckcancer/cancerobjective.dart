@@ -144,9 +144,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                     //     ),
                     //   ),
                     // ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    
                   ],
                 ),
               ),
@@ -161,9 +159,9 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
               //           // ),
               //           ),
               // ),
-              SizedBox(
-                height: 10,
-              ),
+              // SizedBox(
+              //   height: 10,
+              // ),
 
               Align(
                 alignment: Alignment.bottomCenter,
@@ -177,6 +175,10 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                     ),
                   ),
                 ),
+              ),
+
+               SizedBox(
+                height: 40,
               ),
 
               //  Align(
@@ -209,7 +211,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
             cancer.CancerobjectiveResponse.fromJson(res);
         print(homepageres);
         List<dynamic> section1 = homepageres.middleArea.the1.content.list;
-        Map<String, dynamic> lastsection = homepageres.rightArea;
+        // Map<String, dynamic> lastsection = homepageres.rightArea;
 
         dynamic contentsection = homepageres.middleArea.the1.content.list;
 
@@ -234,47 +236,48 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
         //   print(GlobalLists.homecontentlist.length);
         // }
         /////right section
-        List<String> rigthareakey = [];
-        print(lastsection);
-        lastsection.keys.forEach((element) {
-          rigthareakey.add(element.toString());
-        });
+        // List<String> rigthareakey = [];
+        //  print("----------------------");
+        // print(lastsection);
+        // lastsection.keys.forEach((element) {
+        //   rigthareakey.add(element.toString());
+        // });
 
-        for (int i = 0; i < lastsection.length; i++) {
-          //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-          //  print(categoryKeys.videos.type);
-          dynamic rightsection = res['Right_area'][rigthareakey[i]];
-          print(rightsection);
-          // print("TKey: ${rightsection.keys.first}");
-          var rightsectioncategoryname = rightsection.keys.first;
+        // for (int i = 0; i < lastsection.length; i++) {
+        //   //  MiddleArea categoryKeys = section1[(i + 1).toString()];
+        //   //  print(categoryKeys.videos.type);
+        //   dynamic rightsection = res['Right_area'][rigthareakey[i]];
+        //   print(rightsection);
+        //   // print("TKey: ${rightsection.keys.first}");
+        //   var rightsectioncategoryname = rightsection.keys.first;
 
-          setState(() {
-            typewidetofrightsection.add(rightsectioncategoryname);
+        //   setState(() {
+        //     typewidetofrightsection.add(rightsectioncategoryname);
 
-            print(typewidetofrightsection);
-            _tabController = new TabController(
-                vsync: this, length: typewidetofrightsection.length);
-          });
+        //     print(typewidetofrightsection);
+        //     _tabController = new TabController(
+        //         vsync: this, length: typewidetofrightsection.length);
+        //   });
 
-          if (rightsectioncategoryname.toString().toLowerCase() ==
-              "call_for_app".toLowerCase()) {
-            GlobalLists.homecallforapp =
-                homepageres.rightArea[rigthareakey[i]].callForApp.list;
-            GlobalLists.homeCallForAppBaseURL =
-                homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
-            print(GlobalLists.homecallforapp.length);
-          } else if (rightsectioncategoryname.toString().toLowerCase() ==
-              "digital_library".toLowerCase()) {
-            GlobalLists.homedigitallib =
-                homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
-            GlobalLists.homeDigitalLibraryBaseURL =
-                homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
-            print(GlobalLists.homedigitallib.length);
-          }
-        }
+        //   if (rightsectioncategoryname.toString().toLowerCase() ==
+        //       "call_for_app".toLowerCase()) {
+        //     GlobalLists.homecallforapp =
+        //         homepageres.rightArea[rigthareakey[i]].callForApp.list;
+        //     GlobalLists.homeCallForAppBaseURL =
+        //         homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
+        //     print(GlobalLists.homecallforapp.length);
+        //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
+        //       "digital_library".toLowerCase()) {
+        //     GlobalLists.homedigitallib =
+        //         homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
+        //     GlobalLists.homeDigitalLibraryBaseURL =
+        //         homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
+        //     print(GlobalLists.homedigitallib.length);
+        //   }
+        // }
         setState(() {
           isMiddleSectionLoaded = true;
-          isrightSectionLoaded = true;
+        //  isrightSectionLoaded = true;
         });
 
         return response;
@@ -283,7 +286,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
         setState(() {
           isMiddleSectionLoaded = true;
 
-          isrightSectionLoaded = true;
+        //  isrightSectionLoaded = true;
         });
         ShowDialogs.showToast(GlobalLists.serverresp);
       }
@@ -292,7 +295,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
       setState(() {
         isMiddleSectionLoaded = true;
 
-        isrightSectionLoaded = true;
+       // isrightSectionLoaded = true;
       });
 
       ShowDialogs.showToast("Please check internet connection");
