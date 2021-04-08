@@ -613,7 +613,7 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                                 } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".jpeg")) {
                                                                                   print("pdf");
                                                                                   ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photos")) {
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName == "Photos") {
                                                                                   print("call api here");
                                                                                   String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
                                                                                   //
@@ -631,7 +631,7 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                                                 sharelink: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl,
                                                                                                 albumurl: pageurl.trim(),
                                                                                               )));
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photo")) {
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName == "Photo") {
                                                                                   print("call api here");
                                                                                   String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
                                                                                   //
@@ -649,7 +649,7 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                                                 sharelink: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl,
                                                                                                 albumurl: pageurl.trim(),
                                                                                               )));
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photo Gallery")) {
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName == "Photo Gallery") {
                                                                                   print("call api here");
                                                                                   String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
 

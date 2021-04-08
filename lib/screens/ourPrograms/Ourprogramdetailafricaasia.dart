@@ -605,7 +605,7 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                                   ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
                                                                                 } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".jpeg")) {
                                                                                   ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photos")) {
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName == "Photos") {
                                                                                   print("call api here");
                                                                                   String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
                                                                                   List<String> splits = menuurl.split('/');
@@ -623,7 +623,7 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                                                 sharelink: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl,
                                                                                                 albumurl: pageurl.trim(),
                                                                                               )));
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photo")) {
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName == "Photo") {
                                                                                   print("call api here");
                                                                                   String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
                                                                                   //
@@ -641,8 +641,8 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                                                 sharelink: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl,
                                                                                                 albumurl: pageurl.trim(),
                                                                                               )));
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photo Gallery")) {
-                                                                                  print("call api here");
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName == "Photo Gallery") {
+                                                                                  print("photo gallery");
                                                                                   String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
 
                                                                                   List<String> splits = menuurl.split('/');
@@ -727,6 +727,7 @@ class _MyHomePageState extends State<OurProgramAfrica> {
   getphotodetail(String categoryID) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
     if (status1) {
+      print("here");
       //  ShowDialogs.showLoadingDialog(context, _keyLoader);
       final json = {'category_id': categoryID, 'type': "2"};
       print(json);
