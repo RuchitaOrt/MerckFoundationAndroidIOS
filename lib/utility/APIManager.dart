@@ -705,7 +705,8 @@ class APIManager {
         break;
 
       case API.watchvideoaboutmmtm:
-        apiPathString = "watch_program_videos/about-merck-more-than-a-mother/1";
+        apiPathString =
+            "watch_program_videos/About-merck-foundation-more-than-a-mother/1";
 
         break;
       case API.watchvideoempoweringberna:

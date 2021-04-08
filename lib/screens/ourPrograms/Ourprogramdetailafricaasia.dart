@@ -623,6 +623,24 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                                                 sharelink: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl,
                                                                                                 albumurl: pageurl.trim(),
                                                                                               )));
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photo")) {
+                                                                                  print("call api here");
+                                                                                  String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
+                                                                                  //
+                                                                                  List<String> splits = menuurl.split('/');
+                                                                                  print("last elemt");
+                                                                                  print(splits[splits.length - 1]);
+                                                                                  String pageurl = splits[splits.length - 1];
+
+                                                                                  Navigator.push(
+                                                                                      context,
+                                                                                      MaterialPageRoute(
+                                                                                          builder: (BuildContext context) => ViewmoreAlbum(
+                                                                                                apiurl: APIManager.viewmorealbum,
+                                                                                                albumtitle: pageurl,
+                                                                                                sharelink: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl,
+                                                                                                albumurl: pageurl.trim(),
+                                                                                              )));
                                                                                 } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photo Gallery")) {
                                                                                   print("call api here");
                                                                                   String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;

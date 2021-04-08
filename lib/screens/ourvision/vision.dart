@@ -391,7 +391,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 40,
                         ),
                         //  Bottomcardlink(),
                       ],
