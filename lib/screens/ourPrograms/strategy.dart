@@ -59,31 +59,32 @@ class OurProgramstrategyState extends State<StrategyDetails> {
         trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
-      body: ListView(
-        shrinkWrap: true,
-        physics: ScrollPhysics(),
+      body: Stack(
         children: [
           ListView(
-             shrinkWrap: true,
-             physics: ScrollPhysics(),
-             //  crossAxisAlignment: CrossAxisAlignment.start,
-             children: [
-               Padding(
-                 padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
-            
-                 child: Visibility(
-                   visible: isMiddleSectionLoaded,
-                   replacement: Center(child: CircularProgressIndicator()),
-                   child: ListView(
-                       shrinkWrap: true,
-                       physics: ScrollPhysics(),
-                       // scrollDirection: Axis.horizontal,
-                       children: list()),
-                 ),
-               ),
-
-
-                Padding(
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
+            children: [
+              ListView(
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                //  crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                    child: Visibility(
+                      visible: isMiddleSectionLoaded,
+                      replacement: Center(child: CircularProgressIndicator()),
+                      child: ListView(
+                          shrinkWrap: true,
+                          physics: ScrollPhysics(),
+                          // scrollDirection: Axis.horizontal,
+                          children: list()),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
                 padding: const EdgeInsets.only(right: 0, left: 0),
                 child: Align(
                   alignment: Alignment.topRight,
@@ -94,24 +95,11 @@ class OurProgramstrategyState extends State<StrategyDetails> {
                 ),
               ),
               SizedBox(
-                height: 10,
-              ),
-              Bottomcardlink(),
-             ],
-           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(right: 0, left: 0),
-          //   child: Align(
-          //     alignment: Alignment.topRight,
-          //     child: Image.asset(
-          //       "assets/newImages/flowers_footer.png",
-          //       height: 170,
-          //     ),
-          //   ),
-          // ),
-          // SizedBox(
-          //   height: 10,
-          // )
+                height: 40,
+              )
+            ],
+          ),
+          Align(alignment: Alignment.bottomCenter, child: Bottomcardlink()),
         ],
       ),
     );

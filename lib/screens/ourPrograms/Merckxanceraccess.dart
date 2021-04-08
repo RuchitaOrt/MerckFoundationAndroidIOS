@@ -427,6 +427,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                       //         Constantstring.followmsg)
                       //     : ShowDialogs.launchInstagram(
                       //         Constantstring.followinsta, "merckfoundation");
+                      ShowDialogs.launchURLemail(
+                          Constantstring.followmmerckCancergmailPlus);
                     },
                     child: Image.asset(
                       "assets/newImages/gmail.png",

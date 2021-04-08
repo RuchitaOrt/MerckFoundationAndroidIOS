@@ -56,10 +56,6 @@ class StemInnerPagesState extends State<StemInnerPages>
             //             )));
           },
           index: 2,
-          // facebooklink: "http://merckfoundation.org/mfindia/web/public/vision",
-          // linkedinlink: "http://merckfoundation.org/mfindia/web/public/vision",
-          // whatsuplink: "http://merckfoundation.org/mfindia/web/public/vision",
-          // twitterlink: "http://merckfoundation.org/mfindia/web/public/vision",
           title: widget.title,
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",

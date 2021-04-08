@@ -126,100 +126,105 @@ class EducatingLindaState extends State<EducatingLinda>
       body: Container(
           width: double.infinity,
           height: double.infinity,
-          child: ListView(
-              //  crossAxisAlignment: CrossAxisAlignment.start,
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              children: [
-                slider(context),
-                Visibility(
-                  visible: isMiddleSectionLoaded,
-                  replacement: Center(child: CircularProgressIndicator()),
-                  child: ListView(
-                      shrinkWrap: true,
-                      physics: ScrollPhysics(),
-                      // scrollDirection: Axis.horizontal,
-                      children: list()),
-                ),
-                Visibility(
-                    visible: isbottomSectionLoaded,
-                    replacement: Center(child: CircularProgressIndicator()),
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: ScrollPhysics(),
-                      // scrollDirection: Axis.horizontal,
-                      children: listbottomwidget(),
-                    )),
-                SizedBox(
-                  height: 8,
-                ),
-                Visibility(
-                  visible: isrightSectionLoaded,
-                  replacement: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CircularProgressIndicator()
-                    ],
-                  ),
-                  child: Container(
-                    height: Constantstring.tabheight,
-                    //color: Colors.amber,
-                    child: Column(
-                      children: [
-                        TabBar(
-                          isScrollable: true,
-                          unselectedLabelColor: Colors.grey,
-                          labelColor: Colors.black,
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          indicator: new BubbleTabIndicator(
-                            indicatorHeight: 35.0,
-                            indicatorRadius: 5,
-                            indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
-                            tabBarIndicatorSize: TabBarIndicatorSize.tab,
+          child: Stack(
+            children: [
+              ListView(
+                  //  crossAxisAlignment: CrossAxisAlignment.start,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  children: [
+                    slider(context),
+                    Visibility(
+                      visible: isMiddleSectionLoaded,
+                      replacement: Center(child: CircularProgressIndicator()),
+                      child: ListView(
+                          shrinkWrap: true,
+                          physics: ScrollPhysics(),
+                          // scrollDirection: Axis.horizontal,
+                          children: list()),
+                    ),
+                    Visibility(
+                        visible: isbottomSectionLoaded,
+                        replacement: Center(child: CircularProgressIndicator()),
+                        child: ListView(
+                          shrinkWrap: true,
+                          physics: ScrollPhysics(),
+                          // scrollDirection: Axis.horizontal,
+                          children: listbottomwidget(),
+                        )),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Visibility(
+                      visible: isrightSectionLoaded,
+                      replacement: Column(
+                        children: [
+                          SizedBox(
+                            height: 20,
                           ),
-                          tabs: tabs,
-                          controller: _tabController,
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: TabBarView(
-                              physics: ScrollPhysics(),
+                          CircularProgressIndicator()
+                        ],
+                      ),
+                      child: Container(
+                        height: Constantstring.tabheight,
+                        //color: Colors.amber,
+                        child: Column(
+                          children: [
+                            TabBar(
+                              isScrollable: true,
+                              unselectedLabelColor: Colors.grey,
+                              labelColor: Colors.black,
+                              indicatorSize: TabBarIndicatorSize.tab,
+                              indicator: new BubbleTabIndicator(
+                                indicatorHeight: 35.0,
+                                indicatorRadius: 5,
+                                indicatorColor:
+                                    Customcolor.pinkbg.withOpacity(0.4),
+                                tabBarIndicatorSize: TabBarIndicatorSize.tab,
+                              ),
+                              tabs: tabs,
                               controller: _tabController,
-                              children: tablist()),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: TabBarView(
+                                  physics: ScrollPhysics(),
+                                  controller: _tabController,
+                                  children: tablist()),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-followUs(),
-SizedBox(
-                  height: 10,
-                ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    followUs(),
+                    SizedBox(
+                      height: 10,
+                    ),
 
-                Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                      height: 170,
+                    Padding(
+                      padding: const EdgeInsets.only(right: 0, left: 0),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Image.asset(
+                          "assets/newImages/flowers_footer.png",
+                          height: 170,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Bottomcardlink(),
-                //    Bottomcardlink(),
-              ])),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    // Bottomcardlink(),
+                    //    Bottomcardlink(),
+                  ]),
+              Align(alignment: Alignment.bottomCenter, child: Bottomcardlink()),
+            ],
+          )),
     );
   }
-
 
   double imgHeight = 30;
 
@@ -235,13 +240,16 @@ SizedBox(
             children: [
               Row(
                 children: [
-                  Text("Follow Merck Foundation on",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 11,//ResponsiveFlutter.of(context).fontSize(1.7),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: AppFonts.normal,
-                          color: Colors.black87),)
+                  Text(
+                    "Follow Merck Foundation on",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize:
+                            11, //ResponsiveFlutter.of(context).fontSize(1.7),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: AppFonts.normal,
+                        color: Colors.black87),
+                  )
                 ],
               ),
               SizedBox(
@@ -272,9 +280,8 @@ SizedBox(
                       //     ? ShowDialogs.followuslink(
                       //         Constantstring.followfacebook,
                       //         Constantstring.followmsg):
-                           ShowDialogs.launchFacebook(
-                              Constantstring.followfacebook,
-                              "1053979038068008");
+                      ShowDialogs.launchFacebook(
+                          Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
                       "assets/newImages/facebook.png",
@@ -353,7 +360,6 @@ SizedBox(
       )),
     );
   }
-
 
   // Widget callforApplication() {
   //   return Padding(
@@ -1860,7 +1866,7 @@ SizedBox(
                             WatchmoreVideolibrary(
                               apiurl: API.watchvdeoducation,
                               headertitle:
-                                  "Merck Foundation Educating Linda Program",
+                                  "Merck Foundation Educating Linda Program Videos",
                               sharelink: Constantstring
                                   .sharewatchallvideoeducatinglinda,
                             )));
@@ -1972,7 +1978,6 @@ SizedBox(
                             maxLines: 3,
                           ),
                         ),
-                       
                       ],
                     ),
                   );

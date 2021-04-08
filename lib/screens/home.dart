@@ -1286,10 +1286,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   Widget _buildMarquee() {
-    return Container(
-      height: 20,
-      child: Marquee(
-        text: 'There once was a boy who told this story about a boy: "',
+    return GestureDetector(
+      onTap: () {
+        print("hint");
+      },
+      child: Container(
+        height: 20,
+        child: Marquee(
+          text: 'There once was a boy who told this story about a boy: "',
+        ),
       ),
     );
   }
@@ -1427,27 +1432,32 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   Widget _buildComplexMarquee() {
     return Constantstring.homeheader == ""
         ? Container()
-        : Container(
-            height: 30,
-            child: Marquee(
-              text: Constantstring.homeheader,
-              // 'Call for Application-UNESCO MARS 2020          Save the Date-Merck Foundation "Stay at home" Media recognization award 2020-online edtion for africa and latin america',
-              style: TextStyle(
-                  fontWeight: FontWeight.w700, color: Customcolor.text_blue),
-              scrollAxis: Axis.horizontal,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              blankSpace: 20.0,
-              velocity: 40.0,
-              pauseAfterRound: Duration(seconds: 1),
-              showFadingOnlyWhenScrolling: true,
-              fadingEdgeStartFraction: 0.1,
-              fadingEdgeEndFraction: 0.1,
-              numberOfRounds: null,
-              startPadding: 10.0,
-              accelerationDuration: Duration(seconds: 1),
-              accelerationCurve: Curves.linear,
-              decelerationDuration: Duration(milliseconds: 500),
-              decelerationCurve: Curves.easeOut,
+        : GestureDetector(
+            onTap: () {
+              ShowDialogs.launchURL(Constantstring.homeheaderlink);
+            },
+            child: Container(
+              height: 30,
+              child: Marquee(
+                text: Constantstring.homeheader,
+                // 'Call for Application-UNESCO MARS 2020          Save the Date-Merck Foundation "Stay at home" Media recognization award 2020-online edtion for africa and latin america',
+                style: TextStyle(
+                    fontWeight: FontWeight.w700, color: Customcolor.text_blue),
+                scrollAxis: Axis.horizontal,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                blankSpace: 20.0,
+                velocity: 40.0,
+                pauseAfterRound: Duration(seconds: 1),
+                showFadingOnlyWhenScrolling: true,
+                fadingEdgeStartFraction: 0.1,
+                fadingEdgeEndFraction: 0.1,
+                numberOfRounds: null,
+                startPadding: 10.0,
+                accelerationDuration: Duration(seconds: 1),
+                accelerationCurve: Curves.linear,
+                decelerationDuration: Duration(milliseconds: 500),
+                decelerationCurve: Curves.easeOut,
+              ),
             ),
           );
   }
@@ -1485,6 +1495,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           print('Resp : $resp');
           setState(() {
             Constantstring.homeheader = resp.marque.list[0].marque;
+            Constantstring.homeheaderlink = resp.marque.list[0].marqueLink;
           });
 
           // if (resp.success == "True") {

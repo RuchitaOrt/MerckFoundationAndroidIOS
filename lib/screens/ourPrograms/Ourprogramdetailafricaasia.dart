@@ -143,7 +143,8 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                           child: Align(
                                               alignment: Alignment.topRight,
                                               child: Padding(
-                                                padding: const EdgeInsets.only(right: 10, top: 10),
+                                                padding: const EdgeInsets.only(
+                                                    right: 10, top: 10),
                                                 child: Icon(
                                                   Icons.close,
                                                   color: Customcolor.colorBlue,
@@ -223,10 +224,16 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                               .length ==
                                                                           0
                                                                       ? Colors
-                                                                          .transparent     
-                                                                      : index % 3 == 0? Color(0xffA9E2FC): 
-                                                                      index % 3 == 1?Color(0xffC1DEA4): index % 3 == 2? Color(0xffE0C0CB): Color(0xffC1DEA4),
-
+                                                                          .transparent
+                                                                      : index % 3 ==
+                                                                              0
+                                                                          ? Color(
+                                                                              0xffA9E2FC)
+                                                                          : index % 3 == 1
+                                                                              ? Color(0xffC1DEA4)
+                                                                              : index % 3 == 2
+                                                                                  ? Color(0xffE0C0CB)
+                                                                                  : Color(0xffC1DEA4),
                                                                   child: Theme(
                                                                     data: Theme.of(
                                                                             context)
@@ -340,7 +347,8 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                             child: Align(
                                 alignment: Alignment.topRight,
                                 child: Padding(
-                                    padding: const EdgeInsets.only(right: 10, top: 10),
+                                  padding:
+                                      const EdgeInsets.only(right: 10, top: 10),
                                   child: Icon(
                                     Icons.close,
                                     color: Customcolor.colorBlue,
@@ -468,11 +476,17 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                 .children
                                                                 .length ==
                                                             0
-                                                        ? Colors
-                                                                          .transparent     
-                                                                      : index % 3 == 0? Color(0xffA9E2FC): 
-                                                                      index % 3 == 1?Color(0xffC1DEA4): index % 3 == 2? Color(0xffE0C0CB): Color(0xffC1DEA4),
-
+                                                        ? Colors.transparent
+                                                        : index % 3 == 0
+                                                            ? Color(0xffA9E2FC)
+                                                            : index % 3 == 1
+                                                                ? Color(
+                                                                    0xffC1DEA4)
+                                                                : index % 3 == 2
+                                                                    ? Color(
+                                                                        0xffE0C0CB)
+                                                                    : Color(
+                                                                        0xffC1DEA4),
                                                     child: Theme(
                                                       data: Theme.of(context)
                                                           .copyWith(
@@ -486,10 +500,19 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                     .children
                                                                     .length ==
                                                                 0
-                                                            ? Colors
-                                                                          .transparent     
-                                                                      : index % 3 == 0? Color(0xffA9E2FC): 
-                                                                      index % 3 == 1?Color(0xffC1DEA4): index % 3 == 2? Color(0xffE0C0CB): Color(0xffC1DEA4),
+                                                            ? Colors.transparent
+                                                            : index % 3 == 0
+                                                                ? Color(
+                                                                    0xffA9E2FC)
+                                                                : index % 3 == 1
+                                                                    ? Color(
+                                                                        0xffC1DEA4)
+                                                                    : index % 3 ==
+                                                                            2
+                                                                        ? Color(
+                                                                            0xffE0C0CB)
+                                                                        : Color(
+                                                                            0xffC1DEA4),
 
                                                         // trailing: null,
                                                         tilePadding:
@@ -583,8 +606,30 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                                 } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photos")) {
                                                                                   print("call api here");
                                                                                   String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
-                                                                                  print(menuurl.split('http://merckfoundation.org/mfindia/web/public/Merck_Events_Gallery/'));
-                                                                                  List<String> replacemenu = menuurl.split('http://merckfoundation.org/mfindia/web/public/Merck_Events_Gallery/');
+                                                                                  print(menuurl.split('${Constantstring.baseurllink}Merck_Events_Gallery/'));
+                                                                                  List<String> replacemenu = menuurl.split('${Constantstring.baseurllink}Merck_Events_Gallery/');
+                                                                                  print(replacemenu.toString());
+                                                                                  String firstreplace = replacemenu.toString();
+                                                                                  String first = firstreplace.replaceAll('[', "");
+                                                                                  String seconfreplace = first.toString();
+                                                                                  String second = seconfreplace.replaceAll(',', "");
+                                                                                  String thirdreplace = second.toString();
+                                                                                  String pageurl = thirdreplace.replaceAll(']', "");
+                                                                                  print(pageurl);
+                                                                                  Navigator.push(
+                                                                                      context,
+                                                                                      MaterialPageRoute(
+                                                                                          builder: (BuildContext context) => ViewmoreAlbum(
+                                                                                                apiurl: APIManager.viewmorealbum,
+                                                                                                albumtitle: pageurl,
+                                                                                                sharelink: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl,
+                                                                                                albumurl: pageurl.trim(),
+                                                                                              )));
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName.contains("Photo Gallery")) {
+                                                                                  print("call api here");
+                                                                                  String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
+                                                                                  print(menuurl.split('${Constantstring.baseurllink}Merck_Events_Gallery/'));
+                                                                                  List<String> replacemenu = menuurl.split('${Constantstring.baseurllink}Merck_Events_Gallery/');
                                                                                   print(replacemenu.toString());
                                                                                   String firstreplace = replacemenu.toString();
                                                                                   String first = firstreplace.replaceAll('[', "");

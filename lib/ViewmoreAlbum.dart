@@ -289,6 +289,7 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
 
 //APIManager.ambasadarvideoapi
       // String body = json.encode(bodyData);
+      print(api);
       print(bodyData);
       var response = await fetchPostWithBodyResponse(
         api,

@@ -114,6 +114,19 @@ class ShowDialogs {
     }
   }
 
+  static void launchURLemail(String mail) async {
+    final Uri params = Uri(
+      scheme: 'mailto',
+      path: mail,
+    );
+    String url = params.toString();
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      print('Could not launch $url');
+    }
+  }
+
   static launchFacebook(String url, String pageId) async {
     String fbProtocolUrl;
     if (Platform.isIOS) {
@@ -171,11 +184,11 @@ class ShowDialogs {
     }
   }
 
-
   static launchLinkdin(String url) async {
     String fbProtocolUrl;
 
-    fbProtocolUrl = 'https://www.linkedin.com/shareArticle/?mini=true&url=${url}';
+    fbProtocolUrl =
+        'https://www.linkedin.com/shareArticle/?mini=true&url=${url}';
 
     String fallbackUrl = url;
 
@@ -253,7 +266,6 @@ class ShowDialogs {
       throw 'Could not launch $url';
     }
   }
-
 
   static launchWhatsappshare(String msg) async {
     print("on launch");

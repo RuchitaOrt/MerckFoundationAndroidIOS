@@ -125,8 +125,7 @@ class _OurProgramState extends State<Ourprogram> {
                 //   ),
                 // ),
 
-
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
                   child: Align(
                     alignment: Alignment.topRight,
@@ -343,7 +342,7 @@ class _OurProgramState extends State<Ourprogram> {
                           //
                         ),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           // crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Padding(

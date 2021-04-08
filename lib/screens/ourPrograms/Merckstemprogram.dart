@@ -432,6 +432,8 @@ class MerckstemprogramState extends State<Merckstemprogram>
                       //         Constantstring.followmsg)
                       //     : ShowDialogs.launchInstagram(
                       //         Constantstring.followinsta, "merckfoundation");
+                      ShowDialogs.launchURLemail(
+                          Constantstring.followmmerckStemgmailPlus);
                     },
                     child: Image.asset(
                       "assets/newImages/gmail.png",
