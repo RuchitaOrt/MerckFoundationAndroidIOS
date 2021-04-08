@@ -127,95 +127,103 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
           width: double.infinity,
           height: double.infinity,
           child: ListView(
-              //  crossAxisAlignment: CrossAxisAlignment.start,
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              children: [
-                slider(context),
-                Visibility(
-                  visible: isMiddleSectionLoaded,
-                  replacement: Center(child: CircularProgressIndicator()),
-                  child: ListView(
-                      shrinkWrap: true,
-                      physics: ScrollPhysics(),
-                      // scrollDirection: Axis.horizontal,
-                      children: list()),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Visibility(
-                  visible: isrightSectionLoaded,
-                  replacement: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CircularProgressIndicator()
-                    ],
-                  ),
-                  child: Container(
-                    height: Constantstring.tabheight,
-                    //color: Colors.amber,
-                    child: Column(
-                      children: [
-                        TabBar(
-                          isScrollable: true,
-                          unselectedLabelColor: Colors.grey,
-                          labelColor: Colors.black,
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          indicator: new BubbleTabIndicator(
-                            indicatorHeight: 35.0,
-                            indicatorRadius: 5,
-                            indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
-                            tabBarIndicatorSize: TabBarIndicatorSize.tab,
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
+            children: [
+              ListView(
+                  //  crossAxisAlignment: CrossAxisAlignment.start,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  children: [
+                    slider(context),
+                    Visibility(
+                      visible: isMiddleSectionLoaded,
+                      replacement: Center(child: CircularProgressIndicator()),
+                      child: ListView(
+                          shrinkWrap: true,
+                          physics: ScrollPhysics(),
+                          // scrollDirection: Axis.horizontal,
+                          children: list()),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Visibility(
+                      visible: isrightSectionLoaded,
+                      replacement: Column(
+                        children: [
+                          SizedBox(
+                            height: 20,
                           ),
-                          tabs: tabs,
-                          controller: _tabController,
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: TabBarView(
-                              physics: ScrollPhysics(),
+                          CircularProgressIndicator()
+                        ],
+                      ),
+                      child: Container(
+                        height: Constantstring.tabheight,
+                        //color: Colors.amber,
+                        child: Column(
+                          children: [
+                            TabBar(
+                              isScrollable: true,
+                              unselectedLabelColor: Colors.grey,
+                              labelColor: Colors.black,
+                              indicatorSize: TabBarIndicatorSize.tab,
+                              indicator: new BubbleTabIndicator(
+                                indicatorHeight: 35.0,
+                                indicatorRadius: 5,
+                                indicatorColor:
+                                    Customcolor.pinkbg.withOpacity(0.4),
+                                tabBarIndicatorSize: TabBarIndicatorSize.tab,
+                              ),
+                              tabs: tabs,
                               controller: _tabController,
-                              children: tablist()),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: TabBarView(
+                                  physics: ScrollPhysics(),
+                                  controller: _tabController,
+                                  children: tablist()),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-
-                followUs(),
-
-                SizedBox(
-                  height: 10,
-                ),
-
-                followUsformerckmorethanmother(),
-
-                SizedBox(
-                  height: 10,
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                      height: 170,
+                    SizedBox(
+                      height: 10,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Bottomcardlink(),
-                //Bottomcardlink(),
-              ])),
+
+                    followUs(),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    followUsformerckmorethanmother(),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(right: 0, left: 0),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Image.asset(
+                          "assets/newImages/flowers_footer.png",
+                          height: 170,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    //Bottomcardlink(),
+                  ]),
+              Bottomcardlink(),
+            ],
+          )),
     );
   }
 

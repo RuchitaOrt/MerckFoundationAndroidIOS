@@ -149,6 +149,7 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
         OurGalleryDetailsResponse resp = response;
         print(response);
         print('Resp : $resp');
+        print(API.ourgallerydetail);
         Navigator.of(_keyLoader.currentContext).pop();
         if (resp.success == "True".toLowerCase()) {
           setState(() {
