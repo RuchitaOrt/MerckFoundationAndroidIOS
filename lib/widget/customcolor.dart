@@ -86,186 +86,194 @@ class Constantstring {
 
   //share who we are
   static String sharevision =
-      "http://merckfoundation.org/mfindia/web/public/vision";
+      "${baseurllink}who-we-are/Vision";
   static String shareleadership =
-      "http://merckfoundation.org/mfindia/web/public/leadership";
+      "${baseurllink}who-we-are/Leadership-Team";
 
   static String sharemessagefromleadership =
-      "http://merckfoundation.org/mfindia/web/public/message-from-leadership-team";
+      "${baseurllink}who-we-are/Leadership-Team-Message";
 
   //share what we do
   static String sharemission =
-      "http://merckfoundation.org/mfindia/web/public/mission";
+      "${baseurllink}what-we-do/Mission";
 
   static String shareourpolicy =
-      "http://merckfoundation.org/mfindia/web/public/our-policies";
+      "${baseurllink}what-we-do/Our-Policies";
 
   static String shareouractivity =
-      "http://merckfoundation.org/mfindia/web/public/our-activities";
+      "${baseurllink}what-we-do/Our-Activities";
   static String sharelegaldisclaimer =
-      "http://merckfoundation.org/mfindia/web/public/legal-disclaimer";
+      "${baseurllink}what-we-do/Legal-Disclaimer";
   static String sharedataprivacy =
-      "http://merckfoundation.org/mfindia/web/public/data-privacy";
+      "${baseurllink}what-we-do/Privacy-Statement";
 
   static String shareouractivitydetail =
-      "http://merckfoundation.org/mfindia/web/public/news-articles/";
+      "${baseurllink}news-articles/";
 
   //share ourpartner
   static String shareourpartner =
-      "http://merckfoundation.org/mfindia/web/public/our-partners";
+      "${baseurllink}our-partners";
 
   //share Media&events
   static String sharevideolibrary =
-      "http://merckfoundation.org/mfindia/web/public/video-library";
+      "${baseurllink}videos";
   static String sharestories =
-      "http://merckfoundation.org/mfindia/web/public/stories";
+      "${baseurllink}Stories";
   static String sharetestimonial =
-      "http://merckfoundation.org/mfindia/web/public/merck-foundation-alumni-testimonials";
+      "${baseurllink}Merck-Foundation-Alumni-Testimonials";
 
-  static String sharenewsletter = "http://merck-foundation.com/News-Articles";
+  static String sharenewsletter = "${baseurllink}News-Articles";
 
   static String sharecallforapp =
-      "http://merckfoundation.org/mfindia/web/public/call-for-applications";
+      "${baseurllink}Upcoming-Programs-&-Call-For-Applications";
   static String sharenewsrelease =
-      "http://merckfoundation.org/mfindia/web/public/news-releases";
+      "${baseurllink}News-Releases";
   static String sharemerckmedia =
-      "http://merckfoundation.org/mfindia/web/public/merck-foundation-in-media";
+      "${baseurllink}media";
 
   //subprogram link
   //mmtm
   static String aboutmmtm =
-      "http://merckfoundation.org/mfindia/web/public/about-merck-more-than-a-mother";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/About-Program";
   static String strategy =
-      "http://merckfoundation.org/mfindia/web/public/strategy";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Strategy";
   static String merckambassadar =
-      "http://merckfoundation.org/mfindia/web/public/merck-foundation-more-than-a-mother-ambassadors";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Merck-Foundation-More-Than-a-Mother-Ambassadors";
   static String fertility =
-      "http://merckfoundation.org/mfindia/web/public/merck-foundation-fertility-and-embryology-training-program";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Merck-Foundation-Fertility-and-Embryology-Training-Program";
   static String communityawarnessmmtm =
-      "http://merckfoundation.org/mfindia/web/public/community-awareness-and-awards-program";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Community-Awareness-and-Awards-Program";
   static String empoweringberna =
-      "http://merckfoundation.org/mfindia/web/public/empowering-berna";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Empowering-Bernaa";
   static String localsong =
-      "http://merckfoundation.org/mfindia/web/public/local-songs-and-children-stories";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Local-Songs-and-Children-Stories";
   static String videommtm =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-more-than-a-mother";
+      "${baseurllink}watch_all_videos/merck-foundation-more-than-a-mother";
 
   //cancer
   static String cancerobjective =
-      "http://merckfoundation.org/mfindia/web/public/objectives";
+      "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Objectives";
   static String cancerfellowship =
-      "http://merckfoundation.org/mfindia/web/public/merck-foundation-oncology-fellowship-program";
+      "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Merck-Oncology-Fellowship-Program";
   static String cancerpatient =
-      "http://merckfoundation.org/mfindia/web/public/merck-foundation-more-than-a-patient";
+      "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Merck-More-Than-a-Patient";
   static String cancercommunityawareness =
-      "http://merckfoundation.org/mfindia/web/public/merck-foundation-community-awareness";
+      "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Merck-Community-Awareness";
   static String cancervideo =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-cancer-access-program";
+      "${baseurllink}watch_all_videos/merck-foundation-cancer-access-program";
   static String cancersocial =
-      "http://merck-foundation.com/our-programs/Merck-Foundation-Cancer-Access-Program/Social-Media";
-
+      "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Social-Media";
   //award
 
   //award detail pages
   static String shareawarddetailpage =
-      "http://merckfoundation.org/mfindia/web/public/awards/";
+      "${baseurllink}awards/";
+
+
   //testimonial viewmore page
   static String sharetestimonialviewmorehome =
-      "http://merckfoundation.org/mfindia/web/public/Testimonials";
+      "${baseurllink}Testimonials";
   static String sharetestimonialviewmorecapacity =
-      "http://merckfoundation.org/mfindia/web/public/Testimonials/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program";
+      "${baseurllink}Testimonials/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program";
   static String sharetestimonialviewmoremmtm =
-      "http://merckfoundation.org/mfindia/web/public/Testimonials/merck-foundation-more-than-a-mother";
+      "${baseurllink}Testimonials/merck-foundation-more-than-a-mother";
   static String sharetestimonialviewmorecancer =
-      "http://merckfoundation.org/mfindia/web/public/Testimonials/merck-foundation-cancer-access-program";
+      "${baseurllink}Testimonials/merck-foundation-cancer-access-program";
   static String sharetestimonialviewmorecancerfellowship =
-      "http://merck-foundation.com/our-programs/Merck-Foundation-Cancer-Access-Program/Merck-Oncology-Fellowship-Program";
+      "${baseurllink}Testimonials/merck-foundation-oncology-fellowship-program";
+      
   //testimonial detail page
   static String sharetestimonialdetailpage =
-      "http://merckfoundation.org/mfindia/web/public/Merck_Testimonials/";
+      "${baseurllink}Merck_Testimonials/";
 
   //leadership detail
   static String shareceodetailpage =
-      "http://merckfoundation.org/mfindia/web/public/get_details/";
+      "${baseurllink}get_details/";
   static String shareceohomeeodetailpage =
-      "http://merckfoundation.org/mfindia/web/public/CEO-Message/";
+      "${baseurllink}CEO-Message/";
   static String shareceoviewmore =
-      "http://merckfoundation.org/mfindia/web/public/CEO-Message";
+      "${baseurllink}CEO-Message";
   static String sharearticledetailpage =
-      "http://merckfoundation.org/mfindia/web/public/news-articles/";
+      "${baseurllink}News-Articles/";
 
   static String photogalleryviewall =
-      "http://merckfoundation.org/mfindia/web/public/MF_AlbumList";
+      "${baseurllink}Photo-Gallery";
   static String photogalleryyearwise =
-      "http://merckfoundation.org/mfindia/web/public/Photo_Gallery/";
+      "${baseurllink}Photo-Gallery/";
 
   //digital share
   static String sharedigitalhome =
       "http://merckfoundation.org/mfindia/web/public/Digital-Library/Home";
+      
   static String sharedigitalmmtm =
-      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-more-than-a-mother";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Digital-Library";
   static String sharedigitalcancer =
-      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-cancer-access-program";
+      "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Digital-Library";
   static String sharedigitalcapacity =
-      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program";
+      "${baseurllink}our-programs/Merck-Foundation-Capacity-Advancement-Nationwide-Diabetes-Blue-Points-Program/Digital-Library";
+ 
+ 
   static String sharedigitalfirst =
       "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-first-ladies-initiative-summit";
+
+
+
   static String sharedigitalstem =
-      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-stem-program";
+      "${baseurllink}our-programs/Merck-Foundation-STEM-Program/Digital-Library";
   static String sharedigitalsubstain =
-      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-sustainability-initiative";
+      "h${baseurllink}our-programs/Merck-Foundation-Sustainability-Initiative/Digital-Library";
   static String sharedigitalafrica =
-      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-africa-asia-luminary";
+      "${baseurllink}our-programs/Merck-Foundation-Africa-Asia-Luminary/Digital-Library";
   static String sharedigitaleducating =
-      "http://merckfoundation.org/mfindia/web/public/Digital-Library/merck-foundation-educating-linda-program";
+      "${baseurllink}our-programs/Merck-Foundation-Educating-Linda-Program/Digital-Library";
 
   //share call for app
 
   static String sharecallforapphome =
-      "http://merckfoundation.org/mfindia/web/public/call-for-applications/upcoming-programs-&-calls-for-applications";
+      "${baseurllink}Upcoming-Programs-&-Call-For-Applications";
   static String sharecallforappmmtm =
-      "http://merckfoundation.org/mfindia/web/public/Call-For-Application/merck-foundation-more-than-a-mother";
+      "${baseurllink}Call-For-Application/merck-foundation-more-than-a-mother";
   static String sharecallforappstem =
-      "http://merckfoundation.org/mfindia/web/public/Call-For-Application/merck-foundation-stem-program";
+      "${baseurllink}Call-For-Application/merck-foundation-stem-program";
   static String sharecallforappafrica =
-      "http://merckfoundation.org/mfindia/web/public/Call-For-Application/merck-foundation-africa-asia-luminary";
+      "${baseurllink}Call-For-Application/merck-foundation-africa-asia-luminary";
 
   //share mmtmambassadar
   static String sharemmtmambassadarhome =
-      "http://merckfoundation.org/mfindia/web/public/Merck-More-Than-a-Mother-Ambassadors/Home";
+      "${baseurllink}Merck-More-Than-a-Mother-Ambassadors/Home";
   static String sharemmtmambassadarmmtm =
-      "http://merckfoundation.org/mfindia/web/public/Merck-More-Than-a-Mother-Ambassadors/merck-foundation-more-than-a-mother";
+      "${baseurllink}Merck-More-Than-a-Mother-Ambassadors/merck-foundation-more-than-a-mother";
   static String sharemmtmambassadarfirstlady =
-      "http://merckfoundation.org/mfindia/web/public/Merck-More-Than-a-Mother-Ambassadors/merck-foundation-first-ladies-initiative-summit";
+      "${baseurllink}Merck-More-Than-a-Mother-Ambassadors/merck-foundation-first-ladies-initiative-summit";
 
   //share watch all videos
   static String sharewatchallvideocovid =
-      "http://merckfoundation.org/mfindia/web/public/Covid-Videos";
+      "${baseurllink}COVID19-Videos";
   static String sharewatchallvideoaboutmmtm =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/about-merck-more-than-a-mother";
+      "${baseurllink}watch_all_videos/about-merck-foundation-more-than-a-mother";
   static String sharewatchallvideoafrica =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-africa-asia-luminary";
+      "${baseurllink}";
   static String sharewatchallvideoeducatinglinda =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-educating-linda-program";
+      "${baseurllink}our-programs/Merck-Foundation-Educating-Linda-Program/Video";
   static String sharewatchallvideofertility =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-fertility-and-embryology-training-program";
+      "${baseurllink}watch_all_videos/merck-foundation-fertility-and-embryology-training-program";
   static String sharewatchallvideofirstlady =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-first-ladies-initiative-summit";
+      "${baseurllink}our-programs/Merck-Foundation-First-Ladies-Initiative-Summit-MFFLI/Videos";
 
   static String sharewatchallvideocapaity =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program";
+      "${baseurllink}our-programs/Merck-Foundation-Capacity-Advancement-Nationwide-Diabetes-Blue-Points-Program/Videos";
   static String sharewatchallvideommtm =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-more-than-a-mother";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Videos";
   static String sharewatchallvideostem =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-stem-program";
+      "${baseurllink}our-programs/Merck-Foundation-STEM-Program/Video";
   static String sharewatchallvideosubstain =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-sustainability-initiative";
+      "${baseurllink}";
   static String sharewatchallvideocancer =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-cancer-access-program";
+      "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Videos";
   static String sharewatchallvideovideommtm =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-more-than-a-mother";
+      "${baseurllink}";
   static String sharewatchallvideovideocancer =
-      "http://merckfoundation.org/mfindia/web/public/watch_all_videos/merck-foundation-cancer-access-program";
+      "${baseurllink}";
 
   //followus Merck Foundation More Than a Mother
   static String followmmtminsta =
