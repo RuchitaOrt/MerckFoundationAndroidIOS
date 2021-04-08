@@ -85,40 +85,30 @@ class Constantstring {
   static String followflicker = "https://www.flickr.com/photos/163124125@N08/";
 
   //share who we are
-  static String sharevision =
-      "${baseurllink}who-we-are/Vision";
-  static String shareleadership =
-      "${baseurllink}who-we-are/Leadership-Team";
+  static String sharevision = "${baseurllink}who-we-are/Vision";
+  static String shareleadership = "${baseurllink}who-we-are/Leadership-Team";
 
   static String sharemessagefromleadership =
       "${baseurllink}who-we-are/Leadership-Team-Message";
 
   //share what we do
-  static String sharemission =
-      "${baseurllink}what-we-do/Mission";
+  static String sharemission = "${baseurllink}what-we-do/Mission";
 
-  static String shareourpolicy =
-      "${baseurllink}what-we-do/Our-Policies";
+  static String shareourpolicy = "${baseurllink}what-we-do/Our-Policies";
 
-  static String shareouractivity =
-      "${baseurllink}what-we-do/Our-Activities";
+  static String shareouractivity = "${baseurllink}what-we-do/Our-Activities";
   static String sharelegaldisclaimer =
       "${baseurllink}what-we-do/Legal-Disclaimer";
-  static String sharedataprivacy =
-      "${baseurllink}what-we-do/Privacy-Statement";
+  static String sharedataprivacy = "${baseurllink}what-we-do/Privacy-Statement";
 
-  static String shareouractivitydetail =
-      "${baseurllink}news-articles/";
+  static String shareouractivitydetail = "${baseurllink}news-articles/";
 
   //share ourpartner
-  static String shareourpartner =
-      "${baseurllink}our-partners";
+  static String shareourpartner = "${baseurllink}our-partners";
 
   //share Media&events
-  static String sharevideolibrary =
-      "${baseurllink}videos";
-  static String sharestories =
-      "${baseurllink}Stories";
+  static String sharevideolibrary = "${baseurllink}videos";
+  static String sharestories = "${baseurllink}Stories";
   static String sharetestimonial =
       "${baseurllink}Merck-Foundation-Alumni-Testimonials";
 
@@ -126,10 +116,8 @@ class Constantstring {
 
   static String sharecallforapp =
       "${baseurllink}Upcoming-Programs-&-Call-For-Applications";
-  static String sharenewsrelease =
-      "${baseurllink}News-Releases";
-  static String sharemerckmedia =
-      "${baseurllink}media";
+  static String sharenewsrelease = "${baseurllink}News-Releases";
+  static String sharemerckmedia = "${baseurllink}media";
 
   //subprogram link
   //mmtm
@@ -166,13 +154,10 @@ class Constantstring {
   //award
 
   //award detail pages
-  static String shareawarddetailpage =
-      "${baseurllink}awards/";
-
+  static String shareawarddetailpage = "${baseurllink}awards/";
 
   //testimonial viewmore page
-  static String sharetestimonialviewmorehome =
-      "${baseurllink}Testimonials";
+  static String sharetestimonialviewmorehome = "${baseurllink}Testimonials";
   static String sharetestimonialviewmorecapacity =
       "${baseurllink}Testimonials/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program";
   static String sharetestimonialviewmoremmtm =
@@ -181,29 +166,22 @@ class Constantstring {
       "${baseurllink}Testimonials/merck-foundation-cancer-access-program";
   static String sharetestimonialviewmorecancerfellowship =
       "${baseurllink}Testimonials/merck-foundation-oncology-fellowship-program";
-      
+
   //testimonial detail page
   static String sharetestimonialdetailpage =
       "${baseurllink}Merck_Testimonials/";
 
   //leadership detail
-  static String shareceodetailpage =
-      "${baseurllink}get_details/";
-  static String shareceohomeeodetailpage =
-      "${baseurllink}CEO-Message/";
-  static String shareceoviewmore =
-      "${baseurllink}CEO-Message";
-  static String sharearticledetailpage =
-      "${baseurllink}News-Articles/";
+  static String shareceodetailpage = "${baseurllink}get_details/";
+  static String shareceohomeeodetailpage = "${baseurllink}CEO-Message/";
+  static String shareceoviewmore = "${baseurllink}CEO-Message";
+  static String sharearticledetailpage = "${baseurllink}News-Articles/";
 
-  static String photogalleryviewall =
-      "${baseurllink}Photo-Gallery";
-  static String photogalleryyearwise =
-      "${baseurllink}Photo-Gallery/";
+  static String photogalleryviewall = "${baseurllink}Photo-Gallery";
+  static String photogalleryyearwise = "${baseurllink}Photo-Gallery/";
 
   //digital share
-  static String sharedigitalhome =
-      "${baseurllink}Digital-Library";
+  static String sharedigitalhome = "${baseurllink}Digital-Library";
 
   static String sharedigitalmmtm =
       "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Digital-Library";
@@ -211,12 +189,9 @@ class Constantstring {
       "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Digital-Library";
   static String sharedigitalcapacity =
       "${baseurllink}our-programs/Merck-Foundation-Capacity-Advancement-Nationwide-Diabetes-Blue-Points-Program/Digital-Library";
- 
- 
+
   static String sharedigitalfirst =
       "${baseurllink}our-programs/Merck-Foundation-First-Ladies-Initiative-Summit-MFFLI/Digital-Library";
-
-
 
   static String sharedigitalstem =
       "${baseurllink}our-programs/Merck-Foundation-STEM-Program/Digital-Library";
@@ -247,8 +222,7 @@ class Constantstring {
       "${baseurllink}Merck-More-Than-a-Mother-Ambassadors/merck-foundation-first-ladies-initiative-summit";
 
   //share watch all videos
-  static String sharewatchallvideocovid =
-      "${baseurllink}COVID19-Videos";
+  static String sharewatchallvideocovid = "${baseurllink}COVID19-Videos";
   static String sharewatchallvideoaboutmmtm =
       "${baseurllink}watch_all_videos/about-merck-foundation-more-than-a-mother";
   static String sharewatchallvideoafrica =
@@ -266,8 +240,7 @@ class Constantstring {
       "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Video";
   static String sharewatchallvideostem =
       "${baseurllink}our-programs/Merck-Foundation-STEM-Program/Video";
-  static String sharewatchallvideosubstain =
-      "${baseurllink}";
+  static String sharewatchallvideosubstain = "${baseurllink}";
   static String sharewatchallvideocancer =
       "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Video";
   static String sharewatchallvideovideommtm =

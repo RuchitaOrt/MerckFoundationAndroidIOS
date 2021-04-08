@@ -116,7 +116,9 @@ class _MyHomePageState extends State<OurProgramAfrica> {
 
                     ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                     ///in the next line we use 20%
-                    height: 330,
+                    height: Platform.isAndroid
+                        ? 330
+                        : SizeConfig.blockSizeVertical * 40,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -134,7 +136,9 @@ class _MyHomePageState extends State<OurProgramAfrica> {
 
                                   ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
                                   ///in the next line we use 20%
-                                  height: 330,
+                                  height: Platform.isAndroid
+                                      ? 330
+                                      : SizeConfig.blockSizeVertical * 40,
                                   child: ListView(
                                     shrinkWrap: true,
                                     // crossAxisAlignment:
@@ -385,6 +389,8 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                     0
                                                 ? GestureDetector(
                                                     onTap: () {
+                                                      mabialaFABController
+                                                          .collapseFAB();
                                                       if (GlobalLists
                                                           .stemprogramlistsubmenu[
                                                               index]
@@ -596,6 +602,7 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                         children: [
                                                                           GestureDetector(
                                                                               onTap: () {
+                                                                                mabialaFABController.collapseFAB();
                                                                                 if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".pdf")) {
                                                                                   print("pdf");
                                                                                   ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
