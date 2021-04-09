@@ -98,6 +98,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
   void initState() {
     // getmmtmslider();
     _todaysDate = DateTime.now();
+    GlobalLists.homecallforapp.clear();
     getmmtmapi();
     super.initState();
     // _tabController = new TabController(vsync: this, length: 3);
@@ -524,53 +525,23 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
   Widget getcallforapp(BuildContext context) {
     return Stack(
       children: <Widget>[
-        GlobalLists.homecallforapp.length <= 0
-            ? Container(
-                child: Center(child: Text(Constantstring.emptyData)),
-              )
-            : Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                    //color: Colors.amber,
-                    width: SizeConfig.blockSizeHorizontal * 100,
-                    // height: 590,
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.all(10.0),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Expanded(
-                        //           child: Text(
-                        //         expandedName,
-                        //         style: TextStyle(
-                        //             fontSize: 18,
-                        //             fontWeight: FontWeight.w700,
-                        //             color: Colors.black),
-                        //       )),
-                        //       GestureDetector(
-                        //         onTap: () {
-                        //           print("in tap");
-                        //           setState(() {
-                        //             expandClick = !expandClick;
-                        //           });
-                        //         },
-                        //         child: Image.asset(
-                        //           "assets/newImages/expand_more.png",
-                        //           width: 30,
-                        //           height: 30,
-                        //         ),
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
-                        //  expandClick ? eventDropdown() : Container(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        carouselSlider = CarouselSlider(
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+              //color: Colors.amber,
+              width: SizeConfig.blockSizeHorizontal * 100,
+              // height: 590,
+              color: Colors.white,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  GlobalLists.homecallforapp.length <= 0
+                      ? Container(
+                          child: Center(child: Container()),
+                        )
+                      : carouselSlider = CarouselSlider(
                           options: CarouselOptions(
                               autoPlay: false,
                               // aspectRatio: 0.1,
@@ -631,78 +602,79 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                           }).toList(),
                           carouselController: callAppCarouselController,
                         ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      CallforApplication(
+                                        apiurl: API.watchcallmmtm,
+                                        sharelink:
+                                            Constantstring.sharecallforappmmtm,
+                                        index: 1,
+                                      )));
+                        },
+                        child: Container(
+                          width: 120,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.amber,
+                              borderRadius: BorderRadius.circular(5)),
                           child: Center(
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            CallforApplication(
-                                              apiurl: API.watchcallmmtm,
-                                              sharelink: Constantstring
-                                                  .sharecallforappmmtm,
-                                              index: 1,
-                                            )));
-                              },
-                              child: Container(
-                                width: 120,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                    color: Colors.amber,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: Center(
-                                  child: Text(
-                                    "View All",
-                                    style: TextStyle(
-                                        color: Customcolor.colorBlue,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ),
+                            child: Text(
+                              "View All",
+                              style: TextStyle(
+                                  color: Customcolor.colorBlue,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
                             ),
                           ),
                         ),
-                      ],
-                    )),
-              ),
-        Positioned(
-          top: 140,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                GestureDetector(
-                    onTap: () {
-                      goTocallPrevious();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Customcolor.text_darkblue,
                       ),
-                    )),
-                GestureDetector(
-                    onTap: () {
-                      goTocallNext();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Customcolor.text_darkblue,
-                      ),
-                    )),
-              ],
-            ),
-          ),
+                    ),
+                  ),
+                ],
+              )),
         ),
+        GlobalLists.homecallforapp.length <= 0
+            ? Container()
+            : Positioned(
+                top: 140,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      GestureDetector(
+                          onTap: () {
+                            goTocallPrevious();
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              color: Customcolor.text_darkblue,
+                            ),
+                          )),
+                      GestureDetector(
+                          onTap: () {
+                            goTocallNext();
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 20),
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: Customcolor.text_darkblue,
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
+              ),
       ],
     );
   }
@@ -2804,6 +2776,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
           rigthareakey.add(element.toString());
         });
         print(middleareakey);
+
         for (int i = 0; i < lastsection.length; i++) {
           //  MiddleArea categoryKeys = section1[(i + 1).toString()];
           //  print(categoryKeys.videos.type);
