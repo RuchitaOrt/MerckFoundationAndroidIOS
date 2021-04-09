@@ -93,7 +93,25 @@ class Callforapptext extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: "Upcoming Programs & Call For ",
+            text: "Upcoming ",
+            style: TextStyle(
+              color: Customcolor.textsubtitlecolor,
+              fontSize: 18,
+              fontWeight: FontWeight.w300,
+              fontFamily: 'times new roman',
+            ),
+          ),
+          TextSpan(
+            text: "Programs ",
+            style: TextStyle(
+              color: Customcolor.pink_col,
+              fontSize: 18,
+              fontFamily: 'times new roman',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          TextSpan(
+            text: "& Call For ",
             style: TextStyle(
               color: Customcolor.textsubtitlecolor,
               fontSize: 18,

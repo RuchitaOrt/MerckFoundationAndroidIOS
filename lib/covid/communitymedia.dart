@@ -242,7 +242,7 @@ class CommunityMediaState extends State<CommunityMedia>
                             //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                           },
                           child: Padding(
-                            padding: const EdgeInsets.only(right: 8, left: 10),
+                            padding: const EdgeInsets.only(right: 8, left: 8),
                             child: Column(
                               children: [
                                 Stack(
