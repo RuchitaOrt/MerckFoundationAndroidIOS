@@ -296,8 +296,10 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
                             WatchmoreVideoambassdar(
-                              categoryid:
-                                  GlobalLists.homevideolist[0].categoryId,
+                              categoryid: GlobalLists
+                                  .homevideolist[
+                                      GlobalLists.homevideolist.length - 1]
+                                  .categoryId,
                               api: APIManager.watchsubmenuvideoapi,
                               type: "",
                               headertitle: "Empowering Berna videos",
@@ -312,7 +314,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-            //  heigthoflist: SizeConfig.blockSizeVertical * 36,
+              //  heigthoflist: SizeConfig.blockSizeVertical * 36,
               list: ListView.builder(
                 itemCount: GlobalLists.homevideolist.length,
                 scrollDirection: Axis.horizontal,
@@ -344,7 +346,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
-                                  height: SizeConfig.blockSizeVertical * 25,
+                                height: SizeConfig.blockSizeVertical * 25,
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
                                       'assets/newImages/placeholder_3.jpg',

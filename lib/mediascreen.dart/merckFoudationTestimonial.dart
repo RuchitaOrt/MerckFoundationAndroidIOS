@@ -146,7 +146,7 @@ class MerckFoundationTestimonialState
             _scaffoldKey1.currentState.openEndDrawer();
           },
           onTapval: () {
-           // Navigator.pop(context);
+            // Navigator.pop(context);
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -165,216 +165,229 @@ class MerckFoundationTestimonialState
         ),
         backgroundColor: Customcolor.background,
         body: ListView(
-           physics: ScrollPhysics(),
-           shrinkWrap: true,
-           controller: _sc,
-           //crossAxisAlignment: CrossAxisAlignment.start,
-           children: [
-             // Padding(
-             //   padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
-             //   child: FormLabel(
-             //     text: "Merck Foundation Alumini's Testimonial",
-             //     labelColor: Customcolor.colorblack,
-             //     fontSize: ResponsiveFlutter.of(context).fontSize(2),
-             //     maxLines: 2,
-             //     fontweight: FontWeight.w800,
-             //   ),
-             // ),
-             (GlobalLists.merckTestimonialList.length == 0 && _isLoading)
-                 ? Center(
-                     child: CircularProgressIndicator(),
-                   )
-                 : (GlobalLists.merckTestimonialList.length == 0 &&
-                         _isLoading == false)
-                     ? Center(
-                         child: Container(
-                           child:
-                               Center(child: Text(Constantstring.emptyData)),
-                         ),
-                       )
-                     : Padding(
-                       padding: const EdgeInsets.only(left: 10, right: 10),
-          
-                       child: ListView(
-                           shrinkWrap: true,
-                           physics: ScrollPhysics(),
-                           children: [
-                             GridView.count(
-                               shrinkWrap: true,
-                               physics: ScrollPhysics(),
-                               crossAxisCount: 2,
-                               childAspectRatio: 0.87,//0.9
-                               children: List.generate(
-                                   GlobalLists.merckTestimonialList.length,
-                                   (index) {
-                                 // if (GlobalLists.merckTestimonialList.length -
-                                 //             1 ==
-                                 //         index &&
-                                 //     _isLoading) {
-                                 //   return Center(
-                                 //     child: CircularProgressIndicator(),
-                                 //   );
-                                 // } else {
-                                 return Padding(
-                                   padding: const EdgeInsets.only(right: 2.0),
-                                   child: Card(
-                                       elevation: 2,
-                                       shape: RoundedRectangleBorder(
-                                         borderRadius: BorderRadius.all(
-                                           Radius.circular(1),
-                                         ),
-                                       ),
-                                       child: GestureDetector(
-                                         onTap: () {
-                                           // Navigator.push(
-                                           //     context,
-                                           //     MaterialPageRoute(
-                                           //         builder: (BuildContext context) =>
-                                           //             VideoPlayer(
-                                           //               videoUrl: GlobalLists
-                                           //                   .merckTestimonialList[index]
-                                           //                   .videoLink,
-                                           //             )));
-                                           var storykey = GlobalLists
-                                               .merckTestimonialList[index]
-                                               .videoLink
-                                               .substring(GlobalLists
-                                                       .merckTestimonialList[
-                                                           index]
-                                                       .videoLink
-                                                       .length -
-                                                   11);
-                                           ShowDialogs.youtubevideolink(
-                                               "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-                                           // _launchInWebViewWithJavaScript(
-                                           //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-                                         },
-                                         child: Stack(
-                                           children: [
-                                             Container(
-                                               color: Colors.transparent,
-                                               width: SizeConfig
-                                                       .blockSizeHorizontal *
-                                                   50,
-                                               child: Column(
-                                                 mainAxisAlignment:
-                                                     MainAxisAlignment.start,
-                                                 crossAxisAlignment:
-                                                     CrossAxisAlignment.start,
-                                                 children: <Widget>[
-                                                   Padding(
-                                                     padding:
-                                                         const EdgeInsets.all(
-                                                             8.0),
-                                                     child: Container(
-                                                       width: SizeConfig
-                                                               .blockSizeHorizontal *
-                                                           100,
-                                                       height: SizeConfig
-                                                               .blockSizeVertical *
-                                                           15,
-                                                       decoration: BoxDecoration(
-                                                         borderRadius:
-                                                             BorderRadius
-                                                                 .circular(5),
-                                                         // border: Border.all(
-                                                         //   width: 1,
-                                                         // ),
-                                                         image:
-                                                             new DecorationImage(
-                                                           image: new NetworkImage(
-                                                               'https://img.youtube.com/vi/${GlobalLists.merckTestimonialList[index].videoLink.substring(GlobalLists.merckTestimonialList[index].videoLink.length - 11)}/mqdefault.jpg'),
-                                                           fit: BoxFit.cover,
-                                                         ),
-                                                       ),
-                                                     ),
-                                                   ),
-                                                   Padding(
-                                                     padding:
-                                                         const EdgeInsets.all(
-                                                             4.0),
-                                                     child: Text(
-                                                       GlobalLists
-                                                           .merckTestimonialList[
-                                                               index]
-                                                           .videoDesc,
-                                                       textAlign:
-                                                           TextAlign.center,
-                                                       overflow:
-                                                           TextOverflow.ellipsis,
-                                                       style: TextStyle(
-                                                           color: Colors.black,
-                                                           fontSize:
-                                                               ResponsiveFlutter
-                                                                       .of(
-                                                                           context)
-                                                                   .fontSize(
-                                                                       1.4),
-                                                           fontWeight:
-                                                               FontWeight.w500),
-                                                       maxLines: 3,
-                                                     ),
-                                                   ),
-                                                   SizedBox(height: 5),
-                                                 ],
-                                               ),
-                                             ),
-                                             PauseImage()
-                                           ],
-                                         ),
-                                       )),
-                                 );
-                                 // }
-                               }),
-                             ),
-                             _isLoading
-                                 ? Center(
-                                     child: Padding(
-                                     padding: const EdgeInsets.only(
-                                         top: 10, bottom: 10),
-                                     child: CircularProgressIndicator(),
-                                   ))
-                                 : Container()
-                           ],
-                         ),
-                     ),
-             // Padding(
-             //   padding: const EdgeInsets.only(
-             //       left: 60, right: 60, top: 20, bottom: 10),
-             //   child: Image.asset(
-             //     "assets/newImages/flowers_footer.png",
-             //   ),
-             // ),
-             // Padding(
-             //   padding: const EdgeInsets.only(right: 0, left: 0),
-             //   child: Align(
-             //     alignment: Alignment.topRight,
-             //     child: Image.asset(
-             //       "assets/newImages/flowers_footer.png",
-             //       height: 170,
-             //     ),
-             //   ),
-             // ),
-             // SizedBox(
-             //   height: 10,
-             // )
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+          controller: _sc,
+          //crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 10, bottom: 10, left: 5),
+            //   child: FormLabel(
+            //     text: "Merck Foundation Alumini's Testimonial",
+            //     labelColor: Customcolor.colorblack,
+            //     fontSize: ResponsiveFlutter.of(context).fontSize(2),
+            //     maxLines: 2,
+            //     fontweight: FontWeight.w800,
+            //   ),
+            // ),
+            (GlobalLists.merckTestimonialList.length == 0 && _isLoading)
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : (GlobalLists.merckTestimonialList.length == 0 &&
+                        _isLoading == false)
+                    ? Center(
+                        child: Container(
+                          child: Center(child: Text(Constantstring.emptyData)),
+                        ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: ListView(
+                          shrinkWrap: true,
+                          physics: ScrollPhysics(),
+                          children: [
+                            GridView.count(
+                              shrinkWrap: true,
+                              physics: ScrollPhysics(),
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.9,
+                              children: List.generate(
+                                  GlobalLists.merckTestimonialList.length,
+                                  (index) {
+                                // if (GlobalLists.merckTestimonialList.length -
+                                //             1 ==
+                                //         index &&
+                                //     _isLoading) {
+                                //   return Center(
+                                //     child: CircularProgressIndicator(),
+                                //   );
+                                // } else {
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 2.0),
+                                  child: Card(
+                                      elevation: 2,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(1),
+                                        ),
+                                      ),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder: (BuildContext context) =>
+                                          //             VideoPlayer(
+                                          //               videoUrl: GlobalLists
+                                          //                   .merckTestimonialList[index]
+                                          //                   .videoLink,
+                                          //             )));
+                                          var storykey = GlobalLists
+                                              .merckTestimonialList[index]
+                                              .videoLink
+                                              .substring(GlobalLists
+                                                      .merckTestimonialList[
+                                                          index]
+                                                      .videoLink
+                                                      .length -
+                                                  11);
+                                          ShowDialogs.youtubevideolink(
+                                              "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                          // _launchInWebViewWithJavaScript(
+                                          //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                        },
+                                        child: Stack(
+                                          children: [
+                                            Container(
+                                              color: Colors.transparent,
+                                              width: SizeConfig
+                                                      .blockSizeHorizontal *
+                                                  50,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Container(
+                                                      width: SizeConfig
+                                                              .blockSizeHorizontal *
+                                                          100,
+                                                      height: SizeConfig
+                                                              .blockSizeVertical *
+                                                          15,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        // border: Border.all(
+                                                        //   width: 1,
+                                                        // ),
+                                                        image:
+                                                            new DecorationImage(
+                                                          image: new NetworkImage(
+                                                              'https://img.youtube.com/vi/${GlobalLists.merckTestimonialList[index].videoLink.substring(GlobalLists.merckTestimonialList[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            4.0),
+                                                    child: Text(
+                                                      GlobalLists
+                                                          .merckTestimonialList[
+                                                              index]
+                                                          .videoDesc,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize:
+                                                              ResponsiveFlutter
+                                                                      .of(
+                                                                          context)
+                                                                  .fontSize(
+                                                                      1.4),
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                      maxLines: 3,
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 5),
+                                                ],
+                                              ),
+                                            ),
+                                            // PauseImage()
+                                            Positioned(
+                                              top:
+                                                  SizeConfig.blockSizeVertical *
+                                                      6.5,
+                                              left:
+                                                  SizeConfig.blockSizeVertical *
+                                                      9.0,
+                                              child: Center(
+                                                child: Image.asset(
+                                                  "assets/newImages/pause.png",
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )),
+                                );
+                                // }
+                              }),
+                            ),
+                            _isLoading
+                                ? Center(
+                                    child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 10, bottom: 10),
+                                    child: CircularProgressIndicator(),
+                                  ))
+                                : Container()
+                          ],
+                        ),
+                      ),
+            // Padding(
+            //   padding: const EdgeInsets.only(
+            //       left: 60, right: 60, top: 20, bottom: 10),
+            //   child: Image.asset(
+            //     "assets/newImages/flowers_footer.png",
+            //   ),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 0, left: 0),
+            //   child: Align(
+            //     alignment: Alignment.topRight,
+            //     child: Image.asset(
+            //       "assets/newImages/flowers_footer.png",
+            //       height: 170,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // )
 
-              Padding(
-            padding: const EdgeInsets.only(right: 0, left: 0),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Image.asset(
-                "assets/newImages/flowers_footer.png",
-                height: 170,
+            Padding(
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Bottomcardlink(),
-           ],
-         ));
+            SizedBox(
+              height: 10,
+            ),
+            Bottomcardlink(),
+          ],
+        ));
   }
 
   Future<void> _launchInWebViewWithJavaScript(String url) async {

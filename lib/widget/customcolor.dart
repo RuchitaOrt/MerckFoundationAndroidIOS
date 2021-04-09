@@ -159,13 +159,13 @@ class Constantstring {
   //testimonial viewmore page
   static String sharetestimonialviewmorehome = "${baseurllink}Testimonials";
   static String sharetestimonialviewmorecapacity =
-      "${baseurllink}Testimonials/merck-foundation-capacity-advancement-nationwide-diabetes-blue-points-program";
+      "${baseurllink}our-programs/Merck-Foundation-Capacity-Advancement-Nationwide-Diabetes-Blue-Points-Program/Alumni_Testimonies";
   static String sharetestimonialviewmoremmtm =
-      "${baseurllink}Testimonials/merck-foundation-more-than-a-mother";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Alumni_Testimonies";
   static String sharetestimonialviewmorecancer =
-      "${baseurllink}Testimonials/merck-foundation-cancer-access-program";
+      "${baseurllink}our-programs/Merck-Foundation-Cancer-Access-Program/Alumni_Testimonies";
   static String sharetestimonialviewmorecancerfellowship =
-      "${baseurllink}Testimonials/merck-foundation-oncology-fellowship-program";
+      "${baseurllink}our-programs/Merck-Foundation-Oncology-Fellowship-Program/Alumni_Testimonies";
 
   //testimonial detail page
   static String sharetestimonialdetailpage =
@@ -207,11 +207,11 @@ class Constantstring {
   static String sharecallforapphome =
       "${baseurllink}Upcoming-Programs-&-Call-For-Applications";
   static String sharecallforappmmtm =
-      "${baseurllink}Call-For-Application/merck-foundation-more-than-a-mother";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Call-for-Applications";
   static String sharecallforappstem =
-      "${baseurllink}Call-For-Application/merck-foundation-stem-program";
+      "${baseurllink}our-programs/Merck-Foundation-STEM-Program/Call-for-Applications";
   static String sharecallforappafrica =
-      "${baseurllink}Call-For-Application/merck-foundation-africa-asia-luminary";
+      "${baseurllink}our-programs/Merck-Foundation-Africa-Asia-Luminary/Call-for-Applications";
 
   //share mmtmambassadar
   static String sharemmtmambassadarhome =
@@ -224,13 +224,13 @@ class Constantstring {
   //share watch all videos
   static String sharewatchallvideocovid = "${baseurllink}COVID19-Videos";
   static String sharewatchallvideoaboutmmtm =
-      "${baseurllink}watch_all_videos/about-merck-foundation-more-than-a-mother";
+      "${baseurllink}our-programs/Merck-Foundation-More-Than-a-Mother/Video";
   static String sharewatchallvideoafrica =
       "${baseurllink}our-programs/Merck-Foundation-Africa-Asia-Luminary/Video";
   static String sharewatchallvideoeducatinglinda =
       "${baseurllink}our-programs/Merck-Foundation-Educating-Linda-Program/Video";
   static String sharewatchallvideofertility =
-      "${baseurllink}watch_all_videos/merck-foundation-fertility-and-embryology-training-program";
+      "${baseurllink}our-programs/Merck-Foundation-Fertility-and-Embryology-Training-Program/Video";
   static String sharewatchallvideofirstlady =
       "${baseurllink}our-programs/Merck-Foundation-First-Ladies-Initiative-Summit-MFFLI/Video";
 

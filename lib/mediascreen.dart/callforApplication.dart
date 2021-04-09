@@ -16,8 +16,9 @@ import 'package:url_launcher/url_launcher.dart';
 class CallforApplication extends StatefulWidget {
   final dynamic apiurl;
   final dynamic sharelink;
+  final dynamic index;
 
-  const CallforApplication({Key key, this.apiurl, this.sharelink})
+  const CallforApplication({Key key, this.apiurl, this.sharelink, this.index})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -71,12 +72,17 @@ class CallApplicationState extends State<CallforApplication>
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Dashboard(
-                        index: 0,
-                      )));
+          if (widget.index == 1) {
+            Navigator.pop(context);
+          } else {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Dashboard(
+                          index: 0,
+                        )));
+          }
+
           // Navigator.pop(context);
         },
         index: 2,

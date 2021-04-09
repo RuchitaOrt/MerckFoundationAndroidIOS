@@ -880,8 +880,10 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
                             WatchmoreVideoambassdar(
-                              categoryid:
-                                  GlobalLists.homevideolist[0].categoryId,
+                              categoryid: GlobalLists
+                                  .homevideolist[
+                                      GlobalLists.homevideolist.length - 1]
+                                  .categoryId,
                               api: APIManager.watchsubmenuvideoapi,
                               type: "",
                               headertitle:

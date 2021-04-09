@@ -768,6 +768,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                               apiurl: API.watchcallafrica,
                                               sharelink: Constantstring
                                                   .sharecallforappafrica,
+                                              index: 1,
                                             )));
                               },
                               child: Container(

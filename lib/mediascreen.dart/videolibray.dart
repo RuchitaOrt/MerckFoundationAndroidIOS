@@ -144,7 +144,7 @@ class VideolibraryState extends State<Videolibrary> {
             _scaffoldKey1.currentState.openEndDrawer();
           },
           onTapval: () {
-          //  Navigator.pop(context);
+            //  Navigator.pop(context);
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -182,18 +182,15 @@ class VideolibraryState extends State<Videolibrary> {
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
-                : (GlobalLists.videolibrary.length == 0 &&
-                        _isLoading == false)
+                : (GlobalLists.videolibrary.length == 0 && _isLoading == false)
                     ? Center(
                         child: Container(
-                          child:
-                              Center(child: Text(Constantstring.emptyData)),
+                          child: Center(child: Text(Constantstring.emptyData)),
                         ),
                       )
                     : Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-         
-                      child: ListView(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: ListView(
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
                           children: [
@@ -316,7 +313,22 @@ class VideolibraryState extends State<Videolibrary> {
                                                 ],
                                               ),
                                             ),
-                                            PauseImage()
+                                            //PauseImage()
+                                            Positioned(
+                                              top:
+                                                  SizeConfig.blockSizeVertical *
+                                                      6.5,
+                                              left:
+                                                  SizeConfig.blockSizeVertical *
+                                                      9.0,
+                                              child: Center(
+                                                child: Image.asset(
+                                                  "assets/newImages/pause.png",
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                              ),
+                                            )
                                           ],
                                         ),
                                       )),
@@ -334,7 +346,7 @@ class VideolibraryState extends State<Videolibrary> {
                                 : Container()
                           ],
                         ),
-                    ),
+                      ),
             // Padding(
             //   padding: const EdgeInsets.only(
             //       left: 60, right: 60, top: 20, bottom: 10),
@@ -356,22 +368,20 @@ class VideolibraryState extends State<Videolibrary> {
             //   height: 10,
             // )
 
-
-             Padding(
-             padding: const EdgeInsets.only(right: 0, left: 0),
-             child: Align(
-               alignment: Alignment.topRight,
-               child: Image.asset(
-                 "assets/newImages/flowers_footer.png",
-                 height: 170,
-               ),
-             ),
-           ),
-           SizedBox(
-             height: 10,
-           ),
-           Bottomcardlink(),
-        
+            Padding(
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Bottomcardlink(),
           ],
         ));
   }

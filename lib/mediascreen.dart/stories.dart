@@ -180,14 +180,12 @@ class StoriesState extends State<Stories> {
                 : (GlobalLists.storiesList.length == 0 && _isLoading == false)
                     ? Center(
                         child: Container(
-                          child:
-                              Center(child: Text(Constantstring.emptyData)),
+                          child: Center(child: Text(Constantstring.emptyData)),
                         ),
                       )
                     : Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-          
-                      child: ListView(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: ListView(
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
                           children: [
@@ -402,7 +400,7 @@ class StoriesState extends State<Stories> {
                                 : Container()
                           ],
                         ),
-                    ),
+                      ),
             // Padding(
             //   padding: const EdgeInsets.only(
             //       left: 60, right: 60, top: 20, bottom: 10),
@@ -424,21 +422,20 @@ class StoriesState extends State<Stories> {
               height: 10,
             ),
 
-
-             Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
-                  ),
+            Padding(
+              padding: const EdgeInsets.only(right: 0, left: 0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Image.asset(
+                  "assets/newImages/flowers_footer.png",
+                  height: 170,
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Bottomcardlink(),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Bottomcardlink(),
           ],
         ));
   }

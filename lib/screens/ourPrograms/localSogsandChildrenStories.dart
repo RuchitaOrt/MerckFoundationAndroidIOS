@@ -79,7 +79,7 @@ class LocalSongsandChildrenStoriesState
             visible: isMiddleSectionLoaded,
             replacement: Center(child: CircularProgressIndicator()),
             child: Padding(
-                     padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+              padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
               child: ListView(
                   shrinkWrap: true,
                   physics: ScrollPhysics(),
@@ -101,19 +101,19 @@ class LocalSongsandChildrenStoriesState
             height: 10,
           ),
           Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
-                  ),
-                ),
+            padding: const EdgeInsets.only(right: 0, left: 0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Image.asset(
+                "assets/newImages/flowers_footer.png",
+                height: 170,
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Bottomcardlink(),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Bottomcardlink(),
         ],
       ),
     );
@@ -221,14 +221,16 @@ class LocalSongsandChildrenStoriesState
               isheading: 1,
               cardTitle: "Watch Below videos :",
               btnTitle: "Watch More",
-              onbtnTap: () {  
+              onbtnTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
                             WatchmoreVideoambassdar(
-                              categoryid:
-                                  GlobalLists.homevideolist[0].categoryId,
+                              categoryid: GlobalLists
+                                  .homevideolist[
+                                      GlobalLists.homevideolist.length - 1]
+                                  .categoryId,
                               api: APIManager.watchsubmenuvideoapi,
                               type: "",
                               headertitle: "Videos",
@@ -243,7 +245,7 @@ class LocalSongsandChildrenStoriesState
               },
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-             //  heigthoflist: SizeConfig.blockSizeVertical * 36,
+              //  heigthoflist: SizeConfig.blockSizeVertical * 36,
               list: ListView.builder(
                 itemCount: GlobalLists.homevideolist.length,
                 scrollDirection: Axis.horizontal,
@@ -275,9 +277,10 @@ class LocalSongsandChildrenStoriesState
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
-                                  height: SizeConfig.blockSizeVertical * 25,
+                                height: SizeConfig.blockSizeVertical * 25,
                                 child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/newImages/placeholder_3.jpg',
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
                                   image:
                                       "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
                                   fit: BoxFit.fill,
@@ -321,33 +324,30 @@ class LocalSongsandChildrenStoriesState
                               //   ),
                               // ),
                               Padding(
-                                padding: EdgeInsets.only(left: 120,top: 70),
+                                padding: EdgeInsets.only(left: 120, top: 70),
                                 child: Center(
-                                    child:
-                                        Image.asset("assets/newImages/pause.png")),
+                                    child: Image.asset(
+                                        "assets/newImages/pause.png")),
                               )
                             ],
                           ),
                         ),
                         Container(
                           padding: EdgeInsets.only(left: 9),
-                                            width:
-                                                SizeConfig.blockSizeHorizontal * 80,
-                                            child: Text(
-                                              GlobalLists
-                                                  .homevideolist[index].videoDesc,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                  color: Colors.black87,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w700),
-                                              maxLines: 3,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          )
-                                  
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Text(
+                            GlobalLists.homevideolist[index].videoDesc,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                            maxLines: 3,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        )
                       ],
                     ),
                   );
