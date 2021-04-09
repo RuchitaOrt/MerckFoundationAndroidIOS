@@ -3,6 +3,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
@@ -60,109 +61,122 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
           height: 85,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        body: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                    padding: const EdgeInsets.only(
-                        left: 8, right: 8, bottom: 6, top: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Center(
-                        //   child: Container(
-                        //     height: 200,
-                        //     width: 150,
-                        //     decoration: BoxDecoration(
-                        //         borderRadius: BorderRadius.circular(8)),
-                        //     child: FadeInImage.assetNetwork(
-                        //       placeholder: 'assets/newImages/placeholder_3.jpg',
-                        //       image: widget.baseurl +
-                        //           GlobalLists
-                        //               .mmttestimoniallist[widget.index].image,
-                        //       fit: BoxFit.fill,
-                        //       height: 150,
-                        //     ),
-                        //   ),
-                        // ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Container(
-                            height: 200,
-                            width: 250,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10)),
-                            child: FadeInImage.assetNetwork(
-                              placeholder: 'assets/newImages/placeholder_3.jpg',
-                              image: widget.baseurl +
-                                  GlobalLists
-                                      .mmttestimoniallist[widget.index].image,
-                              fit: BoxFit.fill,
-                              imageScale: 1,
-                              height: 150,
-                            ),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.only(
+                      left: 8, right: 8, bottom: 6, top: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Center(
+                      //   child: Container(
+                      //     height: 200,
+                      //     width: 150,
+                      //     decoration: BoxDecoration(
+                      //         borderRadius: BorderRadius.circular(8)),
+                      //     child: FadeInImage.assetNetwork(
+                      //       placeholder: 'assets/newImages/placeholder_3.jpg',
+                      //       image: widget.baseurl +
+                      //           GlobalLists
+                      //               .mmttestimoniallist[widget.index].image,
+                      //       fit: BoxFit.fill,
+                      //       height: 150,
+                      //     ),
+                      //   ),
+                      // ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Container(
+                          height: 200,
+                          width: 250,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/newImages/placeholder_3.jpg',
+                            image: widget.baseurl +
+                                GlobalLists
+                                    .mmttestimoniallist[widget.index].image,
+                            fit: BoxFit.fill,
+                            imageScale: 1,
+                            height: 150,
                           ),
                         ),
-                        Html(
-                          data:
-                              """${GlobalLists.mmttestimoniallist[widget.index].testimonialName} """,
-                          onLinkTap: (url) {
-                            print("Opening $url...");
-                            ShowDialogs.launchURL(url);
-                          },
-                          // style: {
-                          //   "body": Style(textAlign: TextAlign.start),
-                          // },
-                          style: {
-                            "body": Style(
-                                fontSize: FontSize(17.0),
-                                color: Customcolor.colorBlue,
-                                textAlign: TextAlign.start,
-                                fontWeight: FontWeight.w500),
-                          },
-                        ),
-                        Html(
-                          data:
-                              """${GlobalLists.mmttestimoniallist[widget.index].departmentName} """,
-                          onLinkTap: (url) {
-                            print("Opening $url...");
-                            ShowDialogs.launchURL(url);
-                          },
-                          style: {
-                            "body": Style(textAlign: TextAlign.start),
-                          },
-                        ),
-                        Html(
-                          data:
-                              """${GlobalLists.mmttestimoniallist[widget.index].details} """,
-                          onLinkTap: (url) {
-                            print("Opening $url...");
-                            ShowDialogs.launchURL(url);
-                          },
-                          style: {
-                            "body": Style(textAlign: TextAlign.start),
-                          },
-                        ),
-                      ],
-                    )),
-                // Padding(
-                //   padding: const EdgeInsets.only(right: 0, left: 0),
-                //   child: Align(
-                //     alignment: Alignment.topRight,
-                //     child: Image.asset(
-                //       "assets/newImages/flowers_footer.png",
-                //       height: 170,
-                //     ),
-                //   ),
-                // ),
-                SizedBox(
-                  height: 10,
-                )
-              ],
+                      ),
+                      Html(
+                        data:
+                            """${GlobalLists.mmttestimoniallist[widget.index].testimonialName} """,
+                        onLinkTap: (url) {
+                          print("Opening $url...");
+                          ShowDialogs.launchURL(url);
+                        },
+                        // style: {
+                        //   "body": Style(textAlign: TextAlign.start),
+                        // },
+                        style: {
+                          "body": Style(
+                              fontSize: FontSize(17.0),
+                              color: Customcolor.colorBlue,
+                              textAlign: TextAlign.start,
+                              fontWeight: FontWeight.w500),
+                        },
+                      ),
+                      Html(
+                        data:
+                            """${GlobalLists.mmttestimoniallist[widget.index].departmentName} """,
+                        onLinkTap: (url) {
+                          print("Opening $url...");
+                          ShowDialogs.launchURL(url);
+                        },
+                        style: {
+                          "body": Style(textAlign: TextAlign.start),
+                        },
+                      ),
+                      Html(
+                        data:
+                            """${GlobalLists.mmttestimoniallist[widget.index].details} """,
+                        onLinkTap: (url) {
+                          print("Opening $url...");
+                          ShowDialogs.launchURL(url);
+                        },
+                        style: {
+                          "body": Style(textAlign: TextAlign.start),
+                        },
+                      ),
+                    ],
+                  )),
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 0, left: 0),
+              //   child: Align(
+              //     alignment: Alignment.topRight,
+              //     child: Image.asset(
+              //       "assets/newImages/flowers_footer.png",
+              //       height: 170,
+              //     ),
+              //   ),
+              // ),
+              SizedBox(
+                height: 10,
+              ),
+
+               Padding(
+          padding: const EdgeInsets.only(right: 0, left: 0),
+          child: Align(
+            alignment: Alignment.topRight,
+            child: Image.asset(
+              "assets/newImages/flowers_footer.png",
+              height: 170,
             ),
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+
+        Bottomcardlink(),
+            ],
           ),
         ));
   }

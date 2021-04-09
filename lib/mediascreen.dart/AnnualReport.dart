@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -36,25 +37,54 @@ class ContactusState extends State<AnnualReport> {
         trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15),
-              child: Center(
-                child: FormLabel(
-                  text: "Coming Soon",
-                  fontSize: 18,
-                  labelColor: Customcolor.colorVoilet,
-                  fontweight: FontWeight.bold,
-                  textAlignment: TextAlign.center,
+      body: Stack(
+        children: [
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: Center(
+                    child: FormLabel(
+                      text: "Coming Soon",
+                      fontSize: 18,
+                      labelColor: Customcolor.colorVoilet,
+                      fontweight: FontWeight.bold,
+                      textAlignment: TextAlign.center,
+                    ),
+                  ),
+                ),
+
+
+
+                    SizedBox(
+              height: 60,
+            ),
+
+              Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
                 ),
               ),
+
+
+           
+              ],
             ),
-          ],
-        ),
+          ),
+
+          Align(
+            alignment: Alignment.bottomCenter,
+            child:   Bottomcardlink(),
+          )
+        ],
       ),
     );
   }

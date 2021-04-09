@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:flutter_html/style.dart';
@@ -89,42 +90,130 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   widget.callfrom == 1
-                      ? Padding(
+                      ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 15, right: 8, top: 8, bottom: 5),
+                            child: Text(
+                              GlobalLists
+                                  .newsLettersList[widget.indexIs].title,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize:
+                                    ResponsiveFlutter.of(context).fontSize(2),
+                                fontWeight: FontWeight.w600,
+                                color: Customcolor.colorVoilet,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 15, right: 8, top: 8, bottom: 5),
+                            child: Html(
+                              data:
+                                  """${GlobalLists.newsLettersList[widget.indexIs].details} """,
+                              onLinkTap: (url) {
+                                print("Opening $url...");
+                                ShowDialogs.launchURL(url);
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Padding(
                           padding: const EdgeInsets.only(
-                              left: 15, right: 8, top: 8, bottom: 15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                GlobalLists
-                                    .newsLettersList[widget.indexIs].title,
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontSize:
-                                      ResponsiveFlutter.of(context).fontSize(2),
-                                  fontWeight: FontWeight.w600,
-                                  color: Customcolor.colorVoilet,
+                              left: 15, right: 8, top: 8, bottom: 5),
+                            child: Html(
+                              data:
+                                  """${GlobalLists.newsLettersList[widget.indexIs].detailPageUrl} """,
+                              onLinkTap: (url) {
+                                print("Opening $url...");
+                                ShowDialogs.launchURL(url);
+                              },
+                            ),
+                          ),
+
+
+                           Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 0, left: 0),
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: Image.asset(
+                                    "assets/newImages/flowers_footer.png",
+                                    height: 170,
+                                  ),
                                 ),
                               ),
-                              Html(
-                                data:
-                                    """${GlobalLists.newsLettersList[widget.indexIs].details} """,
-                                onLinkTap: (url) {
-                                  print("Opening $url...");
-                                  ShowDialogs.launchURL(url);
-                                },
+                              SizedBox(
+                                height: 10,
+                              ),
+                               Bottomcardlink(),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(
+                          //       right: 60, left: 60, top: 20),
+                          //   child: Image.asset(
+                          //     "assets/newImages/flowers_footer.png",
+                          //   ),
+                          // ),
+                          // Padding(
+                          //   padding:
+                          //       const EdgeInsets.only(right: 0, left: 0),
+                          //   child: Align(
+                          //     alignment: Alignment.topRight,
+                          //     child: Image.asset(
+                          //       "assets/newImages/flowers_footer.png",
+                          //       height: 170,
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 10,
+                          // )
+                        ],
+                      )
+                      : widget.callfrom == 2
+                          ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                              padding: const EdgeInsets.only(
+                              left: 15, right: 8, top: 8, bottom: 5),
+                                child: Html(
+                                  data:
+                                      """${GlobalLists.homeceomsglist[widget.indexIs].title} """,
+                                  onLinkTap: (url) {
+                                    print("Opening $url...");
+                                    ShowDialogs.launchURL(url);
+                                  },
+                                  style: {
+                                    "body": Style(
+                                        textAlign: TextAlign.center,
+                                        color: Customcolor.colorVoilet,
+                                        fontSize: FontSize.larger,
+                                        fontWeight: FontWeight.w600),
+                                  },
+                                ),
+                              ),
+                              Padding(
+                               padding: const EdgeInsets.only(
+                              left: 15, right: 8, top: 8, bottom: 5),
+                                child: Html(
+                                  data:
+                                      """${GlobalLists.homeceomsglist[widget.indexIs].details} """,
+                                  onLinkTap: (url) {
+                                    print("Opening $url...");
+                                    ShowDialogs.launchURL(url);
+                                  },
+                                ),
                               ),
                               SizedBox(
                                 height: 15,
                               ),
-                              Html(
-                                data:
-                                    """${GlobalLists.newsLettersList[widget.indexIs].detailPageUrl} """,
-                                onLinkTap: (url) {
-                                  print("Opening $url...");
-                                  ShowDialogs.launchURL(url);
-                                },
-                              ),
+
                               // Padding(
                               //   padding: const EdgeInsets.only(
                               //       right: 60, left: 60, top: 20),
@@ -132,52 +221,58 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                               //     "assets/newImages/flowers_footer.png",
                               //   ),
                               // ),
-                              // Padding(
-                              //   padding:
-                              //       const EdgeInsets.only(right: 0, left: 0),
-                              //   child: Align(
-                              //     alignment: Alignment.topRight,
-                              //     child: Image.asset(
-                              //       "assets/newImages/flowers_footer.png",
-                              //       height: 170,
-                              //     ),
-                              //   ),
-                              // ),
-                              // SizedBox(
-                              //   height: 10,
-                              // )
-                            ],
-                          ),
-                        )
-                      : widget.callfrom == 2
-                          ? Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 8, right: 8, top: 8, bottom: 15),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Html(
-                                    data:
-                                        """${GlobalLists.homeceomsglist[widget.indexIs].title} """,
-                                    onLinkTap: (url) {
-                                      print("Opening $url...");
-                                      ShowDialogs.launchURL(url);
-                                    },
-                                    style: {
-                                      "body": Style(
-                                          textAlign: TextAlign.center,
-                                          color: Customcolor.colorVoilet,
-                                          fontSize: FontSize.larger,
-                                          fontWeight: FontWeight.w600),
-                                    },
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 0, left: 0),
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: Image.asset(
+                                    "assets/newImages/flowers_footer.png",
+                                    height: 170,
                                   ),
-                                  Html(
-                                    data:
-                                        """${GlobalLists.homeceomsglist[widget.indexIs].details} """,
-                                    onLinkTap: (url) {
-                                      print("Opening $url...");
-                                      ShowDialogs.launchURL(url);
-                                    },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                               Bottomcardlink(),
+                            ],
+                          )
+                          : widget.callfrom == 3
+                              ? Column(
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                   padding: const EdgeInsets.only(
+                              left: 15, right: 8, top: 8, bottom: 5),
+                                    child: Html(
+                                      data:
+                                          """${GlobalLists.homeceoList[widget.indexIs].title} """,
+                                      onLinkTap: (url) {
+                                        print("Opening $url...");
+                                        ShowDialogs.launchURL(url);
+                                      },
+                                      style: {
+                                        "body": Style(
+                                            textAlign: TextAlign.center,
+                                            color: Customcolor.colorVoilet,
+                                            fontSize: FontSize.larger,
+                                            fontWeight: FontWeight.w600),
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                   padding: const EdgeInsets.only(
+                              left: 15, right: 8, top: 8, bottom: 5),
+                                    child: Html(
+                                      data:
+                                          """${GlobalLists.homeceoList[widget.indexIs].details} """,
+                                      onLinkTap: (url) {
+                                        print("Opening $url...");
+                                        ShowDialogs.launchURL(url);
+                                      },
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 15,
@@ -203,118 +298,60 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                   ),
                                   SizedBox(
                                     height: 10,
-                                  )
+                                  ),
+                                   Bottomcardlink(),
                                 ],
-                              ),
-                            )
-                          : widget.callfrom == 3
-                              ? Padding(
+                              )
+                              : Column(
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 8, right: 8, top: 8, bottom: 15),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Html(
-                                        data:
-                                            """${GlobalLists.homeceoList[widget.indexIs].title} """,
-                                        onLinkTap: (url) {
-                                          print("Opening $url...");
-                                          ShowDialogs.launchURL(url);
-                                        },
-                                        style: {
-                                          "body": Style(
-                                              textAlign: TextAlign.center,
-                                              color: Customcolor.colorVoilet,
-                                              fontSize: FontSize.larger,
-                                              fontWeight: FontWeight.w600),
-                                        },
-                                      ),
-                                      Html(
-                                        data:
-                                            """${GlobalLists.homeceoList[widget.indexIs].details} """,
-                                        onLinkTap: (url) {
-                                          print("Opening $url...");
-                                          ShowDialogs.launchURL(url);
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-
-                                      // Padding(
-                                      //   padding: const EdgeInsets.only(
-                                      //       right: 60, left: 60, top: 20),
-                                      //   child: Image.asset(
-                                      //     "assets/newImages/flowers_footer.png",
-                                      //   ),
-                                      // ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 0, left: 0),
-                                        child: Align(
-                                          alignment: Alignment.topRight,
-                                          child: Image.asset(
-                                            "assets/newImages/flowers_footer.png",
-                                            height: 170,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      )
-                                    ],
+                              left: 15, right: 8, top: 8, bottom: 5),
+                                    child: Html(
+                                      data:
+                                          """${GlobalLists.searcharticlelisting[widget.indexIs]['detail_page_url']} """,
+                                      onLinkTap: (url) {
+                                        print("Opening $url...");
+                                        ShowDialogs.launchURL(url);
+                                      },
+                                    ),
                                   ),
-                                )
-                              : Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 15, right: 8, top: 8, bottom: 15),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Html(
-                                        data:
-                                            """${GlobalLists.searcharticlelisting[widget.indexIs]['detail_page_url']} """,
-                                        onLinkTap: (url) {
-                                          print("Opening $url...");
-                                          ShowDialogs.launchURL(url);
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      // Html(
-                                      //   data:
-                                      //       """${GlobalLists.newsLettersList[widget.indexIs].detailPageUrl} """,
-                                      //   onLinkTap: (url) {
-                                      //     print("Opening $url...");
-                                      //   },
-                                      // ),
-                                      // Padding(
-                                      //   padding: const EdgeInsets.only(
-                                      //       right: 60, left: 60, top: 20),
-                                      //   child: Image.asset(
-                                      //     "assets/newImages/flowers_footer.png",
-                                      //   ),
-                                      // ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 0, left: 0),
-                                        child: Align(
-                                          alignment: Alignment.topRight,
-                                          child: Image.asset(
-                                            "assets/newImages/flowers_footer.png",
-                                            height: 170,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      )
-                                    ],
+                                  SizedBox(
+                                    height: 15,
                                   ),
-                                )
+                                  // Html(
+                                  //   data:
+                                  //       """${GlobalLists.newsLettersList[widget.indexIs].detailPageUrl} """,
+                                  //   onLinkTap: (url) {
+                                  //     print("Opening $url...");
+                                  //   },
+                                  // ),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.only(
+                                  //       right: 60, left: 60, top: 20),
+                                  //   child: Image.asset(
+                                  //     "assets/newImages/flowers_footer.png",
+                                  //   ),
+                                  // ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 0, left: 0),
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Image.asset(
+                                        "assets/newImages/flowers_footer.png",
+                                        height: 170,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                    Bottomcardlink(),
+                                ],
+                              )
                 ],
               ),
             ),

@@ -7,6 +7,7 @@ import 'package:merckfoundation22dec/searchscreen/search.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
@@ -71,87 +72,114 @@ class SearchcategoryState extends State<Searchcategory>
           height: 85,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        body: ListView(
-          shrinkWrap: true,
-          // crossAxisAlignment: CrossAxisAlignment.center,
+        body: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-              child: Container(
-                height: 80,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      print("in state");
-                      isexpanded = !isexpanded;
-                    });
-                  },
-                  child: TextField(
-                    enabled: false,
-                    controller: categoryController,
-                    decoration: InputDecoration(
-                        // contentPadding:
-                        //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
-                        hintText: "Select Category",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0)),
-                        suffixIcon: Icon(Icons.arrow_drop_down)),
-                  ),
-                ),
-              ),
-            ),
-            isexpanded == true ? categoryDropdown() : Container(),
-            SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                right: 20,
-              ),
-              child: TextFormField(
-                enabled: true,
-                controller: keywordController,
-                decoration: InputDecoration(
-                  // contentPadding:
-                  //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
-                  hintText: "Enter Keyword",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0)),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                padding: EdgeInsets.only(bottom: 10, left: 15, top: 10),
-                height: 60,
-                child: GestureDetector(
-                  onTap: () {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    if (keywordController.text == "") {
-                      ShowDialogs.showToast("Please Select Keyword");
-                    } else {
-                      search();
-                    }
-                  },
+            ListView(
+              shrinkWrap: true,
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                   child: Container(
-                    width: 110,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Customcolor.text_darkblue,
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                      child: Text(
-                        "Search",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
+                    height: 80,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          print("in state");
+                          isexpanded = !isexpanded;
+                        });
+                      },
+                      child: TextField(
+                        enabled: false,
+                        controller: categoryController,
+                        decoration: InputDecoration(
+                            // contentPadding:
+                            //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
+                            hintText: "Select Category",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0)),
+                            suffixIcon: Icon(Icons.arrow_drop_down)),
                       ),
                     ),
                   ),
                 ),
+                isexpanded == true ? categoryDropdown() : Container(),
+                SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
+                  ),
+                  child: TextFormField(
+                    enabled: true,
+                    controller: keywordController,
+                    decoration: InputDecoration(
+                      // contentPadding:
+                      //     EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
+                      hintText: "Enter Keyword",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: 10, left: 15, top: 10),
+                    height: 60,
+                    child: GestureDetector(
+                      onTap: () {
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        if (keywordController.text == "") {
+                          ShowDialogs.showToast("Please Select Keyword");
+                        } else {
+                          search();
+                        }
+                      },
+                      child: Container(
+                        width: 110,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Customcolor.text_darkblue,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Center(
+                          child: Text(
+                            "Search",
+                            style: TextStyle(
+                                color: Colors.white, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                 SizedBox(
+                height: 40,
               ),
+
+                          Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              ],
             ),
+         Align(
+           alignment: Alignment.bottomCenter,
+           child: Bottomcardlink(),
+         )
+         
           ],
         ));
   }

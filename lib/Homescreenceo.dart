@@ -145,7 +145,7 @@ class OurVisionState extends State<Homeceomessage>
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 40,
                         ),
                       ],
                     ),

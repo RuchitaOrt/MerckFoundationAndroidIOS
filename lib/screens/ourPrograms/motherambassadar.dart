@@ -217,7 +217,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-              //  heigthoflist: SizeConfig.safeBlockVertical * 38,
+                // heigthoflist: SizeConfig.safeBlockVertical * 38,
               onbtnTap: () {
                 //  getprogramgallery();
               },
@@ -600,7 +600,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
             showviewmore: 1,
             titleColor: Customcolor.pink_col,
             onbtnTap: () {},
-            heigthoflist: SizeConfig.blockSizeVertical * 43,
+            heigthoflist: SizeConfig.blockSizeVertical * 45,
             titleImg: "assets/newImages/flowers-3.png",
             list: ListView.builder(
               itemCount: GlobalLists.ambasdarslist.length,
@@ -621,8 +621,8 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                     child: Column(
                       children: [
                         Container(
-                          // width: SizeConfig.blockSizeHorizontal * 50,
-                          height: 260,
+                          //  width: SizeConfig.blockSizeHorizontal * 80,
+                          height: SizeConfig.blockSizeVertical * 36,
                           child: FadeInImage.assetNetwork(
                             placeholder: 'assets/newImages/placeholder_3.jpg',
                             image:

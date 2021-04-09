@@ -56,7 +56,7 @@ class StemInnerPagesState extends State<StemInnerPages>
             //               index: 0,
             //             )));
           },
-          index: 2,
+          index: 1,
           title: widget.title,
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",

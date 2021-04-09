@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -56,7 +57,7 @@ class ChildrenyouthState extends State<Childrenyouth>
         body: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 1),
+              padding: const EdgeInsets.only(bottom: 0),
               child: ListView(
                 shrinkWrap: true,
                 // crossAxisAlignment: CrossAxisAlignment.center,
@@ -163,6 +164,24 @@ class ChildrenyouthState extends State<Childrenyouth>
                       ],
                     ),
                   ),
+
+                    SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Bottomcardlink(),
                 ],
               ),
             ),

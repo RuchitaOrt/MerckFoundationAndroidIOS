@@ -172,7 +172,7 @@ class CovidResponseState extends State<CovidResponse>
         body: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 1),
+              padding: const EdgeInsets.only(bottom: 0),
               child: ListView(
                 shrinkWrap: true,
                 // crossAxisAlignment: CrossAxisAlignment.center,
