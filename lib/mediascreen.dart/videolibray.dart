@@ -196,7 +196,7 @@ class VideolibraryState extends State<Videolibrary> {
                       child: ListView(
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
-                          children: [
+                          children: [   
                             GridView.count(
                               shrinkWrap: true,
                               physics: ScrollPhysics(),
@@ -316,7 +316,17 @@ class VideolibraryState extends State<Videolibrary> {
                                                 ],
                                               ),
                                             ),
-                                            PauseImage()
+                                           Positioned(
+      top: SizeConfig.blockSizeVertical * 6.5,
+      left: SizeConfig.blockSizeVertical * 9,
+      child: Center(
+        child: Image.asset(
+          "assets/newImages/pause.png",
+          height: 30,
+          width: 30,
+        ),
+      ),
+    )
                                           ],
                                         ),
                                       )),

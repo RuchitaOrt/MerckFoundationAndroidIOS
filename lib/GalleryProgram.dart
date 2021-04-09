@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -131,143 +132,166 @@ class _GalleryProgramState extends State<GalleryProgram> {
         height: 85,
       ),
       backgroundColor: Customcolor.background,
-      body: ListView(
-        physics: ScrollPhysics(),
-        shrinkWrap: true,
-        controller: _sc,
+      body: Stack(
         children: [
-          (GlobalLists.programgallerylist.length == 0 && _isLoading)
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : (GlobalLists.programgallerylist.length == 0 &&
-                      _isLoading == false)
+          ListView(
+            physics: ScrollPhysics(),
+            shrinkWrap: true,
+            controller: _sc,
+            children: [
+              (GlobalLists.programgallerylist.length == 0 && _isLoading)
                   ? Center(
-                      child: Container(
-                        child: Center(child: Text(Constantstring.emptyData)),
-                      ),
+                      child: CircularProgressIndicator(),
                     )
-                  : ListView(
-                      shrinkWrap: true,
-                      physics: ScrollPhysics(),
-                      children: [
-                        GridView.count(
+                  : (GlobalLists.programgallerylist.length == 0 &&
+                          _isLoading == false)
+                      ? Center(
+                          child: Container(
+                            child: Center(child: Text(Constantstring.emptyData)),
+                          ),
+                        )
+                      : ListView(
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
-                          padding: const EdgeInsets.all(5),
-                          crossAxisSpacing: 0,
-                          mainAxisSpacing: 2,
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.9,
-                          children: List.generate(
-                              GlobalLists.programgallerylist.length, (index) {
-                            // if (GlobalLists.programgallerylist.length - 1 ==
-                            //         index &&
-                            //     _isLoading) {
-                            //   return Center(
-                            //     child: CircularProgressIndicator(),
-                            //   );
-                            // } else {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 2.0),
-                              child: Card(
-                                  elevation: 2,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(1),
-                                    ),
-                                  ),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      ShowDialogs.showImageDialog(
-                                        context: context,
-                                        image:
-                                            GlobalLists.programgallerybaseurl +
-                                                GlobalLists
-                                                    .programgallerylist[index]
-                                                    .photo,
-                                        description: GlobalLists
-                                            .programgallerylist[index]
-                                            .photoDescription,
-                                      );
-                                    },
-                                    child: Container(
-                                      color: Colors.transparent,
-                                      width:
-                                          SizeConfig.blockSizeHorizontal * 50,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Container(
-                                              width: SizeConfig
-                                                      .blockSizeHorizontal *
-                                                  100,
-                                              height:
-                                                  SizeConfig.blockSizeVertical *
-                                                      16,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                // border: Border.all(
-                                                //   width: 1,
-                                                // ),
-                                                image: new DecorationImage(
-                                                  image: new NetworkImage(GlobalLists
-                                                          .programgallerybaseurl +
-                                                      GlobalLists
-                                                          .programgallerylist[
-                                                              index]
-                                                          .photo),
-                                                  fit: BoxFit.contain,
+                          children: [
+                            GridView.count(
+                              shrinkWrap: true,
+                              physics: ScrollPhysics(),
+                              padding: const EdgeInsets.all(5),
+                              crossAxisSpacing: 0,
+                              mainAxisSpacing: 2,
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.9,
+                              children: List.generate(
+                                  GlobalLists.programgallerylist.length, (index) {
+                                // if (GlobalLists.programgallerylist.length - 1 ==
+                                //         index &&
+                                //     _isLoading) {
+                                //   return Center(
+                                //     child: CircularProgressIndicator(),
+                                //   );
+                                // } else {
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 2.0),
+                                  child: Card(
+                                      elevation: 2,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(1),
+                                        ),
+                                      ),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          ShowDialogs.showImageDialog(
+                                            context: context,
+                                            image:
+                                                GlobalLists.programgallerybaseurl +
+                                                    GlobalLists
+                                                        .programgallerylist[index]
+                                                        .photo,
+                                            description: GlobalLists
+                                                .programgallerylist[index]
+                                                .photoDescription,
+                                          );
+                                        },
+                                        child: Container(
+                                          color: Colors.transparent,
+                                          width:
+                                              SizeConfig.blockSizeHorizontal * 50,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Container(
+                                                  width: SizeConfig
+                                                          .blockSizeHorizontal *
+                                                      100,
+                                                  height:
+                                                      SizeConfig.blockSizeVertical *
+                                                          16,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(5),
+                                                    // border: Border.all(
+                                                    //   width: 1,
+                                                    // ),
+                                                    image: new DecorationImage(
+                                                      image: new NetworkImage(GlobalLists
+                                                              .programgallerybaseurl +
+                                                          GlobalLists
+                                                              .programgallerylist[
+                                                                  index]
+                                                              .photo),
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(4.0),
-                                            child: Center(
-                                              child: Text(
-                                                GlobalLists
-                                                    .programgallerylist[index]
-                                                    .photoDescription,
-                                                textAlign: TextAlign.center,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize:
-                                                        ResponsiveFlutter.of(
-                                                                context)
-                                                            .fontSize(1.4),
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                                maxLines: 3,
+                                              Padding(
+                                                padding: const EdgeInsets.all(4.0),
+                                                child: Center(
+                                                  child: Text(
+                                                    GlobalLists
+                                                        .programgallerylist[index]
+                                                        .photoDescription,
+                                                    textAlign: TextAlign.center,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize:
+                                                            ResponsiveFlutter.of(
+                                                                    context)
+                                                                .fontSize(1.4),
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                    maxLines: 3,
+                                                  ),
+                                                ),
                                               ),
-                                            ),
+                                              //SizedBox(height: 5),
+                                            ],
                                           ),
-                                          //SizedBox(height: 5),
-                                        ],
-                                      ),
-                                    ),
-                                  )),
-                            );
-                            //  }
-                          }),
+                                        ),
+                                      )),
+                                );
+                                //  }
+                              }),
+                            ),
+                            _isLoading
+                                ? Center(
+                                    child: Padding(
+                                    padding:
+                                        const EdgeInsets.only(top: 10, bottom: 10),
+                                    child: CircularProgressIndicator(),
+                                  ))
+                                : Container()
+                          ],
                         ),
-                        _isLoading
-                            ? Center(
-                                child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 10, bottom: 10),
-                                child: CircularProgressIndicator(),
-                              ))
-                            : Container()
-                      ],
-                    ),
+
+                         Padding(
+                        padding: const EdgeInsets.only(right: 0, left: 0),
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: Image.asset(
+                            "assets/newImages/flowers_footer.png",
+                            height: 170,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+            ],
+          ),
+       
+        Align(
+             alignment: Alignment.bottomCenter,
+   child: Bottomcardlink()),
+       
         ],
       ),
     );

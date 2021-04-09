@@ -45,8 +45,10 @@ class ContactusState extends State<ContactUs> {
       body: Stack(
         children: [
           Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: ListView(
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 20),

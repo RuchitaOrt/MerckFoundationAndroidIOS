@@ -4,6 +4,7 @@ import 'package:merckfoundation22dec/model/visionResponse.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
@@ -65,68 +66,86 @@ class StemInnerPagesState extends State<StemInnerPages>
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 1),
-              child: ListView(
-                shrinkWrap: true,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 15, right: 8, top: 8, bottom: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Center(
-                        //   child: Html(
-                        //     data: """${widget.title} """,
-                        //     onLinkTap: (url) {
-                        //       print("Opening $url...");
-                        //     },
-                        //     style: {
-                        //       "body": Style(
-                        //           textAlign: TextAlign.start,
-                        //           color: Customcolor.colorVoilet,
-                        //           fontSize: FontSize.larger,
-                        //           alignment: Alignment.center,
-                        //           fontWeight: FontWeight.w600),
-                        //     },
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 15,
-                        // ),
-                        Html(
-                          data: """${widget.details} """,
-                          onLinkTap: (url) {
-                            print("Opening $url...");
-                            ShowDialogs.launchURL(url);
-                          },
-                        ),
-                        // Padding(
-                        //   padding:
-                        //       const EdgeInsets.only(right: 0, left: 0),
-                        //   child: Align(
-                        //     alignment: Alignment.topRight,
-                        //     child: Image.asset(
-                        //       "assets/newImages/flowers_footer.png",
-                        //       height: 170,
-                        //     ),
-                        //   ),
-                        // ),
-                        SizedBox(
-                          height: 10,
-                        )
-                      ],
+            ListView(
+              shrinkWrap: true,
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 15, right: 8, top: 8, bottom: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Center(
+                      //   child: Html(
+                      //     data: """${widget.title} """,
+                      //     onLinkTap: (url) {
+                      //       print("Opening $url...");
+                      //     },
+                      //     style: {
+                      //       "body": Style(
+                      //           textAlign: TextAlign.start,
+                      //           color: Customcolor.colorVoilet,
+                      //           fontSize: FontSize.larger,
+                      //           alignment: Alignment.center,
+                      //           fontWeight: FontWeight.w600),
+                      //     },
+                      //   ),
+                      // ),
+                      // SizedBox(
+                      //   height: 15,
+                      // ),
+                      Html(
+                        data: """${widget.details} """,
+                        onLinkTap: (url) {
+                          print("Opening $url...");
+                          ShowDialogs.launchURL(url);
+                        },
+                      ),
+                      // Padding(
+                      //   padding:
+                      //       const EdgeInsets.only(right: 0, left: 0),
+                      //   child: Align(
+                      //     alignment: Alignment.topRight,
+                      //     child: Image.asset(
+                      //       "assets/newImages/flowers_footer.png",
+                      //       height: 170,
+                      //     ),
+                      //   ),
+                      // ),
+                      SizedBox(
+                        height: 10,
+                      )
+                    ],
+                  ),
+                ),
+
+
+                   Padding(
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+              ],
             ),
 
             // TextSpan(
 
             // ),
+
+
+
+           Align(
+             alignment: Alignment.bottomCenter,
+   child: Bottomcardlink()),
           ],
         ));
   }

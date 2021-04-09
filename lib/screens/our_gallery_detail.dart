@@ -10,6 +10,7 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
+import 'package:responsive_flutter/responsive_flutter.dart';
 
 class OurGalleryDetailsPage extends StatefulWidget {
   String categoryID;
@@ -225,7 +226,12 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: Customcolor.descriptiontext,
-                                      fontSize: 14,
+                                      fontSize:
+    
+
+ResponsiveFlutter.of(context).fontSize(1.6),
+
+
                                       fontFamily: "verdana",
                                       fontWeight: FontWeight.w500),
                                   maxLines: 3,
@@ -398,7 +404,7 @@ class CustomCard extends StatelessWidget {
         ),
         Container(
             width: SizeConfig.blockSizeHorizontal * 100,
-            height: SizeConfig.blockSizeVertical * 33,
+            height: SizeConfig.blockSizeVertical * 35,
             child: list),
         // SizedBox(
         //   height: 4,

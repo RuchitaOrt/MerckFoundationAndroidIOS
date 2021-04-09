@@ -1634,6 +1634,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
+                                height: SizeConfig.blockSizeVertical * 25,
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
                                       'assets/newImages/placeholder_3.jpg',
@@ -1701,7 +1702,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                 color: Colors.black87,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700),
-                            maxLines: 3,
+                            maxLines: 2,
                           ),
                         ),
                       ],
