@@ -313,14 +313,13 @@ class VideolibraryState extends State<Videolibrary> {
                                                 ],
                                               ),
                                             ),
-                                            //PauseImage()
                                             Positioned(
                                               top:
                                                   SizeConfig.blockSizeVertical *
                                                       6.5,
                                               left:
                                                   SizeConfig.blockSizeVertical *
-                                                      9.0,
+                                                      9,
                                               child: Center(
                                                 child: Image.asset(
                                                   "assets/newImages/pause.png",

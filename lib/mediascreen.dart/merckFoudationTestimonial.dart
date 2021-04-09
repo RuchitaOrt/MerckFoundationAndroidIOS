@@ -201,7 +201,7 @@ class MerckFoundationTestimonialState
                               shrinkWrap: true,
                               physics: ScrollPhysics(),
                               crossAxisCount: 2,
-                              childAspectRatio: 0.9,
+                              childAspectRatio: 0.9, //0.9
                               children: List.generate(
                                   GlobalLists.merckTestimonialList.length,
                                   (index) {
@@ -317,14 +317,13 @@ class MerckFoundationTestimonialState
                                                 ],
                                               ),
                                             ),
-                                            // PauseImage()
                                             Positioned(
                                               top:
                                                   SizeConfig.blockSizeVertical *
                                                       6.5,
                                               left:
                                                   SizeConfig.blockSizeVertical *
-                                                      9.0,
+                                                      9,
                                               child: Center(
                                                 child: Image.asset(
                                                   "assets/newImages/pause.png",

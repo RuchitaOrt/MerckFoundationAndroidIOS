@@ -199,7 +199,7 @@ class StoriesState extends State<Stories> {
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
-                                  childAspectRatio: 0.87,
+                                  childAspectRatio: 0.9,
                                 ),
                                 itemBuilder: (BuildContext context, index) {
                                   // if (GlobalLists.storiesList.length - 1 == index &&
