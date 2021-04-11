@@ -300,7 +300,7 @@ class CommunityMediaState extends State<CommunityMedia>
                                     // ),
                                     Padding(
                                       padding:
-                                          EdgeInsets.only(left: 50, top: 60),
+                                          EdgeInsets.only(left: 40, top: 60),
                                       child: Center(
                                           child: Image.asset(
                                               "assets/newImages/pause.png")),
