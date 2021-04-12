@@ -93,6 +93,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
   void initState() {
     // getmmtmslider();
     _todaysDate = DateTime.now();
+     
     getmmtmapi();
     super.initState();
     //_tabController = new TabController(vsync: this, length: 2);
@@ -2367,6 +2368,10 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
             africaasia.AfricaAsiaResponse.fromJson(res);
         GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
         slidersection = homepageres.sliderArea[0].slider.list;
+
+         GlobalLists.homecallforapp.clear();
+
+         
         slidersection.forEach((element) {
           _productsAvailable.add({
             "id": element.id,
