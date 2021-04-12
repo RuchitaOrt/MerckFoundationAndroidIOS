@@ -76,7 +76,7 @@ class Constantstring {
 //merck foundation on
   static String homeheader = "";
   static String homeheaderlink = "";
-  static String baseurllink = "http://merck-foundation.com/";
+  static String baseurllink = "https://merck-foundation.com/";
   static String followinsta = "https://www.instagram.com/merckfoundation";
   static String followfacebook = "https://www.facebook.com/merckfoundation/";
   static String followtwitter = "https://twitter.com/MerckFoundation/";

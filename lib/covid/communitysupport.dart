@@ -172,7 +172,7 @@ class CommunitysupportState extends State<Communitysupport>
                         GestureDetector(
                           onTap: () {
                             ShowDialogs.launchURL(
-                                "http://merck-foundation.com/Merck_Events_Gallery/Merck-Foundation-and-FL-of-Liberia-support-retired-people-affected-by-Coronavirus");
+                                "https://merck-foundation.com/Merck_Events_Gallery/Merck-Foundation-and-FL-of-Liberia-support-retired-people-affected-by-Coronavirus");
                           },
                           child: RichText(
                             text: TextSpan(

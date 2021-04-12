@@ -93,7 +93,8 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
   void initState() {
     // getmmtmslider();
     _todaysDate = DateTime.now();
-     
+    GlobalLists.homecallforapp.clear();
+    GlobalLists.homedigitallib.clear();
     getmmtmapi();
     super.initState();
     //_tabController = new TabController(vsync: this, length: 2);
@@ -2369,9 +2370,8 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
         GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
         slidersection = homepageres.sliderArea[0].slider.list;
 
-         GlobalLists.homecallforapp.clear();
+        GlobalLists.homecallforapp.clear();
 
-         
         slidersection.forEach((element) {
           _productsAvailable.add({
             "id": element.id,
@@ -2442,12 +2442,15 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
 
         ///////right section
 
-        dynamic rightsection1 = res['Right_area'][1];
-        dynamic rightsection3 = res['Right_area'][3];
+        dynamic rightsection1 = res['Right_area']["1"];
+        print("rightsection");
+        print("TKey: ${rightsection1.keys.first}");
+        print(rightsection1);
+        dynamic rightsection3 = res['Right_area']["3"];
         // print("TKey: ${rightsection.keys.first}");
-        var rightsection1categoryname = rightsection1;
-        var rightsection3categoryname = rightsection3;
-
+        var rightsection1categoryname = rightsection1.keys.first;
+        var rightsection3categoryname = rightsection3.keys.first;
+        print(rightsection3categoryname);
         setState(() {
           typewidetofrightsection.add('call_for_app');
           typewidetofrightsection.add('digital_library');
@@ -2456,33 +2459,43 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
           _tabController = new TabController(
               vsync: this, length: typewidetofrightsection.length);
         });
-
+        print("after tab");
+        print(rightsection1categoryname.toString().toLowerCase());
         if (rightsection1categoryname.toString().toLowerCase() ==
             "call_for_app".toLowerCase()) {
+          print("print here value");
           for (int j = 0;
-              j < homepageres.rightArea[1].callForApp.list.length;
+              j < homepageres.rightArea["1"].callForApp.list.length;
               j++) {
             var enddate = new DateTime.utc(
-                homepageres.rightArea[1].callForApp.list[j].eventEndDate.year,
-                homepageres.rightArea[1].callForApp.list[j].eventEndDate.month,
-                homepageres.rightArea[1].callForApp.list[j].eventEndDate.day);
+                homepageres.rightArea["1"].callForApp.list[j].eventEndDate.year,
+                homepageres
+                    .rightArea["1"].callForApp.list[j].eventEndDate.month,
+                homepageres.rightArea["1"].callForApp.list[j].eventEndDate.day);
 
             if (_todaysDate.isBefore(enddate)) {
-              GlobalLists.homecallforapp
-                  .add(homepageres.rightArea[1].callForApp.list[j]);
+              print("print here vale");
+              setState(() {
+                GlobalLists.homecallforapp
+                    .add(homepageres.rightArea["1"].callForApp.list[j]);
+              });
+
               print(GlobalLists.homecallforapp.length);
             }
           }
           // GlobalLists.homecallforapp = homepageres.rightArea[1].callForApp.list;
           GlobalLists.homeCallForAppBaseURL =
-              homepageres.rightArea[1].callForApp.baseUrl;
+              homepageres.rightArea["1"].callForApp.baseUrl;
           print(GlobalLists.homecallforapp.length);
-        } else if (rightsection3categoryname.toString().toLowerCase() ==
+        }
+        if (rightsection3categoryname.toString().toLowerCase() ==
             "digital_library".toLowerCase()) {
+          print("digital_library here");
+
           GlobalLists.homedigitallib =
-              homepageres.rightArea[3].digitalLibrary.list;
+              homepageres.rightArea["3"].digitalLibrary.list;
           GlobalLists.homeDigitalLibraryBaseURL =
-              homepageres.rightArea[3].digitalLibrary.baseUrl;
+              homepageres.rightArea["3"].digitalLibrary.baseUrl;
           print(GlobalLists.homedigitallib.length);
         }
 

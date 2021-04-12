@@ -274,7 +274,7 @@ class APIManager {
     //http://merckfoundation.org/mfindia/web/public/api/
     // var uri = Uri.http(
     //     'onerooftechnologiesllp.com', '/mfindia/web/public/api/$encoding');
-    var uri = Uri.http('merck-foundation.com', 'api/$encoding');
+    var uri = Uri.https('merck-foundation.com', 'api/$encoding');
     final response = await ioClient.get(uri);
     print(uri.toString());
     if (response.statusCode == 401) {

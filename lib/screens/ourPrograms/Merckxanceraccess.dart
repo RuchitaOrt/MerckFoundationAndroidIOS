@@ -92,6 +92,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
   @override
   void initState() {
     // getmmtmslider();
+    // GlobalLists.homecallforapp.clear();
+    // GlobalLists.homemmtm.clear();
+    GlobalLists.homedigitallib.clear();
     getmmtmapi();
     super.initState();
     // _tabController = new TabController(vsync: this, length: 1);
