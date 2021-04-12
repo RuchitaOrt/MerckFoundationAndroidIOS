@@ -2,12 +2,12 @@
     "environment": "development",
     "version": "1",
     "development": {
-        "hostUrl": "http://merck-foundation.com/api/", 
+        "hostUrl": "https://merck-foundation.com/api/", 
         "timeout": 120,
         "retry": 3
     },
     "production": {
-        "hostUrl": "http://merck-foundation.com/api",
+        "hostUrl": "https://merck-foundation.com/api",
         "timeout": 120,
         "retry": 3
     }

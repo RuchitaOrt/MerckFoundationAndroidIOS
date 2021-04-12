@@ -97,6 +97,9 @@ class MerckstemprogramState extends State<Merckstemprogram>
   void initState() {
     // getmmtmslider();
     _todaysDate = DateTime.now();
+    GlobalLists.homemmtm.clear();
+    GlobalLists.homecallforapp.clear();
+    GlobalLists.homedigitallib.clear();
     getmmtmapi();
     super.initState();
     // _tabController = new TabController(vsync: this, length: 2);
@@ -2589,11 +2592,12 @@ class MerckstemprogramState extends State<Merckstemprogram>
 
         ///////right section
 
-        dynamic rightsection1 = res['Right_area'][1];
-        dynamic rightsection3 = res['Right_area'][3];
+        dynamic rightsection1 = res['Right_area']["1"];
+        dynamic rightsection3 = res['Right_area']["3"];
         // print("TKey: ${rightsection.keys.first}");
-        var rightsection1categoryname = rightsection1;
-        var rightsection3categoryname = rightsection3;
+        var rightsection1categoryname = rightsection1.keys.first;
+        var rightsection3categoryname = rightsection3.keys.first;
+        print(rightsection1categoryname);
 
         setState(() {
           typewidetofrightsection.add('call_for_app');
@@ -2607,30 +2611,32 @@ class MerckstemprogramState extends State<Merckstemprogram>
         if (rightsection1categoryname.toString().toLowerCase() ==
             "call_for_app".toLowerCase()) {
           for (int j = 0;
-              j < homepageres.rightArea[1].callForApp.list.length;
+              j < homepageres.rightArea["1"].callForApp.list.length;
               j++) {
             var enddate = new DateTime.utc(
-                homepageres.rightArea[1].callForApp.list[j].eventEndDate.year,
-                homepageres.rightArea[1].callForApp.list[j].eventEndDate.month,
-                homepageres.rightArea[1].callForApp.list[j].eventEndDate.day);
+                homepageres.rightArea["1"].callForApp.list[j].eventEndDate.year,
+                homepageres
+                    .rightArea["1"].callForApp.list[j].eventEndDate.month,
+                homepageres.rightArea["1"].callForApp.list[j].eventEndDate.day);
 
             if (_todaysDate.isBefore(enddate)) {
               GlobalLists.homecallforapp
-                  .add(homepageres.rightArea[1].callForApp.list[j]);
+                  .add(homepageres.rightArea["1"].callForApp.list[j]);
               print(GlobalLists.homecallforapp.length);
             }
           }
 
           //  GlobalLists.homecallforapp = homepageres.rightArea[1].callForApp.list;
           GlobalLists.homeCallForAppBaseURL =
-              homepageres.rightArea[1].callForApp.baseUrl;
+              homepageres.rightArea["1"].callForApp.baseUrl;
           print(GlobalLists.homecallforapp.length);
-        } else if (rightsection3categoryname.toString().toLowerCase() ==
+        }
+        if (rightsection3categoryname.toString().toLowerCase() ==
             "digital_library".toLowerCase()) {
           GlobalLists.homedigitallib =
-              homepageres.rightArea[3].digitalLibrary.list;
+              homepageres.rightArea["3"].digitalLibrary.list;
           GlobalLists.homeDigitalLibraryBaseURL =
-              homepageres.rightArea[3].digitalLibrary.baseUrl;
+              homepageres.rightArea["3"].digitalLibrary.baseUrl;
           print(GlobalLists.homedigitallib.length);
         }
 

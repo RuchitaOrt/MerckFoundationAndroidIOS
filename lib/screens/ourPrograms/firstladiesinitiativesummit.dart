@@ -95,6 +95,8 @@ class FirstLadiesInitiativeDetailsState
   @override
   void initState() {
     // getmmtmslider();
+    GlobalLists.homemmtm.clear();
+    GlobalLists.homedigitallib.clear();
     getmmtmapi();
     super.initState();
     // _tabController = new TabController(vsync: this, length: 2);
@@ -193,7 +195,7 @@ class FirstLadiesInitiativeDetailsState
                 ),
 
                 followUs(),
-                 SizedBox(
+                SizedBox(
                   height: 10,
                 ),
 
@@ -216,8 +218,7 @@ class FirstLadiesInitiativeDetailsState
     );
   }
 
-
-double imgHeight = 30;
+  double imgHeight = 30;
 
   Widget followUs() {
     return Padding(
@@ -231,13 +232,16 @@ double imgHeight = 30;
             children: [
               Row(
                 children: [
-                  Text("Follow Merck Foundation on",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 11,//ResponsiveFlutter.of(context).fontSize(1.7),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: AppFonts.normal,
-                          color: Colors.black87),)
+                  Text(
+                    "Follow Merck Foundation on",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize:
+                            11, //ResponsiveFlutter.of(context).fontSize(1.7),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: AppFonts.normal,
+                        color: Colors.black87),
+                  )
                 ],
               ),
               SizedBox(
@@ -268,9 +272,8 @@ double imgHeight = 30;
                       //     ? ShowDialogs.followuslink(
                       //         Constantstring.followfacebook,
                       //         Constantstring.followmsg):
-                           ShowDialogs.launchFacebook(
-                              Constantstring.followfacebook,
-                              "1053979038068008");
+                      ShowDialogs.launchFacebook(
+                          Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
                       "assets/newImages/facebook.png",
@@ -1545,15 +1548,16 @@ double imgHeight = 30;
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
                                 child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/newImages/placeholder_3.jpg',
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
                                   image:
                                       "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
                                   fit: BoxFit.fill,
                                 ),
                               ),
-  SizedBox(
-                                        height: 7,
-                                      ),
+                              SizedBox(
+                                height: 7,
+                              ),
                               // Align(
                               //   alignment: Alignment.bottomCenter,
                               //   child: Padding(
@@ -1592,34 +1596,30 @@ double imgHeight = 30;
                               //   ),
                               // ),
                               Padding(
-                                padding: EdgeInsets.only(left: 120,top: 70),
+                                padding: EdgeInsets.only(left: 120, top: 70),
                                 child: Center(
-                                    child:
-                                        Image.asset("assets/newImages/pause.png")),
+                                    child: Image.asset(
+                                        "assets/newImages/pause.png")),
                               )
                             ],
                           ),
                         ),
-
-
-                                 Container(
-                                    padding: EdgeInsets.only(left: 9,top: 7),
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 80,
-                                        child: Text(
-                                          GlobalLists
-                                              .homevideolist[index].videoDesc,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700),
-                                          maxLines: 3,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      )
+                        Container(
+                          padding: EdgeInsets.only(left: 9, top: 7),
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Text(
+                            GlobalLists.homevideolist[index].videoDesc,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                            maxLines: 3,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        )
                       ],
                     ),
                   );
@@ -2285,11 +2285,13 @@ double imgHeight = 30;
 
         ///////right section
 
-        dynamic rightsection1 = res['Right_area'][2];
-        dynamic rightsection3 = res['Right_area'][3];
+        dynamic rightsection1 = res['Right_area']["2"];
+        print("rightsection1");
+        print(rightsection1);
+        dynamic rightsection3 = res['Right_area']["3"];
         // print("TKey: ${rightsection.keys.first}");
-        var rightsection1categoryname = rightsection1;
-        var rightsection3categoryname = rightsection3;
+        var rightsection1categoryname = rightsection1.keys.first;
+        var rightsection3categoryname = rightsection3.keys.first;
 
         setState(() {
           typewidetofrightsection.add('mmtm');
@@ -2302,16 +2304,16 @@ double imgHeight = 30;
 
         if (rightsection1categoryname.toString().toLowerCase() ==
             "mmtm".toLowerCase()) {
-          GlobalLists.homecallforapp = homepageres.rightArea[2].mmtm.list;
-          GlobalLists.homeCallForAppBaseURL =
-              homepageres.rightArea[2].mmtm.baseUrl;
+          GlobalLists.homemmtm = homepageres.rightArea["2"].mmtm.list;
+          GlobalLists.homeMMTMBaseURL = homepageres.rightArea["2"].mmtm.baseUrl;
           print(GlobalLists.homecallforapp.length);
-        } else if (rightsection3categoryname.toString().toLowerCase() ==
+        }
+        if (rightsection3categoryname.toString().toLowerCase() ==
             "digital_library".toLowerCase()) {
           GlobalLists.homedigitallib =
-              homepageres.rightArea[3].digitalLibrary.list;
+              homepageres.rightArea["3"].digitalLibrary.list;
           GlobalLists.homeDigitalLibraryBaseURL =
-              homepageres.rightArea[3].digitalLibrary.baseUrl;
+              homepageres.rightArea["3"].digitalLibrary.baseUrl;
           print(GlobalLists.homedigitallib.length);
         }
 

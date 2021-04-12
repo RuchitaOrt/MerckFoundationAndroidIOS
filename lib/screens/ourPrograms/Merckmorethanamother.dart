@@ -99,6 +99,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
     // getmmtmslider();
     _todaysDate = DateTime.now();
     GlobalLists.homecallforapp.clear();
+    GlobalLists.homemmtm.clear();
+    GlobalLists.homedigitallib.clear();
     getmmtmapi();
     super.initState();
     // _tabController = new TabController(vsync: this, length: 3);
@@ -2817,14 +2819,16 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             GlobalLists.homeCallForAppBaseURL =
                 homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
             print(GlobalLists.homecallforapp.length);
-          } else if (rightsectioncategoryname.toString().toLowerCase() ==
+          }
+          if (rightsectioncategoryname.toString().toLowerCase() ==
               "mmtm".toLowerCase()) {
             GlobalLists.homemmtm =
                 homepageres.rightArea[rigthareakey[i]].mmtm.list;
             print(GlobalLists.homemmtm.length);
             GlobalLists.homeMMTMBaseURL =
                 homepageres.rightArea[rigthareakey[i]].mmtm.baseUrl;
-          } else if (rightsectioncategoryname.toString().toLowerCase() ==
+          }
+          if (rightsectioncategoryname.toString().toLowerCase() ==
               "digital_library".toLowerCase()) {
             GlobalLists.homedigitallib =
                 homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;

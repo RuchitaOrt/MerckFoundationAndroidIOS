@@ -62,7 +62,7 @@ class CovidResponseState extends State<CovidResponse>
   List<Newsletter> newslist = [
     Newsletter(
         imge:
-            "http://merck-foundation.com/merckfoundation/public/uploads/merck_media/1614855408_096ac4d715d3daaea5a6.jpg",
+            "https://merck-foundation.com/merckfoundation/public/uploads/merck_media/1614855408_096ac4d715d3daaea5a6.jpg",
         title:
             "Merck Foundation announce ‘Stay at Home’ Media Recognition Awards…"),
     Newsletter(
@@ -72,7 +72,7 @@ class CovidResponseState extends State<CovidResponse>
             "Message from Dr. Rasha Kelej on Community donations provided in…"),
     Newsletter(
         imge:
-            "http://merck-foundation.com/merckfoundation/public/uploads/newsletter/1613074147_50c0511266c18acc1b79.jpg",
+            "https://merck-foundation.com/merckfoundation/public/uploads/newsletter/1613074147_50c0511266c18acc1b79.jpg",
         title:
             "Merck Foundation announce ‘Stay at Home’ Media Recognition Awards for…")
   ];
