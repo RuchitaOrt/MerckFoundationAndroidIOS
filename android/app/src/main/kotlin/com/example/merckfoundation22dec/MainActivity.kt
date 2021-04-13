@@ -1,4 +1,4 @@
-package com.example.merckfoundation
+package de.merck.foundation
 
 import io.flutter.embedding.android.FlutterActivity
 
