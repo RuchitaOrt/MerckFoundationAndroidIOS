@@ -1,0 +1,4 @@
+storePassword=MerckFoundation@123
+keyPassword=MerckFoundation@123
+keyAlias=Merckfoundation
+storeFile=D:/merck26feb/merckfoundation22dec/android/merckapp_license.jks

@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/style.dart';
 
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -243,23 +245,38 @@ class NewsState extends State<NewsPageDashboard> {
                                             Expanded(
                                               child: Column(
                                                 children: [
-                                                  Text(
-                                                    GlobalLists
+                                                  Html(
+                                                    data: GlobalLists
                                                         .homeceoList[index]
                                                         .title,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                        color: Customcolor
-                                                            .colorblack,
-                                                        fontSize:
-                                                            ResponsiveFlutter
-                                                                    .of(context)
-                                                                .fontSize(1.8),
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                    maxLines: 4,
+                                                    style: {
+                                                      "body": Style(
+                                                          fontSize:
+                                                              FontSize(17.0),
+                                                          color: Customcolor
+                                                              .colorblack,
+                                                          //textAlign: TextAlign.center,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    },
                                                   ),
+                                                  // Text(
+                                                  //   GlobalLists
+                                                  //       .homeceoList[index]
+                                                  //       .title,
+                                                  //   overflow:
+                                                  //       TextOverflow.ellipsis,
+                                                  //   style: TextStyle(
+                                                  //       color: Customcolor
+                                                  //           .colorblack,
+                                                  //       fontSize:
+                                                  //           ResponsiveFlutter
+                                                  //                   .of(context)
+                                                  //               .fontSize(1.8),
+                                                  //       fontWeight:
+                                                  //           FontWeight.w500),
+                                                  //   maxLines: 4,
+                                                  // ),
                                                 ],
                                               ),
                                             ),
