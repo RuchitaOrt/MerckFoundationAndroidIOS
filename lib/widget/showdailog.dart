@@ -8,7 +8,6 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_share_me/flutter_share_me.dart';
 
 class ShowDialogs {
   static Future<void> showLoadingDialog(BuildContext context, GlobalKey key,
@@ -83,8 +82,8 @@ class ShowDialogs {
     if (Platform.isIOS) {
       _launchURL(videourl);
     } else {
-      var response =
-          await FlutterShareMe().openinsta(url: videourl, msg: "Youtube");
+      // var response =
+      //     await FlutterShareMe().openinsta(url: videourl, msg: "Youtube");
     }
   }
 
@@ -205,7 +204,7 @@ class ShowDialogs {
 
 //follow link to specific app
   static followuslink(String videourl, String msg) async {
-    var response = await FlutterShareMe().openinsta(url: videourl, msg: msg);
+    // var response = await FlutterShareMe().openinsta(url: videourl, msg: msg);
   }
 
   static youtbeicon(BuildContext context) {

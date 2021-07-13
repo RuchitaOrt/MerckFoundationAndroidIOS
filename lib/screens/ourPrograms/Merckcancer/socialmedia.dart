@@ -5,7 +5,6 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:social_share_plugin/social_share_plugin.dart';
 
@@ -64,11 +63,13 @@ class SocialMediaState extends State<SocialMedia> {
                     children: [
                       GestureDetector(
                         onTap: () async {
-                          Platform.isAndroid
-                              ? await FlutterShareMe().openinsta(
-                                  url: 'https://twitter.com/merck_mccp/',
-                                  msg: "Share")
-                              : ShowDialogs.launchTwitter(
+                          // Platform.isAndroid
+                          //     ? await FlutterShareMe().openinsta(
+                          //         url: 'https://twitter.com/merck_mccp/',
+                          //         msg: "Share")
+                          //     :
+                              
+                               ShowDialogs.launchTwitter(
                                   "https://twitter.com/merck_mccp/");
                         },
                         child: Image.asset(
@@ -82,12 +83,14 @@ class SocialMediaState extends State<SocialMedia> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          Platform.isAndroid
-                              ? await FlutterShareMe().openinsta(
-                                  url:
-                                      'https://www.facebook.com/MerckCancerControlProgram/',
-                                  msg: "Share")
-                              : ShowDialogs.launchFacebook(
+                          // Platform.isAndroid
+                          //     ? await FlutterShareMe().openinsta(
+                          //         url:
+                          //             'https://www.facebook.com/MerckCancerControlProgram/',
+                          //         msg: "Share")
+                          //     :
+                              
+                               ShowDialogs.launchFacebook(
                                   "https://www.facebook.com/MerckCancerControlProgram/",
                                   "1595566227361051");
                         },
@@ -102,12 +105,13 @@ class SocialMediaState extends State<SocialMedia> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          Platform.isAndroid
-                              ? await FlutterShareMe().openinsta(
-                                  url:
-                                      'https://www.youtube.com/channel/UCokfpTgsO86UV4YzUXXqDAw',
-                                  msg: "Share")
-                              : ShowDialogs.youtubevideolink(
+                          // Platform.isAndroid
+                          //     ? await FlutterShareMe().openinsta(
+                          //         url:
+                          //             'https://www.youtube.com/channel/UCokfpTgsO86UV4YzUXXqDAw',
+                          //         msg: "Share")
+                           //   :
+                               ShowDialogs.youtubevideolink(
                                   "https://www.youtube.com/channel/UCokfpTgsO86UV4YzUXXqDAw");
                         },
                         child: Image.asset(
@@ -138,12 +142,14 @@ class SocialMediaState extends State<SocialMedia> {
                     children: [
                       GestureDetector(
                         onTap: () async {
-                          Platform.isAndroid
-                              ? await FlutterShareMe().openinsta(
-                                  url:
-                                      'https://www.facebook.com/Merckmorethanapatient/',
-                                  msg: "Share")
-                              : ShowDialogs.launchFacebook(
+                          // Platform.isAndroid
+                          //     ? await FlutterShareMe().openinsta(
+                          //         url:
+                          //             'https://www.facebook.com/Merckmorethanapatient/',
+                          //         msg: "Share")
+                          //     :
+                              
+                               ShowDialogs.launchFacebook(
                                   "https://www.facebook.com/Merckmorethanapatient/",
                                   "1503172516365806");
                         },
@@ -158,11 +164,12 @@ class SocialMediaState extends State<SocialMedia> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          Platform.isAndroid
-                              ? await FlutterShareMe().openinsta(
-                                  url: 'https://twitter.com/merck4patients',
-                                  msg: "Share")
-                              : ShowDialogs.launchTwitter(
+                          // Platform.isAndroid
+                          //     ? await FlutterShareMe().openinsta(
+                          //         url: 'https://twitter.com/merck4patients',
+                          //         msg: "Share")
+                          //     :
+                               ShowDialogs.launchTwitter(
                                   "https://twitter.com/merck4patients");
                         },
                         child: Image.asset(
@@ -176,12 +183,13 @@ class SocialMediaState extends State<SocialMedia> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          Platform.isAndroid
-                              ? await FlutterShareMe().openinsta(
-                                  url:
-                                      'https://www.facebook.com/Merckmorethanapatient/',
-                                  msg: "Share")
-                              : ShowDialogs.launchInstagram(
+                          // Platform.isAndroid
+                          //     ? await FlutterShareMe().openinsta(
+                          //         url:
+                          //             'https://www.facebook.com/Merckmorethanapatient/',
+                          //         msg: "Share")
+                          //     : 
+                              ShowDialogs.launchInstagram(
                                   "https://www.facebook.com/Merckmorethanapatient/",
                                   "Merckmorethanapatient");
                         },

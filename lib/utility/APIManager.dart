@@ -16,6 +16,8 @@ import 'package:merckfoundation22dec/model/GetFirstLadiesInitaiveResponse.dart';
 import 'package:merckfoundation22dec/model/GetLocalSongsContentResp.dart';
 import 'package:merckfoundation22dec/model/GetLocalSongsDigitalResp.dart';
 import 'package:merckfoundation22dec/model/GetLocalSongsVideosResp.dart';
+import 'package:merckfoundation22dec/model/Getupdatedversion.dart';
+import 'package:merckfoundation22dec/model/GetversionResponse.dart';
 import 'package:merckfoundation22dec/model/MMTMSlider.dart';
 import 'package:merckfoundation22dec/model/OurawardResponse.dart';
 import 'package:merckfoundation22dec/model/StrategyResponse.dart';
@@ -64,7 +66,8 @@ import 'package:merckfoundation22dec/model/our_gallery_detail_response.dart';
 import 'package:merckfoundation22dec/model/Merckoverview.dart';
 import 'package:merckfoundation22dec/model/CreategallerymobileResponse.dart';
 
-//Note URL need to change in configuration.json and also in these file fetchget method
+//Note URL need to change in configuration.json and also in these file fetchget method4
+//"hostUrl": "https://merck-foundation.com/api/",
 enum API {
   vision,
   legaldisclaimer,
@@ -218,7 +221,9 @@ enum API {
   homeheader,
 
   //create gallery viewmore
-  creategallerymobile
+  creategallerymobile,
+  versioncheck,
+  updateversion
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -274,7 +279,9 @@ class APIManager {
     //http://merckfoundation.org/mfindia/web/public/api/
     // var uri = Uri.http(
     //     'onerooftechnologiesllp.com', '/mfindia/web/public/api/$encoding');
-    var uri = Uri.https('merck-foundation.com', 'api/$encoding');
+    // https://smitlalai.com/demo/merck_latest/api
+    // var uri = Uri.https('merck-foundation.com', 'api/$encoding');
+    var uri = Uri.https('smitlalai.com', 'demo/merck_latest/api/$encoding');
     final response = await ioClient.get(uri);
     print(uri.toString());
     if (response.statusCode == 401) {
@@ -774,6 +781,12 @@ class APIManager {
         break;
       case API.creategallerymobile:
         apiPathString = "create_gallery_mobile";
+        break;
+      case API.versioncheck:
+        apiPathString = "mobile_version";
+        break;
+      case API.updateversion:
+        apiPathString = "mobile_version";
         break;
 
       default:
@@ -1456,6 +1469,13 @@ class APIManager {
       case API.creategallerymobile:
         className = "CreategallerymobileResponse";
         break;
+      case API.versioncheck:
+        className = "GetversionResponse";
+        break;
+      case API.updateversion:
+        className = "GetupdatedversionResponse";
+        break;
+
       default:
         className = 'CommonResponse';
     }
@@ -1662,6 +1682,14 @@ class APIManager {
     if (className == "CreategallerymobileResponse") {
       //enterhere
       responseObj = CreategallerymobileResponse.fromJson(json);
+    }
+    if (className == "GetversionResponse") {
+      //enterhere
+      responseObj = GetversionResponse.fromJson(json);
+    }
+    if (className == "GetupdatedversionResponse") {
+      //enterhere
+      responseObj = GetupdatedversionResponse.fromJson(json);
     }
 
     return responseObj;

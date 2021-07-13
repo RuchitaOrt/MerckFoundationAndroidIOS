@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.merckfoundation">
+    package="de.merck.foundation">
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -85,7 +85,14 @@
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider250032663370281"
-            android:exported="false" />
+            android:exported="false" /> 
+                 <receiver
+            android:exported="true"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
 <!--        <provider-->
 <!--            android:name="com.facebook.FacebookContentProvider"-->
 <!--            android:authorities="com.facebook.app.FacebookContentProvider[870993726807583]"-->

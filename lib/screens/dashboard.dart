@@ -83,10 +83,15 @@ class _DashboardState extends State<Dashboard>
         }),
         items: [
           BottomNavyBarItem(
-            icon: Image.asset(
-              "assets/newImages/home_unselect.png",
-              height: 25,
-            ),
+            icon: currentIndex == 0
+                ? Image.asset(
+                    "assets/newImages/home_bottom.png",
+                    height: 25,
+                  )
+                : Image.asset(
+                    "assets/newImages/home_unselect.png",
+                    height: 25,
+                  ),
             title: Text(
               'Home',
               style: style,
@@ -94,16 +99,21 @@ class _DashboardState extends State<Dashboard>
             activeColor: Customcolor.colorBlue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
-            selectedIcon: Image.asset(
-              "assets/newImages/home_bottom.png",
-              height: 25,
-            ),
+            // selectedIcon: Image.asset(
+            //   "assets/newImages/home_bottom.png",
+            //   height: 25,
+            // ),
           ),
           BottomNavyBarItem(
-            icon: Image.asset(
-              "assets/newImages/programs_unselect.png",
-              height: 25,
-            ),
+            icon: currentIndex == 1
+                ? Image.asset(
+                    "assets/newImages/programs_bottom.png",
+                    height: 25,
+                  )
+                : Image.asset(
+                    "assets/newImages/programs_unselect.png",
+                    height: 25,
+                  ),
             title: Text(
               'Our Program',
               style: style,
@@ -111,16 +121,21 @@ class _DashboardState extends State<Dashboard>
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
-            selectedIcon: Image.asset(
-              "assets/newImages/programs_bottom.png",
-              height: 25,
-            ),
+            // selectedIcon: Image.asset(
+            //   "assets/newImages/programs_bottom.png",
+            //   height: 25,
+            // ),
           ),
           BottomNavyBarItem(
-            icon: Image.asset(
-              "assets/newImages/media_events_unselect.png",
-              height: 25,
-            ),
+            icon: currentIndex == 2
+                ? Image.asset(
+                    "assets/newImages/media_bottom.png",
+                    height: 25,
+                  )
+                : Image.asset(
+                    "assets/newImages/media_events_unselect.png",
+                    height: 25,
+                  ),
             title: Text(
               'Stories',
               style: style,
@@ -128,16 +143,21 @@ class _DashboardState extends State<Dashboard>
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
-            selectedIcon: Image.asset(
-              "assets/newImages/media_bottom.png",
-              height: 25,
-            ),
+            // selectedIcon: Image.asset(
+            //   "assets/newImages/media_bottom.png",
+            //   height: 25,
+            // ),
           ),
           BottomNavyBarItem(
-            icon: Image.asset(
-              "assets/newImages/news_bottom_unselect.png",
-              height: 25,
-            ),
+            icon: currentIndex == 3
+                ? Image.asset(
+                    "assets/newImages/news_selected-bottom.png",
+                    height: 25,
+                  )
+                : Image.asset(
+                    "assets/newImages/news_bottom_unselect.png",
+                    height: 25,
+                  ),
             title: Text(
               'Articles',
               style: style,
@@ -145,10 +165,10 @@ class _DashboardState extends State<Dashboard>
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
-            selectedIcon: Image.asset(
-              "assets/newImages/news_selected-bottom.png",
-              height: 25,
-            ),
+            // selectedIcon: Image.asset(
+            //   "assets/newImages/news_selected-bottom.png",
+            //   height: 25,
+            // ),
           ),
           BottomNavyBarItem(
             // icon: Icon(Icons.call),
@@ -158,10 +178,15 @@ class _DashboardState extends State<Dashboard>
             //   style: style,
             //   maxLines: 2,
             // )),
-            icon: Image.asset(
-              "assets/newImages/call_for_application_unselect.png",
-              height: 25,
-            ),
+            icon: currentIndex == 5
+                ? Image.asset(
+                    "assets/newImages/call_for_application_unselect.png",
+                    height: 25,
+                  )
+                : Image.asset(
+                    "assets/newImages/call_for_application_bottom.png",
+                    height: 25,
+                  ),
             title: Text(
               'Upcoming Programs \n& Call for applications',
               style: style,
@@ -170,10 +195,10 @@ class _DashboardState extends State<Dashboard>
             activeColor: Colors.blue,
             inactiveColor: Colors.grey,
             textAlign: TextAlign.center,
-            selectedIcon: Image.asset(
-              "assets/newImages/call_for_application_bottom.png",
-              height: 25,
-            ),
+            // selectedIcon: Image.asset(
+            //   "assets/newImages/call_for_application_bottom.png",
+            //   height: 25,
+            // ),
           ),
           // BottomNavyBarItem(
           //   icon: Icon(Icons.perm_media),

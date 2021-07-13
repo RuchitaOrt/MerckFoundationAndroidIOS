@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/searchscreen/searchcategory.dart';
@@ -177,13 +176,15 @@ class InnerCustomAppBar extends PreferredSize {
                                                     GestureDetector(
                                                       onTap: () async {
                                                         print("on tap fb");
-                                                        Platform.isAndroid
-                                                            ? FlutterShareMe()
-                                                                .shareToFacebook(
-                                                                    url:
-                                                                        sharelink,
-                                                                    msg: "msg")
-                                                            : await SocialSharePlugin
+                                                        // Platform.isAndroid
+                                                        //     ? FlutterShareMe()
+                                                        //         .shareToFacebook(
+                                                        //             url:
+                                                        //                 sharelink,
+                                                        //             msg: "msg")
+                                                        //     : 
+                                                            
+                                                            await SocialSharePlugin
                                                                 .shareToFeedFacebookLink(
                                                                 quote: "",
                                                                 url: sharelink,
@@ -217,14 +218,15 @@ class InnerCustomAppBar extends PreferredSize {
                                                     ),
                                                     GestureDetector(
                                                       onTap: () async {
-                                                        Platform.isAndroid
-                                                            ? await FlutterShareMe()
-                                                                .shareToTwitter(
-                                                                    url:
-                                                                        sharelink,
-                                                                    msg:
-                                                                        "Share")
-                                                            : await SocialSharePlugin
+                                                        // Platform.isAndroid
+                                                        //     ? await FlutterShareMe()
+                                                        //         .shareToTwitter(
+                                                        //             url:
+                                                        //                 sharelink,
+                                                        //             msg:
+                                                        //                 "Share"):
+
+                                                             await SocialSharePlugin
                                                                 .shareToTwitterLink(
                                                                     text: "",
                                                                     url:
@@ -253,14 +255,16 @@ class InnerCustomAppBar extends PreferredSize {
                                                     ),
                                                     GestureDetector(
                                                       onTap: () async {
-                                                        Platform.isAndroid
-                                                            ? await FlutterShareMe()
-                                                                .shareToLinkedin(
-                                                                    url:
-                                                                        "sharelink",
-                                                                    msg:
-                                                                        sharelink)
-                                                            : ShowDialogs
+                                                        // Platform.isAndroid
+                                                        //     ? await FlutterShareMe()
+                                                        //         .shareToLinkedin(
+                                                        //             url:
+                                                        //                 "sharelink",
+                                                        //             msg:
+                                                        //                 sharelink)
+                                                        //     :
+                                                            
+                                                             ShowDialogs
                                                                 .launchLinkdin(
                                                                     sharelink);
                                                       },
@@ -272,14 +276,15 @@ class InnerCustomAppBar extends PreferredSize {
                                                     ),
                                                     GestureDetector(
                                                       onTap: () {
-                                                        Platform.isAndroid
-                                                            ? FlutterShareMe()
-                                                                .shareToWhatsApp(
-                                                                    base64Image:
-                                                                        "",
-                                                                    msg:
-                                                                        sharelink)
-                                                            : ShowDialogs
+                                                        // Platform.isAndroid
+                                                        //     ? FlutterShareMe()
+                                                        //         .shareToWhatsApp(
+                                                        //             base64Image:
+                                                        //                 "",
+                                                        //             msg:
+                                                        //                 sharelink)
+                                                        //     :
+                                                             ShowDialogs
                                                                 .launchWhatsappshare(
                                                                     sharelink);
 
@@ -356,12 +361,14 @@ class InnerCustomAppBar extends PreferredSize {
                                                 GestureDetector(
                                                   onTap: () async {
                                                     print("on tap fb");
-                                                    Platform.isAndroid
-                                                        ? FlutterShareMe()
-                                                            .shareToFacebook(
-                                                                url: sharelink,
-                                                                msg: "msg")
-                                                        : await SocialSharePlugin
+                                                    // Platform.isAndroid
+                                                    //     ? FlutterShareMe()
+                                                    //         .shareToFacebook(
+                                                    //             url: sharelink,
+                                                    //             msg: "msg")
+                                                    //     : 
+                                                        
+                                                        await SocialSharePlugin
                                                             .shareToFeedFacebookLink(
                                                             quote: "",
                                                             url: sharelink,
@@ -394,12 +401,13 @@ class InnerCustomAppBar extends PreferredSize {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () async {
-                                                    Platform.isAndroid
-                                                        ? await FlutterShareMe()
-                                                            .shareToTwitter(
-                                                                url: sharelink,
-                                                                msg: "Share")
-                                                        : await SocialSharePlugin
+                                                    // Platform.isAndroid
+                                                    //     ? await FlutterShareMe()
+                                                    //         .shareToTwitter(
+                                                    //             url: sharelink,
+                                                    //             msg: "Share")
+                                                        // :
+                                                         await SocialSharePlugin
                                                             .shareToTwitterLink(
                                                                 text: "",
                                                                 url: sharelink,
@@ -425,13 +433,15 @@ class InnerCustomAppBar extends PreferredSize {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () async {
-                                                    Platform.isAndroid
-                                                        ? await FlutterShareMe()
-                                                            .shareToLinkedin(
-                                                                url:
-                                                                    "sharelink",
-                                                                msg: sharelink)
-                                                        : ShowDialogs
+                                                    // Platform.isAndroid
+                                                    //     ? await FlutterShareMe()
+                                                    //         .shareToLinkedin(
+                                                    //             url:
+                                                    //                 "sharelink",
+                                                    //             msg: sharelink)
+                                                    //     : 
+                                                        
+                                                        ShowDialogs
                                                             .launchLinkdin(
                                                                 sharelink);
                                                   },
@@ -443,12 +453,13 @@ class InnerCustomAppBar extends PreferredSize {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () {
-                                                    Platform.isAndroid
-                                                        ? FlutterShareMe()
-                                                            .shareToWhatsApp(
-                                                                base64Image: "",
-                                                                msg: sharelink)
-                                                        : ShowDialogs
+                                                    // Platform.isAndroid
+                                                    //     ? FlutterShareMe()
+                                                    //         .shareToWhatsApp(
+                                                    //             base64Image: "",
+                                                    //             msg: sharelink)
+                                                    //     :
+                                                         ShowDialogs
                                                             .launchWhatsappshare(
                                                                 sharelink);
 

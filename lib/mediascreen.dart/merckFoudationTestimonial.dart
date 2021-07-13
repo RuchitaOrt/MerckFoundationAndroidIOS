@@ -18,7 +18,6 @@ import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
 import 'package:merckfoundation22dec/model/CategorylistResponse.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:merckfoundation22dec/model/getMerckTestimonialResp.dart'
     as merckTestimonialResp;
 
