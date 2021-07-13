@@ -29,12 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
+    Utility().loadAPIConfig(context);
     splah();
   }
 
   splah() {
-    Utility().loadAPIConfig(context);
     SchedulerBinding.instance.addPostFrameCallback((_) {
       // fetch data
       getCurrentVersionCount();
