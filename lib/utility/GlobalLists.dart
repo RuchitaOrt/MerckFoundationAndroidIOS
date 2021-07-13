@@ -260,4 +260,8 @@ class GlobalLists {
 
   //create gallery album
   static List<album.ListElement> viewmorealbum = [];
+
+  //token
+  static String fcmtokenvalue = "";
+  static String deviceid = "";
 }
