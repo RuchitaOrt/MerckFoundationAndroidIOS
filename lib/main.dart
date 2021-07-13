@@ -8,7 +8,11 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/screens/splash.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+import 'package:merckfoundation22dec/utility/UtilityFile.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
+import 'package:http/http.dart' as http;
 
 // import 'package:flutter/material.dart';
 // import 'package:merckfoundation22dec/screens/splash.dart';
@@ -75,6 +79,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     // TODO: implement initState
     // firebaseCloudMessaging_Listeners();
+    Utility().loadAPIConfig(context);
     settoken();
     FirebaseMessaging.instance
         .getInitialMessage()
@@ -87,29 +92,79 @@ class _MyAppState extends State<MyApp> {
       }
     });
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       print("onlisten");
       print(message.data);
       print(message.notification.body);
       print(message.notification.title);
       RemoteNotification notification = message.notification;
       print(notification);
+
+      var imgurl = message.notification.android.imageUrl;
+      print("imgurl");
+      print(imgurl);
+//
+//  final String largeIconPath = await _downloadAndSaveFile(
+//         'https://via.placeholder.com/48x48', 'largeIcon');
+      final String bigPicturePath =
+          await _downloadAndSaveFile(imgurl, 'bigPicture');
+      print(bigPicturePath);
+      final BigPictureStyleInformation bigPictureStyleInformation =
+          BigPictureStyleInformation(
+        FilePathAndroidBitmap(bigPicturePath),
+        largeIcon: FilePathAndroidBitmap(bigPicturePath),
+        // contentTitle: 'Merck Foundation',
+        // htmlFormatContentTitle: true,
+        // summaryText: 'summary <i>text</i>',
+        // htmlFormatSummaryText: true
+      );
+      print(bigPictureStyleInformation.bigPicture);
+      // var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
+      //     'default_notification_channel_id',
+      //     'Notification Channel',
+      //     'MerckFoundation',
+      //     playSound: true,
+      //     enableVibration: true,
+      //     importance: Importance.max,
+      //     priority: Priority.high,
+      //     styleInformation: bigPictureStyleInformation);
+      final AndroidNotificationDetails androidPlatformChannelSpecifics =
+          AndroidNotificationDetails('big text channel id',
+              'big text channel name', 'big text channel description',
+              styleInformation: bigPictureStyleInformation);
+      final NotificationDetails platformChannelSpecifics =
+          NotificationDetails(android: androidPlatformChannelSpecifics);
+      // var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
+      // var platformChannelSpecifics = NotificationDetails(
+      //     android: androidPlatformChannelSpecifics,
+      //     iOS: iOSPlatformChannelSpecifics);
+//
+
+      print("showing");
+       flutterLocalNotificationsPlugin.show(
+          0, notification.title, notification.body, platformChannelSpecifics);
+      //  payload: jsonEncode(message));
+      print("show");
       AndroidNotification android = message.notification?.android;
       if (notification != null && android != null) {
-        flutterLocalNotificationsPlugin.show(
-            notification.hashCode,
-            notification.title,
-            notification.body,
-            NotificationDetails(
-              android: AndroidNotificationDetails(
-                channel.id,
-                channel.name,
-                channel.description,
-                // TODO add a proper drawable resource to android, for now using
-                //      one that already exists in example app.
-                //   icon: '@mipmap/athena512',
-              ),
-            ));
+        // flutterLocalNotificationsPlugin.show(
+        //     0, notification.title, notification.body, platformChannelSpecifics,
+        //     payload: jsonEncode(message));
+        // print("show");
+        // flutterLocalNotificationsPlugin.show(
+        //     notification.hashCode,
+        //     notification.title,
+        //     notification.body,
+        //     NotificationDetails(
+        //       android: AndroidNotificationDetails(
+        //         channel.id,
+        //         channel.name,
+        //         channel.description,
+        //         // TODO add a proper drawable resource to android, for now using
+        //         //      one that already exists in example app.
+        //         icon: '@mipmap/ic_launcher',
+        //       ),
+        //     ));
       }
     });
 
@@ -136,35 +191,77 @@ class _MyAppState extends State<MyApp> {
   settoken() async {
     //  GlobalLists.tokenval = fcm_token;
     FirebaseMessaging messaging = FirebaseMessaging.instance;
-
-// use the returned token to send messages to users from your custom server
-    String token = await messaging.getToken(
+    print("token");
+    await messaging
+        .getToken(
       vapidKey: "BGpdLRs......",
-    );
+    )
+        .then((value) {
+      print(value);
+      GlobalLists.fcmtokenvalue = value;
+    });
+// use the returned token to send messages to users from your custom server
+    // String token = await messaging.getToken(
+    //   vapidKey: "BGpdLRs......",
+    // );
+
     // await SPManager().setfbAuthToken(token);
-    print(token);
+    // print("token is ${token}");
   }
 
   void showNotification(message) async {
     print('showNotification  $message');
 
+    var title = message['notification']['title'];
+    var body = message['notification']['body'];
+    var imgurl = message['notification']['imageUrl'];
+    print("imgurl");
+    print(imgurl);
+//
+//  final String largeIconPath = await _downloadAndSaveFile(
+//         'https://via.placeholder.com/48x48', 'largeIcon');
+    final String bigPicturePath =
+        await _downloadAndSaveFile(imgurl, 'bigPicture');
+    final BigPictureStyleInformation bigPictureStyleInformation =
+        BigPictureStyleInformation(FilePathAndroidBitmap(bigPicturePath),
+            largeIcon: FilePathAndroidBitmap(bigPicturePath),
+            contentTitle: 'Merck Foundation',
+            htmlFormatContentTitle: true,
+            summaryText: 'summary <i>text</i>',
+            htmlFormatSummaryText: true);
     var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
-        'default_notification_channel_id', 'Notification Channel', 'Athena',
+        'default_notification_channel_id',
+        'Notification Channel',
+        'MerckFoundation',
         playSound: true,
         enableVibration: true,
         importance: Importance.max,
         priority: Priority.high,
         styleInformation:
             BigTextStyleInformation(message['notification']['body']));
-    var title = message['notification']['title'];
-    var body = message['notification']['body'];
-
+    // final AndroidNotificationDetails androidPlatformChannelSpecifics =
+    //     AndroidNotificationDetails('big text channel id',
+    //         'big text channel name', 'big text channel description',
+    //         styleInformation: bigPictureStyleInformation);
+    // final NotificationDetails platformChannelSpecifics =
+    //     NotificationDetails(android: androidPlatformChannelSpecifics);
     var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics);
+//
+
     flutterLocalNotificationsPlugin.show(
         0, title.toString(), body.toString(), platformChannelSpecifics,
         payload: jsonEncode(message));
+  }
+
+  Future<String> _downloadAndSaveFile(String url, String fileName) async {
+    final Directory directory = await getApplicationDocumentsDirectory();
+    final String filePath = '${directory.path}/$fileName';
+    final http.Response response = await http.get(Uri.parse(url));
+    final File file = File(filePath);
+    await file.writeAsBytes(response.bodyBytes);
+    return filePath;
   }
 }

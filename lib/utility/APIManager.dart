@@ -16,6 +16,7 @@ import 'package:merckfoundation22dec/model/GetFirstLadiesInitaiveResponse.dart';
 import 'package:merckfoundation22dec/model/GetLocalSongsContentResp.dart';
 import 'package:merckfoundation22dec/model/GetLocalSongsDigitalResp.dart';
 import 'package:merckfoundation22dec/model/GetLocalSongsVideosResp.dart';
+import 'package:merckfoundation22dec/model/GettokenResponse.dart';
 import 'package:merckfoundation22dec/model/Getupdatedversion.dart';
 import 'package:merckfoundation22dec/model/GetversionResponse.dart';
 import 'package:merckfoundation22dec/model/MMTMSlider.dart';
@@ -223,7 +224,8 @@ enum API {
   //create gallery viewmore
   creategallerymobile,
   versioncheck,
-  updateversion
+  updateversion,
+  gettoken
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -788,7 +790,9 @@ class APIManager {
       case API.updateversion:
         apiPathString = "mobile_version";
         break;
-
+      case API.gettoken:
+        apiPathString = "send_news_letter_notification";
+        break;
       default:
         apiPathString = "HomeheaderResponse";
     }
@@ -1475,7 +1479,9 @@ class APIManager {
       case API.updateversion:
         className = "GetupdatedversionResponse";
         break;
-
+      case API.gettoken:
+        className = "GettokenResponse";
+        break;
       default:
         className = 'CommonResponse';
     }
@@ -1690,6 +1696,10 @@ class APIManager {
     if (className == "GetupdatedversionResponse") {
       //enterhere
       responseObj = GetupdatedversionResponse.fromJson(json);
+    }
+    if (className == "GettokenResponse") {
+      //enterhere
+      responseObj = GettokenResponse.fromJson(json);
     }
 
     return responseObj;

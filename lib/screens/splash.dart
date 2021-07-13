@@ -1,14 +1,17 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:merckfoundation22dec/Landingpage.dart';
+import 'package:merckfoundation22dec/model/GettokenResponse.dart';
 import 'package:merckfoundation22dec/model/Getupdatedversion.dart';
 import 'package:merckfoundation22dec/model/GetversionResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
+import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/SPManager.dart';
 import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
@@ -26,6 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
   String currentVersion = "";
   String serverVersionCount = "1.0.0";
   String appLink = "";
+  static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+  Map<String, dynamic> _deviceData = <String, dynamic>{};
   @override
   void initState() {
     super.initState();
@@ -34,17 +39,58 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   splah() {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
       // fetch data
       getCurrentVersionCount();
       //
       getversion();
+
+      await initPlatformState();
+      gettokenapi();
     });
+  }
+
+  Future<void> initPlatformState() async {
+    Map<String, dynamic> deviceData = <String, dynamic>{};
+
+    try {
+      if (Platform.isAndroid) {
+        deviceData = _readAndroidBuildData(await deviceInfoPlugin.androidInfo);
+        print("devicedata");
+        print(deviceData['androidId']);
+        GlobalLists.deviceid = deviceData['androidId'];
+      } else if (Platform.isIOS) {
+        deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
+      }
+    } on PlatformException {
+      deviceData = <String, dynamic>{
+        'Error:': 'Failed to get platform version.'
+      };
+    }
+
+    if (!mounted) return;
+
+    setState(() {
+      _deviceData = deviceData;
+    });
+  }
+
+  Map<String, dynamic> _readAndroidBuildData(AndroidDeviceInfo build) {
+    return <String, dynamic>{
+      'androidId': build.androidId,
+    };
+  }
+
+  Map<String, dynamic> _readIosDeviceInfo(IosDeviceInfo data) {
+    return <String, dynamic>{
+      'identifierForVendor': data.identifierForVendor,
+    };
   }
 
   Future<String> getCurrentVersionCount() async {
     final PackageInfo info = await PackageInfo.fromPlatform();
     currentVersion = info.version;
+
     print("currentVersion $currentVersion");
     // int currentVersionCount = getCount(currentVersion);
     return currentVersion;
@@ -149,7 +195,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void fetchRemoteConfig(BuildContext context) async {
     if (currentVersion != serverVersionCount) {
       showUpdateAlertDialog(context, "Update App",
-          "A new Version is available on playstore", "Update", appLink, true);
+          "A new Version is available on Playstore", "Update", appLink, true);
       print("showpopup");
       // loadpopup(context);
     } else {
@@ -171,9 +217,9 @@ class _SplashScreenState extends State<SplashScreen> {
       onPressed: () {
         Navigator.pop(context);
         if (Platform.isAndroid) {
-          updateversion();
           try {
             launch("market://details?id=de.merck.foundation");
+            //  updateversion();
           } on PlatformException catch (e) {
             launch(appLink);
           } finally {
@@ -280,6 +326,32 @@ class _SplashScreenState extends State<SplashScreen> {
         GetupdatedversionResponse resp = response;
         print(response);
         print('Resp : $resp');
+
+        // if (resp.success == true) {
+        //   setState(() {});
+        // } else {
+        //   ShowDialogs.showToast(resp.msg);
+        // }
+      }, (error) {
+        print('ERR msg is $error');
+      }, path: path);
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  gettokenapi() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+      var path = "/${GlobalLists.fcmtokenvalue}/${GlobalLists.deviceid}";
+
+      APIManager().apiRequest(context, API.gettoken, (response) async {
+        print(response);
+        GettokenResponse resp = response;
+        print(response);
+        print('TokenResp : $resp');
 
         // if (resp.success == true) {
         //   setState(() {});
