@@ -4,10 +4,12 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/NotificationDetailPage.dart';
+import 'package:merckfoundation22dec/model/Note.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/splash.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -24,6 +26,22 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
   print('Handling a background message ${message.messageId}');
+  configLocalNotification();
+}
+
+void configLocalNotification() {
+  var initializationSettingsAndroid =
+      new AndroidInitializationSettings('@mipmap/icon');
+  var initializationSettingsIOS = new IOSInitializationSettings();
+  var initializationSettings = new InitializationSettings(
+      android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+  flutterLocalNotificationsPlugin.initialize(initializationSettings,
+      onSelectNotification: selectNotification);
+}
+
+Future selectNotification(String payload) async {
+  print("payload");
+  print('selectNotification ${payload}');
 }
 
 /// Create a [AndroidNotificationChannel] for heads up notifications
@@ -122,17 +140,18 @@ class _MyAppState extends State<MyApp> {
             channel.id, channel.name, channel.description,
             // TODO add a proper drawable resource to android, for now using
             //      one that already exists in example app.
-            icon: '@mipmap/ic_launcher',
+            icon: '@mipmap/icon',
             styleInformation: bigPictureStyleInformation),
       );
-      await flutterLocalNotificationsPlugin.show(
-        0, title.toString(),
-        body.toString(), platformChannelSpecifics,
-        //  payload: jsonEncode(message)
-      );
-
-      var data = message.data['FLUTTER_NOTIFICATION_CLICK'];
+      var data = message.data['room'];
       print(data);
+      Note newNote = Note(
+          title: title.toString(), description: body.toString(), screen: data);
+      String noteJsonString = newNote.toJsonString();
+      await flutterLocalNotificationsPlugin.show(
+          0, title.toString(), "", platformChannelSpecifics,
+          payload: noteJsonString);
+
       // Data data = Data(
       //   clickAction: msg['click_action'],
       //   sound: msg['sound'],
@@ -140,32 +159,34 @@ class _MyAppState extends State<MyApp> {
       //   screen: msg['screen'],
       //   extradata: msg['extradata'],
       // );
-      switch (data.toString()) {
-        case "datascreen":
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (BuildContext context) => Dashboard(
-          //               index: 2,
-          //             )));
-          // navigatorKey.currentState
-          //     .push(MaterialPageRoute(builder: (_) => Dashboard(index: 2)));
-          // Navigator.push(navigatorKey.currentState.context,
-          //     MaterialPageRoute(builder: (context) => Dashboard(index: 2)));
-          // SchedulerBinding.instance.addPostFrameCallback((_) {
-          //   Navigator.push(navigatorKey.currentState.context,
-          //       MaterialPageRoute(builder: (context) => Dashboard(index: 2)));
-          //   // Navigator.of(GlobalVariable.navState.currentContext)
-          //   //     .push(MaterialPageRoute(
-          //   //         builder: (context) => TimelineView(
-          //   //               campaignId: message["data"]["campaign"],
-          //   //             ))
-          //   // );
-          // });
-          break;
-        default:
-          break;
-      }
+      // switch (data.toString()) {
+      //   case "datascreen":
+      //     // Navigator.push(
+      //     //     context,
+      //     //     MaterialPageRoute(
+      //     //         builder: (BuildContext context) => Dashboard(
+      //     //               index: 2,
+      //     //             )));
+      //     navigatorKey.currentState
+      //         .push(MaterialPageRoute(builder: (_) => Dashboard(index: 2)));
+      //     // Navigator.push(navigatorKey.currentState.context,
+      //     //     MaterialPageRoute(builder: (context) => Dashboard(index: 2)));
+      //     // SchedulerBinding.instance.addPostFrameCallback((_) {
+      //     //   Navigator.push(navigatorKey.currentState.context,
+      //     //       MaterialPageRoute(builder: (context) => Dashboard(index: 2)));
+      //     //   // Navigator.of(GlobalVariable.navState.currentContext)
+      //     //   //     .push(MaterialPageRoute(
+      //     //   //         builder: (context) => TimelineView(
+      //     //   //               campaignId: message["data"]["campaign"],
+      //     //   //             ))
+      //     //   // );
+      //     // });
+      //     break;
+      //   default:
+      //     break;
+      // }
+
+      //configLocalNotification();
       // if (message != null) {
       //   // Navigator.push(
       //   //     context,
@@ -311,13 +332,48 @@ class _MyAppState extends State<MyApp> {
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
-      showNotification(message);
+      if (message.data['room'] != null) {
+        navigatorKey.currentState.push(MaterialPageRoute(
+            builder: (_) => NotiDetailpage(
+                  id: message.data['room'].toString(),
+                )));
+      }
+      configLocalNotification();
+      //  showNotification(message);
     });
+    configLocalNotification();
     super.initState();
   }
 
   final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey(debugLabel: "Main Navigator");
+  Future selectNotification(String payload) async {
+    print("payload");
+    print('selectNotification ${payload}');
+    print("print");
+    // await Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //         builder: (BuildContext context) => NotiDetailpage(
+    //               title: "payload",
+    //               detail: "title",
+    //               detailurl: "rr",
+    //             )));
+    await navigatorKey.currentState.push(MaterialPageRoute(
+        builder: (_) => NotiDetailpage(
+              id: "10",
+            )));
+  }
+
+  void configLocalNotification() {
+    var initializationSettingsAndroid =
+        new AndroidInitializationSettings('@mipmap/icon');
+    var initializationSettingsIOS = new IOSInitializationSettings();
+    var initializationSettings = new InitializationSettings(
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: selectNotification);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -342,7 +398,9 @@ class _MyAppState extends State<MyApp> {
     )
         .then((value) {
       print(value);
-      GlobalLists.fcmtokenvalue = value;
+      setState(() {
+        GlobalLists.fcmtokenvalue = value;
+      });
     });
 // use the returned token to send messages to users from your custom server
     // String token = await messaging.getToken(
@@ -396,7 +454,7 @@ class _MyAppState extends State<MyApp> {
 //
 
     flutterLocalNotificationsPlugin.show(
-        0, title.toString(), body.toString(), platformChannelSpecifics,
+        0, title.toString(), "", platformChannelSpecifics,
         payload: jsonEncode(message));
   }
 

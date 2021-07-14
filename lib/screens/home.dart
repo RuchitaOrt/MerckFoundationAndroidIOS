@@ -11,6 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:marquee/marquee.dart';
 import 'package:merckfoundation22dec/ViewmoremmtmAmbassadar.dart';
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/NotificationDetailPage.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/model/HomepageResponse.dart';
@@ -1311,13 +1312,24 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             children: [
               Row(
                 children: [
-                  Text("Follow Us",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: ResponsiveFlutter.of(context).fontSize(2.5),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: AppFonts.normal,
-                          color: Customcolor.text_blue)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => NotiDetailpage(
+                                    id: "10",
+                                  )));
+                    },
+                    child: Text("Follow Us",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize:
+                                ResponsiveFlutter.of(context).fontSize(2.5),
+                            fontWeight: FontWeight.w700,
+                            fontFamily: AppFonts.normal,
+                            color: Customcolor.text_blue)),
+                  ),
                 ],
               ),
               SizedBox(

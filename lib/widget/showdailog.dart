@@ -486,11 +486,12 @@ class ShowDialogs {
                 SizedBox(
                   height: 10.0,
                 ),
-                Image.asset(
-                  "assets/images/LogoutIcon.png",
-                  width: 25,
-                  height: 25,
-                ),
+                // Image.asset(
+                //   "assets/images/LogoutIcon.png",
+                //   width: 25,
+                //   height: 25,
+                // ),
+                Icon(Icons.logout_outlined, size: 20, color: Colors.white),
                 SizedBox(
                   height: 10.0,
                 ),

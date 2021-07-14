@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
       getversion();
 
       await initPlatformState();
-      gettokenapi();
+      await gettokenapi();
     });
   }
 

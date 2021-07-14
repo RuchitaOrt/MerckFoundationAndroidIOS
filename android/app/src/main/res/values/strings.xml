@@ -2,5 +2,6 @@
 <resources>
     <string name="facebook_app_id">250032663370281</string>
     <string name="fb_login_protocol_scheme">fb250032663370281</string>
+    <string name="default_notification_channel_id">high_importance_channel</string>
 
 </resources>

@@ -20,6 +20,7 @@ import 'package:merckfoundation22dec/model/GettokenResponse.dart';
 import 'package:merckfoundation22dec/model/Getupdatedversion.dart';
 import 'package:merckfoundation22dec/model/GetversionResponse.dart';
 import 'package:merckfoundation22dec/model/MMTMSlider.dart';
+import 'package:merckfoundation22dec/model/NotificationdetailResponse.dart';
 import 'package:merckfoundation22dec/model/OurawardResponse.dart';
 import 'package:merckfoundation22dec/model/StrategyResponse.dart';
 import 'package:merckfoundation22dec/model/dataprivacy.dart';
@@ -225,7 +226,8 @@ enum API {
   creategallerymobile,
   versioncheck,
   updateversion,
-  gettoken
+  gettoken,
+  notificationdetail
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -543,6 +545,9 @@ class APIManager {
         break;
       case API.ourawarddetail:
         apiPathString = "merck_awards";
+        break;
+      case API.notificationdetail:
+        apiPathString = "notification_detail";
         break;
       case API.testiomonailpro:
         apiPathString = "merck_testimonials";
@@ -1210,6 +1215,7 @@ class APIManager {
       case API.ourgallerydetail:
       case API.creategallerymobile:
       case API.getCategoryWiseCountryList:
+      case API.notificationdetail:
         // case API.legaldisclaimer:
         //  case API.mission:
         //  case API.ourActivities:
@@ -1399,6 +1405,10 @@ class APIManager {
 
       case API.ourawarddetail:
         className = "OurawarddetailResponse";
+        break;
+
+      case API.notificationdetail:
+        className = "NotificationdetailResponse";
         break;
       case API.testiomonailpro:
       case API.watchmoretestimonialcancer:
@@ -1700,6 +1710,10 @@ class APIManager {
     if (className == "GettokenResponse") {
       //enterhere
       responseObj = GettokenResponse.fromJson(json);
+    }
+    if (className == "NotificationdetailResponse") {
+      //enterhere
+      responseObj = NotificationdetailResponse.fromJson(json);
     }
 
     return responseObj;

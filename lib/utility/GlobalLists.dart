@@ -101,6 +101,8 @@ import 'package:merckfoundation22dec/model/stemsubmenuprogramlist.dart'
     as stemsubmenu;
 import 'package:merckfoundation22dec/model/CreategallerymobileResponse.dart'
     as album;
+import 'package:merckfoundation22dec/model/NotificationdetailResponse.dart'
+    as notify;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -264,4 +266,5 @@ class GlobalLists {
   //token
   static String fcmtokenvalue = "";
   static String deviceid = "";
+  static List<notify.ListElement> notificationlist = [];
 }

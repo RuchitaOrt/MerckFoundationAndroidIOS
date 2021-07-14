@@ -178,13 +178,13 @@ class _DashboardState extends State<Dashboard>
             //   style: style,
             //   maxLines: 2,
             // )),
-            icon: currentIndex == 5
+            icon: currentIndex == 4
                 ? Image.asset(
-                    "assets/newImages/call_for_application_unselect.png",
+                    "assets/newImages/call_for_application_bottom.png",
                     height: 25,
                   )
                 : Image.asset(
-                    "assets/newImages/call_for_application_bottom.png",
+                    "assets/newImages/call_for_application_unselect.png",
                     height: 25,
                   ),
             title: Text(
