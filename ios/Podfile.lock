@@ -2,6 +2,8 @@ PODS:
   - connectivity (0.0.1):
     - Flutter
     - Reachability
+  - device_info (0.0.1):
+    - Flutter
   - FBSDKCoreKit (9.1.0):
     - FBSDKCoreKit/Basics (= 9.1.0)
     - FBSDKCoreKit/Core (= 9.1.0)
@@ -110,6 +112,7 @@ PODS:
 
 DEPENDENCIES:
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
+  - device_info (from `.symlinks/plugins/device_info/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
@@ -146,6 +149,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   connectivity:
     :path: ".symlinks/plugins/connectivity/ios"
+  device_info:
+    :path: ".symlinks/plugins/device_info/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_messaging:
@@ -179,6 +184,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
+  device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   FBSDKCoreKit: a00fe2efd780c195a5e09201bf51c56106245b40
   FBSDKShareKit: d5aafc35870083f53c15ec0eb9eda4dfe8037d11
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
@@ -209,6 +215,6 @@ SPEC CHECKSUMS:
   wakelock: bfc7955c418d0db797614075aabbc58a39ab5107
   webview_flutter: d2b4d6c66968ad042ad94cbb791f5b72b4678a96
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: 80a5bea9f6900750909f6d3fad1d3a0f1e560f5a
 
 COCOAPODS: 1.10.1
