@@ -384,7 +384,9 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: SplashScreen(),
+        home: SplashScreen(
+          token: GlobalLists.fcmtokenvalue,
+        ),
         navigatorKey: navigatorKey);
   }
 
@@ -392,16 +394,20 @@ class _MyAppState extends State<MyApp> {
     //  GlobalLists.tokenval = fcm_token;
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     print("token");
-    await messaging
-        .getToken(
+    var value = await messaging.getToken(
       vapidKey: "BGpdLRs......",
-    )
-        .then((value) {
+    );
+    print("these is token vaue");
+    setState(() {
       print(value);
-      setState(() {
-        GlobalLists.fcmtokenvalue = value;
-      });
+      GlobalLists.fcmtokenvalue = value;
     });
+    //     .then((value) {
+    //   print(value);
+    //   setState(() {
+    //     GlobalLists.fcmtokenvalue = value;
+    //   });
+    // });
 // use the returned token to send messages to users from your custom server
     // String token = await messaging.getToken(
     //   vapidKey: "BGpdLRs......",
