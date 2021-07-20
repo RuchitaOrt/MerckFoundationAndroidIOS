@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:http/http.dart' as http;
 
 // import 'package:flutter/material.dart';
@@ -31,7 +34,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void configLocalNotification() {
   var initializationSettingsAndroid =
-      new AndroidInitializationSettings('@mipmap/icon');
+      new AndroidInitializationSettings('@mipmap/logo1');
   var initializationSettingsIOS = new IOSInitializationSettings();
   var initializationSettings = new InitializationSettings(
       android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
@@ -91,6 +94,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   static String fcm_token;
+  bool isroomfound = false;
+  String roomid;
+
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
 
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -106,6 +115,14 @@ class _MyAppState extends State<MyApp> {
         .then((RemoteMessage message) {
       print("message");
       print(message);
+      if (message.data['room'] != null) {
+        isroomfound = true;
+        roomid = message.data['room'].toString();
+        // navigatorKey.currentState.push(MaterialPageRoute(
+        //     builder: (_) => NotiDetailpage(
+        //           id: message.data['room'].toString(),
+        //         )));
+      }
       if (message != null) {
         print("notification nessage");
         showNotification(message);
@@ -129,8 +146,20 @@ class _MyAppState extends State<MyApp> {
               largeIcon: FilePathAndroidBitmap(bigPicturePath),
               contentTitle: title.toString(),
               htmlFormatContentTitle: true,
-              summaryText: body,
+              summaryText: body.toString(),
+              htmlFormatContent: true,
+              htmlFormatTitle: true,
               htmlFormatSummaryText: true);
+
+      //           const BigTextStyleInformation bigTextStyleInformation =
+      // BigTextStyleInformation(
+      //   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      //   htmlFormatBigText: true,
+      //   contentTitle: 'Flutter Big Text Notification Title',
+      //   htmlFormatContentTitle: true,
+      //   summaryText: 'Flutter Big Text Notification Summary Text',
+      //   htmlFormatSummaryText: true,
+      // );
       final AndroidNotificationDetails androidPlatformChannelSpecifics =
           AndroidNotificationDetails('big text channel id',
               'big text channel name', 'big text channel description',
@@ -140,7 +169,7 @@ class _MyAppState extends State<MyApp> {
             channel.id, channel.name, channel.description,
             // TODO add a proper drawable resource to android, for now using
             //      one that already exists in example app.
-            icon: '@mipmap/icon',
+            icon: '@mipmap/logo1',
             styleInformation: bigPictureStyleInformation),
       );
       var data = message.data['room'];
@@ -367,7 +396,7 @@ class _MyAppState extends State<MyApp> {
 
   void configLocalNotification() {
     var initializationSettingsAndroid =
-        new AndroidInitializationSettings('@mipmap/icon');
+        new AndroidInitializationSettings('@mipmap/logo1');
     var initializationSettingsIOS = new IOSInitializationSettings();
     var initializationSettings = new InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
@@ -384,9 +413,14 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: SplashScreen(
-          token: GlobalLists.fcmtokenvalue,
-        ),
+        navigatorObservers: <NavigatorObserver>[observer],
+        home: isroomfound == true
+            ? NotiDetailpage(
+                id: roomid,
+              )
+            : SplashScreen(
+                token: GlobalLists.fcmtokenvalue,
+              ),
         navigatorKey: navigatorKey);
   }
 

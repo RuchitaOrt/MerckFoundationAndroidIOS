@@ -41,119 +41,130 @@ class DetailpageState extends State<NotiDetailpage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Customcolor.background,
-        appBar: InnerCustomAppBar(
-          onTapval: () {
-            Navigator.pop(context);
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (BuildContext context) => Dashboard(
-            //               index: 0,
-            //             )));
-            // if (widget.callfrom == 1) {
-            //   Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //           builder: (BuildContext context) => Dashboard(
-            //                 index: 3,
-            //               )));
-            // } else {
-            //   Navigator.pop(context);
-            // }
-          },
-          index: 1,
-          titleshowingindex: "1",
-          sharelink: "",
-          title: "Articles",
-          titleImg: "assets/newImages/vision_logo.png",
-          trallingImg1: "assets/newImages/share.png",
-          trallingImg2: "assets/newImages/search.png",
-          height: 85,
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        body: Stack(
-          children: [
-            GlobalLists.notificationlist.length != 0
-                ? Padding(
-                    padding: const EdgeInsets.only(bottom: 1),
-                    child: ListView(
-                      shrinkWrap: true,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 15, right: 8, top: 8, bottom: 15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                GlobalLists.notificationlist[0].title == null
-                                    ? ""
-                                    : GlobalLists.notificationlist[0].title,
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontSize:
-                                      ResponsiveFlutter.of(context).fontSize(2),
-                                  fontWeight: FontWeight.w600,
-                                  color: Customcolor.colorVoilet,
+    return WillPopScope(
+      // ignore: missing_return
+      onWillPop: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => Dashboard(
+                      index: 0,
+                    )));
+      },
+      child: Scaffold(
+          backgroundColor: Customcolor.background,
+          appBar: InnerCustomAppBar(
+            onTapval: () {
+              //  Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Dashboard(
+                            index: 0,
+                          )));
+              // if (widget.callfrom == 1) {
+              //   Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //           builder: (BuildContext context) => Dashboard(
+              //                 index: 3,
+              //               )));
+              // } else {
+              //   Navigator.pop(context);
+              // }
+            },
+            index: 1,
+            titleshowingindex: "1",
+            sharelink: "",
+            title: "Articles",
+            titleImg: "assets/newImages/vision_logo.png",
+            trallingImg1: "assets/newImages/share.png",
+            trallingImg2: "assets/newImages/search.png",
+            height: 85,
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          body: Stack(
+            children: [
+              GlobalLists.notificationlist.length != 0
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: 1),
+                      child: ListView(
+                        shrinkWrap: true,
+                        // crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15, right: 8, top: 8, bottom: 15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  GlobalLists.notificationlist[0].title == null
+                                      ? ""
+                                      : GlobalLists.notificationlist[0].title,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: ResponsiveFlutter.of(context)
+                                        .fontSize(2),
+                                    fontWeight: FontWeight.w600,
+                                    color: Customcolor.colorVoilet,
+                                  ),
                                 ),
-                              ),
-                              // Html(
-                              //   data: """${GlobalLists.notificationlist[0].details} """,
-                              //   onLinkTap: (url) {
-                              //     print("Opening $url...");
-                              //     ShowDialogs.launchURL(url);
-                              //   },
-                              // ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              GlobalLists.notificationlist[0].details == null
-                                  ? Container()
-                                  : Html(
-                                      data:
-                                          """${GlobalLists.notificationlist[0].details} """,
-                                      onLinkTap: (url) {
-                                        print("Opening $url...");
-                                        ShowDialogs.launchURL(url);
-                                      },
-                                    ),
-                              // Padding(
-                              //   padding: const EdgeInsets.only(
-                              //       right: 60, left: 60, top: 20),
-                              //   child: Image.asset(
-                              //     "assets/newImages/flowers_footer.png",
-                              //   ),
-                              // ),
-                              // Padding(
-                              //   padding:
-                              //       const EdgeInsets.only(right: 0, left: 0),
-                              //   child: Align(
-                              //     alignment: Alignment.topRight,
-                              //     child: Image.asset(
-                              //       "assets/newImages/flowers_footer.png",
-                              //       height: 170,
-                              //     ),
-                              //   ),
-                              // ),
-                              // SizedBox(
-                              //   height: 10,
-                              // )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  )
-                : Container(),
+                                // Html(
+                                //   data: """${GlobalLists.notificationlist[0].details} """,
+                                //   onLinkTap: (url) {
+                                //     print("Opening $url...");
+                                //     ShowDialogs.launchURL(url);
+                                //   },
+                                // ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                GlobalLists.notificationlist[0].details == null
+                                    ? Container()
+                                    : Html(
+                                        data:
+                                            """${GlobalLists.notificationlist[0].details} """,
+                                        onLinkTap: (url) {
+                                          print("Opening $url...");
+                                          ShowDialogs.launchURL(url);
+                                        },
+                                      ),
+                                // Padding(
+                                //   padding: const EdgeInsets.only(
+                                //       right: 60, left: 60, top: 20),
+                                //   child: Image.asset(
+                                //     "assets/newImages/flowers_footer.png",
+                                //   ),
+                                // ),
+                                // Padding(
+                                //   padding:
+                                //       const EdgeInsets.only(right: 0, left: 0),
+                                //   child: Align(
+                                //     alignment: Alignment.topRight,
+                                //     child: Image.asset(
+                                //       "assets/newImages/flowers_footer.png",
+                                //       height: 170,
+                                //     ),
+                                //   ),
+                                // ),
+                                // SizedBox(
+                                //   height: 10,
+                                // )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  : Container(),
 
-            // TextSpan(
+              // TextSpan(
 
-            // ),
-          ],
-        ));
+              // ),
+            ],
+          )),
+    );
   }
 
   getnotificationdetail(String id) async {

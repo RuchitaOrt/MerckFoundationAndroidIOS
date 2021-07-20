@@ -66,6 +66,7 @@ dependencies:
   fluttertoast: ^8.0.7
   device_info: ^2.0.2
   path_provider: 
+  firebase_analytics: 
   
   
   
