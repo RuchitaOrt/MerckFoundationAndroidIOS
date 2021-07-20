@@ -11,8 +11,10 @@ import 'package:http/http.dart' as http;
 import 'package:marquee/marquee.dart';
 import 'package:merckfoundation22dec/ViewmoremmtmAmbassadar.dart';
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
+import 'package:merckfoundation22dec/mediascreen.dart/NotificationDetailPage.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
+import 'package:merckfoundation22dec/model/GettokenResponse.dart';
 import 'package:merckfoundation22dec/model/HomepageResponse.dart';
 import 'package:merckfoundation22dec/model/homeheader.dart';
 import 'package:merckfoundation22dec/ouraward.dart';
@@ -155,6 +157,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     //     });
     //   }
     // });
+    gettokenapi();
     getheader();
     gethomeapi();
     getmerckoverview();
@@ -1311,13 +1314,24 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             children: [
               Row(
                 children: [
-                  Text("Follow Us",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: ResponsiveFlutter.of(context).fontSize(2.5),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: AppFonts.normal,
-                          color: Customcolor.text_blue)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => NotiDetailpage(
+                                    id: "10",
+                                  )));
+                    },
+                    child: Text("Follow Us",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize:
+                                ResponsiveFlutter.of(context).fontSize(2.5),
+                            fontWeight: FontWeight.w700,
+                            fontFamily: AppFonts.normal,
+                            color: Customcolor.text_blue)),
+                  ),
                 ],
               ),
               SizedBox(
@@ -1510,6 +1524,32 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           print('ERR msg is $error');
         },
       );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
+  }
+
+  gettokenapi() async {
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      //  ShowDialogs.showLoadingDialog(context, _keyLoader);
+      var path = "/${GlobalLists.fcmtokenvalue}/${GlobalLists.deviceid}";
+
+      APIManager().apiRequest(context, API.gettoken, (response) async {
+        print(response);
+        GettokenResponse resp = response;
+        print(response);
+        print('TokenResp : $resp');
+
+        // if (resp.success == true) {
+        //   setState(() {});
+        // } else {
+        //   ShowDialogs.showToast(resp.msg);
+        // }
+      }, (error) {
+        print('ERR msg is $error');
+      }, path: path);
     } else {
       ShowDialogs.showToast("Please check internet connection");
     }

@@ -39,9 +39,9 @@ class ListClass {
   ListClass({
     this.id,
     this.version,
+    this.iosVersion,
     this.createdOn,
     this.updatedOn,
-    this.iosVersion
   });
 
   String id;
@@ -53,16 +53,18 @@ class ListClass {
   factory ListClass.fromJson(Map<String, dynamic> json) => ListClass(
         id: json["id"],
         version: json["version"],
+        iosVersion: json["ios_version"],
         createdOn: DateTime.parse(json["created_on"]),
         updatedOn: DateTime.parse(json["updated_on"]),
-        iosVersion: json["ios_version"],
+      
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "version": version,
+        "ios_version": iosVersion,
         "created_on": createdOn.toIso8601String(),
         "updated_on": updatedOn.toIso8601String(),
-        "ios_version": iosVersion
+     
       };
 }

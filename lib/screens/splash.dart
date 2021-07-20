@@ -21,6 +21,9 @@ import 'package:package_info/package_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SplashScreen extends StatefulWidget {
+  final String token;
+
+  const SplashScreen({Key key, this.token}) : super(key: key);
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -51,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
       getversion();
 
       await initPlatformState();
-      gettokenapi();
+      // await gettokenapi(widget.token);
     });
   }
 
@@ -385,12 +388,12 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
-  gettokenapi() async {
+  gettokenapi(String token) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
       //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-      var path = "/${GlobalLists.fcmtokenvalue}/${GlobalLists.deviceid}";
+      var path = "/${token}/${GlobalLists.deviceid}";
 
       print("params is $path");
 
