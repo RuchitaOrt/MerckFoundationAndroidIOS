@@ -115,13 +115,15 @@ class _MyAppState extends State<MyApp> {
         .then((RemoteMessage message) {
       print("message");
       print(message);
-      if (message.data['room'] != null) {
-        isroomfound = true;
-        roomid = message.data['room'].toString();
-        // navigatorKey.currentState.push(MaterialPageRoute(
-        //     builder: (_) => NotiDetailpage(
-        //           id: message.data['room'].toString(),
-        //         )));
+      if (message != null) {
+        if (message.data['room'] != null) {
+          isroomfound = true;
+          roomid = message.data['room'].toString();
+          // navigatorKey.currentState.push(MaterialPageRoute(
+          //     builder: (_) => NotiDetailpage(
+          //           id: message.data['room'].toString(),
+          //         )));
+        }
       }
       if (message != null) {
         print("notification nessage");
@@ -146,7 +148,7 @@ class _MyAppState extends State<MyApp> {
               largeIcon: FilePathAndroidBitmap(bigPicturePath),
               contentTitle: title.toString(),
               htmlFormatContentTitle: true,
-              summaryText: body.toString(),
+              summaryText: "",
               htmlFormatContent: true,
               htmlFormatTitle: true,
               htmlFormatSummaryText: true);
@@ -175,7 +177,7 @@ class _MyAppState extends State<MyApp> {
       var data = message.data['room'];
       print(data);
       Note newNote = Note(
-          title: title.toString(), description: body.toString(), screen: data);
+          title: title.toString(), description: "", screen: data);
       String noteJsonString = newNote.toJsonString();
       await flutterLocalNotificationsPlugin.show(
           0, title.toString(), "", platformChannelSpecifics,
