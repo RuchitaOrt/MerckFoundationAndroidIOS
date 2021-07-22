@@ -64,6 +64,7 @@ dependencies:
   package_info: 
   device_info: ^2.0.2
   path_provider: 
+  firebase_analytics: 
   
   
   
