@@ -184,6 +184,9 @@ class OurProgramstrategyState extends State<StrategyDetails> {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
+            style: {
+               "tr": Customcolor.tableboderstyle(),
+            },
           ),
         );
       }

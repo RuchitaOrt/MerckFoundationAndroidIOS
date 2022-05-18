@@ -70,6 +70,7 @@ class OurActivtyDetailState extends State<OurAwardDetail> {
                   },
                   style: {
                     "body": Style(textAlign: TextAlign.start),
+                     "tr": Customcolor.tableboderstyle(),
                   },
                 ),
               ),

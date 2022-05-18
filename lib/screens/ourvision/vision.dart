@@ -292,6 +292,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                       color: Customcolor.colorVoilet,
                                       fontSize: FontSize.larger,
                                       fontWeight: FontWeight.w600),
+                                       "tr": Customcolor.tableboderstyle(),
                                 },
                                 // style: {
                                 //   "body": Style(
@@ -316,6 +317,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                   "body": Style(
                                     textAlign: TextAlign.justify,
                                   ),
+                                   "tr": Customcolor.tableboderstyle(),
                                 },
                                 // style: {
                                 //   "body": Style(

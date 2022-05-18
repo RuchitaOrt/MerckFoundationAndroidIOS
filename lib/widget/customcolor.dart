@@ -1,6 +1,19 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_html/style.dart';
+
 class Customcolor {
+ static Style tableboderstyle() {
+    return Style(
+      padding: EdgeInsets.only(left: 4),
+      //    backgroundColor: Colors.amber,
+      border: Border.all(color: Customcolor.tablebordercolor, width: 0.5),
+    );
+  }
+
+
+ static const tablebordercolor = const Color(0xff000000);
   static const textsubtitlecolor = const Color(0xFF4b4e53);
   static const colorPrimary = const Color(0xffFFBD00);
   static const colorPrimaryDark = const Color(0xff89cff0);
@@ -83,6 +96,15 @@ class Constantstring {
   static String followyoutube =
       "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg";
   static String followflicker = "https://www.flickr.com/photos/163124125@N08/";
+
+
+//Follow Rasha
+  static String followrashainsta = "https://www.instagram.com/rasha_kelej/";
+  static String followrashafacebook =
+      "https://www.facebook.com/watch/KelejRasha/";
+  static String followrashatwitter = "https://twitter.com/Rashakelej";
+  static String followerashayoutube =
+      "https://www.youtube.com/channel/UCO_bN_T_NodcOYwcPjknaog";
 
   //share who we are
   static String sharevision = "${baseurllink}who-we-are/Vision";

@@ -1017,6 +1017,9 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
+            style: {
+               "tr": Customcolor.tableboderstyle(),
+            },
           ),
         );
       }

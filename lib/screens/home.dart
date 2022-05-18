@@ -244,7 +244,139 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 ),
                 followUs(),
                 //  newSlider(context),
-
+ Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (BuildContext context) => NotiDetailpage(
+                              //               id: "10",
+                              //             )));
+                            },
+                            child: Container(
+                              width: SizeConfig.blockSizeHorizontal * 90,
+                              child: Text("Follow Senator, Dr. Rasha Kelej",
+                                  maxLines: 1,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                      fontSize: ResponsiveFlutter.of(context)
+                                          .fontSize(2.2),
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: AppFonts.normal,
+                                      color: Customcolor.text_blue)),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 18,
+                      ),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () async {
+                              Platform.isAndroid
+                                  ? ShowDialogs.followuslink(
+                                      Constantstring.followrashainsta,
+                                      Constantstring.followmsg)
+                                  : ShowDialogs.launchInstagram(
+                                      Constantstring.followrashainsta,
+                                      "merckfoundation");
+                            },
+                            child: Image.asset(
+                              "assets/newImages/instagram.png",
+                              height: imgHeight,
+                              width: imgHeight,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          GestureDetector(
+                            onTap: () async {
+                              // Platform.isAndroid
+                              //     ? ShowDialogs.followuslink(
+                              //         Constantstring.followfacebook,
+                              //         Constantstring.followmsg):
+                              ShowDialogs.launchFacebook(
+                                  Constantstring.followrashafacebook,
+                                  "1053979038068008");
+                            },
+                            child: Image.asset(
+                              "assets/newImages/facebook.png",
+                              height: imgHeight,
+                              width: imgHeight,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          GestureDetector(
+                            onTap: () async {
+                              Platform.isAndroid
+                                  ? ShowDialogs.followuslink(
+                                      Constantstring.followrashatwitter,
+                                      Constantstring.followmsg)
+                                  : ShowDialogs.launchTwitter(
+                                      Constantstring.followrashatwitter);
+                            },
+                            child: Image.asset(
+                              "assets/newImages/twitter.png",
+                              height: imgHeight,
+                              width: imgHeight,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          GestureDetector(
+                            onTap: () async {
+                              print("youtube");
+                              Platform.isAndroid
+                                  ? ShowDialogs.followuslink(
+                                      Constantstring.followerashayoutube,
+                                      Constantstring.followmsg)
+                                  : ShowDialogs.youtubevideolink(
+                                      Constantstring.followerashayoutube);
+                            },
+                            child: Image.asset(
+                              "assets/newImages/youtube.png",
+                              height: imgHeight,
+                              width: imgHeight,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          // GestureDetector(
+                          //   onTap: () async {
+                          //     Platform.isAndroid
+                          //         ? ShowDialogs.followuslink(
+                          //             Constantstring.followflicker,
+                          //             Constantstring.followmsg)
+                          //         : ShowDialogs.launchURL(
+                          //             Constantstring.followflicker);
+                          //   },
+                          //   child: Image.asset(
+                          //     "assets/newImages/flickr.png",
+                          //     height: imgHeight,
+                          //     width: imgHeight,
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   width: 7,
+                          // ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(
                   height: 12,
                 ),
@@ -2127,7 +2259,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               cardsubtitle: "Alumini ",
               cardTitle: "Testimonials  ",
               testimonialname:
-                  GlobalLists.mmttestimoniallist[1].testimonialName,
+                  GlobalLists.mmttestimoniallist[0].testimonialName,
               titleColor: Customcolor.text_darkblue,
               departmentname:
                   // "Gynecologic Oncology Fellow | 2018 \nMerck Foundation Alumni",

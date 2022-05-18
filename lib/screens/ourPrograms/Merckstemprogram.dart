@@ -1335,6 +1335,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
                                       color: Customcolor.pink_col,
                                       fontSize: FontSize.large,
                                       fontWeight: FontWeight.w500),
+                                       "tr": Customcolor.tableboderstyle(),
                                 },
                               ),
                               SizedBox(
@@ -1393,6 +1394,9 @@ class MerckstemprogramState extends State<Merckstemprogram>
             onLinkTap: (url) {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
+            },
+            style: {
+               "tr": Customcolor.tableboderstyle(),
             },
           ),
         );

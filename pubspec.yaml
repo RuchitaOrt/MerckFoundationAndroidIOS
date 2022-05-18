@@ -65,6 +65,7 @@ dependencies:
   device_info: ^2.0.2
   path_provider: 
   firebase_analytics: 
+  launch_review: ^3.0.1
   
   
   

@@ -129,6 +129,9 @@ class DetailpageState extends State<NotiDetailpage>
                                           print("Opening $url...");
                                           ShowDialogs.launchURL(url);
                                         },
+                                        style: {
+                                           "tr": Customcolor.tableboderstyle(),
+                                        },
                                       ),
                                 // Padding(
                                 //   padding: const EdgeInsets.only(

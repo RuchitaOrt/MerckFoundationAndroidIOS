@@ -1007,6 +1007,9 @@ class OurProgramsDetailsState extends State<MerckFellowship>
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
+            style: {
+               "tr": Customcolor.tableboderstyle(),
+            },
           ),
         );
       }
@@ -1181,6 +1184,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
 
                                     //textAlign: TextAlign.center,
                                     fontWeight: FontWeight.w500),
+                                     "tr": Customcolor.tableboderstyle(),
                               },
                             ),
                           ),
@@ -1199,6 +1203,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
 
                                     //textAlign: TextAlign.center,
                                     fontWeight: FontWeight.w500),
+                                     "tr": Customcolor.tableboderstyle(),
                               },
                             ),
                             //  Text(

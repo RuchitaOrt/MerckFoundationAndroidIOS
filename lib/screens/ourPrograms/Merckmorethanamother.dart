@@ -2176,6 +2176,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
+            style: { "tr": Customcolor.tableboderstyle(),},
           ),
         );
       }
@@ -2453,6 +2454,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
 
                                 //textAlign: TextAlign.center,
                                 fontWeight: FontWeight.w500),
+                                 "tr": Customcolor.tableboderstyle(),
                           },
                         ),
                         // SizedBox(
@@ -2469,6 +2471,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
 
                                 //textAlign: TextAlign.center,
                                 fontWeight: FontWeight.w500),
+                                 "tr": Customcolor.tableboderstyle(),
                           },
                         ),
                       ],

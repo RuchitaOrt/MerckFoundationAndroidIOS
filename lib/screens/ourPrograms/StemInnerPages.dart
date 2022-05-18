@@ -101,6 +101,9 @@ class StemInnerPagesState extends State<StemInnerPages>
                           print("Opening $url...");
                           ShowDialogs.launchURL(url);
                         },
+                        style: {
+                           "tr": Customcolor.tableboderstyle(),
+                        },
                       ),
                       // Padding(
                       //   padding:

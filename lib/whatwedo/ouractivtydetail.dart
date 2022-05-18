@@ -69,6 +69,7 @@ class OurActivtyDetailState extends State<OurActivtyDetail> {
                         color: Customcolor.colorVoilet,
                         fontSize: FontSize.larger,
                         fontWeight: FontWeight.w600),
+                         "tr": Customcolor.tableboderstyle(),
                   },
                 ),
               ),
@@ -82,6 +83,7 @@ class OurActivtyDetailState extends State<OurActivtyDetail> {
                   },
                   style: {
                     "body": Style(textAlign: TextAlign.start),
+                     "tr": Customcolor.tableboderstyle(),
                   },
                 ),
               ),

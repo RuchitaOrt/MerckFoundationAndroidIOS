@@ -105,6 +105,7 @@ class OurVisionState extends State<Homeceomessage>
                               textAlign: TextAlign.start,
                               color: Customcolor.colorVoilet,
                             ),
+                              "tr": Customcolor.tableboderstyle(),
                           },
                         ),
                         SizedBox(
@@ -115,6 +116,9 @@ class OurVisionState extends State<Homeceomessage>
                           onLinkTap: (url) {
                             print("Opening $url...");
                             ShowDialogs.launchURL(url);
+                          },
+                          style: {
+                                                        "tr": Customcolor.tableboderstyle(),
                           },
                         ),
                         SizedBox(

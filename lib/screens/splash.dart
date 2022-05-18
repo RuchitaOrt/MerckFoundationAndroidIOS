@@ -5,6 +5,7 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:merckfoundation22dec/Landingpage.dart';
 import 'package:merckfoundation22dec/model/GettokenResponse.dart';
 import 'package:merckfoundation22dec/model/Getupdatedversion.dart';
@@ -146,7 +147,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Container(
                   width: SizeConfig.blockSizeHorizontal * 55,
                   child: Text(
-                    "version ${currentVersion}",
+                    "version 2.1", //for ios only
                     style: TextStyle(
                       color: Colors.black87,
                     ),
@@ -229,18 +230,18 @@ class _SplashScreenState extends State<SplashScreen> {
   }else{ 
     print("ios current version $currentVersion");
     print("ios server version $iosServerVersionCount");
-     if (currentVersion != iosServerVersionCount) {
+    //  if (currentVersion != iosServerVersionCount) {
      
-      showUpdateAlertDialog(context, "Update App",
-          "A new Version is available on playstore", "Update", appLink, true);
-      print("showpopup");
-      // loadpopup(context);
-    } 
+    //   showUpdateAlertDialog(context, "Update App",
+    //       "A new Version is available on AppStore", "Update", appLink, true);
+    //   print("showpopup");
+    //   // loadpopup(context);
+    // } 
     
     
-    else {
+    // else {
       loadData();
-    }
+    // }
 
 
   }
@@ -273,7 +274,10 @@ class _SplashScreenState extends State<SplashScreen> {
             launch(appLink);
           }
         } else {
-          launch("https://apps.apple.com/in/app/merck-foundation/id1535584997");
+
+          LaunchReview.launch(writeReview: false,iOSAppId: "1535584997");
+
+          // launch("https://apps.apple.com/in/app/merck-foundation/id1535584997");
         }
       },
     );

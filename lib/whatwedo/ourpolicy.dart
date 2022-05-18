@@ -82,6 +82,9 @@ class OurPolicyState extends State<OurPolicy> with TickerProviderStateMixin {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
                                 },
+                                style: {
+                                   "tr": Customcolor.tableboderstyle(),
+                                },
                                 // style: {
                                 //   "body": Style(
                                 //     fontSize: FontSize(

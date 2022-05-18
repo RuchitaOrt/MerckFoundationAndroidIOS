@@ -970,6 +970,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                                                   .large,
                                                                               fontWeight:
                                                                                   FontWeight.w500),
+                                                                                   "tr": Customcolor.tableboderstyle(),
                                                                         },
                                                                       ),
                                                                       SizedBox(

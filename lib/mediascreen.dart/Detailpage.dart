@@ -118,6 +118,9 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                 print("Opening $url...");
                                 ShowDialogs.launchURL(url);
                               },
+                              style: {
+                                 "tr": Customcolor.tableboderstyle(),
+                              },
                             ),
                           ),
                           SizedBox(
@@ -132,6 +135,9 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                               onLinkTap: (url) {
                                 print("Opening $url...");
                                 ShowDialogs.launchURL(url);
+                              },
+                              style: {
+                                 "tr": Customcolor.tableboderstyle(),
                               },
                             ),
                           ),
@@ -195,6 +201,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                         color: Customcolor.colorVoilet,
                                         fontSize: FontSize.larger,
                                         fontWeight: FontWeight.w600),
+                                         "tr": Customcolor.tableboderstyle(),
                                   },
                                 ),
                               ),
@@ -207,6 +214,9 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                   onLinkTap: (url) {
                                     print("Opening $url...");
                                     ShowDialogs.launchURL(url);
+                                  },
+                                  style: {
+                                     "tr": Customcolor.tableboderstyle(),
                                   },
                                 ),
                               ),
@@ -259,6 +269,7 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                             color: Customcolor.colorVoilet,
                                             fontSize: FontSize.larger,
                                             fontWeight: FontWeight.w600),
+                                             "tr": Customcolor.tableboderstyle(),
                                       },
                                     ),
                                   ),
@@ -271,6 +282,9 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                       onLinkTap: (url) {
                                         print("Opening $url...");
                                         ShowDialogs.launchURL(url);
+                                      },
+                                      style: {
+                                         "tr": Customcolor.tableboderstyle(),
                                       },
                                     ),
                                   ),
@@ -315,6 +329,9 @@ class DetailpageState extends State<Detailpage> with TickerProviderStateMixin {
                                       onLinkTap: (url) {
                                         print("Opening $url...");
                                         ShowDialogs.launchURL(url);
+                                      },
+                                      style: {
+                                         "tr": Customcolor.tableboderstyle(),
                                       },
                                     ),
                                   ),

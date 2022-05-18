@@ -418,6 +418,9 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
+            style: {
+               "tr": Customcolor.tableboderstyle(),
+            },
           ),
         );
       }

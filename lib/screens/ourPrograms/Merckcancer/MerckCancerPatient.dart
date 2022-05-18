@@ -1003,6 +1003,9 @@ class OurProgramsDetailsState extends State<MerckCancerPatient>
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
+            style: {
+               "tr": Customcolor.tableboderstyle(),
+            },
           ),
         );
       }

@@ -19,6 +19,8 @@ import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:flutter/services.dart' show rootBundle;
+
 // import 'package:flutter/material.dart';
 // import 'package:merckfoundation22dec/screens/splash.dart';
 
@@ -113,15 +115,10 @@ class _MyAppState extends State<MyApp> {
         .then((RemoteMessage message) {
       print("message");
       print(message);
-      if (message != null) {
-        if (message.data['room'] != null) {
-          isroomfound = true;
-          roomid = message.data['room'].toString();
-          // navigatorKey.currentState.push(MaterialPageRoute(
-          //     builder: (_) => NotiDetailpage(
-          //           id: message.data['room'].toString(),
-          //         )));
-        }
+      if (message.data['room'] != null) {
+        isroomfound = true;
+        roomid = message.data['room'].toString();
+        
       }
       if (message != null) {
         print("notification nessage");
@@ -141,29 +138,26 @@ class _MyAppState extends State<MyApp> {
       //     'https://via.placeholder.com/48x48', 'largeIcon');
       final String bigPicturePath =
           await _downloadAndSaveFile(imgurl, 'bigPicture');
+          final attachmentPicturePath = await getImageFilePathFromAssets(imgurl);
       final BigPictureStyleInformation bigPictureStyleInformation =
           BigPictureStyleInformation(FilePathAndroidBitmap(bigPicturePath),
               largeIcon: FilePathAndroidBitmap(bigPicturePath),
               contentTitle: title.toString(),
               htmlFormatContentTitle: true,
-              summaryText: "",
+              summaryText: body.toString(),
               htmlFormatContent: true,
               htmlFormatTitle: true,
               htmlFormatSummaryText: true);
 
-      //           const BigTextStyleInformation bigTextStyleInformation =
-      // BigTextStyleInformation(
-      //   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      //   htmlFormatBigText: true,
-      //   contentTitle: 'Flutter Big Text Notification Title',
-      //   htmlFormatContentTitle: true,
-      //   summaryText: 'Flutter Big Text Notification Summary Text',
-      //   htmlFormatSummaryText: true,
-      // );
       final AndroidNotificationDetails androidPlatformChannelSpecifics =
           AndroidNotificationDetails('big text channel id',
               'big text channel name', 'big text channel description',
               styleInformation: bigPictureStyleInformation);
+     var iOSPlatformChannelSpecifics = new IOSNotificationDetails(
+attachments: [
+  IOSNotificationAttachment(attachmentPicturePath)
+]
+    );
       final NotificationDetails platformChannelSpecifics = NotificationDetails(
         android: AndroidNotificationDetails(
             channel.id, channel.name, channel.description,
@@ -171,211 +165,23 @@ class _MyAppState extends State<MyApp> {
             //      one that already exists in example app.
             icon: '@mipmap/logo1',
             styleInformation: bigPictureStyleInformation),
-
-
+iOS: iOSPlatformChannelSpecifics
 
 
       );
       var data = message.data['room'];
       print(data);
       Note newNote = Note(
-          title: title.toString(), description: "", screen: data);
+          title: title.toString(), description: body.toString(), screen: data);
       String noteJsonString = newNote.toJsonString();
       await flutterLocalNotificationsPlugin.show(
           0, title.toString(), "", platformChannelSpecifics,
           payload: noteJsonString);
 
-      // Data data = Data(
-      //   clickAction: msg['click_action'],
-      //   sound: msg['sound'],
-      //   status: msg['status'],
-      //   screen: msg['screen'],
-      //   extradata: msg['extradata'],
-      // );
-      // switch (data.toString()) {
-      //   case "datascreen":
-      //     // Navigator.push(
-      //     //     context,
-      //     //     MaterialPageRoute(
-      //     //         builder: (BuildContext context) => Dashboard(
-      //     //               index: 2,
-      //     //             )));
-      //     navigatorKey.currentState
-      //         .push(MaterialPageRoute(builder: (_) => Dashboard(index: 2)));
-      //     // Navigator.push(navigatorKey.currentState.context,
-      //     //     MaterialPageRoute(builder: (context) => Dashboard(index: 2)));
-      //     // SchedulerBinding.instance.addPostFrameCallback((_) {
-      //     //   Navigator.push(navigatorKey.currentState.context,
-      //     //       MaterialPageRoute(builder: (context) => Dashboard(index: 2)));
-      //     //   // Navigator.of(GlobalVariable.navState.currentContext)
-      //     //   //     .push(MaterialPageRoute(
-      //     //   //         builder: (context) => TimelineView(
-      //     //   //               campaignId: message["data"]["campaign"],
-      //     //   //             ))
-      //     //   // );
-      //     // });
-      //     break;
-      //   default:
-      //     break;
-      // }
-
-      //configLocalNotification();
-      // if (message != null) {
-      //   // Navigator.push(
-      //   //     context,
-      //   //     MaterialPageRoute(
-      //   //         builder: (BuildContext context) => Dashboard(
-      //   //               index: 2,
-      //   //             )));
-      //   navigatorKey.currentState
-      //       .push(MaterialPageRoute(builder: (_) => Dashboard(index: 2)));
-      // }
-// String jsonEncoder() {
-//     Map testDataMap =message.notification;
-//     String jsonStringData = jsonEncode(testDataMap);
-//     return jsonStringData;
-// }
-      // flutterLocalNotificationsPlugin.show(
-//         //     notification.hashCode,
-//         //     notification.title,
-//         //     notification.body,
-//         //     NotificationDetails(
-//         //       android: AndroidNotificationDetails(
-//         //         channel.id,
-//         //         channel.name,
-//         //         channel.description,
-//         //         // TODO add a proper drawable resource to android, for now using
-//         //         //      one that already exists in example app.
-//         //         icon: '@mipmap/ic_launcher',
-//         //       ),
-//         //     ));
-
-//
-//  final String largeIconPath = await _downloadAndSaveFile(
-//         'https://via.placeholder.com/48x48', 'largeIcon');
-      // final String bigPicturePath =
-      //     await _downloadAndSaveFile(imgurl, 'bigPicture');
-      // final BigPictureStyleInformation bigPictureStyleInformation =
-      //     BigPictureStyleInformation(FilePathAndroidBitmap(bigPicturePath),
-      //         largeIcon: FilePathAndroidBitmap(bigPicturePath),
-      //         contentTitle: 'Merck Foundation',
-      //         htmlFormatContentTitle: true,
-      //         summaryText: 'summary <i>text</i>',
-      //         htmlFormatSummaryText: true);
-      // var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
-      //     'default_notification_channel_id',
-      //     'Notification Channel',
-      //     'MerckFoundation',
-      //     playSound: true,
-      //     enableVibration: true,
-      //     importance: Importance.max,
-      //     priority: Priority.high,
-      //     styleInformation: bigPictureStyleInformation);
-      // final AndroidNotificationDetails androidPlatformChannelSpecifics =
-      //     AndroidNotificationDetails('big text channel id',
-      //         'big text channel name', 'big text channel description',
-      //         styleInformation: bigPictureStyleInformation);
-      // final NotificationDetails platformChannelSpecifics =
-      //     NotificationDetails(android: androidPlatformChannelSpecifics);
-      // var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
-      // var platformChannelSpecifics = NotificationDetails(
-      //     android: androidPlatformChannelSpecifics,
-      //     iOS: iOSPlatformChannelSpecifics);
-//
-
-      // flutterLocalNotificationsPlugin.show(
-      //   0, title.toString(), body.toString(), platformChannelSpecifics,
-      //   payload: message
-      // payload: jsonEncode(message)
-      //  );
-      //  showNotification(message);
-//       print(message.data);
-//       print(message.notification.body);
-//       print(message.notification.title);
-//       RemoteNotification notification = message.notification;
-//       print(notification);
-
-//       var imgurl = message.notification.android.imageUrl;
-//       print("imgurl");
-//       print(imgurl);
-// //
-// //  final String largeIconPath = await _downloadAndSaveFile(
-// //         'https://via.placeholder.com/48x48', 'largeIcon');
-//       final String bigPicturePath =
-//           await _downloadAndSaveFile(imgurl, 'bigPicture');
-//       print(bigPicturePath);
-//       final BigPictureStyleInformation bigPictureStyleInformation =
-//           BigPictureStyleInformation(
-//         FilePathAndroidBitmap(bigPicturePath),
-//         largeIcon: FilePathAndroidBitmap(bigPicturePath),
-//         // contentTitle: 'Merck Foundation',
-//         // htmlFormatContentTitle: true,
-//         // summaryText: 'summary <i>text</i>',
-//         // htmlFormatSummaryText: true
-//       );
-//       print(bigPictureStyleInformation.bigPicture);
-//       // var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
-//       //     'default_notification_channel_id',
-//       //     'Notification Channel',
-//       //     'MerckFoundation',
-//       //     playSound: true,
-//       //     enableVibration: true,
-//       //     importance: Importance.max,
-//       //     priority: Priority.high,
-//       //     styleInformation: bigPictureStyleInformation);
-//       final AndroidNotificationDetails androidPlatformChannelSpecifics =
-//           AndroidNotificationDetails('big text channel id',
-//               'big text channel name', 'big text channel description',
-//               styleInformation: bigPictureStyleInformation);
-//       final NotificationDetails platformChannelSpecifics =
-//           NotificationDetails(android: androidPlatformChannelSpecifics);
-//       // var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
-//       // var platformChannelSpecifics = NotificationDetails(
-//       //     android: androidPlatformChannelSpecifics,
-//       //     iOS: iOSPlatformChannelSpecifics);
-// //
-
-//       print("showing");
-//        flutterLocalNotificationsPlugin.show(
-//           0, notification.title, notification.body, platformChannelSpecifics);
-//       //  payload: jsonEncode(message));
-//       print("show");
-//       AndroidNotification android = message.notification?.android;
-//       if (notification != null && android != null) {
-//         // flutterLocalNotificationsPlugin.show(
-//         //     0, notification.title, notification.body, platformChannelSpecifics,
-//         //     payload: jsonEncode(message));
-//         // print("show");
-//         // flutterLocalNotificationsPlugin.show(
-//         //     notification.hashCode,
-//         //     notification.title,
-//         //     notification.body,
-//         //     NotificationDetails(
-//         //       android: AndroidNotificationDetails(
-//         //         channel.id,
-//         //         channel.name,
-//         //         channel.description,
-//         //         // TODO add a proper drawable resource to android, for now using
-//         //         //      one that already exists in example app.
-//         //         icon: '@mipmap/ic_launcher',
-//         //       ),
-//         //     ));
-//       }
+     
     });
 
-    
-
-    // FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-    //   print('A new onMessageOpenedApp event was published!');
-    //   if (message.data['room'] != null) {
-    //     navigatorKey.currentState.push(MaterialPageRoute(
-    //         builder: (_) => NotiDetailpage(
-    //               id: message.data['room'].toString(),
-    //             )));
-    //   }
-    //   configLocalNotification();
-    //   //  showNotification(message);
-    // });
+   
     configLocalNotification();
     super.initState();
   }
@@ -386,14 +192,7 @@ class _MyAppState extends State<MyApp> {
     print("payload");
     print('selectNotification ${payload}');
     print("print");
-    // await Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //         builder: (BuildContext context) => NotiDetailpage(
-    //               title: "payload",
-    //               detail: "title",
-    //               detailurl: "rr",
-    //             )));
+  
     await navigatorKey.currentState.push(MaterialPageRoute(
         builder: (_) => NotiDetailpage(
               id: "10",
@@ -446,19 +245,7 @@ class _MyAppState extends State<MyApp> {
       print(value);
       GlobalLists.fcmtokenvalue = value;
     });
-    //     .then((value) {
-    //   print(value);
-    //   setState(() {
-    //     GlobalLists.fcmtokenvalue = value;
-    //   });
-    // });
-// use the returned token to send messages to users from your custom server
-    // String token = await messaging.getToken(
-    //   vapidKey: "BGpdLRs......",
-    // );
-
-    // await SPManager().setfbAuthToken(token);
-    // print("token is ${token}");
+   
   }
 
   void showNotification(message) async {
@@ -474,6 +261,7 @@ class _MyAppState extends State<MyApp> {
 //         'https://via.placeholder.com/48x48', 'largeIcon');
     final String bigPicturePath =
         await _downloadAndSaveFile(imgurl, 'bigPicture');
+        final attachmentPicturePath = await getImageFilePathFromAssets(imgurl);
     final BigPictureStyleInformation bigPictureStyleInformation =
         BigPictureStyleInformation(FilePathAndroidBitmap(bigPicturePath),
             largeIcon: FilePathAndroidBitmap(bigPicturePath),
@@ -491,14 +279,11 @@ class _MyAppState extends State<MyApp> {
         priority: Priority.high,
         styleInformation:
             BigTextStyleInformation(message['notification']['body']));
-    // final AndroidNotificationDetails androidPlatformChannelSpecifics =
-    //     AndroidNotificationDetails('big text channel id',
-    //         'big text channel name', 'big text channel description',
-    //         styleInformation: bigPictureStyleInformation);
-    // final NotificationDetails platformChannelSpecifics =
-    //     NotificationDetails(android: androidPlatformChannelSpecifics);
+   
     var iOSPlatformChannelSpecifics = new IOSNotificationDetails(
-
+attachments: [
+  IOSNotificationAttachment(attachmentPicturePath)
+]
     );
     var platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
@@ -518,4 +303,14 @@ class _MyAppState extends State<MyApp> {
     await file.writeAsBytes(response.bodyBytes);
     return filePath;
   }
+  Future<String> getImageFilePathFromAssets(String asset) async {
+  final byteData = await rootBundle.load(asset);
+
+  final file =
+      File('${(await getTemporaryDirectory()).path}/${asset.split('/').last}');
+  await file.writeAsBytes(byteData.buffer
+      .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+  return file.path;
+}
 }

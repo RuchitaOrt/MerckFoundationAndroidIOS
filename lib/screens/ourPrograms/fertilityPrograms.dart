@@ -444,6 +444,9 @@ class MerckFertilityState extends State<MerckFertility> {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
+            style: {
+               "tr": Customcolor.tableboderstyle(),
+            },
           ),
         );
       }

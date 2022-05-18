@@ -124,6 +124,7 @@ class ourawardState extends State<Ouraward> {
                                         // color: Customcolor.pink_col,
                                         fontSize: FontSize.large,
                                         fontWeight: FontWeight.w500),
+                                                                    "tr": Customcolor.tableboderstyle(),
                                   },
                                 ),
                                 // Text(

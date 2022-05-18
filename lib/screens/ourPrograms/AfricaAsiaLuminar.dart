@@ -1764,6 +1764,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                       color: Customcolor.pink_col,
                                       fontSize: FontSize.large,
                                       fontWeight: FontWeight.w500),
+                                       "tr": Customcolor.tableboderstyle(),
                                 },
                               ),
                               SizedBox(
@@ -1823,6 +1824,11 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
+            style:{
+               "tr": Customcolor.tableboderstyle(),
+            }
+
+            
           ),
         );
       }
@@ -2148,6 +2154,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
                                                 fontSize: FontSize(13.0),
                                                 color: Colors.black87,
                                                 fontWeight: FontWeight.w600),
+                                                 "tr": Customcolor.tableboderstyle(),
                                           },
                                         ),
                                         // FormLabel(

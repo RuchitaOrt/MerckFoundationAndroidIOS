@@ -119,6 +119,7 @@ class DetailSearchTestimonialPageState
                           color: Customcolor.colorBlue,
                           textAlign: TextAlign.start,
                           fontWeight: FontWeight.w500),
+                           "tr": Customcolor.tableboderstyle(),
                     },
                   ),
                   Html(
@@ -130,6 +131,7 @@ class DetailSearchTestimonialPageState
                     },
                     style: {
                       "body": Style(textAlign: TextAlign.start),
+                       "tr": Customcolor.tableboderstyle(),
                     },
                   ),
                   Html(
@@ -141,6 +143,7 @@ class DetailSearchTestimonialPageState
                     },
                     style: {
                       "body": Style(textAlign: TextAlign.start),
+                       "tr": Customcolor.tableboderstyle(),
                     },
                   ),
 

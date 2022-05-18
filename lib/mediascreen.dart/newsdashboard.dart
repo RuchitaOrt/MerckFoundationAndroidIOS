@@ -258,6 +258,7 @@ class NewsState extends State<NewsPageDashboard> {
                                                           //textAlign: TextAlign.center,
                                                           fontWeight:
                                                               FontWeight.w500),
+                                                               "tr": Customcolor.tableboderstyle(),
                                                     },
                                                   ),
                                                   // Text(

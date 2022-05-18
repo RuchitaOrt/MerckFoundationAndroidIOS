@@ -285,6 +285,7 @@ class APIManager {
     //     'onerooftechnologiesllp.com', '/mfindia/web/public/api/$encoding');
     // https://smitlalai.com/demo/merck_latest/api
     var uri = Uri.https('merck-foundation.com', 'api/$encoding');
+     //var uri = Uri.https('merck.oneroof.tech', 'merck/api/$encoding');
     //var uri = Uri.https('smitlalai.com', 'demo/merck_latest/api/$encoding');
     final response = await ioClient.get(uri);
     print(uri.toString());

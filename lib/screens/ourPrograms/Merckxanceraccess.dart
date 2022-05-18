@@ -1330,6 +1330,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                           Colors.white, //Customcolor.pink_col,
                                       fontSize: FontSize.large,
                                       fontWeight: FontWeight.w500),
+                                       "tr": Customcolor.tableboderstyle(),
                                 },
                               ),
                               SizedBox(
@@ -1449,6 +1450,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
             onLinkTap: (url) {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
+            },
+            style: {
+               "tr": Customcolor.tableboderstyle(),
             },
           ),
         );
@@ -1765,6 +1769,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
 
                                   //textAlign: TextAlign.center,
                                   fontWeight: FontWeight.w500),
+                                   "tr": Customcolor.tableboderstyle(),
                             },
                           ),
                           // SizedBox(
@@ -1781,6 +1786,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
 
                                   //textAlign: TextAlign.center,
                                   fontWeight: FontWeight.w500),
+                                   "tr": Customcolor.tableboderstyle(),
                             },
                           ),
                         ],

@@ -191,6 +191,9 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
+            style: {
+               "tr": Customcolor.tableboderstyle(),
+            },
           ),
         );
       }

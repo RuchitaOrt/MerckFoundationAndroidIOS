@@ -84,6 +84,7 @@ class DetailpageceoState extends State<Detailpageceo>
                             "body": Style(
                               textAlign: TextAlign.right,
                             ),
+                             "tr": Customcolor.tableboderstyle(),
                           },
                         ),
                         Center(
@@ -115,6 +116,7 @@ class DetailpageceoState extends State<Detailpageceo>
                                   color: Customcolor.violet_col,
                                   fontWeight: FontWeight.bold,
                                   fontSize: FontSize.larger),
+                                   "tr": Customcolor.tableboderstyle(),
                             },
                           ),
                         ),
@@ -128,6 +130,7 @@ class DetailpageceoState extends State<Detailpageceo>
                             },
                             style: {
                               "body": Style(textAlign: TextAlign.center),
+                               "tr": Customcolor.tableboderstyle(),
                             },
                           ),
                         ),
@@ -151,6 +154,9 @@ class DetailpageceoState extends State<Detailpageceo>
                                 onLinkTap: (url) {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
+                                },
+                                style: {
+                                   "tr": Customcolor.tableboderstyle(),
                                 },
                               ),
                               SizedBox(height: 10.0),

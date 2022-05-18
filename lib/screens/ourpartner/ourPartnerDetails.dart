@@ -151,6 +151,9 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                          print("Opening $url...");
                          ShowDialogs.launchURL(url);
                        },
+                       style: {
+                          "tr": Customcolor.tableboderstyle(),
+                       },
                      ),
                    ),
              SizedBox(

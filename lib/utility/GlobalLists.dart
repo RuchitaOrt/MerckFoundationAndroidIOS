@@ -242,7 +242,8 @@ class GlobalLists {
 
   static String serverresp = "Server Not Responding";
   //viewmore mmtm rightsection
-  static List<viewmmtmrightsec.ListElement> viewmoremmtmlist = [];
+  // static List<viewmmtmrightsec.ListElement> viewmoremmtmlist = [];
+  static List<viewmmtmrightsec.Current> viewmoremmtmlist = [];
 
   //viewmore media
   static List<viewmmtmedia.ListElement> viewmoremedialist = [];

@@ -105,6 +105,7 @@ class CeomessageState extends State<Ceomessage> {
                                       color: Customcolor.violet_col,
                                       fontWeight: FontWeight.bold,
                                       fontSize: FontSize.larger),
+                                       "tr": Customcolor.tableboderstyle(),
                                 },
                               ),
                               Html(
@@ -116,6 +117,7 @@ class CeomessageState extends State<Ceomessage> {
                                 },
                                 style: {
                                   "body": Style(textAlign: TextAlign.start),
+                                   "tr": Customcolor.tableboderstyle(),
                                 },
                               ),
                               GestureDetector(
@@ -144,6 +146,7 @@ class CeomessageState extends State<Ceomessage> {
                                         color: Customcolor.pink_col,
                                         fontSize: FontSize.larger,
                                         fontWeight: FontWeight.w600),
+                                         "tr": Customcolor.tableboderstyle(),
                                   },
                                 ),
                               ),
@@ -219,6 +222,7 @@ class CeomessageState extends State<Ceomessage> {
                                           color: Customcolor.violet_col,
                                           fontWeight: FontWeight.bold,
                                           fontSize: FontSize.larger),
+                                           "tr": Customcolor.tableboderstyle(),
                                     },
                                   ),
                                   Html(
@@ -231,6 +235,7 @@ class CeomessageState extends State<Ceomessage> {
                                     style: {
                                       "body":
                                           Style(textAlign: TextAlign.start),
+                                           "tr": Customcolor.tableboderstyle(),
                                     },
                                   ),
                                   GestureDetector(
@@ -261,6 +266,7 @@ class CeomessageState extends State<Ceomessage> {
                                             color: Customcolor.pink_col,
                                             fontSize: FontSize.larger,
                                             fontWeight: FontWeight.w600),
+                                             "tr": Customcolor.tableboderstyle(),
                                       },
                                     ),
                                    ),

@@ -158,6 +158,9 @@ class OurActivityState extends State<OurActivity> {
                       print("Opening $url...");
                       ShowDialogs.launchURL(url);
                     },
+                    style: {
+                       "tr": Customcolor.tableboderstyle(),
+                    },
                     // style: {
                     //   "body": Style(
                     //     fontSize: FontSize(

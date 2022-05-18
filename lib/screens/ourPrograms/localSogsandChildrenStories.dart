@@ -367,6 +367,9 @@ class LocalSongsandChildrenStoriesState
                   print("Opening $url...");
                   ShowDialogs.launchURL(url);
                 },
+                style: {
+                   "tr": Customcolor.tableboderstyle(),
+                },
               ),
               Html(
                 data: """${GlobalLists.homecontentlist[1].pageContent} """,
@@ -374,6 +377,7 @@ class LocalSongsandChildrenStoriesState
                   print("Opening $url...");
                   ShowDialogs.launchURL(url);
                 },
+                style: { "tr": Customcolor.tableboderstyle(),},
               ),
             ],
           ),

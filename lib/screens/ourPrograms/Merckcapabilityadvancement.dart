@@ -1800,6 +1800,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                                       color: Customcolor.pink_col,
                                       fontSize: FontSize.large,
                                       fontWeight: FontWeight.w500),
+                                       "tr": Customcolor.tableboderstyle(),
                                 },
                               ),
                               SizedBox(
@@ -1859,6 +1860,9 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
+            style:{
+ "tr": Customcolor.tableboderstyle(),
+            }
           ),
         );
       }
@@ -2118,6 +2122,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
 
                                   //textAlign: TextAlign.center,
                                   fontWeight: FontWeight.w500),
+                                   "tr": Customcolor.tableboderstyle(),
                             },
                           ),
                           // SizedBox(
@@ -2134,6 +2139,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
 
                                   //textAlign: TextAlign.center,
                                   fontWeight: FontWeight.w500),
+                                   "tr": Customcolor.tableboderstyle(),
                             },
                           ),
                         ],

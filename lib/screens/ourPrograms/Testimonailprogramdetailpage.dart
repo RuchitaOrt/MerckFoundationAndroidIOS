@@ -121,6 +121,7 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                               color: Customcolor.colorBlue,
                               textAlign: TextAlign.start,
                               fontWeight: FontWeight.w500),
+                               "tr": Customcolor.tableboderstyle(),
                         },
                       ),
                       Html(
@@ -132,6 +133,7 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                         },
                         style: {
                           "body": Style(textAlign: TextAlign.start),
+                           "tr": Customcolor.tableboderstyle(),
                         },
                       ),
                       Html(
@@ -143,6 +145,7 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                         },
                         style: {
                           "body": Style(textAlign: TextAlign.start),
+                           "tr": Customcolor.tableboderstyle(),
                         },
                       ),
                     ],

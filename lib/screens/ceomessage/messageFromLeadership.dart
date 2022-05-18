@@ -295,6 +295,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                       textAlign: TextAlign.center,
                                       // fontSize: FontSize(15.0)
                                     ),
+                                     "tr": Customcolor.tableboderstyle(),
                                   },
                                   // style: {
                                   //   "body": Style(
@@ -325,6 +326,9 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                       onLinkTap: (url) {
                                         print("Opening $url...");
                                         ShowDialogs.launchURL(url);
+                                      },
+                                      style: {
+                                         "tr": Customcolor.tableboderstyle(),
                                       },
                                     ),
                                     SizedBox(height: 10.0),
