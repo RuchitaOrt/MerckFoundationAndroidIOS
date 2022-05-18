@@ -1316,12 +1316,12 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => NotiDetailpage(
-                                    id: "10",
-                                  )));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (BuildContext context) => NotiDetailpage(
+                      //               id: "10",
+                      //             )));
                     },
                     child: Text("Follow Us",
                         textAlign: TextAlign.start,
