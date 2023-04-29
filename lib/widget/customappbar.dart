@@ -68,7 +68,8 @@ class CustomAppBar extends PreferredSize {
                                     const EdgeInsets.only(left: 18, top: 14),
                                 child: Container(
                                   child: Image.asset(
-                                    "assets/newImages/logoforheader.png",
+                                    "assets/newImages/drawer_img.png",
+                                    //logoforheader.png",
                                     //"assets/newImages/logo.png",
                                     width: 200,
                                     height: 80,

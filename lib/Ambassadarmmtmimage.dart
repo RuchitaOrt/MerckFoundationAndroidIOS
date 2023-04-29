@@ -40,7 +40,7 @@ class _PhotoGalleryPageState extends State<AmbassadarmmtmImagePage> {
           //             )));
         },
         index: 1,
-        title: "Merck Foundation More Than A Mother Ambassadors",
+        title: 'Merck Foundation "More Than A Mother" Ambassadors',
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -59,7 +59,7 @@ class _PhotoGalleryPageState extends State<AmbassadarmmtmImagePage> {
               crossAxisSpacing: 0,
               mainAxisSpacing: 2,
               crossAxisCount: 2,
-              childAspectRatio: 0.9,
+              childAspectRatio: 0.85,
               children: widget.photosList.map((photo) {
                 // if (widget.index == 0) {
                 print(widget.baseURL + photo.photo);

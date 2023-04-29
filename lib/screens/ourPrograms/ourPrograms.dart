@@ -45,18 +45,25 @@ class _OurProgramState extends State<Ourprogram> {
   List _productsAvailable = [];
   bool issliderSectionLoaded = false;
   List<programclass> _productsAvailable1 = [
-    programclass(
-        programname: "Merck Foundation More Than A Mother         ",
+     programclass(
+        programname: 'Merck Foundation "More Than a Mother" Movement',
+        //"Merck Foundation More Than A Mother         ",
         colors: Customcolor.prog1),
     programclass(
         programname: "Merck Foundation Cancer Access Program     ",
         colors: Customcolor.prog2),
     programclass(
         programname:
-            "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
+            "Merck Foundation Capacity Advancement Program",
+           // "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
         colors: Customcolor.prog3),
+          programclass(
+        programname: "Merck Foundation Nationwide Diabetes & Hypertension Blue Points Program",//"Merck Foundation Sustainability Initiative   ",
+        colors: Customcolor.prog7),
     programclass(
-        programname: "Merck Foundation First Ladies Initiative Summit",
+        programname: 
+        "Merck Foundation First Ladies Initiative Summit- MFFLI",
+        //"Merck Foundation First Ladies Initiative Summit",
         colors: Customcolor.prog4),
     programclass(
         programname: "Merck Foundation STEM Program                  ",
@@ -64,12 +71,37 @@ class _OurProgramState extends State<Ourprogram> {
     programclass(
         programname: "Merck Foundation Educating Linda Program",
         colors: Customcolor.prog6),
-    programclass(
-        programname: "Merck Foundation Sustainability Initiative   ",
-        colors: Customcolor.prog7),
+    // programclass(
+    //     programname: "Merck Foundation Sustainability Initiative   ",
+    //     colors: Customcolor.prog7),
     programclass(
         programname: "Merck Foundation Africa Asia Luminary      ",
         colors: Customcolor.prog8),
+    // programclass(
+    //     programname: "Merck Foundation More Than A Mother         ",
+    //     colors: Customcolor.prog1),
+    // programclass(
+    //     programname: "Merck Foundation Cancer Access Program     ",
+    //     colors: Customcolor.prog2),
+    // programclass(
+    //     programname:
+    //         "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
+    //     colors: Customcolor.prog3),
+    // programclass(
+    //     programname: "Merck Foundation First Ladies Initiative Summit",
+    //     colors: Customcolor.prog4),
+    // programclass(
+    //     programname: "Merck Foundation STEM Program                  ",
+    //     colors: Customcolor.prog5),
+    // programclass(
+    //     programname: "Merck Foundation Educating Linda Program",
+    //     colors: Customcolor.prog6),
+    // programclass(
+    //     programname: "Merck Foundation Sustainability Initiative   ",
+    //     colors: Customcolor.prog7),
+    // programclass(
+    //     programname: "Merck Foundation Africa Asia Luminary      ",
+    //     colors: Customcolor.prog8),
   ];
 
   @override
@@ -222,7 +254,105 @@ class _OurProgramState extends State<Ourprogram> {
                 child: FadeInAnimation(
                   child: GestureDetector(
                     onTap: () {
-                      if (index == 0) {
+                      // if (index == 0) {
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (BuildContext context) => OurProgram(
+                      //                 indexpass: 0,
+                      //               )));
+                      // } else if (index == 1) {
+                      //   // Navigator.push(
+                      //   //     context,
+                      //   //     MaterialPageRoute(
+                      //   //         builder: (BuildContext context) => OurProgram(
+                      //   //               indexpass: 1,
+                      //   //             )));
+                      //   //for cancer index is from 21 to 27
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (BuildContext context) =>
+                      //               OurProgramcancerlist(
+                      //                 indexpass: 21,
+                      //               )));
+                      // } else if (index == 2) {
+                      //   // Navigator.push(
+                      //   //     context,
+                      //   //     MaterialPageRoute(
+                      //   //         builder: (BuildContext context) => OurProgram(
+                      //   //               indexpass: 2,
+                      //   //             )));
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (BuildContext context) =>
+                      //               OurProgramSevenlist(
+                      //                 indexpass: 1,
+                      //               )));
+                      // } else if (index == 3) {
+                      //   // Navigator.push(
+                      //   //     context,
+                      //   //     MaterialPageRoute(
+                      //   //         builder: (BuildContext context) => OurProgram(
+                      //   //               indexpass: 12,
+                      //   //             )));
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (BuildContext context) =>
+                      //               OurProgramSevenlist(
+                      //                 indexpass: 2,
+                      //               )));
+                      // } else if (index == 6) {
+                      //   // Navigator.push(
+                      //   //     context,
+                      //   //     MaterialPageRoute(
+                      //   //         builder: (BuildContext context) => OurProgram(
+                      //   //               indexpass: 13,
+                      //   //             )));
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (BuildContext context) =>
+                      //               OurProgramSevenlist(
+                      //                 indexpass: 4,
+                      //               )));
+                      // } else if (index == 4) {
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (BuildContext context) =>
+                      //               OurProgramStem()));
+                      // } else if (index == 5) {
+                      //   // Navigator.push(
+                      //   //     context,
+                      //   //     MaterialPageRoute(
+                      //   //         builder: (BuildContext context) => OurProgram(
+                      //   //               indexpass: 14,
+                      //   //             )));
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (BuildContext context) =>
+                      //               OurProgramSevenlist(
+                      //                 indexpass: 3,
+                      //               )));
+                      // } else if (index == 7) {
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (BuildContext context) =>
+                      //               OurProgramAfrica()));
+                      //   // Navigator.push(
+                      //   //     context,
+                      //   //     MaterialPageRoute(
+                      //   //         builder: (BuildContext context) =>
+                      //   //             OurProgramSevenlist(
+                      //   //               indexpass: 4,
+                      //   //             )));
+                      // }
+                       if (index == 0) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -258,7 +388,7 @@ class _OurProgramState extends State<Ourprogram> {
                                     OurProgramSevenlist(
                                       indexpass: 1,
                                     )));
-                      } else if (index == 3) {
+                      } else if (index == 4) {
                         // Navigator.push(
                         //     context,
                         //     MaterialPageRoute(
@@ -272,7 +402,7 @@ class _OurProgramState extends State<Ourprogram> {
                                     OurProgramSevenlist(
                                       indexpass: 2,
                                     )));
-                      } else if (index == 6) {
+                      } else if (index == 3) {
                         // Navigator.push(
                         //     context,
                         //     MaterialPageRoute(
@@ -286,13 +416,13 @@ class _OurProgramState extends State<Ourprogram> {
                                     OurProgramSevenlist(
                                       indexpass: 4,
                                     )));
-                      } else if (index == 4) {
+                      } else if (index == 5) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     OurProgramStem()));
-                      } else if (index == 5) {
+                      } else if (index == 6) {
                         // Navigator.push(
                         //     context,
                         //     MaterialPageRoute(

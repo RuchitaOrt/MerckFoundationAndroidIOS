@@ -24,7 +24,13 @@ class DrawerWidget extends StatelessWidget {
         onTap: onTapfun,
         child: new Row(
           children: <Widget>[
-            Image.asset(
+            // Image.asset(
+            //   image,
+            //   width: 40,
+            //   height: 40,
+            // ),
+             image==''?Container( width: 43,
+              height: 40,):  Image.asset(
               image,
               width: 40,
               height: 40,

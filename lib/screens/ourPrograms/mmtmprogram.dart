@@ -116,7 +116,7 @@ class MMTMProgramState extends State<MMTMProgram> {
                         )));
           },
           index: 1,
-          title: "Merck Foundation More Than A Mother Videos",
+          title:'Merck Foundation "More Than A Mother" Movement Videos', //"Merck Foundation More Than A Mother Videos",
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",

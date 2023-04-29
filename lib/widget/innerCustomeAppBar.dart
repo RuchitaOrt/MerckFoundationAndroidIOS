@@ -90,7 +90,8 @@ class InnerCustomAppBar extends PreferredSize {
                             padding: const EdgeInsets.only(top: 5, bottom: 5),
                             child: Container(
                               child: Image.asset(
-                                "assets/newImages/logoforheader.png",
+                                "assets/newImages/drawer_img.png",
+                               // "assets/newImages/logoforheader.png",
                                 // width: 200,
                                 height: 80,
                               ),
@@ -207,7 +208,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                               );
                                                       },
                                                       child: Image.asset(
-                                                        "assets/newImages/facebook.png",
+                                                        "assets/newImages/facebooknew.png",
                                                         height: imgHeight,
                                                         width: imgHeight,
                                                       ),
@@ -245,7 +246,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                                     });
                                                       },
                                                       child: Image.asset(
-                                                        "assets/newImages/twitter.png",
+                                                        "assets/newImages/twitternew.png",
                                                         height: imgHeight,
                                                         width: imgHeight,
                                                       ),
@@ -269,7 +270,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                                     sharelink);
                                                       },
                                                       child: Image.asset(
-                                                        "assets/newImages/linkedin.png",
+                                                        "assets/newImages/linkedinnew.png",
                                                         height: imgHeight,
                                                         width: imgHeight,
                                                       ),
@@ -297,7 +298,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                         //   });
                                                       },
                                                       child: Image.asset(
-                                                        "assets/newImages/whatsapp.png",
+                                                        "assets/newImages/whatsappnew.png",
                                                         height: imgHeight,
                                                         width: imgHeight,
                                                       ),
@@ -390,7 +391,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                           );
                                                   },
                                                   child: Image.asset(
-                                                    "assets/newImages/facebook.png",
+                                                    "assets/newImages/facebooknew.png",
                                                     height: imgHeight,
                                                     width: imgHeight,
                                                   ),
@@ -423,7 +424,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                                 });
                                                   },
                                                   child: Image.asset(
-                                                    "assets/newImages/twitter.png",
+                                                    "assets/newImages/twitternew.png",
                                                     height: imgHeight,
                                                     width: imgHeight,
                                                   ),
@@ -446,7 +447,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                                 sharelink);
                                                   },
                                                   child: Image.asset(
-                                                    "assets/newImages/linkedin.png",
+                                                    "assets/newImages/linkedinnew.png",
                                                     height: imgHeight,
                                                     width: imgHeight,
                                                   ),
@@ -472,7 +473,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                     //   });
                                                   },
                                                   child: Image.asset(
-                                                    "assets/newImages/whatsapp.png",
+                                                    "assets/newImages/whatsappnew.png",
                                                     height: imgHeight,
                                                     width: imgHeight,
                                                   ),

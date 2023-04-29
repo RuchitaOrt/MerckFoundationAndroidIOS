@@ -33,12 +33,14 @@ class MiddleArea {
   MiddleArea({
     this.content,
     this.mmtm,
+     this.mmtmAmbFormer,
     this.videos,
     this.gallery,
   });
 
   Content content;
   Gallery mmtm;
+  Gallery mmtmAmbFormer;
   Videos videos;
   Gallery gallery;
 
@@ -46,6 +48,7 @@ class MiddleArea {
         content:
             json["content"] == null ? null : Content.fromJson(json["content"]),
         mmtm: json["mmtm"] == null ? null : Gallery.fromJson(json["mmtm"]),
+         mmtmAmbFormer: json["mmtm_amb_former"] == null ? null : Gallery.fromJson(json["mmtm_amb_former"]),
         videos: json["videos"] == null ? null : Videos.fromJson(json["videos"]),
         gallery:
             json["gallery"] == null ? null : Gallery.fromJson(json["gallery"]),
@@ -54,6 +57,7 @@ class MiddleArea {
   Map<String, dynamic> toJson() => {
         "content": content == null ? null : content.toJson(),
         "mmtm": mmtm == null ? null : mmtm.toJson(),
+         "mmtm_amb_former": mmtmAmbFormer == null ? null : mmtmAmbFormer.toJson(),
         "videos": videos == null ? null : videos.toJson(),
         "gallery": gallery == null ? null : gallery.toJson(),
       };

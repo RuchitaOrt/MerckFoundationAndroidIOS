@@ -226,7 +226,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
   }
 
   double imgHeight = 30;
-
+double imgHeightfb = 24;
   Widget followUs() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
@@ -283,9 +283,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                           Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
-                      "assets/newImages/facebook.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/facebooknew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -301,9 +301,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                               Constantstring.followtwitter);
                     },
                     child: Image.asset(
-                      "assets/newImages/twitter.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/twitternew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -396,9 +396,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                           "1595566227361051");
                     },
                     child: Image.asset(
-                      "assets/newImages/facebook.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/facebooknew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -414,9 +414,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                               Constantstring.followmmerckCancertwitter);
                     },
                     child: Image.asset(
-                      "assets/newImages/twitter.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/twitternew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(

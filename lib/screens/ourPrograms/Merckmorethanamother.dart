@@ -128,7 +128,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                       )));
         },
         index: 1,
-        title: "Merck Foundation More Than A Mother",
+        title: 'Merck Foundation "More Than a Mother" Movement',//"Merck Foundation More Than A Mother",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -241,7 +241,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
   }
 
   double imgHeight = 30;
-
+double imgHeightfb = 24;
   Widget followUs() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
@@ -298,9 +298,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                           Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
-                      "assets/newImages/facebook.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/facebooknew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -316,9 +316,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               Constantstring.followtwitter);
                     },
                     child: Image.asset(
-                      "assets/newImages/twitter.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/twitternew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -386,7 +386,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Follow Merck Foundation More Than a Mother on",
+                 'Follow Merck Foundation "More Than a Mother" Movement on',
+                ///"Follow Merck Foundation More Than a Mother on",
                 textAlign: TextAlign.start,
                 maxLines: 2,
                 style: TextStyle(
@@ -411,9 +412,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                           "1438845759757442");
                     },
                     child: Image.asset(
-                      "assets/newImages/facebook.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/facebooknew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -429,9 +430,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               Constantstring.followmmtmtwitter);
                     },
                     child: Image.asset(
-                      "assets/newImages/twitter.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/twitternew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -2048,7 +2049,8 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideommtm,
                               headertitle:
-                                  "Merck Foundation More Than A Mother Videos",
+                               'Merck Foundation "More Than A Mother" Movement Videos',
+                              //    "Merck Foundation More Than A Mother Videos",
                               sharelink: Constantstring.sharewatchallvideommtm,
                             )));
               },

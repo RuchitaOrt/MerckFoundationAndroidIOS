@@ -65,7 +65,7 @@ class _LandingpageState extends State<Landingpage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
+            padding: const EdgeInsets.only(left: 14, right: 14),
             child: Container(
               height: 370,
               decoration: BoxDecoration(

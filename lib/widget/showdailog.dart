@@ -268,7 +268,13 @@ class ShowDialogs {
 
   static launchWhatsappshare(String msg) async {
     print("on launch");
-    var url = "whatsapp://send?text=$msg";
+   var url ;//= "whatsapp://send?text=$msg";
+    if (Platform.isIOS) {
+        url= "https://wa.me/?ext=$msg";
+      } 
+      // else {
+      //   return "whatsapp://send?phone=$phone&text=${Uri.encodeFull(message)}";
+      // }
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -490,10 +496,10 @@ class ShowDialogs {
                 //   width: 25,
                 //   height: 25,
                 // ),
-                Icon(Icons.logout_outlined, size: 20, color: Colors.white),
-                SizedBox(
-                  height: 10.0,
-                ),
+                // Icon(Icons.logout_outlined, size: 20, color: Colors.white),
+                // SizedBox(
+                //   height: 10.0,
+                // ),
                 Center(
                   child: Text(
                     '$dialogTitle',

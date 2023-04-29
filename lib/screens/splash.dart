@@ -130,7 +130,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: Image.asset(
-                  'assets/newImages/splashlogo.png',
+                  'assets/newImages/drawer_img.png',
                   width: 300, //SizeConfig.blockSizeHorizontal * 80,
                   height: 350, //SizeConfig.blockSizeVertical * 80,
                 ),
@@ -147,7 +147,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Container(
                   width: SizeConfig.blockSizeHorizontal * 55,
                   child: Text(
-                    "version 2.1", //for ios only
+                    "version 2.4", //for ios only
                     style: TextStyle(
                       color: Colors.black87,
                     ),

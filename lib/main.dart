@@ -19,7 +19,7 @@ import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show ByteData, NetworkAssetBundle, rootBundle;
 
 // import 'package:flutter/material.dart';
 // import 'package:merckfoundation22dec/screens/splash.dart';
@@ -131,14 +131,32 @@ class _MyAppState extends State<MyApp> {
 
       var title = message.notification.title;
       var body = message.notification.body;
-      String imgurl = message.notification.android.imageUrl;
+      String imgurl ="";
+      if(Platform.isIOS)
+      {
+ imgurl = message.notification.apple.imageUrl;
       print("imgurl");
       print(imgurl);
+      }else{
+ imgurl = message.notification.android.imageUrl;
+      print("imgurl");
+      print(imgurl);
+      }
+      
       //   final String largeIconPath = await _downloadAndSaveFile(
       //     'https://via.placeholder.com/48x48', 'largeIcon');
-      final String bigPicturePath =
+       String bigPicturePath ="";
+      String attachmentPicturePath = ""
+;      if((Platform.isAndroid))
+      {
+         bigPicturePath =
           await _downloadAndSaveFile(imgurl, 'bigPicture');
-          final attachmentPicturePath = await getImageFilePathFromAssets(imgurl);
+      }
+      else{
+   attachmentPicturePath = await getImageFilePathFromAssets(imgurl);
+      }
+   
+        
       final BigPictureStyleInformation bigPictureStyleInformation =
           BigPictureStyleInformation(FilePathAndroidBitmap(bigPicturePath),
               largeIcon: FilePathAndroidBitmap(bigPicturePath),
@@ -181,7 +199,17 @@ iOS: iOSPlatformChannelSpecifics
      
     });
 
-   
+       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+      if (message.data['room'] != null) {
+        navigatorKey.currentState.push(MaterialPageRoute(
+            builder: (_) => NotiDetailpage(
+                  id: message.data['room'].toString(),
+                )));
+      }
+      configLocalNotification();
+      //  showNotification(message);
+    });
     configLocalNotification();
     super.initState();
   }
@@ -219,17 +247,18 @@ iOS: iOSPlatformChannelSpecifics
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         navigatorObservers: <NavigatorObserver>[observer],
-        home: SplashScreen(
-                token: GlobalLists.fcmtokenvalue,
-              ),
-        
-        // isroomfound == true
-        //     ? NotiDetailpage(
-        //         id: roomid,
-        //       )
-        //     : SplashScreen(
+        home: 
+        // SplashScreen(
         //         token: GlobalLists.fcmtokenvalue,
         //       ),
+        
+        isroomfound == true
+            ? NotiDetailpage(
+                id: roomid,
+              )
+            : SplashScreen(
+                token: GlobalLists.fcmtokenvalue,
+              ),
         navigatorKey: navigatorKey);
   }
 
@@ -259,9 +288,19 @@ iOS: iOSPlatformChannelSpecifics
 //
 //  final String largeIconPath = await _downloadAndSaveFile(
 //         'https://via.placeholder.com/48x48', 'largeIcon');
-    final String bigPicturePath =
-        await _downloadAndSaveFile(imgurl, 'bigPicture');
-        final attachmentPicturePath = await getImageFilePathFromAssets(imgurl);
+  String bigPicturePath ="";
+      String attachmentPicturePath = ""
+;      if((Platform.isAndroid))
+      {
+         bigPicturePath =
+          await _downloadAndSaveFile(imgurl, 'bigPicture');
+      }
+      else{
+   attachmentPicturePath = await getImageFilePathFromAssets(imgurl);
+      }
+    // final String bigPicturePath =
+    //     await _downloadAndSaveFile(imgurl, 'bigPicture');
+    //     final attachmentPicturePath = await getImageFilePathFromAssets(imgurl);
     final BigPictureStyleInformation bigPictureStyleInformation =
         BigPictureStyleInformation(FilePathAndroidBitmap(bigPicturePath),
             largeIcon: FilePathAndroidBitmap(bigPicturePath),
@@ -304,8 +343,8 @@ attachments: [
     return filePath;
   }
   Future<String> getImageFilePathFromAssets(String asset) async {
-  final byteData = await rootBundle.load(asset);
-
+  //final byteData = await rootBundle.load(asset);
+final ByteData byteData = await NetworkAssetBundle(Uri.parse(asset)).load("");
   final file =
       File('${(await getTemporaryDirectory()).path}/${asset.split('/').last}');
   await file.writeAsBytes(byteData.buffer

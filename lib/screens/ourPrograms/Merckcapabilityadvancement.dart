@@ -117,7 +117,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
         },
         index: 1,
         title:
-            "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Point Program",
+           "Merck Foundation Capacity Advancement Program",// "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Point Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -228,7 +228,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
   }
 
   double imgHeight = 30;
-
+double imgHeightfb = 24;
   Widget followUs() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
@@ -285,9 +285,9 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                           Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
-                      "assets/newImages/facebook.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/facebooknew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -303,9 +303,9 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                               Constantstring.followtwitter);
                     },
                     child: Image.asset(
-                      "assets/newImages/twitter.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/twitternew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -399,9 +399,9 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                           "157141811314444");
                     },
                     child: Image.asset(
-                      "assets/newImages/facebook.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/facebooknew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -417,9 +417,9 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                               Constantstring.followmmerckAdvancementtwitter);
                     },
                     child: Image.asset(
-                      "assets/newImages/twitter.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/twitternew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -1636,7 +1636,8 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideocapacity,
                               headertitle:
-                                  "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program Videos",
+                              "Merck Foundation Capacity Advancement Program",
+                                  // "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program Videos",
                               sharelink:
                                   Constantstring.sharewatchallvideocapaity,
                             )));

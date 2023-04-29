@@ -116,7 +116,7 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                       )));
         },
         index: 1,
-        title: "Merck Foundation Sustainability Initiative",
+        title:"Merck Foundation Nationwide Diabetes/Hypertension Blue Points Program",// "Merck Foundation Sustainability Initiative",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -211,7 +211,7 @@ SizedBox(
   }
 
   double imgHeight = 30;
-
+double imgHeightfb = 24;
   Widget followUs() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
@@ -266,9 +266,9 @@ SizedBox(
                               "1053979038068008");
                     },
                     child: Image.asset(
-                      "assets/newImages/facebook.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/facebooknew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -284,9 +284,9 @@ SizedBox(
                               Constantstring.followtwitter);
                     },
                     child: Image.asset(
-                      "assets/newImages/twitter.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/twitternew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(

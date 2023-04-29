@@ -38,9 +38,9 @@ class _MyHomePageState extends State<OurProgram> {
 
   bool useAsFloatingActionButton = true;
   List programvalue = [
-    "About Merck Foundation More Than A Mother",
+    'About Merck Foundation "More Than A Mother" Movement',//"About Merck Foundation More Than A Mother",
     "Strategy",
-    "Merck Foundation More Than a Mother Ambassadors",
+   'Merck Foundation "More Than a Mother" Ambassadors', // "Merck Foundation More Than a Mother Ambassadors",
     "Merck Foundation Fertility and Embryology Training Program",
     "Merck Foundation Community Awareness and Awards Program",
     "Empowering Berna",
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<OurProgram> {
   ];
 
   List programvalueforStem = [
-    "About Merck Foundation More Than A Mother",
+   'About Merck Foundation "More Than A Mother" Movement', // "About Merck Foundation More Than A Mother",
     "Strategy",
     "Merck More Than a Mother Ambassadors",
     "Merck Fertility and Embryology Training Program",
@@ -97,7 +97,8 @@ class _MyHomePageState extends State<OurProgram> {
                                                         apiurl:
                                                             API.watchvideommtm,
                                                         headertitle:
-                                                            "Merck Foundation More Than A Mother Videos",
+                                                          'Merck Foundation "More Than A Mother" Movement Videos',
+                                                            //  "Merck Foundation More Than A Mother Videos",
                                                         sharelink: Constantstring
                                                             .sharewatchallvideovideommtm,
                                                       )

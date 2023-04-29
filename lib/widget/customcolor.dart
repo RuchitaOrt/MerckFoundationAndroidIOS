@@ -82,6 +82,7 @@ class Customcolor {
 
 class AppFonts {
   static String normal = "Verdana";
+  static String normalnew = "Verdana";
 }
 
 class Constantstring {
@@ -96,6 +97,7 @@ class Constantstring {
   static String followyoutube =
       "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg";
   static String followflicker = "https://www.flickr.com/photos/163124125@N08/";
+ static String followrashaflicker = "https://www.flickr.com/photos/rashakelej/";
 
 
 //Follow Rasha

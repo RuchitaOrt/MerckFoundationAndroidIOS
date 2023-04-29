@@ -44,6 +44,7 @@ class _AppDrawerState extends State<AppDrawer> {
   var expansionList = ["Who We Are", "What We Do", "Media & Events"];
 
   bool isLoggedIn = false;
+  double imgHeightfb = 24;
   // static final FacebookLogin facebookSignIn = new FacebookLogin();
 
   void closeOpenExpansionList(expansionName) {
@@ -553,9 +554,9 @@ class _AppDrawerState extends State<AppDrawer> {
                             Constantstring.followfacebook, "1053979038068008");
                       },
                       child: Image.asset(
-                        "assets/newImages/facebook.png",
-                        width: 30,
-                        height: 30,
+                        "assets/newImages/facebooknew.png",
+                        width: imgHeightfb,
+                        height: imgHeightfb,
                       ),
                     ),
                     SizedBox(
@@ -571,9 +572,9 @@ class _AppDrawerState extends State<AppDrawer> {
                                 Constantstring.followtwitter);
                       },
                       child: Image.asset(
-                        "assets/newImages/twitter.png",
-                        width: 30,
-                        height: 30,
+                        "assets/newImages/twitternew.png",
+                        width: imgHeightfb,
+                        height: imgHeightfb,
                       ),
                     ),
                     SizedBox(

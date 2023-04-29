@@ -43,14 +43,26 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
   }
 
   List programvalue = [
-    "Merck Foundation More Than A Mother",
+    'Merck Foundation "More Than a Mother" Movement',
+    //"Merck Foundation More Than A Mother",
     "Merck Foundation Cancer Access Program",
-    "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
-    "Merck Foundation First Ladies Initiative Summit",
+   "Merck Foundation Capacity Advancement Program",
+   // "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
+    "Merck Foundation Nationwide Diabetes & Hypertension Blue Points Program",//"Merck Foundation Sustainability Initiative",
+    "Merck Foundation First Ladies Initiative Summit- MFFLI",
+    //"Merck Foundation First Ladies Initiative Summit",
     "Merck Foundation STEM Program",
     "Merck Foundation Educating Linda Program",
-    "Merck Foundation Sustainability Initiative",
+    // "Merck Foundation Sustainability Initiative",
     "Merck Foundation Africa Asia Luminary",
+  //   'Merck Foundation "More Than a Mother" Movement',//"Merck Foundation More Than A Mother",
+  //   "Merck Foundation Cancer Access Program",
+  //  "Merck Foundation Capacity Advancement Program", // "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
+  //   "Merck Foundation First Ladies Initiative Summit- MFFLIs",//"Merck Foundation First Ladies Initiative Summit",
+  //   "Merck Foundation STEM Program",
+  //   "Merck Foundation Educating Linda Program",
+  //   "Merck Foundation Sustainability Initiative",
+  //   "Merck Foundation Africa Asia Luminary",
   ];
 
   bool useAsFloatingActionButton = true;
@@ -151,7 +163,7 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                             itemBuilder: (BuildContext context,
                                                 int index) {
                                               return GestureDetector(
-                                                onTap: () {
+                                                   onTap: () {
                                                   mabialaFABController.collapseFAB();
                                                   if (index == 0) {
                                                     print("on trap");
@@ -188,7 +200,8 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                                 OurProgramSevenlist(
                                                                   indexpass: 1,
                                                                 )));
-                                                  } else if (index == 3) {
+                                                  } 
+                                                  else if (index == 4) {
                                                     // Navigator.push(
                                                     //     context,
                                                     //     MaterialPageRoute(
@@ -203,7 +216,8 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                                 OurProgramSevenlist(
                                                                   indexpass: 2,
                                                                 )));
-                                                  } else if (index == 6) {
+                                                  }
+                                                   else if (index == 3) {
                                                     // Navigator.push(
                                                     //     context,
                                                     //     MaterialPageRoute(
@@ -220,14 +234,14 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                                 OurProgramSevenlist(
                                                                   indexpass: 4,
                                                                 )));
-                                                  } else if (index == 4) {
+                                                  } else if (index == 5) {
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (BuildContext
                                                                     context) =>
                                                                 OurProgramStem()));
-                                                  } else if (index == 5) {
+                                                  } else if (index == 6) {
                                                     // Navigator.push(
                                                     //     context,
                                                     //     MaterialPageRoute(
@@ -258,6 +272,113 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                     //             )));
                                                   }
                                                 },
+                                                // onTap: () {
+                                                //   mabialaFABController.collapseFAB();
+                                                //   if (index == 0) {
+                                                //     print("on trap");
+
+                                                //     Navigator.push(
+                                                //         context,
+                                                //         MaterialPageRoute(
+                                                //             builder: (BuildContext
+                                                //                     context) =>
+                                                //                 OurProgram(
+                                                //                   indexpass: 0,
+                                                //                 )));
+                                                //   } else if (index == 1) {
+                                                //     Navigator.push(
+                                                //         context,
+                                                //         MaterialPageRoute(
+                                                //             builder: (BuildContext
+                                                //                     context) =>
+                                                //                 OurProgram(
+                                                //                   indexpass: 1,
+                                                //                 )));
+                                                //   } else if (index == 2) {
+                                                //     // Navigator.push(
+                                                //     //     context,
+                                                //     //     MaterialPageRoute(
+                                                //     //         builder: (BuildContext context) => OurProgram(
+                                                //     //               indexpass: 2,
+                                                //     //             )));
+                                                //     Navigator.push(
+                                                //         context,
+                                                //         MaterialPageRoute(
+                                                //             builder: (BuildContext
+                                                //                     context) =>
+                                                //                 OurProgramSevenlist(
+                                                //                   indexpass: 1,
+                                                //                 )));
+                                                //   } else if (index == 3) {
+                                                //     // Navigator.push(
+                                                //     //     context,
+                                                //     //     MaterialPageRoute(
+                                                //     //         builder: (BuildContext context) => OurProgram(
+                                                //     //               indexpass: 12,
+                                                //     //             )));
+                                                //     Navigator.push(
+                                                //         context,
+                                                //         MaterialPageRoute(
+                                                //             builder: (BuildContext
+                                                //                     context) =>
+                                                //                 OurProgramSevenlist(
+                                                //                   indexpass: 2,
+                                                //                 )));
+                                                //   } else if (index == 6) {
+                                                //     // Navigator.push(
+                                                //     //     context,
+                                                //     //     MaterialPageRoute(
+                                                //     //         builder: (BuildContext
+                                                //     //                 context) =>
+                                                //     //             OurProgram(
+                                                //     //               indexpass: 13,
+                                                //     //             )));
+                                                //     Navigator.push(
+                                                //         context,
+                                                //         MaterialPageRoute(
+                                                //             builder: (BuildContext
+                                                //                     context) =>
+                                                //                 OurProgramSevenlist(
+                                                //                   indexpass: 4,
+                                                //                 )));
+                                                //   } else if (index == 4) {
+                                                //     Navigator.push(
+                                                //         context,
+                                                //         MaterialPageRoute(
+                                                //             builder: (BuildContext
+                                                //                     context) =>
+                                                //                 OurProgramStem()));
+                                                //   } else if (index == 5) {
+                                                //     // Navigator.push(
+                                                //     //     context,
+                                                //     //     MaterialPageRoute(
+                                                //     //         builder: (BuildContext context) => OurProgram(
+                                                //     //               indexpass: 14,
+                                                //     //             )));
+                                                //     Navigator.push(
+                                                //         context,
+                                                //         MaterialPageRoute(
+                                                //             builder: (BuildContext
+                                                //                     context) =>
+                                                //                 OurProgramSevenlist(
+                                                //                   indexpass: 3,
+                                                //                 )));
+                                                //   } else if (index == 7) {
+                                                //     Navigator.push(
+                                                //         context,
+                                                //         MaterialPageRoute(
+                                                //             builder: (BuildContext
+                                                //                     context) =>
+                                                //                 OurProgramAfrica()));
+                                                //     // Navigator.push(
+                                                //     //     context,
+                                                //     //     MaterialPageRoute(
+                                                //     //         builder: (BuildContext context) =>
+                                                //     //             OurProgramSevenlist(
+                                                //     //               indexpass: 4,
+                                                //     //             )));
+                                                //   }
+                                                // },
                                                 child: Container(
                                                   color: Colors.transparent,
                                                   child: Column(
@@ -329,6 +450,104 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: GestureDetector(
+                                  // onTap: () {
+                                  //       mabialaFABController.collapseFAB();
+                                  
+                                  //   if (index == 0) {
+                                  //       print("on trap");
+                                  //     Navigator.push(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (BuildContext context) =>
+                                  //                 OurProgram(
+                                  //                   indexpass: 0,
+                                  //                 )));
+                                  //   } else if (index == 1) {
+                                  //     Navigator.push(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (BuildContext context) =>
+                                  //                 OurProgram(
+                                  //                   indexpass: 1,
+                                  //                 )));
+                                  //   } else if (index == 2) {
+                                  //     // Navigator.push(
+                                  //     //     context,
+                                  //     //     MaterialPageRoute(
+                                  //     //         builder: (BuildContext context) => OurProgram(
+                                  //     //               indexpass: 2,
+                                  //     //             )));
+                                  //     Navigator.push(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (BuildContext context) =>
+                                  //                 OurProgramSevenlist(
+                                  //                   indexpass: 1,
+                                  //                 )));
+                                  //   } else if (index == 3) {
+                                  //     // Navigator.push(
+                                  //     //     context,
+                                  //     //     MaterialPageRoute(
+                                  //     //         builder: (BuildContext context) => OurProgram(
+                                  //     //               indexpass: 12,
+                                  //     //             )));
+                                  //     Navigator.push(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (BuildContext context) =>
+                                  //                 OurProgramSevenlist(
+                                  //                   indexpass: 2,
+                                  //                 )));
+                                  //   } else if (index == 6) {
+                                  //     // Navigator.push(
+                                  //     //     context,
+                                  //     //     MaterialPageRoute(
+                                  //     //         builder: (BuildContext context) =>
+                                  //     //             OurProgram(
+                                  //     //               indexpass: 13,
+                                  //     //             )));
+                                  //     Navigator.push(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (BuildContext context) =>
+                                  //                 OurProgramSevenlist(
+                                  //                   indexpass: 4,
+                                  //                 )));
+                                  //   } else if (index == 4) {
+                                  //     Navigator.push(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (BuildContext context) =>
+                                  //                 OurProgramStem()));
+                                  //   } else if (index == 5) {
+                                  //     // Navigator.push(
+                                  //     //     context,
+                                  //     //     MaterialPageRoute(
+                                  //     //         builder: (BuildContext context) => OurProgram(
+                                  //     //               indexpass: 14,
+                                  //     //             )));
+                                  //     Navigator.push(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (BuildContext context) =>
+                                  //                 OurProgramSevenlist(
+                                  //                   indexpass: 3,
+                                  //                 )));
+                                  //   } else if (index == 7) {
+                                  //     Navigator.push(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (BuildContext context) =>
+                                  //                 OurProgramAfrica()));
+                                  //     // Navigator.push(
+                                  //     //     context,
+                                  //     //     MaterialPageRoute(
+                                  //     //         builder: (BuildContext context) =>
+                                  //     //             OurProgramSevenlist(
+                                  //     //               indexpass: 4,
+                                  //     //             )));
+                                  //   }
+                                  // },
                                   onTap: () {
                                         mabialaFABController.collapseFAB();
                                   
@@ -363,7 +582,7 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                   OurProgramSevenlist(
                                                     indexpass: 1,
                                                   )));
-                                    } else if (index == 3) {
+                                    } else if (index == 4) {
                                       // Navigator.push(
                                       //     context,
                                       //     MaterialPageRoute(
@@ -377,7 +596,7 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                   OurProgramSevenlist(
                                                     indexpass: 2,
                                                   )));
-                                    } else if (index == 6) {
+                                    } else if (index == 3) {
                                       // Navigator.push(
                                       //     context,
                                       //     MaterialPageRoute(
@@ -392,13 +611,13 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                   OurProgramSevenlist(
                                                     indexpass: 4,
                                                   )));
-                                    } else if (index == 4) {
+                                    } else if (index == 5) {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (BuildContext context) =>
                                                   OurProgramStem()));
-                                    } else if (index == 5) {
+                                    } else if (index == 6) {
                                       // Navigator.push(
                                       //     context,
                                       //     MaterialPageRoute(

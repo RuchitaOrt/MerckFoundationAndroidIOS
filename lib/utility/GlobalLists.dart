@@ -1,3 +1,4 @@
+import 'package:merckfoundation22dec/model/GetSeasonEpisodeResponse.dart';
 import 'package:merckfoundation22dec/model/dataprivacy.dart' as dataPrivacy;
 import 'package:merckfoundation22dec/model/digitalProgramResponse.dart';
 import 'package:merckfoundation22dec/model/legaldisclaimerResponse.dart'
@@ -103,6 +104,10 @@ import 'package:merckfoundation22dec/model/CreategallerymobileResponse.dart'
     as album;
 import 'package:merckfoundation22dec/model/NotificationdetailResponse.dart'
     as notify;
+    import 'package:merckfoundation22dec/model/GetEpisodeDataResponse.dart'
+    as episodedata;
+import 'package:merckfoundation22dec/model/GetEpisodeSeasonwiseResponse.dart'
+    as seasonwise;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -202,8 +207,12 @@ class GlobalLists {
   static String homeCallForAppBaseURL = "";
   static String homeDigitalLibraryBaseURL = "";
   static String homeMMTMBaseURL = "";
+   static String homeafricashowbaseurl = "";
 
   static List<dynamic> homeceomsglist = [];
+   static List<dynamic> homeafricashowlist = [];
+static List<Season> seasonlistwithepisode = [];
+ static List<episodedata.ListElement> episodeinfodata = [];
 
   static List<dynamic> homecallforapp = [];
   static List<dynamic> homedigitallib = [];
@@ -234,8 +243,12 @@ class GlobalLists {
   static String programdigitalcontentbaseurl = "";
 
   //ambasadar
-  static List<dynamic> ambasdarslist = [];
+  // static List<dynamic> ambasdarslist = [];
+  // static String ambasdarsbaseurl = "";
+    static List<dynamic> ambasdarslist = [];
+  static List<dynamic> ambasdarsformerlist = [];
   static String ambasdarsbaseurl = "";
+   static String ambasdarsformerbaseurl = "";
 
 //digitallib view more
   static List<ListClass> digitallibraryviewlist = [];
@@ -268,4 +281,10 @@ class GlobalLists {
   static String fcmtokenvalue = "";
   static String deviceid = "";
   static List<notify.ListElement> notificationlist = [];
+
+
+
+  
+  static List<seasonwise.Episode> seasonwiseepisodeList = [];
+
 }

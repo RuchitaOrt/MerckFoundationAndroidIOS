@@ -73,7 +73,7 @@ class SocialMediaState extends State<SocialMedia> {
                                   "https://twitter.com/merck_mccp/");
                         },
                         child: Image.asset(
-                          "assets/newImages/twitter.png",
+                          "assets/newImages/twitternew.png",
                           height: imgHeight,
                           width: imgHeight,
                         ),
@@ -95,7 +95,7 @@ class SocialMediaState extends State<SocialMedia> {
                                   "1595566227361051");
                         },
                         child: Image.asset(
-                          "assets/newImages/facebook.png",
+                          "assets/newImages/facebooknew.png",
                           height: imgHeight,
                           width: imgHeight,
                         ),
@@ -154,7 +154,7 @@ class SocialMediaState extends State<SocialMedia> {
                                   "1503172516365806");
                         },
                         child: Image.asset(
-                          "assets/newImages/facebook.png",
+                          "assets/newImages/facebooknew.png",
                           height: imgHeight,
                           width: imgHeight,
                         ),
@@ -173,7 +173,7 @@ class SocialMediaState extends State<SocialMedia> {
                                   "https://twitter.com/merck4patients");
                         },
                         child: Image.asset(
-                          "assets/newImages/twitter.png",
+                          "assets/newImages/twitternew.png",
                           height: imgHeight,
                           width: imgHeight,
                         ),

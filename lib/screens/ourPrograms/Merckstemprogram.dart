@@ -231,7 +231,7 @@ class MerckstemprogramState extends State<Merckstemprogram>
   }
 
   double imgHeight = 30;
-
+double imgHeightfb = 24;
   Widget followUs() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
@@ -288,9 +288,9 @@ class MerckstemprogramState extends State<Merckstemprogram>
                           Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
-                      "assets/newImages/facebook.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/facebooknew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -306,9 +306,9 @@ class MerckstemprogramState extends State<Merckstemprogram>
                               Constantstring.followtwitter);
                     },
                     child: Image.asset(
-                      "assets/newImages/twitter.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/twitternew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -401,9 +401,9 @@ class MerckstemprogramState extends State<Merckstemprogram>
                           "1467678506860517");
                     },
                     child: Image.asset(
-                      "assets/newImages/facebook.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/facebooknew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(
@@ -419,9 +419,9 @@ class MerckstemprogramState extends State<Merckstemprogram>
                               Constantstring.followmmerckStemtwitter);
                     },
                     child: Image.asset(
-                      "assets/newImages/twitter.png",
-                      height: imgHeight,
-                      width: imgHeight,
+                      "assets/newImages/twitternew.png",
+                      height: imgHeightfb,
+                      width: imgHeightfb,
                     ),
                   ),
                   SizedBox(

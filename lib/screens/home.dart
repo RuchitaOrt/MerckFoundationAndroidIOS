@@ -18,6 +18,7 @@ import 'package:merckfoundation22dec/model/GettokenResponse.dart';
 import 'package:merckfoundation22dec/model/HomepageResponse.dart';
 import 'package:merckfoundation22dec/model/homeheader.dart';
 import 'package:merckfoundation22dec/ouraward.dart';
+import 'package:merckfoundation22dec/screens/Episodeseason.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/photo_gallery.dart';
 import 'package:merckfoundation22dec/Homescreenceo.dart';
@@ -34,6 +35,7 @@ import 'package:merckfoundation22dec/whatwedo/ourpolicy.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/widget/customcard.dart';
+import 'package:merckfoundation22dec/widget/customcardepisode.dart';
 import 'package:merckfoundation22dec/widget/customcardforTestimonial.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawer.dart';
@@ -93,6 +95,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     // programname: "Our \nVision", colors: Customcolor.colorBlue),
     programclass(colors: Customcolor.pink_col, programname: "Our \nVision"),
     programclass(colors: Customcolor.green_col, programname: "Our \nPrograms"),
+     programclass(colors: Customcolor.skyblue_col, programname: "Our Africa \nby Merck Foundation \n(TV Program)"),
     programclass(
         colors: Customcolor.lightgreen_col, programname: "News \nArticles"),
     programclass(colors: Customcolor.violet_col, programname: "Our \nAwards"),
@@ -300,16 +303,20 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           ),
                           GestureDetector(
                             onTap: () async {
+                              print(Constantstring.followrashafacebook);
                               // Platform.isAndroid
                               //     ? ShowDialogs.followuslink(
                               //         Constantstring.followfacebook,
                               //         Constantstring.followmsg):
-                              ShowDialogs.launchFacebook(
+                              // ShowDialogs.launchFacebook(
+                              //     Constantstring.followrashafacebook,
+                              //     "1053979038068008");
+                                   ShowDialogs.launchFacebook(
                                   Constantstring.followrashafacebook,
-                                  "1053979038068008");
+                                  "550280998481446");
                             },
                             child: Image.asset(
-                              "assets/newImages/facebook.png",
+                              "assets/newImages/facebooknew.png",
                               height: imgHeight,
                               width: imgHeight,
                             ),
@@ -327,7 +334,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                       Constantstring.followrashatwitter);
                             },
                             child: Image.asset(
-                              "assets/newImages/twitter.png",
+                              "assets/newImages/twitternew.png",
                               height: imgHeight,
                               width: imgHeight,
                             ),
@@ -353,6 +360,21 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           ),
                           SizedBox(
                             width: 5,
+                          ),
+                           GestureDetector(
+                            onTap: () async {
+                              Platform.isAndroid
+                                  ? ShowDialogs.followuslink(
+                                      Constantstring.followrashaflicker,
+                                      Constantstring.followmsg)
+                                  : ShowDialogs.launchURL(
+                                      Constantstring.followrashaflicker);
+                            },
+                            child: Image.asset(
+                              "assets/newImages/flickr.png",
+                              height: imgHeight,
+                              width: imgHeight,
+                            ),
                           ),
                           // GestureDetector(
                           //   onTap: () async {
@@ -1498,7 +1520,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
-                      "assets/newImages/facebook.png",
+                      "assets/newImages/facebooknew.png",
                       height: imgHeight,
                       width: imgHeight,
                     ),
@@ -1516,7 +1538,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               Constantstring.followtwitter);
                     },
                     child: Image.asset(
-                      "assets/newImages/twitter.png",
+                      "assets/newImages/twitternew.png",
                       height: imgHeight,
                       width: imgHeight,
                     ),
@@ -1767,7 +1789,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             itemBuilder: (BuildContext context, int index) => Padding(
                 padding: const EdgeInsets.only(right: 0.0, left: 8),
                 child: GestureDetector(
-                    onTap: () {
+                   onTap: () {
                       if (index == 0) {
                         Navigator.push(
                             context,
@@ -1782,7 +1804,14 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                 builder: (BuildContext context) => Dashboard(
                                       index: 1,
                                     )));
-                      } else if (index == 2) {
+                      }else if(index==2)
+                      {
+                        //tv show
+                          Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Merckepisodeseason()));
+                      } else if (index == 3) {
                         //news article
                         Navigator.push(
                             context,
@@ -1790,20 +1819,20 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                 builder: (BuildContext context) => Dashboard(
                                       index: 3,
                                     )));
-                      } else if (index == 3) {
+                      } else if (index == 4) {
                         //our award
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) => Ouraward()));
-                      } else if (index == 4) {
+                      } else if (index == 5) {
                         //our mission
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     OurMission()));
-                      } else if (index == 5) {
+                      } else if (index == 6) {
                         //  media & events
                         Navigator.push(
                             context,
@@ -1818,14 +1847,14 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                         //         builder: (BuildContext context) => Dashboard(
                         //               index: 3,
                         //             )));
-                      } else if (index == 6) {
+                      } else if (index == 7) {
                         //covid response
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     CovidResponse()));
-                      } else if (index == 7) {
+                      } else if (index == 8) {
                         //our polcies
                         Navigator.push(
                             context,
@@ -1834,6 +1863,73 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                     OurPolicy()));
                       }
                     },
+                    // onTap: () {
+                    //   if (index == 0) {
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (BuildContext context) =>
+                    //                 OurVision()));
+                    //   } else if (index == 1) {
+                    //     //our program
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (BuildContext context) => Dashboard(
+                    //                   index: 1,
+                    //                 )));
+                    //   } else if (index == 2) {
+                    //     //news article
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (BuildContext context) => Dashboard(
+                    //                   index: 3,
+                    //                 )));
+                    //   } else if (index == 3) {
+                    //     //our award
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (BuildContext context) => Ouraward()));
+                    //   } else if (index == 4) {
+                    //     //our mission
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (BuildContext context) =>
+                    //                 OurMission()));
+                    //   } else if (index == 5) {
+                    //     //  media & events
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (BuildContext context) =>
+                    //                 MerckFoundationMedia(
+                    //                   apiurl: API.merckfoundationinmedia,
+                    //                 )));
+                    //     // Navigator.push(
+                    //     //     context,
+                    //     //     MaterialPageRoute(
+                    //     //         builder: (BuildContext context) => Dashboard(
+                    //     //               index: 3,
+                    //     //             )));
+                    //   } else if (index == 6) {
+                    //     //covid response
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (BuildContext context) =>
+                    //                 CovidResponse()));
+                    //   } else if (index == 7) {
+                    //     //our polcies
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (BuildContext context) =>
+                    //                 OurPolicy()));
+                    //   }
+                    // },
                     child: Container(
                       width: 100,
                       decoration: BoxDecoration(
@@ -1938,6 +2034,13 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             GlobalLists.homeceomsglist =
                 homepageres.middleArea['${i + 1}'].ceoMsg.list;
             print(GlobalLists.homeceomsglist.length);
+          }else if (middlecategoryname.toString().toLowerCase() ==
+              "episodes".toLowerCase()) {
+            GlobalLists.homeafricashowbaseurl =
+                homepageres.middleArea['${i + 1}'].episodes.baseUrl;
+            GlobalLists.homeafricashowlist =
+                homepageres.middleArea['${i + 1}'].episodes.list;
+            print(GlobalLists.homeafricashowlist.length);
           }
         }
 
@@ -2517,6 +2620,56 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                   GlobalLists.homeceomsglist[0].detailPageUrl,
                             )));
               },
+            ),
+          ),
+        );
+      }
+
+        //Change here for africa
+       if (typewidet[i] == "episodes") {
+        listofwiget.add(
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: CustomeCardEpisode(
+              //   index: 2,
+              showbrief: GlobalLists.homeafricashowlist[0]["show_brief"],
+              credits: GlobalLists.homeafricashowlist[0]["credits"],
+              relatednews:GlobalLists.homeafricashowlist[0]["related_news"],
+              photid: GlobalLists.homeafricashowlist[0]["photos_gallery_ids"],
+              guestinfo: GlobalLists.homeafricashowlist[0]["guest_info"],
+              episodebrief: GlobalLists.homeafricashowlist[0]["episode_brief"],
+              episodeid:GlobalLists.homeafricashowlist[0]["id"],
+              oncardtap: () {
+                var storykey = GlobalLists.homeafricashowlist[0]["video_link"].substring(
+                    GlobalLists.homeafricashowlist[0]["video_link"].length - 11);
+                ShowDialogs.youtubevideolink(
+                    "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+              },
+              youtubeicon: 0,
+              cardImage:
+                'https://img.youtube.com/vi/${GlobalLists.homeafricashowlist[0]["video_link"].substring(GlobalLists.homeafricashowlist[0]["video_link"].length - 11)}/mqdefault.jpg',
+              cardsubtitle: "Merck Foundation Presents \n",
+              cardTitle: '"Our Africa By Merck Foundation" \n(TV Program)   ',
+videolink: GlobalLists.homeafricashowlist[0]["video_link"],
+              titleColor: Customcolor.text_darkblue,
+              titleImg: "assets/newImages/flowers-2.png",
+              subTitle:GlobalLists.homeafricashowlist[0]["episode_name"],
+              buttontitle: "Watch More ",
+              onBtnTap: () {
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) => Dashboard(
+                //               index: 2,
+                //             )));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Merckepisodeseason(
+                          
+                        )));
+              },
+              buttontitlecolor: Customcolor.text_darkblue,
             ),
           ),
         );

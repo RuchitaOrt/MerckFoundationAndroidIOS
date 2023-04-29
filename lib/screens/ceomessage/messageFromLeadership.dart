@@ -441,7 +441,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                       goToPrevious();
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.only(left: 4),
                       child: Icon(
                         Icons.arrow_back_ios,
                         color: Customcolor.text_darkblue,
@@ -452,7 +452,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                       goToNext();
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 20),
+                      padding: const EdgeInsets.only(right: 0),
                       child: Icon(
                         Icons.arrow_forward_ios,
                         color: Customcolor.text_darkblue,
