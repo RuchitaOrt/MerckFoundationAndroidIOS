@@ -26,7 +26,10 @@ class MerckcancerpatientResponse {
           sliderArea: json["slider_area"] != null
               ? List<SliderArea>.from(
                   json["slider_area"].map((x) => SliderArea.fromJson(x)))
-              : List<SliderArea>(),
+              :
+              //23april
+              [],
+              // List<SliderArea>(),
           //  List<SliderArea>.from(
           //     json["slider_area"].map((x) => SliderArea.fromJson(x))),
           middleArea: Map.from(json["middle_area"]).map((k, v) =>

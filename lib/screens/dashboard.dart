@@ -36,6 +36,7 @@ class _DashboardState extends State<Dashboard>
 
   @override
   void initState() {
+    print('ANand');
     super.initState();
     Utility().loadAPIConfig(context);
     currentIndex = widget.index;

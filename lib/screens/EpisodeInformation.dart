@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
@@ -17,7 +15,6 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
-
 class EpisodeInformation extends StatefulWidget {
   final String showbrief;
   final String episodebrief;
@@ -25,8 +22,17 @@ class EpisodeInformation extends StatefulWidget {
   final String credits;
   final String relatednews;
   final String photid;
- final String episodeid;
-  const EpisodeInformation({Key key, this.showbrief, this.episodebrief, this.guestinfo, this.credits, this.relatednews, this.photid, this.episodeid}) : super(key: key);
+  final String episodeid;
+  const EpisodeInformation(
+      {Key key,
+      this.showbrief,
+      this.episodebrief,
+      this.guestinfo,
+      this.credits,
+      this.relatednews,
+      this.photid,
+      this.episodeid})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -36,15 +42,13 @@ class EpisodeInformation extends StatefulWidget {
 
 class EpisodeInformationState extends State<EpisodeInformation>
     with TickerProviderStateMixin {
-      final GlobalKey<State> _keyLoader = new GlobalKey<State>();
-  String baseurl="";
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+  String baseurl = "";
   @override
   void initState() {
-   getepisodeinfo(widget.episodeid);
+    getepisodeinfo(widget.episodeid);
     super.initState();
-    
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -77,300 +81,272 @@ class EpisodeInformationState extends State<EpisodeInformation>
               shrinkWrap: true,
               physics: ScrollPhysics(),
               children: [
-          GlobalLists.episodeinfodata.length!=0?  setupAlertDialoadContainer(context):Container()
-               
+                GlobalLists.episodeinfodata.length != 0
+                    ? setupAlertDialoadContainer(context)
+                    : Container()
               ])),
     );
   }
- Widget setupAlertDialoadContainer(context) {
-  return SingleChildScrollView(
 
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Our Africa by Merck Foundation (TV Program) Brief:",
-              maxLines: 2,
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: ResponsiveFlutter.of(context)
-                      .fontSize(2.2),
-                  fontWeight: FontWeight.w700,
-                  fontFamily: AppFonts.normal,
-                  color: Customcolor.pink_col)),
-           Html(
-                                          data:GlobalLists.episodeinfodata[0].showBrief
-                                             
-                                   
-                                   
-                                   
-                                 ,
-                                          onLinkTap: (url) {
-                                            print("Opening $url...");
-                                            ShowDialogs.launchURL(url);
-                                          },
-                                          style: {
-                                            "body": Style(textAlign: TextAlign.start),
-                                            "tr": Customcolor.tableboderstyle(),
-                                          },
-                                        ),
-                                             Text("Episode Brief:",
-              maxLines: 2,
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: ResponsiveFlutter.of(context)
-                      .fontSize(2.2),
-                  fontWeight: FontWeight.w700,
-                  fontFamily: AppFonts.normal,
-                  color: Customcolor.pink_col)),
-           Html(
-                                          data:GlobalLists.episodeinfodata[0].episodeBrief
-                                             
-                                   
-                                   
-                                   
-                                 ,
-                                          onLinkTap: (url) {
-                                            print("Opening $url...");
-                                            ShowDialogs.launchURL(url);
-                                          },
-                                          style: {
-                                            "body": Style(textAlign: TextAlign.start),
-                                            "tr": Customcolor.tableboderstyle(),
-                                          },
-                                        ),
-                                             Text("Guests & Designer Information:",
-              maxLines: 2,
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: ResponsiveFlutter.of(context)
-                      .fontSize(2.2),
-                  fontWeight: FontWeight.w700,
-                  fontFamily: AppFonts.normal,
-                  color: Customcolor.pink_col)),
-           Html(
-                                          data:GlobalLists.episodeinfodata[0].guestInfo
-                                             
-                                   
-                                   
-                                   
-                                 ,
-                                          onLinkTap: (url) {
-                                            print("Opening $url...");
-                                            ShowDialogs.launchURL(url);
-                                          },
-                                          style: {
-                                            "body": Style(textAlign: TextAlign.start),
-                                            "tr": Customcolor.tableboderstyle(),
-                                          },
-                                        ),
-                                             Text("Credits:",
-              maxLines: 2,
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: ResponsiveFlutter.of(context)
-                      .fontSize(2.2),
-                  fontWeight: FontWeight.w700,
-                  fontFamily: AppFonts.normal,
-                  color: Customcolor.pink_col)),
-           Html(
-                                          data:GlobalLists.episodeinfodata[0].credits                                             
-                                   
-                                   
-                                   
-                                 ,
-                                          onLinkTap: (url) {
-                                            print("Opening $url...");
-                                            ShowDialogs.launchURL(url);
-                                          },
-                                          style: {
-                                            "body": Style(textAlign: TextAlign.start),
-                                            "tr": Customcolor.tableboderstyle(),
-                                          },
-                                        ),
-                                        GestureDetector(
-                      onTap: ()
-                      {
-  Navigator.push(
+  Widget setupAlertDialoadContainer(context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Our Africa by Merck Foundation (TV Program) Brief:",
+                maxLines: 2,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                    fontWeight: FontWeight.w700,
+                    fontFamily: AppFonts.normal,
+                    color: Customcolor.pink_col)),
+            Html(
+              data: GlobalLists.episodeinfodata[0].showBrief,
+              onLinkTap: (url, renderContext, attributes, element) {
+                print("Opening $url...");
+                ShowDialogs.launchURL(url);
+              },
+              style: {
+                "body": Style(textAlign: TextAlign.start),
+                "tr": Customcolor.tableboderstyle(context),
+              },
+            ),
+            Text("Episode Brief:",
+                maxLines: 2,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                    fontWeight: FontWeight.w700,
+                    fontFamily: AppFonts.normal,
+                    color: Customcolor.pink_col)),
+            Html(
+              data: GlobalLists.episodeinfodata[0].episodeBrief,
+              onLinkTap: (url, renderContext, attributes, element) {
+                print("Opening $url...");
+                ShowDialogs.launchURL(url);
+              },
+              style: {
+                "body": Style(textAlign: TextAlign.start),
+                "tr": Customcolor.tableboderstyle(context),
+              },
+            ),
+            Text("Guests & Designer Information:",
+                maxLines: 2,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                    fontWeight: FontWeight.w700,
+                    fontFamily: AppFonts.normal,
+                    color: Customcolor.pink_col)),
+            Html(
+              data: GlobalLists.episodeinfodata[0].guestInfo,
+              onLinkTap: (url, renderContext, attributes, element) {
+                print("Opening $url...");
+                ShowDialogs.launchURL(url);
+              },
+              style: {
+                "body": Style(textAlign: TextAlign.start),
+                "tr": Customcolor.tableboderstyle(context),
+              },
+            ),
+            Text("Credits:",
+                maxLines: 2,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                    fontWeight: FontWeight.w700,
+                    fontFamily: AppFonts.normal,
+                    color: Customcolor.pink_col)),
+            Html(
+              data: GlobalLists.episodeinfodata[0].credits,
+              onLinkTap: (url, renderContext, attributes, element) {
+                print("Opening $url...");
+                ShowDialogs.launchURL(url);
+              },
+              style: {
+                "body": Style(textAlign: TextAlign.start),
+                "tr": Customcolor.tableboderstyle(context),
+              },
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => Merckepisodeseason(
-                          
-                        )));
-                      },
-                      child: Container(
-                        width: 160,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Colors.amber,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Center(
-                          child: Text(
-                            "Watch More Episodes",
-                            style: TextStyle(
-                                color: Customcolor.colorBlue,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20,),
-                     Text("Related News :",
-              maxLines: 2,
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: ResponsiveFlutter.of(context)
-                      .fontSize(2.2),
-                  fontWeight: FontWeight.w700,
-                  fontFamily: AppFonts.normal,
-                  color: Customcolor.colorBlue)),
-                      Html(
-                                          data:
-                                            GlobalLists.episodeinfodata[0].relatedNews,
-                                          onLinkTap: (url) {
-                                            print("Opening $url...");
-                                            ShowDialogs.launchURL(url);
-                                          },
-                                          style: {
-                                            "body": Style(textAlign: TextAlign.start),
-                                            "tr": Customcolor.tableboderstyle(),
-                                          },
-                                        ),
-          Container(
-  
-            height: 330.0, // Change as per your requirement
-            width: 400.0, // Change as per your requirement
-            child: Padding(
-                                                   padding: const EdgeInsets.only(left: 0, top: 10),
-                                                   child: CustomHorizontalCard(
-                                                     index: 1,
-                                                     cardImage: "assets/newImages/gallery.png",
-                                                     cardsubtitle: "",
-                                                     cardTitle: "Photos",
-                                                     btnTitle: "View More",
-                                                     heigthoflist: SizeConfig.blockSizeVertical * 20,
-                                                     onbtnTap: () {
-                                                         Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => ViewmoreAlbum(
-                          apiurl: APIManager.viewmorealbum,
-                          albumtitle:
-                              GlobalLists.episodeinfodata[0].photoList[0][0].albumName,
-                          sharelink: Constantstring.sharemmtmambassadarmmtm,
-                          albumurl: GlobalLists.episodeinfodata[0].photoList[0][0].albumUrl
-                              ,
-                        )));
-                                                       // Navigator.push(
-                                                       //     context,
-                                                       //     MaterialPageRoute(
-                                                       //         builder: (BuildContext context) =>
-                                                       //             WatchmoreVideolibrary(
-                                                       //               apiurl: API.watchvideommtm,
-                                                       //               headertitle:
-                                                       //                   "Merck Foundation More Than A Mother Videos",
-                                                       //               sharelink: Constantstring.sharewatchallvideommtm,
-                                                       //             )));
-                                                     },
-                                                     titleColor: Customcolor.pink_col,
-                                                     titleImg: "assets/newImages/flowers-3.png",
-                                                     list:
-                                                    
-                                                     // Container()
-                                                     ListView.builder(
-                                                       itemCount: GlobalLists.episodeinfodata[0].photoList[0].length,
-                                                       shrinkWrap: true,
-                                                         physics: ScrollPhysics()
-          ,
-          
-                                                       scrollDirection: Axis.horizontal,
-                                                       itemBuilder: (BuildContext context, int index) {
-                                                         return GestureDetector(
-                                                           onTap: () {
-                                                            
-                                                           },
-                                                           child: Column(
-                                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                                             children: [
-                                                               Padding(
-                                                                 padding: const EdgeInsets.only(right: 8, left: 10),
-                                                                 child: Stack(
-                                                                   children: [
-                                                                     Container(
-                                                                       width: SizeConfig.blockSizeHorizontal * 40,
-                                                                       height: SizeConfig.blockSizeVertical * 13,
-                                                                       child: FadeInImage.assetNetwork(
-                                                                         placeholder:
-                                            'assets/newImages/placeholder_3.jpg',
-                                                                         image:
-                                          baseurl+ GlobalLists.episodeinfodata[0].photoList[0][index].photo,
-                                                                         fit: BoxFit.fill,
-                                                                       ),
-                                                                     ),
-                                                                 
-                                                                   ],
-                                                                 ),
-                                                               ),
-                                                              
-                                                               SizedBox(
-                                                                 height: 5,
-                                                               ),
-                                                                Container(
-              
-                width: SizeConfig.blockSizeHorizontal*49,
-                child: Padding(
-                    padding: const EdgeInsets.only(left: 7),
-                    child: Text(
-                   GlobalLists.episodeinfodata[0].photoList[0][index].photoDescription,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w500),
-                      // fontSize: 17,
-                      // labelColor: Colors.white,
-                      // fontweight: FontWeight.w500,
-                    ),
+                        builder: (BuildContext context) =>
+                            Merckepisodeseason()));
+              },
+              child: Container(
+                width: 160,
+                height: 40,
+                decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(5)),
+                child: Center(
+                  child: Text(
+                    "Watch More Episodes",
+                    style: TextStyle(
+                        color: Customcolor.colorBlue,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               ),
-                                                             ],
-                                                           ),
-                                                         );
-                                                       },
-                                                     ),
-                                                   ),
-                                                 ),
-          ),
-          
-        ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text("Related News :",
+                maxLines: 2,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    fontSize: ResponsiveFlutter.of(context).fontSize(2.2),
+                    fontWeight: FontWeight.w700,
+                    fontFamily: AppFonts.normal,
+                    color: Customcolor.colorBlue)),
+            Html(
+              data: GlobalLists.episodeinfodata[0].relatedNews,
+              onLinkTap: (url, renderContext, attributes, element) {
+                print("Opening $url...");
+                ShowDialogs.launchURL(url);
+              },
+              style: {
+                "body": Style(textAlign: TextAlign.start),
+                "tr": Customcolor.tableboderstyle(context),
+              },
+            ),
+            Container(
+              height: 330.0, // Change as per your requirement
+              width: 400.0, // Change as per your requirement
+              child: Padding(
+                padding: const EdgeInsets.only(left: 0, top: 10),
+                child: CustomHorizontalCard(
+                  index: 1,
+                  cardImage: "assets/newImages/gallery.png",
+                  cardsubtitle: "",
+                  cardTitle: "Photos",
+                  btnTitle: "View More",
+                  heigthoflist: SizeConfig.blockSizeVertical * 20,
+                  onbtnTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => ViewmoreAlbum(
+                                  apiurl: APIManager.viewmorealbum,
+                                  albumtitle: GlobalLists.episodeinfodata[0]
+                                      .photoList[0][0].albumName,
+                                  sharelink:
+                                      Constantstring.sharemmtmambassadarmmtm,
+                                  albumurl: GlobalLists.episodeinfodata[0]
+                                      .photoList[0][0].albumUrl,
+                                )));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (BuildContext context) =>
+                    //             WatchmoreVideolibrary(
+                    //               apiurl: API.watchvideommtm,
+                    //               headertitle:
+                    //                   "Merck Foundation More Than A Mother Videos",
+                    //               sharelink: Constantstring.sharewatchallvideommtm,
+                    //             )));
+                  },
+                  titleColor: Customcolor.pink_col,
+                  titleImg: "assets/newImages/flowers-3.png",
+                  list:
+
+                      // Container()
+                      ListView.builder(
+                    itemCount:
+                        GlobalLists.episodeinfodata[0].photoList[0].length,
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {},
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 8, left: 10),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    width: SizeConfig.blockSizeHorizontal * 40,
+                                    height: SizeConfig.blockSizeVertical * 13,
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder:
+                                          'assets/newImages/placeholder_3.jpg',
+                                      image: baseurl +
+                                          GlobalLists.episodeinfodata[0]
+                                              .photoList[0][index].photo,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              width: SizeConfig.blockSizeHorizontal * 49,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 7),
+                                child: Text(
+                                  GlobalLists.episodeinfodata[0]
+                                      .photoList[0][index].photoDescription,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 3,
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.w500),
+                                  // fontSize: 17,
+                                  // labelColor: Colors.white,
+                                  // fontweight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
-}
-   getepisodeinfo(String episodeid) async {
+    );
+  }
+
+  getepisodeinfo(String episodeid) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
     // var fcm_token = SPManager().getAuthToken();
     if (status1) {
       ShowDialogs.showLoadingDialog(context, _keyLoader);
       final json = {
-        'episode_id':episodeid,
-      
+        'episode_id': episodeid,
       };
-   
+
       print(json);
       APIManager().apiRequest(context, API.get_episode_data, (response) async {
         GetEpisodeDataResponse resp = response;
         print(response);
         print('Resp : $resp');
- Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext).pop();
         if (resp.success == true) {
           setState(() {
-baseurl=resp.photoUrl;
-           GlobalLists.episodeinfodata=resp.list;
+            baseurl = resp.photoUrl;
+            GlobalLists.episodeinfodata = resp.list;
           });
         } else {
           // ShowDialogs.showToast(resp.msg);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
+
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:merckfoundation22dec/model/OurawardResponse.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -110,22 +111,11 @@ class ourawardState extends State<Ouraward> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Html(
-                                  data:
+                                HtmlWidget(
+                                  
                                       """${GlobalLists.awardlisting[index].title} """,
-                                  onLinkTap: (url) {
-                                    print("Opening $url...");
-                                    ShowDialogs.launchURL(url);
-                                  },
-                                  style: {
-                                    "body": Style(
-                                        textAlign: TextAlign.start,
-                                        color: Colors.white,
-                                        // color: Customcolor.pink_col,
-                                        fontSize: FontSize.large,
-                                        fontWeight: FontWeight.w500),
-                                                                    "tr": Customcolor.tableboderstyle(),
-                                  },
+                                 
+                                 
                                 ),
                                 // Text(
                                 //   GlobalLists.awardlisting[index].title,
@@ -146,8 +136,12 @@ class ourawardState extends State<Ouraward> {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        getawarddetail(GlobalLists
-                                            .awardlisting[index].pageUrl);
+                                        getawarddetail(
+                                          GlobalLists
+                                              .awardlisting[index].pageUrl,
+                                          GlobalLists.awardlisting[index].id,
+                                          // GlobalLists.awardlisting[index].year,
+                                        );
                                       },
                                       child: Container(
                                         width: 110,
@@ -261,8 +255,10 @@ class ourawardState extends State<Ouraward> {
     }
   }
 
-  getawarddetail(String pageurl) async {
+  getawarddetail(String pageurl, String awardid) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
+
+    print("inside In getawardDeatils");
 
     if (status1) {
       ShowDialogs.showLoadingDialog(context, _keyLoader);
@@ -287,6 +283,7 @@ class ourawardState extends State<Ouraward> {
                     builder: (BuildContext context) => OurAwardDetail(
                           detaill: GlobalLists.awarddetallisting,
                           pageurl: pageurl,
+                          awardid: awardid,
                         )));
           });
         } else {

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field, cancel_subscriptions, missing_return, unused_element, unnecessary_brace_in_string_interps, unused_import
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -50,6 +52,12 @@ import 'package:intl/intl.dart';
 import 'package:merckfoundation22dec/viewmorehomeceo.dart';
 import 'package:merckfoundation22dec/covid/CovidResponse.dart';
 
+class Staticlistclass {
+  final String imagename;
+
+  Staticlistclass({this.imagename});
+}
+
 class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -95,7 +103,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     // programname: "Our \nVision", colors: Customcolor.colorBlue),
     programclass(colors: Customcolor.pink_col, programname: "Our \nVision"),
     programclass(colors: Customcolor.green_col, programname: "Our \nPrograms"),
-     programclass(colors: Customcolor.skyblue_col, programname: "Our Africa \nby Merck Foundation \n(TV Program)"),
+    programclass(
+        colors: Customcolor.prog6,
+        programname: "Our Africa \nby Merck Foundation \n(TV Program)"),
     programclass(
         colors: Customcolor.lightgreen_col, programname: "News \nArticles"),
     programclass(colors: Customcolor.violet_col, programname: "Our \nAwards"),
@@ -107,7 +117,17 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         colors: Customcolor.darkblue_col, programname: "Covid \nResponse"),
     programclass(colors: Customcolor.orange_col, programname: "Our \nPolicies"),
   ];
-
+  List<Staticlistclass> _ourstaticlist = [
+    Staticlistclass(imagename: 'assets/newImages/Ambassador_st.png'),
+    Staticlistclass(imagename: 'assets/newImages/Scholarships.png'),
+    Staticlistclass(imagename: 'assets/newImages/Ministera_st.png'),
+    Staticlistclass(imagename: 'assets/newImages/media.png'),
+    Staticlistclass(imagename: 'assets/newImages/Songs_st.png'),
+    Staticlistclass(imagename: 'assets/newImages/StoryBooks_st.png'),
+    Staticlistclass(imagename: 'assets/newImages/Animation_st.png'),
+    Staticlistclass(imagename: 'assets/newImages/schoolgirl_st.png'),
+    Staticlistclass(imagename: 'assets/newImages/SocialMedia_st.png'),
+  ];
   AnimationController _controller;
   final CarouselController callAppCarouselController = CarouselController();
   final CarouselController digitalLibraryCarouselController =
@@ -117,6 +137,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   bool islibrary = false;
   bool ismeck = false;
   double imgHeight = 50;
+  double imgfbHeight = 40;
   bool expandClick = false;
   String expandedName = "Upcoming Events";
   bool isMiddleSectionLoaded = false;
@@ -247,7 +268,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 ),
                 followUs(),
                 //  newSlider(context),
- Padding(
+                Padding(
                   padding: const EdgeInsets.only(left: 8),
                   child: Column(
                     children: [
@@ -311,7 +332,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               // ShowDialogs.launchFacebook(
                               //     Constantstring.followrashafacebook,
                               //     "1053979038068008");
-                                   ShowDialogs.launchFacebook(
+                              ShowDialogs.launchFacebook(
                                   Constantstring.followrashafacebook,
                                   "550280998481446");
                             },
@@ -361,7 +382,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           SizedBox(
                             width: 5,
                           ),
-                           GestureDetector(
+                          GestureDetector(
                             onTap: () async {
                               Platform.isAndroid
                                   ? ShowDialogs.followuslink(
@@ -374,6 +395,20 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               "assets/newImages/flickr.png",
                               height: imgHeight,
                               width: imgHeight,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          GestureDetector(
+                            onTap: () async {
+                              ShowDialogs.openThreadsApp(
+                                  Constantstring.followthreasrasha);
+                            },
+                            child: Image.asset(
+                              "assets/newImages/threads.png",
+                              height: imgfbHeight,
+                              width: imgfbHeight,
                             ),
                           ),
                           // GestureDetector(
@@ -399,6 +434,47 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 12,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "Impact of Merck Foundation Programs\n",
+                          style: TextStyle(
+                              color: Customcolor.textsubtitlecolor,
+                              fontSize: ResponsiveFlutter.of(context)
+                                  .fontSize(2.1), //20,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: AppFonts.normalnew),
+                        ),
+                        TextSpan(
+                          text: "(as of December 2024)",
+                          style: TextStyle(
+                            color: Customcolor.pink_col,
+                            fontSize: ResponsiveFlutter.of(context)
+                                .fontSize(2.1), //20,
+                            fontFamily: AppFonts.normalnew,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        // WidgetSpan(
+                        //   alignment: PlaceholderAlignment.bottom,
+                        //   child: Image.asset(
+                        //     //  widget.titleImg,
+                        //     "",
+                        //     width: 40,
+                        //     height: 25,
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  ),
+                ),
+                ourstaticlist(),
                 SizedBox(
                   height: 12,
                 ),
@@ -1578,6 +1654,19 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       width: imgHeight,
                     ),
                   ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      ShowDialogs.openThreadsApp(Constantstring.followthreas);
+                    },
+                    child: Image.asset(
+                      "assets/newImages/threads.png",
+                      height: imgfbHeight,
+                      width: imgfbHeight,
+                    ),
+                  ),
                   // SizedBox(
                   //   width: 7,
                   // ),
@@ -1789,7 +1878,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             itemBuilder: (BuildContext context, int index) => Padding(
                 padding: const EdgeInsets.only(right: 0.0, left: 8),
                 child: GestureDetector(
-                   onTap: () {
+                    onTap: () {
                       if (index == 0) {
                         Navigator.push(
                             context,
@@ -1804,13 +1893,13 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                 builder: (BuildContext context) => Dashboard(
                                       index: 1,
                                     )));
-                      }else if(index==2)
-                      {
+                      } else if (index == 2) {
                         //tv show
-                          Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => Merckepisodeseason()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    Merckepisodeseason()));
                       } else if (index == 3) {
                         //news article
                         Navigator.push(
@@ -1949,6 +2038,67 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     )))));
   }
 
+  Widget ourstaticlist() {
+    //print(_ourlist.length);
+    return Column(
+      children: [
+        GridView.count(
+          shrinkWrap: true,
+          physics: ScrollPhysics(),
+          padding: const EdgeInsets.all(5),
+          crossAxisSpacing: 0,
+          mainAxisSpacing: 1,
+          crossAxisCount: 2,
+          childAspectRatio: 0.97,
+          children: List.generate(_ourstaticlist.length, (index) {
+            // if (GlobalLists.digitallibraryviewlist.length - 1 ==
+
+            //         index &&
+
+            //     _isLoading) {
+
+            //   return Center(
+
+            //     child: CircularProgressIndicator(),
+
+            //   );
+
+            // } else {
+
+            return Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Container(
+                    width: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Image.asset(_ourstaticlist[index].imagename)));
+
+            // }
+          }),
+        ),
+//  Padding(
+
+//                                       padding: const EdgeInsets.only(right: 2.0),
+
+//                                       child:  Container(
+
+//                           width: 170,
+
+//                           decoration: BoxDecoration(
+
+//                             borderRadius: BorderRadius.circular(8),
+
+//                           ),
+
+//                           child: Image.asset('assets/newImages/SocialMedia_st.png')
+
+//                         )
+
+//  )
+      ],
+    );
+  }
   ////////////////////////
 
   Future<http.Response> gethomeapi() async {
@@ -2034,7 +2184,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             GlobalLists.homeceomsglist =
                 homepageres.middleArea['${i + 1}'].ceoMsg.list;
             print(GlobalLists.homeceomsglist.length);
-          }else if (middlecategoryname.toString().toLowerCase() ==
+          } else if (middlecategoryname.toString().toLowerCase() ==
               "episodes".toLowerCase()) {
             GlobalLists.homeafricashowbaseurl =
                 homepageres.middleArea['${i + 1}'].episodes.baseUrl;
@@ -2625,8 +2775,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         );
       }
 
-        //Change here for africa
-       if (typewidet[i] == "episodes") {
+      //Change here for africa
+      if (typewidet[i] == "episodes") {
         listofwiget.add(
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
@@ -2634,26 +2784,28 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               //   index: 2,
               showbrief: GlobalLists.homeafricashowlist[0]["show_brief"],
               credits: GlobalLists.homeafricashowlist[0]["credits"],
-              relatednews:GlobalLists.homeafricashowlist[0]["related_news"],
+              relatednews: GlobalLists.homeafricashowlist[0]["related_news"],
               photid: GlobalLists.homeafricashowlist[0]["photos_gallery_ids"],
               guestinfo: GlobalLists.homeafricashowlist[0]["guest_info"],
               episodebrief: GlobalLists.homeafricashowlist[0]["episode_brief"],
-              episodeid:GlobalLists.homeafricashowlist[0]["id"],
+              episodeid: GlobalLists.homeafricashowlist[0]["id"],
               oncardtap: () {
-                var storykey = GlobalLists.homeafricashowlist[0]["video_link"].substring(
-                    GlobalLists.homeafricashowlist[0]["video_link"].length - 11);
+                var storykey = GlobalLists.homeafricashowlist[0]["video_link"]
+                    .substring(
+                        GlobalLists.homeafricashowlist[0]["video_link"].length -
+                            11);
                 ShowDialogs.youtubevideolink(
                     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
               },
               youtubeicon: 0,
               cardImage:
-                'https://img.youtube.com/vi/${GlobalLists.homeafricashowlist[0]["video_link"].substring(GlobalLists.homeafricashowlist[0]["video_link"].length - 11)}/mqdefault.jpg',
+                  'https://img.youtube.com/vi/${GlobalLists.homeafricashowlist[0]["video_link"].substring(GlobalLists.homeafricashowlist[0]["video_link"].length - 11)}/mqdefault.jpg',
               cardsubtitle: "Merck Foundation Presents \n",
               cardTitle: '"Our Africa By Merck Foundation" \n(TV Program)   ',
-videolink: GlobalLists.homeafricashowlist[0]["video_link"],
+              videolink: GlobalLists.homeafricashowlist[0]["video_link"],
               titleColor: Customcolor.text_darkblue,
               titleImg: "assets/newImages/flowers-2.png",
-              subTitle:GlobalLists.homeafricashowlist[0]["episode_name"],
+              subTitle: GlobalLists.homeafricashowlist[0]["episode_name"],
               buttontitle: "Watch More ",
               onBtnTap: () {
                 // Navigator.push(
@@ -2665,9 +2817,8 @@ videolink: GlobalLists.homeafricashowlist[0]["video_link"],
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => Merckepisodeseason(
-                          
-                        )));
+                        builder: (BuildContext context) =>
+                            Merckepisodeseason()));
               },
               buttontitlecolor: Customcolor.text_darkblue,
             ),
@@ -2687,7 +2838,8 @@ videolink: GlobalLists.homeafricashowlist[0]["video_link"],
       // digitalLibrary(),
       // merckmorethanmother()
       for (int i = 0; i < typewidetofrightsection.length; i++) {
-        if (typewidetofrightsection[i] == "call_for_app") {
+        if (typewidetofrightsection[i] == "call_for_app" &&
+            GlobalLists.homecallforapp.length > 0) {
           tabs.add(
             new Tab(
               child: Callforapptext(),
@@ -2698,7 +2850,8 @@ videolink: GlobalLists.homeafricashowlist[0]["video_link"],
             getcallforapp(context),
           );
         }
-        if (typewidetofrightsection[i] == "mmtm") {
+        if (typewidetofrightsection[i] == "mmtm" &&
+            GlobalLists.homemmtm.length > 0) {
           tabs.add(
             new Tab(
               child: Merckmtmtext(),
@@ -2706,7 +2859,8 @@ videolink: GlobalLists.homeafricashowlist[0]["video_link"],
           );
           listoftabwiget.add(getMMTMS(context));
         }
-        if (typewidetofrightsection[i] == "digital_library") {
+        if (typewidetofrightsection[i] == "digital_library" &&
+            GlobalLists.homedigitallib.length > 0) {
           tabs.add(
             new Tab(
               child: Digitaltext(),
@@ -2716,7 +2870,6 @@ videolink: GlobalLists.homeafricashowlist[0]["video_link"],
         }
         // print('tabs');
         // print(tabs.length);
-
       }
     });
     //_tabController.length = tabs.length;
@@ -4586,10 +4739,10 @@ videolink: GlobalLists.homeafricashowlist[0]["video_link"],
 //   ];
 
 //   AnimationController _controller;
-//   final CarouselController callAppCarouselController = CarouselController();
-//   final CarouselController digitalLibraryCarouselController =
-//       CarouselController();
-//   final CarouselController mmtmCarouselController = CarouselController();
+//   final CarouselController  callAppCarouselController = CarouselController ();
+//   final CarouselController  digitalLibraryCarouselController =
+//       CarouselController ();
+//   final CarouselController  mmtmCarouselController = CarouselController ();
 //   bool iscall = true;
 //   bool islibrary = false;
 //   bool ismeck = false;

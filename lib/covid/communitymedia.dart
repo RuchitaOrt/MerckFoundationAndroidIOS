@@ -1122,7 +1122,7 @@ Radio</span></span></span></p>
                         // <h5>How to apply?</h5>
                         // <p>Entries can be submitted via email to: <a href="mailto:info@merck-foundation.com">info@merck-foundation.com</a></p>
                         // Asian Countries and Latin America can submit applications on: <a href="mailto:submit@merck-foundation.com">submit@merck-foundation.com</a>  """,
-                        //                     onLinkTap: (url) {
+                        //                         onLinkTap:(url) {
                         //                       print("Opening $url...");
                         //                     },
                         //                     // style: {
@@ -1376,10 +1376,8 @@ Radio</span></span></span></p>
 			<p>Merck Foundation Community Awareness Coordinator</p>
 			<p>Linda Aryeetey</p>
 			<p>Merck Foundation Communication and Community Awareness Manager</p> """,
-                          onLinkTap: (url) {
-                            print("Opening $url...");
-                            ShowDialogs.launchURL(url);
-                          },
+                      
+
                           // style: {
                           //   "body": Style(
                           //     fontSize: FontSize(
@@ -1389,6 +1387,7 @@ Radio</span></span></span></p>
                           //   ),
                           // },
                         ),
+
 //                         Center(
 //                           child: Image.asset(
 //                             "assets/newImages/eigth.png",
@@ -1478,24 +1477,23 @@ Radio</span></span></span></p>
                       ],
                     ),
                   ),
-
-                    SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      "assets/newImages/flowers_footer.png",
-                      height: 170,
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 0, left: 0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Image.asset(
+                        "assets/newImages/flowers_footer.png",
+                        height: 170,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Bottomcardlink(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Bottomcardlink(),
                 ],
               ),
             ),

@@ -39,7 +39,7 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-         //   Navigator.pop(context);
+            //   Navigator.pop(context);
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -77,12 +77,13 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
                               Html(
                                 data:
                                     """${GlobalLists.legaldisclaimer[0].pageContent} """,
-                                onLinkTap: (url) {
+                                onLinkTap:
+                                    (url, renderContext, attributes, element) {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
                                 },
                                 style: {
-                                   "tr": Customcolor.tableboderstyle(),
+                                  "tr": Customcolor.tableboderstyle(context),
                                 },
                                 // style: {
                                 //   "body": Style(
@@ -117,22 +118,20 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
                             ],
                           ),
                         ),
-
-                           Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Bottomcardlink(),
-         
+                        Padding(
+                          padding: const EdgeInsets.only(right: 0, left: 0),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Image.asset(
+                              "assets/newImages/flowers_footer.png",
+                              height: 170,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Bottomcardlink(),
                       ],
                     ),
             ),

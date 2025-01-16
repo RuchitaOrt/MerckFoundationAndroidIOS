@@ -104,19 +104,19 @@ class MerckFertilityState extends State<MerckFertility> {
             height: 10,
           ),
           Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
-                  ),
-                ),
+            padding: const EdgeInsets.only(right: 0, left: 0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Image.asset(
+                "assets/newImages/flowers_footer.png",
+                height: 170,
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Bottomcardlink(),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Bottomcardlink(),
         ],
       ),
     );
@@ -342,7 +342,7 @@ class MerckFertilityState extends State<MerckFertility> {
                       //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
                     child: Column(
-                         crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 8, left: 10),
@@ -350,9 +350,10 @@ class MerckFertilityState extends State<MerckFertility> {
                             children: [
                               Container(
                                 width: SizeConfig.blockSizeHorizontal * 86,
-                                  height: SizeConfig.blockSizeVertical * 25,
+                                height: SizeConfig.blockSizeVertical * 25,
                                 child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/newImages/placeholder_3.jpg',
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
                                   image:
                                       "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
                                   fit: BoxFit.fill,
@@ -396,37 +397,33 @@ class MerckFertilityState extends State<MerckFertility> {
                               //   ),
                               // ),
                               Padding(
-                                padding: EdgeInsets.only(left: 120,top: 70),
+                                padding: EdgeInsets.only(left: 120, top: 70),
                                 child: Center(
-                                    child:
-                                        Image.asset("assets/newImages/pause.png")),
+                                    child: Image.asset(
+                                        "assets/newImages/pause.png")),
                               )
                             ],
                           ),
                         ),
-
-                         SizedBox(
+                        SizedBox(
                           height: 2,
                         ),
-
-                         Container(
-                            padding: EdgeInsets.only(left: 8),
-                                            width:
-                                                SizeConfig.blockSizeHorizontal * 80,
-                                            child: Text(
-                                              GlobalLists
-                                                  .homevideolist[index].videoDesc,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                  color: Colors.black87,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w700),
-                                              maxLines: 3,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          )
+                        Container(
+                          padding: EdgeInsets.only(left: 8),
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Text(
+                            GlobalLists.homevideolist[index].videoDesc,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                            maxLines: 3,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        )
                       ],
                     ),
                   );
@@ -440,12 +437,12 @@ class MerckFertilityState extends State<MerckFertility> {
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
+            onLinkTap: (url, renderContext, attributes, element) {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
             style: {
-               "tr": Customcolor.tableboderstyle(),
+              "tr": Customcolor.tableboderstyle(context),
             },
           ),
         );

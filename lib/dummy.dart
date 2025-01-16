@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -19,7 +18,7 @@ class CheckState extends State<Check> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-            Navigator.pop(context);
+          Navigator.pop(context);
           // Navigator.push(
           //     context,
           //     MaterialPageRoute(

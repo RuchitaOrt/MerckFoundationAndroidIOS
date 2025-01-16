@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/style.dart';
 
 class Customcolor {
- static Style tableboderstyle() {
+ static Style tableboderstyle(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double leftPadding = screenWidth > 600 ? 8 : 4;
+    double topBottomPadding = screenWidth > 600 ? 12 : 8;
+
     return Style(
-      padding: EdgeInsets.only(left: 4),
-      //    backgroundColor: Colors.amber,
+      padding: EdgeInsets.only(left: leftPadding, top: topBottomPadding, bottom: topBottomPadding, right: 0),
       border: Border.all(color: Customcolor.tablebordercolor, width: 0.5),
     );
   }
 
-
- static const tablebordercolor = const Color(0xff000000);
+  static const tablebordercolor = const Color(0xff000000);
   static const textsubtitlecolor = const Color(0xFF4b4e53);
   static const colorPrimary = const Color(0xffFFBD00);
   static const colorPrimaryDark = const Color(0xff89cff0);
@@ -96,10 +98,16 @@ class Constantstring {
   static String followtwitter = "https://twitter.com/MerckFoundation/";
   static String followyoutube =
       "https://www.youtube.com/channel/UCwU6L6rvR-6q0-5Jw03wscg";
-  static String followflicker = "https://www.flickr.com/photos/163124125@N08/";
- static String followrashaflicker = "https://www.flickr.com/photos/rashakelej/";
+  //static String followflicker = "https://www.flickr.com/photos/163124125@N08/";
+  static String followflicker =
+      "https://www.flickr.com/photos/merckfoundation/";
 
+  static String followrashaflicker =
+      "https://www.flickr.com/photos/rashakelej/";
 
+  static String threadsUrlScheme = 'threads://';
+  // URL to Threads app in the Play Store
+  static String followthreas = 'https://www.threads.net/@merckfoundation';
 //Follow Rasha
   static String followrashainsta = "https://www.instagram.com/rasha_kelej/";
   static String followrashafacebook =
@@ -107,6 +115,7 @@ class Constantstring {
   static String followrashatwitter = "https://twitter.com/Rashakelej";
   static String followerashayoutube =
       "https://www.youtube.com/channel/UCO_bN_T_NodcOYwcPjknaog";
+  static String followthreasrasha = 'https://www.threads.net/@rasha_kelej';
 
   //share who we are
   static String sharevision = "${baseurllink}who-we-are/Vision";

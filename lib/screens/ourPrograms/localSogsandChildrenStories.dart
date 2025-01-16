@@ -363,21 +363,23 @@ class LocalSongsandChildrenStoriesState
             children: [
               Html(
                 data: """${GlobalLists.homecontentlist[0].pageContent} """,
-                onLinkTap: (url) {
+                onLinkTap: (url, renderContext, attributes, element) {
                   print("Opening $url...");
                   ShowDialogs.launchURL(url);
                 },
                 style: {
-                   "tr": Customcolor.tableboderstyle(),
+                  "tr": Customcolor.tableboderstyle(context),
                 },
               ),
               Html(
                 data: """${GlobalLists.homecontentlist[1].pageContent} """,
-                onLinkTap: (url) {
+                onLinkTap: (url, renderContext, attributes, element) {
                   print("Opening $url...");
                   ShowDialogs.launchURL(url);
                 },
-                style: { "tr": Customcolor.tableboderstyle(),},
+                style: {
+                  "tr": Customcolor.tableboderstyle(context),
+                },
               ),
             ],
           ),

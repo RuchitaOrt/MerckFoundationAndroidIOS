@@ -49,6 +49,7 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
   void initState() {
     // TODO: implement initState
     GlobalLists.viewmorealbum.clear();
+    print('Ruchita');
     getalbum(widget.albumurl, widget.apiurl);
     _sc = new ScrollController()..addListener(_scrollListener);
     super.initState();
@@ -86,7 +87,6 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
-
                 }
 
                 offset = totalcount;
@@ -153,10 +153,12 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                   ? Center(
                       child: CircularProgressIndicator(),
                     )
-                  : (GlobalLists.viewmorealbum.length == 0 && _isLoading == false)
+                  : (GlobalLists.viewmorealbum.length == 0 &&
+                          _isLoading == false)
                       ? Center(
                           child: Container(
-                            child: Center(child: Text(Constantstring.emptyData)),
+                            child:
+                                Center(child: Text(Constantstring.emptyData)),
                           ),
                         )
                       : ListView(
@@ -203,7 +205,8 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                                         child: Container(
                                           color: Colors.transparent,
                                           width:
-                                              SizeConfig.blockSizeHorizontal * 50,
+                                              SizeConfig.blockSizeHorizontal *
+                                                  50,
                                           child: Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
@@ -211,7 +214,8 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                                                 CrossAxisAlignment.start,
                                             children: <Widget>[
                                               Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
                                                 child: Container(
                                                   // width:
                                                   //     SizeConfig.blockSizeHorizontal *
@@ -220,18 +224,20 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                                                   width: SizeConfig
                                                           .blockSizeHorizontal *
                                                       100,
-                                                  height:
-                                                      SizeConfig.blockSizeVertical *
-                                                          16,
+                                                  height: SizeConfig
+                                                          .blockSizeVertical *
+                                                      14,
                                                   decoration: BoxDecoration(
                                                     borderRadius:
-                                                        BorderRadius.circular(5),
+                                                        BorderRadius.circular(
+                                                            5),
                                                     // border: Border.all(
                                                     //   width: 1,
                                                     // ),
                                                     image: new DecorationImage(
                                                       image: new NetworkImage(
-                                                          Constantstring.baseUrl +
+                                                          Constantstring
+                                                                  .baseUrl +
                                                               GlobalLists
                                                                   .viewmorealbum[
                                                                       index]
@@ -242,19 +248,23 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.all(4.0),
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
                                                 child: Text(
-                                                  GlobalLists.viewmorealbum[index]
+                                                  GlobalLists
+                                                      .viewmorealbum[index]
                                                       .photoDescription,
                                                   textAlign: TextAlign.center,
-                                                  overflow: TextOverflow.ellipsis,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   style: TextStyle(
                                                       color: Colors.black,
                                                       fontSize:
                                                           ResponsiveFlutter.of(
                                                                   context)
                                                               .fontSize(1.4),
-                                                      fontWeight: FontWeight.w500),
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                   maxLines: 3,
                                                 ),
                                               ),
@@ -270,41 +280,36 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                             _isLoading
                                 ? Center(
                                     child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 10, bottom: 10),
+                                    padding: const EdgeInsets.only(
+                                        top: 10, bottom: 10),
                                     child: CircularProgressIndicator(),
                                   ))
                                 : Container()
                           ],
                         ),
-
-                         Padding(
-                        padding: const EdgeInsets.only(right: 0, left: 0),
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: Image.asset(
-                            "assets/newImages/flowers_footer.png",
-                            height: 170,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                     
+              Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
             ],
           ),
-       
-       
-        Align(
-             alignment: Alignment.bottomCenter,
-   child: Bottomcardlink()),
+          Align(alignment: Alignment.bottomCenter, child: Bottomcardlink()),
         ],
       ),
     );
   }
 
   getalbum(String albumid, dynamic api) async {
+    print("getalbum 15-01");
     var status = await ConnectionDetector.checkInternetConnection();
     dynamic bodyData;
     if (status) {
@@ -391,9 +396,10 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
     IOClient ioClient = new IOClient();
 
     HttpClient client = new HttpClient();
+    Uri uri = Uri.parse(url);
 
     ioClient = new IOClient(client);
-    final response = await ioClient.post(url, body: body);
+    final response = await ioClient.post(uri, body: body);
     print('pit stop');
     return response;
   }

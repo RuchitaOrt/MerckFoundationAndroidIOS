@@ -76,7 +76,6 @@ class OurActivityState extends State<OurActivity> {
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
-
                 }
 
                 offset = totalcount;
@@ -116,14 +115,14 @@ class OurActivityState extends State<OurActivity> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-        //  Navigator.pop(context);
+          //  Navigator.pop(context);
 
-         Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Dashboard(
-                          index: 0,
-                        )));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => Dashboard(
+                        index: 0,
+                      )));
         },
         index: 2,
         title: "Our Activities",
@@ -138,28 +137,28 @@ class OurActivityState extends State<OurActivity> {
         controller: _sc,
         physics: ScrollPhysics(),
         children: [
-          SizedBox(
-            height: 10,
-          ),
+          // SizedBox(
+          //   height: 10,
+          // ),
 
           GlobalLists.ourActivitiesObjectives.length <= 0
               ? Padding(
-                  padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 5, left: 20, right: 20),
                   child: Container(
                     child: Center(child: Text(Constantstring.emptyData)),
                   ),
                 )
               : Padding(
-                  padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 5, left: 20, right: 20),
                   child: Html(
                     data:
                         """${GlobalLists.ourActivitiesObjectives[0].pageContent} """,
-                    onLinkTap: (url) {
+                    onLinkTap: (url, renderContext, attributes, element) {
                       print("Opening $url...");
                       ShowDialogs.launchURL(url);
                     },
                     style: {
-                       "tr": Customcolor.tableboderstyle(),
+                      "tr": Customcolor.tableboderstyle(context),
                     },
                     // style: {
                     //   "body": Style(
@@ -172,7 +171,7 @@ class OurActivityState extends State<OurActivity> {
                   ),
                 ),
           SizedBox(
-            height: 15,
+            height: 10,
           ),
 
           // Padding(
@@ -189,7 +188,7 @@ class OurActivityState extends State<OurActivity> {
           //           : Html(
           //               data:
           //                   """${GlobalLists.ourActivitiesObjectives[0].pageContent} """,
-          //               onLinkTap: (url) {
+          //                   onLinkTap:(url) {
           //                 print("Opening $url...");
           //               },
           //               // style: {
@@ -273,6 +272,9 @@ class OurActivityState extends State<OurActivity> {
                                                 detailpageurl: GlobalLists
                                                     .ourActivitiesData[index]
                                                     .detailPageUrl,
+                                                id: GlobalLists
+                                                    .ourActivitiesData[index]
+                                                    .id,
                                               )));
                                 },
                                 child: Card(
@@ -385,22 +387,21 @@ class OurActivityState extends State<OurActivity> {
             height: 10,
           ),
 
-            Padding(
-              padding: const EdgeInsets.only(right: 0, left: 0),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Image.asset(
-                  "assets/newImages/flowers_footer.png",
-                  height: 170,
-                ),
+          Padding(
+            padding: const EdgeInsets.only(right: 0, left: 0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Image.asset(
+                "assets/newImages/flowers_footer.png",
+                height: 170,
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
 
-            Bottomcardlink(),
-
+          Bottomcardlink(),
         ],
       ),
     );
@@ -417,15 +418,22 @@ class OurActivityState extends State<OurActivity> {
                   padding: const EdgeInsets.only(right: 10, left: 10),
                   child: GestureDetector(
                     onTap: () {
+                      print('tabbb');
+                      print(
+                          "GlobalLists.ourActivitiesData[index].details${GlobalLists.ourActivitiesData[index].details}");
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
                                   OurActivtyDetail(
                                     activtydetaill: GlobalLists
-                                        .ourActivitiesData[index].details,
+                                            .ourActivitiesData[index].details ??
+                                        "No Details Found",
                                     activtytitle: GlobalLists
                                         .ourActivitiesData[index].title,
+                                    detailpageurl: GlobalLists
+                                        .ourActivitiesData[index].detailPageUrl,
+                                    id: GlobalLists.ourActivitiesData[index].id,
                                   )));
                     },
                     child: Container(
@@ -575,19 +583,24 @@ class OurActivityState extends State<OurActivity> {
         (response) async {
           OurActivityObjectiveResponse resp = response;
           print(response);
-          print('Resp : $resp');
+
+          print('Resp : ${resp.data.list}');
 
           if (resp.success == "True") {
+            print("Inside in oureActoivityobjectiveResponse");
             setState(() {
               GlobalLists.ourActivitiesObjectives = resp.data.list;
             });
+
+            // print(
+            //     "GlobalLists.ourActivitiesData[0].details${GlobalLists.ourActivitiesData[].details}");
           } else {
             ShowDialogs.showToast(resp.msg);
             //   Navigator.of(_keyLoader.currentContext).pop();
           }
         },
         (error) {
-          print('ERR msg is $error');
+          print('ERR  $error');
           //   Navigator.of(_keyLoader.currentContext).pop();
         },
       );
@@ -615,8 +628,9 @@ class OurActivityState extends State<OurActivity> {
 
           if (resp.success == "True") {
             Constantstring.baseUrl = resp.baseUrl;
+            print('--------------');
 
-            if (resp.data.list.length < 10) {
+            if (resp.data.list?.length < 10) {
               for (int i = offset; i < resp.data.list.length; i++) {
                 setState(() {
                   GlobalLists.ourActivitiesData.add(listdata.ListElement(
@@ -660,7 +674,7 @@ class OurActivityState extends State<OurActivity> {
           }
         },
         (error) {
-          print('ERR msg is $error');
+          print('Eror msg is $error');
           // Navigator.of(_keyLoader.currentContext).pop();
         },
       );

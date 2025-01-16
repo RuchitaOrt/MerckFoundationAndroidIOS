@@ -5,16 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
+import 'package:merckfoundation22dec/model/DigLibCatFilterResponse.dart';
 import 'package:merckfoundation22dec/model/FilterdataResponse.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
 import 'package:merckfoundation22dec/model/GetAboutMerckContentResp.dart';
 import 'package:merckfoundation22dec/model/GetAboutMerckVideosResp.dart';
+import 'package:merckfoundation22dec/model/GetAwardResponse.dart';
 import 'package:merckfoundation22dec/model/GetEpisodeDataResponse.dart';
 import 'package:merckfoundation22dec/model/GetEpisodeSeasonwiseResponse.dart';
 import 'package:merckfoundation22dec/model/GetFertilityContentResp.dart';
 import 'package:merckfoundation22dec/model/GetFertilityTestimonialResp.dart';
 import 'package:merckfoundation22dec/model/GetFertilityVideosResp.dart';
+import 'package:merckfoundation22dec/model/Get_Filter_DLResponse.dart';
 import 'package:merckfoundation22dec/model/GetFirstLadiesInitaiveResponse.dart';
+import 'package:merckfoundation22dec/model/GetLanguageResponse.dart';
 import 'package:merckfoundation22dec/model/GetLocalSongsContentResp.dart';
 import 'package:merckfoundation22dec/model/GetLocalSongsDigitalResp.dart';
 import 'package:merckfoundation22dec/model/GetLocalSongsVideosResp.dart';
@@ -71,6 +75,10 @@ import 'package:merckfoundation22dec/model/our_gallery_detail_response.dart';
 import 'package:merckfoundation22dec/model/Merckoverview.dart';
 import 'package:merckfoundation22dec/model/CreategallerymobileResponse.dart';
 
+import '../model/MotherScholarships.dart';
+import '../model/OuredetailsActivies.dart';
+import '../model/PoliticalDeutrality.dart';
+
 //Note URL need to change in configuration.json and also in these file fetchget method4
 //"hostUrl": "https://merck-foundation.com/api/",
 enum API {
@@ -79,8 +87,10 @@ enum API {
   ourmission,
   ourActivities,
   ourActivitiesObjectives,
+  ourdetails,
   ourPolicies,
   dataPrivacy,
+  political,
 
   //////
   newsRelease,
@@ -137,9 +147,13 @@ enum API {
   filterlist,
   filterlisttestimonial,
   getCategoryWiseCountryList,
+  getTblCategoryList,
+  getLanguageList,
+
   //awardsection
   ouraward,
   ourawarddetail,
+  get_awards,
 
   //mobilesearch
   mobilesearch,
@@ -216,6 +230,9 @@ enum API {
   //stemprogramlist
   stemprogramlist,
   africaprogramlist,
+  capcityadvanceprogramlist,
+  motherscholarships,
+  hypertensionprogramlist,
 
   //covid video
   covidvideo,
@@ -232,12 +249,12 @@ enum API {
   gettoken,
   notificationdetail,
 
-
-
   //episodes
   get_season_episodes,
   get_episode_data,
-  getepisode_season_gallery
+  getepisode_season_gallery,
+
+  get_digital_library
 }
 
 enum HTTPMethod { GET, POST, PUT, DELETE }
@@ -295,9 +312,10 @@ class APIManager {
     //     'onerooftechnologiesllp.com', '/mfindia/web/public/api/$encoding');
     // https://smitlalai.com/demo/merck_latest/api
 //production
-   var uri = Uri.https('merck-foundation.com', 'api/$encoding');
-
-    //var uri = Uri.https('merck.oneroof.tech', 'merck/api/$encoding');
+    //var uri = Uri.https('merck-foundation.com', 'api/$encoding');
+//uat
+    //var uri = Uri.https('merckuat.ortdemo.com', 'api/$encoding');
+    var uri = Uri.https('merck-foundation.com', '/api/$encoding');
     // var uri = Uri.https('smitlalai.com', 'demo/merck_latest/api/$encoding');
     final response = await ioClient.get(uri);
     print(uri.toString());
@@ -314,6 +332,9 @@ class APIManager {
 
   static String viewmorealbum = baseURL + "create_gallery_mobile";
   static String steminnerpages = baseURL + "LuminaryStemBarPages";
+  static String ariclwpages = baseURL + "get_newsletter_article";
+
+  static String capacityinnerpage = baseURL + "SubProgramPageApi";
   static String searchapi = baseURL + "mobile_search";
   //video view all section
   static String ambasadarvideoapi =
@@ -325,6 +346,9 @@ class APIManager {
   static String homeurl = "program_page_api/home/Android/1";
   static String mmtmprogramurl =
       "MMTM_Program_Api/merck-foundation-more-than-a-mother/Android/1";
+
+  static String mmtmprogramurl1 =
+      "SubProgramPageApi/merck-foundation-more-than-a-mother-scholarships/Android/1";
   static String merckcancerprogramurl =
       "MainProgramPageApi/merck-foundation-cancer-access-program/Android/1";
   static String merckcapabilityprogram =
@@ -337,7 +361,8 @@ class APIManager {
   static String merckafricaasialuminar =
       "MainProgramPageApi/merck-foundation-africa-asia-luminary/Android/1";
   static String mercksubstaition =
-      "MainProgramPageApi/merck-foundation-sustainability-initiative/Android/1";
+      "MainProgramPageApi/merck-foundation-nationwide-diabetes-and-hypertension-blue-points-program/Android/1";
+  //"MainProgramPageApi/merck-foundation-sustainability-initiative/Android/1";
   static String merckeducatinglinda =
       "MainProgramPageApi/merck-foundation-educating-linda-program/Android/1";
   static String empoweringberna =
@@ -346,6 +371,8 @@ class APIManager {
       "SubProgramPageApi/merck-foundation-fertility-and-embryology-training-program/Android/1";
   static String subproaboutmmtm =
       "SubProgramPageApi/about-merck-foundation-more-than-a-mother/Android/1";
+  static String submotherscollership =
+      "SubProgramPageApi/merck-foundation-more-than-a-mother-scholarships/Android/1";
   static String viewhomeceomsg = "ceo_message_mob";
   static String mediaarticle = "new_letters_and_articles_mob";
   static String subprogramstrategy = "SubProgramPageApi/strategy/Android/1";
@@ -363,7 +390,7 @@ class APIManager {
       "SubProgramPageApi/merck-foundation-more-than-a-patient/Android/1";
   static String subprocancercommunityawareness =
       "SubProgramPageApi/merck-foundation-community-awareness/Android/1";
-      
+
   Future<String> apiEndPoint(API api) async {
     var apiPathString = "";
     //  if (Platform.isAndroid) {
@@ -390,6 +417,9 @@ class APIManager {
       case API.ourActivitiesObjectives:
         apiPathString = "show/our-activities/13/Android/1";
         break;
+      case API.ourdetails:
+        apiPathString = "get_newsletter_details";
+        break;
 
       case API.ourPolicies:
         apiPathString = "show/our-policies/13/Android/1";
@@ -406,6 +436,9 @@ class APIManager {
 
       case API.dataPrivacy:
         apiPathString = "show/data-privacy/13/Android/1";
+        break;
+      case API.political:
+        apiPathString = "show/political-neutrality-declaration/13/Android/1";
         break;
 
       case API.newsRelease:
@@ -541,7 +574,20 @@ class APIManager {
       case API.countrylist:
         apiPathString = "getCountryList/1";
         break;
+      case API.get_awards:
+        apiPathString = "get_awards/";
+        break;
+      case API.getLanguageList:
+        apiPathString = "getLanguageList/1";
+        break;
+      case API.get_digital_library:
+        apiPathString = "get_digital_library";
+        break;
 
+      case API.getTblCategoryList:
+        apiPathString = "getTblCategoryList/1";
+
+        break;
       case API.getCategoryWiseCountryList:
         apiPathString = "getCategoryWiseCountryList";
         break;
@@ -668,15 +714,17 @@ class APIManager {
 
         break;
       case API.watchhomemmtm:
-      //chnage by nikhil
+        //chnage by nikhil
         // apiPathString = "show_mmtm_gallery/home/1";
-apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors/1";
+        apiPathString =
+            "show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors/1";
         break;
       case API.watchprogrammmtm:
-      //chnage by nikhil
+        //chnage by nikhil
         // apiPathString =
         //     "show_mmtm_gallery/merck-foundation-more-than-a-mother/1";
-apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors/1";
+        apiPathString =
+            "show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors/1";
         break;
       case API.watchfirstladymmtm:
         apiPathString =
@@ -785,6 +833,19 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
       case API.stemprogramlist:
         apiPathString = "get_luminary_pages/merck-foundation-stem-program/1";
         break;
+      case API.hypertensionprogramlist:
+        apiPathString =
+            "get_sidebar_pages/merck-foundation-nationwide-diabetes-&-hypertension-blue-points-program/1";
+        break;
+
+      case API.capcityadvanceprogramlist:
+        apiPathString =
+            "get_sidebar_pages/merck-foundation-capacity-advancement-program/1";
+        break;
+      case API.motherscholarships:
+        apiPathString =
+            "SubProgramPageApi/about-merck-foundation-more-than-a-mother/Android/1";
+        break;
       case API.covidvideo:
         apiPathString = "covid_videos/1";
         break;
@@ -815,17 +876,16 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
         apiPathString = "send_news_letter_notification";
         break;
 
-       case API.get_season_episodes:
+      case API.get_season_episodes:
         apiPathString = "get_season_episodes";
         break;
-           case API.get_episode_data:
+      case API.get_episode_data:
         apiPathString = "get_episode_data";
-        break;  
-         case API.getepisode_season_gallery:
+        break;
+      case API.getepisode_season_gallery:
         apiPathString = "season_gallery";
-        break;  
-        
-        
+        break;
+
       default:
         apiPathString = "HomeheaderResponse";
     }
@@ -1245,6 +1305,10 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
       case API.getCategoryWiseCountryList:
       case API.notificationdetail:
       case API.get_episode_data:
+      case API.get_digital_library:
+      case API.ourdetails:
+      case API.political:
+
         // case API.legaldisclaimer:
         //  case API.mission:
         //  case API.ourActivities:
@@ -1275,9 +1339,16 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
       case API.ourActivities:
         className = "OurActivitiesResponse";
         break;
+      case API.political:
+        className = "PoliticalDeutrality";
+        break;
 
       case API.ourActivitiesObjectives:
         className = "OurActivitiesObjectivesResponse";
+        break;
+      case API.ourdetails:
+        className = "OuredetailsActivies";
+
         break;
 
       case API.ourPolicies:
@@ -1466,7 +1537,6 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
       case API.watchvideosubstain:
       case API.watchvideostem:
       case API.watchvideoafrica:
-
       case API.watchvideoaboutmmtm:
       case API.watchvideoempoweringberna:
       case API.watchvideolocalsong:
@@ -1501,10 +1571,15 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
         break;
       case API.stemprogramlist:
       case API.africaprogramlist:
+      case API.capcityadvanceprogramlist:
+      case API.hypertensionprogramlist:
         className = "StemsubmenuprogramlistResponse";
         break;
       case API.yearwisegallery:
         className = "YearwisePhotogalleryResponse";
+        break;
+      case API.motherscholarships:
+        className = "MotherScholarships";
         break;
       case API.homeheader:
         className = "HomeheaderResponse";
@@ -1523,14 +1598,25 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
         break;
       case API.get_season_episodes:
         className = "GetSeasonEpisodeResponse";
-        break;  
-        case API.get_episode_data:
+        break;
+      case API.get_episode_data:
         className = "GetEpisodeDataResponse";
-        break;  
- case API.getepisode_season_gallery:
+        break;
+      case API.getepisode_season_gallery:
         className = "GetEpisodeSeasonwiseResponse";
-        break; 
-        
+        break;
+      case API.getTblCategoryList:
+        className = "DigLibCatFilterResponse";
+        break;
+      case API.get_digital_library:
+        className = "Get_Filter_DLResponse";
+        break;
+      case API.getLanguageList:
+        className = "GetLanguageResponse";
+        break;
+      case API.get_awards:
+        className = "GetAwardResponse";
+        break;
       default:
         className = 'CommonResponse';
     }
@@ -1554,6 +1640,11 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
     if (className == 'OurActivitiesObjectivesResponse') {
       responseObj = OurActivityObjectiveResponse.fromJson(json);
     }
+
+    if (className == 'OuredetailsActivies') {
+      responseObj = OuredetailsActivies.fromJson(json);
+    }
+
     if (className == 'OurPoliciesResponse') {
       responseObj = OurpolicyResponse.fromJson(json);
     }
@@ -1582,7 +1673,9 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
     if (className == 'MerckTestimonialResp') {
       responseObj = MerckTestimonialResponse.fromJson(json);
     }
-
+    if (className == 'PoliticalDeutrality') {
+      responseObj = PoliticalDeutrality.fromJson(json);
+    }
     if (className == 'VidepLibraryResponse') {
       responseObj = GetVideoLibraryResponse.fromJson(json);
     }
@@ -1726,6 +1819,10 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
       //enterhere
       responseObj = StemsubmenuprogramlistResponse.fromJson(json);
     }
+    if (className == "MotherScholarships") {
+      //enterhere
+      responseObj = MotherScholarships.fromJson(json);
+    }
     if (className == "YearwisePhotogalleryResponse") {
       //enterhere
       responseObj = YearwisePhotogalleryResponse.fromJson(json);
@@ -1754,11 +1851,11 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
       //enterhere
       responseObj = NotificationdetailResponse.fromJson(json);
     }
-     if (className == "GetSeasonEpisodeResponse") {
+    if (className == "GetSeasonEpisodeResponse") {
       //enterhere
       responseObj = GetSeasonEpisodeResponse.fromJson(json);
     }
-     if (className == "GetEpisodeDataResponse") {
+    if (className == "GetEpisodeDataResponse") {
       //enterhere
       responseObj = GetEpisodeDataResponse.fromJson(json);
     }
@@ -1767,7 +1864,22 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
       responseObj = GetEpisodeSeasonwiseResponse.fromJson(json);
     }
 
-    
+    if (className == "DigLibCatFilterResponse") {
+      //enterhere
+      responseObj = DigLibCatFilterResponse.fromJson(json);
+    }
+    if (className == "GetLanguageResponse") {
+      //enterhere
+      responseObj = GetLanguageResponse.fromJson(json);
+    }
+    if (className == "Get_Filter_DLResponse") {
+      //enterhere
+      responseObj = GetFilterDlResponse.fromJson(json);
+    }
+    if (className == "GetAwardResponse") {
+      //enterhere
+      responseObj = GetAwardResponse.fromJson(json);
+    }
 
     return responseObj;
   }
@@ -1788,6 +1900,7 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
       url = url + path;
     }
     print('URL is $url');
+    Uri uri = Uri.parse(url);
 
     Map<String, String> headers = {
       // HttpHeaders.contentTypeHeader: 'application/json',
@@ -1803,23 +1916,23 @@ apiPathString="show_mmtm_gallery/Merck-Foundation-More-Than-a-Mother-Ambassadors
     try {
       if (this.apiHTTPMethod(api) == HTTPMethod.POST) {
         response =
-            await http.post(url, body: body, headers: headers).timeout(timeout);
+            await http.post(uri, body: body, headers: headers).timeout(timeout);
         print(response.body);
         print('response of post');
       } else if (this.apiHTTPMethod(api) == HTTPMethod.GET) {
-        response = await http.get(url, headers: headers).timeout(timeout);
+        response = await http.get(uri, headers: headers).timeout(timeout);
         print('response of get');
       } else if (this.apiHTTPMethod(api) == HTTPMethod.PUT) {
         print('body is -' + body);
         response = await http
             .put(
-              url,
+              uri,
               body: body,
               headers: headers,
             )
             .timeout(timeout);
       } else if (this.apiHTTPMethod(api) == HTTPMethod.DELETE) {
-        response = await http.delete(url, headers: headers).timeout(timeout);
+        response = await http.delete(uri, headers: headers).timeout(timeout);
       }
 
       //TODO : Handle 201 status code as well

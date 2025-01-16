@@ -84,7 +84,6 @@ class StoriesState extends State<Stories> {
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
-
                 }
 
                 offset = totalcount;
@@ -147,11 +146,12 @@ class StoriesState extends State<Stories> {
                         )));
           },
           index: 2,
-          forfilterindes: 3,
+          forfilterindes: 4,
           sharelink: Constantstring.sharestories,
           title: "Stories",
           titleImg: "assets/newImages/ourstoriesLogo.png",
-          trallingImg1: "assets/newImages/filter.png",
+          trallingImg1: "assets/newImages/share.png",
+          //trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",
           height: 85,
         ),
@@ -218,6 +218,7 @@ class StoriesState extends State<Stories> {
                                         ),
                                         child: GestureDetector(
                                           onTap: () async {
+                                            print('tabb in youtube');
                                             var storykey = GlobalLists
                                                 .storiesList[index].videoLink
                                                 .substring(GlobalLists

@@ -21,6 +21,24 @@ class ShowDialogs {
     );
   }
 
+  static openThreadsApp(String url) async {
+    if (await canLaunch(Constantstring.threadsUrlScheme)) {
+      // If the Threads app is installed, open it
+      await launch(Constantstring.threadsUrlScheme);
+    } else {
+      // If the Threads app is not installed, open the store
+      if (Platform.isIOS) {
+        if (await canLaunch(url)) {
+          await launch(url);
+        }
+      } else if (Platform.isAndroid) {
+        if (await canLaunch(url)) {
+          await launch(url);
+        }
+      }
+    }
+  }
+
   static showImageDialog(
       {BuildContext context, String image, String description}) {
     showDialog(
@@ -78,38 +96,21 @@ class ShowDialogs {
   }
 
 //yuotube link
-  static youtubevideolink(String videourl) async {
-    if (Platform.isIOS) {
-      _launchURL(videourl);
+  static Future<void> youtubevideolink(String videourl) async {
+    if (await canLaunch(videourl)) {
+      await launch(videourl);
     } else {
-      // var response =
-      //     await FlutterShareMe().openinsta(url: videourl, msg: "Youtube");
+      // Handle the error, e.g., show an error dialog or message
+      print('Could not launch $videourl');
     }
   }
 
   static _launchURL(String videourl) async {
-    if (Platform.isIOS) {
-      if (await canLaunch(videourl)) {
-        print("in if");
-        await launch(videourl,
-            forceSafariVC: false,
-            forceWebView: false,
-            universalLinksOnly: true);
-      } else {
-        print("in else");
-        if (await canLaunch(videourl)) {
-          await launch(videourl);
-        } else {
-          throw 'Could not launch $videourl';
-        }
-      }
+    if (await canLaunch(videourl)) {
+      print("Launching URL: $videourl");
+      await launch(videourl, forceSafariVC: false, forceWebView: false);
     } else {
-      var url = videourl;
-      if (await canLaunch(url)) {
-        await launch(url);
-      } else {
-        throw 'Could not launch $url';
-      }
+      throw 'Could not launch $videourl';
     }
   }
 
@@ -203,8 +204,13 @@ class ShowDialogs {
   }
 
 //follow link to specific app
-  static followuslink(String videourl, String msg) async {
-    // var response = await FlutterShareMe().openinsta(url: videourl, msg: msg);
+  static Future<void> followuslink(String url, String msg) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      // Handle the error, e.g., show an error dialog or message
+      print('Could not launch $url');
+    }
   }
 
   static youtbeicon(BuildContext context) {
@@ -257,24 +263,33 @@ class ShowDialogs {
         fontSize: 16.0);
   }
 
-  static launchURL(String urlIs) async {
+  static Future<void> launchURL(String urlIs) async {
     var url = urlIs;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
+    print("Attempting to launch URL: $url");
+
+    try {
+      if (await canLaunch(url)) {
+        print("Launching URL: $url");
+        await launch(url, forceSafariVC: false, forceWebView: false);
+      } else {
+        print("Cannot launch URL: $url using universal link");
+        await launch(url); // Try launching without specific options
+      }
+    } catch (e) {
+      print("Error launching URL: $e");
       throw 'Could not launch $url';
     }
   }
 
   static launchWhatsappshare(String msg) async {
     print("on launch");
-   var url ;//= "whatsapp://send?text=$msg";
+    var url; //= "whatsapp://send?text=$msg";
     if (Platform.isIOS) {
-        url= "https://wa.me/?ext=$msg";
-      } 
-      // else {
-      //   return "whatsapp://send?phone=$phone&text=${Uri.encodeFull(message)}";
-      // }
+      url = "https://wa.me/?ext=$msg";
+    }
+    // else {
+    //   return "whatsapp://send?phone=$phone&text=${Uri.encodeFull(message)}";
+    // }
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -302,7 +317,7 @@ class ShowDialogs {
           content: new Text(dialogMessage),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
-            new FlatButton(
+            new ElevatedButton(
               child: new Text("Close"),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -353,11 +368,17 @@ class ShowDialogs {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     //padding: EdgeInsets.fromLTRB(60.0, 10.0, 60.0, 10.0),
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    color: Colors.orange,
+                    //  shape: new RoundedRectangleBorder(
+                    //    borderRadius: new BorderRadius.circular(30.0)),
+                    //color: Colors.orange,
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.orange,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(30)),
+                    ),
+
                     child: Text(
                       'OK',
                       style: TextStyle(
@@ -429,11 +450,17 @@ class ShowDialogs {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     //padding: EdgeInsets.fromLTRB(60.0, 10.0, 60.0, 10.0),
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    color: Colors.orange,
+                    // shape: new RoundedRectangleBorder(
+                    //   borderRadius: new BorderRadius.circular(30.0)),
+                    //color: Colors.orange,
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.orange,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(30)),
+                    ),
+
                     child: Text(
                       'OK',
                       style: TextStyle(
@@ -547,38 +574,56 @@ class ShowDialogs {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    RaisedButton(
-                      padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 0.0),
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(15.0)),
-                      color: Colors.white,
-                      child: Text(
-                        'Stay',
-                        style: TextStyle(
-                          color: Customcolor.colorBlue,
-                          fontSize: 14.0,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: ElevatedButton(
+                        // padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 0.0),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(15)),
                         ),
+
+                        // shape: new RoundedRectangleBorder(
+                        //   borderRadius: new BorderRadius.circular(15.0)),
+                        // color: Colors.white,
+                        child: Text(
+                          'Stay',
+                          style: TextStyle(
+                            color: Customcolor.colorBlue,
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                        },
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pop(false);
-                      },
                     ),
-                    RaisedButton(
-                      //padding: EdgeInsets.fromLTRB(60.0, 10.0, 60.0, 10.0),
-                      padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 0.0),
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(15.0)),
-                      color: Customcolor.colorBlue,
-                      child: Text(
-                        'Yes, Quit',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14.0,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: ElevatedButton(
+                        //padding: EdgeInsets.fromLTRB(60.0, 10.0, 60.0, 10.0),
+                        //    padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 0.0),
+                        style: ElevatedButton.styleFrom(
+                          primary: Customcolor.colorBlue,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(15)),
                         ),
+
+                        //    shape: new RoundedRectangleBorder(
+                        //      borderRadius: new BorderRadius.circular(15.0)),
+                        // color: Customcolor.colorBlue,
+                        child: Text(
+                          'Yes, Quit',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        onPressed: () async {
+                          SystemNavigator.pop();
+                        },
                       ),
-                      onPressed: () async {
-                        SystemNavigator.pop();
-                      },
                     ),
                   ],
                 ),
@@ -675,50 +720,68 @@ class ShowDialogs {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    RaisedButton(
-                      padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 0.0),
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(15.0)),
-                      color: Colors.white,
-                      child: Text(
-                        'Cancel',
-                        style: TextStyle(
-                          color: Customcolor.colorBlue,
-                          fontSize: 14.0,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: ElevatedButton(
+                        // padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 0.0),
+                        //shape: new RoundedRectangleBorder(
+                        //  borderRadius: new BorderRadius.circular(15.0)),
+                        //color: Colors.white,
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.orange,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(30)),
                         ),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop(false);
-                      },
-                    ),
-                    RaisedButton(
-                      //padding: EdgeInsets.fromLTRB(60.0, 10.0, 60.0, 10.0),
-                      padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 0.0),
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(15.0)),
-                      color: Customcolor.colorBlue,
-                      child: Text(
-                        btnTitle == null ? 'Yes, Delete' : btnTitle,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14.0,
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop(false);
-                        onYesTap();
-                      },
-                      // onPressed: () async {
-                      //   // storage.delete(key: "token");
 
-                      //   Navigator.of(context).pushAndRemoveUntil(
-                      //     // the new route
-                      //     MaterialPageRoute(
-                      //       builder: (BuildContext context) => Login(),
-                      //     ),
-                      //     (Route route) => false,
-                      //   );
-                      // },
+                        child: Text(
+                          'Cancel',
+                          style: TextStyle(
+                            color: Customcolor.colorBlue,
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: ElevatedButton(
+                        //padding: EdgeInsets.fromLTRB(60.0, 10.0, 60.0, 10.0),
+                        //    padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 0.0),
+                        // shape: new RoundedRectangleBorder(
+                        //   borderRadius: new BorderRadius.circular(15.0)),
+                        //color: Customcolor.colorBlue,
+                        style: ElevatedButton.styleFrom(
+                          primary: Customcolor.colorBlue,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(15)),
+                        ),
+
+                        child: Text(
+                          btnTitle == null ? 'Yes, Delete' : btnTitle,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                          onYesTap();
+                        },
+                        // onPressed: () async {
+                        //   // storage.delete(key: "token");
+
+                        //   Navigator.of(context).pushAndRemoveUntil(
+                        //     // the new route
+                        //     MaterialPageRoute(
+                        //       builder: (BuildContext context) => Login(),
+                        //     ),
+                        //     (Route route) => false,
+                        //   );
+                        // },
+                      ),
                     ),
                   ],
                 ),

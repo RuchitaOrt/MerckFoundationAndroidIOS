@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailcancerlist.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforcapacityAdv.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforhypertensionbluepoint.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailssevenlist.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforStem.dart';
 
@@ -381,13 +383,18 @@ class _OurProgramState extends State<Ourprogram> {
                         //         builder: (BuildContext context) => OurProgram(
                         //               indexpass: 2,
                         //             )));
-                        Navigator.push(
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) =>
+                        //             OurProgramSevenlist(
+                        //               indexpass: 1,
+                        //             )));
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    OurProgramSevenlist(
-                                      indexpass: 1,
-                                    )));
+                                   ourProgramdetailsforcapacityAdv()));
                       } else if (index == 4) {
                         // Navigator.push(
                         //     context,
@@ -409,13 +416,18 @@ class _OurProgramState extends State<Ourprogram> {
                         //         builder: (BuildContext context) => OurProgram(
                         //               indexpass: 13,
                         //             )));
-                        Navigator.push(
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) =>
+                        //             OurProgramSevenlist(
+                        //               indexpass: 4,
+                        //             )));
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    OurProgramSevenlist(
-                                      indexpass: 4,
-                                    )));
+                                   ourProgramdetailsforhypertensionbluepoint()));
                       } else if (index == 5) {
                         Navigator.push(
                             context,

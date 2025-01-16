@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -108,7 +107,8 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
         },
         index: 2,
         sharelink: Constantstring.cancercommunityawareness,
-        title: 'Merck Foundation Presents \n"Our Africa by Merck Foundation" (TV Program)',
+        title:
+            'Merck Foundation Presents \n"Our Africa by Merck Foundation" (TV Program)',
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -117,344 +117,411 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
       body: Container(
           width: double.infinity,
           height: double.infinity,
-          child:
-           ListView(
+          child: ListView(
               //  crossAxisAlignment: CrossAxisAlignment.start,
               shrinkWrap: true,
               physics: ScrollPhysics(),
               children: [
-              
-              
-          //         ListView.builder(
-          // shrinkWrap: true,
-          // physics: ScrollPhysics(),
-          // // physics:
-          // //     AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-          // scrollDirection: Axis.vertical,
-          // itemCount: GlobalLists.seasonlistwithepisode.length,
-          // itemBuilder: (context, index1) {
-          //   return 
-             ListView.builder(
-          shrinkWrap: true,
-          physics: ScrollPhysics(),
-          // physics:
-          //     AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-          scrollDirection: Axis.vertical,
-          itemCount: GlobalLists.seasonlistwithepisode.length,
-          itemBuilder: (context, index) {
-            return Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
-            child: CustomHorizontalCardEpisode(
-              index: 1,
-              cardImage: "assets/newImages/gallery.png",
-              cardsubtitle:GlobalLists.seasonlistwithepisode[index].list[0]['season_name'],
-              cardTitle: "",
-              btnTitle: "Watch More",
-             
-              heigthoflist: SizeConfig.blockSizeVertical * 30,
-              onbtnTap: () {
-               
-                  Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          WatchmoreVideoEpisode(
-                                            apiurl: API.getepisode_season_gallery,
-                                            season: GlobalLists.seasonlistwithepisode[index].list[0]['url'],
-                                            title: GlobalLists.seasonlistwithepisode[index].list[0]['season_name'],
-                                          )));
-              },
-              titleColor: Customcolor.pink_col,
-              titleImg: "assets/newImages/flowers-3.png",
-              list:
-               ListView.builder(
-                itemCount: GlobalLists.homevideolist.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index2) {
-            //      return Container();
-                  return Container(
-                    width: SizeConfig.blockSizeHorizontal*70,
-                    child: GestureDetector(
-                      onTap: () {
-                       
-                        var storykey = GlobalLists.seasonlistwithepisode[index].list[index2]['video_link']
-                            .substring(GlobalLists.seasonlistwithepisode[index].list[index2]['video_link'].length -
-                                11);
-                        ShowDialogs.youtubevideolink(
-                            "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-                       
-                      },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8, left: 10),
-                            child: Stack(
-                              children: [
-                                Container(
-                                  height: SizeConfig.blockSizeVertical * 20,
-                                  width: SizeConfig.blockSizeHorizontal * 80,//86,
-                                  child: FadeInImage.assetNetwork(
-                                    placeholder:
-                                        'assets/newImages/placeholder_3.jpg',
-                                    image:
-                                        "https://img.youtube.com/vi/${GlobalLists.seasonlistwithepisode[index].list[index2]['video_link'].substring(GlobalLists.seasonlistwithepisode[index].list[index2]['video_link'].length - 11)}/mqdefault.jpg",
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 20, top: 70),
-                                    child: Center(
-                                        child: Image.asset(
-                                            "assets/newImages/pause.png")),
-                                  ),
-                                ),
-                               
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8, left: 10,top: 5),
-                              child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-              
-                width: SizeConfig.blockSizeHorizontal*49,
-                child: Padding(
-                    padding: const EdgeInsets.only(left: 7),
-                    child: Text(
-                     GlobalLists.seasonlistwithepisode[index].list[index2]['episode_name'],
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w500),
-                      // fontSize: 17,
-                      // labelColor: Colors.white,
-                      // fontweight: FontWeight.w500,
-                    ),
-                ),
-              ),
-              Row(children: [
-GestureDetector(
-  onTap: ()
-  {
-     Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => EpisodeInformation(
-                        episodeid:  GlobalLists.seasonlistwithepisode[index].list[index2]['id'],
-                        )));
-    //  showDialog(
-    
-    //             context: context,
-    //             builder: (BuildContext context) {
-    //                 return AlertDialog(
-    //                   contentPadding: EdgeInsets.all(0),
-    //                   title: Container(child: Row(
-    //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //                     children: [
-    //                       Padding(
-    //                         padding: const EdgeInsets.all(0),
-    //                         child: Text('Episode Information',style: TextStyle(color:Customcolor.colorBlue,fontSize: 20),),
-    //                       ),
-    //                        GestureDetector(
-    //                          onTap: ()
-    //                          {
-    //                            Navigator.pop(context);
-    //                          }
-    //                          ,
-    //                          child: Icon(Icons.close)),
-    //                     ],
-    //                   ),),
-    //                   content: ShowDialogs.setupAlertDialoadContainer(context),
-    //                 );
-    //             }
-    //         );
-  },
-  child: Icon(Icons.info_rounded,color: Customcolor.colorBlue,)),
-SizedBox(width: 10,),
-                GestureDetector(
-                  onTap: ()
-                  {
-                     ScreenshotController screenshotController = ScreenshotController();
-   double imgHeight=50;
-    var sharelink=GlobalLists.seasonlistwithepisode[index].list[index2]['video_link'];
-                      showModalBottomSheet<void>(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.vertical(
-                                          top: Radius.circular(24.0)),
-                                    ),
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return Screenshot(
-                                        controller: screenshotController,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10, bottom: 10),
-                                                child: FormLabel(
-                                                  text: "Share",
-                                                  labelColor:
-                                                      Customcolor.pink_col,
-                                                  fontSize:
-                                                      ResponsiveFlutter.of(
-                                                              context)
-                                                          .fontSize(2.5),
-                                                  fontweight: FontWeight.w500,
-                                                ),
+                //         ListView.builder(
+                // shrinkWrap: true,
+                // physics: ScrollPhysics(),
+                // // physics:
+                // //     AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+                // scrollDirection: Axis.vertical,
+                // itemCount: GlobalLists.seasonlistwithepisode.length,
+                // itemBuilder: (context, index1) {
+                //   return
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    // physics:
+                    //     AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+                    scrollDirection: Axis.vertical,
+                    itemCount: GlobalLists.seasonlistwithepisode.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 10, top: 10),
+                        child: CustomHorizontalCardEpisode(
+                          index: 1,
+                          cardImage: "assets/newImages/gallery.png",
+                          cardsubtitle: GlobalLists.seasonlistwithepisode[index]
+                              .list[0]['season_name'],
+                          cardTitle: "",
+                          btnTitle: "Watch More",
+                          heigthoflist: SizeConfig.blockSizeVertical * 30,
+                          onbtnTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        WatchmoreVideoEpisode(
+                                          apiurl: API.getepisode_season_gallery,
+                                          season: GlobalLists
+                                              .seasonlistwithepisode[index]
+                                              .list[0]['url'],
+                                          title: GlobalLists
+                                              .seasonlistwithepisode[index]
+                                              .list[0]['season_name'],
+                                        )));
+                          },
+                          titleColor: Customcolor.pink_col,
+                          titleImg: "assets/newImages/flowers-3.png",
+                          list: ListView.builder(
+                            itemCount: GlobalLists
+                                .seasonlistwithepisode[index].list.length,
+                            //GlobalLists.homevideolist.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext context, int index2) {
+                              //      return Container();
+                              return Container(
+                                width: SizeConfig.blockSizeHorizontal * 70,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    var storykey = GlobalLists
+                                        .seasonlistwithepisode[index]
+                                        .list[index2]['video_link']
+                                        .substring(GlobalLists
+                                                .seasonlistwithepisode[index]
+                                                .list[index2]['video_link']
+                                                .length -
+                                            11);
+                                    ShowDialogs.youtubevideolink(
+                                        "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 8, left: 10),
+                                        child: Stack(
+                                          children: [
+                                            Container(
+                                              height:
+                                                  SizeConfig.blockSizeVertical *
+                                                      20,
+                                              width: SizeConfig
+                                                      .blockSizeHorizontal *
+                                                  80, //86,
+                                              child: FadeInImage.assetNetwork(
+                                                placeholder:
+                                                    'assets/newImages/placeholder_3.jpg',
+                                                image:
+                                                    "https://img.youtube.com/vi/${GlobalLists.seasonlistwithepisode[index].list[index2]['video_link'].substring(GlobalLists.seasonlistwithepisode[index].list[index2]['video_link'].length - 11)}/mqdefault.jpg",
+                                                fit: BoxFit.fill,
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10, bottom: 10),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    //
-                                                    GestureDetector(
-                                                      onTap: () async {
-                                                        print("on tap fb");
-                                                         await SocialSharePlugin
-                                                                .shareToFeedFacebookLink(
-                                                                quote: "",
-                                                                url: sharelink,
-                                                                onSuccess: (_) {
-                                                                  print(
-                                                                      'FACEBOOK SUCCESS');
-                                                                  return;
-                                                                },
-                                                                onCancel: () {
-                                                                  print(
-                                                                      'FACEBOOK CANCELLED');
-                                                                  return;
-                                                                },
-                                                                onError:
-                                                                    (error) {
-                                                                  print(
-                                                                      'FACEBOOK ERROR $error');
-                                                                  return;
-                                                                },
-                                                              );
-                                                      },
-                                                      child: Image.asset(
-                                                        "assets/newImages/facebooknew.png",
-                                                        height: imgHeight,
-                                                        width: imgHeight,
-                                                      ),
-                                                    ),
-
-                                                    SizedBox(
-                                                      width: 7,
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () async {
-                                                         await SocialSharePlugin
-                                                                .shareToTwitterLink(
-                                                                    text: "",
-                                                                    url:
-                                                                        sharelink,
-                                                                    onSuccess:
-                                                                        (_) {
-                                                                      print(
-                                                                          'TWITTER SUCCESS');
-                                                                      return;
-                                                                    },
-                                                                    onCancel:
-                                                                        () {
-                                                                      print(
-                                                                          'TWITTER CANCELLED');
-                                                                      return;
-                                                                    });
-                                                      },
-                                                      child: Image.asset(
-                                                        "assets/newImages/twitternew.png",
-                                                        height: imgHeight,
-                                                        width: imgHeight,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 7,
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () async {
-                                                        ShowDialogs
-                                                                .launchLinkdin(
-                                                                    sharelink);
-                                                      },
-                                                      child: Image.asset(
-                                                        "assets/newImages/linkedinnew.png",
-                                                        height: imgHeight,
-                                                        width: imgHeight,
-                                                      ),
-                                                    ),
-                                                      SizedBox(
-                                                      width: 7,
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        ShowDialogs
-                                                                .launchWhatsappshare(
-                                                                    sharelink);
-
-                                                        // :
-                                                        //  SocialShare
-                                                        //     .shareWhatsapp(
-                                                        //     sharelink,
-                                                        //   ).then((data) {
-                                                        //     print(data);
-                                                        //   });
-                                                      },
-                                                      child: Image.asset(
-                                                        "assets/newImages/whatsappnew.png",
-                                                        height: imgHeight,
-                                                        width: imgHeight,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
+                                            ),
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 20, top: 70),
+                                                child: Center(
+                                                    child: Image.asset(
+                                                        "assets/newImages/pause.png")),
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
-                                      );
-                                    },
-                                  ).whenComplete(() {});
-                  },
-                  child: Image.asset("assets/newImages/share.png",width: 20,height: 20,)),
-                SizedBox(width: 5,),
-              ],)
-            ],
-          ),
-                            ),
-                        
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          );
-          }
-          ),
-          
-          //}
-          //),
-                  //  
-                
-                
+                                      ),
+                                      SizedBox(
+                                        height: 2,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 8, left: 10, top: 5),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              width: SizeConfig
+                                                      .blockSizeHorizontal *
+                                                  49,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 7),
+                                                child: Text(
+                                                  GlobalLists
+                                                          .seasonlistwithepisode[
+                                                              index]
+                                                          .list[index2]
+                                                      ['episode_name'],
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 3,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black87,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  // fontSize: 17,
+                                                  // labelColor: Colors.white,
+                                                  // fontweight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                            Row(
+                                              children: [
+                                                GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (BuildContext
+                                                                      context) =>
+                                                                  EpisodeInformation(
+                                                                    episodeid: GlobalLists
+                                                                        .seasonlistwithepisode[
+                                                                            index]
+                                                                        .list[index2]['id'],
+                                                                  )));
+                                                      //  showDialog(
+
+                                                      //             context: context,
+                                                      //             builder: (BuildContext context) {
+                                                      //                 return AlertDialog(
+                                                      //                   contentPadding: EdgeInsets.all(0),
+                                                      //                   title: Container(child: Row(
+                                                      //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      //                     children: [
+                                                      //                       Padding(
+                                                      //                         padding: const EdgeInsets.all(0),
+                                                      //                         child: Text('Episode Information',style: TextStyle(color:Customcolor.colorBlue,fontSize: 20),),
+                                                      //                       ),
+                                                      //                        GestureDetector(
+                                                      //                          onTap: ()
+                                                      //                          {
+                                                      //                            Navigator.pop(context);
+                                                      //                          }
+                                                      //                          ,
+                                                      //                          child: Icon(Icons.close)),
+                                                      //                     ],
+                                                      //                   ),),
+                                                      //                   content: ShowDialogs.setupAlertDialoadContainer(context),
+                                                      //                 );
+                                                      //             }
+                                                      //         );
+                                                    },
+                                                    child: Icon(
+                                                      Icons.info_rounded,
+                                                      color:
+                                                          Customcolor.colorBlue,
+                                                    )),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                GestureDetector(
+                                                    onTap: () {
+                                                      ScreenshotController
+                                                          screenshotController =
+                                                          ScreenshotController();
+                                                      double imgHeight = 50;
+                                                      var sharelink = GlobalLists
+                                                              .seasonlistwithepisode[
+                                                                  index]
+                                                              .list[index2]
+                                                          ['video_link'];
+                                                      showModalBottomSheet<
+                                                          void>(
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.vertical(
+                                                                  top: Radius
+                                                                      .circular(
+                                                                          24.0)),
+                                                        ),
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return Screenshot(
+                                                            controller:
+                                                                screenshotController,
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .all(
+                                                                      10.0),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .only(
+                                                                        top: 10,
+                                                                        bottom:
+                                                                            10),
+                                                                    child:
+                                                                        FormLabel(
+                                                                      text:
+                                                                          "Share",
+                                                                      labelColor:
+                                                                          Customcolor
+                                                                              .pink_col,
+                                                                      fontSize: ResponsiveFlutter.of(
+                                                                              context)
+                                                                          .fontSize(
+                                                                              2.5),
+                                                                      fontweight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .only(
+                                                                        top: 10,
+                                                                        bottom:
+                                                                            10),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        //
+                                                                        GestureDetector(
+                                                                          onTap:
+                                                                              () async {
+                                                                            print("on tap fb");
+                                                                            await SocialSharePlugin.shareToFeedFacebookLink(
+                                                                              quote: "",
+                                                                              url: sharelink,
+                                                                              onSuccess: (_) {
+                                                                                print('FACEBOOK SUCCESS');
+                                                                                return;
+                                                                              },
+                                                                              onCancel: () {
+                                                                                print('FACEBOOK CANCELLED');
+                                                                                return;
+                                                                              },
+                                                                              onError: (error) {
+                                                                                print('FACEBOOK ERROR $error');
+                                                                                return;
+                                                                              },
+                                                                            );
+                                                                          },
+                                                                          child:
+                                                                              Image.asset(
+                                                                            "assets/newImages/facebooknew.png",
+                                                                            height:
+                                                                                imgHeight,
+                                                                            width:
+                                                                                imgHeight,
+                                                                          ),
+                                                                        ),
+
+                                                                        SizedBox(
+                                                                          width:
+                                                                              7,
+                                                                        ),
+                                                                        GestureDetector(
+                                                                          onTap:
+                                                                              () async {
+                                                                            await SocialSharePlugin.shareToTwitterLink(
+                                                                                text: "",
+                                                                                url: sharelink,
+                                                                                onSuccess: (_) {
+                                                                                  print('TWITTER SUCCESS');
+                                                                                  return;
+                                                                                },
+                                                                                onCancel: () {
+                                                                                  print('TWITTER CANCELLED');
+                                                                                  return;
+                                                                                });
+                                                                          },
+                                                                          child:
+                                                                              Image.asset(
+                                                                            "assets/newImages/twitternew.png",
+                                                                            height:
+                                                                                imgHeight,
+                                                                            width:
+                                                                                imgHeight,
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          width:
+                                                                              7,
+                                                                        ),
+                                                                        GestureDetector(
+                                                                          onTap:
+                                                                              () async {
+                                                                            ShowDialogs.launchLinkdin(sharelink);
+                                                                          },
+                                                                          child:
+                                                                              Image.asset(
+                                                                            "assets/newImages/linkedinnew.png",
+                                                                            height:
+                                                                                imgHeight,
+                                                                            width:
+                                                                                imgHeight,
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          width:
+                                                                              7,
+                                                                        ),
+                                                                        GestureDetector(
+                                                                          onTap:
+                                                                              () {
+                                                                            ShowDialogs.launchWhatsappshare(sharelink);
+
+                                                                            // :
+                                                                            //  SocialShare
+                                                                            //     .shareWhatsapp(
+                                                                            //     sharelink,
+                                                                            //   ).then((data) {
+                                                                            //     print(data);
+                                                                            //   });
+                                                                          },
+                                                                          child:
+                                                                              Image.asset(
+                                                                            "assets/newImages/whatsappnew.png",
+                                                                            height:
+                                                                                imgHeight,
+                                                                            width:
+                                                                                imgHeight,
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).whenComplete(() {});
+                                                    },
+                                                    child: Image.asset(
+                                                      "assets/newImages/share.png",
+                                                      width: 20,
+                                                      height: 20,
+                                                    )),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      );
+                    }),
+
+                //}
+                //),
+                //
 
                 Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
@@ -471,13 +538,10 @@ SizedBox(width: 10,),
                 ),
                 Bottomcardlink(),
                 // Bottomcardlink()
-              ])
-              ),
+              ])),
     );
   }
 
- 
-  
   Widget merckmorethanmother() {
     return Padding(
       padding: const EdgeInsets.only(
@@ -576,9 +640,6 @@ SizedBox(width: 10,),
     );
   }
 
-
-
- 
   getseasonepisode() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -589,13 +650,13 @@ SizedBox(width: 10,),
         context,
         API.get_season_episodes,
         (response) async {
-  GetSeasonEpisodeResponse resp = response;
+          GetSeasonEpisodeResponse resp = response;
           print(response);
           print('Resp : $resp');
           setState(() {
-             GlobalLists.seasonlistwithepisode.clear();
+            GlobalLists.seasonlistwithepisode.clear();
           });
-        
+
           if (resp.success == "True") {
             setState(() {
               GlobalLists.seasonlistwithepisode = resp.data.seasons;

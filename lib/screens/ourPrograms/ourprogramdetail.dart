@@ -10,6 +10,8 @@ import 'package:merckfoundation22dec/screens/ourPrograms/firstladiesinitiativesu
 import 'package:merckfoundation22dec/screens/ourPrograms/localSogsandChildrenStories.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/mmtmprogram.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/motherambassadar.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforcapacityAdv.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforhypertensionbluepoint.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/strategy.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Merckcapabilityadvancement.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Mercksubstantionalinitiative.dart';
@@ -21,6 +23,8 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
+
+import 'ourprogram_mother_scollershiop.dart';
 
 class OurProgram extends StatefulWidget {
   OurProgram({Key key, this.title, this.indexpass}) : super(key: key);
@@ -38,25 +42,29 @@ class _MyHomePageState extends State<OurProgram> {
 
   bool useAsFloatingActionButton = true;
   List programvalue = [
-    'About Merck Foundation "More Than A Mother" Movement',//"About Merck Foundation More Than A Mother",
+    'About Merck Foundation "More Than A Mother" Movement', //"About Merck Foundation More Than A Mother",
     "Strategy",
-   'Merck Foundation "More Than a Mother" Ambassadors', // "Merck Foundation More Than a Mother Ambassadors",
+    'Merck Foundation "More Than a Mother" Ambassadors', // "Merck Foundation More Than a Mother Ambassadors",
+    "Merck Foundation More Than a Mother Scholarships",
     "Merck Foundation Fertility and Embryology Training Program",
+
     "Merck Foundation Community Awareness and Awards Program",
     "Empowering Berna",
     "Local Songs and Children Stories",
-    "Videos"
+    "Videos",
   ];
 
   List programvalueforStem = [
-   'About Merck Foundation "More Than A Mother" Movement', // "About Merck Foundation More Than A Mother",
+    'About Merck Foundation "More Than A Mother" Movement', // "About Merck Foundation More Than A Mother",
     "Strategy",
     "Merck More Than a Mother Ambassadors",
+    "Merck Foundation More Than a Mother Scholarships",
+
     "Merck Fertility and Embryology Training Program",
     "Community Awareness and Awards Program",
     "Empowering Berna",
     "Local Songs and Children Stories",
-    "Videos"
+    "Videos",
   ];
 
   _MyHomePageState(this.indexpass);
@@ -68,6 +76,7 @@ class _MyHomePageState extends State<OurProgram> {
 
   @override
   Widget build(BuildContext context) {
+    print('index pass $indexpass');
     return Scaffold(
         body: AdvFabBottomBarBody(
           screens: <Widget>[
@@ -76,7 +85,7 @@ class _MyHomePageState extends State<OurProgram> {
                 : indexpass == 1
                     ? MerckCanceraccess()
                     : indexpass == 2
-                        ? MerckCapabilityadvancement()
+                        ? ourProgramdetailsforcapacityAdv() //MerckCapabilityadvancement()s
                         : indexpass == 4
                             ? Merckstemprogram()
                             : indexpass == 5
@@ -89,32 +98,36 @@ class _MyHomePageState extends State<OurProgram> {
                                             ? MerckFertility()
                                             : indexpass == 12
                                                 ? FirstLadiesInitiativeDetails()
-                                                : indexpass == 7
-                                                    ?
-                                                    // MMTMProgram()
-                                                    //same api that is call frpm mmtm video view more
-                                                    WatchmoreVideolibrary(
-                                                        apiurl:
-                                                            API.watchvideommtm,
-                                                        headertitle:
-                                                          'Merck Foundation "More Than A Mother" Movement Videos',
+                                                : indexpass == 16
+                                                    ? OurProgramMotherScollership()
+                                                    : indexpass == 7
+                                                        ?
+                                                        // MMTMProgram()
+                                                        //same api that is call frpm mmtm video view more
+                                                        WatchmoreVideolibrary(
+                                                            apiurl: API
+                                                                .watchvideommtm,
+                                                            headertitle:
+                                                                'Merck Foundation "More Than A Mother" Movement Videos',
                                                             //  "Merck Foundation More Than A Mother Videos",
-                                                        sharelink: Constantstring
-                                                            .sharewatchallvideovideommtm,
-                                                      )
-                                                    : indexpass == 6
-                                                        ? LocalSongsandChildrenStories()
-                                                        : indexpass == 8
-                                                            ? AboutMerckMother()
-                                                            : indexpass == 13
-                                                                ? MerckSubstantional()
+                                                            sharelink:
+                                                                Constantstring
+                                                                    .sharewatchallvideovideommtm,
+                                                          )
+                                                        : indexpass == 6
+                                                            ? LocalSongsandChildrenStories()
+                                                            : indexpass == 8
+                                                                ? AboutMerckMother()
                                                                 : indexpass ==
-                                                                        14
-                                                                    ? EducatingLinda()
+                                                                        13
+                                                                    ? ourProgramdetailsforhypertensionbluepoint() // MerckSubstantional()
                                                                     : indexpass ==
-                                                                            15
-                                                                        ? CommunityAwareness()
-                                                                        : Container()
+                                                                            14
+                                                                        ? EducatingLinda()
+                                                                        : indexpass ==
+                                                                                15
+                                                                            ? CommunityAwareness()
+                                                                            : Container()
           ],
           controller: mabialaFABController,
         ),
@@ -278,13 +291,15 @@ class _MyHomePageState extends State<OurProgram> {
                                                     indexpass: 10,
                                                   )));
                                     } else if (index == 3) {
+                                      print('index value 3');
                                       //fertility
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (BuildContext context) =>
                                                   OurProgram(
-                                                    indexpass: 11,
+                                                    // indexpass: 11,
+                                                    indexpass: 16,
                                                   )));
                                     } else if (index == 4) {
                                       //community
@@ -321,6 +336,16 @@ class _MyHomePageState extends State<OurProgram> {
                                               builder: (BuildContext context) =>
                                                   OurProgram(
                                                     indexpass: 7,
+                                                  )));
+                                    } else if (index == 8) {
+                                      //video
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  OurProgram(
+                                                    // indexpass: 16,
+                                                    indexpass: 11,
                                                   )));
                                     }
                                   },

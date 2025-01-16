@@ -116,7 +116,8 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                       )));
         },
         index: 1,
-        title:"Merck Foundation Nationwide Diabetes/Hypertension Blue Points Program",// "Merck Foundation Sustainability Initiative",
+        title:
+            "Merck Foundation Nationwide Diabetes & Hypertension Blue Points Program", // "Merck Foundation Sustainability Initiative",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -186,12 +187,12 @@ class MerckSubstantionalState extends State<MerckSubstantional>
                 SizedBox(
                   height: 10,
                 ),
-followUs(),
-SizedBox(
+                followUs(),
+                SizedBox(
                   height: 10,
                 ),
 
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
                   child: Align(
                     alignment: Alignment.topRight,
@@ -211,7 +212,7 @@ SizedBox(
   }
 
   double imgHeight = 30;
-double imgHeightfb = 24;
+  double imgHeightfb = 24;
   Widget followUs() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
@@ -224,13 +225,16 @@ double imgHeightfb = 24;
             children: [
               Row(
                 children: [
-                  Text("Follow Merck Foundation on",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 11,//ResponsiveFlutter.of(context).fontSize(1.7),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: AppFonts.normal,
-                          color: Colors.black87),)
+                  Text(
+                    "Follow Merck Foundation on",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize:
+                            11, //ResponsiveFlutter.of(context).fontSize(1.7),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: AppFonts.normal,
+                        color: Colors.black87),
+                  )
                 ],
               ),
               SizedBox(
@@ -261,9 +265,8 @@ double imgHeightfb = 24;
                       //     ? ShowDialogs.followuslink(
                       //         Constantstring.followfacebook,
                       //         Constantstring.followmsg):
-                           ShowDialogs.launchFacebook(
-                              Constantstring.followfacebook,
-                              "1053979038068008");
+                      ShowDialogs.launchFacebook(
+                          Constantstring.followfacebook, "1053979038068008");
                     },
                     child: Image.asset(
                       "assets/newImages/facebooknew.png",
@@ -324,6 +327,20 @@ double imgHeightfb = 24;
                       width: imgHeight,
                     ),
                   ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      ShowDialogs.openThreadsApp(Constantstring.followthreas);
+                    },
+                    child: Image.asset(
+                      "assets/newImages/threads.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+
                   // SizedBox(
                   //   width: 7,
                   // ),
@@ -1666,7 +1683,8 @@ double imgHeightfb = 24;
                               Html(
                                 data:
                                     """${GlobalLists.merckcancerawardlist[index].title} """,
-                                onLinkTap: (url) {
+                                onLinkTap:
+                                    (url, renderContext, attributes, element) {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
                                 },
@@ -1676,7 +1694,7 @@ double imgHeightfb = 24;
                                       color: Customcolor.pink_col,
                                       fontSize: FontSize.large,
                                       fontWeight: FontWeight.w500),
-                                       "tr": Customcolor.tableboderstyle(),
+                                  "tr": Customcolor.tableboderstyle(context),
                                 },
                               ),
                               SizedBox(
@@ -1732,12 +1750,12 @@ double imgHeightfb = 24;
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
+            onLinkTap: (url, renderContext, attributes, element) {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
             style: {
-               "tr": Customcolor.tableboderstyle(),
+              "tr": Customcolor.tableboderstyle(context),
             },
           ),
         );
@@ -2407,7 +2425,8 @@ double imgHeightfb = 24;
         //   );
         //   listoftabwiget.add(getMMTMS(context));
         // }
-        if (typewidetofrightsection[i] == "digital_library") {
+        if (typewidetofrightsection[i] == "digital_library" &&
+            GlobalLists.homedigitallib.length > 0) {
           tabs.add(
             new Tab(
               child: Digitaltext(),

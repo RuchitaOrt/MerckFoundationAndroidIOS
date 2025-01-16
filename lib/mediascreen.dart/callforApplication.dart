@@ -371,9 +371,9 @@ class CallApplicationState extends State<CallforApplication>
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 physics: ScrollPhysics(),
-                child: new DotsIndicator(
+                child: DotsIndicator(
                   dotsCount: GlobalLists.pastevent.length,
-                  position: double.parse("$_current"),
+                  position:  double.parse("$_current"),
                   decorator: DotsDecorator(
                     size: const Size.square(9.0),
                     activeSize: const Size(25.0, 9.0),

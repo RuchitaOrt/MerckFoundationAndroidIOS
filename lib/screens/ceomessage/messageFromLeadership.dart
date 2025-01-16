@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -286,7 +288,8 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                               Center(
                                 child: Html(
                                   data: """${product.shortDescription} """,
-                                  onLinkTap: (url) {
+                                  onLinkTap: (url, renderContext, attributes,
+                                      element) {
                                     print("Opening $url...");
                                     ShowDialogs.launchURL(url);
                                   },
@@ -295,7 +298,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                       textAlign: TextAlign.center,
                                       // fontSize: FontSize(15.0)
                                     ),
-                                     "tr": Customcolor.tableboderstyle(),
+                                    "tr": Customcolor.tableboderstyle(context),
                                   },
                                   // style: {
                                   //   "body": Style(
@@ -323,12 +326,14 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                     ),
                                     Html(
                                       data: """${product.pageContent} """,
-                                      onLinkTap: (url) {
+                                      onLinkTap: (url, renderContext,
+                                          attributes, element) {
                                         print("Opening $url...");
                                         ShowDialogs.launchURL(url);
                                       },
                                       style: {
-                                         "tr": Customcolor.tableboderstyle(),
+                                        "tr": Customcolor.tableboderstyle(
+                                            context),
                                       },
                                     ),
                                     SizedBox(height: 10.0),

@@ -76,7 +76,7 @@ class DetailpageceoState extends State<Detailpageceo>
                       children: [
                         Html(
                           data: """${widget.list[widget.index].leaderLang} """,
-                          onLinkTap: (url) {
+                          onLinkTap: (url, renderContext, attributes, element) {
                             print("Opening $url...");
                             ShowDialogs.launchURL(url);
                           },
@@ -84,7 +84,7 @@ class DetailpageceoState extends State<Detailpageceo>
                             "body": Style(
                               textAlign: TextAlign.right,
                             ),
-                             "tr": Customcolor.tableboderstyle(),
+                            "tr": Customcolor.tableboderstyle(context),
                           },
                         ),
                         Center(
@@ -106,7 +106,8 @@ class DetailpageceoState extends State<Detailpageceo>
                           child: Html(
                             data:
                                 """${widget.list[widget.index].leaderName} """,
-                            onLinkTap: (url) {
+                            onLinkTap:
+                                (url, renderContext, attributes, element) {
                               print("Opening $url...");
                               ShowDialogs.launchURL(url);
                             },
@@ -116,7 +117,7 @@ class DetailpageceoState extends State<Detailpageceo>
                                   color: Customcolor.violet_col,
                                   fontWeight: FontWeight.bold,
                                   fontSize: FontSize.larger),
-                                   "tr": Customcolor.tableboderstyle(),
+                              "tr": Customcolor.tableboderstyle(context),
                             },
                           ),
                         ),
@@ -124,13 +125,14 @@ class DetailpageceoState extends State<Detailpageceo>
                           child: Html(
                             data:
                                 """${widget.list[widget.index].shortBiodata} """,
-                            onLinkTap: (url) {
+                            onLinkTap:
+                                (url, renderContext, attributes, element) {
                               print("Opening $url...");
                               ShowDialogs.launchURL(url);
                             },
                             style: {
                               "body": Style(textAlign: TextAlign.center),
-                               "tr": Customcolor.tableboderstyle(),
+                              "tr": Customcolor.tableboderstyle(context),
                             },
                           ),
                         ),
@@ -151,12 +153,13 @@ class DetailpageceoState extends State<Detailpageceo>
                               Html(
                                 data:
                                     """${widget.list[widget.index].detailBiodata} """,
-                                onLinkTap: (url) {
+                                onLinkTap:
+                                    (url, renderContext, attributes, element) {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
                                 },
                                 style: {
-                                   "tr": Customcolor.tableboderstyle(),
+                                  "tr": Customcolor.tableboderstyle(context),
                                 },
                               ),
                               SizedBox(height: 10.0),

@@ -9,6 +9,7 @@ import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
+import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
@@ -33,7 +34,7 @@ class WatchDigitalLibrary extends StatefulWidget {
 class _DigitalLibraryState extends State<WatchDigitalLibrary> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   DigitalProgramResponse resp;
-
+  final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
   ScrollController _sc = new ScrollController();
 
   int totalcount = 10;
@@ -53,7 +54,20 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey1,
+      endDrawer: Theme(
+        data: Theme.of(context)
+            .copyWith(canvasColor: Colors.white, primaryColor: Colors.white),
+        child: AppDrawerfilter(
+          index: 4,
+        ),
+      ),
       appBar: InnerCustomAppBar(
+        onTapvalfilter: () {
+          print("videokk");
+          // _scaffoldKey1.currentState.openDrawer();
+          _scaffoldKey1.currentState.openEndDrawer();
+        },
         onTapval: () {
           // Navigator.push(
           //     context,
@@ -68,6 +82,8 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
         title: "Digital Library",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",
+        forfilterindes: 4,
+//  trallingImg1: "assets/newImages/filter.png",
         trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
@@ -87,7 +103,8 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                           _isLoading == false)
                       ? Center(
                           child: Container(
-                            child: Center(child: Text(Constantstring.emptyData)),
+                            child:
+                                Center(child: Text(Constantstring.emptyData)),
                           ),
                         )
                       : ListView(
@@ -132,7 +149,8 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                                         child: Container(
                                           color: Colors.transparent,
                                           width:
-                                              SizeConfig.blockSizeHorizontal * 50,
+                                              SizeConfig.blockSizeHorizontal *
+                                                  50,
                                           child: Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
@@ -140,14 +158,15 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                                                 CrossAxisAlignment.start,
                                             children: <Widget>[
                                               Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
                                                 child: Container(
                                                   width: SizeConfig
                                                           .blockSizeHorizontal *
                                                       100,
-                                                  height:
-                                                      SizeConfig.blockSizeVertical *
-                                                          16,
+                                                  height: SizeConfig
+                                                          .blockSizeVertical *
+                                                      16,
                                                   // width:
                                                   //     SizeConfig.blockSizeHorizontal *
                                                   //         100,
@@ -155,24 +174,27 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
 
                                                   decoration: BoxDecoration(
                                                     borderRadius:
-                                                        BorderRadius.circular(5),
+                                                        BorderRadius.circular(
+                                                            5),
                                                     // border: Border.all(
                                                     //   width: 1,
                                                     // ),
                                                     image: new DecorationImage(
-                                                      image: new NetworkImage(GlobalLists
-                                                              .programdigitalcontentbaseurl +
+                                                      image: new NetworkImage(
                                                           GlobalLists
-                                                              .digitallibraryviewlist[
-                                                                  index]
-                                                              .image),
+                                                                  .programdigitalcontentbaseurl +
+                                                              GlobalLists
+                                                                  .digitallibraryviewlist[
+                                                                      index]
+                                                                  .image),
                                                       fit: BoxFit.contain,
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.all(4.0),
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
                                                 child: Center(
                                                   child: Text(
                                                     GlobalLists
@@ -180,12 +202,13 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                                                             index]
                                                         .title,
                                                     textAlign: TextAlign.center,
-                                                    overflow: TextOverflow.ellipsis,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize:
-                                                            ResponsiveFlutter.of(
-                                                                    context)
+                                                            ResponsiveFlutter
+                                                                    .of(context)
                                                                 .fontSize(1.4),
                                                         fontWeight:
                                                             FontWeight.w500),
@@ -205,45 +228,33 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                             _isLoading
                                 ? Center(
                                     child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 10, bottom: 10),
+                                    padding: const EdgeInsets.only(
+                                        top: 10, bottom: 10),
                                     child: CircularProgressIndicator(),
                                   ))
                                 : Container()
                           ],
                         ),
-
-                          SizedBox(
-                  height: 10,
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
                 ),
-
-
-                 Padding(
-                    padding: const EdgeInsets.only(right: 0, left: 0),
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Image.asset(
-                        "assets/newImages/flowers_footer.png",
-                        height: 170,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                 
-     
-
+              ),
+              SizedBox(
+                height: 40,
+              ),
             ],
           ),
-
-           Align(
-             alignment: Alignment.bottomCenter,
-   child: Bottomcardlink()),
+          Align(alignment: Alignment.bottomCenter, child: Bottomcardlink()),
         ],
-
-          
-
       ),
     );
   }
@@ -281,7 +292,6 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                     });
 
                     // GlobalLists.newsLettersList.add(resp.data.list);
-
                   }
                 } else {
                   for (int i = offset; i < totalcount; i++) {
@@ -295,7 +305,6 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                     });
 
                     // GlobalLists.newsLettersList.add(resp.data.list);
-
                   }
                 }
 

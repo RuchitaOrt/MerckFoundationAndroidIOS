@@ -21,7 +21,7 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
-
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart' as html;
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -104,12 +104,6 @@ class OurProgramsDetailsState extends State<MerckFellowship>
       appBar: InnerCustomAppBar(
         onTapval: () {
           Navigator.pop(context);
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (BuildContext context) => Dashboard(
-          //               index: 1,
-          //             )));
         },
         index: 2,
         sharelink: Constantstring.cancerfellowship,
@@ -149,51 +143,6 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                 SizedBox(
                   height: 8,
                 ),
-                //     Bottomcardlink()
-                // Visibility(
-                //   visible: isrightSectionLoaded,
-                //   replacement: Column(
-                //     children: [
-                //       SizedBox(
-                //         height: 20,
-                //       ),
-                //       CircularProgressIndicator()
-                //     ],
-                //   ),
-                //   child: Container(
-                //     height: 450,
-                //     //color: Colors.amber,
-                //     child: Column(
-                //       children: [
-                //         TabBar(
-                //           isScrollable: true,
-                //           unselectedLabelColor: Colors.grey,
-                //           labelColor: Colors.black,
-                //           indicatorSize: TabBarIndicatorSize.tab,
-                //           indicator: new BubbleTabIndicator(
-                //             indicatorHeight: 35.0,
-                //             indicatorRadius: 5,
-                //             indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
-                //             tabBarIndicatorSize: TabBarIndicatorSize.tab,
-                //           ),
-                //           tabs: tabs,
-                //           controller: _tabController,
-                //         ),
-                //         Expanded(
-                //           flex: 3,
-                //           child: TabBarView(
-                //               physics: ScrollPhysics(),
-                //               controller: _tabController,
-                //               children: tablist()),
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 10,
-                // ),
-
                 Padding(
                   padding: const EdgeInsets.only(right: 0, left: 0),
                   child: Align(
@@ -666,6 +615,8 @@ class OurProgramsDetailsState extends State<MerckFellowship>
           Column(
             children: <Widget>[
               Container(
+                // child: html.HtmlWidget("${GlobalLists.sliderurl}")
+
                 child: carouselSlider = CarouselSlider(
                   options: CarouselOptions(
                     viewportFraction: 1.0,
@@ -685,75 +636,11 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                           cardTitle: product['image_title'],
                           subTitle: product['image_desc'],
                         );
-                        //  new Container(
-                        //   decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(8),
-                        //       image: DecorationImage(
-                        //           image: NetworkImage(
-                        //               "http://merckfoundation.org/merck/public/uploads/slider/" +
-                        //                   product['image']),
-                        //           fit: BoxFit.cover)),
-                        //   width: SizeConfig.blockSizeHorizontal * 100,
-                        //   child: Column(
-                        //     mainAxisAlignment: MainAxisAlignment.end,
-                        //     children: <Widget>[
-                        //       Padding(
-                        //         padding:
-                        //             const EdgeInsets.only(right: 0, bottom: 15),
-                        //         child: Container(
-                        //           color: Colors.white.withOpacity(0.5),
-                        //           width: SizeConfig.blockSizeHorizontal * 100,
-                        //           child: Padding(
-                        //             padding: const EdgeInsets.only(
-                        //                 left: 10, right: 10, top: 5, bottom: 5),
-                        //             child: Column(
-                        //               mainAxisAlignment:
-                        //                   MainAxisAlignment.center,
-                        //               children: <Widget>[
-                        //                 FormLabel(
-                        //                   text: product['image_title'],
-                        //                   labelColor: Customcolor.pink_col,
-                        //                   fontSize:
-                        //                       ResponsiveFlutter.of(context)
-                        //                           .fontSize(1.4),
-                        //                   maxLines: 2,
-                        //                   fontweight: FontWeight.w700,
-                        //                 ),
-                        //                 SizedBox(
-                        //                   height: 2,
-                        //                 ),
-                        //                 FormLabel(
-                        //                   text: product['image_desc'],
-                        //                   labelColor: Customcolor.pink_col,
-                        //                   fontSize:
-                        //                       ResponsiveFlutter.of(context)
-                        //                           .fontSize(1.2),
-                        //                   fontweight: FontWeight.w500,
-                        //                 ),
-                        //               ],
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // );
                       },
                     );
                   }).toList(),
                 ),
               ),
-              // new DotsIndicator(
-              //   dotsCount: _productsAvailable.length,
-              //   position: double.parse("$_current"),
-              //   decorator: DotsDecorator(
-              //     size: const Size.square(9.0),
-              //     activeSize: const Size(18.0, 9.0),
-              //     activeColor: Customcolor.colorBlue,
-              //     activeShape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(5.0)),
-              //   ),
-              // ),
             ],
           ),
         ],
@@ -780,6 +667,8 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                 getprogramgallery();
               },
               list: ListView.builder(
+                shrinkWrap: true,
+                physics: BouncingScrollPhysics(),
                 itemCount: GlobalLists.homegallerylist.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
@@ -820,19 +709,6 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      // Container(
-                                      //   width:
-                                      //       SizeConfig.blockSizeHorizontal * 80,
-                                      //   child: Text(
-                                      //     GlobalLists.homegallerylist[index].title,
-                                      //     overflow: TextOverflow.ellipsis,
-                                      //     style: TextStyle(
-                                      //         color: Colors.white,
-                                      //         fontSize: 14,
-                                      //         fontWeight: FontWeight.w700),
-                                      //     maxLines: 3,
-                                      //   ),
-                                      // ),
                                       SizedBox(
                                         height: 8,
                                       )
@@ -890,13 +766,6 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (BuildContext context) => VideoPlayer(
-                      //               videoUrl: GlobalLists
-                      //                   .homevideolist[index].videoLink,
-                      //             )));
                       var storykey = GlobalLists.homevideolist[index].videoLink
                           .substring(GlobalLists
                                   .homevideolist[index].videoLink.length -
@@ -925,43 +794,6 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              // Align(
-                              //   alignment: Alignment.bottomCenter,
-                              //   child: Padding(
-                              //     padding: const EdgeInsets.only(
-                              //         left: 10, right: 10, bottom: 10),
-                              //     child: Row(
-                              //       crossAxisAlignment: CrossAxisAlignment.end,
-                              //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              //       children: [
-                              //         Column(
-                              //           mainAxisAlignment: MainAxisAlignment.end,
-                              //           crossAxisAlignment:
-                              //               CrossAxisAlignment.start,
-                              //           children: [
-                              //             Container(
-                              //               width:
-                              //                   SizeConfig.blockSizeHorizontal * 80,
-                              //               child: Text(
-                              //                 GlobalLists
-                              //                     .homevideolist[index].videoDesc,
-                              //                 overflow: TextOverflow.ellipsis,
-                              //                 style: TextStyle(
-                              //                     color: Colors.white,
-                              //                     fontSize: 14,
-                              //                     fontWeight: FontWeight.w700),
-                              //                 maxLines: 3,
-                              //               ),
-                              //             ),
-                              //             SizedBox(
-                              //               height: 25,
-                              //             )
-                              //           ],
-                              //         ),
-                              //       ],
-                              //     ),
-                              //   ),
-                              // ),
                               Padding(
                                 padding: EdgeInsets.only(left: 120, top: 70),
                                 child: Center(
@@ -1001,17 +833,37 @@ class OurProgramsDetailsState extends State<MerckFellowship>
       }
       if (typewidet[i] == "content") {
         listofwiget.add(
-          Html(
-            data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
-              print("Opening $url...");
-              ShowDialogs.launchURL(url);
-            },
-            style: {
-               "tr": Customcolor.tableboderstyle(),
-            },
-          ),
-        );
+            html.HtmlWidget('${GlobalLists.homecontentlist[0].pageContent}')
+            // html.HtmlWidget(
+            //   '${GlobalLists.homecontentlist[0].pageContent}',
+            //   onTapUrl: (url) {
+            //     print("Opening $url...");
+            //     ShowDialogs.launchURL(url);
+            //   },
+            //   textStyle: TextStyle(fontSize: 16),
+            //   // Add any additional styling or configuration here
+            // ),
+
+            // Html(
+            //   data: """${GlobalLists.homecontentlist[0].pageContent} """,
+            //   onLinkTap: (url) {
+            //     print("Opening $url...");
+            //     ShowDialogs.launchURL(url);
+            //   },
+            //   style: {
+            //     "tr": Customcolor.tableboderstyle(context),
+            //   },
+            // ),
+
+            //     Html(
+            //   data: GlobalLists.homecontentlist[0].pageContent ?? "",
+            //   onLinkTap: (url) {
+            //     print("Opening $url...");
+            //     ShowDialogs.launchURL(url);
+            //   },
+            // )
+            );
+        //tables
       }
       if (typewidet[i] == "latest_updates") {
         listofwiget.add(
@@ -1184,7 +1036,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
 
                                     //textAlign: TextAlign.center,
                                     fontWeight: FontWeight.w500),
-                                     "tr": Customcolor.tableboderstyle(),
+                                "tr": Customcolor.tableboderstyle(context),
                               },
                             ),
                           ),
@@ -1203,19 +1055,9 @@ class OurProgramsDetailsState extends State<MerckFellowship>
 
                                     //textAlign: TextAlign.center,
                                     fontWeight: FontWeight.w500),
-                                     "tr": Customcolor.tableboderstyle(),
+                                "tr": Customcolor.tableboderstyle(context),
                               },
                             ),
-                            //  Text(
-                            //   GlobalLists
-                            //       .mmttestimoniallist[index].departmentName,
-                            //   overflow: TextOverflow.ellipsis,
-                            //   style: TextStyle(
-                            //       color: Colors.black87,
-                            //       fontSize: 14,
-                            //       fontWeight: FontWeight.w700),
-                            //   maxLines: 3,
-                            // ),
                           ),
                         ],
                       ),
@@ -1584,7 +1426,8 @@ class OurProgramsDetailsState extends State<MerckFellowship>
       // digitalLibrary(),
       // merckmorethanmother()
       for (int i = 0; i < typewidetofrightsection.length; i++) {
-        if (typewidetofrightsection[i] == "call_for_app") {
+        if (typewidetofrightsection[i] == "call_for_app" &&
+            GlobalLists.homecallforapp.length > 0) {
           tabs.add(
             new Tab(
               child: Callforapptext(),
@@ -1595,7 +1438,8 @@ class OurProgramsDetailsState extends State<MerckFellowship>
             getcallforapp(context),
           );
         }
-        if (typewidetofrightsection[i] == "mmtm") {
+        if (typewidetofrightsection[i] == "mmtm" &&
+            GlobalLists.homemmtm.length > 0) {
           tabs.add(
             new Tab(
               child: Merckmtmtext(),
@@ -1603,7 +1447,8 @@ class OurProgramsDetailsState extends State<MerckFellowship>
           );
           listoftabwiget.add(getMMTMS(context));
         }
-        if (typewidetofrightsection[i] == "digital_library") {
+        if (typewidetofrightsection[i] == "digital_library" &&
+            GlobalLists.homedigitallib.length > 0) {
           tabs.add(
             new Tab(
               child: Digitaltext(),
@@ -1744,6 +1589,8 @@ class OurProgramsDetailsState extends State<MerckFellowship>
         print(res);
         MerckFellowshipResponse homepageres =
             MerckFellowshipResponse.fromJson(res);
+
+        // print("it is HomePageres${homepageres.middleArea[0].content.list[0]}");
         GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
         slidersection = homepageres.sliderArea[0].slider.list;
         slidersection.forEach((element) {

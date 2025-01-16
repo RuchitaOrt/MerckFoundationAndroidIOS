@@ -5,6 +5,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/searchscreen/searchcategory.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:social_share_plugin/social_share_plugin.dart';
@@ -49,7 +50,7 @@ class InnerCustomAppBar extends PreferredSize {
     return Column(
       children: [
         Container(
-          height: 90,
+          height: 100,
           color: Customcolor.baby_blue,
           alignment: Alignment.center,
           child: Padding(
@@ -91,9 +92,9 @@ class InnerCustomAppBar extends PreferredSize {
                             child: Container(
                               child: Image.asset(
                                 "assets/newImages/drawer_img.png",
-                               // "assets/newImages/logoforheader.png",
+                                // "assets/newImages/logoforheader.png",
                                 // width: 200,
-                                height: 80,
+                                height: 100,
                               ),
                             ),
                           ),
@@ -183,29 +184,28 @@ class InnerCustomAppBar extends PreferredSize {
                                                         //             url:
                                                         //                 sharelink,
                                                         //             msg: "msg")
-                                                        //     : 
-                                                            
-                                                            await SocialSharePlugin
-                                                                .shareToFeedFacebookLink(
-                                                                quote: "",
-                                                                url: sharelink,
-                                                                onSuccess: (_) {
-                                                                  print(
-                                                                      'FACEBOOK SUCCESS');
-                                                                  return;
-                                                                },
-                                                                onCancel: () {
-                                                                  print(
-                                                                      'FACEBOOK CANCELLED');
-                                                                  return;
-                                                                },
-                                                                onError:
-                                                                    (error) {
-                                                                  print(
-                                                                      'FACEBOOK ERROR $error');
-                                                                  return;
-                                                                },
-                                                              );
+                                                        //     :
+
+                                                        await SocialSharePlugin
+                                                            .shareToFeedFacebookLink(
+                                                          quote: "",
+                                                          url: sharelink,
+                                                          onSuccess: (_) {
+                                                            print(
+                                                                'FACEBOOK SUCCESS');
+                                                            return;
+                                                          },
+                                                          onCancel: () {
+                                                            print(
+                                                                'FACEBOOK CANCELLED');
+                                                            return;
+                                                          },
+                                                          onError: (error) {
+                                                            print(
+                                                                'FACEBOOK ERROR $error');
+                                                            return;
+                                                          },
+                                                        );
                                                       },
                                                       child: Image.asset(
                                                         "assets/newImages/facebooknew.png",
@@ -227,23 +227,20 @@ class InnerCustomAppBar extends PreferredSize {
                                                         //             msg:
                                                         //                 "Share"):
 
-                                                             await SocialSharePlugin
-                                                                .shareToTwitterLink(
-                                                                    text: "",
-                                                                    url:
-                                                                        sharelink,
-                                                                    onSuccess:
-                                                                        (_) {
-                                                                      print(
-                                                                          'TWITTER SUCCESS');
-                                                                      return;
-                                                                    },
-                                                                    onCancel:
-                                                                        () {
-                                                                      print(
-                                                                          'TWITTER CANCELLED');
-                                                                      return;
-                                                                    });
+                                                        await SocialSharePlugin
+                                                            .shareToTwitterLink(
+                                                                text: "",
+                                                                url: sharelink,
+                                                                onSuccess: (_) {
+                                                                  print(
+                                                                      'TWITTER SUCCESS');
+                                                                  return;
+                                                                },
+                                                                onCancel: () {
+                                                                  print(
+                                                                      'TWITTER CANCELLED');
+                                                                  return;
+                                                                });
                                                       },
                                                       child: Image.asset(
                                                         "assets/newImages/twitternew.png",
@@ -264,10 +261,10 @@ class InnerCustomAppBar extends PreferredSize {
                                                         //             msg:
                                                         //                 sharelink)
                                                         //     :
-                                                            
-                                                             ShowDialogs
-                                                                .launchLinkdin(
-                                                                    sharelink);
+
+                                                        ShowDialogs
+                                                            .launchLinkdin(
+                                                                sharelink);
                                                       },
                                                       child: Image.asset(
                                                         "assets/newImages/linkedinnew.png",
@@ -285,9 +282,9 @@ class InnerCustomAppBar extends PreferredSize {
                                                         //             msg:
                                                         //                 sharelink)
                                                         //     :
-                                                             ShowDialogs
-                                                                .launchWhatsappshare(
-                                                                    sharelink);
+                                                        ShowDialogs
+                                                            .launchWhatsappshare(
+                                                                sharelink);
 
                                                         // :
                                                         //  SocialShare
@@ -367,28 +364,28 @@ class InnerCustomAppBar extends PreferredSize {
                                                     //         .shareToFacebook(
                                                     //             url: sharelink,
                                                     //             msg: "msg")
-                                                    //     : 
-                                                        
-                                                        await SocialSharePlugin
-                                                            .shareToFeedFacebookLink(
-                                                            quote: "",
-                                                            url: sharelink,
-                                                            onSuccess: (_) {
-                                                              print(
-                                                                  'FACEBOOK SUCCESS');
-                                                              return;
-                                                            },
-                                                            onCancel: () {
-                                                              print(
-                                                                  'FACEBOOK CANCELLED');
-                                                              return;
-                                                            },
-                                                            onError: (error) {
-                                                              print(
-                                                                  'FACEBOOK ERROR $error');
-                                                              return;
-                                                            },
-                                                          );
+                                                    //     :
+
+                                                    await SocialSharePlugin
+                                                        .shareToFeedFacebookLink(
+                                                      quote: "",
+                                                      url: sharelink,
+                                                      onSuccess: (_) {
+                                                        print(
+                                                            'FACEBOOK SUCCESS');
+                                                        return;
+                                                      },
+                                                      onCancel: () {
+                                                        print(
+                                                            'FACEBOOK CANCELLED');
+                                                        return;
+                                                      },
+                                                      onError: (error) {
+                                                        print(
+                                                            'FACEBOOK ERROR $error');
+                                                        return;
+                                                      },
+                                                    );
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/facebooknew.png",
@@ -407,21 +404,21 @@ class InnerCustomAppBar extends PreferredSize {
                                                     //         .shareToTwitter(
                                                     //             url: sharelink,
                                                     //             msg: "Share")
-                                                        // :
-                                                         await SocialSharePlugin
-                                                            .shareToTwitterLink(
-                                                                text: "",
-                                                                url: sharelink,
-                                                                onSuccess: (_) {
-                                                                  print(
-                                                                      'TWITTER SUCCESS');
-                                                                  return;
-                                                                },
-                                                                onCancel: () {
-                                                                  print(
-                                                                      'TWITTER CANCELLED');
-                                                                  return;
-                                                                });
+                                                    // :
+                                                    await SocialSharePlugin
+                                                        .shareToTwitterLink(
+                                                            text: "",
+                                                            url: sharelink,
+                                                            onSuccess: (_) {
+                                                              print(
+                                                                  'TWITTER SUCCESS');
+                                                              return;
+                                                            },
+                                                            onCancel: () {
+                                                              print(
+                                                                  'TWITTER CANCELLED');
+                                                              return;
+                                                            });
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/twitternew.png",
@@ -440,11 +437,10 @@ class InnerCustomAppBar extends PreferredSize {
                                                     //             url:
                                                     //                 "sharelink",
                                                     //             msg: sharelink)
-                                                    //     : 
-                                                        
-                                                        ShowDialogs
-                                                            .launchLinkdin(
-                                                                sharelink);
+                                                    //     :
+
+                                                    ShowDialogs.launchLinkdin(
+                                                        sharelink);
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/linkedinnew.png",
@@ -460,9 +456,9 @@ class InnerCustomAppBar extends PreferredSize {
                                                     //             base64Image: "",
                                                     //             msg: sharelink)
                                                     //     :
-                                                         ShowDialogs
-                                                            .launchWhatsappshare(
-                                                                sharelink);
+                                                    ShowDialogs
+                                                        .launchWhatsappshare(
+                                                            sharelink);
 
                                                     // :
                                                     //  SocialShare
@@ -632,18 +628,43 @@ class InnerCustomAppBar extends PreferredSize {
         ),
         titleshowingindex == "1"
             ? Container()
-            : Container(
-                height: 47,
-                color: Customcolor.colorVoilet,
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                    title,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+            : Flexible(
+                child: Container(
+                  height: 57,
+                  color: Customcolor.colorVoilet,
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: forfilterindes == 4
+                              ? SizeConfig.blockSizeHorizontal * 80
+                              : SizeConfig.blockSizeHorizontal * 90,
+                          child: Text(
+                            title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        forfilterindes == 4
+                            ? GestureDetector(
+                                onTap: onTapvalfilter,
+                                child: Padding(
+                                    padding: const EdgeInsets.only(right: 15),
+                                    child: Image.asset(
+                                      "assets/newImages/filter_white.png",
+                                      width: 25,
+                                      height: 25,
+                                    )),
+                              )
+                            : Container()
+                      ],
+                    ),
                   ),
                 ),
               )

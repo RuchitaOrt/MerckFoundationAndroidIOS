@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/model/our_gallery_detail_response.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';

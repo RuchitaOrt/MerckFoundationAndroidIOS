@@ -117,7 +117,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
         },
         index: 1,
         title:
-           "Merck Foundation Capacity Advancement Program",// "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Point Program",
+            "Merck Foundation Capacity Advancement Program", // "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Point Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -228,7 +228,7 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
   }
 
   double imgHeight = 30;
-double imgHeightfb = 24;
+  double imgHeightfb = 24;
   Widget followUs() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
@@ -339,6 +339,20 @@ double imgHeightfb = 24;
                     },
                     child: Image.asset(
                       "assets/newImages/flickr.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      ShowDialogs.openThreadsApp(Constantstring.followthreas);
+                    },
+                    child: Image.asset(
+                      "assets/newImages/threads.png",
                       height: imgHeight,
                       width: imgHeight,
                     ),
@@ -1636,8 +1650,8 @@ double imgHeightfb = 24;
                             WatchmoreVideolibrary(
                               apiurl: API.watchvideocapacity,
                               headertitle:
-                              "Merck Foundation Capacity Advancement Program",
-                                  // "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program Videos",
+                                  "Merck Foundation Capacity Advancement Program",
+                              // "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program Videos",
                               sharelink:
                                   Constantstring.sharewatchallvideocapaity,
                             )));
@@ -1791,7 +1805,8 @@ double imgHeightfb = 24;
                               Html(
                                 data:
                                     """${GlobalLists.merckcancerawardlist[index].title} """,
-                                onLinkTap: (url) {
+                                onLinkTap:
+                                    (url, renderContext, attributes, element) {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
                                 },
@@ -1801,7 +1816,7 @@ double imgHeightfb = 24;
                                       color: Customcolor.pink_col,
                                       fontSize: FontSize.large,
                                       fontWeight: FontWeight.w500),
-                                       "tr": Customcolor.tableboderstyle(),
+                                  "tr": Customcolor.tableboderstyle(context),
                                 },
                               ),
                               SizedBox(
@@ -1813,8 +1828,12 @@ double imgHeightfb = 24;
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      getawarddetail(GlobalLists
-                                          .merckcancerawardlist[index].pageUrl);
+                                      getawarddetail(
+                                          GlobalLists
+                                              .merckcancerawardlist[index]
+                                              .pageUrl,
+                                          GlobalLists
+                                              .merckcancerawardlist[index].id);
                                     },
                                     child: Container(
                                       width: 110,
@@ -1856,15 +1875,14 @@ double imgHeightfb = 24;
       if (typewidet[i] == "content") {
         listofwiget.add(
           Html(
-            data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
-              print("Opening $url...");
-              ShowDialogs.launchURL(url);
-            },
-            style:{
- "tr": Customcolor.tableboderstyle(),
-            }
-          ),
+              data: """${GlobalLists.homecontentlist[0].pageContent} """,
+              onLinkTap: (url, renderContext, attributes, element) {
+                print("Opening $url...");
+                ShowDialogs.launchURL(url);
+              },
+              style: {
+                "tr": Customcolor.tableboderstyle(context),
+              }),
         );
       }
       if (typewidet[i] == "latest_updates") {
@@ -2119,11 +2137,11 @@ double imgHeightfb = 24;
                               "body": Style(
                                   fontSize: FontSize(14.0),
                                   color: Colors.black87,
-                                  lineHeight: 1.0,
+                                  //   lineHeight: 1.0,
 
                                   //textAlign: TextAlign.center,
                                   fontWeight: FontWeight.w500),
-                                   "tr": Customcolor.tableboderstyle(),
+                              "tr": Customcolor.tableboderstyle(context),
                             },
                           ),
                           // SizedBox(
@@ -2136,11 +2154,11 @@ double imgHeightfb = 24;
                               "body": Style(
                                   fontSize: FontSize(14.0),
                                   color: Customcolor.colorBlue,
-                                  lineHeight: 1.0,
+                                  //   lineHeight: 1.0,
 
                                   //textAlign: TextAlign.center,
                                   fontWeight: FontWeight.w500),
-                                   "tr": Customcolor.tableboderstyle(),
+                              "tr": Customcolor.tableboderstyle(context),
                             },
                           ),
                         ],
@@ -2294,7 +2312,8 @@ double imgHeightfb = 24;
         //   );
         //   listoftabwiget.add(getMMTMS(context));
         // }
-        if (typewidetofrightsection[i] == "digital_library") {
+        if (typewidetofrightsection[i] == "digital_library" &&
+            GlobalLists.homedigitallib.length > 0) {
           tabs.add(
             new Tab(
               child: Digitaltext(),
@@ -2539,7 +2558,7 @@ double imgHeightfb = 24;
     }
   }
 
-  getawarddetail(String pageurl) async {
+  getawarddetail(String pageurl, String awardid) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -2564,6 +2583,7 @@ double imgHeightfb = 24;
                 MaterialPageRoute(
                     builder: (BuildContext context) => OurAwardDetail(
                           detaill: GlobalLists.awarddetallisting,
+                          awardid: awardid,
                         )));
           });
         } else {
@@ -2658,14 +2678,14 @@ double imgHeightfb = 24;
 //   String expandedName = "Upcoming Events";
 
 //   final List<Tab> tabs = <Tab>[];
-//   final CarouselController callAppCarouselController = CarouselController();
+//   final CarouselController  callAppCarouselController = CarouselController ();
 
-//   final CarouselController digitalLibraryCarouselController =
-//       CarouselController();
-//   final CarouselController mmtmCarouselController = CarouselController();
+//   final CarouselController  digitalLibraryCarouselController =
+//       CarouselController ();
+//   final CarouselController  mmtmCarouselController = CarouselController ();
 //   TabController _tabController;
 
-//   final CarouselController _controller = CarouselController();
+//   final CarouselController  _controller = CarouselController ();
 
 //   @override
 //   void initState() {
@@ -4342,7 +4362,7 @@ double imgHeightfb = 24;
 //                               Html(
 //                                 data:
 //                                     """${GlobalLists.merckcancerawardlist[index].title} """,
-//                                 onLinkTap: (url) {
+//                                     onLinkTap:(url) {
 //                                   print("Opening $url...");
 //                                   ShowDialogs.launchURL(url);
 //                                 },
@@ -4407,7 +4427,7 @@ double imgHeightfb = 24;
 //         listofwiget.add(
 //           Html(
 //             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-//             onLinkTap: (url) {
+//                 onLinkTap:(url) {
 //               print("Opening $url...");
 //               ShowDialogs.launchURL(url);
 //             },

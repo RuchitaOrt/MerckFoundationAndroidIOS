@@ -125,7 +125,7 @@ class Utility extends ChangeNotifier {
             title: Text("$title"),
             content: Text("$message"),
             actions: <Widget>[
-              FlatButton(
+              ElevatedButton(
                 child: const Text('OK'),
                 onPressed: () {
                   Navigator.pop(context, true);

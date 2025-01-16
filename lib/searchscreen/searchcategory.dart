@@ -400,11 +400,12 @@ class SearchcategoryState extends State<Searchcategory>
   Future<http.Response> fetchPostWithBodyResponse(
       String url, dynamic body) async {
     IOClient ioClient = new IOClient();
+    Uri uri = Uri.parse(url);
 
     HttpClient client = new HttpClient();
 
     ioClient = new IOClient(client);
-    final response = await ioClient.post(url, body: body);
+    final response = await ioClient.post(uri, body: body);
     print('pit stop');
     return response;
   }

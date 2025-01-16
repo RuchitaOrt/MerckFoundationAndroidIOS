@@ -54,8 +54,6 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {
-            print("hi");
-
             // showModalBottomSheet<void>(
             //   shape: RoundedRectangleBorder(
             //     borderRadius: BorderRadius.vertical(top: Radius.circular(24.0)),
@@ -280,9 +278,11 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                               //           ResponsiveFlutter.of(context).fontSize(2.2),
                               //       fontWeight: FontWeight.w600),
                               // ),
+
                               Html(
                                 data: """${GlobalLists.vision[0].title} """,
-                                onLinkTap: (url) {
+                                onLinkTap:
+                                    (url, renderContext, attributes, element) {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
                                 },
@@ -292,7 +292,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                       color: Customcolor.colorVoilet,
                                       fontSize: FontSize.larger,
                                       fontWeight: FontWeight.w600),
-                                       "tr": Customcolor.tableboderstyle(),
+                                  "tr": Customcolor.tableboderstyle(context),
                                 },
                                 // style: {
                                 //   "body": Style(
@@ -303,13 +303,15 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                 //   ),
                                 // },
                               ),
+
                               SizedBox(
                                 height: 15,
                               ),
                               Html(
                                 data:
                                     """${GlobalLists.vision[0].pageContent} """,
-                                onLinkTap: (url) {
+                                onLinkTap:
+                                    (url, renderContext, attributes, element) {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
                                 },
@@ -317,7 +319,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                   "body": Style(
                                     textAlign: TextAlign.justify,
                                   ),
-                                   "tr": Customcolor.tableboderstyle(),
+                                  "tr": Customcolor.tableboderstyle(context),
                                 },
                                 // style: {
                                 //   "body": Style(
@@ -327,6 +329,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                 //   ),
                                 // },
                               ),
+
                               // Text(
                               //     "The Merck Foundation is the philanthropic arm of Merck KGaA Germany that aims to improve the health and wellbeing of people and advance their lives through science and technology.\n\nOur efforts are primarily focused on improving access to quality & equitable healthcare solutions, building healthcare, scientiﬁc research & media capacity and empowering people in STEM* with a special focus on women and youth in under-served communities.\n\n*STEM: Science, Technology, Engineering and Mathematics",
                               //     style: TextStyle(

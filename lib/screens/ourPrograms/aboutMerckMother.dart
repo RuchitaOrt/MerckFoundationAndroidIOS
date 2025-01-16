@@ -51,7 +51,8 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
         },
         index: 2,
         sharelink: Constantstring.aboutmmtm,
-        title: 'About Merck Foundation "More Than A Mother" Movement',//"About Merck Foundation More Than A Mother",
+        title:
+            'About Merck Foundation "More Than A Mother" Movement', //"About Merck Foundation More Than A Mother",
         titleImg: "assets/newImages/vision_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -91,9 +92,9 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
             ),
           ),
           SizedBox(
-                  height: 10,
-                ),
-                Bottomcardlink(),
+            height: 10,
+          ),
+          Bottomcardlink(),
         ],
       ),
     );
@@ -206,7 +207,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
                       child: Stack(
                         children: [
                           Container(
-                          //  height: SizeConfig.blockSizeVertical *,
+                            //  height: SizeConfig.blockSizeVertical *,
                             //  width: SizeConfig.blockSizeHorizontal * 86,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
@@ -273,8 +274,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
               cardTitle:
                   "Watch Below videos of Merck More Than a Mother Launch in African Countries :",
               btnTitle: "Watch More",
-               heigthoflist: SizeConfig.blockSizeVertical * 36,
-              
+              heigthoflist: SizeConfig.blockSizeVertical * 36,
               onbtnTap: () {
                 // Navigator.push(
                 //     context,
@@ -317,7 +317,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
                       //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
                     },
                     child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 8, left: 10),
@@ -327,7 +327,8 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
                                 width: SizeConfig.blockSizeHorizontal * 86,
                                 height: SizeConfig.blockSizeVertical * 25,
                                 child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/newImages/placeholder_3.jpg',
+                                  placeholder:
+                                      'assets/newImages/placeholder_3.jpg',
                                   image:
                                       "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
                                   fit: BoxFit.fill,
@@ -371,36 +372,33 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
                               //   ),
                               // ),
                               Padding(
-                                padding: EdgeInsets.only(left: 120,top: 70),
+                                padding: EdgeInsets.only(left: 120, top: 70),
                                 child: Center(
-                                    child:
-                                        Image.asset("assets/newImages/pause.png")),
+                                    child: Image.asset(
+                                        "assets/newImages/pause.png")),
                               )
                             ],
                           ),
                         ),
-                         SizedBox(
-                                            height: 7,
-                                          ),
+                        SizedBox(
+                          height: 7,
+                        ),
                         Container(
                           padding: EdgeInsets.only(left: 9),
-
-                                            width:
-                                                SizeConfig.blockSizeHorizontal * 80,
-                                            child: Text(
-                                              GlobalLists
-                                                  .homevideolist[index].videoDesc,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                  color: Colors.black87,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w700),
-                                              maxLines: 3,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          )
+                          width: SizeConfig.blockSizeHorizontal * 80,
+                          child: Text(
+                            GlobalLists.homevideolist[index].videoDesc,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                            maxLines: 3,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        )
                       ],
                     ),
                   );
@@ -414,12 +412,12 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
+            onLinkTap: (url, renderContext, attributes, element) {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
             style: {
-               "tr": Customcolor.tableboderstyle(),
+              "tr": Customcolor.tableboderstyle(context),
             },
           ),
         );
@@ -578,7 +576,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
   //                 )
   //               : Html(
   //                   data: """${GlobalLists.merckAboutcontent[0].title} """,
-  //                   onLinkTap: (url) {
+  //                       onLinkTap:(url) {
   //                     print("Opening $url...");
   //                   },
   //                 ),
@@ -589,7 +587,7 @@ class AboutMerckMotherState extends State<AboutMerckMother> {
   //               : Html(
   //                   data:
   //                       """${GlobalLists.merckAboutcontent[0].pageContent} """,
-  //                   onLinkTap: (url) {
+  //                       onLinkTap:(url) {
   //                     print("Opening $url...");
   //                   },
   //                 ),

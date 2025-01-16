@@ -1,4 +1,6 @@
+import 'package:merckfoundation22dec/model/Get_Filter_DLResponse.dart';
 import 'package:merckfoundation22dec/model/GetSeasonEpisodeResponse.dart';
+
 import 'package:merckfoundation22dec/model/dataprivacy.dart' as dataPrivacy;
 import 'package:merckfoundation22dec/model/digitalProgramResponse.dart';
 import 'package:merckfoundation22dec/model/legaldisclaimerResponse.dart'
@@ -104,10 +106,17 @@ import 'package:merckfoundation22dec/model/CreategallerymobileResponse.dart'
     as album;
 import 'package:merckfoundation22dec/model/NotificationdetailResponse.dart'
     as notify;
-    import 'package:merckfoundation22dec/model/GetEpisodeDataResponse.dart'
+import 'package:merckfoundation22dec/model/GetEpisodeDataResponse.dart'
     as episodedata;
 import 'package:merckfoundation22dec/model/GetEpisodeSeasonwiseResponse.dart'
     as seasonwise;
+import 'package:merckfoundation22dec/model/DigLibCatFilterResponse.dart'
+    as digitalcat;
+import 'package:merckfoundation22dec/model/GetLanguageResponse.dart' as lang;
+import 'package:merckfoundation22dec/model/GetAwardResponse.dart' as subaward;
+
+import '../model/OuredetailsActivies.dart' as ourDetails;
+import '../model/PoliticalDeutrality.dart' as poli;
 
 class GlobalLists {
   static List<visionResp.ListElement> vision = [];
@@ -115,10 +124,14 @@ class GlobalLists {
   static List<ourMission.ListElement> ourmission = [];
   static List<ourPolicy.ListElement> ourpolicy = [];
   static List<objectives.ListElement> ourActivitiesObjectives = [];
+  static List<ourDetails.Data> ourDetailsActivitiesObjectives = [];
+
   static List<activitiesResp.ListElement> ourActivitiesData = [];
   static List<leadershipTeam.ListElement> leadershipTeamResp = [];
 
   static List<dataPrivacy.ListElement> dataprivacy = [];
+  static List<poli.ListElement> political = [];
+
   static List<ourPartnerobjective.ListElement> ourPartnerObjectives = [];
   static List<ourPartnerResp.ListElement> ourPartnerList = [];
 
@@ -173,6 +186,8 @@ class GlobalLists {
   static List<countrylist.ListElement> countrylisting = [];
   static List<categorylist.ListElement> categorylisting = [];
   static List<filterlist.ListElement> filterdatalisting = [];
+  static List<digitalcat.ListElement> filterdigitalcatlisting = [];
+  static List<lang.ListElement> filterlanglisting = [];
 
   //leadership
   static List<ceolist.BoardOfTrusteesOfMerckFoundation> ceolisting = [];
@@ -181,6 +196,7 @@ class GlobalLists {
   //ouraward
   static List<awardlist.ListElement> awardlisting = [];
   static List<awarddetail.ListElement> awarddetallisting = [];
+  static List<subaward.AwardsList> awardsubtypelisting = [];
 
   //search
   static List<dynamic> searchvideollisting = [];
@@ -207,12 +223,12 @@ class GlobalLists {
   static String homeCallForAppBaseURL = "";
   static String homeDigitalLibraryBaseURL = "";
   static String homeMMTMBaseURL = "";
-   static String homeafricashowbaseurl = "";
+  static String homeafricashowbaseurl = "";
 
   static List<dynamic> homeceomsglist = [];
-   static List<dynamic> homeafricashowlist = [];
-static List<Season> seasonlistwithepisode = [];
- static List<episodedata.ListElement> episodeinfodata = [];
+  static List<dynamic> homeafricashowlist = [];
+  static List<Season> seasonlistwithepisode = [];
+  static List<episodedata.ListElement> episodeinfodata = [];
 
   static List<dynamic> homecallforapp = [];
   static List<dynamic> homedigitallib = [];
@@ -245,10 +261,10 @@ static List<Season> seasonlistwithepisode = [];
   //ambasadar
   // static List<dynamic> ambasdarslist = [];
   // static String ambasdarsbaseurl = "";
-    static List<dynamic> ambasdarslist = [];
+  static List<dynamic> ambasdarslist = [];
   static List<dynamic> ambasdarsformerlist = [];
   static String ambasdarsbaseurl = "";
-   static String ambasdarsformerbaseurl = "";
+  static String ambasdarsformerbaseurl = "";
 
 //digitallib view more
   static List<ListClass> digitallibraryviewlist = [];
@@ -282,9 +298,13 @@ static List<Season> seasonlistwithepisode = [];
   static String deviceid = "";
   static List<notify.ListElement> notificationlist = [];
 
-
-
-  
   static List<seasonwise.Episode> seasonwiseepisodeList = [];
+  //filter
+  static List<DigitalLibraryList> filterdigitallibrarylist = [];
 
+  //filter digital
+  static String digitalcategory = "";
+  static String digitallanguage = "";
+  static String digitalcategoryid = "";
+  static String digitallanguageid = "";
 }

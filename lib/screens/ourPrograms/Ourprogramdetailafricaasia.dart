@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,10 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../mediascreen.dart/Detailpage.dart';
+import '../../mediascreen.dart/perticulart_details.dart';
 
 class OurProgramAfrica extends StatefulWidget {
   OurProgramAfrica(
@@ -50,6 +55,7 @@ class _MyHomePageState extends State<OurProgramAfrica> {
   _MyHomePageState(this.indexpass);
   @override
   void initState() {
+    print('advvvvvvvvvvvvvvvvvv');
     super.initState();
     getafricarogram();
     mabialaFABController = AdvFabController();
@@ -530,7 +536,9 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                         print(pageurl);
                                                         getphotodetail(pageurl);
                                                       } else {
-                                                        print("detail");
+                                                        print("detail3");
+                                                        print(
+                                                            "details ${GlobalLists.stemprogramlistsubmenu[index].menuUrl}");
                                                         getsteminnerapi(GlobalLists
                                                             .stemprogramlistsubmenu[
                                                                 index]
@@ -696,6 +704,7 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                         children: [
                                                                           GestureDetector(
                                                                               onTap: () {
+                                                                                print('15-01');
                                                                                 mabialaFABController.collapseFAB();
                                                                                 if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".pdf")) {
                                                                                   print("pdf");
@@ -752,8 +761,35 @@ class _MyHomePageState extends State<OurProgramAfrica> {
                                                                                   String pageurl = splits[splits.length - 1];
                                                                                   print(pageurl);
                                                                                   getphotodetail(pageurl);
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains("Photo-Gallery")) {
+                                                                                  print("inside in photo");
+                                                                                  String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
+
+                                                                                  List<String> splits = menuurl.split('/');
+
+                                                                                  print(splits[splits.length - 1]);
+                                                                                  String pageurl = splits[splits.length - 1];
+                                                                                  print("pageurl $pageurl");
+                                                                                  getphotoapi(pageurl);
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains("news-articles")) {
+                                                                                  print("inside in news-articles");
+                                                                                  String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
+
+                                                                                  List<String> splits = menuurl.split('/');
+
+                                                                                  print(splits[splits.length - 1]);
+                                                                                  String pageurl = splits[splits.length - 1];
+                                                                                  print("pageurl $pageurl");
+
+                                                                                  newletter(pageurl);
+                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains("facebook.com")) {
+                                                                                  String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
+
+                                                                                  print("inside In facebook $menuurl");
+
+                                                                                  _launchFacebookUrl(menuurl);
                                                                                 } else {
-                                                                                  print("detail");
+                                                                                  print("detail15-01 ${GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl}");
                                                                                   getsteminnerapi(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
                                                                                 }
                                                                                 // if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".pdf")) {
@@ -864,6 +900,7 @@ class _MyHomePageState extends State<OurProgramAfrica> {
   }
 
   getafricarogram() async {
+    print('getafricarogram');
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -905,9 +942,10 @@ class _MyHomePageState extends State<OurProgramAfrica> {
     IOClient ioClient = new IOClient();
 
     HttpClient client = new HttpClient();
+    Uri uri = Uri.parse(url);
 
     ioClient = new IOClient(client);
-    final response = await ioClient.post(url, body: body);
+    final response = await ioClient.post(uri, body: body);
     print('pit stop');
     return response;
   }
@@ -921,7 +959,8 @@ class _MyHomePageState extends State<OurProgramAfrica> {
       };
 
       // String body = json.encode(bodyData);
-      print(bodyData);
+
+      print("bodyData $bodyData");
       var response = await fetchPostWithBodyResponse(
         APIManager.steminnerpages,
         bodyData,
@@ -929,7 +968,7 @@ class _MyHomePageState extends State<OurProgramAfrica> {
       print(APIManager.steminnerpages);
       var res = json.decode(response.body);
       print("res");
-      print(res);
+      print(" res $res");
       //1-video 2-News_Release 3-Article 4-Events 5-Testimonials 6-Photo  7-Media 8-ceomeaasage 9-award
       if (response.statusCode == 200) {
         if (res['success'] == true) {
@@ -960,6 +999,129 @@ class _MyHomePageState extends State<OurProgramAfrica> {
       setState(() {
         ShowDialogs.showToast("Please check Internet Connection.");
       });
+    }
+  }
+
+  newletter(String menuurl) async {
+    var status = await ConnectionDetector.checkInternetConnection();
+
+    if (status) {
+      dynamic bodyData = {
+        'page_url': menuurl,
+      };
+
+      // String body = json.encode(bodyData);
+
+      print("bodyData $bodyData");
+      var response = await fetchPostWithBodyResponse(
+        APIManager.ariclwpages,
+        bodyData,
+      );
+      print(APIManager.ariclwpages);
+      var res = json.decode(response.body);
+      print("res");
+      print(" resc ${res['data']["id"]}");
+      var id = res['data']["id"];
+      id = int.parse(id);
+      print(" rescheck $id");
+
+      //1-video 2-News_Release 3-Article 4-Events 5-Testimonials 6-Photo  7-Media 8-ceomeaasage 9-award
+      if (response.statusCode == 200) {
+        if (res['status'] == true) {
+          print("here it is");
+
+          if (res["data"]["id"] != null) {
+            print('checkkksd');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => Perticulardetails(
+                        details: res["data"]["details"],
+                        image: res["data"]["image"],
+                        title: res["data"]["title"],
+                      )),
+            );
+          } else {
+            print('id is null');
+          }
+        } else {
+          setState(() {
+            ShowDialogs.showToast(res['msg']);
+          });
+          //showErrorDialog(context, message: "Something went wrong!");
+        }
+      } else {
+        ShowDialogs.showToast("Server Not Responding");
+      }
+    } else {
+      setState(() {
+        ShowDialogs.showToast("Please check Internet Connection.");
+      });
+    }
+  }
+
+  getphotoapi(String menuurl) async {
+    var status = await ConnectionDetector.checkInternetConnection();
+
+    if (status) {
+      dynamic bodyData = {
+        'album_url': menuurl,
+      };
+
+      // String body = json.encode(bodyData);
+
+      print("bodyData $bodyData");
+      var response = await fetchPostWithBodyResponse(
+        APIManager.viewmorealbum,
+        bodyData,
+      );
+      print(APIManager.viewmorealbum);
+      var res = json.decode(response.body);
+      print("res");
+      print(" res $res");
+      //1-video 2-News_Release 3-Article 4-Events 5-Testimonials 6-Photo  7-Media 8-ceomeaasage 9-award
+      if (response.statusCode == 200) {
+        if (res['success'] == "true") {
+          print("here it is");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => ViewmoreAlbum(
+                        apiurl: APIManager.viewmorealbum,
+                        albumtitle: menuurl,
+                        sharelink:
+                            GlobalLists.stemprogramlistsubmenu[0].menuUrl,
+                        albumurl: menuurl.trim(),
+                      ))
+
+              //  StemInnerPages(
+              //       title: res['list']['p_name'],
+              //       details: res['list']['p_details'],
+              //     )
+              );
+
+          print(res['list']);
+        } else {
+          setState(() {
+            ShowDialogs.showToast(res['msg']);
+          });
+          //showErrorDialog(context, message: "Something went wrong!");
+        }
+      } else {
+        ShowDialogs.showToast("Server Not Responding");
+      }
+    } else {
+      setState(() {
+        ShowDialogs.showToast("Please check Internet Connection.");
+      });
+    }
+  }
+
+  void _launchFacebookUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
     }
   }
 }

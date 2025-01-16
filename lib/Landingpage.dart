@@ -16,7 +16,6 @@ class _LandingpageState extends State<Landingpage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -78,7 +77,7 @@ class _LandingpageState extends State<Landingpage> {
                   child: Padding(
                 padding: const EdgeInsets.only(left: 25, right: 20, top: 10),
                 child: Text(
-                  "The Merck Foundation, established in 2017, is the philanthropic arm of Merck KGaA, Germany that aims to improve the health and wellbeing of people and advance their lives through science and technology. \n\nOur efforts are primarily focused on improving access to quality and equitable healthcare solutions in underserved communities, building healthcare and scientific research capacity and empowering people in STEM (Science, Technology, Engineering, and Mathematics) with a special focus on women and youth.",
+                  "Merck Foundation, established in 2017, is the philanthropic arm of Merck KGaA, Germany that aims to improve the health and wellbeing of people and advance their lives through Science and Technology. \n\nOur efforts are primarily focused on improving access to quality and equitable healthcare solutions, building healthcare, scientific research & media capacity, breaking infertility stigma and supporting girls' education.",
                   style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
               )),
@@ -104,13 +103,20 @@ class _LandingpageState extends State<Landingpage> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 90, right: 90, top: 10),
-            child: FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  side: BorderSide(color: Colors.red)),
-              color: Customcolor.colorPink,
-              textColor: Colors.white,
-              padding: EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              //  shape: RoundedRectangleBorder(
+              //    borderRadius: BorderRadius.circular(8.0),
+              //  side: BorderSide(color: Colors.red)),
+              // color: Customcolor.colorPink,
+              // textColor: Colors.white,
+              //padding: EdgeInsets.all(8.0),
+              style: ElevatedButton.styleFrom(
+                  primary: Customcolor.colorPink,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(8)),
+                  side: BorderSide(color: Colors.red),
+                  textStyle: TextStyle(color: Colors.white)),
+
               onPressed: () {
                 Navigator.pushReplacement(
                     context,

@@ -24,9 +24,10 @@ import 'package:social_share_plugin/social_share_plugin.dart';
 
 class WatchmoreVideoEpisode extends StatefulWidget {
   final dynamic apiurl;
-final dynamic season;
-final dynamic title;
-  const WatchmoreVideoEpisode({Key key, this.apiurl, this.season, this.title}) : super(key: key);
+  final dynamic season;
+  final dynamic title;
+  const WatchmoreVideoEpisode({Key key, this.apiurl, this.season, this.title})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return WatchmoreVideoEpisodeState();
@@ -56,16 +57,16 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
   void initState() {
     // TODO: implement initState
     GlobalLists.seasonwiseepisodeList.clear();
-    getepisodeseasonwise(widget.apiurl,widget.season);
-   
-  //  _sc = new ScrollController()..addListener(_scrollListener);
+    getepisodeseasonwise(widget.apiurl, widget.season);
+
+    //  _sc = new ScrollController()..addListener(_scrollListener);
     super.initState();
   }
 
 //   void _scrollListener() {
 //     if (_sc.position.extentAfter < 50) {
 //       if (!_isLoading && totalcount > GlobalLists.seasonwiseepisodeList.length) {
-        
+
 //         setState(() {
 //           _isLoading = true;
 //         });
@@ -93,7 +94,6 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
 //                         detailPageUrl: resp.data.list[i].detailPageUrl));
 //                   });
 
-
 //                 }
 
 //                 offset = totalcount;
@@ -105,7 +105,7 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
 //                 } else {
 //                   totalcount = totalcount + 10;
 //                 }
-              
+
 //                 Constantstring.baseUrl = resp.baseUrl;
 //                 print("-----------------------------------");
 //                 print(totalcount);
@@ -161,7 +161,7 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
             //     ? Center(
             //         child: CircularProgressIndicator(),
             //       )
-            //     : (GlobalLists.seasonwiseepisodeList.length == 0 
+            //     : (GlobalLists.seasonwiseepisodeList.length == 0
             //     // &&
             //     //         _isLoading == false
             //             )
@@ -170,146 +170,141 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
             //               child: Center(child: Text(Constantstring.emptyData)),
             //             ),
             //           )
-            //         : 
-                    ListView.builder(
-                        itemCount: GlobalLists.seasonwiseepisodeList.length,
-                        shrinkWrap: true,
-                        physics: ScrollPhysics(),
-                        itemBuilder: (BuildContext context, int index) {
-                          // if (GlobalLists.seasonwiseepisodeList.length - 1 == index &&
-                          //     _isLoading) {
-                          //   return Center(
-                          //     child: CircularProgressIndicator(),
-                          //   );
-                          // } else {
-                            
-                            return Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 8, right: 8, bottom: 6),
-                              child: GestureDetector(
-                                onTap: () {
-                                  var storykey = GlobalLists.seasonwiseepisodeList[index].videoLink
-                            .substring(GlobalLists.seasonwiseepisodeList[index].videoLink.length -
-                                11);
-                        ShowDialogs.youtubevideolink(
-                            "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-                                },
-                                child: Card(
-                                  elevation: 2,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
-                                  ),
+            //         :
+            ListView.builder(
+              itemCount: GlobalLists.seasonwiseepisodeList.length,
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              itemBuilder: (BuildContext context, int index) {
+                // if (GlobalLists.seasonwiseepisodeList.length - 1 == index &&
+                //     _isLoading) {
+                //   return Center(
+                //     child: CircularProgressIndicator(),
+                //   );
+                // } else {
+
+                return Padding(
+                  padding: const EdgeInsets.only(left: 8, right: 8, bottom: 6),
+                  child: GestureDetector(
+                    onTap: () {
+                      var storykey = GlobalLists
+                          .seasonwiseepisodeList[index].videoLink
+                          .substring(GlobalLists.seasonwiseepisodeList[index]
+                                  .videoLink.length -
+                              11);
+                      ShowDialogs.youtubevideolink(
+                          "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
+                    },
+                    child: Card(
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 8, left: 5, right: 5, top: 8),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {},
                                   child: Padding(
                                     padding: const EdgeInsets.only(
-                                        bottom: 8, left: 5, right: 5, top: 8),
-                                    child: Column(
+                                        right: 8, left: 10),
+                                    child: Stack(
                                       children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                             GestureDetector(
-                                               onTap: () {
-                       
-                       
-                       
-                      },
-                                               child: Padding(
-                                                                         padding: const EdgeInsets.only(right: 8, left: 10),
-                                                                         child: Stack(
-                                                                           children: [
-                                                                             Container(
-                                                                               height: 80,
-                                                                               width: 80,//86,
-                                                                               child: FadeInImage.assetNetwork(
-                                                                                 placeholder:
-                                                                                     'assets/newImages/placeholder_3.jpg',
-                                                                                 image:
-                                                                                     "https://img.youtube.com/vi/${GlobalLists.seasonwiseepisodeList[index].videoLink.substring(GlobalLists.seasonwiseepisodeList[index].videoLink.length - 11)}/mqdefault.jpg",
-                                                                                 fit: BoxFit.fill,
-                                                                               ),
-                                                                             ),
-                                                                             Align(
-                                                                               alignment: Alignment.center,
-                                                                               child: Padding(
-                                                                                 padding: EdgeInsets.only(left: 25, top: 25),
-                                                                                 child: Center(
-                                                                                     child: Image.asset(
-                                                                                         "assets/newImages/pause.png",width: 25,height: 25,)),
-                                                                               ),
-                                                                             ),
-                                                                            
-                                                                           ],
-                                                                         ),
-                                                                       ),
-                                             ),
-                                            // ClipRect(
-                                            //   child: FadeInImage.assetNetwork(
-                                            //     placeholder:
-                                            //         'assets/newImages/placeholder_3.jpg',
-                                            //     image:
-                                            //      Constantstring.baseUrl +
-                                            //         GlobalLists
-                                            //             .seasonwiseepisodeList[index]
-                                            //             .videoLink,
-                                            //     fit: BoxFit.cover,
-                                            //     height: 80,
-                                            //     width: 80,
-                                            //   ),
-                                            // ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            Expanded(
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    GlobalLists.seasonwiseepisodeList[index].episodeName,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                        color: Customcolor
-                                                            .colorblack,
-                                                        fontSize:
-                                                            ResponsiveFlutter
-                                                                    .of(context)
-                                                                .fontSize(1.8),
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                    maxLines: 4,
-                                                  ),
-                                        //                     Html(
-                                        //   data:GlobalLists.seasonwiseepisodeList[index].episodeBrief,
-                                             
-                                   
-                                   
-                                   
-                                 
-                                        //   onLinkTap: (url) {
-                                        //     print("Opening $url...");
-                                        //     ShowDialogs.launchURL(url);
-                                        //   },
-                                        //   style: {
-                                        //     "body": Style(textAlign: TextAlign.start,
-                                        //      fontSize: FontSize.small,
-                                        // fontWeight: FontWeight.w400),
-                                        //     "tr": Customcolor.tableboderstyle(),
-                                        //   },
-                                          
-                                        // ),
-                                                ],
-                                              ),
-                                            ),
+                                        Container(
+                                          height: 80,
+                                          width: 80, //86,
+                                          child: FadeInImage.assetNetwork(
+                                            placeholder:
+                                                'assets/newImages/placeholder_3.jpg',
+                                            image:
+                                                "https://img.youtube.com/vi/${GlobalLists.seasonwiseepisodeList[index].videoLink.substring(GlobalLists.seasonwiseepisodeList[index].videoLink.length - 11)}/mqdefault.jpg",
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 25, top: 25),
+                                            child: Center(
+                                                child: Image.asset(
+                                              "assets/newImages/pause.png",
+                                              width: 25,
+                                              height: 25,
+                                            )),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                // ClipRect(
+                                //   child: FadeInImage.assetNetwork(
+                                //     placeholder:
+                                //         'assets/newImages/placeholder_3.jpg',
+                                //     image:
+                                //      Constantstring.baseUrl +
+                                //         GlobalLists
+                                //             .seasonwiseepisodeList[index]
+                                //             .videoLink,
+                                //     fit: BoxFit.cover,
+                                //     height: 80,
+                                //     width: 80,
+                                //   ),
+                                // ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        GlobalLists.seasonwiseepisodeList[index]
+                                            .episodeName,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            color: Customcolor.colorblack,
+                                            fontSize:
+                                                ResponsiveFlutter.of(context)
+                                                    .fontSize(1.8),
+                                            fontWeight: FontWeight.w500),
+                                        maxLines: 4,
+                                      ),
+                                      //                     Html(
+                                      //   data:GlobalLists.seasonwiseepisodeList[index].episodeBrief,
+
+                                      //       onLinkTap:(url) {
+                                      //     print("Opening $url...");
+                                      //     ShowDialogs.launchURL(url);
+                                      //   },
+                                      //   style: {
+                                      //     "body": Style(textAlign: TextAlign.start,
+                                      //      fontSize: FontSize.small,
+                                      // fontWeight: FontWeight.w400),
+                                      //     "tr": Customcolor.tableboderstyle(context),
+                                      //   },
+
+                                      // ),
+                                    ],
+                                  ),
+                                ),
 //                                              Row(children: [
 // GestureDetector(
 //   onTap: ()
 //   {
 //      showDialog(
-    
+
 //                 context: context,
 //                 builder: (BuildContext context) {
 //                   return AlertDialog(
@@ -341,34 +336,33 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
 //                 Image.asset("assets/newImages/share.png",width: 20,height: 20,),
 //                 SizedBox(width: 5,),
 //               ],),
-              PopupMenuButton<String>(
-                 onSelected: (String val) {
-            print(val);  
-            handleClick(val, index) ;            
-          },
-          //  onSelected: handleClick,
-            itemBuilder: (BuildContext context) {
-              return {'Episode Information', 'Share'}.map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
-            },
-          ),
-            
-                        
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                PopupMenuButton<String>(
+                                  onSelected: (String val) {
+                                    print(val);
+                                    handleClick(val, index);
+                                  },
+                                  //  onSelected: handleClick,
+                                  itemBuilder: (BuildContext context) {
+                                    return {'Episode Information', 'Share'}
+                                        .map((String choice) {
+                                      return PopupMenuItem<String>(
+                                        value: choice,
+                                        child: Text(choice),
+                                      );
+                                    }).toList();
+                                  },
                                 ),
-                              ),
-                            );
-                         // }
-                        },
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
+                    ),
+                  ),
+                );
+                // }
+              },
+            ),
 
             SizedBox(
               height: 10,
@@ -407,297 +401,271 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
           ],
         ));
   }
-void  handleClick(String valu1,int value) {
+
+  void handleClick(String valu1, int value) {
     switch (valu1) {
       case 'Episode Information':
-      print('Hello');
-       Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => EpisodeInformation(
-                          showbrief:GlobalLists.seasonwiseepisodeList[value].showBrief,
-                          episodebrief:GlobalLists.seasonwiseepisodeList[value].episodeBrief,
-                          guestinfo:GlobalLists.seasonwiseepisodeList[value].guestInfo,
-                          credits: GlobalLists.seasonwiseepisodeList[value].credits,
-                          relatednews:GlobalLists.seasonwiseepisodeList[value].relatedNews,
-                          photid: GlobalLists.seasonwiseepisodeList[value].photosGalleryIds,
-                          episodeid: GlobalLists.seasonwiseepisodeList[value].id,
-                        )));
-      // showDialog(
-    
-      //           context: context,
-      //           builder: (BuildContext context) {
-      //             return AlertDialog(
-      //               contentPadding: EdgeInsets.all(0),
-      //               title: Container(child: Row(
-      //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //                 children: [
-      //                   Padding(
-      //                     padding: const EdgeInsets.all(0),
-      //                     child: Text('Episode Information',style: TextStyle(color:Customcolor.colorBlue,fontSize: 20),),
-      //                   ),
-      //                    GestureDetector(
-      //                      onTap: ()
-      //                      {
-      //                        Navigator.pop(context);
-      //                      }
-      //                      ,
-      //                      child: Icon(Icons.close)),
-      //                 ],
-      //               ),),
-      //               content: ShowDialogs.setupAlertDialoadContainer(context),
-      //             );
-      //           }
-      //       );
+        print('Hello');
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => EpisodeInformation(
+                      showbrief:
+                          GlobalLists.seasonwiseepisodeList[value].showBrief,
+                      episodebrief:
+                          GlobalLists.seasonwiseepisodeList[value].episodeBrief,
+                      guestinfo:
+                          GlobalLists.seasonwiseepisodeList[value].guestInfo,
+                      credits: GlobalLists.seasonwiseepisodeList[value].credits,
+                      relatednews:
+                          GlobalLists.seasonwiseepisodeList[value].relatedNews,
+                      photid: GlobalLists
+                          .seasonwiseepisodeList[value].photosGalleryIds,
+                      episodeid: GlobalLists.seasonwiseepisodeList[value].id,
+                    )));
+        // showDialog(
+
+        //           context: context,
+        //           builder: (BuildContext context) {
+        //             return AlertDialog(
+        //               contentPadding: EdgeInsets.all(0),
+        //               title: Container(child: Row(
+        //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //                 children: [
+        //                   Padding(
+        //                     padding: const EdgeInsets.all(0),
+        //                     child: Text('Episode Information',style: TextStyle(color:Customcolor.colorBlue,fontSize: 20),),
+        //                   ),
+        //                    GestureDetector(
+        //                      onTap: ()
+        //                      {
+        //                        Navigator.pop(context);
+        //                      }
+        //                      ,
+        //                      child: Icon(Icons.close)),
+        //                 ],
+        //               ),),
+        //               content: ShowDialogs.setupAlertDialoadContainer(context),
+        //             );
+        //           }
+        //       );
         break;
       case 'Share':
-ScreenshotController screenshotController = ScreenshotController();
-   double imgHeight=50;
-    var sharelink=GlobalLists.seasonwiseepisodeList[value].videoLink;
-                      showModalBottomSheet<void>(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.vertical(
-                                          top: Radius.circular(24.0)),
-                                    ),
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return Screenshot(
-                                        controller: screenshotController,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10, bottom: 10),
-                                                child: FormLabel(
-                                                  text: "Share",
-                                                  labelColor:
-                                                      Customcolor.pink_col,
-                                                  fontSize:
-                                                      ResponsiveFlutter.of(
-                                                              context)
-                                                          .fontSize(2.5),
-                                                  fontweight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10, bottom: 10),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    //
-                                                    GestureDetector(
-                                                      onTap: () async {
-                                                        print("on tap fb");
-                                                         await SocialSharePlugin
-                                                                .shareToFeedFacebookLink(
-                                                                quote: "",
-                                                                url: sharelink,
-                                                                onSuccess: (_) {
-                                                                  print(
-                                                                      'FACEBOOK SUCCESS');
-                                                                  return;
-                                                                },
-                                                                onCancel: () {
-                                                                  print(
-                                                                      'FACEBOOK CANCELLED');
-                                                                  return;
-                                                                },
-                                                                onError:
-                                                                    (error) {
-                                                                  print(
-                                                                      'FACEBOOK ERROR $error');
-                                                                  return;
-                                                                },
-                                                              );
-                                                      },
-                                                      child: Image.asset(
-                                                        "assets/newImages/facebooknew.png",
-                                                        height: imgHeight,
-                                                        width: imgHeight,
-                                                      ),
-                                                    ),
+        ScreenshotController screenshotController = ScreenshotController();
+        double imgHeight = 50;
+        var sharelink = GlobalLists.seasonwiseepisodeList[value].videoLink;
+        showModalBottomSheet<void>(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(24.0)),
+          ),
+          context: context,
+          builder: (BuildContext context) {
+            return Screenshot(
+              controller: screenshotController,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: FormLabel(
+                        text: "Share",
+                        labelColor: Customcolor.pink_col,
+                        fontSize: ResponsiveFlutter.of(context).fontSize(2.5),
+                        fontweight: FontWeight.w500,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          //
+                          GestureDetector(
+                            onTap: () async {
+                              print("on tap fb");
+                              await SocialSharePlugin.shareToFeedFacebookLink(
+                                quote: "",
+                                url: sharelink,
+                                onSuccess: (_) {
+                                  print('FACEBOOK SUCCESS');
+                                  return;
+                                },
+                                onCancel: () {
+                                  print('FACEBOOK CANCELLED');
+                                  return;
+                                },
+                                onError: (error) {
+                                  print('FACEBOOK ERROR $error');
+                                  return;
+                                },
+                              );
+                            },
+                            child: Image.asset(
+                              "assets/newImages/facebooknew.png",
+                              height: imgHeight,
+                              width: imgHeight,
+                            ),
+                          ),
 
-                                                    SizedBox(
-                                                      width: 7,
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () async {
-                                                         await SocialSharePlugin
-                                                                .shareToTwitterLink(
-                                                                    text: "",
-                                                                    url:
-                                                                        sharelink,
-                                                                    onSuccess:
-                                                                        (_) {
-                                                                      print(
-                                                                          'TWITTER SUCCESS');
-                                                                      return;
-                                                                    },
-                                                                    onCancel:
-                                                                        () {
-                                                                      print(
-                                                                          'TWITTER CANCELLED');
-                                                                      return;
-                                                                    });
-                                                      },
-                                                      child: Image.asset(
-                                                        "assets/newImages/twitternew.png",
-                                                        height: imgHeight,
-                                                        width: imgHeight,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 7,
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () async {
-                                                        ShowDialogs
-                                                                .launchLinkdin(
-                                                                    sharelink);
-                                                      },
-                                                      child: Image.asset(
-                                                        "assets/newImages/linkedinnew.png",
-                                                        height: imgHeight,
-                                                        width: imgHeight,
-                                                      ),
-                                                    ),
-                                                     SizedBox(
-                                                      width: 7,
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        ShowDialogs
-                                                                .launchWhatsappshare(
-                                                                    sharelink);
+                          SizedBox(
+                            width: 7,
+                          ),
+                          GestureDetector(
+                            onTap: () async {
+                              await SocialSharePlugin.shareToTwitterLink(
+                                  text: "",
+                                  url: sharelink,
+                                  onSuccess: (_) {
+                                    print('TWITTER SUCCESS');
+                                    return;
+                                  },
+                                  onCancel: () {
+                                    print('TWITTER CANCELLED');
+                                    return;
+                                  });
+                            },
+                            child: Image.asset(
+                              "assets/newImages/twitternew.png",
+                              height: imgHeight,
+                              width: imgHeight,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 7,
+                          ),
+                          GestureDetector(
+                            onTap: () async {
+                              ShowDialogs.launchLinkdin(sharelink);
+                            },
+                            child: Image.asset(
+                              "assets/newImages/linkedinnew.png",
+                              height: imgHeight,
+                              width: imgHeight,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 7,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              ShowDialogs.launchWhatsappshare(sharelink);
 
-                                                        // :
-                                                        //  SocialShare
-                                                        //     .shareWhatsapp(
-                                                        //     sharelink,
-                                                        //   ).then((data) {
-                                                        //     print(data);
-                                                        //   });
-                                                      },
-                                                      child: Image.asset(
-                                                        "assets/newImages/whatsappnew.png",
-                                                        height: imgHeight,
-                                                        width: imgHeight,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ).whenComplete(() {});
+                              // :
+                              //  SocialShare
+                              //     .shareWhatsapp(
+                              //     sharelink,
+                              //   ).then((data) {
+                              //     print(data);
+                              //   });
+                            },
+                            child: Image.asset(
+                              "assets/newImages/whatsappnew.png",
+                              height: imgHeight,
+                              width: imgHeight,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ).whenComplete(() {});
 
         break;
     }
-}
-  getepisodeseasonwise(dynamic api,String season) async {
+  }
+
+  getepisodeseasonwise(dynamic api, String season) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
-      dynamic jsonbody =
-          "/${season}";
+      dynamic jsonbody = "/${season}";
 //ShowDialogs.showLoadingDialog(context, _keyLoader);
       setState(() {
         _isLoading = true;
       });
-      APIManager().apiRequest(
-        context,
-        api,
-        (response) async {
-         setState(() {
-            GetEpisodeSeasonwiseResponse resp=response;
-        GlobalLists.seasonwiseepisodeList=resp.episodes;
-         });
-       
-         //48
+      APIManager().apiRequest(context, api, (response) async {
+        setState(() {
+          GetEpisodeSeasonwiseResponse resp = response;
+          GlobalLists.seasonwiseepisodeList = resp.episodes;
+        });
 
-          //        Navigator.of(_keyLoader.currentContext).pop();
+        //48
+
+        //        Navigator.of(_keyLoader.currentContext).pop();
 //commented here
-          // if (resp.success == "True") {
-          //   setState(() {
-          //     print("here");
-          //     // list = new List();
-          //     // list = resp.data.list;
-          //     //totalcount 10
-          //     if (resp.data.list.length < 10) {
-          //       for (int i = offset; i < resp.data.list.length; i++) {
-          //         setState(() {
-          //           GlobalLists.seasonwiseepisodeList.add(ListElement(
-          //               image: resp.data.list[i].image,
-          //               title: resp.data.list[i].title,
-          //               id: resp.data.list[i].id,
-          //               shortDescription: resp.data.list[i].shortDescription,
-          //               details: resp.data.list[i].details,
-          //               detailPageUrl: resp.data.list[i].detailPageUrl));
-          //         });
+        // if (resp.success == "True") {
+        //   setState(() {
+        //     print("here");
+        //     // list = new List();
+        //     // list = resp.data.list;
+        //     //totalcount 10
+        //     if (resp.data.list.length < 10) {
+        //       for (int i = offset; i < resp.data.list.length; i++) {
+        //         setState(() {
+        //           GlobalLists.seasonwiseepisodeList.add(ListElement(
+        //               image: resp.data.list[i].image,
+        //               title: resp.data.list[i].title,
+        //               id: resp.data.list[i].id,
+        //               shortDescription: resp.data.list[i].shortDescription,
+        //               details: resp.data.list[i].details,
+        //               detailPageUrl: resp.data.list[i].detailPageUrl));
+        //         });
 
-              
+        //       }
+        //     } else {
+        //       for (int i = offset; i < totalcount; i++) {
+        //         setState(() {
+        //           GlobalLists.seasonwiseepisodeList.add(ListElement(
+        //               image: resp.data.list[i].image,
+        //               title: resp.data.list[i].title,
+        //               id: resp.data.list[i].id,
+        //               shortDescription: resp.data.list[i].shortDescription,
+        //               details: resp.data.list[i].details,
+        //               detailPageUrl: resp.data.list[i].detailPageUrl));
+        //         });
 
-          //       }
-          //     } else {
-          //       for (int i = offset; i < totalcount; i++) {
-          //         setState(() {
-          //           GlobalLists.seasonwiseepisodeList.add(ListElement(
-          //               image: resp.data.list[i].image,
-          //               title: resp.data.list[i].title,
-          //               id: resp.data.list[i].id,
-          //               shortDescription: resp.data.list[i].shortDescription,
-          //               details: resp.data.list[i].details,
-          //               detailPageUrl: resp.data.list[i].detailPageUrl));
-          //         });
+        //       }
+        //     }
 
-                 
+        //     offset = totalcount;
+        //     int remem = resp.data.list.length - totalcount;
+        //     print("remem");
+        //     print(remem);
+        //     if (remem < 10) {
+        //       totalcount = totalcount + remem;
+        //     } else {
+        //       totalcount = totalcount + 10;
+        //     }
 
-          //       }
-          //     }
+        //     Constantstring.baseUrl = resp.baseUrl;
+        //     print("-----------------------------------");
+        //     print(totalcount);
+        //     print(GlobalLists.seasonwiseepisodeList.length);
+        //   });
 
-          //     offset = totalcount;
-          //     int remem = resp.data.list.length - totalcount;
-          //     print("remem");
-          //     print(remem);
-          //     if (remem < 10) {
-          //       totalcount = totalcount + remem;
-          //     } else {
-          //       totalcount = totalcount + 10;
-          //     }
-             
-          //     Constantstring.baseUrl = resp.baseUrl;
-          //     print("-----------------------------------");
-          //     print(totalcount);
-          //     print(GlobalLists.seasonwiseepisodeList.length);
-          //   });
+        //   setState(() {
+        //     _isLoading = false;
+        //   });
+        // } else {
+        //   ShowDialogs.showToast(resp.msg);
+        //   setState(() {
+        //     _isLoading = false;
+        //   });
+        // }
+      }, (error) {
+        setState(() {
+          _isLoading = false;
+        });
 
-          //   setState(() {
-          //     _isLoading = false;
-          //   });
-          // } else {
-          //   ShowDialogs.showToast(resp.msg);
-          //   setState(() {
-          //     _isLoading = false;
-          //   });
-          // }
-        },
-        (error) {
-          setState(() {
-            _isLoading = false;
-          });
-
-          print('ERR msg is $error');
-          //  Navigator.of(_keyLoader.currentContext).pop();
-        },path: jsonbody
-      );
+        print('ERR msg is $error');
+        //  Navigator.of(_keyLoader.currentContext).pop();
+      }, path: jsonbody);
     } else {
       setState(() {
         _isLoading = false;
@@ -707,13 +675,9 @@ ScreenshotController screenshotController = ScreenshotController();
   }
 }
 
-
 // import 'dart:convert';
 
 // import 'package:flutter/material.dart';
-
-
-
 
 // import 'package:merckfoundation22dec/utility/APIManager.dart';
 // import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -872,7 +836,6 @@ ScreenshotController screenshotController = ScreenshotController();
 //           trallingImg1: "assets/newImages/share.png",
 //           trallingImg2: "assets/newImages/search.png",
 
-
 //           height: 85,
 //         ),
 //         backgroundColor: Customcolor.background,
@@ -1009,7 +972,7 @@ ScreenshotController screenshotController = ScreenshotController();
 //   onTap: ()
 //   {
 //      showDialog(
-    
+
 //                 context: context,
 //                 builder: (BuildContext context) {
 //                   return AlertDialog(

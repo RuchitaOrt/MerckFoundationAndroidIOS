@@ -103,7 +103,8 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
                                   Html(
                                       data:
                                           """${GlobalLists.testimonialprolist[index].testimonialName} """,
-                                      onLinkTap: (url) {
+                                      onLinkTap: (url, renderContext,
+                                          attributes, element) {
                                         print("Opening $url...");
                                         ShowDialogs.launchURL(url);
                                       },
@@ -113,30 +114,35 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
                                             color: Customcolor.colorBlue,
                                             textAlign: TextAlign.start,
                                             fontWeight: FontWeight.w500),
-                                             "tr": Customcolor.tableboderstyle(),
+                                        "tr": Customcolor.tableboderstyle(
+                                            context),
                                       }),
                                   Html(
                                     data:
                                         """${GlobalLists.testimonialprolist[index].departmentName} """,
-                                    onLinkTap: (url) {
+                                    onLinkTap: (url, renderContext, attributes,
+                                        element) {
                                       print("Opening $url...");
                                       ShowDialogs.launchURL(url);
                                     },
                                     style: {
                                       "body": Style(textAlign: TextAlign.start),
-                                       "tr": Customcolor.tableboderstyle(),
+                                      "tr":
+                                          Customcolor.tableboderstyle(context),
                                     },
                                   ),
                                   Html(
                                     data:
                                         """${GlobalLists.testimonialprolist[index].details} """,
-                                    onLinkTap: (url) {
+                                    onLinkTap: (url, renderContext, attributes,
+                                        element) {
                                       print("Opening $url...");
                                       ShowDialogs.launchURL(url);
                                     },
                                     style: {
                                       "body": Style(textAlign: TextAlign.start),
-                                       "tr": Customcolor.tableboderstyle(),
+                                      "tr":
+                                          Customcolor.tableboderstyle(context),
                                     },
                                   ),
                                 ],

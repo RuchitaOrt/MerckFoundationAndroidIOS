@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -34,17 +33,16 @@ class _SplashScreenState extends State<SplashScreen> {
   String serverVersionCount = "1.0.0";
 
   String iosServerVersionCount = "";
-  
+
   String appLink = "";
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   Map<String, dynamic> _deviceData = <String, dynamic>{};
   @override
   void initState() {
+    print('Splace Screen');
     super.initState();
     Utility().loadAPIConfig(context);
     splah();
-
-    
   }
 
   splah() {
@@ -72,8 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
         deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
         print("----ios device data----");
         print(deviceData['identifierForVendor']);
-           GlobalLists.deviceid = deviceData['identifierForVendor'];
-
+        GlobalLists.deviceid = deviceData['identifierForVendor'];
       }
     } on PlatformException {
       deviceData = <String, dynamic>{
@@ -109,11 +106,6 @@ class _SplashScreenState extends State<SplashScreen> {
     return currentVersion;
   }
 
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -147,7 +139,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Container(
                   width: SizeConfig.blockSizeHorizontal * 55,
                   child: Text(
-                    "version 2.4", //for ios only
+                    "version 1.0.24",
                     style: TextStyle(
                       color: Colors.black87,
                     ),
@@ -211,56 +203,42 @@ class _SplashScreenState extends State<SplashScreen> {
   checkmethod() {}
 
   void fetchRemoteConfig(BuildContext context) async {
-  
-  if(Platform.isAndroid){
-     if (currentVersion != serverVersionCount) {
-     
-      showUpdateAlertDialog(context, "Update App",
-          "A new Version is available on Playstore", "Update", appLink, true);
-      print("showpopup");
-      // loadpopup(context);
-    } 
-    
-    
-    else {
+    if (Platform.isAndroid) {
+      if (currentVersion != serverVersionCount) {
+        showUpdateAlertDialog(context, "Update App",
+            "A new Version is available on Playstore", "Update", appLink, true);
+        print("showpopup");
+        // loadpopup(context);
+      } else {
+        loadData();
+      }
+    } else {
+      print("ios current version $currentVersion");
+      print("ios server version $iosServerVersionCount");
+      //  if (currentVersion != iosServerVersionCount) {
+
+      //   showUpdateAlertDialog(context, "Update App",
+      //       "A new Version is available on AppStore", "Update", appLink, true);
+      //   print("showpopup");
+      //   // loadpopup(context);
+      // }
+
+      // else {
       loadData();
+      // }
     }
-
-
-  }else{ 
-    print("ios current version $currentVersion");
-    print("ios server version $iosServerVersionCount");
-    //  if (currentVersion != iosServerVersionCount) {
-     
-    //   showUpdateAlertDialog(context, "Update App",
-    //       "A new Version is available on AppStore", "Update", appLink, true);
-    //   print("showpopup");
-    //   // loadpopup(context);
-    // } 
-    
-    
-    // else {
-      loadData();
-    // }
-
-
-  }
-   
-
-
-
   }
 
   showUpdateAlertDialog(BuildContext context, String title, String description,
       String downloadButtonText, String appLink, bool isCompulsory) {
     // set up the buttons
-    Widget cancelButton = FlatButton(
+    Widget cancelButton = ElevatedButton(
       child: Text("Skip"),
       onPressed: () {
         Navigator.pop(context);
       },
     );
-    Widget continueButton = FlatButton(
+    Widget continueButton = ElevatedButton(
       child: Text(downloadButtonText),
       onPressed: () {
         Navigator.pop(context);
@@ -274,8 +252,7 @@ class _SplashScreenState extends State<SplashScreen> {
             launch(appLink);
           }
         } else {
-
-          LaunchReview.launch(writeReview: false,iOSAppId: "1535584997");
+          LaunchReview.launch(writeReview: false, iOSAppId: "1535584997");
 
           // launch("https://apps.apple.com/in/app/merck-foundation/id1535584997");
         }

@@ -1,20 +1,16 @@
+// ignore_for_file: unnecessary_brace_in_string_interps, unused_field, unused_element
+
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-
-import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/model/AmbassadarVideoviewall.dart';
 import 'package:http/io_client.dart';
@@ -50,7 +46,6 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
   final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
-    // TODO: implement initState
 
     super.initState();
     GlobalLists.videoviewmoreambasdarslist.clear();
@@ -462,11 +457,12 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
   Future<http.Response> fetchPostWithBodyResponse(
       String url, dynamic body) async {
     IOClient ioClient = new IOClient();
+    Uri uri = Uri.parse(url);
 
     HttpClient client = new HttpClient();
 
     ioClient = new IOClient(client);
-    final response = await ioClient.post(url, body: body);
+    final response = await ioClient.post(uri, body: body);
     print('pit stop');
     return response;
   }

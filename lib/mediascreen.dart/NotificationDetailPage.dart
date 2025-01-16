@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:merckfoundation22dec/model/NotificationdetailResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -7,7 +8,7 @@ import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-import 'package:flutter_html/style.dart';
+
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 
@@ -112,7 +113,7 @@ class DetailpageState extends State<NotiDetailpage>
                                 ),
                                 // Html(
                                 //   data: """${GlobalLists.notificationlist[0].details} """,
-                                //   onLinkTap: (url) {
+                                //       onLinkTap:(url) {
                                 //     print("Opening $url...");
                                 //     ShowDialogs.launchURL(url);
                                 //   },
@@ -122,16 +123,11 @@ class DetailpageState extends State<NotiDetailpage>
                                 ),
                                 GlobalLists.notificationlist[0].details == null
                                     ? Container()
-                                    : Html(
-                                        data:
+                                    : HtmlWidget(
+                                        
                                             """${GlobalLists.notificationlist[0].details} """,
-                                        onLinkTap: (url) {
-                                          print("Opening $url...");
-                                          ShowDialogs.launchURL(url);
-                                        },
-                                        style: {
-                                           "tr": Customcolor.tableboderstyle(),
-                                        },
+                                     
+                                       
                                       ),
                                 // Padding(
                                 //   padding: const EdgeInsets.only(

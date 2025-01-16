@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -30,7 +29,6 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'dart:convert';
-
 import 'package:flutter_html/flutter_html.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
@@ -217,7 +215,7 @@ class MerckAfricaasialuminarState extends State<MerckAfricaasialuminar>
   }
 
   double imgHeight = 30;
-double imgHeightfb = 24;
+  double imgHeightfb = 24;
   Widget followUs() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
@@ -328,6 +326,19 @@ double imgHeightfb = 24;
                     },
                     child: Image.asset(
                       "assets/newImages/flickr.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      ShowDialogs.openThreadsApp(Constantstring.followthreas);
+                    },
+                    child: Image.asset(
+                      "assets/newImages/threads.png",
                       height: imgHeight,
                       width: imgHeight,
                     ),
@@ -1754,7 +1765,8 @@ double imgHeightfb = 24;
                               Html(
                                 data:
                                     """${GlobalLists.merckcancerawardlist[index].title} """,
-                                onLinkTap: (url) {
+                                onLinkTap:
+                                    (url, renderContext, attributes, element) {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
                                 },
@@ -1764,7 +1776,7 @@ double imgHeightfb = 24;
                                       color: Customcolor.pink_col,
                                       fontSize: FontSize.large,
                                       fontWeight: FontWeight.w500),
-                                       "tr": Customcolor.tableboderstyle(),
+                                  "tr": Customcolor.tableboderstyle(context),
                                 },
                               ),
                               SizedBox(
@@ -1776,8 +1788,12 @@ double imgHeightfb = 24;
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      getawarddetail(GlobalLists
-                                          .merckcancerawardlist[index].pageUrl);
+                                      getawarddetail(
+                                          GlobalLists
+                                              .merckcancerawardlist[index]
+                                              .pageUrl,
+                                          GlobalLists
+                                              .merckcancerawardlist[index].id);
                                     },
                                     child: Container(
                                       width: 110,
@@ -1819,17 +1835,14 @@ double imgHeightfb = 24;
       if (typewidet[i] == "content") {
         listofwiget.add(
           Html(
-            data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
-              print("Opening $url...");
-              ShowDialogs.launchURL(url);
-            },
-            style:{
-               "tr": Customcolor.tableboderstyle(),
-            }
-
-            
-          ),
+              data: """${GlobalLists.homecontentlist[0].pageContent} """,
+              onLinkTap: (url, renderContext, attributes, element) {
+                print("Opening $url...");
+                ShowDialogs.launchURL(url);
+              },
+              style: {
+                "tr": Customcolor.tableboderstyle(context),
+              }),
         );
       }
       if (typewidet[i] == "latest_updates") {
@@ -2154,7 +2167,8 @@ double imgHeightfb = 24;
                                                 fontSize: FontSize(13.0),
                                                 color: Colors.black87,
                                                 fontWeight: FontWeight.w600),
-                                                 "tr": Customcolor.tableboderstyle(),
+                                            "tr": Customcolor.tableboderstyle(
+                                                context),
                                           },
                                         ),
                                         // FormLabel(
@@ -2205,7 +2219,8 @@ double imgHeightfb = 24;
       // digitalLibrary(),
       // merckmorethanmother()
       for (int i = 0; i < typewidetofrightsection.length; i++) {
-        if (typewidetofrightsection[i] == "call_for_app") {
+        if (typewidetofrightsection[i] == "call_for_app" &&
+            GlobalLists.homecallforapp.length > 0) {
           tabs.add(
             new Tab(child: Callforapptext()),
           );
@@ -2220,7 +2235,8 @@ double imgHeightfb = 24;
         //   );
         //   listoftabwiget.add(getMMTMS(context));
         // }
-        if (typewidetofrightsection[i] == "digital_library") {
+        if (typewidetofrightsection[i] == "digital_library" &&
+            GlobalLists.homedigitallib.length > 0) {
           tabs.add(
             new Tab(
               child: Digitaltext(),
@@ -2449,9 +2465,9 @@ double imgHeightfb = 24;
 
         ///////right section
 
-        dynamic rightsection1 = res['Right_area']["1"];
+        dynamic rightsection1 = res['Right_area']["3"];
         print("rightsection");
-        print("TKey: ${rightsection1.keys.first}");
+        print("TKey: ${rightsection1.keys.first ?? ""}");
         print(rightsection1);
         dynamic rightsection3 = res['Right_area']["3"];
         // print("TKey: ${rightsection.keys.first}");
@@ -2566,7 +2582,8 @@ double imgHeightfb = 24;
     }
   }
 
-  getawarddetail(String pageurl) async {
+  getawarddetail(String pageurl, String awardid) async {
+
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -2591,6 +2608,7 @@ double imgHeightfb = 24;
                 MaterialPageRoute(
                     builder: (BuildContext context) => OurAwardDetail(
                           detaill: GlobalLists.awarddetallisting,
+                          awardid: awardid,
                         )));
           });
         } else {

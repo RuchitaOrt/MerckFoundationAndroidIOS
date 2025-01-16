@@ -67,7 +67,7 @@ class CovidResponseState extends State<CovidResponse>
             "Merck Foundation announce ‘Stay at Home’ Media Recognition Awards…"),
     Newsletter(
         imge:
-            "https://smitlalai.com/demo/merck/public/assets/plugins/ckfinder/core/connector/php/connector.php?command=Proxy&lang=en&type=Files&currentFolder=%2F&hash=36d151d14dfb6a22&fileName=KNS_3249.jpg",
+            "https://lalai.com/demo/merck/public/assets/plugins/ckfinder/core/connector/php/connector.php?command=Proxy&lang=en&type=Files&currentFolder=%2F&hash=36d151d14dfb6a22&fileName=KNS_3249.jpg",
         title:
             "Message from Dr. Rasha Kelej on Community donations provided in…"),
     Newsletter(
@@ -185,7 +185,7 @@ class CovidResponseState extends State<CovidResponse>
                       children: [
                         // Html(
                         //   data: """""",
-                        //   onLinkTap: (url) {
+                        //       onLinkTap:(url) {
                         //     print("Opening $url...");
                         //   },
                         // ),

@@ -37,7 +37,7 @@ class CeomessageState extends State<Ceomessage> {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapval: () {
-          //  Navigator.pop(context);
+            //  Navigator.pop(context);
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -63,8 +63,8 @@ class CeomessageState extends State<Ceomessage> {
               GlobalLists.ceolisting.length <= 0
                   ? Container()
                   : Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: ListView.builder(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: ListView.builder(
                         itemCount: GlobalLists.ceolisting.length,
                         scrollDirection: Axis.vertical,
                         physics: NeverScrollableScrollPhysics(),
@@ -75,13 +75,12 @@ class CeomessageState extends State<Ceomessage> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                  left: 10, right: 8, bottom: 6),
+                                    left: 10, right: 8, bottom: 6),
                                 child: Container(
                                   height: 200,
                                   width: 150,
                                   decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(8)),
+                                      borderRadius: BorderRadius.circular(8)),
                                   child: FadeInImage.assetNetwork(
                                     placeholder:
                                         'assets/newImages/placeholder_3.jpg',
@@ -95,7 +94,8 @@ class CeomessageState extends State<Ceomessage> {
                               Html(
                                 data:
                                     """${GlobalLists.ceolisting[index].leaderName} """,
-                                onLinkTap: (url) {
+                                onLinkTap:
+                                    (url, renderContext, attributes, element) {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
                                 },
@@ -105,19 +105,20 @@ class CeomessageState extends State<Ceomessage> {
                                       color: Customcolor.violet_col,
                                       fontWeight: FontWeight.bold,
                                       fontSize: FontSize.larger),
-                                       "tr": Customcolor.tableboderstyle(),
+                                  "tr": Customcolor.tableboderstyle(context),
                                 },
                               ),
                               Html(
                                 data:
                                     """${GlobalLists.ceolisting[index].shortBiodata} """,
-                                onLinkTap: (url) {
+                                onLinkTap:
+                                    (url, renderContext, attributes, element) {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
                                 },
                                 style: {
                                   "body": Style(textAlign: TextAlign.start),
-                                   "tr": Customcolor.tableboderstyle(),
+                                  "tr": Customcolor.tableboderstyle(context),
                                 },
                               ),
                               GestureDetector(
@@ -127,8 +128,7 @@ class CeomessageState extends State<Ceomessage> {
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
                                               Detailpageceo(
-                                                list:
-                                                    GlobalLists.ceolisting,
+                                                list: GlobalLists.ceolisting,
                                                 imageurl:
                                                     Constantstring.baseUrl,
                                                 index: index,
@@ -136,7 +136,8 @@ class CeomessageState extends State<Ceomessage> {
                                 },
                                 child: Html(
                                   data: "((View Bio))",
-                                  onLinkTap: (url) {
+                                  onLinkTap: (url, renderContext, attributes,
+                                      element) {
                                     print("Opening $url...");
                                     ShowDialogs.launchURL(url);
                                   },
@@ -146,7 +147,7 @@ class CeomessageState extends State<Ceomessage> {
                                         color: Customcolor.pink_col,
                                         fontSize: FontSize.larger,
                                         fontWeight: FontWeight.w600),
-                                         "tr": Customcolor.tableboderstyle(),
+                                    "tr": Customcolor.tableboderstyle(context),
                                   },
                                 ),
                               ),
@@ -154,12 +155,12 @@ class CeomessageState extends State<Ceomessage> {
                           );
                         },
                       ),
-                  ),
+                    ),
               GlobalLists.boardoftrust.length <= 0
                   ? Container()
                   : Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Column(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           //Text("Board of Trustees of Merck Foundation"),
@@ -178,7 +179,6 @@ class CeomessageState extends State<Ceomessage> {
                             ),
                           ),
 
-                         
                           ListView.builder(
                             itemCount: GlobalLists.boardoftrust.length,
                             scrollDirection: Axis.vertical,
@@ -189,8 +189,8 @@ class CeomessageState extends State<Ceomessage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                       padding: const EdgeInsets.only(
-                                      left: 10, right: 8, bottom: 6),
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 8, bottom: 6),
                                     child: Container(
                                       height: 200,
                                       width: 150,
@@ -211,31 +211,34 @@ class CeomessageState extends State<Ceomessage> {
                                   Html(
                                     data:
                                         """${GlobalLists.boardoftrust[index].leaderName} """,
-                                    onLinkTap: (url) {
+                                    onLinkTap: (url, renderContext, attributes,
+                                        element) {
                                       print("Opening $url...");
                                       ShowDialogs.launchURL(url);
                                     },
                                     style: {
                                       "body": Style(
-                                        padding: EdgeInsets.all(0),
+                                          padding: EdgeInsets.all(0),
                                           textAlign: TextAlign.start,
                                           color: Customcolor.violet_col,
                                           fontWeight: FontWeight.bold,
                                           fontSize: FontSize.larger),
-                                           "tr": Customcolor.tableboderstyle(),
+                                      "tr":
+                                          Customcolor.tableboderstyle(context),
                                     },
                                   ),
                                   Html(
                                     data:
                                         """${GlobalLists.boardoftrust[index].shortBiodata} """,
-                                    onLinkTap: (url) {
+                                    onLinkTap: (url, renderContext, attributes,
+                                        element) {
                                       print("Opening $url...");
                                       ShowDialogs.launchURL(url);
                                     },
                                     style: {
-                                      "body":
-                                          Style(textAlign: TextAlign.start),
-                                           "tr": Customcolor.tableboderstyle(),
+                                      "body": Style(textAlign: TextAlign.start),
+                                      "tr":
+                                          Customcolor.tableboderstyle(context),
                                     },
                                   ),
                                   GestureDetector(
@@ -243,20 +246,19 @@ class CeomessageState extends State<Ceomessage> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder:
-                                                  (BuildContext context) =>
-                                                      Detailpageceo(
-                                                        list: GlobalLists
-                                                            .boardoftrust,
-                                                        imageurl:
-                                                            Constantstring
-                                                                .baseUrl,
-                                                        index: index,
-                                                      )));
+                                              builder: (BuildContext context) =>
+                                                  Detailpageceo(
+                                                    list: GlobalLists
+                                                        .boardoftrust,
+                                                    imageurl:
+                                                        Constantstring.baseUrl,
+                                                    index: index,
+                                                  )));
                                     },
                                     child: Html(
                                       data: "((View Bio))",
-                                      onLinkTap: (url) {
+                                      onLinkTap: (url, renderContext,
+                                          attributes, element) {
                                         print("Opening $url...");
                                         ShowDialogs.launchURL(url);
                                       },
@@ -266,11 +268,11 @@ class CeomessageState extends State<Ceomessage> {
                                             color: Customcolor.pink_col,
                                             fontSize: FontSize.larger,
                                             fontWeight: FontWeight.w600),
-                                             "tr": Customcolor.tableboderstyle(),
+                                        "tr": Customcolor.tableboderstyle(
+                                            context),
                                       },
                                     ),
-                                   ),
-
+                                  ),
                                   SizedBox(
                                     height: 30,
                                   )
@@ -280,7 +282,7 @@ class CeomessageState extends State<Ceomessage> {
                           ),
                         ],
                       ),
-                  ),
+                    ),
               // Padding(
               //   padding: const EdgeInsets.only(
               //       left: 60, right: 60, top: 20, bottom: 10),
@@ -302,8 +304,7 @@ class CeomessageState extends State<Ceomessage> {
               //   height: 10,
               // )
 
-
-               Padding(
+              Padding(
                 padding: const EdgeInsets.only(right: 0, left: 0),
                 child: Align(
                   alignment: Alignment.topRight,
@@ -317,7 +318,6 @@ class CeomessageState extends State<Ceomessage> {
                 height: 10,
               ),
               Bottomcardlink(),
-         
             ],
           ),
         ));

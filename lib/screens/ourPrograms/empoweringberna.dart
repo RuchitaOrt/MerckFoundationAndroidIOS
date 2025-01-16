@@ -132,19 +132,21 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
 
         Map<String, dynamic> section1 = homepageres.middleArea;
 
-        print(section1);
-        print(section1['1']);
+        // print(section1);
+        print("section1['1'] :- ${section1['1']}");
 
         dynamic contentsection = res['middle_area']['1'];
-        dynamic videossection = res['middle_area']['3'];
+        dynamic videossection = res['middle_area']['2'];
+
+        print("Video seccon$videossection ");
 
         var middlevideoname1 = videossection;
         var middlecontentname1 = contentsection;
 
         var middlevideoname = middlevideoname1.keys.first;
         var middlecontentname = middlecontentname1.keys.first;
-        print(middlevideoname1);
-        print(middlecontentname1);
+        print("middlevideoname1$middlevideoname1");
+        print("middlecontentname1$middlecontentname1");
         setState(() {
           typewidet.add('content');
           typewidet.add('videos');
@@ -156,7 +158,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
         if (middlevideoname.toString().toLowerCase() ==
             "videos".toLowerCase()) {
           print("hill");
-          GlobalLists.homevideolist = homepageres.middleArea['3'].videos.list;
+          GlobalLists.homevideolist = homepageres.middleArea['2'].videos.list;
           print(GlobalLists.homevideolist.length);
         }
         if (middlecontentname.toString().toLowerCase() ==
@@ -355,43 +357,6 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              // Align(
-                              //   alignment: Alignment.bottomCenter,
-                              //   child: Padding(
-                              //     padding: const EdgeInsets.only(
-                              //         left: 10, right: 10, bottom: 10),
-                              //     child: Row(
-                              //       crossAxisAlignment: CrossAxisAlignment.end,
-                              //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              //       children: [
-                              //         Column(
-                              //           mainAxisAlignment: MainAxisAlignment.end,
-                              //           crossAxisAlignment:
-                              //               CrossAxisAlignment.start,
-                              //           children: [
-                              //             Container(
-                              //               width:
-                              //                   SizeConfig.blockSizeHorizontal * 80,
-                              //               child: Text(
-                              //                 GlobalLists
-                              //                     .homevideolist[index].videoDesc,
-                              //                 overflow: TextOverflow.ellipsis,
-                              //                 style: TextStyle(
-                              //                     color: Colors.white,
-                              //                     fontSize: 14,
-                              //                     fontWeight: FontWeight.w700),
-                              //                 maxLines: 3,
-                              //               ),
-                              //             ),
-                              //             SizedBox(
-                              //               height: 25,
-                              //             )
-                              //           ],
-                              //         ),
-                              //       ],
-                              //     ),
-                              //   ),
-                              // ),
                               Padding(
                                 padding: EdgeInsets.only(left: 130, top: 70),
                                 child: Center(
@@ -429,12 +394,12 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
+            onLinkTap: (url, renderContext, attributes, element) {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
             style: {
-               "tr": Customcolor.tableboderstyle(),
+              "tr": Customcolor.tableboderstyle(context),
             },
           ),
         );

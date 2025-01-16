@@ -1,10 +1,12 @@
+// ignore_for_file: unused_import
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoudationTestimonial.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/AnnualReport.dart';
-
 import 'package:merckfoundation22dec/mediascreen.dart/newReleases.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/screens/ceomessage/ceomessage.dart';
@@ -12,7 +14,6 @@ import 'package:merckfoundation22dec/screens/ceomessage/messageFromLeadership.da
 import 'package:merckfoundation22dec/screens/contactus/contactUs.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
-
 import 'package:merckfoundation22dec/screens/ourpartner/ourPartnerDetails.dart';
 import 'package:merckfoundation22dec/screens/ourvision/vision.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -22,13 +23,17 @@ import 'package:merckfoundation22dec/whatwedo/legaldisclaimer.dart';
 import 'package:merckfoundation22dec/whatwedo/ouractivities.dart';
 import 'package:merckfoundation22dec/whatwedo/ourmission.dart';
 import 'package:merckfoundation22dec/whatwedo/ourpolicy.dart';
-
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
 import 'package:merckfoundation22dec/widget/pdfviewpage.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../model/yearwisephotogallery.dart';
+import '../photo_gallery.dart';
+import '../utility/checkInternetconnection.dart';
+import '../whatwedo/political_deutrality_declaration.dart';
 
 Map<String, bool> expansionState = Map();
 
@@ -45,6 +50,9 @@ class _AppDrawerState extends State<AppDrawer> {
 
   bool isLoggedIn = false;
   double imgHeightfb = 24;
+  List<dynamic> yearwisephotlist = [];
+  final GlobalKey<State> _photoload = new GlobalKey<State>();
+
   // static final FacebookLogin facebookSignIn = new FacebookLogin();
 
   void closeOpenExpansionList(expansionName) {
@@ -58,7 +66,6 @@ class _AppDrawerState extends State<AppDrawer> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     setData();
   }
@@ -324,6 +331,17 @@ class _AppDrawerState extends State<AppDrawer> {
                                         OurDataprivacy()));
                           },
                         ),
+                        DrawerWidget(
+                          image: '',
+                          value: 'Political Neutrality Declaration',
+                          onTapfun: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        political_deutrality_declaration()));
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -376,14 +394,14 @@ class _AppDrawerState extends State<AppDrawer> {
                         child: new Row(
                           children: <Widget>[
                             new Image.asset(
-                              'assets/newImages/media.png',
+                              'assets/newImages/media_E.png',
                               height: 20.0,
                               width: 20.0,
                             ),
                             SizedBox(
                               width: 16,
                             ),
-                            Text('Media & Events', style: headingTextStyle),
+                            Text('Media & Stories', style: headingTextStyle),
                           ],
                         ),
                       ),
@@ -432,7 +450,7 @@ class _AppDrawerState extends State<AppDrawer> {
                           image: '',
                           value: 'Newsletters And Articles',
                           onTapfun: () {
-                            print('ontap');
+                            print('ontapNewsletters');
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -484,15 +502,32 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         DrawerWidget(
                           image: '',
-                          value: 'Annual Report',
+                          value: 'Digital Library',
                           onTapfun: () {
                             print('ontap');
-
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        AnnualReport()));
+                                        WatchDigitalLibrary(
+                                          apiurl: API.digitalhome,
+                                          digitallink:
+                                              Constantstring.sharedigitalhome,
+                                        )));
+                          },
+                        ),
+                        DrawerWidget(
+                          image: '',
+                          value: 'Photo Gallery',
+                          onTapfun: () {
+                            print('ontap');
+                            getyearwisephotgallery();
+
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (BuildContext context) =>
+                            //             PhotoGalleryPage()));
                           },
                         ),
                       ],
@@ -628,5 +663,47 @@ class _AppDrawerState extends State<AppDrawer> {
     setState(() {
       this.isLoggedIn = isLoggedIn;
     });
+  }
+
+  getyearwisephotgallery() async {
+    print('inside');
+    var status1 = await ConnectionDetector.checkInternetConnection();
+
+    if (status1) {
+      ShowDialogs.showLoadingDialog(context, _photoload);
+
+      APIManager().apiRequest(
+        context,
+        API.yearwisegallery,
+        (response) async {
+          YearwisePhotogalleryResponse resp = response;
+
+          Navigator.of(_photoload.currentContext).pop();
+
+          if (resp.success == "true") {
+            setState(() {
+              yearwisephotlist = resp.list;
+              Constantstring.baseUrl = resp.baseUrl;
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PhotoGalleryPage(
+                            baseURL: Constantstring.baseUrl,
+                            index: 0,
+                            photosList: yearwisephotlist,
+                          )));
+            });
+          } else {
+            ShowDialogs.showToast(resp.msg);
+          }
+        },
+        (error) {
+          print('ERR msg is $error');
+          Navigator.of(_photoload.currentContext).pop();
+        },
+      );
+    } else {
+      ShowDialogs.showToast("Please check internet connection");
+    }
   }
 }

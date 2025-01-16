@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -77,7 +74,6 @@ class _GalleryProgramState extends State<GalleryProgram> {
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
-
                 }
 
                 offset = totalcount;
@@ -147,7 +143,8 @@ class _GalleryProgramState extends State<GalleryProgram> {
                           _isLoading == false)
                       ? Center(
                           child: Container(
-                            child: Center(child: Text(Constantstring.emptyData)),
+                            child:
+                                Center(child: Text(Constantstring.emptyData)),
                           ),
                         )
                       : ListView(
@@ -163,7 +160,8 @@ class _GalleryProgramState extends State<GalleryProgram> {
                               crossAxisCount: 2,
                               childAspectRatio: 0.9,
                               children: List.generate(
-                                  GlobalLists.programgallerylist.length, (index) {
+                                  GlobalLists.programgallerylist.length,
+                                  (index) {
                                 // if (GlobalLists.programgallerylist.length - 1 ==
                                 //         index &&
                                 //     _isLoading) {
@@ -184,11 +182,11 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                         onTap: () {
                                           ShowDialogs.showImageDialog(
                                             context: context,
-                                            image:
-                                                GlobalLists.programgallerybaseurl +
-                                                    GlobalLists
-                                                        .programgallerylist[index]
-                                                        .photo,
+                                            image: GlobalLists
+                                                    .programgallerybaseurl +
+                                                GlobalLists
+                                                    .programgallerylist[index]
+                                                    .photo,
                                             description: GlobalLists
                                                 .programgallerylist[index]
                                                 .photoDescription,
@@ -197,7 +195,8 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                         child: Container(
                                           color: Colors.transparent,
                                           width:
-                                              SizeConfig.blockSizeHorizontal * 50,
+                                              SizeConfig.blockSizeHorizontal *
+                                                  50,
                                           child: Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
@@ -205,46 +204,52 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                                 CrossAxisAlignment.start,
                                             children: <Widget>[
                                               Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
                                                 child: Container(
                                                   width: SizeConfig
                                                           .blockSizeHorizontal *
                                                       100,
-                                                  height:
-                                                      SizeConfig.blockSizeVertical *
-                                                          16,
+                                                  height: SizeConfig
+                                                          .blockSizeVertical *
+                                                      16,
                                                   decoration: BoxDecoration(
                                                     borderRadius:
-                                                        BorderRadius.circular(5),
+                                                        BorderRadius.circular(
+                                                            5),
                                                     // border: Border.all(
                                                     //   width: 1,
                                                     // ),
                                                     image: new DecorationImage(
-                                                      image: new NetworkImage(GlobalLists
-                                                              .programgallerybaseurl +
+                                                      image: new NetworkImage(
                                                           GlobalLists
-                                                              .programgallerylist[
-                                                                  index]
-                                                              .photo),
+                                                                  .programgallerybaseurl +
+                                                              GlobalLists
+                                                                  .programgallerylist[
+                                                                      index]
+                                                                  .photo),
                                                       fit: BoxFit.contain,
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.all(4.0),
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
                                                 child: Center(
                                                   child: Text(
                                                     GlobalLists
-                                                        .programgallerylist[index]
+                                                        .programgallerylist[
+                                                            index]
                                                         .photoDescription,
                                                     textAlign: TextAlign.center,
-                                                    overflow: TextOverflow.ellipsis,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize:
-                                                            ResponsiveFlutter.of(
-                                                                    context)
+                                                            ResponsiveFlutter
+                                                                    .of(context)
                                                                 .fontSize(1.4),
                                                         fontWeight:
                                                             FontWeight.w500),
@@ -264,34 +269,29 @@ class _GalleryProgramState extends State<GalleryProgram> {
                             _isLoading
                                 ? Center(
                                     child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 10, bottom: 10),
+                                    padding: const EdgeInsets.only(
+                                        top: 10, bottom: 10),
                                     child: CircularProgressIndicator(),
                                   ))
                                 : Container()
                           ],
                         ),
-
-                         Padding(
-                        padding: const EdgeInsets.only(right: 0, left: 0),
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: Image.asset(
-                            "assets/newImages/flowers_footer.png",
-                            height: 170,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
+              Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
             ],
           ),
-       
-        Align(
-             alignment: Alignment.bottomCenter,
-   child: Bottomcardlink()),
-       
+          Align(alignment: Alignment.bottomCenter, child: Bottomcardlink()),
         ],
       ),
     );

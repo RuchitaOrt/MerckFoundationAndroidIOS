@@ -81,7 +81,6 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
-
                 }
 
                 offset = totalcount;
@@ -130,7 +129,8 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
         },
         index: 2,
         sharelink: widget.sharelink,
-        title: 'Merck Foundation "More Than a Mother" Ambassadors',//'Merck Foundation "More Than a Mother"',
+        title:
+            'Merck Foundation "More Than a Mother" Ambassadors', //'Merck Foundation "More Than a Mother"',
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -178,21 +178,9 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
                               padding: const EdgeInsets.all(5),
                               crossAxisSpacing: 0,
                               mainAxisSpacing: 2,
-                              crossAxisCount: 1,//2
-                              childAspectRatio: 1.32,//0.85,
+                              crossAxisCount: 1, //2
+                              childAspectRatio: 1.32, //0.85,
                               children: List.generate(current.length, (index) {
-                                // if (GlobalLists.viewmoremmtmlist.length - 1 == index &&
-                                //     _isLoading) {
-                                //   return Center(
-                                //     child: CircularProgressIndicator(),
-                                //   );
-                                // } else {
-// String userInput = '2,2,2';
-// List<double> listOfNumbers = userInput.split(',').map((e) => double.parse(e)).toList();
-// double result = 1;
-// //The below is assuming you want to multiple them with each other. But you can basically now perform any operations them.
-// listOfNumbers.forEach((e) => result = e * result);
-// print(result); // => prints 8
                                 List<String> splits = current[index]
                                     .photoDescription
                                     .split(current[index]
@@ -204,7 +192,11 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
                                     current[index].photoDescription.split(",");
 
                                 return Padding(
-                                  padding: const EdgeInsets.only(right: 70.0,left: 70),
+                                  padding: const EdgeInsets.only(
+                                      right: 70.0,
+                                      left: 70,
+                                      top: 10,
+                                      bottom: 10),
                                   child: Card(
                                       elevation: 2,
                                       shape: RoundedRectangleBorder(
@@ -246,7 +238,7 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
                                                       100,
                                                   height: SizeConfig
                                                           .blockSizeVertical *
-                                                     28,// 16,
+                                                      22, // 16,
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -254,13 +246,14 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
                                                     // border: Border.all(
                                                     //   width: 1,
                                                     // ),
+                                                    //change
                                                     image: new DecorationImage(
                                                       image: new NetworkImage(
                                                           Constantstring
                                                                   .baseUrl +
                                                               current[index]
                                                                   .photo),
-                                                      fit: BoxFit.fill,
+                                                      fit: BoxFit.cover,
                                                     ),
                                                   ),
                                                 ),
@@ -275,19 +268,19 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
                                                         splits[0],
                                                         textAlign:
                                                             TextAlign.center,
-                                                        overflow:
-                                                            TextOverflow.ellipsis,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                         style: TextStyle(
                                                             color: Customcolor
                                                                 .pink_col,
                                                             fontSize:
-                                                                ResponsiveFlutter
-                                                                        .of(
-                                                                            context)
+                                                                ResponsiveFlutter.of(
+                                                                        context)
                                                                     .fontSize(
                                                                         1.4),
                                                             fontWeight:
-                                                                FontWeight.w500),
+                                                                FontWeight
+                                                                    .w500),
                                                         maxLines: 2,
                                                       ),
                                                       Text(
@@ -296,19 +289,19 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
                                                                 1],
                                                         textAlign:
                                                             TextAlign.center,
-                                                        overflow:
-                                                            TextOverflow.ellipsis,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                         style: TextStyle(
                                                             color: Customcolor
                                                                 .text_darkblue,
                                                             fontSize:
-                                                                ResponsiveFlutter
-                                                                        .of(
-                                                                            context)
+                                                                ResponsiveFlutter.of(
+                                                                        context)
                                                                     .fontSize(
                                                                         1.4),
                                                             fontWeight:
-                                                                FontWeight.w500),
+                                                                FontWeight
+                                                                    .w500),
                                                         maxLines: 2,
                                                       ),
                                                     ],
@@ -427,7 +420,7 @@ class _viewmoremmtmaState extends State<ViewmoremmtmAmbassadar> {
                                                       100,
                                                   height: SizeConfig
                                                           .blockSizeVertical *
-                                                      24,//21
+                                                      21, //21
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:responsive_flutter/responsive_flutter.dart';
-import 'package:flutter_html/style.dart';
+
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class Homeceomessage extends StatefulWidget {
@@ -91,36 +92,34 @@ class OurVisionState extends State<Homeceomessage>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Html(
-                          data: """${widget.title} """,
-                          onLinkTap: (url) {
-                            print("Opening $url...");
-                            ShowDialogs.launchURL(url);
-                          },
-                          style: {
-                            "body": Style(
-                              fontSize: FontSize(
-                                  ResponsiveFlutter.of(context).fontSize(2)),
-                              fontWeight: FontWeight.w600,
-                              textAlign: TextAlign.start,
-                              color: Customcolor.colorVoilet,
-                            ),
-                              "tr": Customcolor.tableboderstyle(),
-                          },
+                        HtmlWidget(
+                          """${widget.title} """,
+                        
+                         
                         ),
                         SizedBox(
                           height: 15,
                         ),
-                        Html(
-                          data: """${widget.detail} """,
-                          onLinkTap: (url) {
-                            print("Opening $url...");
-                            ShowDialogs.launchURL(url);
-                          },
-                          style: {
-                                                        "tr": Customcolor.tableboderstyle(),
-                          },
-                        ),
+                        // _buildHtmlContent(context, widget.detail),
+
+                        HtmlWidget(widget.detail),
+
+                        // Html(
+                        //   data: widget.detail ??
+                        //       "", // Ensure widget.detail is not null
+                        //   onLinkTap: (url) {
+                        //     print("Opening $url...");
+                        //     ShowDialogs.launchURL(url);
+                        //   },
+                        //   // onError: (error) {
+                        //   //   print("HTML Error: $error");
+                        //   //   // Handle error gracefully (e.g., show a fallback UI)
+                        //   // },
+                        //   style: {
+                        //     "tr": Customcolor.tableboderstyle(context),
+                        //   },
+                        // ),
+
                         SizedBox(
                           height: 5,
                         ),
@@ -165,5 +164,24 @@ class OurVisionState extends State<Homeceomessage>
             // ),
           ],
         ));
+  }
+
+  Widget _buildHtmlContent(BuildContext context, String htmlContent) {
+    if (htmlContent == null || htmlContent.isEmpty) {
+      return Text("No content available"); // Fallback UI
+    }
+
+    try {
+      // Attempt to parse the HTML content
+      return HtmlWidget(
+       htmlContent,
+     
+       
+      );
+    } catch (e) {
+      print("HTML Error: $e");
+      // Fallback UI in case of an error
+      return Text("Failed to load content");
+    }
   }
 }

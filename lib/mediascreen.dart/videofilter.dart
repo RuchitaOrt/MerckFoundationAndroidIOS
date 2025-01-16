@@ -71,7 +71,8 @@ class VideofilterState extends State<Videofilter> {
           },
           //index: 1,
           index: 2,
-          forfilterindes: 3,
+          forfilterindes: 4,
+          trallingImg1: "assets/newImages/share.png",
           sharelink: widget.filterindex == 1
               ? Constantstring.sharevideolibrary
               : widget.filterindex == 2
@@ -82,7 +83,7 @@ class VideofilterState extends State<Videofilter> {
           // forfilterindes: 3,
           title: widget.apptitle,
           titleImg: "assets/newImages/ourstoriesLogo.png",
-          trallingImg1: "assets/newImages/filter.png",
+         // trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",
           height: 85,
         ),

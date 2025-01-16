@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                             Padding(
                               padding: const EdgeInsets.only(left: 8, top: 5),
                               child: Container(
-                                  child: FlatButton(
+                                  child: ElevatedButton(
                                       // here toggle the bool value so that when you click
                                       // on the whole item, it will reflect changes in Checkbox
                                       onPressed: () => setState(
@@ -177,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5)),
                                   height: 40,
-                                  child: RaisedButton(
+                                  child: ElevatedButton(
                                     onPressed: () {
                                       // Navigator.of(context).push(
                                       //     MaterialPageRoute(
@@ -190,10 +190,13 @@ class _LoginPageState extends State<LoginPage> {
                                               builder: (context) =>
                                                   Dashboard(index: 0)));
                                     },
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0)),
-                                    padding: const EdgeInsets.all(0.0),
+                                          style: ElevatedButton.styleFrom(                              shape: RoundedRectangleBorder(borderRadius:
+                               new BorderRadius.circular(10)),  ),
+
+                                   // shape: RoundedRectangleBorder(
+                                    //    borderRadius:
+                                      //      BorderRadius.circular(10.0)),
+                                 //   padding: const EdgeInsets.all(0.0),
                                     child: Ink(
                                       decoration: const BoxDecoration(
                                         color: Customcolor.colorVoilet,

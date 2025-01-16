@@ -69,30 +69,38 @@ class OurpatnerState extends State<Ourpatner> {
                           child: Html(
                             data:
                                 """${GlobalLists.ourPartnerObjectives[0].pageContent} """,
-                            onLinkTap: (url) {
+                            onLinkTap:
+                                (url, renderContext, attributes, element) {
                               print("Opening $url...");
                               ShowDialogs.launchURL(url);
                             },
                             style: {
-                               "tr": Customcolor.tableboderstyle(),
+                              "tr": Customcolor.tableboderstyle(context),
                             },
                           ),
                         ),
-
                         Padding(
                           padding: const EdgeInsets.only(
                               left: 90, right: 90, bottom: 20, top: 20),
-                          child: FlatButton(
-                            color: Customcolor.text_blue,
-                            shape: RoundedRectangleBorder(
-                                side: BorderSide(color: Customcolor.text_blue),
-                                borderRadius: BorderRadius.circular(5)),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary: Customcolor.text_blue,
+                                minimumSize: Size(38, 40),
+                                shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        color: Customcolor.text_blue),
+                                    borderRadius: BorderRadius.circular(5))),
+                            // color: Customcolor.text_blue,
+                            // shape: RoundedRectangleBorder(
+                            //     side: BorderSide(color: Customcolor.text_blue),
+                            //     borderRadius: BorderRadius.circular(5)),
                             child: Text(
                               "View Partners",
                               style: TextStyle(color: Colors.white),
                             ),
-                            minWidth: 38,
-                            height: 40,
+
+                            // minWidth: 38,
+                            // height: 40,
                             onPressed: () {
                               // getOurPartnerData();
                               Navigator.push(
@@ -103,6 +111,30 @@ class OurpatnerState extends State<Ourpatner> {
                             },
                           ),
                         ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(
+                        //       left: 90, right: 90, bottom: 20, top: 20),
+                        //   child: ElevatedButton(
+                        //     color: Customcolor.text_blue,
+                        //     shape: RoundedRectangleBorder(
+                        //         side: BorderSide(color: Customcolor.text_blue),
+                        //         borderRadius: BorderRadius.circular(5)),
+                        //     child: Text(
+                        //       "View Partners",
+                        //       style: TextStyle(color: Colors.white),
+                        //     ),
+                        //     minWidth: 38,
+                        //     height: 40,
+                        //     onPressed: () {
+                        //       // getOurPartnerData();
+                        //       Navigator.push(
+                        //           context,
+                        //           MaterialPageRoute(
+                        //               builder: (BuildContext context) =>
+                        //                   Ourpatnerdetail()));
+                        //     },
+                        //   ),
+                        // ),
                         // Padding(
                         //   padding:
                         //       const EdgeInsets.only(right: 60, left: 60, top: 20),

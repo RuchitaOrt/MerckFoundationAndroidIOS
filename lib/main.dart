@@ -1,53 +1,21 @@
+// ignore_for_file: unnecessary_brace_in_string_interps, unused_local_variable, unused_field, non_constant_identifier_names
+
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:firebase_analytics/observer.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
 import 'package:merckfoundation22dec/mediascreen.dart/NotificationDetailPage.dart';
-import 'package:merckfoundation22dec/model/Note.dart';
 import 'package:merckfoundation22dec/screens/splash.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/UtilityFile.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
-
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:http/http.dart' as http;
+import 'package:permission_handler/permission_handler.dart';
 
-import 'package:flutter/services.dart' show ByteData, NetworkAssetBundle, rootBundle;
-
-// import 'package:flutter/material.dart';
-// import 'package:merckfoundation22dec/screens/splash.dart';
-
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
-  await Firebase.initializeApp();
-  print('Handling a background message ${message.messageId}');
-  configLocalNotification();
-}
-
-void configLocalNotification() {
-  var initializationSettingsAndroid =
-      new AndroidInitializationSettings('@mipmap/logo1');
-  var initializationSettingsIOS = new IOSInitializationSettings();
-  var initializationSettings = new InitializationSettings(
-      android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-  flutterLocalNotificationsPlugin.initialize(initializationSettings,
-      onSelectNotification: selectNotification);
-}
-
-Future selectNotification(String payload) async {
-  print("payload");
-  print('selectNotification ${payload}');
-}
-
-/// Create a [AndroidNotificationChannel] for heads up notifications
+// Constants for the notification channel
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
   'High Importance Notifications', // title
@@ -55,301 +23,220 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
   importance: Importance.high,
 );
 
-/// Initialize the [FlutterLocalNotificationsPlugin] package.
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('Handling a background message ${message.messageId}');
+  configLocalNotification();
+  // Show notification for background messages
+}
+
+void configLocalNotification() {
+  var initializationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/logo1');
+  var initializationSettingsIOS = IOSInitializationSettings();
+  var initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+    iOS: initializationSettingsIOS,
+  );
+
+  flutterLocalNotificationsPlugin.initialize(initializationSettings,
+      onSelectNotification: selectNotification);
+}
+
+Future<void> selectNotification(String payload) async {
+  print("Notification payload: $payload");
+  if (payload != null) {
+    // Handle navigation or other actions here
+  }
+}
+
+Future<void> showNotification(RemoteMessage message) async {
+  print('showNotification called with message: $message');
+
+  var title = message.notification?.title ?? 'No Title';
+  var body = message.notification?.body ?? 'No Body';
+  var imgurl = message.notification?.android?.imageUrl;
+
+  print("Title: $title");
+  print("Body: $body");
+
+  var androidDetails;
+  if (imgurl != null) {
+    final String bigPicturePath =
+        await _downloadAndSaveFile(imgurl, 'bigPicture');
+    final BigPictureStyleInformation bigPictureStyleInformation =
+        BigPictureStyleInformation(
+      FilePathAndroidBitmap(bigPicturePath),
+      largeIcon: FilePathAndroidBitmap(bigPicturePath),
+      contentTitle: title,
+      htmlFormatContentTitle: true,
+      summaryText: body,
+      htmlFormatSummaryText: true,
+    );
+
+    androidDetails = AndroidNotificationDetails(
+      channel.id,
+      channel.name,
+      channel.description,
+      styleInformation: bigPictureStyleInformation,
+    );
+  } else {
+    print("not Image avilble");
+
+    androidDetails = AndroidNotificationDetails(
+      channel.id,
+      channel.name,
+      channel.description,
+    );
+  }
+
+  final NotificationDetails platformChannelSpecifics = NotificationDetails(
+    android: androidDetails,
+  );
+
+  flutterLocalNotificationsPlugin.show(
+    0,
+    title,
+    body,
+    platformChannelSpecifics,
+    payload: jsonEncode(message.data),
+  );
+}
+
+Future<String> _downloadAndSaveFile(String url, String fileName) async {
+  if (url == null || url.isEmpty) {
+    throw ArgumentError("URL must not be null or empty");
+  }
+  final Directory directory = await getApplicationDocumentsDirectory();
+  final String filePath = '${directory.path}/$fileName';
+  final http.Response response = await http.get(Uri.parse(url));
+  final File file = File(filePath);
+  await file.writeAsBytes(response.bodyBytes);
+  return filePath;
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // bool load = await onDoneLoading();
-  // Set the background messaging handler early on, as a named top-level function
+
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  /// Create an Android Notification Channel.
-  ///
-  /// We use this channel in the `AndroidManifest.xml` file to override the
-  /// default FCM channel to enable heads up notifications.
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 
-  /// Update the iOS foreground notification presentation options to allow
-  /// heads up notifications.
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
     sound: true,
   );
-  PdfView.platform = SurfaceAndroidPdfViewer();
+
+  if (Platform.isAndroid) {
+    final permissionStatus = await Permission.notification.status;
+    if (!permissionStatus.isGranted) {
+      final permissionResult = await Permission.notification.request();
+      if (permissionResult.isGranted) {
+        print('Notification permission granted');
+      } else {
+        print('Notification permission denied');
+      }
+    }
+  }
+
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  // This widget is the root of your application.
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   static String fcm_token;
   bool isroomfound = false;
   String roomid;
 
-  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   static FirebaseAnalyticsObserver observer =
       FirebaseAnalyticsObserver(analytics: analytics);
 
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
+  // Global navigator key
+  final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey(debugLabel: "Main Navigator");
+
   @override
   void initState() {
-    // TODO: implement initState
-    // firebaseCloudMessaging_Listeners();
+    super.initState();
     Utility().loadAPIConfig(context);
     settoken();
+
     FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
-      print("message");
-      print(message);
-      if (message.data['room'] != null) {
-        isroomfound = true;
-        roomid = message.data['room'].toString();
-        
-      }
+      print("Initial notification message: $message");
       if (message != null) {
-        print("notification nessage");
-        showNotification(message);
+        if (message.data['room'] != null) {
+          isroomfound = true;
+          roomid = message.data['room'].toString();
+        }
+        showNotification(
+            message); // Show notification if app is opened from a terminated state
       }
     });
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-      print("onlisten");
-
-      var title = message.notification.title;
-      var body = message.notification.body;
-      String imgurl ="";
-      if(Platform.isIOS)
-      {
- imgurl = message.notification.apple.imageUrl;
-      print("imgurl");
-      print(imgurl);
-      }else{
- imgurl = message.notification.android.imageUrl;
-      print("imgurl");
-      print(imgurl);
-      }
-      
-      //   final String largeIconPath = await _downloadAndSaveFile(
-      //     'https://via.placeholder.com/48x48', 'largeIcon');
-       String bigPicturePath ="";
-      String attachmentPicturePath = ""
-;      if((Platform.isAndroid))
-      {
-         bigPicturePath =
-          await _downloadAndSaveFile(imgurl, 'bigPicture');
-      }
-      else{
-   attachmentPicturePath = await getImageFilePathFromAssets(imgurl);
-      }
-   
-        
-      final BigPictureStyleInformation bigPictureStyleInformation =
-          BigPictureStyleInformation(FilePathAndroidBitmap(bigPicturePath),
-              largeIcon: FilePathAndroidBitmap(bigPicturePath),
-              contentTitle: title.toString(),
-              htmlFormatContentTitle: true,
-              summaryText: body.toString(),
-              htmlFormatContent: true,
-              htmlFormatTitle: true,
-              htmlFormatSummaryText: true);
-
-      final AndroidNotificationDetails androidPlatformChannelSpecifics =
-          AndroidNotificationDetails('big text channel id',
-              'big text channel name', 'big text channel description',
-              styleInformation: bigPictureStyleInformation);
-     var iOSPlatformChannelSpecifics = new IOSNotificationDetails(
-attachments: [
-  IOSNotificationAttachment(attachmentPicturePath)
-]
-    );
-      final NotificationDetails platformChannelSpecifics = NotificationDetails(
-        android: AndroidNotificationDetails(
-            channel.id, channel.name, channel.description,
-            // TODO add a proper drawable resource to android, for now using
-            //      one that already exists in example app.
-            icon: '@mipmap/logo1',
-            styleInformation: bigPictureStyleInformation),
-iOS: iOSPlatformChannelSpecifics
-
-
-      );
-      var data = message.data['room'];
-      print(data);
-      Note newNote = Note(
-          title: title.toString(), description: body.toString(), screen: data);
-      String noteJsonString = newNote.toJsonString();
-      await flutterLocalNotificationsPlugin.show(
-          0, title.toString(), "", platformChannelSpecifics,
-          payload: noteJsonString);
-
-     
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print("Foreground notification received: ${message.messageId}");
+      print("Foreground notification received: $message");
+      showNotification(message);
     });
 
-       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('A new onMessageOpenedApp event was published!');
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('Notification tapped: ${message.messageId}');
       if (message.data['room'] != null) {
-        navigatorKey.currentState.push(MaterialPageRoute(
-            builder: (_) => NotiDetailpage(
-                  id: message.data['room'].toString(),
-                )));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) =>
+                NotiDetailpage(id: message.data['room'].toString())));
       }
-      configLocalNotification();
-      //  showNotification(message);
     });
+
     configLocalNotification();
-    super.initState();
   }
 
-  final GlobalKey<NavigatorState> navigatorKey =
-      GlobalKey(debugLabel: "Main Navigator");
-  Future selectNotification(String payload) async {
-    print("payload");
-    print('selectNotification ${payload}');
-    print("print");
-  
-    await navigatorKey.currentState.push(MaterialPageRoute(
-        builder: (_) => NotiDetailpage(
-              id: "10",
-            )));
-  }
-
-  void configLocalNotification() {
-    var initializationSettingsAndroid =
-        new AndroidInitializationSettings('@mipmap/logo1');
-    var initializationSettingsIOS = new IOSInitializationSettings();
-    var initializationSettings = new InitializationSettings(
-        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: selectNotification);
+  Future<void> settoken() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    var value = await messaging.getToken();
+    print("FCM Token: $value");
+    setState(() {
+      GlobalLists.fcmtokenvalue = value;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Merck Foundation',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        navigatorObservers: <NavigatorObserver>[observer],
-        home: 
-        // SplashScreen(
-        //         token: GlobalLists.fcmtokenvalue,
-        //       ),
-        
-        isroomfound == true
-            ? NotiDetailpage(
-                id: roomid,
-              )
-            : SplashScreen(
-                token: GlobalLists.fcmtokenvalue,
-              ),
-        navigatorKey: navigatorKey);
-  }
-
-  settoken() async {
-    //  GlobalLists.tokenval = fcm_token;
-    FirebaseMessaging messaging = FirebaseMessaging.instance;
-    print("token");
-    var value = await messaging.getToken(
-      vapidKey: "BGpdLRs......",
+      title: 'Merck Foundation',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      navigatorObservers: <NavigatorObserver>[observer],
+      home: isroomfound
+          ? NotiDetailpage(id: roomid)
+          : SplashScreen(token: GlobalLists.fcmtokenvalue),
+      navigatorKey: navigatorKey, // Assigning the navigatorKey
     );
-    print("these is token vaue");
-    setState(() {
-      print(value);
-      GlobalLists.fcmtokenvalue = value;
-    });
-   
   }
-
-  void showNotification(message) async {
-    print('showNotification  $message');
-
-    var title = message['notification']['title'];
-    var body = message['notification']['body'];
-    var imgurl = message['notification']['imageUrl'];
-    print("imgurl");
-    print(imgurl);
-//
-//  final String largeIconPath = await _downloadAndSaveFile(
-//         'https://via.placeholder.com/48x48', 'largeIcon');
-  String bigPicturePath ="";
-      String attachmentPicturePath = ""
-;      if((Platform.isAndroid))
-      {
-         bigPicturePath =
-          await _downloadAndSaveFile(imgurl, 'bigPicture');
-      }
-      else{
-   attachmentPicturePath = await getImageFilePathFromAssets(imgurl);
-      }
-    // final String bigPicturePath =
-    //     await _downloadAndSaveFile(imgurl, 'bigPicture');
-    //     final attachmentPicturePath = await getImageFilePathFromAssets(imgurl);
-    final BigPictureStyleInformation bigPictureStyleInformation =
-        BigPictureStyleInformation(FilePathAndroidBitmap(bigPicturePath),
-            largeIcon: FilePathAndroidBitmap(bigPicturePath),
-            contentTitle: 'Merck Foundation',
-            htmlFormatContentTitle: true,
-            summaryText: 'summary <i>text</i>',
-            htmlFormatSummaryText: true);
-    var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
-        'default_notification_channel_id',
-        'Notification Channel',
-        'MerckFoundation',
-        playSound: true,
-        enableVibration: true,
-        importance: Importance.max,
-        priority: Priority.high,
-        styleInformation:
-            BigTextStyleInformation(message['notification']['body']));
-   
-    var iOSPlatformChannelSpecifics = new IOSNotificationDetails(
-attachments: [
-  IOSNotificationAttachment(attachmentPicturePath)
-]
-    );
-    var platformChannelSpecifics = NotificationDetails(
-        android: androidPlatformChannelSpecifics,
-        iOS: iOSPlatformChannelSpecifics);
-//
-
-    flutterLocalNotificationsPlugin.show(
-        0, title.toString(), "", platformChannelSpecifics,
-        payload: jsonEncode(message));
-  }
-
-  Future<String> _downloadAndSaveFile(String url, String fileName) async {
-    final Directory directory = await getApplicationDocumentsDirectory();
-    final String filePath = '${directory.path}/$fileName';
-    final http.Response response = await http.get(Uri.parse(url));
-    final File file = File(filePath);
-    await file.writeAsBytes(response.bodyBytes);
-    return filePath;
-  }
-  Future<String> getImageFilePathFromAssets(String asset) async {
-  //final byteData = await rootBundle.load(asset);
-final ByteData byteData = await NetworkAssetBundle(Uri.parse(asset)).load("");
-  final file =
-      File('${(await getTemporaryDirectory()).path}/${asset.split('/').last}');
-  await file.writeAsBytes(byteData.buffer
-      .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-
-  return file.path;
 }
-}
+
+//newwwwww
+
+//////////////////////////fcgcccccccccccccccccccccccccccccccc

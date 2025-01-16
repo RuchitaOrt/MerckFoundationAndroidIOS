@@ -979,12 +979,12 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
+            onLinkTap: (url, renderContext, attributes, element) {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
             style: {
-               "tr": Customcolor.tableboderstyle(),
+              "tr": Customcolor.tableboderstyle(context),
             },
           ),
         );
@@ -1186,7 +1186,8 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                                                 fontSize: FontSize(13.0),
                                                 color: Colors.black87,
                                                 fontWeight: FontWeight.w600),
-                                                 "tr": Customcolor.tableboderstyle(),
+                                            "tr": Customcolor.tableboderstyle(
+                                                context),
                                           },
                                         ),
                                         // FormLabel(
@@ -1468,7 +1469,8 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
       // digitalLibrary(),
       // merckmorethanmother()
       for (int i = 0; i < typewidetofrightsection.length; i++) {
-        if (typewidetofrightsection[i] == "call_for_app") {
+        if (typewidetofrightsection[i] == "call_for_app" &&
+            GlobalLists.homecallforapp.length > 0) {
           tabs.add(
             new Tab(
               child: Callforapptext(),
@@ -1479,7 +1481,8 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
             getcallforapp(context),
           );
         }
-        if (typewidetofrightsection[i] == "mmtm") {
+        if (typewidetofrightsection[i] == "mmtm" &&
+            GlobalLists.homemmtm.length > 0) {
           tabs.add(
             new Tab(
               child: Merckmtmtext(),
@@ -1487,7 +1490,8 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
           );
           listoftabwiget.add(getMMTMS(context));
         }
-        if (typewidetofrightsection[i] == "digital_library") {
+        if (typewidetofrightsection[i] == "digital_library" &&
+            GlobalLists.homedigitallib.length > 0) {
           tabs.add(
             new Tab(
               child: Digitaltext(),

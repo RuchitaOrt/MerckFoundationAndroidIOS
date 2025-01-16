@@ -87,82 +87,89 @@ class CustomCardState extends State<CustomeCard> {
           ),
           GestureDetector(
             onTap: widget.oncardtap,
-            child: Stack(
+            child: Column(
               children: [
-                Container(
-                  height: SizeConfig.blockSizeVertical * 31,
-                  width: SizeConfig.blockSizeHorizontal * 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                          image: NetworkImage(widget.cardImage),
-                          fit: BoxFit.fill)),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 10, bottom: 20),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        // Expanded(
-                        //   child: Text(
-                        //     widget.subTitle,
-                        //     overflow: TextOverflow.ellipsis,
-                        //     maxLines: 2,
-                        //     style: TextStyle(
-                        //         fontSize: 17,
-                        //         color: Colors.white,
-                        //         fontWeight: FontWeight.w500),
-                        //     // fontSize: 17,
-                        //     // labelColor: Colors.white,
-                        //     // fontweight: FontWeight.w500,
-                        //   ),
-                        // ),
-                        GestureDetector(
-                          onTap: widget.onBtnTap,
-                          child: Container(
-                            width: 110,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Colors.amber,
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: Text(
-                                widget.buttontitle,
-                                style: TextStyle(
-                                    color: widget.buttontitlecolor,
-                                    fontWeight: FontWeight.w500),
+                Stack(
+                  children: [
+                    Container(
+                      height: SizeConfig.blockSizeVertical * 31,
+                      width: SizeConfig.blockSizeHorizontal * 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                              image: NetworkImage(widget.cardImage),
+                              fit: BoxFit.fill)),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10, right: 10, bottom: 20),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            // Expanded(
+                            //   child: Text(
+                            //     widget.subTitle,
+                            //     overflow: TextOverflow.ellipsis,
+                            //     maxLines: 2,
+                            //     style: TextStyle(
+                            //         fontSize: 17,
+                            //         color: Colors.white,
+                            //         fontWeight: FontWeight.w500),
+                            //     // fontSize: 17,
+                            //     // labelColor: Colors.white,
+                            //     // fontweight: FontWeight.w500,
+                            //   ),
+                            // ),
+                            GestureDetector(
+                              onTap: widget.onBtnTap,
+                              child: Container(
+                                width: 110,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Center(
+                                  child: Text(
+                                    widget.buttontitle,
+                                    style: TextStyle(
+                                        color: widget.buttontitlecolor,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
+                    widget.youtubeicon == 0
+                        ? Padding(
+                            padding: EdgeInsets.only(
+                                left: SizeConfig.blockSizeHorizontal * 5,
+                                top: SizeConfig.blockSizeVertical * 12),
+                            child: Center(
+                                child:
+                                    Image.asset("assets/newImages/pause.png")),
+                          )
+                        : Container()
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 7),
+                  child: Text(
+                    widget.subTitle,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.black87,
+                        fontWeight: FontWeight.w500),
+                    // fontSize: 17,
+                    // labelColor: Colors.white,
+                    // fontweight: FontWeight.w500,
                   ),
                 ),
-                widget.youtubeicon == 0
-                    ? Padding(
-                        padding: EdgeInsets.only(
-                            left: SizeConfig.blockSizeHorizontal * 5,
-                            top: SizeConfig.blockSizeVertical * 12),
-                        child: Center(
-                            child: Image.asset("assets/newImages/pause.png")),
-                      )
-                    : Container()
               ],
-            ),
-          ),
-          Padding(
-                padding: const EdgeInsets.only(left: 7),
-            child: Text(
-              widget.subTitle,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              style: TextStyle(
-                  fontSize: 17, color: Colors.black87, fontWeight: FontWeight.w500),
-              // fontSize: 17,
-              // labelColor: Colors.white,
-              // fontweight: FontWeight.w500,
             ),
           ),
         ],

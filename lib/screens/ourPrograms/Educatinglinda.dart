@@ -120,7 +120,7 @@ class EducatingLindaState extends State<EducatingLinda>
         title: "Merck Foundation Educating Linda Program",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
-        trallingImg2: "assets/newImages/search.png", 
+        trallingImg2: "assets/newImages/search.png",
         height: 85,
       ),
       body: Container(
@@ -227,7 +227,7 @@ class EducatingLindaState extends State<EducatingLinda>
   }
 
   double imgHeight = 30;
-double imgHeightfb = 24;
+  double imgHeightfb = 24;
   Widget followUs() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
@@ -338,6 +338,19 @@ double imgHeightfb = 24;
                     },
                     child: Image.asset(
                       "assets/newImages/flickr.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      ShowDialogs.openThreadsApp(Constantstring.followthreas);
+                    },
+                    child: Image.asset(
+                      "assets/newImages/threads.png",
                       height: imgHeight,
                       width: imgHeight,
                     ),
@@ -1857,7 +1870,7 @@ double imgHeightfb = 24;
               cardsubtitle: "Our ",
               cardTitle: "Videos",
               btnTitle: "Watch More",
-             // heigthoflist: SizeConfig.blockSizeVertical * 32,
+              // heigthoflist: SizeConfig.blockSizeVertical * 32,
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -1992,12 +2005,12 @@ double imgHeightfb = 24;
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
+            onLinkTap: (url, renderContext, attributes, element) {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
             style: {
-               "tr": Customcolor.tableboderstyle(),
+              "tr": Customcolor.tableboderstyle(context),
             },
           ),
         );
@@ -2337,7 +2350,8 @@ double imgHeightfb = 24;
     // digitalLibrary(),
     // merckmorethanmother()
     for (int i = 0; i < typewidetofrightsection.length; i++) {
-      if (typewidetofrightsection[i] == "call_for_app") {
+      if (typewidetofrightsection[i] == "call_for_app" &&
+          GlobalLists.homecallforapp.length > 0) {
         tabs.add(
           new Tab(
             child: Callforapptext(),
@@ -2348,13 +2362,15 @@ double imgHeightfb = 24;
           getcallforapp(context),
         );
       }
-      if (typewidetofrightsection[i] == "mmtm") {
+      if (typewidetofrightsection[i] == "mmtm" &&
+          GlobalLists.homemmtm.length > 0) {
         tabs.add(
           new Tab(child: Merckmtmtext()),
         );
         listoftabwiget.add(getMMTMS(context));
       }
-      if (typewidetofrightsection[i] == "digital_library") {
+      if (typewidetofrightsection[i] == "digital_library" &&
+          GlobalLists.homedigitallib.length > 0) {
         tabs.add(
           new Tab(
             child: Digitaltext(),

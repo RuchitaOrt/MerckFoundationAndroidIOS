@@ -7,6 +7,8 @@ import 'package:merckfoundation22dec/screens/ourPrograms/Mercksubstantionaliniti
 import 'package:merckfoundation22dec/screens/ourPrograms/Ourprogramdetailafricaasia.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/firstladiesinitiativesummit.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforStem.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforcapacityAdv.dart';
+import 'package:merckfoundation22dec/screens/ourPrograms/ourProgramdetailsforhypertensionbluepoint.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourprogramdetail.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
@@ -46,23 +48,23 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
     'Merck Foundation "More Than a Mother" Movement',
     //"Merck Foundation More Than A Mother",
     "Merck Foundation Cancer Access Program",
-   "Merck Foundation Capacity Advancement Program",
-   // "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
-    "Merck Foundation Nationwide Diabetes & Hypertension Blue Points Program",//"Merck Foundation Sustainability Initiative",
+    "Merck Foundation Capacity Advancement Program",
+    // "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
+    "Merck Foundation Nationwide Diabetes & Hypertension Blue Points Program", //"Merck Foundation Sustainability Initiative",
     "Merck Foundation First Ladies Initiative Summit- MFFLI",
     //"Merck Foundation First Ladies Initiative Summit",
     "Merck Foundation STEM Program",
     "Merck Foundation Educating Linda Program",
     // "Merck Foundation Sustainability Initiative",
     "Merck Foundation Africa Asia Luminary",
-  //   'Merck Foundation "More Than a Mother" Movement',//"Merck Foundation More Than A Mother",
-  //   "Merck Foundation Cancer Access Program",
-  //  "Merck Foundation Capacity Advancement Program", // "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
-  //   "Merck Foundation First Ladies Initiative Summit- MFFLIs",//"Merck Foundation First Ladies Initiative Summit",
-  //   "Merck Foundation STEM Program",
-  //   "Merck Foundation Educating Linda Program",
-  //   "Merck Foundation Sustainability Initiative",
-  //   "Merck Foundation Africa Asia Luminary",
+    //   'Merck Foundation "More Than a Mother" Movement',//"Merck Foundation More Than A Mother",
+    //   "Merck Foundation Cancer Access Program",
+    //  "Merck Foundation Capacity Advancement Program", // "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
+    //   "Merck Foundation First Ladies Initiative Summit- MFFLIs",//"Merck Foundation First Ladies Initiative Summit",
+    //   "Merck Foundation STEM Program",
+    //   "Merck Foundation Educating Linda Program",
+    //   "Merck Foundation Sustainability Initiative",
+    //   "Merck Foundation Africa Asia Luminary",
   ];
 
   bool useAsFloatingActionButton = true;
@@ -70,6 +72,7 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
   _MyHomePageState(this.indexpass);
   @override
   void initState() {
+    print('AAAAPPPP');
     super.initState();
     mabialaFABController = AdvFabController();
     setData();
@@ -87,13 +90,13 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
         body: AdvFabBottomBarBody(
           screens: <Widget>[
             widget.indexpass == 1
-                ? MerckCapabilityadvancement()
+                ? ourProgramdetailsforcapacityAdv() //MerckCapabilityadvancement()
                 : widget.indexpass == 2
                     ? FirstLadiesInitiativeDetails()
                     : widget.indexpass == 3
                         ? EducatingLinda()
                         : widget.indexpass == 4
-                            ? MerckSubstantional()
+                            ? ourProgramdetailsforhypertensionbluepoint() //MerckSubstantional()
                             : Container()
           ],
           controller: mabialaFABController,
@@ -147,10 +150,13 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                             child: Align(
                                                 alignment: Alignment.topRight,
                                                 child: Padding(
-                                                   padding: const EdgeInsets.only(right: 10, top: 10),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10, top: 10),
                                                   child: Icon(
                                                     Icons.close,
-                                                    color: Customcolor.colorBlue,
+                                                    color:
+                                                        Customcolor.colorBlue,
                                                   ),
                                                 ))),
                                         Expanded(
@@ -163,8 +169,9 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                             itemBuilder: (BuildContext context,
                                                 int index) {
                                               return GestureDetector(
-                                                   onTap: () {
-                                                  mabialaFABController.collapseFAB();
+                                                onTap: () {
+                                                  mabialaFABController
+                                                      .collapseFAB();
                                                   if (index == 0) {
                                                     print("on trap");
 
@@ -192,16 +199,21 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                     //         builder: (BuildContext context) => OurProgram(
                                                     //               indexpass: 2,
                                                     //             )));
+                                                    // Navigator.push(
+                                                    //     context,
+                                                    //     MaterialPageRoute(
+                                                    //         builder: (BuildContext
+                                                    //                 context) =>
+                                                    //             OurProgramSevenlist(
+                                                    //               indexpass: 1,
+                                                    //             )));
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (BuildContext
                                                                     context) =>
-                                                                OurProgramSevenlist(
-                                                                  indexpass: 1,
-                                                                )));
-                                                  } 
-                                                  else if (index == 4) {
+                                                                ourProgramdetailsforcapacityAdv()));
+                                                  } else if (index == 4) {
                                                     // Navigator.push(
                                                     //     context,
                                                     //     MaterialPageRoute(
@@ -216,8 +228,7 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                                 OurProgramSevenlist(
                                                                   indexpass: 2,
                                                                 )));
-                                                  }
-                                                   else if (index == 3) {
+                                                  } else if (index == 3) {
                                                     // Navigator.push(
                                                     //     context,
                                                     //     MaterialPageRoute(
@@ -226,14 +237,20 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                                     //             OurProgram(
                                                     //               indexpass: 13,
                                                     //             )));
+                                                    // Navigator.push(
+                                                    //     context,
+                                                    //     MaterialPageRoute(
+                                                    //         builder: (BuildContext
+                                                    //                 context) =>
+                                                    //             OurProgramSevenlist(
+                                                    //               indexpass: 4,
+                                                    //             )));
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (BuildContext
                                                                     context) =>
-                                                                OurProgramSevenlist(
-                                                                  indexpass: 4,
-                                                                )));
+                                                                ourProgramdetailsforhypertensionbluepoint()));
                                                   } else if (index == 5) {
                                                     Navigator.push(
                                                         context,
@@ -433,7 +450,8 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                             child: Align(
                                 alignment: Alignment.topRight,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(right: 10, top: 10),
+                                  padding:
+                                      const EdgeInsets.only(right: 10, top: 10),
                                   child: Icon(
                                     Icons.close,
                                     color: Customcolor.colorBlue,
@@ -452,7 +470,7 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                 child: GestureDetector(
                                   // onTap: () {
                                   //       mabialaFABController.collapseFAB();
-                                  
+
                                   //   if (index == 0) {
                                   //       print("on trap");
                                   //     Navigator.push(
@@ -549,10 +567,10 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                   //   }
                                   // },
                                   onTap: () {
-                                        mabialaFABController.collapseFAB();
-                                  
+                                    mabialaFABController.collapseFAB();
+
                                     if (index == 0) {
-                                        print("on trap");
+                                      print("on trap");
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -575,13 +593,18 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                       //         builder: (BuildContext context) => OurProgram(
                                       //               indexpass: 2,
                                       //             )));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (BuildContext context) =>
+                                      //             OurProgramSevenlist(
+                                      //               indexpass: 1,
+                                      //             )));
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (BuildContext context) =>
-                                                  OurProgramSevenlist(
-                                                    indexpass: 1,
-                                                  )));
+                                                  ourProgramdetailsforcapacityAdv()));
                                     } else if (index == 4) {
                                       // Navigator.push(
                                       //     context,
@@ -604,13 +627,18 @@ class _MyHomePageState extends State<OurProgramSevenlist> {
                                       //             OurProgram(
                                       //               indexpass: 13,
                                       //             )));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (BuildContext context) =>
+                                      //             OurProgramSevenlist(
+                                      //               indexpass: 4,
+                                      //             )));
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (BuildContext context) =>
-                                                  OurProgramSevenlist(
-                                                    indexpass: 4,
-                                                  )));
+                                                  ourProgramdetailsforhypertensionbluepoint()));
                                     } else if (index == 5) {
                                       Navigator.push(
                                           context,

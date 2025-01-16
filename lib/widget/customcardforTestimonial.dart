@@ -171,7 +171,7 @@ class CustomCardState extends State<CustomeCardforTestimonial> {
                   color: Customcolor.colorBlue,
                   //textAlign: TextAlign.center,
                   fontWeight: FontWeight.w500),
-                   "tr": Customcolor.tableboderstyle(),
+                   "tr": Customcolor.tableboderstyle(context),
             },
           ),
           Text(

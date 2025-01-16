@@ -144,7 +144,6 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                     //     ),
                     //   ),
                     // ),
-                    
                   ],
                 ),
               ),
@@ -177,7 +176,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
                 ),
               ),
 
-               SizedBox(
+              SizedBox(
                 height: 40,
               ),
 
@@ -277,7 +276,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
         // }
         setState(() {
           isMiddleSectionLoaded = true;
-        //  isrightSectionLoaded = true;
+          //  isrightSectionLoaded = true;
         });
 
         return response;
@@ -286,7 +285,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
         setState(() {
           isMiddleSectionLoaded = true;
 
-        //  isrightSectionLoaded = true;
+          //  isrightSectionLoaded = true;
         });
         ShowDialogs.showToast(GlobalLists.serverresp);
       }
@@ -295,7 +294,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
       setState(() {
         isMiddleSectionLoaded = true;
 
-       // isrightSectionLoaded = true;
+        // isrightSectionLoaded = true;
       });
 
       ShowDialogs.showToast("Please check internet connection");
@@ -310,7 +309,8 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
       // digitalLibrary(),
       // merckmorethanmother()
       for (int i = 0; i < typewidetofrightsection.length; i++) {
-        if (typewidetofrightsection[i] == "call_for_app") {
+        if (typewidetofrightsection[i] == "call_for_app" &&
+            GlobalLists.homecallforapp.length > 0) {
           tabs.add(
             new Tab(
               child: Callforapptext(),
@@ -321,13 +321,15 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
             getcallforapp(context),
           );
         }
-        if (typewidetofrightsection[i] == "mmtm") {
+        if (typewidetofrightsection[i] == "mmtm" &&
+            GlobalLists.homemmtm.length > 0) {
           tabs.add(new Tab(
             child: Merckmtmtext(),
           ));
           listoftabwiget.add(getMMTMS(context));
         }
-        if (typewidetofrightsection[i] == "digital_library") {
+        if (typewidetofrightsection[i] == "digital_library" &&
+            GlobalLists.homedigitallib.length > 0) {
           tabs.add(
             new Tab(
               child: Digitaltext(),
@@ -1013,12 +1015,12 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
+            onLinkTap: (url, renderContext, attributes, element) {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
             style: {
-               "tr": Customcolor.tableboderstyle(),
+              "tr": Customcolor.tableboderstyle(context),
             },
           ),
         );

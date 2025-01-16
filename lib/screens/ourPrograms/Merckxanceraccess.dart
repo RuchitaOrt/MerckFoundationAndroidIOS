@@ -82,7 +82,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
   final List<Tab> tabs = <Tab>[];
   final CarouselController callAppCarouselController = CarouselController();
   TabController _tabController;
-  // final CarouselController callAppCarouselController = CarouselController();
+  // final CarouselController  callAppCarouselController = CarouselController ();
   final CarouselController digitalLibraryCarouselController =
       CarouselController();
   final CarouselController mmtmCarouselController = CarouselController();
@@ -226,7 +226,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
   }
 
   double imgHeight = 30;
-double imgHeightfb = 24;
+  double imgHeightfb = 24;
   Widget followUs() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 15),
@@ -341,6 +341,20 @@ double imgHeightfb = 24;
                       width: imgHeight,
                     ),
                   ),
+
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      ShowDialogs.openThreadsApp(Constantstring.followthreas);
+                    },
+                    child: Image.asset(
+                      "assets/newImages/threads.png",
+                      height: imgHeight,
+                      width: imgHeight,
+                    ),
+                  ),
                   // SizedBox(
                   //   width: 7,
                   // ),
@@ -423,25 +437,25 @@ double imgHeightfb = 24;
                     width: 5,
                   ),
 
-                  GestureDetector(
-                    onTap: () async {
-                      // Platform.isAndroid
-                      //     ? ShowDialogs.followuslink(Constantstring.followinsta,
-                      //         Constantstring.followmsg)
-                      //     : ShowDialogs.launchInstagram(
-                      //         Constantstring.followinsta, "merckfoundation");
-                      ShowDialogs.launchURLemail(
-                          Constantstring.followmmerckCancergmailPlus);
-                    },
-                    child: Image.asset(
-                      "assets/newImages/gmail.png",
-                      height: imgHeight,
-                      width: imgHeight,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
+                  // GestureDetector(
+                  //   onTap: () async {
+                  //     // Platform.isAndroid
+                  //     //     ? ShowDialogs.followuslink(Constantstring.followinsta,
+                  //     //         Constantstring.followmsg)
+                  //     //     : ShowDialogs.launchInstagram(
+                  //     //         Constantstring.followinsta, "merckfoundation");
+                  //     ShowDialogs.launchURLemail(
+                  //         Constantstring.followmmerckCancergmailPlus);
+                  //   },
+                  //   child: Image.asset(
+                  //     "assets/newImages/gmail.png",
+                  //     height: imgHeight,
+                  //     width: imgHeight,
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   width: 5,
+                  // ),
 
                   GestureDetector(
                     onTap: () async {
@@ -1319,7 +1333,8 @@ double imgHeightfb = 24;
                               Html(
                                 data:
                                     """${GlobalLists.merckcancerawardlist[index].title} """,
-                                onLinkTap: (url) {
+                                onLinkTap:
+                                    (url, renderContext, attributes, element) {
                                   print("Opening $url...");
                                   ShowDialogs.launchURL(url);
                                 },
@@ -1330,7 +1345,7 @@ double imgHeightfb = 24;
                                           Colors.white, //Customcolor.pink_col,
                                       fontSize: FontSize.large,
                                       fontWeight: FontWeight.w500),
-                                       "tr": Customcolor.tableboderstyle(),
+                                  "tr": Customcolor.tableboderstyle(context),
                                 },
                               ),
                               SizedBox(
@@ -1401,9 +1416,13 @@ double imgHeightfb = 24;
                                                 //  Merckcancercommunityawareness()
                                                 ));
                                       } else {
-                                        getawarddetail(GlobalLists
-                                            .merckcancerawardlist[index]
-                                            .pageUrl);
+                                        getawarddetail(
+                                            GlobalLists
+                                                .merckcancerawardlist[index]
+                                                .pageUrl,
+                                            GlobalLists
+                                                .merckcancerawardlist[index]
+                                                .id);
                                       }
                                     },
                                     child: Container(
@@ -1447,12 +1466,12 @@ double imgHeightfb = 24;
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
+            onLinkTap: (url, renderContext, attributes, element) {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
             style: {
-               "tr": Customcolor.tableboderstyle(),
+              "tr": Customcolor.tableboderstyle(context),
             },
           ),
         );
@@ -1765,11 +1784,11 @@ double imgHeightfb = 24;
                               "body": Style(
                                   fontSize: FontSize(14.0),
                                   color: Colors.black87,
-                                  lineHeight: 1.0,
+                                  //   lineHeight: 1.0,
 
                                   //textAlign: TextAlign.center,
                                   fontWeight: FontWeight.w500),
-                                   "tr": Customcolor.tableboderstyle(),
+                              "tr": Customcolor.tableboderstyle(context),
                             },
                           ),
                           // SizedBox(
@@ -1782,11 +1801,11 @@ double imgHeightfb = 24;
                               "body": Style(
                                   fontSize: FontSize(14.0),
                                   color: Customcolor.colorBlue,
-                                  lineHeight: 1.0,
+                                  //  lineHeight: 1.0,
 
                                   //textAlign: TextAlign.center,
                                   fontWeight: FontWeight.w500),
-                                   "tr": Customcolor.tableboderstyle(),
+                              "tr": Customcolor.tableboderstyle(context),
                             },
                           ),
                         ],
@@ -2745,7 +2764,8 @@ double imgHeightfb = 24;
         //   );
         //   listoftabwiget.add(getMMTMS(context));
         // }
-        if (typewidetofrightsection[i] == "digital_library") {
+        if (typewidetofrightsection[i] == "digital_library" &&
+            GlobalLists.homedigitallib.length > 0) {
           tabs.add(
             new Tab(
               child: Digitaltext(),
@@ -3077,7 +3097,7 @@ double imgHeightfb = 24;
     }
   }
 
-  getawarddetail(String pageurl) async {
+  getawarddetail(String pageurl, String awardid) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -3109,6 +3129,7 @@ double imgHeightfb = 24;
                     builder: (BuildContext context) => OurAwardDetail(
                           detaill: GlobalLists.awarddetallisting,
                           pageurl: pageurl,
+                          awardid: awardid,
                         )));
           });
         } else {

@@ -1,115 +1,84 @@
-// To parse this JSON data, do
-//
-//     final ourActivityResponse = ourActivityResponseFromJson(jsonString);
-
- 
-
 import 'dart:convert';
 
- 
+OurActivityResponse ourActivityResponseFromJson(String str) =>
+    OurActivityResponse.fromJson(json.decode(str));
 
-OurActivityResponse ourActivityResponseFromJson(String str) => OurActivityResponse.fromJson(json.decode(str));
-
- 
-
-String ourActivityResponseToJson(OurActivityResponse data) => json.encode(data.toJson());
-
- 
+String ourActivityResponseToJson(OurActivityResponse data) =>
+    json.encode(data.toJson());
 
 class OurActivityResponse {
-    OurActivityResponse({
-        this.success,
-        this.msg,
-        this.data,
-        this.baseUrl
-    });
+  OurActivityResponse({this.success, this.msg, this.data, this.baseUrl});
 
- 
+  String success;
+  String msg;
+  Data data;
+  dynamic baseUrl;
 
-    String success;
-    String msg;
-    Data data;
-    String baseUrl;
-
- 
-
-    factory OurActivityResponse.fromJson(Map<String, dynamic> json) => OurActivityResponse(
+  factory OurActivityResponse.fromJson(Map<String, dynamic> json) =>
+      OurActivityResponse(
         success: json["success"],
         msg: json["msg"],
         baseUrl: json["base_url"],
-        data: Data.fromJson(json["data"]),
-    );
+        data: json["data"] != null ? Data.fromJson(json["data"]) : null,
+      );
 
- 
-
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "success": success,
         "msg": msg,
         "base_url": baseUrl,
-        "data": data.toJson(),
-    };
+        "data": data?.toJson(),
+      };
 }
-
- 
 
 class Data {
-    Data({
-        this.list,
-    });
+  Data({this.list});
 
- 
+  List<ListElement> list;
 
-    List<ListElement> list;
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        list: json["list"] != null
+            ? List<ListElement>.from(
+                json["list"].map((x) => ListElement.fromJson(x)))
+            : null,
+      );
 
- 
-
-    factory Data.fromJson(Map<String, dynamic> json) => Data(
-        list: List<ListElement>.from(json["list"].map((x) => ListElement.fromJson(x))),
-    );
-
- 
-
-    Map<String, dynamic> toJson() => {
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
-    };
+  Map<String, dynamic> toJson() => {
+        "list": list != null
+            ? List<dynamic>.from(list.map((x) => x.toJson()))
+            : null,
+      };
 }
 
- 
-
 class ListElement {
-    ListElement({
-        this.id,
-        this.title,
-        this.shortDescription,
-        this.details,
-        this.detailPageUrl,
-        this.image,
-        this.altTag,
-        this.metaKeyword,
-        this.metaDescription,
-        this.status,
-        this.createdAt,
-        this.updatedAt,
-    });
+  ListElement({
+    this.id,
+    this.title,
+    this.shortDescription,
+    this.details,
+    this.detailPageUrl,
+    this.image,
+    this.altTag,
+    this.metaKeyword,
+    this.metaDescription,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+  });
 
- 
+  dynamic id;
+  dynamic title;
+  dynamic shortDescription;
+  dynamic details;
+  dynamic detailPageUrl;
+  dynamic image;
+  dynamic altTag;
+  dynamic metaKeyword;
+  dynamic metaDescription;
+  dynamic status;
+  DateTime createdAt;
+  DateTime updatedAt;
 
-    String id;
-    String title;
-    String shortDescription;
-    String details;
-    String detailPageUrl;
-    String image;
-    String altTag;
-    String metaKeyword;
-    String metaDescription;
-    String status;
-    DateTime createdAt;
-    DateTime updatedAt;
-
- 
-
-    factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
+  factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
         title: json["title"],
         shortDescription: json["short_description"],
@@ -120,13 +89,15 @@ class ListElement {
         metaKeyword: json["meta_keyword"],
         metaDescription: json["meta_description"],
         status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-    );
+        createdAt: json["created_at"] != null
+            ? DateTime.parse(json["created_at"])
+            : null,
+        updatedAt: json["updated_at"] != null
+            ? DateTime.parse(json["updated_at"])
+            : null,
+      );
 
- 
-
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "title": title,
         "short_description": shortDescription,
@@ -137,7 +108,7 @@ class ListElement {
         "meta_keyword": metaKeyword,
         "meta_description": metaDescription,
         "status": status,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-    };
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+      };
 }

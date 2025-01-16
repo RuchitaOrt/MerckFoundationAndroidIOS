@@ -72,7 +72,8 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
         },
         index: 2,
         sharelink: Constantstring.merckambassadar,
-        title: 'Merck Foundation "More Than A Mother" Ambassadors',//"Merck Foundation More Than A Mother Ambassadors",
+        title:
+            'Merck Foundation "More Than A Mother" Ambassadors', //"Merck Foundation More Than A Mother Ambassadors",
         titleImg: "assets/newImages/our_programsLogo.png",
         trallingImg1: "assets/newImages/share.png",
         trallingImg2: "assets/newImages/search.png",
@@ -180,7 +181,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                 homepageres.middleArea[middleareakey[i]].mmtm.list;
             //}
             print(GlobalLists.ambasdarslist.length);
-          }else if (middlecategoryname.toString().toLowerCase() ==
+          } else if (middlecategoryname.toString().toLowerCase() ==
               "mmtm_amb_former".toLowerCase()) {
             //  if (homepageres.middleArea['${i + 1}'].ambasdars != null) {
             GlobalLists.ambasdarsformerbaseurl =
@@ -231,7 +232,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
-                // heigthoflist: SizeConfig.safeBlockVertical * 38,
+              // heigthoflist: SizeConfig.safeBlockVertical * 38,
               onbtnTap: () {
                 //  getprogramgallery();
               },
@@ -502,12 +503,12 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url) {
+            onLinkTap: (url, renderContext, attributes, element) {
               print("Opening $url...");
               ShowDialogs.launchURL(url);
             },
             style: {
-               "tr": Customcolor.tableboderstyle(),
+              "tr": Customcolor.tableboderstyle(context),
             },
           ),
         );
@@ -605,406 +606,382 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
           ),
         );
       }
-       if (typewidet[i] == "mmtm") {
+      if (typewidet[i] == "mmtm") {
         listofwiget.add(Padding(
           padding: const EdgeInsets.only(left: 10, top: 10),
           child: ListView(
-                          shrinkWrap: true,
-                          physics: ScrollPhysics(),
-                          children: [
-                             RichText(
-                  text: TextSpan(
-                    children: [
-                     
-                       TextSpan(
-                              text: 'Ambassadors of Merck Foundation "More Than a Mother" Movement',
-                              style: TextStyle(
-                                color: Customcolor.text_blue,
-                                fontSize: 17,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'verdana',
-                              ),
-                            )
-                         
-                      // TextSpan(
-                      //   text: cardTitle,
-                      //   style: TextStyle(
-                      //     color: titleColor,
-                      //     fontSize: 17,
-                      //     fontWeight: FontWeight.w700,
-                      //   ),
-                      // ),
-                      // WidgetSpan(
-                      //   alignment: PlaceholderAlignment.bottom,
-                      //   child: Image.asset(
-                      //     titleImg,
-                      //     width: 40,
-                      //     height: 25,
-                      //   ),
-                      // ),
-                    ],
-                  ),
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
+            children: [
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text:
+                          'Ambassadors of Merck Foundation "More Than a Mother" Movement',
+                      style: TextStyle(
+                        color: Customcolor.text_blue,
+                        fontSize: 17,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'verdana',
+                      ),
+                    )
+
+                    // TextSpan(
+                    //   text: cardTitle,
+                    //   style: TextStyle(
+                    //     color: titleColor,
+                    //     fontSize: 17,
+                    //     fontWeight: FontWeight.w700,
+                    //   ),
+                    // ),
+                    // WidgetSpan(
+                    //   alignment: PlaceholderAlignment.bottom,
+                    //   child: Image.asset(
+                    //     titleImg,
+                    //     width: 40,
+                    //     height: 25,
+                    //   ),
+                    // ),
+                  ],
                 ),
-                 SizedBox(height: 15,),
-                            GridView.count(
-                              shrinkWrap: true,
-                              physics: ScrollPhysics(),
-                              padding: const EdgeInsets.all(5),
-                              crossAxisSpacing: 0,
-                              mainAxisSpacing: 2,
-                              crossAxisCount: 1,//2
-                              childAspectRatio: 0.9,//0.85,
-                              children: List.generate(GlobalLists.ambasdarslist.length, (index) {
-                                // if (GlobalLists.viewmoremmtmlist.length - 1 == index &&
-                                //     _isLoading) {
-                                //   return Center(
-                                //     child: CircularProgressIndicator(),
-                                //   );
-                                // } else {
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              GridView.count(
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                padding: const EdgeInsets.all(5),
+                crossAxisSpacing: 0,
+                mainAxisSpacing: 2,
+                crossAxisCount: 1, //2
+                childAspectRatio: 0.9, //0.85,
+                children:
+                    List.generate(GlobalLists.ambasdarslist.length, (index) {
+                  // if (GlobalLists.viewmoremmtmlist.length - 1 == index &&
+                  //     _isLoading) {
+                  //   return Center(
+                  //     child: CircularProgressIndicator(),
+                  //   );
+                  // } else {
 // String userInput = '2,2,2';
 // List<double> listOfNumbers = userInput.split(',').map((e) => double.parse(e)).toList();
 // double result = 1;
 // //The below is assuming you want to multiple them with each other. But you can basically now perform any operations them.
 // listOfNumbers.forEach((e) => result = e * result);
 // print(result); // => prints 8
-                                // List<String> splits = GlobalLists.ambasdarslist[index]
-                                //     .photoDescription
-                                //     .split(GlobalLists.ambasdarslist[index]
-                                //         .photoDescription
-                                //         .substring(GlobalLists.ambasdarslist[index]
-                                //             .photoDescription
-                                //             .lastIndexOf(",")));
-                                // List<String> splitslast =
-                                //     GlobalLists.ambasdarslist[index].photoDescription.split(",");
+                  // List<String> splits = GlobalLists.ambasdarslist[index]
+                  //     .photoDescription
+                  //     .split(GlobalLists.ambasdarslist[index]
+                  //         .photoDescription
+                  //         .substring(GlobalLists.ambasdarslist[index]
+                  //             .photoDescription
+                  //             .lastIndexOf(",")));
+                  // List<String> splitslast =
+                  //     GlobalLists.ambasdarslist[index].photoDescription.split(",");
 //main
-List<String> splits = GlobalLists.ambasdarslist[index]
-                                    .photoDescription
-                                    .split(GlobalLists.ambasdarslist[index]
-                                        .photoDescription
-                                        .substring(GlobalLists.ambasdarslist[index]
-                                            .photoDescription
-                                            .lastIndexOf(",")));
-                                List<String> splitslast =
-                                    GlobalLists.ambasdarslist[index].photoDescription.split(",");
+                  List<String> splits = GlobalLists
+                      .ambasdarslist[index].photoDescription
+                      .split(GlobalLists.ambasdarslist[index].photoDescription
+                          .substring(GlobalLists
+                              .ambasdarslist[index].photoDescription
+                              .lastIndexOf(",")));
+                  List<String> splitslast = GlobalLists
+                      .ambasdarslist[index].photoDescription
+                      .split(",");
 
-                                return Padding(
-                                  padding: const EdgeInsets.only(right: 50.0,left: 50),
-                                  child: Card(
-                                      elevation: 2,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(1),
-                                        ),
-                                      ),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          ShowDialogs.showImageDialog(
-                                            context: context,
-                                            image: Constantstring.baseUrl +
-                                                GlobalLists.ambasdarslist[index].photo,
-                                            description:
-                                                GlobalLists.ambasdarslist[index].photoDescription,
-                                          );
-                                        },
-                                        child: Container(
-                                          color: Colors.transparent,
-                                          width:
-                                              SizeConfig.blockSizeHorizontal *
-                                                  50,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Container(
-                                                  // width:
-                                                  //     SizeConfig.blockSizeHorizontal *
-                                                  //         100,
-                                                  // height: 150,
-                                                  width: SizeConfig
-                                                          .blockSizeHorizontal *
-                                                      80,
-                                                  height: SizeConfig
-                                                          .blockSizeVertical *
-                                                     30,// 16,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    // border: Border.all(
-                                                    //   width: 1,
-                                                    // ),
-                                                    image: new DecorationImage(
-                                                      image: new NetworkImage(
-                                                          Constantstring
-                                                                  .baseUrl +
-                                                              GlobalLists.ambasdarslist[index]
-                                                                  .photo),
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Center(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(4.0),
-                                                  child: Column(
-                                                    children: [
-                                                      Text(
-                                                        splits[0],
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        overflow:
-                                                            TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                            color: Customcolor
-                                                                .pink_col,
-                                                            fontSize:
-                                                                ResponsiveFlutter
-                                                                        .of(
-                                                                            context)
-                                                                    .fontSize(
-                                                                        1.4),
-                                                            fontWeight:
-                                                                FontWeight.w500),
-                                                        maxLines: 3,
-                                                      ),
-                                                      Text(
-                                                        splitslast[
-                                                            splitslast.length -
-                                                                1],
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        overflow:
-                                                            TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                            color: Customcolor
-                                                                .text_darkblue,
-                                                            fontSize:
-                                                                ResponsiveFlutter
-                                                                        .of(
-                                                                            context)
-                                                                    .fontSize(
-                                                                        1.4),
-                                                            fontWeight:
-                                                                FontWeight.w500),
-                                                        maxLines: 2,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(height: 5),
-                                               Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              print(
-                                  GlobalLists.ambasdarslist[index].albumNameId);
-                              ambasssadarimageviewmore(
-                                  GlobalLists.ambasdarslist[index].albumNameId);
-                            },
-                            child: Container(
-                              width: 120,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: Colors.amber,
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Center(
-                                child: Text(
-                                  "View All",
-                                  style: TextStyle(
-                                      color: Customcolor.colorBlue,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                            ),
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 50.0, left: 50),
+                    child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(1),
                           ),
                         ),
-                                            ],
-                                          ),
+                        child: GestureDetector(
+                          onTap: () {
+                            ShowDialogs.showImageDialog(
+                              context: context,
+                              image: Constantstring.baseUrl +
+                                  GlobalLists.ambasdarslist[index].photo,
+                              description: GlobalLists
+                                  .ambasdarslist[index].photoDescription,
+                            );
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            width: SizeConfig.blockSizeHorizontal * 50,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    // width:
+                                    //     SizeConfig.blockSizeHorizontal *
+                                    //         100,
+                                    // height: 150,
+                                    width: SizeConfig.blockSizeHorizontal * 80,
+                                    height: SizeConfig.blockSizeVertical *
+                                        30, // 16,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      // border: Border.all(
+                                      //   width: 1,
+                                      // ),
+                                      image: new DecorationImage(
+                                        image: new NetworkImage(
+                                            Constantstring.baseUrl +
+                                                GlobalLists.ambasdarslist[index]
+                                                    .photo),
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          splits[0],
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Customcolor.pink_col,
+                                              fontSize:
+                                                  ResponsiveFlutter.of(context)
+                                                      .fontSize(1.4),
+                                              fontWeight: FontWeight.w500),
+                                          maxLines: 3,
                                         ),
-                                      )),
-                                );
-                        //         return
-                        //         Column(children: [
-                        //             Container(
-                        //   // width: SizeConfig.blockSizeHorizontal * 50,
-                        //   height: 230,
-                        //   child: FadeInImage.assetNetwork(
-                        //     placeholder: 'assets/newImages/placeholder_3.jpg',
-                        //     image:
-                        //         "${GlobalLists.ambasdarsbaseurl + GlobalLists.ambasdarslist[index].photo}",
-                        //     fit: BoxFit.contain,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                        // Center(
-                        //   child: GestureDetector(
-                        //     onTap: () {
-                        //       print(
-                        //           GlobalLists.ambasdarslist[index].albumNameId);
-                        //       ambasssadarimageviewmore(
-                        //           GlobalLists.ambasdarslist[index].albumNameId);
-                        //     },
-                        //     child: Container(
-                        //       width: 120,
-                        //       height: 40,
-                        //       decoration: BoxDecoration(
-                        //           color: Colors.amber,
-                        //           borderRadius: BorderRadius.circular(5)),
-                        //       child: Center(
-                        //         child: Text(
-                        //           "View All",
-                        //           style: TextStyle(
-                        //               color: Customcolor.colorBlue,
-                        //               fontSize: 15,
-                        //               fontWeight: FontWeight.w500),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                        //         ],);
-                                //  Padding(
-                                //   padding: const EdgeInsets.only(right: 2.0),
-                                //   child: Card(
-                                //       elevation: 2,
-                                //       shape: RoundedRectangleBorder(
-                                //         borderRadius: BorderRadius.all(
-                                //           Radius.circular(1),
-                                //         ),
-                                //       ),
-                                //       child: GestureDetector(
-                                //         onTap: () {
-                                //           ShowDialogs.showImageDialog(
-                                //             context: context,
-                                //             image: Constantstring.baseUrl +
-                                //                 GlobalLists.ambasdarslist[index].photo,
-                                //             description:
-                                //                 GlobalLists.ambasdarslist[index].photoDescription,
-                                //           );
-                                //         },
-                                //         child: Container(
-                                //           color: Colors.transparent,
-                                //           width:
-                                //               SizeConfig.blockSizeHorizontal *
-                                //                   50,
-                                //           child: Column(
-                                //             mainAxisAlignment:
-                                //                 MainAxisAlignment.start,
-                                //             crossAxisAlignment:
-                                //                 CrossAxisAlignment.start,
-                                //             children: <Widget>[
-                                //               Padding(
-                                //                 padding:
-                                //                     const EdgeInsets.all(8.0),
-                                //                 child: Container(
-                                //                   // width:
-                                //                   //     SizeConfig.blockSizeHorizontal *
-                                //                   //         100,
-                                //                   // height: 150,
-                                //                   width: SizeConfig
-                                //                           .blockSizeHorizontal *
-                                //                       100,
-                                //                   height: SizeConfig
-                                //                           .blockSizeVertical *
-                                //                      25,// 16,
-                                //                   decoration: BoxDecoration(
-                                //                     borderRadius:
-                                //                         BorderRadius.circular(
-                                //                             5),
-                                //                     // border: Border.all(
-                                //                     //   width: 1,
-                                //                     // ),
-                                //                     image: new DecorationImage(
-                                //                       image: new NetworkImage(
-                                //                           Constantstring
-                                //                                   .baseUrl +
-                                //                               GlobalLists.ambasdarslist[index]
-                                //                                   .photo),
-                                //                       fit: BoxFit.fill,
-                                //                     ),
-                                //                   ),
-                                //                 ),
-                                //               ),
-                                //               Center(
-                                //                 child: Padding(
-                                //                   padding:
-                                //                       const EdgeInsets.all(4.0),
-                                //                   child: Column(
-                                //                     children: [
-                                //                       Text(
-                                //                         splits[0],
-                                //                         textAlign:
-                                //                             TextAlign.center,
-                                //                         overflow:
-                                //                             TextOverflow.ellipsis,
-                                //                         style: TextStyle(
-                                //                             color: Customcolor
-                                //                                 .pink_col,
-                                //                             fontSize:
-                                //                                 ResponsiveFlutter
-                                //                                         .of(
-                                //                                             context)
-                                //                                     .fontSize(
-                                //                                         1.4),
-                                //                             fontWeight:
-                                //                                 FontWeight.w500),
-                                //                         maxLines: 3,
-                                //                       ),
-                                //                       Text(
-                                //                         splitslast[
-                                //                             splitslast.length -
-                                //                                 1],
-                                //                         textAlign:
-                                //                             TextAlign.center,
-                                //                         overflow:
-                                //                             TextOverflow.ellipsis,
-                                //                         style: TextStyle(
-                                //                             color: Customcolor
-                                //                                 .text_darkblue,
-                                //                             fontSize:
-                                //                                 ResponsiveFlutter
-                                //                                         .of(
-                                //                                             context)
-                                //                                     .fontSize(
-                                //                                         1.4),
-                                //                             fontWeight:
-                                //                                 FontWeight.w500),
-                                //                         maxLines: 2,
-                                //                       ),
-                                //                     ],
-                                //                   ),
-                                //                 ),
-                                //               ),
-                                //               SizedBox(height: 5),
-                                //             ],
-                                //           ),
-                                //         ),
-                                //       )),
-                                // );
-                                // }
-                              }),
+                                        Text(
+                                          splitslast[splitslast.length - 1],
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Customcolor.text_darkblue,
+                                              fontSize:
+                                                  ResponsiveFlutter.of(context)
+                                                      .fontSize(1.4),
+                                              fontWeight: FontWeight.w500),
+                                          maxLines: 2,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Center(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      print(GlobalLists
+                                          .ambasdarslist[index].albumNameId);
+                                      ambasssadarimageviewmore(GlobalLists
+                                          .ambasdarslist[index].albumNameId);
+                                    },
+                                    child: Container(
+                                      width: 120,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: Colors.amber,
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Center(
+                                        child: Text(
+                                          "View All",
+                                          style: TextStyle(
+                                              color: Customcolor.colorBlue,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            // _isLoading
-                            //     ? Center(
-                            //         child: Padding(
-                            //         padding: const EdgeInsets.only(
-                            //             top: 10, bottom: 10),
-                            //         child: CircularProgressIndicator(),
-                            //       ))
-                            //     : Container()
-                          ],
-                        ),
+                          ),
+                        )),
+                  );
+                  //         return
+                  //         Column(children: [
+                  //             Container(
+                  //   // width: SizeConfig.blockSizeHorizontal * 50,
+                  //   height: 230,
+                  //   child: FadeInImage.assetNetwork(
+                  //     placeholder: 'assets/newImages/placeholder_3.jpg',
+                  //     image:
+                  //         "${GlobalLists.ambasdarsbaseurl + GlobalLists.ambasdarslist[index].photo}",
+                  //     fit: BoxFit.contain,
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Center(
+                  //   child: GestureDetector(
+                  //     onTap: () {
+                  //       print(
+                  //           GlobalLists.ambasdarslist[index].albumNameId);
+                  //       ambasssadarimageviewmore(
+                  //           GlobalLists.ambasdarslist[index].albumNameId);
+                  //     },
+                  //     child: Container(
+                  //       width: 120,
+                  //       height: 40,
+                  //       decoration: BoxDecoration(
+                  //           color: Colors.amber,
+                  //           borderRadius: BorderRadius.circular(5)),
+                  //       child: Center(
+                  //         child: Text(
+                  //           "View All",
+                  //           style: TextStyle(
+                  //               color: Customcolor.colorBlue,
+                  //               fontSize: 15,
+                  //               fontWeight: FontWeight.w500),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  //         ],);
+                  //  Padding(
+                  //   padding: const EdgeInsets.only(right: 2.0),
+                  //   child: Card(
+                  //       elevation: 2,
+                  //       shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.all(
+                  //           Radius.circular(1),
+                  //         ),
+                  //       ),
+                  //       child: GestureDetector(
+                  //         onTap: () {
+                  //           ShowDialogs.showImageDialog(
+                  //             context: context,
+                  //             image: Constantstring.baseUrl +
+                  //                 GlobalLists.ambasdarslist[index].photo,
+                  //             description:
+                  //                 GlobalLists.ambasdarslist[index].photoDescription,
+                  //           );
+                  //         },
+                  //         child: Container(
+                  //           color: Colors.transparent,
+                  //           width:
+                  //               SizeConfig.blockSizeHorizontal *
+                  //                   50,
+                  //           child: Column(
+                  //             mainAxisAlignment:
+                  //                 MainAxisAlignment.start,
+                  //             crossAxisAlignment:
+                  //                 CrossAxisAlignment.start,
+                  //             children: <Widget>[
+                  //               Padding(
+                  //                 padding:
+                  //                     const EdgeInsets.all(8.0),
+                  //                 child: Container(
+                  //                   // width:
+                  //                   //     SizeConfig.blockSizeHorizontal *
+                  //                   //         100,
+                  //                   // height: 150,
+                  //                   width: SizeConfig
+                  //                           .blockSizeHorizontal *
+                  //                       100,
+                  //                   height: SizeConfig
+                  //                           .blockSizeVertical *
+                  //                      25,// 16,
+                  //                   decoration: BoxDecoration(
+                  //                     borderRadius:
+                  //                         BorderRadius.circular(
+                  //                             5),
+                  //                     // border: Border.all(
+                  //                     //   width: 1,
+                  //                     // ),
+                  //                     image: new DecorationImage(
+                  //                       image: new NetworkImage(
+                  //                           Constantstring
+                  //                                   .baseUrl +
+                  //                               GlobalLists.ambasdarslist[index]
+                  //                                   .photo),
+                  //                       fit: BoxFit.fill,
+                  //                     ),
+                  //                   ),
+                  //                 ),
+                  //               ),
+                  //               Center(
+                  //                 child: Padding(
+                  //                   padding:
+                  //                       const EdgeInsets.all(4.0),
+                  //                   child: Column(
+                  //                     children: [
+                  //                       Text(
+                  //                         splits[0],
+                  //                         textAlign:
+                  //                             TextAlign.center,
+                  //                         overflow:
+                  //                             TextOverflow.ellipsis,
+                  //                         style: TextStyle(
+                  //                             color: Customcolor
+                  //                                 .pink_col,
+                  //                             fontSize:
+                  //                                 ResponsiveFlutter
+                  //                                         .of(
+                  //                                             context)
+                  //                                     .fontSize(
+                  //                                         1.4),
+                  //                             fontWeight:
+                  //                                 FontWeight.w500),
+                  //                         maxLines: 3,
+                  //                       ),
+                  //                       Text(
+                  //                         splitslast[
+                  //                             splitslast.length -
+                  //                                 1],
+                  //                         textAlign:
+                  //                             TextAlign.center,
+                  //                         overflow:
+                  //                             TextOverflow.ellipsis,
+                  //                         style: TextStyle(
+                  //                             color: Customcolor
+                  //                                 .text_darkblue,
+                  //                             fontSize:
+                  //                                 ResponsiveFlutter
+                  //                                         .of(
+                  //                                             context)
+                  //                                     .fontSize(
+                  //                                         1.4),
+                  //                             fontWeight:
+                  //                                 FontWeight.w500),
+                  //                         maxLines: 2,
+                  //                       ),
+                  //                     ],
+                  //                   ),
+                  //                 ),
+                  //               ),
+                  //               SizedBox(height: 5),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       )),
+                  // );
+                  // }
+                }),
+              ),
+              // _isLoading
+              //     ? Center(
+              //         child: Padding(
+              //         padding: const EdgeInsets.only(
+              //             top: 10, bottom: 10),
+              //         child: CircularProgressIndicator(),
+              //       ))
+              //     : Container()
+            ],
+          ),
           // child: CustomHorizontalCard(
           //   index: 1,
           //   cardImage: "assets/newImages/ourvison.png",
@@ -1118,342 +1095,320 @@ List<String> splits = GlobalLists.ambasdarslist[index]
           // ),
         ));
       }
-       if (typewidet[i] == "mmtm_amb_former") {
+      if (typewidet[i] == "mmtm_amb_former") {
         listofwiget.add(Padding(
           padding: const EdgeInsets.only(left: 2, top: 2),
-        child:  ListView(
-                          shrinkWrap: true,
-                          physics: ScrollPhysics(),
-                          children: [
-                            RichText(
-                  text: TextSpan(
-                    children: [
-                     
-                       TextSpan(
-                              text: 'Former African First Ladies and Ambassadors of Merck Foundation "More Than a Mother" Movement',
-                              style: TextStyle(
-                                color: Customcolor.text_blue,
-                                fontSize: 17,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'verdana',
-                              ),
-                            )
-                         
-                      // TextSpan(
-                      //   text: cardTitle,
-                      //   style: TextStyle(
-                      //     color: titleColor,
-                      //     fontSize: 17,
-                      //     fontWeight: FontWeight.w700,
-                      //   ),
-                      // ),
-                      // WidgetSpan(
-                      //   alignment: PlaceholderAlignment.bottom,
-                      //   child: Image.asset(
-                      //     titleImg,
-                      //     width: 40,
-                      //     height: 25,
-                      //   ),
-                      // ),
-                    ],
-                  ),
+          child: ListView(
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
+            children: [
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text:
+                          'Former African First Ladies and Ambassadors of Merck Foundation "More Than a Mother" Movement',
+                      style: TextStyle(
+                        color: Customcolor.text_blue,
+                        fontSize: 17,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'verdana',
+                      ),
+                    )
+
+                    // TextSpan(
+                    //   text: cardTitle,
+                    //   style: TextStyle(
+                    //     color: titleColor,
+                    //     fontSize: 17,
+                    //     fontWeight: FontWeight.w700,
+                    //   ),
+                    // ),
+                    // WidgetSpan(
+                    //   alignment: PlaceholderAlignment.bottom,
+                    //   child: Image.asset(
+                    //     titleImg,
+                    //     width: 40,
+                    //     height: 25,
+                    //   ),
+                    // ),
+                  ],
                 ),
-                SizedBox(height: 15,),
-                            GridView.count(
-                              shrinkWrap: true,
-                              physics: ScrollPhysics(),
-                              padding: const EdgeInsets.all(5),
-                              crossAxisSpacing: 0,
-                              mainAxisSpacing: 2,
-                              crossAxisCount: 2,
-                              childAspectRatio: 0.60,
-                              children:
-                                  List.generate(GlobalLists.ambasdarsformerlist.length, (index) {
-                                List<String> splits = GlobalLists.ambasdarsformerlist[index]
-                                    .photoDescription
-                                    .split(GlobalLists.ambasdarsformerlist[index]
-                                        .photoDescription
-                                        .substring(GlobalLists.ambasdarsformerlist[index]
-                                            .photoDescription
-                                            .lastIndexOf(",")));
-                                List<String> splitslast = GlobalLists.ambasdarsformerlist[index]
-                                    .photoDescription
-                                    .split(",");
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              GridView.count(
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                padding: const EdgeInsets.all(5),
+                crossAxisSpacing: 0,
+                mainAxisSpacing: 2,
+                crossAxisCount: 2,
+                childAspectRatio: 0.60,
+                children: List.generate(GlobalLists.ambasdarsformerlist.length,
+                    (index) {
+                  List<String> splits = GlobalLists
+                      .ambasdarsformerlist[index].photoDescription
+                      .split(GlobalLists
+                          .ambasdarsformerlist[index].photoDescription
+                          .substring(GlobalLists
+                              .ambasdarsformerlist[index].photoDescription
+                              .lastIndexOf(",")));
+                  List<String> splitslast = GlobalLists
+                      .ambasdarsformerlist[index].photoDescription
+                      .split(",");
 //main
-return  Padding(
-                                  padding: const EdgeInsets.only(right: 2.0,left: 2),
-                                  child: Card(
-                                      elevation: 2,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(1),
-                                        ),
-                                      ),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          ShowDialogs.showImageDialog(
-                                            context: context,
-                                            image: Constantstring.baseUrl +
-                                                GlobalLists.ambasdarsformerlist[index].photo,
-                                            description:
-                                                GlobalLists.ambasdarsformerlist[index].photoDescription,
-                                          );
-                                        },
-                                        child: Container(
-                                          color: Colors.transparent,
-                                          width:
-                                              SizeConfig.blockSizeHorizontal *
-                                                  50,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(2.0),
-                                                child: Container(
-                                                  // width:
-                                                  //     SizeConfig.blockSizeHorizontal *
-                                                  //         100,
-                                                  // height: 150,
-                                                  width: SizeConfig
-                                                          .blockSizeHorizontal *
-                                                      100,
-                                                  height: SizeConfig
-                                                          .blockSizeVertical *
-                                                     20,// 16,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    // border: Border.all(
-                                                    //   width: 1,
-                                                    // ),
-                                                    image: new DecorationImage(
-                                                      image: new NetworkImage(
-                                                          Constantstring
-                                                                  .baseUrl +
-                                                              GlobalLists.ambasdarsformerlist[index]
-                                                                  .photo),
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Center(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(4.0),
-                                                  child: Column(
-                                                    children: [
-                                                      Text(
-                                                        splits[0],
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        overflow:
-                                                            TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                            color: Customcolor
-                                                                .pink_col,
-                                                            fontSize:
-                                                                ResponsiveFlutter
-                                                                        .of(
-                                                                            context)
-                                                                    .fontSize(
-                                                                        1.4),
-                                                            fontWeight:
-                                                                FontWeight.w500),
-                                                        maxLines: 3,
-                                                      ),
-                                                      Text(
-                                                        splitslast[
-                                                            splitslast.length -
-                                                                1],
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        overflow:
-                                                            TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                            color: Customcolor
-                                                                .text_darkblue,
-                                                            fontSize:
-                                                                ResponsiveFlutter
-                                                                        .of(
-                                                                            context)
-                                                                    .fontSize(
-                                                                        1.4),
-                                                            fontWeight:
-                                                                FontWeight.w500),
-                                                        maxLines: 2,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(height: 5),
-                                               Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              print(
-                                  GlobalLists.ambasdarsformerlist[index].albumNameId);
-                              ambasssadarimageviewmore(
-                                  GlobalLists.ambasdarsformerlist[index].albumNameId);
-                            },
-                            child: Container(
-                              width: 120,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: Colors.amber,
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Center(
-                                child: Text(
-                                  "View All",
-                                  style: TextStyle(
-                                      color: Customcolor.colorBlue,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                            ),
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 2.0, left: 2),
+                    child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(1),
                           ),
                         ),
-                                            ],
-                                          ),
+                        child: GestureDetector(
+                          onTap: () {
+                            ShowDialogs.showImageDialog(
+                              context: context,
+                              image: Constantstring.baseUrl +
+                                  GlobalLists.ambasdarsformerlist[index].photo,
+                              description: GlobalLists
+                                  .ambasdarsformerlist[index].photoDescription,
+                            );
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            width: SizeConfig.blockSizeHorizontal * 50,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Container(
+                                    // width:
+                                    //     SizeConfig.blockSizeHorizontal *
+                                    //         100,
+                                    // height: 150,
+                                    width: SizeConfig.blockSizeHorizontal * 100,
+                                    height: SizeConfig.blockSizeVertical *
+                                        20, // 16,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      // border: Border.all(
+                                      //   width: 1,
+                                      // ),
+                                      image: new DecorationImage(
+                                        image: new NetworkImage(
+                                            Constantstring.baseUrl +
+                                                GlobalLists
+                                                    .ambasdarsformerlist[index]
+                                                    .photo),
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          splits[0],
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Customcolor.pink_col,
+                                              fontSize:
+                                                  ResponsiveFlutter.of(context)
+                                                      .fontSize(1.4),
+                                              fontWeight: FontWeight.w500),
+                                          maxLines: 3,
                                         ),
-                                      )),
-                                );
-
-                        //        return Column(children: [
-                        //          Container(
-                        //   // width: SizeConfig.blockSizeHorizontal * 50,
-                        //   height: 160,
-                        //   child: FadeInImage.assetNetwork(
-                        //     placeholder: 'assets/newImages/placeholder_3.jpg',
-                        //     image:
-                        //         "${GlobalLists.ambasdarsformerbaseurl + GlobalLists.ambasdarsformerlist[index].photo}",
-                        //     fit: BoxFit.contain,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                        // Center(
-                        //   child: GestureDetector(
-                        //     onTap: () {
-                        //       print(
-                        //           GlobalLists.ambasdarsformerlist[index].albumNameId);
-                        //       ambasssadarimageviewmore(
-                        //           GlobalLists.ambasdarsformerlist[index].albumNameId);
-                        //     },
-                        //     child: Container(
-                        //       width: 120,
-                        //       height: 40,
-                        //       decoration: BoxDecoration(
-                        //           color: Colors.amber,
-                        //           borderRadius: BorderRadius.circular(5)),
-                        //       child: Center(
-                        //         child: Text(
-                        //           "View All",
-                        //           style: TextStyle(
-                        //               color: Customcolor.colorBlue,
-                        //               fontSize: 15,
-                        //               fontWeight: FontWeight.w500),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                        //        ],);
-                        //         // }
-                               }),
+                                        Text(
+                                          splitslast[splitslast.length - 1],
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Customcolor.text_darkblue,
+                                              fontSize:
+                                                  ResponsiveFlutter.of(context)
+                                                      .fontSize(1.4),
+                                              fontWeight: FontWeight.w500),
+                                          maxLines: 2,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Center(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      print(GlobalLists
+                                          .ambasdarsformerlist[index]
+                                          .albumNameId);
+                                      ambasssadarimageviewmore(GlobalLists
+                                          .ambasdarsformerlist[index]
+                                          .albumNameId);
+                                    },
+                                    child: Container(
+                                      width: 120,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: Colors.amber,
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Center(
+                                        child: Text(
+                                          "View All",
+                                          style: TextStyle(
+                                              color: Customcolor.colorBlue,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            // _isLoading
-                            //     ? Center(
-                            //         child: Padding(
-                            //         padding: const EdgeInsets.only(
-                            //             top: 10, bottom: 10),
-                            //         child: CircularProgressIndicator(),
-                            //       ))
-                            //     : Container()
-                          ],
-                        ),
-        //   child: CustomHorizontalCard(
-        //     index: 1,
-        //     cardImage: "assets/newImages/ourvison.png",
-        //     cardTitle: "Former African First Ladies and Ambassadors of Merck Foundation More Than a Mother",
-        //     cardsubtitle: "",
-        //     btnTitle: "View More",
-        //     showviewmore: 1,
-        //     isheading: 1,
-        //     titleColor: Customcolor.colorPink,
-        //     onbtnTap: () {},
-        //     heigthoflist: SizeConfig.blockSizeVertical * 43,
-        //     titleImg: "assets/newImages/flowers-3.png",
-        //     list: ListView.builder(
-        //       itemCount: GlobalLists.ambasdarsformerlist.length,
-        //       scrollDirection: Axis.horizontal,
-        //       itemBuilder: (BuildContext context, int index) {
-        //         return GestureDetector(
-        //           onTap: () {
-                   
-        //           },
-        //           child: Padding(
-        //             padding: const EdgeInsets.only(right: 8, left: 10),
-        //             child: Column(
-        //               children: [
-        //                 Container(
-        //                   // width: SizeConfig.blockSizeHorizontal * 50,
-        //                   height: 260,
-        //                   child: FadeInImage.assetNetwork(
-        //                     placeholder: 'assets/newImages/placeholder_3.jpg',
-        //                     image:
-        //                         "${GlobalLists.ambasdarsformerbaseurl + GlobalLists.ambasdarsformerlist[index].photo}",
-        //                     fit: BoxFit.contain,
-        //                   ),
-        //                 ),
-        //                 SizedBox(
-        //                   height: 20,
-        //                 ),
-        //                 Center(
-        //                   child: GestureDetector(
-        //                     onTap: () {
-        //                       print(
-        //                           GlobalLists.ambasdarsformerlist[index].albumNameId);
-        //                       ambasssadarimageviewmore(
-        //                           GlobalLists.ambasdarsformerlist[index].albumNameId);
-        //                     },
-        //                     child: Container(
-        //                       width: 120,
-        //                       height: 40,
-        //                       decoration: BoxDecoration(
-        //                           color: Colors.amber,
-        //                           borderRadius: BorderRadius.circular(5)),
-        //                       child: Center(
-        //                         child: Text(
-        //                           "View All",
-        //                           style: TextStyle(
-        //                               color: Customcolor.colorBlue,
-        //                               fontSize: 15,
-        //                               fontWeight: FontWeight.w500),
-        //                         ),
-        //                       ),
-        //                     ),
-        //                   ),
-        //                 ),
-                        
-        //               ],
-        //             ),
-        //           ),
-        //         );
-        //       },
-        //     ),
-        //   ),
+                          ),
+                        )),
+                  );
+
+                  //        return Column(children: [
+                  //          Container(
+                  //   // width: SizeConfig.blockSizeHorizontal * 50,
+                  //   height: 160,
+                  //   child: FadeInImage.assetNetwork(
+                  //     placeholder: 'assets/newImages/placeholder_3.jpg',
+                  //     image:
+                  //         "${GlobalLists.ambasdarsformerbaseurl + GlobalLists.ambasdarsformerlist[index].photo}",
+                  //     fit: BoxFit.contain,
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Center(
+                  //   child: GestureDetector(
+                  //     onTap: () {
+                  //       print(
+                  //           GlobalLists.ambasdarsformerlist[index].albumNameId);
+                  //       ambasssadarimageviewmore(
+                  //           GlobalLists.ambasdarsformerlist[index].albumNameId);
+                  //     },
+                  //     child: Container(
+                  //       width: 120,
+                  //       height: 40,
+                  //       decoration: BoxDecoration(
+                  //           color: Colors.amber,
+                  //           borderRadius: BorderRadius.circular(5)),
+                  //       child: Center(
+                  //         child: Text(
+                  //           "View All",
+                  //           style: TextStyle(
+                  //               color: Customcolor.colorBlue,
+                  //               fontSize: 15,
+                  //               fontWeight: FontWeight.w500),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  //        ],);
+                  //         // }
+                }),
+              ),
+              // _isLoading
+              //     ? Center(
+              //         child: Padding(
+              //         padding: const EdgeInsets.only(
+              //             top: 10, bottom: 10),
+              //         child: CircularProgressIndicator(),
+              //       ))
+              //     : Container()
+            ],
+          ),
+          //   child: CustomHorizontalCard(
+          //     index: 1,
+          //     cardImage: "assets/newImages/ourvison.png",
+          //     cardTitle: "Former African First Ladies and Ambassadors of Merck Foundation More Than a Mother",
+          //     cardsubtitle: "",
+          //     btnTitle: "View More",
+          //     showviewmore: 1,
+          //     isheading: 1,
+          //     titleColor: Customcolor.colorPink,
+          //     onbtnTap: () {},
+          //     heigthoflist: SizeConfig.blockSizeVertical * 43,
+          //     titleImg: "assets/newImages/flowers-3.png",
+          //     list: ListView.builder(
+          //       itemCount: GlobalLists.ambasdarsformerlist.length,
+          //       scrollDirection: Axis.horizontal,
+          //       itemBuilder: (BuildContext context, int index) {
+          //         return GestureDetector(
+          //           onTap: () {
+
+          //           },
+          //           child: Padding(
+          //             padding: const EdgeInsets.only(right: 8, left: 10),
+          //             child: Column(
+          //               children: [
+          //                 Container(
+          //                   // width: SizeConfig.blockSizeHorizontal * 50,
+          //                   height: 260,
+          //                   child: FadeInImage.assetNetwork(
+          //                     placeholder: 'assets/newImages/placeholder_3.jpg',
+          //                     image:
+          //                         "${GlobalLists.ambasdarsformerbaseurl + GlobalLists.ambasdarsformerlist[index].photo}",
+          //                     fit: BoxFit.contain,
+          //                   ),
+          //                 ),
+          //                 SizedBox(
+          //                   height: 20,
+          //                 ),
+          //                 Center(
+          //                   child: GestureDetector(
+          //                     onTap: () {
+          //                       print(
+          //                           GlobalLists.ambasdarsformerlist[index].albumNameId);
+          //                       ambasssadarimageviewmore(
+          //                           GlobalLists.ambasdarsformerlist[index].albumNameId);
+          //                     },
+          //                     child: Container(
+          //                       width: 120,
+          //                       height: 40,
+          //                       decoration: BoxDecoration(
+          //                           color: Colors.amber,
+          //                           borderRadius: BorderRadius.circular(5)),
+          //                       child: Center(
+          //                         child: Text(
+          //                           "View All",
+          //                           style: TextStyle(
+          //                               color: Customcolor.colorBlue,
+          //                               fontSize: 15,
+          //                               fontWeight: FontWeight.w500),
+          //                         ),
+          //                       ),
+          //                     ),
+          //                   ),
+          //                 ),
+
+          //               ],
+          //             ),
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //   ),
         ));
       }
-      
+
       // if (typewidet[i] == "mmtm") {
       //   listofwiget.add(Padding(
       //     padding: const EdgeInsets.only(left: 10, top: 10),
@@ -1795,9 +1750,10 @@ return  Padding(
     IOClient ioClient = new IOClient();
 
     HttpClient client = new HttpClient();
+    Uri uri = Uri.parse(url);
 
     ioClient = new IOClient(client);
-    final response = await ioClient.post(url, body: body);
+    final response = await ioClient.post(uri, body: body);
     print('pit stop');
     return response;
   }
@@ -2287,7 +2243,7 @@ return  Padding(
 //         listofwiget.add(
 //           Html(
 //             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-//             onLinkTap: (url) {
+//                 onLinkTap:(url) {
 //               print("Opening $url...");
 //               ShowDialogs.launchURL(url);
 //             },

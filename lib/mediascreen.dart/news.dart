@@ -94,7 +94,6 @@ class NewsState extends State<NewsPage> {
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
-
                 }
 
                 offset = totalcount;
@@ -336,7 +335,6 @@ class NewsState extends State<NewsPage> {
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
-
                 }
               } else {
                 for (int i = offset; i < totalcount; i++) {
@@ -351,7 +349,6 @@ class NewsState extends State<NewsPage> {
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
-
                 }
               }
 

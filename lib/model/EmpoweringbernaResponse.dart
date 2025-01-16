@@ -1,8 +1,8 @@
+import 'dart:convert';
+
 // To parse this JSON data, do
 //
 //     final empowerinBernaResponse = empowerinBernaResponseFromJson(jsonString);
-
-import 'dart:convert';
 
 EmpowerinBernaResponse empowerinBernaResponseFromJson(String str) =>
     EmpowerinBernaResponse.fromJson(json.decode(str));
@@ -45,8 +45,8 @@ class MiddleArea {
       );
 
   Map<String, dynamic> toJson() => {
-        "content": content == null ? null : content.toJson(),
-        "videos": videos == null ? null : videos.toJson(),
+        "content": content?.toJson(),
+        "videos": videos?.toJson(),
       };
 }
 
@@ -176,8 +176,8 @@ class VideosList {
   String categoryId;
   String year;
   String status;
-  AtedAt createdAt;
-  AtedAt updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   factory VideosList.fromJson(Map<String, dynamic> json) => VideosList(
         id: json["id"],
@@ -187,8 +187,8 @@ class VideosList {
         categoryId: json["category_id"],
         year: json["year"],
         status: json["status"],
-        createdAt: atedAtValues.map[json["created_at"]],
-        updatedAt: atedAtValues.map[json["updated_at"]],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -199,26 +199,7 @@ class VideosList {
         "category_id": categoryId,
         "year": year,
         "status": status,
-        "created_at": atedAtValues.reverse[createdAt],
-        "updated_at": atedAtValues.reverse[updatedAt],
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
       };
-}
-
-enum AtedAt { THE_00000000000000 }
-
-final atedAtValues =
-    EnumValues({"0000-00-00 00:00:00": AtedAt.THE_00000000000000});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }

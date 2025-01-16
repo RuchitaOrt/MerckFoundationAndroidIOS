@@ -58,6 +58,7 @@ class _MyHomePageState extends State<OurProgramStem> {
   _MyHomePageState(this.indexpass);
   @override
   void initState() {
+    print('stream');
     super.initState();
 
     getstemprogram();
@@ -391,6 +392,7 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                     0
                                                 ? GestureDetector(
                                                     onTap: () {
+                                                      print('stream');
                                                       mabialaFABController
                                                           .collapseFAB();
                                                       if (GlobalLists
@@ -410,6 +412,19 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                           .menuUrl
                                                           .contains(".png")) {
                                                         print("pdf");
+                                                        ShowDialogs.launchURL(
+                                                            GlobalLists
+                                                                .stemprogramlistsubmenu[
+                                                                    index]
+                                                                .menuUrl);
+                                                      } else if (GlobalLists
+                                                          .stemprogramlistsubmenu[
+                                                              index]
+                                                          .menuUrl
+                                                          .contains(
+                                                              "Application-Form")) {
+                                                        print(
+                                                            "Application-Form");
                                                         ShowDialogs.launchURL(
                                                             GlobalLists
                                                                 .stemprogramlistsubmenu[
@@ -701,6 +716,8 @@ class _MyHomePageState extends State<OurProgramStem> {
                                                                         children: [
                                                                           GestureDetector(
                                                                               onTap: () {
+
+                                                                                
                                                                                 mabialaFABController.collapseFAB();
                                                                                 if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".pdf")) {
                                                                                   print("pdf");
@@ -908,9 +925,10 @@ class _MyHomePageState extends State<OurProgramStem> {
     IOClient ioClient = new IOClient();
 
     HttpClient client = new HttpClient();
+    Uri uri = Uri.parse(url);
 
     ioClient = new IOClient(client);
-    final response = await ioClient.post(url, body: body);
+    final response = await ioClient.post(uri, body: body);
     print('pit stop');
     return response;
   }

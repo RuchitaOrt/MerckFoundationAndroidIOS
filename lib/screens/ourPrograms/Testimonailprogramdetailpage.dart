@@ -108,7 +108,7 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                       Html(
                         data:
                             """${GlobalLists.mmttestimoniallist[widget.index].testimonialName} """,
-                        onLinkTap: (url) {
+                        onLinkTap: (url, renderContext, attributes, element) {
                           print("Opening $url...");
                           ShowDialogs.launchURL(url);
                         },
@@ -121,31 +121,31 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                               color: Customcolor.colorBlue,
                               textAlign: TextAlign.start,
                               fontWeight: FontWeight.w500),
-                               "tr": Customcolor.tableboderstyle(),
+                          "tr": Customcolor.tableboderstyle(context),
                         },
                       ),
                       Html(
                         data:
                             """${GlobalLists.mmttestimoniallist[widget.index].departmentName} """,
-                        onLinkTap: (url) {
+                        onLinkTap: (url, renderContext, attributes, element) {
                           print("Opening $url...");
                           ShowDialogs.launchURL(url);
                         },
                         style: {
                           "body": Style(textAlign: TextAlign.start),
-                           "tr": Customcolor.tableboderstyle(),
+                          "tr": Customcolor.tableboderstyle(context),
                         },
                       ),
                       Html(
                         data:
                             """${GlobalLists.mmttestimoniallist[widget.index].details} """,
-                        onLinkTap: (url) {
+                        onLinkTap: (url, renderContext, attributes, element) {
                           print("Opening $url...");
                           ShowDialogs.launchURL(url);
                         },
                         style: {
                           "body": Style(textAlign: TextAlign.start),
-                           "tr": Customcolor.tableboderstyle(),
+                          "tr": Customcolor.tableboderstyle(context),
                         },
                       ),
                     ],
@@ -164,21 +164,21 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                 height: 10,
               ),
 
-               Padding(
-          padding: const EdgeInsets.only(right: 0, left: 0),
-          child: Align(
-            alignment: Alignment.topRight,
-            child: Image.asset(
-              "assets/newImages/flowers_footer.png",
-              height: 170,
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
+              Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
 
-        Bottomcardlink(),
+              Bottomcardlink(),
             ],
           ),
         ));

@@ -106,7 +106,7 @@ class DetailSearchTestimonialPageState
                   Html(
                     data:
                         """${GlobalLists.searchtestimoniallisting[widget.index]['testimonial_name']} """,
-                    onLinkTap: (url) {
+                    onLinkTap: (url, renderContext, attributes, element) {
                       print("Opening $url...");
                       ShowDialogs.launchURL(url);
                     },
@@ -119,31 +119,31 @@ class DetailSearchTestimonialPageState
                           color: Customcolor.colorBlue,
                           textAlign: TextAlign.start,
                           fontWeight: FontWeight.w500),
-                           "tr": Customcolor.tableboderstyle(),
+                      "tr": Customcolor.tableboderstyle(context),
                     },
                   ),
                   Html(
                     data:
                         """${GlobalLists.searchtestimoniallisting[widget.index]['department_name']} """,
-                    onLinkTap: (url) {
+                    onLinkTap: (url, renderContext, attributes, element) {
                       print("Opening $url...");
                       ShowDialogs.launchURL(url);
                     },
                     style: {
                       "body": Style(textAlign: TextAlign.start),
-                       "tr": Customcolor.tableboderstyle(),
+                      "tr": Customcolor.tableboderstyle(context),
                     },
                   ),
                   Html(
                     data:
                         """${GlobalLists.searchtestimoniallisting[widget.index]['details']} """,
-                    onLinkTap: (url) {
+                    onLinkTap: (url, renderContext, attributes, element) {
                       print("Opening $url...");
                       ShowDialogs.launchURL(url);
                     },
                     style: {
                       "body": Style(textAlign: TextAlign.start),
-                       "tr": Customcolor.tableboderstyle(),
+                      "tr": Customcolor.tableboderstyle(context),
                     },
                   ),
 
