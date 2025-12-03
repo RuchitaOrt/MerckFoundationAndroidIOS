@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/style.dart';
+
 import 'package:http/http.dart' as http;
-import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
@@ -30,7 +30,7 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 import 'package:flutter_html/flutter_html.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramviewmore.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/Testimonailprogramdetailpage.dart';
@@ -56,7 +56,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
   List _productsAvailable = [];
   bool isMiddleSectionLoaded = false;
   bool isrightSectionLoaded = false;
-  Color color;
+  Color? color;
 
   List<Widget> listofwiget = [];
   List<Widget> listoftabwiget = [];
@@ -71,7 +71,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
     "assets/newImages/leader1.png",
     "assets/newImages/leader2.png",
   ];
-  CarouselSlider carouselSlider;
+  late CarouselSlider carouselSlider;
 
   bool iscall = true;
   bool islibrary = false;
@@ -80,12 +80,12 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
   String expandedName = "Upcoming Events";
 
   final List<Tab> tabs = <Tab>[];
-  final CarouselController callAppCarouselController = CarouselController();
-  TabController _tabController;
+  final CarouselSliderController callAppCarouselController = CarouselSliderController();
+  TabController? _tabController;
   // final CarouselController  callAppCarouselController = CarouselController ();
-  final CarouselController digitalLibraryCarouselController =
-      CarouselController();
-  final CarouselController mmtmCarouselController = CarouselController();
+  final CarouselSliderController digitalLibraryCarouselController =
+      CarouselSliderController();
+  final CarouselSliderController mmtmCarouselController = CarouselSliderController();
 
   final CarouselController _controller = CarouselController();
 
@@ -102,7 +102,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -129,7 +129,8 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
         height: 85,
       ),
       // bottomNavigationBar: Bottomcardlink(),
-      body: Container(
+      body: 
+      Container(
           width: double.infinity,
           height: double.infinity,
           child: ListView(
@@ -475,40 +476,18 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                   SizedBox(
                     width: 5,
                   ),
-                  // GestureDetector(
-                  //   onTap: () async {
-                  //     Platform.isAndroid
-                  //         ? ShowDialogs.followuslink(
-                  //             Constantstring.followflicker,
-                  //             Constantstring.followmsg)
-                  //         : ShowDialogs.launchURL(Constantstring.followflicker);
-                  //   },
-                  //   child: Image.asset(
-                  //     "assets/newImages/flickr.png",
-                  //     height: imgHeight,
-                  //     width: imgHeight,
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   width: 7,
-                  // ),
+                 
                 ],
               )
             ],
           ),
-          // Expanded(
-          //   child: Image.asset(
-          //     "assets/newImages/hometoolbar.png",
-          //     height: 100,
-          //     width: 80,
-          //   ),
-          // )
+        
         ],
       )),
     );
   }
 
-  // Widget callforApplication() {
+  // Widget merckmorethanmother() {
   //   return Padding(
   //     padding: const EdgeInsets.only(
   //       left: 10,
@@ -516,444 +495,96 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
   //       top: 10,
   //     ),
   //     child: Card(
-  //         elevation: 5,
-  //         // height: 1800,
-  //         color: Colors.white,
-  //         child: getcallforapp(context)),
-  //   );
-  // }
-
-  // Widget digitalLibraryLastSection() {
-  //   return getdigitallib(context);
-  // }
-
-  // Widget getcallforapp(BuildContext context) {
-  //   return Stack(
-  //     children: <Widget>[
-  //       GlobalLists.homecallforapp.length <= 0
-  //           ? Container(
-  //               child: Center(child: Text(Constantstring.emptyData)),
-  //             )
-  //           : Padding(
-  //               padding: const EdgeInsets.all(8.0),
-  //               child: Container(
-  //                   //color: Colors.amber,
-  //                   width: SizeConfig.blockSizeHorizontal * 100,
-  //                   height: 470,
-  //                   color: Colors.white,
-  //                   child: Column(
-  //                     children: [
-  //                       Row(
-  //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                         children: [
-  //                           Expanded(
-  //                               child: Text(
-  //                             expandedName,
-  //                             style: TextStyle(
-  //                                 fontSize: 18,
-  //                                 fontWeight: FontWeight.w700,
-  //                                 color: Colors.black),
-  //                           )),
-  //                           GestureDetector(
-  //                             onTap: () {
-  //                               print("in tap");
-  //                               setState(() {
-  //                                 expandClick = !expandClick;
-  //                               });
-  //                             },
-  //                             child: Image.asset(
-  //                               "assets/newImages/expand_more.png",
-  //                               width: 30,
-  //                               height: 30,
-  //                             ),
-  //                           )
-  //                         ],
-  //                       ),
-  //                       SizedBox(
-  //                         height: 10,
-  //                       ),
-  //                       carouselSlider = CarouselSlider(
-  //                         options: CarouselOptions(
-  //                             autoPlay: false,
-  //                             // aspectRatio: 0.1,
-  //                             enlargeCenterPage: true,
-  //                             enlargeStrategy: CenterPageEnlargeStrategy.height,
-  //                             viewportFraction: 1.0,
-  //                             height: 340,
-  //                             onPageChanged: (index, reason) {
-  //                               setState(() {
-  //                                 _current1 = index;
-  //                               });
-  //                             }),
-  //                         items: GlobalLists.homecallforapp.map((product) {
-  //                           return new Builder(
-  //                             builder: (BuildContext context) {
-  //                               return ListView(
-  //                                 shrinkWrap: true,
-  //                                 physics: ScrollPhysics(),
-  //                                 // crossAxisAlignment: CrossAxisAlignment.center,
-  //                                 children: [
-  //                                   Center(
-  //                                     child: FadeInImage.assetNetwork(
-  //                                       placeholder:
-  //                                           'assets/newImages/placeholder_3.jpg',
-  //                                       image:
-  //                                           GlobalLists.homeCallForAppBaseURL +
-  //                                               product.appImg,
-  //                                       fit: BoxFit.fill,
-  //                                       width: 240,
-  //                                       height: 290,
-  //                                     ),
-  //                                   ),
-  //                                   SizedBox(
-  //                                     height: 10,
-  //                                   ),
-  //                                   Center(
-  //                                     child: Text(product.title,
-  //                                         textAlign: TextAlign.center,
-  //                                         maxLines: 2,
-  //                                         style: TextStyle(
-  //                                           fontSize: 17,
-  //                                         )),
-  //                                   )
-  //                                 ],
-  //                               );
-  //                             },
-  //                           );
-  //                         }).toList(),
-  //                         carouselController: callAppCarouselController,
-  //                       ),
-  //                     ],
-  //                   )),
-  //             ),
-  //       Positioned(
-  //         top: 140,
-  //         child: Container(
-  //           width: MediaQuery.of(context).size.width,
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: <Widget>[
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToPrevious();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(left: 20),
-  //                     child: Icon(
-  //                       Icons.arrow_back_ios,
-  //                       color: Customcolor.text_darkblue,
+  //       elevation: 5,
+  //       // height: 1800,
+  //       color: Colors.white,
+  //       child: Padding(
+  //         padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
+  //         child: Swiper.children(
+  //           autoplay: false,
+  //           loop: true,
+  //           control: SwiperControl(
+  //               iconNext: Icons.arrow_forward_ios,
+  //               iconPrevious: Icons.arrow_back_ios,
+  //               size: 20,
+  //               color: Customcolor.darkblue_col),
+  //           children: <Widget>[
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                     margin: EdgeInsets.only(
+  //                       right: 40.0,
+  //                       left: 30,
   //                     ),
-  //                   )),
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToNext();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(right: 20),
-  //                     child: Icon(
-  //                       Icons.arrow_forward_ios,
-  //                       color: Customcolor.text_darkblue,
-  //                     ),
-  //                   )),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
-
-  // Widget getdigitallib(BuildContext context) {
-  //   return Stack(
-  //     children: <Widget>[
-  //       GlobalLists.homedigitallib.length <= 0
-  //           ? Container(
-  //               child: Center(child: Text(Constantstring.emptyData)),
-  //             )
-  //           : Padding(
-  //               padding: const EdgeInsets.all(8.0),
-  //               child: Container(
-  //                 //color: Colors.amber,
-  //                 width: SizeConfig.blockSizeHorizontal * 100,
-  //                 height: 400,
-  //                 color: Colors.white,
-  //                 child: carouselSlider = CarouselSlider(
-  //                   options: CarouselOptions(
-  //                       autoPlay: false,
-  //                       aspectRatio: 1,
-  //                       enlargeCenterPage: true,
-  //                       enlargeStrategy: CenterPageEnlargeStrategy.height,
-  //                       viewportFraction: 1.0,
-  //                       //  height: SizeConfig.blockSizeVertical * 100,
-  //                       onPageChanged: (index, reason) {
-  //                         setState(() {
-  //                           _current1 = index;
-  //                         });
-  //                       }),
-  //                   items: GlobalLists.homedigitallib.map((product) {
-  //                     print(GlobalLists.homeDigitalLibraryBaseURL +
-  //                         product.image);
-  //                     return new Builder(
-  //                       builder: (BuildContext context) {
-  //                         return ListView(
-  //                           shrinkWrap: true,
-  //                           physics: ScrollPhysics(),
-  //                           //  crossAxisAlignment: CrossAxisAlignment.center,
-  //                           children: [
-  //                             Center(
-  //                               child: Container(
-  //                                 padding: EdgeInsets.only(top: 20),
-  //                                 width: 240,
-  //                                 height: 290,
-  //                                 decoration: BoxDecoration(
-  //                                     borderRadius: BorderRadius.circular(8)),
-  //                                 child: FadeInImage.assetNetwork(
-  //                                   placeholder:
-  //                                       'assets/newImages/placeholder_3.jpg',
-  //                                   image:
-  //                                       GlobalLists.homeDigitalLibraryBaseURL +
-  //                                           product.image,
-  //                                   fit: BoxFit.fitHeight,
-  //                                   height: 200,
-  //                                 ),
-  //                               ),
-  //                             ),
-  //                             SizedBox(
-  //                               height: 10,
-  //                             ),
-  //                             Center(
-  //                               child: Text(product.title,
-  //                                   textAlign: TextAlign.center,
-  //                                   maxLines: 2,
-  //                                   style: TextStyle(
-  //                                     fontSize: 17,
-  //                                   )),
-  //                             )
-  //                           ],
-  //                         );
-  //                       },
-  //                     );
-  //                   }).toList(),
-  //                   carouselController: callAppCarouselController,
+  //                     child: ClipRRect(
+  //                         borderRadius: BorderRadius.circular(5.0),
+  //                         child: Image.asset(
+  //                           "assets/newImages/cfa1.png",
+  //                           height: 300,
+  //                           fit: BoxFit.fill,
+  //                         ))),
+  //                 SizedBox(
+  //                   height: 8,
   //                 ),
-  //               ),
+  //                 Text("UNESCO-MARS 2020",
+  //                     style: TextStyle(
+  //                       fontSize: 17,
+  //                     ))
+  //               ],
   //             ),
-  //       Positioned(
-  //         top: 140,
-  //         child: Container(
-  //           width: MediaQuery.of(context).size.width,
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: <Widget>[
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToPrevious();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(left: 20),
-  //                     child: Icon(
-  //                       Icons.arrow_back_ios,
-  //                       color: Customcolor.text_darkblue,
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                     margin: EdgeInsets.only(
+  //                       right: 40.0,
+  //                       left: 30,
   //                     ),
-  //                   )),
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToNext();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(right: 40),
-  //                     child: Icon(
-  //                       Icons.arrow_forward_ios,
-  //                       color: Customcolor.text_darkblue,
+  //                     child: ClipRRect(
+  //                         borderRadius: BorderRadius.circular(5.0),
+  //                         child: Image.asset(
+  //                           "assets/newImages/poster_4.png",
+  //                           height: 300,
+  //                           fit: BoxFit.fill,
+  //                         ))),
+  //                 SizedBox(
+  //                   height: 8,
+  //                 ),
+  //                 Text("UNESCO-MARS 2020",
+  //                     style: TextStyle(
+  //                       fontSize: 17,
+  //                     ))
+  //               ],
+  //             ),
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                     margin: EdgeInsets.only(
+  //                       right: 40.0,
+  //                       left: 30,
   //                     ),
-  //                   )),
-  //             ],
-  //           ),
+  //                     child: ClipRRect(
+  //                         borderRadius: BorderRadius.circular(5.0),
+  //                         child: Image.asset(
+  //                           "assets/newImages/poster_6.png",
+  //                           height: 300,
+  //                           fit: BoxFit.fill,
+  //                         ))),
+  //                 SizedBox(
+  //                   height: 8,
+  //                 ),
+  //                 Text("UNESCO-MARS 2020",
+  //                     style: TextStyle(
+  //                       fontSize: 17,
+  //                     ))
+  //               ],
+  //             ),
+  //           ],
   //         ),
   //       ),
-  //     ],
+  //     ),
   //   );
   // }
 
-  // // goToPrevious() {
-  // //   _controller.previousPage(
-  // //       duration: Duration(milliseconds: 300), curve: Curves.ease);
-  // // }
-
-  // // goToNext() {
-  // //   _controller.nextPage(
-  // //       duration: Duration(milliseconds: 300), curve: Curves.decelerate);
-  // // }
-  // goToPrevious() {
-  //   callAppCarouselController.previousPage(
-  //       duration: Duration(milliseconds: 300), curve: Curves.ease);
-  // }
-
-  // goToNext() {
-  //   callAppCarouselController.nextPage(
-  //       duration: Duration(milliseconds: 300), curve: Curves.decelerate);
-  // }
-
-  // Widget digitalLibrary() {
-  //   return Padding(
-  //       padding: const EdgeInsets.only(
-  //         left: 10,
-  //         right: 10,
-  //         top: 10,
-  //       ),
-  //       child: getdigitallib(context));
-  // }
-
-  Widget merckmorethanmother() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-        right: 10,
-        top: 10,
-      ),
-      child: Card(
-        elevation: 5,
-        // height: 1800,
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
-          child: Swiper.children(
-            autoplay: false,
-            loop: true,
-            control: SwiperControl(
-                iconNext: Icons.arrow_forward_ios,
-                iconPrevious: Icons.arrow_back_ios,
-                size: 20,
-                color: Customcolor.darkblue_col),
-            children: <Widget>[
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/cfa1.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_4.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_6.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  // Widget slider(BuildContext context) {
-  //   return Stack(
-  //     children: <Widget>[
-  //       Column(
-  //         children: <Widget>[
-  //           Container(
-  //             child: carouselSlider = CarouselSlider(
-  //               options: CarouselOptions(
-  //                 viewportFraction: 1.0,
-  //                 height: 200,
-  //                 autoPlay: true,
-  //                 onPageChanged: (index, reason) {
-  //                   setState(() {
-  //                     _current = index;
-  //                   });
-  //                 },
-  //               ),
-  //               items: GlobalLists.mmtmsliderlist.map((product) {
-  //                 return new Builder(
-  //                   builder: (BuildContext context) {
-  //                     return new Container(
-  //                       decoration: BoxDecoration(
-  //                         borderRadius: BorderRadius.circular(10),
-  //                       ),
-  //                       width: SizeConfig.blockSizeHorizontal * 100,
-  //                       child: FadeInImage.assetNetwork(
-  //                         placeholder: 'assets/newImages/placeholder_3.jpg',
-  //                         image: Constantstring.baseUrl + product.image,
-  //                         fit: BoxFit.cover,
-  //                       ),
-  //                     );
-  //                   },
-  //                 );
-  //               }).toList(),
-  //             ),
-  //           ),
-  //           new DotsIndicator(
-  //             dotsCount: GlobalLists.mmtmsliderlist.length,
-  //             position: double.parse("$_current"),
-  //             decorator: DotsDecorator(
-  //               size: const Size.square(9.0),
-  //               activeSize: const Size(18.0, 9.0),
-  //               activeColor: Customcolor.colorPink,
-  //               activeShape: RoundedRectangleBorder(
-  //                   borderRadius: BorderRadius.circular(5.0)),
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ],
-  //   );
-  // }
   Widget slider(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 8),
@@ -981,75 +612,13 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                           cardTitle: product['image_title'],
                           subTitle: product['image_desc'],
                         );
-                        //  new Container(
-                        //   decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(8),
-                        //       image: DecorationImage(
-                        //           image: NetworkImage(
-                        //               "http://merckfoundation.org/merck/public/uploads/slider/" +
-                        //                   product['image']),
-                        //           fit: BoxFit.cover)),
-                        //   width: SizeConfig.blockSizeHorizontal * 100,
-                        //   child: Column(
-                        //     mainAxisAlignment: MainAxisAlignment.end,
-                        //     children: <Widget>[
-                        //       Padding(
-                        //         padding:
-                        //             const EdgeInsets.only(right: 0, bottom: 15),
-                        //         child: Container(
-                        //           color: Colors.white.withOpacity(0.5),
-                        //           width: SizeConfig.blockSizeHorizontal * 100,
-                        //           child: Padding(
-                        //             padding: const EdgeInsets.only(
-                        //                 left: 10, right: 10, top: 5, bottom: 5),
-                        //             child: Column(
-                        //               mainAxisAlignment:
-                        //                   MainAxisAlignment.center,
-                        //               children: <Widget>[
-                        //                 FormLabel(
-                        //                   text: product['image_title'],
-                        //                   labelColor: Customcolor.pink_col,
-                        //                   fontSize:
-                        //                       ResponsiveFlutter.of(context)
-                        //                           .fontSize(1.4),
-                        //                   maxLines: 2,
-                        //                   fontweight: FontWeight.w700,
-                        //                 ),
-                        //                 SizedBox(
-                        //                   height: 2,
-                        //                 ),
-                        //                 FormLabel(
-                        //                   text: product['image_desc'],
-                        //                   labelColor: Customcolor.pink_col,
-                        //                   fontSize:
-                        //                       ResponsiveFlutter.of(context)
-                        //                           .fontSize(1.2),
-                        //                   fontweight: FontWeight.w500,
-                        //                 ),
-                        //               ],
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // );
+                        
                       },
                     );
                   }).toList(),
                 ),
               ),
-              // new DotsIndicator(
-              //   dotsCount: _productsAvailable.length,
-              //   position: double.parse("$_current"),
-              //   decorator: DotsDecorator(
-              //     size: const Size.square(9.0),
-              //     activeSize: const Size(18.0, 9.0),
-              //     activeColor: Customcolor.colorBlue,
-              //     activeShape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(5.0)),
-              //   ),
-              // ),
+              
             ],
           ),
         ],
@@ -1334,9 +903,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                 data:
                                     """${GlobalLists.merckcancerawardlist[index].title} """,
                                 onLinkTap:
-                                    (url, renderContext, attributes, element) {
+                                    (url, attributes, element) {
                                   print("Opening $url...");
-                                  ShowDialogs.launchURL(url);
+                                  ShowDialogs.launchURL(url!);
                                 },
                                 style: {
                                   "body": Style(
@@ -1347,6 +916,23 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                       fontWeight: FontWeight.w500),
                                   "tr": Customcolor.tableboderstyle(context),
                                 },
+                                 extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                               ),
                               SizedBox(
                                 height: 10,
@@ -1466,13 +1052,30 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url, renderContext, attributes, element) {
+            onLinkTap: (url, attributes, element) {
               print("Opening $url...");
-              ShowDialogs.launchURL(url);
+              ShowDialogs.launchURL(url!);
             },
             style: {
               "tr": Customcolor.tableboderstyle(context),
             },
+             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
           ),
         );
       }
@@ -1777,36 +1380,76 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                               fit: BoxFit.fill,
                             ),
                           ),
-                          Html(
-                            data: GlobalLists
-                                .mmttestimoniallist[index].testimonialName,
-                            style: {
-                              "body": Style(
-                                  fontSize: FontSize(14.0),
-                                  color: Colors.black87,
-                                  //   lineHeight: 1.0,
-
-                                  //textAlign: TextAlign.center,
-                                  fontWeight: FontWeight.w500),
-                              "tr": Customcolor.tableboderstyle(context),
-                            },
+                          SizedBox(
+                             width: SizeConfig.blockSizeHorizontal * 86,
+                            child: Html(
+                              data: GlobalLists
+                                  .mmttestimoniallist[index].testimonialName,
+                              style: {
+                                "body": Style(
+                                    fontSize: FontSize(14.0),
+                                    color: Colors.black87,
+                                    //   lineHeight: 1.0,
+                            
+                                    //textAlign: TextAlign.center,
+                                    fontWeight: FontWeight.w500),
+                                "tr": Customcolor.tableboderstyle(context),
+                              },
+                               extensions: [
+                                  TagExtension(
+                                    tagsToExtend: {"img"},
+                                    builder: (ExtensionContext context) {
+                                      final src = context.attributes['src'] ?? '';
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                        child: Image.network(
+                                          src,
+                                          width: double.infinity,
+                                          fit: BoxFit.contain,
+                                          errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+                                        ),
+                                      );
+                                    },
+                                  )
+                                ],
+                            ),
                           ),
                           // SizedBox(
                           //   height: 5,
                           // ),
-                          Html(
-                            data: GlobalLists
-                                .mmttestimoniallist[index].departmentName,
-                            style: {
-                              "body": Style(
-                                  fontSize: FontSize(14.0),
-                                  color: Customcolor.colorBlue,
-                                  //  lineHeight: 1.0,
-
-                                  //textAlign: TextAlign.center,
-                                  fontWeight: FontWeight.w500),
-                              "tr": Customcolor.tableboderstyle(context),
-                            },
+                          SizedBox(
+                             width: SizeConfig.blockSizeHorizontal * 86,
+                            child: Html(
+                              data: GlobalLists
+                                  .mmttestimoniallist[index].departmentName,
+                              style: {
+                                "body": Style(
+                                    fontSize: FontSize(14.0),
+                                    color: Customcolor.colorBlue,
+                                    //  lineHeight: 1.0,
+                            
+                                    //textAlign: TextAlign.center,
+                                    fontWeight: FontWeight.w500),
+                                "tr": Customcolor.tableboderstyle(context),
+                              },
+                               extensions: [
+                                  TagExtension(
+                                    tagsToExtend: {"img"},
+                                    builder: (ExtensionContext context) {
+                                      final src = context.attributes['src'] ?? '';
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                        child: Image.network(
+                                          src,
+                                          width: double.infinity,
+                                          fit: BoxFit.contain,
+                                          errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+                                        ),
+                                      );
+                                    },
+                                  )
+                                ],
+                            ),
                           ),
                         ],
                       ),
@@ -2460,7 +2103,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                 return GestureDetector(
                                   onTap: () {
                                     ShowDialogs.launchURL(
-                                        GlobalLists.homeDigitalLibraryBaseURL +
+                                        GlobalLists.homeDigitalLibraryPdfURL +
                                             product.document);
                                   },
                                   child: ListView(
@@ -2781,129 +2424,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
     return listoftabwiget;
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
-  // Widget getMMTMS(BuildContext context) {
-  //   return Stack(
-  //     children: <Widget>[
-  //       GlobalLists.homemmtm.length <= 0
-  //           ? Container(
-  //               child: Center(child: Text(Constantstring.emptyData)),
-  //             )
-  //           : Padding(
-  //               padding: const EdgeInsets.all(8.0),
-  //               child: Container(
-  //                 //color: Colors.amber,
-  //                 width: SizeConfig.blockSizeHorizontal * 100,
-  //                 height: 400,
-  //                 color: Colors.white,
-  //                 child: carouselSlider = CarouselSlider(
-  //                   options: CarouselOptions(
-  //                       autoPlay: false,
-  //                       aspectRatio: 1,
-  //                       enlargeCenterPage: true,
-  //                       enlargeStrategy: CenterPageEnlargeStrategy.height,
-  //                       viewportFraction: 1.0,
-  //                       //  height: SizeConfig.blockSizeVertical * 100,
-  //                       onPageChanged: (index, reason) {
-  //                         setState(() {
-  //                           _current1 = index;
-  //                         });
-  //                       }),
-  //                   items: GlobalLists.homemmtm.map((product) {
-  //                     return new Builder(
-  //                       builder: (BuildContext context) {
-  //                         return ListView(
-  //                           shrinkWrap: true,
-  //                           physics: ScrollPhysics(),
-  //                           //  crossAxisAlignment: CrossAxisAlignment.center,
-  //                           children: [
-  //                             Center(
-  //                               child: Container(
-  //                                 padding: EdgeInsets.only(top: 20),
-  //                                 width: 240,
-  //                                 height: 290,
-  //                                 decoration: BoxDecoration(
-  //                                     borderRadius: BorderRadius.circular(8)),
-  //                                 child: FadeInImage.assetNetwork(
-  //                                   placeholder:
-  //                                       'assets/newImages/placeholder_3.jpg',
-  //                                   image: GlobalLists.homeMMTMBaseURL +
-  //                                       product.photo,
-  //                                   fit: BoxFit.cover,
-  //                                   height: 200,
-  //                                 ),
-  //                               ),
-  //                             ),
-  //                             SizedBox(
-  //                               height: 10,
-  //                             ),
-  //                             Center(
-  //                               child: Text(product.photoDescription,
-  //                                   textAlign: TextAlign.center,
-  //                                   maxLines: 2,
-  //                                   style: TextStyle(
-  //                                     fontSize: 17,
-  //                                   )),
-  //                             )
-  //                           ],
-  //                         );
-  //                       },
-  //                     );
-  //                   }).toList(),
-  //                   carouselController: callAppCarouselController,
-  //                 ),
-  //               ),
-  //             ),
-  //       Positioned(
-  //         top: 140,
-  //         child: Container(
-  //           width: MediaQuery.of(context).size.width,
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: <Widget>[
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToPrevious();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(left: 20),
-  //                     child: Icon(
-  //                       Icons.arrow_back_ios,
-  //                       color: Customcolor.text_darkblue,
-  //                     ),
-  //                   )),
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToNext();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(right: 40),
-  //                     child: Icon(
-  //                       Icons.arrow_forward_ios,
-  //                       color: Customcolor.text_darkblue,
-  //                     ),
-  //                   )),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
 
-  Future<http.Response> getmmtmapi() async {
+  Future<http.Response?> getmmtmapi() async {
     print("mmtm api");
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -2911,16 +2434,17 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
       var response = await APIManager.fetchget(
         encoding: APIManager.merckcancerprogramurl,
       );
+       print(APIManager.merckcancerprogramurl);
       print("response");
       print(response);
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         var res = json.decode(response.body);
         print("ff");
         print(res);
         merckcancer.MerckcanceraccessResponse homepageres =
             merckcancer.MerckcanceraccessResponse.fromJson(res);
-        GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
-        slidersection = homepageres.sliderArea[0].slider.list;
+        GlobalLists.sliderurl = homepageres.sliderArea![0].slider!.baseUrl;
+        slidersection = homepageres.sliderArea![0].slider!.list!;
         slidersection.forEach((element) {
           _productsAvailable.add({
             "id": element.id,
@@ -2939,9 +2463,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
         print("sliderprogramsection");
         print(slidersection.length);
 
-        Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> section1 = homepageres.middleArea!;
         List<dynamic> digitallibrary =
-            homepageres.rightArea.the3.digitalLibrary.list;
+            homepageres.rightArea!.the3!.digitalLibrary!.list!;
         GlobalLists.homedigitallib = digitallibrary;
         print(section1);
         print(section1['1']);
@@ -2986,94 +2510,47 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
           if (middlecategoryname.toString().toLowerCase() ==
               "Videos".toLowerCase()) {
             GlobalLists.homevideolist =
-                homepageres.middleArea[middleareakey[i]].videos.list;
+                homepageres.middleArea![middleareakey[i]]!.videos!.list!;
             print(GlobalLists.homevideolist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "content".toLowerCase()) {
             GlobalLists.homecontentlist =
-                homepageres.middleArea[middleareakey[i]].content.list;
+                homepageres.middleArea![middleareakey[i]]!.content!.list!;
             print(GlobalLists.homecontentlist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "media".toLowerCase()) {
             GlobalLists.mmtmmediabaseurl =
-                homepageres.middleArea[middleareakey[i]].media.baseUrl;
+                homepageres.middleArea![middleareakey[i]]!.media!.baseUrl;
             GlobalLists.mmtmmedialist =
-                homepageres.middleArea[middleareakey[i]].media.list;
+                homepageres.middleArea![middleareakey[i]]!.media!.list!;
             print(GlobalLists.homegallerylist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "latest_updates".toLowerCase()) {
             //latest update
             GlobalLists.homeceomsgbaseurl =
-                homepageres.middleArea[middleareakey[i]].latestUpdates.baseUrl;
+                homepageres.middleArea![middleareakey[i]]!.latestUpdates!.baseUrl;
             GlobalLists.homeceomsglist =
-                homepageres.middleArea[middleareakey[i]].latestUpdates.list;
+                homepageres.middleArea![middleareakey[i]]!.latestUpdates!.list!;
             print(GlobalLists.homeceomsglist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "testimonial".toLowerCase()) {
             //latest update
             GlobalLists.mmttestimonialbaseurl =
-                homepageres.middleArea[middleareakey[i]].testimonial.baseUrl;
+                homepageres.middleArea![middleareakey[i]]!.testimonial!.baseUrl!;
             GlobalLists.mmttestimoniallist =
-                homepageres.middleArea[middleareakey[i]].testimonial.list;
+                homepageres.middleArea![middleareakey[i]]!.testimonial!.list!;
             print(GlobalLists.homeceomsglist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "awards".toLowerCase()) {
             //latest update
             GlobalLists.merckcancerawardbaseurl =
-                homepageres.middleArea[middleareakey[i]].awards.baseUrl;
+                homepageres.middleArea![middleareakey[i]]!.awards!.baseUrl;
             GlobalLists.merckcancerawardlist =
-                homepageres.middleArea[middleareakey[i]].awards.list;
+                homepageres.middleArea![middleareakey[i]]!.awards!.list!;
             print(GlobalLists.merckcancerawardlist.length);
           }
         }
-        // Future<void> _launchInWebViewWithJavaScript(String url) async {
-        //   if (await canLaunch(url)) {
-        //     await launch(
-        //       url,
-        //       forceSafariVC: true,
-        //       forceWebView: true,
-        //       enableJavaScript: true,
-        //     );
-        //   } else {
-        //     throw 'Could not launch $url';
-        //   }
-        // }
-        ///////right section
-        // for (int i = 0; i < lastsection.length; i++) {
-        //   //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-        //   //  print(categoryKeys.videos.type);
-        //   dynamic rightsection = res['Right_area']['${i + 1}'];
-        //   print("TKey: ${rightsection.keys.first}");
-        //   var rightsectioncategoryname = rightsection.keys.first;
-
-        //   setState(() {
-        //     typewidetofrightsection.add(rightsectioncategoryname);
-
-        //     print(typewidetofrightsection);
-        //   });
-
-        //   if (rightsectioncategoryname.toString().toLowerCase() ==
-        //       "call_for_app".toLowerCase()) {
-        //     GlobalLists.homecallforapp =
-        //         homepageres.rightArea['${i + 1}'].callForApp.list;
-        //     GlobalLists.homeCallForAppBaseURL =
-        //         homepageres.rightArea['${i + 1}'].callForApp.baseUrl;
-        //     print(GlobalLists.homecallforapp.length);
-        //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
-        //       "mmtm".toLowerCase()) {
-        //     GlobalLists.homemmtm = homepageres.rightArea['${i + 1}'].mmtm.list;
-        //     print(GlobalLists.homemmtm.length);
-        //     GlobalLists.homeMMTMBaseURL =
-        //         homepageres.rightArea['${i + 1}'].mmtm.baseUrl;
-        //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
-        //       "digital_library".toLowerCase()) {
-        //     GlobalLists.homedigitallib =
-        //         homepageres.rightArea['${i + 1}'].digitalLibrary.list;
-        //     GlobalLists.homeDigitalLibraryBaseURL =
-        //         homepageres.rightArea['${i + 1}'].digitalLibrary.baseUrl;
-        //     print(GlobalLists.homedigitallib.length);
-        //   }
-        // }
+        
 
         setState(() {
           isMiddleSectionLoaded = true;
@@ -3111,11 +2588,11 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
         print(response);
         print('Resp : $resp');
 
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
 
         if (resp.success == "True") {
           setState(() {
-            GlobalLists.awarddetallisting = resp.data.list;
+            GlobalLists.awarddetallisting = resp.data!.list!;
             // GlobalLists.awarddetallisting[0].title
             // Navigator.push(
             //     context,
@@ -3133,11 +2610,11 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                         )));
           });
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
         }
       }, (error) {
         print('ERR msg is $error');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
       }, jsonval: json);
     } else {
       ShowDialogs.showToast("Please check internet connection");

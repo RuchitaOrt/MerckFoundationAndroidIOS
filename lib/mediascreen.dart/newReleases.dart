@@ -10,7 +10,7 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/model/getNewsRelease.dart' as newsRelease;
@@ -25,7 +25,7 @@ class NewsRelease extends StatefulWidget {
 class NewsReleaseState extends State<NewsRelease> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   ScrollController _sc = new ScrollController();
-  NewsreleaseResponse resp;
+  late NewsreleaseResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -39,15 +39,24 @@ class NewsReleaseState extends State<NewsRelease> {
     super.initState();
   }
 
-  _launchURL(String urlIs) async {
-    var url = urlIs;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  // _launchURL(String urlIs) async {
+  //   var url = urlIs;
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
+Future<void> _launchURL(String urlIs) async {
+  final Uri uri = Uri.parse(urlIs);
 
+  if (!await launchUrl(
+    uri,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw 'Could not launch $uri';
+  }
+}
   void _scrollListener() {
     if (_sc.position.extentAfter < 50) {
       if (!_isLoading && totalcount > GlobalLists.newsReleaseList.length) {
@@ -71,12 +80,12 @@ class NewsReleaseState extends State<NewsRelease> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.newsReleaseList.add(newsRelease.ListElement(
-                        title: resp.data.list[i].title,
-                        id: resp.data.list[i].id,
-                        pdfFile: resp.data.list[i].pdfFile,
-                        appImg: resp.data.list[i].appImg,
-                        eventType: resp.data.list[i].eventType,
-                        eventYear: resp.data.list[i].eventYear));
+                        title: resp.data!.list![i].title,
+                        id: resp.data!.list![i].id,
+                        pdfFile: resp.data!.list![i].pdfFile,
+                        appImg: resp.data!.list![i].appImg,
+                        eventType: resp.data!.list![i].eventType,
+                        eventYear: resp.data!.list![i].eventYear));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -84,7 +93,7 @@ class NewsReleaseState extends State<NewsRelease> {
                 }
 
                 offset = totalcount;
-                int remem = resp.data.list.length - totalcount;
+                int remem = resp.data!.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -93,7 +102,7 @@ class NewsReleaseState extends State<NewsRelease> {
                   totalcount = totalcount + 10;
                 }
                 // // GlobalLists.newsLettersList = resp.data.list;
-                Constantstring.baseUrl = resp.baseUrl;
+                Constantstring.baseUrl = resp.baseUrl!;
                 print("-----------------------------------");
                 print(totalcount);
                 print(GlobalLists.newsReleaseList.length);
@@ -103,7 +112,7 @@ class NewsReleaseState extends State<NewsRelease> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -230,48 +239,12 @@ class NewsReleaseState extends State<NewsRelease> {
               SizedBox(
                 height: 12,
               ),
-
-
-                Text("Ms. Ekta Pal", style: TextStyle(color: Color(0xffffcb04), fontSize: 17, fontFamily:"verdana", fontWeight: FontWeight.w500),
+                Text("Mr. Harsh Sharma", style: TextStyle(color: Color(0xffffcb04), fontSize: 17, fontFamily:"verdana", fontWeight: FontWeight.w500),
                         textAlign: TextAlign.center,
                         ),
 
                            SizedBox(
-                          height: 8,
-                        ),
-
-                          Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.mail, color: Colors.white),
-                SizedBox(
-                    width: 10,
-                ),
-                GestureDetector(
-                    onTap: () {
-                      // _launchmail();
-                    },
-                    child: Text(
-                      "ektapalconsultant@gmail.com",
-                      style: TextStyle(
-                          color: Colors.white),
-                    ),
-                )
-              ],
-              ),
-
-
-  SizedBox(
-                          height: 12,
-                        ),
-
-
-                         Text("Ms. Linda Aryeetey", style: TextStyle(color: Color(0xffffcb04), fontSize: 17, fontFamily:"verdana", fontWeight: FontWeight.w500),
-                        textAlign: TextAlign.center,
-                        ),
-
-                           SizedBox(
-                          height: 8,
+                          height: 5,
                         ),
 
 
@@ -288,13 +261,13 @@ class NewsReleaseState extends State<NewsRelease> {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: "+233 26 474 6400",
+                          text: "+91 95409 32090",
                           style: TextStyle(
                             color: Colors.white,
                           ),
                           recognizer: new TapGestureRecognizer()
                             ..onTap = () {
-                              _launchCaller1();
+                              _launchCaller();
                             },
                         ),
                         
@@ -305,7 +278,7 @@ class NewsReleaseState extends State<NewsRelease> {
               ), 
 
               SizedBox(
-                height: 8,
+                height: 5,
               ),
 
                 Row(
@@ -320,13 +293,108 @@ class NewsReleaseState extends State<NewsRelease> {
                       // _launchmail();
                     },
                     child: Text(
-                      " audrey5aryeetey@gmail.com",
+                      "harsh.sharma@external.merckgroup.com",
                       style: TextStyle(
                           color: Colors.white),
                     ),
                 )
               ],
               ),
+  //               Text("Ms. Ekta Pal", style: TextStyle(color: Color(0xffffcb04), fontSize: 17, fontFamily:"verdana", fontWeight: FontWeight.w500),
+  //                       textAlign: TextAlign.center,
+  //                       ),
+
+  //                          SizedBox(
+  //                         height: 8,
+  //                       ),
+
+  //                         Row(
+  //                 mainAxisAlignment: MainAxisAlignment.center,
+  //             children: [
+  //               Icon(Icons.mail, color: Colors.white),
+  //               SizedBox(
+  //                   width: 10,
+  //               ),
+  //               GestureDetector(
+  //                   onTap: () {
+  //                     // _launchmail();
+  //                   },
+  //                   child: Text(
+  //                     "ektapalconsultant@gmail.com",
+  //                     style: TextStyle(
+  //                         color: Colors.white),
+  //                   ),
+  //               )
+  //             ],
+  //             ),
+
+
+  // SizedBox(
+  //                         height: 12,
+  //                       ),
+
+
+  //                        Text("Ms. Linda Aryeetey", style: TextStyle(color: Color(0xffffcb04), fontSize: 17, fontFamily:"verdana", fontWeight: FontWeight.w500),
+  //                       textAlign: TextAlign.center,
+  //                       ),
+
+  //                          SizedBox(
+  //                         height: 8,
+  //                       ),
+
+
+  //                        Row(
+  //                          mainAxisAlignment: MainAxisAlignment.center,
+  //             children: [
+  //               Icon(Icons.call,color: Colors.white,),
+  //               SizedBox(
+  //                   width: 8,
+  //               ),
+              
+  //               RichText(
+  //                   textAlign: TextAlign.justify,
+  //                   text: TextSpan(
+  //                     children: [
+  //                       TextSpan(
+  //                         text: "+233 26 474 6400",
+  //                         style: TextStyle(
+  //                           color: Colors.white,
+  //                         ),
+  //                         recognizer: new TapGestureRecognizer()
+  //                           ..onTap = () {
+  //                             _launchCaller1();
+  //                           },
+  //                       ),
+                        
+  //                     ],
+  //                   ),
+  //               ),
+  //             ],
+  //             ), 
+
+  //             SizedBox(
+  //               height: 8,
+  //             ),
+
+  //               Row(
+  //                 mainAxisAlignment: MainAxisAlignment.center,
+  //             children: [
+  //               Icon(Icons.mail, color: Colors.white),
+  //               SizedBox(
+  //                   width: 10,
+  //               ),
+  //               GestureDetector(
+  //                   onTap: () {
+  //                     // _launchmail();
+  //                   },
+  //                   child: Text(
+  //                     " audrey5aryeetey@gmail.com",
+  //                     style: TextStyle(
+  //                         color: Colors.white),
+  //                   ),
+  //               )
+  //             ],
+  //             ),
 
 
                SizedBox(
@@ -390,15 +458,15 @@ class NewsReleaseState extends State<NewsRelease> {
                                         children: [
                                           GestureDetector(
                                             onTap: () {
-                                              print(Constantstring.baseUrl +
+                                              print(Constantstring.pdfUrl +
                                                   GlobalLists
                                                       .newsReleaseList[index]
-                                                      .pdfFile);
+                                                      .pdfFile!);
                                               _launchURL(Constantstring
-                                                      .baseUrl +
+                                                      .pdfUrl +
                                                   GlobalLists
                                                       .newsReleaseList[index]
-                                                      .pdfFile);
+                                                      .pdfFile!);
                                             },
                                             child: Row(
                                               // mainAxisAlignment: MainAxisAlignment.start,
@@ -428,7 +496,7 @@ class NewsReleaseState extends State<NewsRelease> {
                                                   child: Text(
                                                     GlobalLists
                                                         .newsReleaseList[index]
-                                                        .title,
+                                                        .title!,
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     style: TextStyle(
@@ -509,24 +577,34 @@ class NewsReleaseState extends State<NewsRelease> {
   }
 
 
-   _launchCaller() async {
-    print("on launch");
-    const url = "tel:+919319606669";
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  //  _launchCaller() async {
+  //   print("on launch");
+  //   const url = "tel:+919319606669";
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
+Future<void> _launchCaller() async {
+   const urlContact = "tel:+919319606669";
+  final Uri uri = Uri.parse(urlContact);
 
-   _launchCaller1() async {
-    const url = "tel: +233264746400";
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+  if (!await launchUrl(
+    uri,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw 'Could not launch $uri';
   }
+}
+  //  _launchCaller1() async {
+  //   const url = "tel: +233264746400";
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   static Future<bool> enquirySMDialog(BuildContext context) async {
     bool status = await showDialog(
@@ -722,17 +800,18 @@ class NewsReleaseState extends State<NewsRelease> {
           if (resp.success == "True") {
             setState(() {
               // GlobalLists.newsReleaseList = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
-              if (resp.data.list.length < 10) {
-                for (int i = offset; i < resp.data.list.length; i++) {
+              Constantstring.baseUrl = resp.baseUrl!;
+                Constantstring.pdfUrl=resp.pdfUrl!;
+              if (resp.data!.list!.length < 10) {
+                for (int i = offset; i < resp.data!.list!.length; i++) {
                   setState(() {
                     GlobalLists.newsReleaseList.add(newsRelease.ListElement(
-                        title: resp.data.list[i].title,
-                        id: resp.data.list[i].id,
-                        pdfFile: resp.data.list[i].pdfFile,
-                        appImg: resp.data.list[i].appImg,
-                        eventType: resp.data.list[i].eventType,
-                        eventYear: resp.data.list[i].eventYear));
+                        title: resp.data!.list![i].title,
+                        id: resp.data!.list![i].id,
+                        pdfFile: resp.data!.list![i].pdfFile,
+                        appImg: resp.data!.list![i].appImg,
+                        eventType: resp.data!.list![i].eventType,
+                        eventYear: resp.data!.list![i].eventYear));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -742,12 +821,12 @@ class NewsReleaseState extends State<NewsRelease> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.newsReleaseList.add(newsRelease.ListElement(
-                        title: resp.data.list[i].title,
-                        id: resp.data.list[i].id,
-                        pdfFile: resp.data.list[i].pdfFile,
-                        appImg: resp.data.list[i].appImg,
-                        eventType: resp.data.list[i].eventType,
-                        eventYear: resp.data.list[i].eventYear));
+                        title: resp.data!.list![i].title,
+                        id: resp.data!.list![i].id,
+                        pdfFile: resp.data!.list![i].pdfFile,
+                        appImg: resp.data!.list![i].appImg,
+                        eventType: resp.data!.list![i].eventType,
+                        eventYear: resp.data!.list![i].eventYear));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -756,7 +835,7 @@ class NewsReleaseState extends State<NewsRelease> {
               }
 
               offset = totalcount;
-              int remem = resp.data.list.length - totalcount;
+              int remem = resp.data!.list!.length - totalcount;
               print("remem");
               print(remem);
               if (remem < 10) {
@@ -765,7 +844,7 @@ class NewsReleaseState extends State<NewsRelease> {
                 totalcount = totalcount + 10;
               }
               // // GlobalLists.newsLettersList = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
+              Constantstring.baseUrl = resp.baseUrl!;
               print("-----------------------------------");
               print(totalcount);
               print(GlobalLists.newsLettersList.length);
@@ -778,7 +857,7 @@ class NewsReleaseState extends State<NewsRelease> {
             setState(() {
               _isLoading = false;
             });
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

@@ -6,7 +6,7 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 
 class Healthcare extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class Healthcare extends StatefulWidget {
 }
 
 class HealthcareState extends State<Healthcare> with TickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   double imgHeight = 50;
   String _platformVersion = 'Unknown';

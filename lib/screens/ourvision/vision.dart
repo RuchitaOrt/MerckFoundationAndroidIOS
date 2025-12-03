@@ -10,7 +10,6 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:flutter_html/style.dart';
 
 class OurVision extends StatefulWidget {
   @override
@@ -20,7 +19,7 @@ class OurVision extends StatefulWidget {
 }
 
 class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   double imgHeight = 50;
   String _platformVersion = 'Unknown';
@@ -38,12 +37,12 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
   }
 
   Future<void> initPlatformState() async {
-    String platformVersion;
+    String? platformVersion;
 
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _platformVersion = platformVersion!;
     });
   }
 
@@ -54,171 +53,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {
-            // showModalBottomSheet<void>(
-            //   shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.vertical(top: Radius.circular(24.0)),
-            //   ),
-            //   context: context,
-            //   builder: (BuildContext context) {
-            //     return Screenshot(
-            //       controller: screenshotController,
-            //       child: Padding(
-            //         padding: const EdgeInsets.all(10.0),
-            //         child: Column(
-            //           mainAxisSize: MainAxisSize.min,
-            //           children: [
-            //             Padding(
-            //               padding: const EdgeInsets.only(top: 10, bottom: 10),
-            //               child: FormLabel(
-            //                 text: "Share",
-            //                 labelColor: Customcolor.pink_col,
-            //                 fontSize:
-            //                     ResponsiveFlutter.of(context).fontSize(2.5),
-            //                 fontweight: FontWeight.w500,
-            //               ),
-            //             ),
-            //             Padding(
-            //               padding: const EdgeInsets.only(top: 10, bottom: 10),
-            //               child: Row(
-            //                 mainAxisAlignment: MainAxisAlignment.center,
-            //                 children: [
-            //                   //
-            //                   GestureDetector(
-            //                     onTap: () async {
-            //                       // FlutterShareMe().shareToFacebook(
-            //                       //     url: 'https://github.com/lizhuoyuan',
-            //                       //     msg: "msg");
-
-            //                     await screenshotController
-            //                         .capture()
-            //                         .then((image) async {
-            //                       //facebook appId is mandatory for andorid or else share won't work
-
-            //                     });
-            //                     Platform.isAndroid
-            //                         ? SocialShare.shareFacebookStory(
-            //                           "",
-            //                           "#ffffff",
-            //                                 "#000000", "https://google.com",
-            //                                 appId: "870993726807583")
-            //                             .then((data) {
-            //                             print(data);
-            //                           })
-            //                         : SocialShare.shareFacebookStory(
-            //                           "",
-            //                           "#ffffff",
-            //                                 "#000000", "https://google.com")
-            //                             .then((data) {
-            //                             print(data);
-            //                           });
-            //                     },
-            //                     child: Image.asset(
-            //                       "assets/newImages/facebook.png",
-            //                       height: imgHeight,
-            //                       width: imgHeight,
-            //                     ),
-            //                   ),
-            //                   // RaisedButton(
-            //                   //   onPressed: () async {
-            //                   //     await screenshotController
-            //                   //         .capture()
-            //                   //         .then((image) async {
-            //                   //       //facebook appId is mandatory for andorid or else share won't work
-            //                   //       Platform.isAndroid
-            //                   //           ? SocialShare.shareFacebookStory(
-            //                   //                   image.path,
-            //                   //                   "#ffffff",
-            //                   //                   "#000000",
-            //                   //                   "https://google.com",
-            //                   //                   appId: "870993726807583")
-            //                   //               .then((data) {
-            //                   //               print(data);
-            //                   //             })
-            //                   //           : SocialShare.shareFacebookStory(
-            //                   //                   image.path,
-            //                   //                   "#ffffff",
-            //                   //                   "#000000",
-            //                   //                   "https://google.com")
-            //                   //               .then((data) {
-            //                   //               print(data);
-            //                   //             });
-            //                   //     });
-            //                   //   },
-            //                   //   child: Text("Share On Facebook Story"),
-            //                   // ),
-            //                   SizedBox(
-            //                     width: 7,
-            //                   ),
-            //                   GestureDetector(
-            //                     onTap: ()
-            //                         // SocialShare.shareTwitter(
-            //                         //         "This is Social Share twitter example",
-            //                         //         hashtags: ["hello", "world", "foo", "bar"],
-            //                         //         url: "https://google.com/#/hello",
-            //                         //         trailingText: "\nhello")
-            //                         //     .then((data) {
-            //                         //   print(data);
-            //                         // });
-            //                         async {
-            //                       var response = await FlutterShareMe()
-            //                           .shareToTwitter(
-            //                               url: 'https://github.com/lizhuoyuan',
-            //                               msg: "Share");
-            //                       if (response == 'success') {
-            //                         print('navigate success');
-            //                       }
-            //                     },
-            //                     child: Image.asset(
-            //                       "assets/newImages/twitter.png",
-            //                       height: imgHeight,
-            //                       width: imgHeight,
-            //                     ),
-            //                   ),
-            //                   SizedBox(
-            //                     width: 7,
-            //                   ),
-            //                   GestureDetector(
-            //                     onTap: () async {
-            //                       // SocialShare.shareLinkedin(
-            //                       //         "Hello World \n https://google.com")
-            //                       //     .then((data) {
-            //                       //   print(data);
-            //                       // });
-            //                       //uncomment theese code
-            //                       var response = await FlutterShareMe()
-            //                           .shareToLinkedin(
-            //                               url: 'https://github.com/lizhuoyuan',
-            //                               msg: "Share");
-            //                     },
-            //                     child: Image.asset(
-            //                       "assets/newImages/linkedin.png",
-            //                       height: imgHeight,
-            //                       width: imgHeight,
-            //                     ),
-            //                   ),
-            //                   GestureDetector(
-            //                     onTap: () {
-            //                       FlutterShareMe().shareToWhatsApp(
-            //                           base64Image: "",
-            //                           msg: "msg \n https://google.com");
-            //                     },
-            //                     child: Image.asset(
-            //                       "assets/newImages/whatsapp.png",
-            //                       height: imgHeight,
-            //                       width: imgHeight,
-            //                     ),
-            //                   ),
-            //                 ],
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     );
-            //   },
-            // ).whenComplete(() {
-            //   setState(() {});
-            // });
+           
           },
           onTapval: () {
             // Navigator.pop(context);
@@ -250,7 +85,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                       shrinkWrap: true,
                       // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        GlobalLists.vision[0].image == ""
+                        (GlobalLists.vision[0].image == ""|| GlobalLists.vision[0].image == null)
                             ? Container()
                             : Padding(
                                 padding: const EdgeInsets.only(
@@ -258,7 +93,7 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                 child: FadeInImage.assetNetwork(
                                   placeholder:
                                       'assets/newImages/placeholder_3.jpg',
-                                  image: GlobalLists.vision[0].image,
+                                  image: GlobalLists.vision[0].image!,
                                   fit: BoxFit.fill,
                                   height: 150,
                                 ),
@@ -282,9 +117,9 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                               Html(
                                 data: """${GlobalLists.vision[0].title} """,
                                 onLinkTap:
-                                    (url, renderContext, attributes, element) {
+                                    (url, attributes, element) {
                                   print("Opening $url...");
-                                  ShowDialogs.launchURL(url);
+                                  ShowDialogs.launchURL(url!);
                                 },
                                 style: {
                                   "body": Style(
@@ -294,6 +129,23 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                       fontWeight: FontWeight.w600),
                                   "tr": Customcolor.tableboderstyle(context),
                                 },
+                                 extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                 // style: {
                                 //   "body": Style(
                                 //     fontSize: FontSize(
@@ -311,9 +163,9 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                 data:
                                     """${GlobalLists.vision[0].pageContent} """,
                                 onLinkTap:
-                                    (url, renderContext, attributes, element) {
+                                    (url, attributes, element) {
                                   print("Opening $url...");
-                                  ShowDialogs.launchURL(url);
+                                  ShowDialogs.launchURL(url!);
                                 },
                                 style: {
                                   "body": Style(
@@ -321,6 +173,23 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
                                   ),
                                   "tr": Customcolor.tableboderstyle(context),
                                 },
+                                 extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                 // style: {
                                 //   "body": Style(
                                 //     fontSize: FontSize(
@@ -424,19 +293,22 @@ class OurVisionState extends State<OurVision> with TickerProviderStateMixin {
           print(response);
           print('Resp : $resp');
           GlobalLists.vision.clear();
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.vision = resp.data.list;
+             
+              GlobalLists.vision = resp.data!.list!;
+               print("GlobalLists.vision");
+              print(GlobalLists.vision[0]);
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
         },
       );
     } else {

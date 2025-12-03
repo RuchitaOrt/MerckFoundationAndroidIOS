@@ -5,15 +5,13 @@ import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/WatchDigitalLibrary.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
-import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/screens/watchmorevideolibray.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -32,7 +30,6 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/EducatingLindaResponse.dart'
     as educate;
-import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
@@ -70,7 +67,7 @@ class EducatingLindaState extends State<EducatingLinda>
     "assets/newImages/leader1.png",
     "assets/newImages/leader2.png",
   ];
-  CarouselSlider carouselSlider;
+  late CarouselSlider carouselSlider;
 
   bool iscall = true;
   bool islibrary = false;
@@ -79,11 +76,11 @@ class EducatingLindaState extends State<EducatingLinda>
   String expandedName = "Upcoming Events";
 
   final List<Tab> tabs = <Tab>[];
-  final CarouselController callAppCarouselController = CarouselController();
-  final CarouselController digitalLibraryCarouselController =
-      CarouselController();
-  final CarouselController mmtmCarouselController = CarouselController();
-  TabController _tabController;
+  final CarouselSliderController callAppCarouselController = CarouselSliderController();
+  final CarouselSliderController digitalLibraryCarouselController =
+      CarouselSliderController();
+  final CarouselSliderController mmtmCarouselController = CarouselSliderController();
+   TabController? _tabController;
 
   final CarouselController _controller = CarouselController();
 
@@ -97,7 +94,7 @@ class EducatingLindaState extends State<EducatingLinda>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -374,302 +371,6 @@ class EducatingLindaState extends State<EducatingLinda>
     );
   }
 
-  // Widget callforApplication() {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(
-  //       left: 10,
-  //       right: 10,
-  //       top: 10,
-  //     ),
-  //     child: Card(
-  //         elevation: 5,
-  //         // height: 1800,
-  //         color: Colors.white,
-  //         child: getcallforapp(context)),
-  //   );
-  // }
-
-  // Widget digitalLibraryLastSection() {
-  //   return getdigitallib(context);
-  // }
-
-  // Widget getcallforapp(BuildContext context) {
-  //   return Stack(
-  //     children: <Widget>[
-  //       GlobalLists.homecallforapp.length <= 0
-  //           ? Container(
-  //               child: Center(child: Text(Constantstring.emptyData)),
-  //             )
-  //           : Padding(
-  //               padding: const EdgeInsets.all(8.0),
-  //               child: Container(
-  //                   //color: Colors.amber,
-  //                   width: SizeConfig.blockSizeHorizontal * 100,
-  //                   height: 470,
-  //                   color: Colors.white,
-  //                   child: Column(
-  //                     children: [
-  //                       Row(
-  //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                         children: [
-  //                           Expanded(
-  //                               child: Text(
-  //                             expandedName,
-  //                             style: TextStyle(
-  //                                 fontSize: 18,
-  //                                 fontWeight: FontWeight.w700,
-  //                                 color: Colors.black),
-  //                           )),
-  //                           GestureDetector(
-  //                             onTap: () {
-  //                               print("in tap");
-  //                               setState(() {
-  //                                 expandClick = !expandClick;
-  //                               });
-  //                             },
-  //                             child: Image.asset(
-  //                               "assets/newImages/expand_more.png",
-  //                               width: 30,
-  //                               height: 30,
-  //                             ),
-  //                           )
-  //                         ],
-  //                       ),
-  //                       SizedBox(
-  //                         height: 10,
-  //                       ),
-  //                       carouselSlider = CarouselSlider(
-  //                         options: CarouselOptions(
-  //                             autoPlay: false,
-  //                             // aspectRatio: 0.1,
-  //                             enlargeCenterPage: true,
-  //                             enlargeStrategy: CenterPageEnlargeStrategy.height,
-  //                             viewportFraction: 1.0,
-  //                             height: 340,
-  //                             onPageChanged: (index, reason) {
-  //                               setState(() {
-  //                                 _current1 = index;
-  //                               });
-  //                             }),
-  //                         items: GlobalLists.homecallforapp.map((product) {
-  //                           return new Builder(
-  //                             builder: (BuildContext context) {
-  //                               return ListView(
-  //                                 shrinkWrap: true,
-  //                                 physics: ScrollPhysics(),
-  //                                 // crossAxisAlignment: CrossAxisAlignment.center,
-  //                                 children: [
-  //                                   Center(
-  //                                     child: FadeInImage.assetNetwork(
-  //                                       placeholder:
-  //                                           'assets/newImages/placeholder_3.jpg',
-  //                                       image:
-  //                                           GlobalLists.homeCallForAppBaseURL +
-  //                                               product.appImg,
-  //                                       fit: BoxFit.fill,
-  //                                       width: 240,
-  //                                       height: 290,
-  //                                     ),
-  //                                   ),
-  //                                   SizedBox(
-  //                                     height: 10,
-  //                                   ),
-  //                                   Center(
-  //                                     child: Text(product.title,
-  //                                         textAlign: TextAlign.center,
-  //                                         maxLines: 2,
-  //                                         style: TextStyle(
-  //                                           fontSize: 17,
-  //                                         )),
-  //                                   )
-  //                                 ],
-  //                               );
-  //                             },
-  //                           );
-  //                         }).toList(),
-  //                         carouselController: callAppCarouselController,
-  //                       ),
-  //                     ],
-  //                   )),
-  //             ),
-  //       Positioned(
-  //         top: 140,
-  //         child: Container(
-  //           width: MediaQuery.of(context).size.width,
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: <Widget>[
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToPrevious();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(left: 20),
-  //                     child: Icon(
-  //                       Icons.arrow_back_ios,
-  //                       color: Customcolor.text_darkblue,
-  //                     ),
-  //                   )),
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToNext();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(right: 20),
-  //                     child: Icon(
-  //                       Icons.arrow_forward_ios,
-  //                       color: Customcolor.text_darkblue,
-  //                     ),
-  //                   )),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
-
-  // Widget getdigitallib(BuildContext context) {
-  //   return Stack(
-  //     children: <Widget>[
-  //       GlobalLists.homedigitallib.length <= 0
-  //           ? Container(
-  //               child: Center(child: Text(Constantstring.emptyData)),
-  //             )
-  //           : Padding(
-  //               padding: const EdgeInsets.all(8.0),
-  //               child: Container(
-  //                 //color: Colors.amber,
-  //                 width: SizeConfig.blockSizeHorizontal * 100,
-  //                 height: 400,
-  //                 color: Colors.white,
-  //                 child: carouselSlider = CarouselSlider(
-  //                   options: CarouselOptions(
-  //                       autoPlay: false,
-  //                       aspectRatio: 1,
-  //                       enlargeCenterPage: true,
-  //                       enlargeStrategy: CenterPageEnlargeStrategy.height,
-  //                       viewportFraction: 1.0,
-  //                       //  height: SizeConfig.blockSizeVertical * 100,
-  //                       onPageChanged: (index, reason) {
-  //                         setState(() {
-  //                           _current1 = index;
-  //                         });
-  //                       }),
-  //                   items: GlobalLists.homedigitallib.map((product) {
-  //                     print(GlobalLists.homeDigitalLibraryBaseURL +
-  //                         product.image);
-  //                     return new Builder(
-  //                       builder: (BuildContext context) {
-  //                         return ListView(
-  //                           shrinkWrap: true,
-  //                           physics: ScrollPhysics(),
-  //                           //  crossAxisAlignment: CrossAxisAlignment.center,
-  //                           children: [
-  //                             Center(
-  //                               child: Container(
-  //                                 padding: EdgeInsets.only(top: 20),
-  //                                 width: 240,
-  //                                 height: 290,
-  //                                 decoration: BoxDecoration(
-  //                                     borderRadius: BorderRadius.circular(8)),
-  //                                 child: FadeInImage.assetNetwork(
-  //                                   placeholder:
-  //                                       'assets/newImages/placeholder_3.jpg',
-  //                                   image:
-  //                                       GlobalLists.homeDigitalLibraryBaseURL +
-  //                                           product.image,
-  //                                   fit: BoxFit.fitHeight,
-  //                                   height: 200,
-  //                                 ),
-  //                               ),
-  //                             ),
-  //                             SizedBox(
-  //                               height: 10,
-  //                             ),
-  //                             Center(
-  //                               child: Text(product.title,
-  //                                   textAlign: TextAlign.center,
-  //                                   maxLines: 2,
-  //                                   style: TextStyle(
-  //                                     fontSize: 17,
-  //                                   )),
-  //                             )
-  //                           ],
-  //                         );
-  //                       },
-  //                     );
-  //                   }).toList(),
-  //                   carouselController: callAppCarouselController,
-  //                 ),
-  //               ),
-  //             ),
-  //       Positioned(
-  //         top: 140,
-  //         child: Container(
-  //           width: MediaQuery.of(context).size.width,
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: <Widget>[
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToPrevious();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(left: 20),
-  //                     child: Icon(
-  //                       Icons.arrow_back_ios,
-  //                       color: Customcolor.text_darkblue,
-  //                     ),
-  //                   )),
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToNext();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(right: 40),
-  //                     child: Icon(
-  //                       Icons.arrow_forward_ios,
-  //                       color: Customcolor.text_darkblue,
-  //                     ),
-  //                   )),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
-
-  // // goToPrevious() {
-  // //   _controller.previousPage(
-  // //       duration: Duration(milliseconds: 300), curve: Curves.ease);
-  // // }
-
-  // // goToNext() {
-  // //   _controller.nextPage(
-  // //       duration: Duration(milliseconds: 300), curve: Curves.decelerate);
-  // // }
-  // goToPrevious() {
-  //   callAppCarouselController.previousPage(
-  //       duration: Duration(milliseconds: 300), curve: Curves.ease);
-  // }
-
-  // goToNext() {
-  //   callAppCarouselController.nextPage(
-  //       duration: Duration(milliseconds: 300), curve: Curves.decelerate);
-  // }
-
-  // Widget digitalLibrary() {
-  //   return Padding(
-  //       padding: const EdgeInsets.only(
-  //         left: 10,
-  //         right: 10,
-  //         top: 10,
-  //       ),
-  //       child: getdigitallib(context));
-  // }
-
   Widget getcallforapp(BuildContext context) {
     return Stack(
       children: <Widget>[
@@ -686,36 +387,7 @@ class EducatingLindaState extends State<EducatingLinda>
                     color: Colors.white,
                     child: Column(
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.all(10.0),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Expanded(
-                        //           child: Text(
-                        //         expandedName,
-                        //         style: TextStyle(
-                        //             fontSize: 18,
-                        //             fontWeight: FontWeight.w700,
-                        //             color: Colors.black),
-                        //       )),
-                        //       GestureDetector(
-                        //         onTap: () {
-                        //           print("in tap");
-                        //           setState(() {
-                        //             expandClick = !expandClick;
-                        //           });
-                        //         },
-                        //         child: Image.asset(
-                        //           "assets/newImages/expand_more.png",
-                        //           width: 30,
-                        //           height: 30,
-                        //         ),
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
-                        //  expandClick ? eventDropdown() : Container(),
+                       
                         SizedBox(
                           height: 10,
                         ),
@@ -873,7 +545,7 @@ class EducatingLindaState extends State<EducatingLinda>
                                 return GestureDetector(
                                   onTap: () {
                                     ShowDialogs.launchURL(
-                                        GlobalLists.homeDigitalLibraryBaseURL +
+                                        GlobalLists.homeDigitalLibraryPdfURL +
                                             product.document);
                                   },
                                   child: ListView(
@@ -1154,231 +826,179 @@ class EducatingLindaState extends State<EducatingLinda>
         duration: Duration(milliseconds: 300), curve: Curves.decelerate);
   }
 
-  Widget digitalLibrary() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-        right: 10,
-        top: 10,
-      ),
-      child: Card(
-        elevation: 5,
-        // height: 1800,
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
-          child: Swiper.children(
-            autoplay: false,
-            loop: true,
-            control: SwiperControl(
-                iconNext: Icons.arrow_forward_ios,
-                iconPrevious: Icons.arrow_back_ios,
-                size: 20,
-                color: Customcolor.darkblue_col),
-            children: <Widget>[
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/cfa1.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_4.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget merckmorethanmother() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-        right: 10,
-        top: 10,
-      ),
-      child: Card(
-        elevation: 5,
-        // height: 1800,
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
-          child: Swiper.children(
-            autoplay: false,
-            loop: true,
-            control: SwiperControl(
-                iconNext: Icons.arrow_forward_ios,
-                iconPrevious: Icons.arrow_back_ios,
-                size: 20,
-                color: Customcolor.darkblue_col),
-            children: <Widget>[
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/cfa1.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_4.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_6.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  // Widget slider(BuildContext context) {
-  //   return Stack(
-  //     children: <Widget>[
-  //       Column(
-  //         children: <Widget>[
-  //           Container(
-  //             child: carouselSlider = CarouselSlider(
-  //               options: CarouselOptions(
-  //                 viewportFraction: 1.0,
-  //                 height: 200,
-  //                 autoPlay: true,
-  //                 onPageChanged: (index, reason) {
-  //                   setState(() {
-  //                     _current = index;
-  //                   });
-  //                 },
-  //               ),
-  //               items: GlobalLists.mmtmsliderlist.map((product) {
-  //                 return new Builder(
-  //                   builder: (BuildContext context) {
-  //                     return new Container(
-  //                       decoration: BoxDecoration(
-  //                         borderRadius: BorderRadius.circular(10),
-  //                       ),
-  //                       width: SizeConfig.blockSizeHorizontal * 100,
-  //                       child: FadeInImage.assetNetwork(
-  //                         placeholder: 'assets/newImages/placeholder_3.jpg',
-  //                         image: Constantstring.baseUrl + product.image,
-  //                         fit: BoxFit.cover,
-  //                       ),
-  //                     );
-  //                   },
-  //                 );
-  //               }).toList(),
+  // Widget digitalLibrary() {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(
+  //       left: 10,
+  //       right: 10,
+  //       top: 10,
+  //     ),
+  //     child: Card(
+  //       elevation: 5,
+  //       // height: 1800,
+  //       color: Colors.white,
+  //       child: Padding(
+  //         padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
+  //         child: Swiper.children(
+  //           autoplay: false,
+  //           loop: true,
+  //           control: SwiperControl(
+  //               iconNext: Icons.arrow_forward_ios,
+  //               iconPrevious: Icons.arrow_back_ios,
+  //               size: 20,
+  //               color: Customcolor.darkblue_col),
+  //           children: <Widget>[
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                     margin: EdgeInsets.only(
+  //                       right: 40.0,
+  //                       left: 30,
+  //                     ),
+  //                     child: ClipRRect(
+  //                         borderRadius: BorderRadius.circular(5.0),
+  //                         child: Image.asset(
+  //                           "assets/newImages/cfa1.png",
+  //                           height: 300,
+  //                           fit: BoxFit.fill,
+  //                         ))),
+  //                 SizedBox(
+  //                   height: 8,
+  //                 ),
+  //                 Text("UNESCO-MARS 2020",
+  //                     style: TextStyle(
+  //                       fontSize: 17,
+  //                     ))
+  //               ],
   //             ),
-  //           ),
-  //           new DotsIndicator(
-  //             dotsCount: GlobalLists.mmtmsliderlist.length,
-  //             position: double.parse("$_current"),
-  //             decorator: DotsDecorator(
-  //               size: const Size.square(9.0),
-  //               activeSize: const Size(18.0, 9.0),
-  //               activeColor: Customcolor.colorPink,
-  //               activeShape: RoundedRectangleBorder(
-  //                   borderRadius: BorderRadius.circular(5.0)),
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                     margin: EdgeInsets.only(
+  //                       right: 40.0,
+  //                       left: 30,
+  //                     ),
+  //                     child: ClipRRect(
+  //                         borderRadius: BorderRadius.circular(5.0),
+  //                         child: Image.asset(
+  //                           "assets/newImages/poster_4.png",
+  //                           height: 300,
+  //                           fit: BoxFit.fill,
+  //                         ))),
+  //                 SizedBox(
+  //                   height: 8,
+  //                 ),
+  //                 Text("UNESCO-MARS 2020",
+  //                     style: TextStyle(
+  //                       fontSize: 17,
+  //                     ))
+  //               ],
   //             ),
-  //           ),
-  //         ],
+  //           ],
+  //         ),
   //       ),
-  //     ],
+  //     ),
   //   );
   // }
+
+  // Widget merckmorethanmother() {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(
+  //       left: 10,
+  //       right: 10,
+  //       top: 10,
+  //     ),
+  //     child: Card(
+  //       elevation: 5,
+  //       // height: 1800,
+  //       color: Colors.white,
+  //       child: Padding(
+  //         padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
+  //         child: Swiper.children(
+  //           autoplay: false,
+  //           loop: true,
+  //           control: SwiperControl(
+  //               iconNext: Icons.arrow_forward_ios,
+  //               iconPrevious: Icons.arrow_back_ios,
+  //               size: 20,
+  //               color: Customcolor.darkblue_col),
+  //           children: <Widget>[
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                     margin: EdgeInsets.only(
+  //                       right: 40.0,
+  //                       left: 30,
+  //                     ),
+  //                     child: ClipRRect(
+  //                         borderRadius: BorderRadius.circular(5.0),
+  //                         child: Image.asset(
+  //                           "assets/newImages/cfa1.png",
+  //                           height: 300,
+  //                           fit: BoxFit.fill,
+  //                         ))),
+  //                 SizedBox(
+  //                   height: 8,
+  //                 ),
+  //                 Text("UNESCO-MARS 2020",
+  //                     style: TextStyle(
+  //                       fontSize: 17,
+  //                     ))
+  //               ],
+  //             ),
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                     margin: EdgeInsets.only(
+  //                       right: 40.0,
+  //                       left: 30,
+  //                     ),
+  //                     child: ClipRRect(
+  //                         borderRadius: BorderRadius.circular(5.0),
+  //                         child: Image.asset(
+  //                           "assets/newImages/poster_4.png",
+  //                           height: 300,
+  //                           fit: BoxFit.fill,
+  //                         ))),
+  //                 SizedBox(
+  //                   height: 8,
+  //                 ),
+  //                 Text("UNESCO-MARS 2020",
+  //                     style: TextStyle(
+  //                       fontSize: 17,
+  //                     ))
+  //               ],
+  //             ),
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                     margin: EdgeInsets.only(
+  //                       right: 40.0,
+  //                       left: 30,
+  //                     ),
+  //                     child: ClipRRect(
+  //                         borderRadius: BorderRadius.circular(5.0),
+  //                         child: Image.asset(
+  //                           "assets/newImages/poster_6.png",
+  //                           height: 300,
+  //                           fit: BoxFit.fill,
+  //                         ))),
+  //                 SizedBox(
+  //                   height: 8,
+  //                 ),
+  //                 Text("UNESCO-MARS 2020",
+  //                     style: TextStyle(
+  //                       fontSize: 17,
+  //                     ))
+  //               ],
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
   Widget slider(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 8),
@@ -1407,361 +1027,19 @@ class EducatingLindaState extends State<EducatingLinda>
                           subTitle: product['image_desc'],
                         );
 
-                        // new Container(
-                        //   decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(8),
-                        //       image: DecorationImage(
-                        //           image: NetworkImage(
-                        //               "http://merckfoundation.org/merck/public/uploads/slider/" +
-                        //                   product['image']),
-                        //           fit: BoxFit.cover)),
-                        //   width: SizeConfig.blockSizeHorizontal * 100,
-                        //   child: Column(
-                        //     mainAxisAlignment: MainAxisAlignment.end,
-                        //     children: <Widget>[
-                        //       Padding(
-                        //         padding:
-                        //             const EdgeInsets.only(right: 0, bottom: 15),
-                        //         child: Container(
-                        //           color: Colors.white.withOpacity(0.5),
-                        //           width: SizeConfig.blockSizeHorizontal * 100,
-                        //           child: Padding(
-                        //             padding: const EdgeInsets.only(
-                        //                 left: 10, right: 10, top: 5, bottom: 5),
-                        //             child: Column(
-                        //               mainAxisAlignment:
-                        //                   MainAxisAlignment.center,
-                        //               children: <Widget>[
-                        //                 FormLabel(
-                        //                   text: product['image_title'],
-                        //                   labelColor: Customcolor.pink_col,
-                        //                   fontSize:
-                        //                       ResponsiveFlutter.of(context)
-                        //                           .fontSize(1.4),
-                        //                   maxLines: 2,
-                        //                   fontweight: FontWeight.w700,
-                        //                 ),
-                        //                 SizedBox(
-                        //                   height: 2,
-                        //                 ),
-                        //                 FormLabel(
-                        //                   text: product['image_desc'],
-                        //                   labelColor: Customcolor.pink_col,
-                        //                   fontSize:
-                        //                       ResponsiveFlutter.of(context)
-                        //                           .fontSize(1.2),
-                        //                   fontweight: FontWeight.w500,
-                        //                 ),
-                        //               ],
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // );
+                       
                       },
                     );
                   }).toList(),
                 ),
               ),
-              // new DotsIndicator(
-              //   dotsCount: _productsAvailable.length,
-              //   position: double.parse("$_current"),
-              //   decorator: DotsDecorator(
-              //     size: const Size.square(9.0),
-              //     activeSize: const Size(18.0, 9.0),
-              //     activeColor: Customcolor.colorBlue,
-              //     activeShape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(5.0)),
-              //   ),
-              // ),
+            
             ],
           ),
         ],
       ),
     );
   }
-
-  // getmmtmslider() async {
-  //   var status1 = await ConnectionDetector.checkInternetConnection();
-
-  //   if (status1) {
-  //     ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-  //     APIManager().apiRequest(
-  //       context,
-  //       API.merckmotherSlider,
-  //       (response) async {
-  //         MmtmSliderResponse resp = response;
-  //         print(response);
-  //         print('Resp : $resp');
-
-  //         // Navigator.of(_keyLoader.currentContext).pop();
-
-  //         if (resp.success == "True") {
-  //           setState(() {
-  //             GlobalLists.mmtmsliderlist = resp.data.list;
-  //             Constantstring.baseUrl = resp.baseUrl;
-  //             getmmtmcontent();
-  //           });
-  //         } else {
-  //           ShowDialogs.showToast(resp.msg);
-  //           Navigator.of(_keyLoader.currentContext).pop();
-  //         }
-  //       },
-  //       (error) {
-  //         print('ERR msg is $error');
-  //         Navigator.of(_keyLoader.currentContext).pop();
-  //       },
-  //     );
-  //   } else {
-  //     ShowDialogs.showToast("Please check internet connection");
-  //   }
-  // }
-
-  // getmmtmcontent() async {
-  //   var status1 = await ConnectionDetector.checkInternetConnection();
-
-  //   if (status1) {
-  //     APIManager().apiRequest(
-  //       context,
-  //       API.merckmotherContent,
-  //       (response) async {
-  //         MmtmContentResponce resp = response;
-  //         print(response);
-  //         print('Resp : $resp');
-
-  //         if (resp.success == "True") {
-  //           setState(() {
-  //             GlobalLists.mmtmcontentlist = resp.data.list;
-  //             getVideosection();
-  //           });
-  //         } else {
-  //           ShowDialogs.showToast(resp.msg);
-  //           Navigator.of(_keyLoader.currentContext).pop();
-  //         }
-  //       },
-  //       (error) {
-  //         print('ERR msg is $error');
-  //         Navigator.of(_keyLoader.currentContext).pop();
-  //       },
-  //     );
-  //   } else {
-  //     ShowDialogs.showToast("Please check internet connection");
-  //   }
-  // }
-
-  // getVideosection() async {
-  //   var status1 = await ConnectionDetector.checkInternetConnection();
-
-  //   if (status1) {
-  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-  //     APIManager().apiRequest(
-  //       context,
-  //       API.merckmotherVideos,
-  //       (response) async {
-  //         MerckMotherVideosResponce resp = response;
-  //         print(response);
-  //         print('Resp : $resp');
-
-  //         if (resp.success == "True") {
-  //           setState(() {
-  //             GlobalLists.mmtmvideoseclist = resp.data.list;
-  //             getlatestupdate();
-  //           });
-  //         } else {
-  //           ShowDialogs.showToast(resp.msg);
-
-  //           Navigator.of(_keyLoader.currentContext).pop();
-  //         }
-  //       },
-  //       (error) {
-  //         print('ERR msg is $error');
-  //         Navigator.of(_keyLoader.currentContext).pop();
-  //       },
-  //     );
-  //   } else {
-  //     ShowDialogs.showToast("Please check internet connection");
-  //   }
-  // }
-
-  // getlatestupdate() async {
-  //   var status1 = await ConnectionDetector.checkInternetConnection();
-
-  //   if (status1) {
-  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-  //     APIManager().apiRequest(
-  //       context,
-  //       API.merckmotherLatestUpdates,
-  //       (response) async {
-  //         MmtMlatestupdateResponse resp = response;
-  //         print(response);
-  //         print('Resp : $resp');
-
-  //         if (resp.success == "True") {
-  //           setState(() {
-  //             GlobalLists.mmtmlatestupdatelist = resp.data.list;
-  //             Constantstring.baseUrl = resp.baseUrl;
-  //             getmmtminmedia();
-  //           });
-  //         } else {
-  //           ShowDialogs.showToast(resp.msg);
-  //           Navigator.of(_keyLoader.currentContext).pop();
-  //         }
-  //       },
-  //       (error) {
-  //         print('ERR msg is $error');
-  //         Navigator.of(_keyLoader.currentContext).pop();
-  //       },
-  //     );
-  //   } else {
-  //     ShowDialogs.showToast("Please check internet connection");
-  //   }
-  // }
-
-  // getmmtminmedia() async {
-  //   var status1 = await ConnectionDetector.checkInternetConnection();
-
-  //   if (status1) {
-  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-  //     APIManager().apiRequest(
-  //       context,
-  //       API.merckmotherMedia,
-  //       (response) async {
-  //         MmtMinmediaResponse resp = response;
-  //         print(response);
-  //         print('Resp : $resp');
-  //         //Navigator.of(_keyLoader.currentContext).pop();
-  //         if (resp.success == "True") {
-  //           setState(() {
-  //             GlobalLists.mmtminmediaresp = resp.data.list;
-  //             Constantstring.baseUrl = resp.baseUrl;
-  //             getmmtmtestimonial();
-  //           });
-  //         } else {
-  //           ShowDialogs.showToast(resp.msg);
-  //           Navigator.of(_keyLoader.currentContext).pop();
-  //         }
-  //       },
-  //       (error) {
-  //         print('ERR msg is $error');
-  //         Navigator.of(_keyLoader.currentContext).pop();
-  //       },
-  //     );
-  //   } else {
-  //     ShowDialogs.showToast("Please check internet connection");
-  //   }
-  // }
-
-  // getmmtmtestimonial() async {
-  //   var status1 = await ConnectionDetector.checkInternetConnection();
-
-  //   if (status1) {
-  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-  //     APIManager().apiRequest(
-  //       context,
-  //       API.merckmotherTestimonial,
-  //       (response) async {
-  //         MmtmTestimonialResponse resp = response;
-  //         print(response);
-  //         print('Resp : $resp');
-
-  //         if (resp.success == "True") {
-  //           setState(() {
-  //             GlobalLists.mmtmtestimonialresp = resp.data.list;
-  //             Constantstring.baseUrl = resp.baseUrl;
-  //             getmmtmcallforapp();
-  //           });
-  //         } else {
-  //           ShowDialogs.showToast(resp.msg);
-
-  //           Navigator.of(_keyLoader.currentContext).pop();
-  //         }
-  //       },
-  //       (error) {
-  //         print('ERR msg is $error');
-  //         Navigator.of(_keyLoader.currentContext).pop();
-  //       },
-  //     );
-  //   } else {
-  //     ShowDialogs.showToast("Please check internet connection");
-  //   }
-  // }
-
-  // getmmtmcallforapp() async {
-  //   var status1 = await ConnectionDetector.checkInternetConnection();
-
-  //   if (status1) {
-  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-  //     APIManager().apiRequest(
-  //       context,
-  //       API.merckmotherCallApplication,
-  //       (response) async {
-  //         MmtmcallforappResponse resp = response;
-  //         print(response);
-  //         print('Resp : $resp');
-
-  //         if (resp.success == "True") {
-  //           setState(() {
-  //             GlobalLists.mmtmcallforappresp = resp.data.list;
-  //             Constantstring.baseUrl = resp.baseUrl;
-  //             getmmtmdigitallibrary();
-  //           });
-  //         } else {
-  //           ShowDialogs.showToast(resp.msg);
-  //           Navigator.of(_keyLoader.currentContext).pop();
-  //         }
-  //       },
-  //       (error) {
-  //         print('ERR msg is $error');
-  //         Navigator.of(_keyLoader.currentContext).pop();
-  //       },
-  //     );
-  //   } else {
-  //     ShowDialogs.showToast("Please check internet connection");
-  //   }
-  // }
-
-  // getmmtmdigitallibrary() async {
-  //   var status1 = await ConnectionDetector.checkInternetConnection();
-
-  //   if (status1) {
-  //     //  ShowDialogs.showLoadingDialog(context, _keyLoader);
-
-  //     APIManager().apiRequest(
-  //       context,
-  //       API.merckmotherDigitalLib,
-  //       (response) async {
-  //         MmtmdigitallibraryResponse resp = response;
-  //         print(response);
-  //         print('Resp : $resp');
-
-  //         Navigator.of(_keyLoader.currentContext).pop();
-
-  //         if (resp.success == "True") {
-  //           setState(() {
-  //             GlobalLists.mmtmdigitallibresp = resp.data.list;
-  //             Constantstring.baseUrl = resp.baseUrl;
-  //           });
-  //         } else {
-  //           ShowDialogs.showToast(resp.msg);
-  //         }
-  //       },
-  //       (error) {
-  //         print('ERR msg is $error');
-  //         Navigator.of(_keyLoader.currentContext).pop();
-  //       },
-  //     );
-  //   } else {
-  //     ShowDialogs.showToast("Please check internet connection");
-  //   }
-  // }
 
   List<Widget> list() {
     listofwiget.clear();
@@ -1828,19 +1106,7 @@ class EducatingLindaState extends State<EducatingLinda>
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      // Container(
-                                      //   width:
-                                      //       SizeConfig.blockSizeHorizontal * 80,
-                                      //   child: Text(
-                                      //     GlobalLists.homegallerylist[index].title,
-                                      //     overflow: TextOverflow.ellipsis,
-                                      //     style: TextStyle(
-                                      //         color: Colors.white,
-                                      //         fontSize: 14,
-                                      //         fontWeight: FontWeight.w700),
-                                      //     maxLines: 3,
-                                      //   ),
-                                      // ),
+                                      
                                       SizedBox(
                                         height: 8,
                                       )
@@ -1930,43 +1196,7 @@ class EducatingLindaState extends State<EducatingLinda>
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              // Align(
-                              //   alignment: Alignment.bottomCenter,
-                              //   child: Padding(
-                              //     padding: const EdgeInsets.only(
-                              //         left: 10, right: 10, bottom: 10),
-                              //     child: Row(
-                              //       crossAxisAlignment: CrossAxisAlignment.end,
-                              //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              //       children: [
-                              //         Column(
-                              //           mainAxisAlignment: MainAxisAlignment.end,
-                              //           crossAxisAlignment:
-                              //               CrossAxisAlignment.start,
-                              //           children: [
-                              //             Container(
-                              //               width:
-                              //                   SizeConfig.blockSizeHorizontal * 80,
-                              //               child: Text(
-                              //                 GlobalLists
-                              //                     .homevideolist[index].videoDesc,
-                              //                 overflow: TextOverflow.ellipsis,
-                              //                 style: TextStyle(
-                              //                     color: Colors.white,
-                              //                     fontSize: 14,
-                              //                     fontWeight: FontWeight.w700),
-                              //                 maxLines: 3,
-                              //               ),
-                              //             ),
-                              //             SizedBox(
-                              //               height: 25,
-                              //             )
-                              //           ],
-                              //         ),
-                              //       ],
-                              //     ),
-                              //   ),
-                              // ),
+                             
                               Padding(
                                 padding: EdgeInsets.only(left: 120, top: 70),
                                 child: Center(
@@ -2005,13 +1235,30 @@ class EducatingLindaState extends State<EducatingLinda>
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url, renderContext, attributes, element) {
+            onLinkTap: (url, attributes, element) {
               print("Opening $url...");
-              ShowDialogs.launchURL(url);
+              ShowDialogs.launchURL(url!);
             },
             style: {
               "tr": Customcolor.tableboderstyle(context),
             },
+             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
           ),
         );
       }
@@ -2386,116 +1633,7 @@ class EducatingLindaState extends State<EducatingLinda>
     return listoftabwiget;
   }
 
-  // Widget getMMTMS(BuildContext context) {
-  //   return Stack(
-  //     children: <Widget>[
-  //       GlobalLists.homemmtm.length <= 0
-  //           ? Container(
-  //               child: Center(child: Text(Constantstring.emptyData)),
-  //             )
-  //           : Padding(
-  //               padding: const EdgeInsets.all(8.0),
-  //               child: Container(
-  //                 //color: Colors.amber,
-  //                 width: SizeConfig.blockSizeHorizontal * 100,
-  //                 height: 400,
-  //                 color: Colors.white,
-  //                 child: carouselSlider = CarouselSlider(
-  //                   options: CarouselOptions(
-  //                       autoPlay: false,
-  //                       aspectRatio: 1,
-  //                       enlargeCenterPage: true,
-  //                       enlargeStrategy: CenterPageEnlargeStrategy.height,
-  //                       viewportFraction: 1.0,
-  //                       //  height: SizeConfig.blockSizeVertical * 100,
-  //                       onPageChanged: (index, reason) {
-  //                         setState(() {
-  //                           _current1 = index;
-  //                         });
-  //                       }),
-  //                   items: GlobalLists.homemmtm.map((product) {
-  //                     return new Builder(
-  //                       builder: (BuildContext context) {
-  //                         return ListView(
-  //                           shrinkWrap: true,
-  //                           physics: ScrollPhysics(),
-  //                           //  crossAxisAlignment: CrossAxisAlignment.center,
-  //                           children: [
-  //                             Center(
-  //                               child: Container(
-  //                                 padding: EdgeInsets.only(top: 20),
-  //                                 width: 240,
-  //                                 height: 290,
-  //                                 decoration: BoxDecoration(
-  //                                     borderRadius: BorderRadius.circular(8)),
-  //                                 child: FadeInImage.assetNetwork(
-  //                                   placeholder:
-  //                                       'assets/newImages/placeholder_3.jpg',
-  //                                   image: GlobalLists.homeMMTMBaseURL +
-  //                                       product.photo,
-  //                                   fit: BoxFit.cover,
-  //                                   height: 200,
-  //                                 ),
-  //                               ),
-  //                             ),
-  //                             SizedBox(
-  //                               height: 10,
-  //                             ),
-  //                             Center(
-  //                               child: Text(product.photoDescription,
-  //                                   textAlign: TextAlign.center,
-  //                                   maxLines: 2,
-  //                                   style: TextStyle(
-  //                                     fontSize: 17,
-  //                                   )),
-  //                             )
-  //                           ],
-  //                         );
-  //                       },
-  //                     );
-  //                   }).toList(),
-  //                   carouselController: callAppCarouselController,
-  //                 ),
-  //               ),
-  //             ),
-  //       Positioned(
-  //         top: 140,
-  //         child: Container(
-  //           width: MediaQuery.of(context).size.width,
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: <Widget>[
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToPrevious();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(left: 20),
-  //                     child: Icon(
-  //                       Icons.arrow_back_ios,
-  //                       color: Customcolor.text_darkblue,
-  //                     ),
-  //                   )),
-  //               GestureDetector(
-  //                   onTap: () {
-  //                     goToNext();
-  //                   },
-  //                   child: Padding(
-  //                     padding: const EdgeInsets.only(right: 40),
-  //                     child: Icon(
-  //                       Icons.arrow_forward_ios,
-  //                       color: Customcolor.text_darkblue,
-  //                     ),
-  //                   )),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
-
-  Future<http.Response> getmmtmapi() async {
+  Future<http.Response?> getmmtmapi() async {
     print("mmtm api");
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -2505,14 +1643,14 @@ class EducatingLindaState extends State<EducatingLinda>
       );
       print("response");
       print(response);
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         var res = json.decode(response.body);
         print("ff");
         print(res);
         educate.EducatingLindaResponse homepageres =
             educate.EducatingLindaResponse.fromJson(res);
-        GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
-        slidersection = homepageres.sliderArea[0].slider.list;
+        GlobalLists.sliderurl = homepageres.sliderArea![0].slider!.baseUrl!;
+        slidersection = homepageres.sliderArea![0].slider!.list!;
         slidersection.forEach((element) {
           _productsAvailable.add({
             "id": element.id,
@@ -2531,8 +1669,8 @@ class EducatingLindaState extends State<EducatingLinda>
         print("sliderprogramsection");
         print(slidersection.length);
 
-        Map<String, dynamic> section1 = homepageres.middleArea;
-        Map<String, dynamic> lastsection = homepageres.rightArea;
+        Map<String, dynamic> section1 = homepageres.middleArea!;
+        Map<String, dynamic> lastsection = homepageres.rightArea!;
 
         for (int i = 0; i < section1.length; i++) {
           //  MiddleArea categoryKeys = section1[(i + 1).toString()];
@@ -2549,19 +1687,19 @@ class EducatingLindaState extends State<EducatingLinda>
           if (middlecategoryname.toString().toLowerCase() ==
               "Videos".toLowerCase()) {
             GlobalLists.homevideolist =
-                homepageres.middleArea['${i + 1}'].videos.list;
+                homepageres.middleArea!['${i + 1}']!.videos!.list!;
             print(GlobalLists.homevideolist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "content".toLowerCase()) {
             GlobalLists.homecontentlist =
-                homepageres.middleArea['${i + 1}'].content.list;
+                homepageres.middleArea!['${i + 1}']!.content!.list!;
             print(GlobalLists.homecontentlist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "gallery".toLowerCase()) {
             GlobalLists.homegallerybaseurl =
-                homepageres.middleArea['${i + 1}'].gallery.baseUrl;
+                homepageres.middleArea!['${i + 1}']!.gallery!.baseUrl!;
             GlobalLists.homegallerylist =
-                homepageres.middleArea['${i + 1}'].gallery.list;
+                homepageres.middleArea!['${i + 1}']!.gallery!.list!;
             print(GlobalLists.homegallerylist.length);
           }
         }
@@ -2587,23 +1725,25 @@ class EducatingLindaState extends State<EducatingLinda>
           if (rightsectioncategoryname.toString().toLowerCase() ==
               "call_for_app".toLowerCase()) {
             GlobalLists.homecallforapp =
-                homepageres.rightArea[rigthareakey[i]].callForApp.list;
+                homepageres.rightArea![rigthareakey[i]]!.callForApp!.list!;
             GlobalLists.homeCallForAppBaseURL =
-                homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
+                homepageres.rightArea![rigthareakey[i]]!.callForApp!.baseUrl;
             print(GlobalLists.homecallforapp.length);
           } else if (rightsectioncategoryname.toString().toLowerCase() ==
               "mmtm".toLowerCase()) {
             GlobalLists.homemmtm =
-                homepageres.rightArea[rigthareakey[i]].mmtm.list;
+                homepageres.rightArea![rigthareakey[i]]!.mmtm!.list!;
             print(GlobalLists.homemmtm.length);
             GlobalLists.homeMMTMBaseURL =
-                homepageres.rightArea[rigthareakey[i]].mmtm.baseUrl;
+                homepageres.rightArea![rigthareakey[i]]!.mmtm!.baseUrl!;
           } else if (rightsectioncategoryname.toString().toLowerCase() ==
               "digital_library".toLowerCase()) {
             GlobalLists.homedigitallib =
-                homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
+                homepageres.rightArea![rigthareakey[i]]!.digitalLibrary!.list!;
             GlobalLists.homeDigitalLibraryBaseURL =
-                homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
+                homepageres.rightArea![rigthareakey[i]]!.digitalLibrary!.baseUrl!;
+                 GlobalLists.homeDigitalLibraryPdfURL=
+                homepageres.rightArea![rigthareakey[i]]!.digitalLibrary!.pdfUrl;
             print(GlobalLists.homedigitallib.length);
           }
         }
@@ -2631,18 +1771,7 @@ class EducatingLindaState extends State<EducatingLinda>
     }
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+ 
 
   getprogramgallery() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
@@ -2655,11 +1784,11 @@ class EducatingLindaState extends State<EducatingLinda>
 
         print(response);
         print('Resp : $resp');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
         if (resp.success == "True".toLowerCase()) {
           print(resp.list);
-          GlobalLists.programgallerybaseurl = resp.baseUrl;
-          GlobalLists.programgallerylist = resp.list;
+          GlobalLists.programgallerybaseurl = resp.baseUrl!;
+          GlobalLists.programgallerylist = resp.list!;
           print(GlobalLists.programgallerylist);
           // GlobalLists.awarddetallisting[0].title
 
@@ -2671,11 +1800,11 @@ class EducatingLindaState extends State<EducatingLinda>
                         photosList: GlobalLists.programgallerylist,
                       )));
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
         }
       }, (error) {
         print('ERR msg is $error');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
       }, jsonval: json);
     } else {
       ShowDialogs.showToast("Please check internet connection");

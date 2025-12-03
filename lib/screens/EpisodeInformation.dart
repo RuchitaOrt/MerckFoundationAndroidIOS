@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
+
 import 'package:merckfoundation22dec/ViewmoreAlbum.dart';
 import 'package:merckfoundation22dec/model/GetEpisodeDataResponse.dart';
 import 'package:merckfoundation22dec/screens/Episodeseason.dart';
@@ -13,18 +13,18 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 
 class EpisodeInformation extends StatefulWidget {
-  final String showbrief;
-  final String episodebrief;
-  final String guestinfo;
-  final String credits;
-  final String relatednews;
-  final String photid;
-  final String episodeid;
+  final dynamic showbrief;
+  final dynamic episodebrief;
+  final dynamic guestinfo;
+  final dynamic credits;
+  final dynamic relatednews;
+  final dynamic photid;
+  final dynamic episodeid;
   const EpisodeInformation(
-      {Key key,
+      {Key? key,
       this.showbrief,
       this.episodebrief,
       this.guestinfo,
@@ -106,14 +106,31 @@ class EpisodeInformationState extends State<EpisodeInformation>
                     color: Customcolor.pink_col)),
             Html(
               data: GlobalLists.episodeinfodata[0].showBrief,
-              onLinkTap: (url, renderContext, attributes, element) {
+              onLinkTap: (url, attributes, element) {
                 print("Opening $url...");
-                ShowDialogs.launchURL(url);
+                ShowDialogs.launchURL(url!);
               },
               style: {
                 "body": Style(textAlign: TextAlign.start),
                 "tr": Customcolor.tableboderstyle(context),
               },
+               extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
             ),
             Text("Episode Brief:",
                 maxLines: 2,
@@ -125,14 +142,31 @@ class EpisodeInformationState extends State<EpisodeInformation>
                     color: Customcolor.pink_col)),
             Html(
               data: GlobalLists.episodeinfodata[0].episodeBrief,
-              onLinkTap: (url, renderContext, attributes, element) {
+              onLinkTap: (url, attributes, element) {
                 print("Opening $url...");
-                ShowDialogs.launchURL(url);
+                ShowDialogs.launchURL(url!);
               },
               style: {
                 "body": Style(textAlign: TextAlign.start),
                 "tr": Customcolor.tableboderstyle(context),
               },
+               extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
             ),
             Text("Guests & Designer Information:",
                 maxLines: 2,
@@ -144,14 +178,31 @@ class EpisodeInformationState extends State<EpisodeInformation>
                     color: Customcolor.pink_col)),
             Html(
               data: GlobalLists.episodeinfodata[0].guestInfo,
-              onLinkTap: (url, renderContext, attributes, element) {
+              onLinkTap: (url, attributes, element) {
                 print("Opening $url...");
-                ShowDialogs.launchURL(url);
+                ShowDialogs.launchURL(url!);
               },
               style: {
                 "body": Style(textAlign: TextAlign.start),
                 "tr": Customcolor.tableboderstyle(context),
               },
+               extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
             ),
             Text("Credits:",
                 maxLines: 2,
@@ -163,14 +214,31 @@ class EpisodeInformationState extends State<EpisodeInformation>
                     color: Customcolor.pink_col)),
             Html(
               data: GlobalLists.episodeinfodata[0].credits,
-              onLinkTap: (url, renderContext, attributes, element) {
+              onLinkTap: (url, attributes, element) {
                 print("Opening $url...");
-                ShowDialogs.launchURL(url);
+                ShowDialogs.launchURL(url!);
               },
               style: {
                 "body": Style(textAlign: TextAlign.start),
                 "tr": Customcolor.tableboderstyle(context),
               },
+               extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
             ),
             GestureDetector(
               onTap: () {
@@ -210,14 +278,31 @@ class EpisodeInformationState extends State<EpisodeInformation>
                     color: Customcolor.colorBlue)),
             Html(
               data: GlobalLists.episodeinfodata[0].relatedNews,
-              onLinkTap: (url, renderContext, attributes, element) {
+              onLinkTap: (url, attributes, element) {
                 print("Opening $url...");
-                ShowDialogs.launchURL(url);
+                ShowDialogs.launchURL(url!);
               },
               style: {
                 "body": Style(textAlign: TextAlign.start),
                 "tr": Customcolor.tableboderstyle(context),
               },
+               extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
             ),
             Container(
               height: 330.0, // Change as per your requirement
@@ -238,11 +323,11 @@ class EpisodeInformationState extends State<EpisodeInformation>
                             builder: (BuildContext context) => ViewmoreAlbum(
                                   apiurl: APIManager.viewmorealbum,
                                   albumtitle: GlobalLists.episodeinfodata[0]
-                                      .photoList[0][0].albumName,
+                                      .photoList![0][0].albumName,
                                   sharelink:
                                       Constantstring.sharemmtmambassadarmmtm,
                                   albumurl: GlobalLists.episodeinfodata[0]
-                                      .photoList[0][0].albumUrl,
+                                      .photoList![0][0].albumUrl,
                                 )));
                     // Navigator.push(
                     //     context,
@@ -262,7 +347,7 @@ class EpisodeInformationState extends State<EpisodeInformation>
                       // Container()
                       ListView.builder(
                     itemCount:
-                        GlobalLists.episodeinfodata[0].photoList[0].length,
+                        GlobalLists.episodeinfodata[0].photoList![0].length,
                     shrinkWrap: true,
                     physics: ScrollPhysics(),
                     scrollDirection: Axis.horizontal,
@@ -285,8 +370,8 @@ class EpisodeInformationState extends State<EpisodeInformation>
                                           'assets/newImages/placeholder_3.jpg',
                                       image: baseurl +
                                           GlobalLists.episodeinfodata[0]
-                                              .photoList[0][index].photo,
-                                      fit: BoxFit.fill,
+                                              .photoList![0][index].photo!,
+                                      fit: BoxFit.fill
                                     ),
                                   ),
                                 ],
@@ -301,7 +386,7 @@ class EpisodeInformationState extends State<EpisodeInformation>
                                 padding: const EdgeInsets.only(left: 7),
                                 child: Text(
                                   GlobalLists.episodeinfodata[0]
-                                      .photoList[0][index].photoDescription,
+                                      .photoList![0][index].photoDescription!,
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 3,
                                   style: TextStyle(
@@ -342,23 +427,23 @@ class EpisodeInformationState extends State<EpisodeInformation>
         GetEpisodeDataResponse resp = response;
         print(response);
         print('Resp : $resp');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
         if (resp.success == true) {
           setState(() {
-            baseurl = resp.photoUrl;
-            GlobalLists.episodeinfodata = resp.list;
+            baseurl = resp.photoUrl!;
+            GlobalLists.episodeinfodata = resp.list!;
           });
         } else {
           // ShowDialogs.showToast(resp.msg);
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
         }
       }, (error) {
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
         print('ERR msg is $error');
         ShowDialogs.showToast("Server Not Responding");
       }, jsonval: json);
     } else {
-      Navigator.of(_keyLoader.currentContext).pop();
+      Navigator.of(_keyLoader.currentContext!).pop();
       ShowDialogs.showToast("Please check internet connection");
     }
   }

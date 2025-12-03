@@ -12,7 +12,7 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
@@ -34,12 +34,12 @@ class StoriesState extends State<Stories> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
   ScrollController _sc = new ScrollController();
-  GetStoriesResponse resp;
+  late GetStoriesResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
   bool _isLoading = true;
-  double ratio;
+  late double ratio;
   @override
   void initState() {
     // TODO: implement initState
@@ -75,19 +75,19 @@ class StoriesState extends State<Stories> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.storiesList.add(storiesResp.ListElement(
-                        id: resp.data.list[i].id,
-                        videoDesc: resp.data.list[i].videoDesc,
-                        videoLink: resp.data.list[i].videoLink,
-                        countryId: resp.data.list[i].countryId,
-                        categoryId: resp.data.list[i].categoryId,
-                        year: resp.data.list[i].status));
+                        id: resp.data!.list![i].id,
+                        videoDesc: resp.data!.list![i].videoDesc,
+                        videoLink: resp.data!.list![i].videoLink,
+                        countryId: resp.data!.list![i].countryId,
+                        categoryId: resp.data!.list![i].categoryId,
+                        year: resp.data!.list![i].status));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
                 }
 
                 offset = totalcount;
-                int remem = resp.data.list.length - totalcount;
+                int remem = resp.data!.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -106,7 +106,7 @@ class StoriesState extends State<Stories> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -134,7 +134,7 @@ class StoriesState extends State<Stories> {
           onTapvalfilter: () {
             print("videokk");
             // _scaffoldKey1.currentState.openDrawer();
-            _scaffoldKey1.currentState.openEndDrawer();
+            _scaffoldKey1.currentState!.openEndDrawer();
           },
           onTapval: () {
             //  Navigator.pop(context);
@@ -198,7 +198,7 @@ class StoriesState extends State<Stories> {
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
-                                  childAspectRatio: 0.9,
+                                  childAspectRatio: 0.88,
                                 ),
                                 itemBuilder: (BuildContext context, index) {
                                   // if (GlobalLists.storiesList.length - 1 == index &&
@@ -220,10 +220,10 @@ class StoriesState extends State<Stories> {
                                           onTap: () async {
                                             print('tabb in youtube');
                                             var storykey = GlobalLists
-                                                .storiesList[index].videoLink
+                                                .storiesList[index].videoLink!
                                                 .substring(GlobalLists
                                                         .storiesList[index]
-                                                        .videoLink
+                                                        .videoLink!
                                                         .length -
                                                     11);
                                             ShowDialogs.youtubevideolink(
@@ -270,7 +270,7 @@ class StoriesState extends State<Stories> {
                                                           image:
                                                               new DecorationImage(
                                                             image: new NetworkImage(
-                                                                'https://img.youtube.com/vi/${GlobalLists.storiesList[index].videoLink.substring(GlobalLists.storiesList[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                                'https://img.youtube.com/vi/${GlobalLists.storiesList[index].videoLink!.substring(GlobalLists.storiesList[index].videoLink!.length - 11)}/mqdefault.jpg'),
                                                             fit: BoxFit.cover,
                                                           ),
                                                         ),
@@ -285,7 +285,7 @@ class StoriesState extends State<Stories> {
                                                   child: Text(
                                                     GlobalLists
                                                         .storiesList[index]
-                                                        .videoDesc,
+                                                        .videoDesc!,
                                                     textAlign: TextAlign.center,
                                                     overflow:
                                                         TextOverflow.ellipsis,
@@ -459,34 +459,34 @@ class StoriesState extends State<Stories> {
           if (resp.success == "True") {
             setState(() {
               print("here");
-              if (resp.data.list.length < 10) {
-                for (int i = offset; i < resp.data.list.length; i++) {
+              if (resp.data!.list!.length < 10) {
+                for (int i = offset; i < resp.data!.list!.length; i++) {
                   setState(() {
                     GlobalLists.storiesList.add(storiesResp.ListElement(
-                        id: resp.data.list[i].id,
-                        videoDesc: resp.data.list[i].videoDesc,
-                        videoLink: resp.data.list[i].videoLink,
-                        countryId: resp.data.list[i].countryId,
-                        categoryId: resp.data.list[i].categoryId,
-                        year: resp.data.list[i].status));
+                        id: resp.data!.list![i].id,
+                        videoDesc: resp.data!.list![i].videoDesc,
+                        videoLink: resp.data!.list![i].videoLink,
+                        countryId: resp.data!.list![i].countryId,
+                        categoryId: resp.data!.list![i].categoryId,
+                        year: resp.data!.list![i].status));
                   });
                 }
               } else {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.storiesList.add(storiesResp.ListElement(
-                        id: resp.data.list[i].id,
-                        videoDesc: resp.data.list[i].videoDesc,
-                        videoLink: resp.data.list[i].videoLink,
-                        countryId: resp.data.list[i].countryId,
-                        categoryId: resp.data.list[i].categoryId,
-                        year: resp.data.list[i].status));
+                        id: resp.data!.list![i].id,
+                        videoDesc: resp.data!.list![i].videoDesc,
+                        videoLink: resp.data!.list![i].videoLink,
+                        countryId: resp.data!.list![i].countryId,
+                        categoryId: resp.data!.list![i].categoryId,
+                        year: resp.data!.list![i].status));
                   });
                 }
               }
 
               offset = totalcount;
-              int remem = resp.data.list.length - totalcount;
+              int remem = resp.data!.list!.length - totalcount;
               print("remem");
               print(remem);
               if (remem < 10) {
@@ -506,7 +506,7 @@ class StoriesState extends State<Stories> {
             setState(() {
               _isLoading = false;
             });
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -543,10 +543,10 @@ class StoriesState extends State<Stories> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.countrylisting = resp.data.list;
+              GlobalLists.countrylisting = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -559,18 +559,18 @@ class StoriesState extends State<Stories> {
     }
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  // Future<void> _launchInWebViewWithJavaScript(String url) async {
+  //   if (await canLaunch(url)) {
+  //     await launch(
+  //       url,
+  //       forceSafariVC: true,
+  //       forceWebView: true,
+  //       enableJavaScript: true,
+  //     );
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   getcategorylist() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
@@ -590,10 +590,10 @@ class StoriesState extends State<Stories> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.categorylisting = resp.data.list;
+              GlobalLists.categorylisting = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

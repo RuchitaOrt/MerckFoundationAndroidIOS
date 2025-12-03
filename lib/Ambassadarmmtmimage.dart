@@ -5,7 +5,7 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 import 'widget/botttomlink.dart';
@@ -13,12 +13,12 @@ import 'widget/botttomlink.dart';
 //index == 0 (MiddleArea from getHomeAPI -> View More in Photo Gallery)
 
 class AmbassadarmmtmImagePage extends StatefulWidget {
-  List<dynamic> photosList;
-  int index;
-  String baseURL;
-  String appBarTitle;
+  List<dynamic>? photosList;
+  int? index;
+  dynamic baseURL;
+  dynamic appBarTitle;
 
-  AmbassadarmmtmImagePage({Key key, this.photosList, this.index, this.baseURL})
+  AmbassadarmmtmImagePage({Key? key, this.photosList, this.index, this.baseURL})
       : super(key: key);
   @override
   _PhotoGalleryPageState createState() => _PhotoGalleryPageState();
@@ -60,7 +60,7 @@ class _PhotoGalleryPageState extends State<AmbassadarmmtmImagePage> {
               mainAxisSpacing: 2,
               crossAxisCount: 2,
               childAspectRatio: 0.85,
-              children: widget.photosList.map((photo) {
+              children: widget.photosList!.map((photo) {
                 // if (widget.index == 0) {
                 print(widget.baseURL + photo.photo);
                 return GestureDetector(

@@ -10,7 +10,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 
 class OurMission extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class OurMission extends StatefulWidget {
 }
 
 class OurMissionState extends State<OurMission> with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
@@ -79,13 +79,30 @@ class OurMissionState extends State<OurMission> with TickerProviderStateMixin {
                                 data:
                                     """${GlobalLists.ourmission[0].pageContent} """,
                                 onLinkTap:
-                                    (url, renderContext, attributes, element) {
+                                    (url, attributes, element) {
                                   print("Opening $url...");
-                                  ShowDialogs.launchURL(url);
+                                  ShowDialogs.launchURL(url!);
                                 },
                                 style: {
                                   "tr": Customcolor.tableboderstyle(context),
                                 },
+                                 extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                 // style: {
                                 //   "body": Style(
                                 //     fontSize: FontSize(
@@ -158,19 +175,19 @@ class OurMissionState extends State<OurMission> with TickerProviderStateMixin {
           print(response);
           print('Resp : $resp');
 
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.ourmission = resp.data.list;
+              GlobalLists.ourmission = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
         },
       );
     } else {

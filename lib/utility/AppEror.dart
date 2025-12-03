@@ -10,7 +10,7 @@ class AppError {
 }
 
 class FetchDataError extends AppError {
-  FetchDataError([String message])
+  FetchDataError([String? message])
       : super(message, "Error During Communication: ");
 }
 
@@ -27,5 +27,5 @@ class UnauthorisedError extends AppError {
 }
 
 class InvalidInputError extends AppError {
-  InvalidInputError([String message]) : super(message, "Invalid Input: ");
+  InvalidInputError([String? message]) : super(message, "Invalid Input: ");
 }

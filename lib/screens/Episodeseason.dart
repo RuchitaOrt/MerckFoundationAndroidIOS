@@ -5,7 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
 import 'package:merckfoundation22dec/model/GetSeasonEpisodeResponse.dart';
@@ -23,9 +23,9 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:social_share_plugin/social_share_plugin.dart';
+// import 'package:social_share_plugin/social_share_plugin.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -62,7 +62,7 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
     "assets/newImages/leader1.png",
     "assets/newImages/leader2.png",
   ];
-  CarouselSlider carouselSlider;
+  late CarouselSlider carouselSlider;
 
   bool iscall = true;
   bool islibrary = false;
@@ -72,7 +72,7 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
 
   final List<Tab> tabs = <Tab>[];
   final CarouselController callAppCarouselController = CarouselController();
-  TabController _tabController;
+   TabController? _tabController;
 
   final CarouselController _controller = CarouselController();
 
@@ -86,7 +86,7 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -145,7 +145,7 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                           index: 1,
                           cardImage: "assets/newImages/gallery.png",
                           cardsubtitle: GlobalLists.seasonlistwithepisode[index]
-                              .list[0]['season_name'],
+                              .list![0]['season_name'],
                           cardTitle: "",
                           btnTitle: "Watch More",
                           heigthoflist: SizeConfig.blockSizeVertical * 30,
@@ -158,17 +158,17 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                                           apiurl: API.getepisode_season_gallery,
                                           season: GlobalLists
                                               .seasonlistwithepisode[index]
-                                              .list[0]['url'],
+                                              .list![0]['url'],
                                           title: GlobalLists
                                               .seasonlistwithepisode[index]
-                                              .list[0]['season_name'],
+                                              .list![0]['season_name'],
                                         )));
                           },
                           titleColor: Customcolor.pink_col,
                           titleImg: "assets/newImages/flowers-3.png",
                           list: ListView.builder(
                             itemCount: GlobalLists
-                                .seasonlistwithepisode[index].list.length,
+                                .seasonlistwithepisode[index].list!.length,
                             //GlobalLists.homevideolist.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int index2) {
@@ -179,10 +179,10 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                                   onTap: () {
                                     var storykey = GlobalLists
                                         .seasonlistwithepisode[index]
-                                        .list[index2]['video_link']
+                                        .list![index2]['video_link']!
                                         .substring(GlobalLists
                                                 .seasonlistwithepisode[index]
-                                                .list[index2]['video_link']
+                                                .list![index2]['video_link']!
                                                 .length -
                                             11);
                                     ShowDialogs.youtubevideolink(
@@ -208,7 +208,7 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                                                 placeholder:
                                                     'assets/newImages/placeholder_3.jpg',
                                                 image:
-                                                    "https://img.youtube.com/vi/${GlobalLists.seasonlistwithepisode[index].list[index2]['video_link'].substring(GlobalLists.seasonlistwithepisode[index].list[index2]['video_link'].length - 11)}/mqdefault.jpg",
+                                                    "https://img.youtube.com/vi/${GlobalLists.seasonlistwithepisode[index].list![index2]['video_link']!.substring(GlobalLists.seasonlistwithepisode[index].list![index2]['video_link']!.length - 11)}/mqdefault.jpg",
                                                 fit: BoxFit.fill,
                                               ),
                                             ),
@@ -246,8 +246,8 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                                                   GlobalLists
                                                           .seasonlistwithepisode[
                                                               index]
-                                                          .list[index2]
-                                                      ['episode_name'],
+                                                          .list![index2]
+                                                      ['episode_name']!,
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   maxLines: 3,
@@ -275,7 +275,7 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                                                                     episodeid: GlobalLists
                                                                         .seasonlistwithepisode[
                                                                             index]
-                                                                        .list[index2]['id'],
+                                                                        .list![index2]['id'],
                                                                   )));
                                                       //  showDialog(
 
@@ -310,7 +310,7 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                                                           Customcolor.colorBlue,
                                                     )),
                                                 SizedBox(
-                                                  width: 10,
+                                                  width: 5,
                                                 ),
                                                 GestureDetector(
                                                     onTap: () {
@@ -321,7 +321,7 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                                                       var sharelink = GlobalLists
                                                               .seasonlistwithepisode[
                                                                   index]
-                                                              .list[index2]
+                                                              .list![index2]
                                                           ['video_link'];
                                                       showModalBottomSheet<
                                                           void>(
@@ -387,22 +387,27 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                                                                           onTap:
                                                                               () async {
                                                                             print("on tap fb");
-                                                                            await SocialSharePlugin.shareToFeedFacebookLink(
-                                                                              quote: "",
-                                                                              url: sharelink,
-                                                                              onSuccess: (_) {
-                                                                                print('FACEBOOK SUCCESS');
-                                                                                return;
-                                                                              },
-                                                                              onCancel: () {
-                                                                                print('FACEBOOK CANCELLED');
-                                                                                return;
-                                                                              },
-                                                                              onError: (error) {
-                                                                                print('FACEBOOK ERROR $error');
-                                                                                return;
-                                                                              },
-                                                                            );
+                                                                            // await SocialSharePlugin.shareToFeedFacebookLink(
+                                                                            //   quote: "",
+                                                                            //   url: sharelink,
+                                                                            //   onSuccess: (_) {
+                                                                            //     print('FACEBOOK SUCCESS');
+                                                                            //     return;
+                                                                            //   },
+                                                                            //   onCancel: () {
+                                                                            //     print('FACEBOOK CANCELLED');
+                                                                            //     return;
+                                                                            //   },
+                                                                            //   onError: (error) {
+                                                                            //     print('FACEBOOK ERROR $error');
+                                                                            //     return;
+                                                                            //   },
+                                                                            // );
+                                                                            //changes6june
+                                                                            ShowDialogs.shareToFacebook(sharelink!);
+                              //                                                 ShowDialogs.launchFacebook(
+                              //  sharelink,
+                              //   "550280998481446");
                                                                           },
                                                                           child:
                                                                               Image.asset(
@@ -420,18 +425,21 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                                                                         ),
                                                                         GestureDetector(
                                                                           onTap:
-                                                                              () async {
-                                                                            await SocialSharePlugin.shareToTwitterLink(
-                                                                                text: "",
-                                                                                url: sharelink,
-                                                                                onSuccess: (_) {
-                                                                                  print('TWITTER SUCCESS');
-                                                                                  return;
-                                                                                },
-                                                                                onCancel: () {
-                                                                                  print('TWITTER CANCELLED');
-                                                                                  return;
-                                                                                });
+                                                                              ()  {
+                                                                                 ShowDialogs.shareToTwitter("Merck Foundation",sharelink!);
+                              //                                                   ShowDialogs.launchTwitter(
+                              // sharelink);
+                                                                            // await SocialSharePlugin.shareToTwitterLink(
+                                                                            //     text: "",
+                                                                            //     url: sharelink,
+                                                                            //     onSuccess: (_) {
+                                                                            //       print('TWITTER SUCCESS');
+                                                                            //       return;
+                                                                            //     },
+                                                                            //     onCancel: () {
+                                                                            //       print('TWITTER CANCELLED');
+                                                                            //       return;
+                                                                            //     });
                                                                           },
                                                                           child:
                                                                               Image.asset(
@@ -449,7 +457,7 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                                                                         GestureDetector(
                                                                           onTap:
                                                                               () async {
-                                                                            ShowDialogs.launchLinkdin(sharelink);
+                                                                            ShowDialogs.launchLinkdin(sharelink!);
                                                                           },
                                                                           child:
                                                                               Image.asset(
@@ -467,7 +475,7 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                                                                         GestureDetector(
                                                                           onTap:
                                                                               () {
-                                                                            ShowDialogs.launchWhatsappshare(sharelink);
+                                                                            ShowDialogs.launchWhatsappshare(sharelink!);
 
                                                                             // :
                                                                             //  SocialShare
@@ -542,103 +550,103 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
     );
   }
 
-  Widget merckmorethanmother() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-        right: 10,
-        top: 10,
-      ),
-      child: Card(
-        elevation: 5,
-        // height: 1800,
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
-          child: Swiper.children(
-            autoplay: false,
-            loop: true,
-            control: SwiperControl(
-                iconNext: Icons.arrow_forward_ios,
-                iconPrevious: Icons.arrow_back_ios,
-                size: 20,
-                color: Customcolor.darkblue_col),
-            children: <Widget>[
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/cfa1.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_4.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_6.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget merckmorethanmother() {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(
+  //       left: 10,
+  //       right: 10,
+  //       top: 10,
+  //     ),
+  //     child: Card(
+  //       elevation: 5,
+  //       // height: 1800,
+  //       color: Colors.white,
+  //       child: Padding(
+  //         padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
+  //         child: Swiper.children(
+  //           autoplay: false,
+  //           loop: true,
+  //           control: SwiperControl(
+  //               iconNext: Icons.arrow_forward_ios,
+  //               iconPrevious: Icons.arrow_back_ios,
+  //               size: 20,
+  //               color: Customcolor.darkblue_col),
+  //           children: <Widget>[
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                     margin: EdgeInsets.only(
+  //                       right: 40.0,
+  //                       left: 30,
+  //                     ),
+  //                     child: ClipRRect(
+  //                         borderRadius: BorderRadius.circular(5.0),
+  //                         child: Image.asset(
+  //                           "assets/newImages/cfa1.png",
+  //                           height: 300,
+  //                           fit: BoxFit.fill,
+  //                         ))),
+  //                 SizedBox(
+  //                   height: 8,
+  //                 ),
+  //                 Text("UNESCO-MARS 2020",
+  //                     style: TextStyle(
+  //                       fontSize: 17,
+  //                     ))
+  //               ],
+  //             ),
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                     margin: EdgeInsets.only(
+  //                       right: 40.0,
+  //                       left: 30,
+  //                     ),
+  //                     child: ClipRRect(
+  //                         borderRadius: BorderRadius.circular(5.0),
+  //                         child: Image.asset(
+  //                           "assets/newImages/poster_4.png",
+  //                           height: 300,
+  //                           fit: BoxFit.fill,
+  //                         ))),
+  //                 SizedBox(
+  //                   height: 8,
+  //                 ),
+  //                 Text("UNESCO-MARS 2020",
+  //                     style: TextStyle(
+  //                       fontSize: 17,
+  //                     ))
+  //               ],
+  //             ),
+  //             Column(
+  //               children: [
+  //                 Container(
+  //                     margin: EdgeInsets.only(
+  //                       right: 40.0,
+  //                       left: 30,
+  //                     ),
+  //                     child: ClipRRect(
+  //                         borderRadius: BorderRadius.circular(5.0),
+  //                         child: Image.asset(
+  //                           "assets/newImages/poster_6.png",
+  //                           height: 300,
+  //                           fit: BoxFit.fill,
+  //                         ))),
+  //                 SizedBox(
+  //                   height: 8,
+  //                 ),
+  //                 Text("UNESCO-MARS 2020",
+  //                     style: TextStyle(
+  //                       fontSize: 17,
+  //                     ))
+  //               ],
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   getseasonepisode() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
@@ -659,12 +667,12 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.seasonlistwithepisode = resp.data.seasons;
+              GlobalLists.seasonlistwithepisode = resp.data!.seasons!;
               print("Length of seasonn");
               print(GlobalLists.seasonlistwithepisode.length);
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -677,19 +685,7 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
     }
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
+ 
   getprogramgallery() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
     if (status1) {
@@ -701,11 +697,11 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
 
         print(response);
         print('Resp : $resp');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
         if (resp.success == "True".toLowerCase()) {
           print(resp.list);
-          GlobalLists.programgallerybaseurl = resp.baseUrl;
-          GlobalLists.programgallerylist = resp.list;
+          GlobalLists.programgallerybaseurl = resp.baseUrl!;
+          GlobalLists.programgallerylist = resp.list!;
           print(GlobalLists.programgallerylist);
           // GlobalLists.awarddetallisting[0].title
 
@@ -717,11 +713,11 @@ class MerckepisodeseasonState extends State<Merckepisodeseason>
                         photosList: GlobalLists.programgallerylist,
                       )));
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
         }
       }, (error) {
         print('ERR msg is $error');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
       }, jsonval: json);
     } else {
       ShowDialogs.showToast("Please check internet connection");

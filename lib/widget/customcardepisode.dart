@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
+
 
 import 'package:merckfoundation22dec/screens/EpisodeInformation.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
@@ -10,34 +10,33 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:social_share_plugin/social_share_plugin.dart';
 
 class CustomeCardEpisode extends StatefulWidget {
-  final String cardTitle;
-  final String cardImage;
-  final String subTitle;
-  final String cardsubtitle;
-  final String btnTitle;
-  final Color titleColor;
-  final String titleImg;
-  final int index;
-  final String buttontitle;
-  final Color buttontitlecolor;
-  final Function onBtnTap;
-  final Function oncardtap;
-  final int youtubeicon;
-  final String showbrief;
-  final String episodebrief;
-  final String guestinfo;
-  final String credits;
-  final String relatednews;
-  final String photid;
-  final String episodeid;
-  final String videolink;
+  final dynamic cardTitle;
+  final dynamic cardImage;
+  final dynamic subTitle;
+  final dynamic cardsubtitle;
+  final dynamic btnTitle;
+  final Color? titleColor;
+  final dynamic titleImg;
+  final int? index;
+  final dynamic buttontitle;
+  final Color? buttontitlecolor;
+  final VoidCallback? onBtnTap;
+  final VoidCallback? oncardtap;
+  final int? youtubeicon;
+  final dynamic showbrief;
+  final dynamic episodebrief;
+  final dynamic guestinfo;
+  final dynamic credits;
+  final dynamic relatednews;
+  final dynamic photid;
+  final dynamic episodeid;
+  final dynamic videolink;
   const CustomeCardEpisode(
-      {Key key,
+      {Key? key,
       this.cardTitle,
       this.cardImage,
       this.subTitle,
@@ -268,7 +267,7 @@ class CustomCardState extends State<CustomeCardEpisode> {
                               color: Customcolor.colorBlue,
                             )),
                         SizedBox(
-                          width: 10,
+                          width: 5,
                         ),
                         GestureDetector(
                             onTap: () {
@@ -309,28 +308,33 @@ class CustomCardState extends State<CustomeCardEpisode> {
                                               children: [
                                                 //
                                                 GestureDetector(
-                                                  onTap: () async {
+                                                  onTap: ()  {
+                                                    //changes 6june
                                                     print("on tap fb");
-                                                    await SocialSharePlugin
-                                                        .shareToFeedFacebookLink(
-                                                      quote: "",
-                                                      url: sharelink,
-                                                      onSuccess: (_) {
-                                                        print(
-                                                            'FACEBOOK SUCCESS');
-                                                        return;
-                                                      },
-                                                      onCancel: () {
-                                                        print(
-                                                            'FACEBOOK CANCELLED');
-                                                        return;
-                                                      },
-                                                      onError: (error) {
-                                                        print(
-                                                            'FACEBOOK ERROR $error');
-                                                        return;
-                                                      },
-                                                    );
+                                                     ShowDialogs.shareToFacebook(sharelink);
+                              //                        ShowDialogs.launchFacebook(
+                              //  sharelink,
+                              //   "550280998481446");
+                                                    // await SocialSharePlugin
+                                                    //     .shareToFeedFacebookLink(
+                                                    //   quote: "",
+                                                    //   url: sharelink,
+                                                    //   onSuccess: (_) {
+                                                    //     print(
+                                                    //         'FACEBOOK SUCCESS');
+                                                    //     return;
+                                                    //   },
+                                                    //   onCancel: () {
+                                                    //     print(
+                                                    //         'FACEBOOK CANCELLED');
+                                                    //     return;
+                                                    //   },
+                                                    //   onError: (error) {
+                                                    //     print(
+                                                    //         'FACEBOOK ERROR $error');
+                                                    //     return;
+                                                    //   },
+                                                    // );
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/facebooknew.png",
@@ -343,21 +347,24 @@ class CustomCardState extends State<CustomeCardEpisode> {
                                                   width: 7,
                                                 ),
                                                 GestureDetector(
-                                                  onTap: () async {
-                                                    await SocialSharePlugin
-                                                        .shareToTwitterLink(
-                                                            text: "",
-                                                            url: sharelink,
-                                                            onSuccess: (_) {
-                                                              print(
-                                                                  'TWITTER SUCCESS');
-                                                              return;
-                                                            },
-                                                            onCancel: () {
-                                                              print(
-                                                                  'TWITTER CANCELLED');
-                                                              return;
-                                                            });
+                                                  onTap: ()  {
+                                                    ShowDialogs.shareToTwitter("Merck Foundation",sharelink);
+                              //                         ShowDialogs.launchTwitter(
+                              // sharelink);
+                                                    // await SocialSharePlugin
+                                                    //     .shareToTwitterLink(
+                                                    //         text: "",
+                                                    //         url: sharelink,
+                                                    //         onSuccess: (_) {
+                                                    //           print(
+                                                    //               'TWITTER SUCCESS');
+                                                    //           return;
+                                                    //         },
+                                                    //         onCancel: () {
+                                                    //           print(
+                                                    //               'TWITTER CANCELLED');
+                                                    //           return;
+                                                    //         });
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/twitternew.png",

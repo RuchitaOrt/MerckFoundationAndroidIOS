@@ -10,23 +10,23 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 
 class OurGalleryDetailsPage extends StatefulWidget {
-  String categoryID;
-  OurGalleryDetailsResponse galleryDetailsResponse;
+  String? categoryID;
+  OurGalleryDetailsResponse? galleryDetailsResponse;
 
-  OurGalleryDetailsPage({Key key, this.categoryID, this.galleryDetailsResponse})
+  OurGalleryDetailsPage({Key? key, this.categoryID, this.galleryDetailsResponse})
       : super(key: key);
   @override
   _OurGalleryDetailsPageState createState() => _OurGalleryDetailsPageState(
-      categoryID: this.categoryID,
-      galleryDetailsResponse: this.galleryDetailsResponse);
+      categoryID: this.categoryID!,
+      galleryDetailsResponse: this.galleryDetailsResponse!);
 }
 
 class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
-  final String categoryID;
-  final OurGalleryDetailsResponse galleryDetailsResponse;
+  final String? categoryID;
+  final OurGalleryDetailsResponse? galleryDetailsResponse;
 
   _OurGalleryDetailsPageState({this.categoryID, this.galleryDetailsResponse});
 
@@ -46,8 +46,8 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
         },
         index: 2,
         sharelink: Constantstring.photogalleryyearwise +
-            galleryDetailsResponse
-                .list[galleryDetailsResponse.list.keys.elementAt(0)][0].url,
+            galleryDetailsResponse!
+                .list![galleryDetailsResponse!.list!.keys.elementAt(0)]![0].url!,
         title: "Photo Gallery",
         titleImg: "assets/newImages/news_logo.png",
         trallingImg1: "assets/newImages/share.png",
@@ -85,13 +85,13 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
   List<Widget> widgetList() {
     List<Widget> widgetList = [];
 
-    for (int i = 0; i < galleryDetailsResponse.list.length; i++) {
+    for (int i = 0; i < galleryDetailsResponse!.list!.length; i++) {
       widgetList.add(Padding(
         padding: const EdgeInsets.all(8.0),
         child: CustomCard(
           index: 1,
           cardImage: "assets/newImages/ourvison.png",
-          cardTitle: galleryDetailsResponse.list.keys.elementAt(i),
+          cardTitle: galleryDetailsResponse!.list!.keys.elementAt(i),
           btnTitle: "View More",
           onbtnTap: () {
             //need to do code here
@@ -101,11 +101,11 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                     builder: (BuildContext context) => ViewmoreAlbum(
                           apiurl: APIManager.viewmorealbum,
                           albumtitle:
-                              galleryDetailsResponse.list.keys.elementAt(i),
+                              galleryDetailsResponse!.list!.keys.elementAt(i),
                           sharelink: Constantstring.sharemmtmambassadarmmtm,
-                          albumurl: galleryDetailsResponse
-                              .list[galleryDetailsResponse.list.keys
-                                  .elementAt(i)][0]
+                          albumurl: galleryDetailsResponse!
+                              .list![galleryDetailsResponse!.list!.keys
+                                  .elementAt(i)]![0]
                               .url,
                         )));
             // Navigator.push(
@@ -119,12 +119,12 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
           titleColor: Customcolor.text_blue,
           titleImg: "assets/newImages/flowers-3.png",
           list: ListView.builder(
-            itemCount: galleryDetailsResponse
-                        .list[galleryDetailsResponse.list.keys.elementAt(i)]
+            itemCount: galleryDetailsResponse!
+                        .list![galleryDetailsResponse!.list!.keys.elementAt(i)]!
                         .length <
                     4
-                ? galleryDetailsResponse
-                    .list[galleryDetailsResponse.list.keys.elementAt(i)].length
+                ? galleryDetailsResponse!
+                    .list![galleryDetailsResponse!.list!.keys.elementAt(i)]!.length
                 : 4,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
@@ -134,13 +134,13 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                   onTap: () {
                     ShowDialogs.showImageDialog(
                         context: context,
-                        image: galleryDetailsResponse.baseUrl +
-                            galleryDetailsResponse
-                                .list[galleryDetailsResponse.list.keys
-                                    .elementAt(i)][index]
-                                .photo,
-                        description: galleryDetailsResponse
-                            .list[galleryDetailsResponse.list.keys.elementAt(i)]
+                        image: galleryDetailsResponse!.baseUrl! +
+                            galleryDetailsResponse!
+                                .list![galleryDetailsResponse!.list!.keys!
+                                    .elementAt(i)]![index]!
+                                .photo!,
+                        description: galleryDetailsResponse!
+                            .list![galleryDetailsResponse!.list!.keys.elementAt(i)]!
                                 [index]
                             .photoDescription);
                   },
@@ -153,11 +153,11 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                             height: SizeConfig.blockSizeHorizontal * 50,
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
-                              image: galleryDetailsResponse.baseUrl +
-                                  galleryDetailsResponse
-                                      .list[galleryDetailsResponse.list.keys
-                                          .elementAt(i)][index]
-                                      .photo,
+                              image: galleryDetailsResponse!.baseUrl! +
+                                  galleryDetailsResponse!
+                                      .list![galleryDetailsResponse!.list!.keys!
+                                          .elementAt(i)]![index]
+                                      .photo!,
                               fit: BoxFit.contain,
                               // width: SizeConfig.blockSizeHorizontal * 20,
                             ),
@@ -218,9 +218,9 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                                 width: SizeConfig.blockSizeHorizontal * 50,
                                 // color: Colors.black.withOpacity(0.7),
                                 child: Text(
-                                  galleryDetailsResponse
-                                          .list[galleryDetailsResponse.list.keys
-                                              .elementAt(i)][index]
+                                  galleryDetailsResponse!
+                                          .list![galleryDetailsResponse!.list!.keys
+                                              .elementAt(i)]![index]
                                           .photoDescription ??
                                       "",
                                   overflow: TextOverflow.ellipsis,
@@ -253,77 +253,22 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
     return widgetList;
   }
 
-  _showImageDialog({BuildContext context, String image, String description}) {
-    showDialog(
-      context: context,
-      builder: (_) => Dialog(
-        elevation: 0,
-        insetPadding: EdgeInsets.all(0),
-        backgroundColor: Colors.black.withOpacity(0.7),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Expanded(child: Container()),
-            Expanded(
-              child: PhotoView(
-                backgroundDecoration: BoxDecoration(color: Colors.transparent),
-                initialScale: 0.2,
-                imageProvider: NetworkImage(
-                  image,
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                description,
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
-            ),
-            // Expanded(child: Container()),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      color: Colors.white, shape: BoxShape.circle),
-                  child: IconButton(
-                    color: Colors.black,
-                    icon: Icon(Icons.close),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ),
-                const SizedBox(width: 10.0),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            )
-          ],
-        ),
-      ),
-    );
-  }
+
 }
 
 class CustomCard extends StatelessWidget {
-  final String cardTitle;
-  final String cardImage;
-  final String subTitle;
-  final String btnTitle;
-  final Color titleColor;
-  final String titleImg;
-  final int index;
-  final Function onbtnTap;
-  final Widget list;
+  final dynamic cardTitle;
+  final dynamic cardImage;
+  final dynamic subTitle;
+  final dynamic btnTitle;
+  final Color? titleColor;
+  final dynamic titleImg;
+  final int? index;
+  final VoidCallback? onbtnTap;
+  final Widget? list;
 
   const CustomCard(
-      {Key key,
+      {Key? key,
       this.cardTitle,
       this.cardImage,
       this.subTitle,

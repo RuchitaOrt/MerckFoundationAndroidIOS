@@ -2,22 +2,19 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/callforApplication.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/stories.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/newsdashboard.dart';
 import 'package:merckfoundation22dec/screens/home.dart';
 import 'package:merckfoundation22dec/screens/ourPrograms/ourPrograms.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/UtilityFile.dart';
-import 'package:merckfoundation22dec/widget/customappbar.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:merckfoundation22dec/widget/drawer.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 class Dashboard extends StatefulWidget {
-  Dashboard({Key key, this.title, this.index, this.apiurl}) : super(key: key);
-  final String title;
-  final int index;
+  Dashboard({Key? key, this.title, this.index, this.apiurl}) : super(key: key);
+  final String? title;
+  final int? index;
   final dynamic apiurl;
 
   @override
@@ -26,10 +23,10 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard>
     with SingleTickerProviderStateMixin {
-  int currentPage;
+  int? currentPage;
   Color inactiveColor = Customcolor.colorBlue;
-  PageController tabBarController;
-  int currentIndex;
+  PageController? tabBarController;
+  int? currentIndex;
 
   var style = TextStyle(
       color: Customcolor.colorBlue, fontWeight: FontWeight.w800, fontSize: 12);
@@ -40,7 +37,7 @@ class _DashboardState extends State<Dashboard>
     super.initState();
     Utility().loadAPIConfig(context);
     currentIndex = widget.index;
-    tabBarController = new PageController(initialPage: widget.index);
+    tabBarController = new PageController(initialPage: widget.index!);
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -74,13 +71,13 @@ class _DashboardState extends State<Dashboard>
             )
           ]),
       bottomNavigationBar: BottomNavyBar(
-        selectedIndex: currentIndex,
+        selectedIndex: currentIndex!,
         showElevation: true,
         itemCornerRadius: 8,
         curve: Curves.easeInBack,
         onItemSelected: (index) => setState(() {
           currentIndex = index;
-          tabBarController.jumpToPage(index);
+          tabBarController!.jumpToPage(index);
         }),
         items: [
           BottomNavyBarItem(
@@ -214,7 +211,7 @@ class _DashboardState extends State<Dashboard>
 
   @override
   void dispose() {
-    tabBarController.dispose();
+    tabBarController!.dispose();
     super.dispose();
   }
 }

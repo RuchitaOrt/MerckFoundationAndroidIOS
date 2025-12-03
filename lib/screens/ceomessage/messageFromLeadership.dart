@@ -3,8 +3,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'package:merckfoundation22dec/model/leadershipTeamResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -24,18 +23,20 @@ class MessageFromLeadership extends StatefulWidget {
 }
 
 class leaderclass {
-  final String programname;
-  final String image;
-  final String title;
-  final String subtitle;
+  final String? programname;
+  final String? image;
+  final String? title;
+  final String? subtitle;
 
   leaderclass({this.programname, this.image, this.title, this.subtitle});
 }
 
 class MessageFromLeadershipState extends State<MessageFromLeadership> {
-  CarouselSlider carouselSlider;
+  late CarouselSlider carouselSlider;
   int _current = 0;
-  final CarouselController _controller = CarouselController();
+  
+ final CarouselSliderController _controller = CarouselSliderController();
+  // late final CarouselController _controller = CarouselController();
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   List<leaderclass> _messageAvailable = [
@@ -87,126 +88,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
           height: double.infinity,
           child: gifcontainer(context)
 
-          //       Stack(
-
-          //         children: [
-          //           ListView.builder(
-          //             physics: ScrollPhysics(),
-          //            // physics: NeverScrollableScrollPhysics(),
-          //             scrollDirection: Axis.horizontal,
-          //             itemCount: _messageAvailable.length,
-          //             itemBuilder: (BuildContext context, int index) {
-          //               return Container(
-          //                 //   color: Colors.amber,
-          //                 width: SizeConfig.blockSizeHorizontal * 100,
-          //                 child: Column(
-          //                   crossAxisAlignment: CrossAxisAlignment.center,
-          //                   children: [
-          //                     Padding(
-          //                       padding: const EdgeInsets.only(top: 20),
-          //                       child: Center(
-          //                         child: Container(
-          //                             height: 200,
-          //                             width: 150,
-          //                             decoration: BoxDecoration(
-          //                                 borderRadius: BorderRadius.circular(8)),
-          //                             child: Image.asset(
-          //                              _messageAvailable[index].image,
-          //                               fit: BoxFit.cover,
-          //                             )),
-          //                       ),
-          //                     ),
-          //                     SizedBox(
-          //                       height: 20,
-          //                     ),
-          //                     Text(   _messageAvailable[index].title,
-          //                         //textAlign: TextAlign.center,
-          //                         style: TextStyle(
-          //                             color: Customcolor.pink_col,
-          //  fontSize: 18,
-          //                             fontWeight: FontWeight.w700)),
-          //                     SizedBox(height: 10.0),
-          //                     Center(
-          //                       child: Text(
-          //                           _messageAvailable[index].subtitle ,
-          //                           textAlign: TextAlign.center,
-          //                           style: TextStyle(
-          //                               color: Customcolor.colorBlue,
-          //                               fontSize: 14,
-          //                               fontWeight: FontWeight.w400)),
-          //                     ),
-          //                     Center(
-          //                       child: Text(
-          //                            _messageAvailable[index].subtitle,
-          //                           textAlign: TextAlign.center,
-          //                           style: TextStyle(
-          //                               color: Customcolor.colorBlue,
-          //                               fontSize: 14,
-          //                               fontWeight: FontWeight.w400)),
-          //                     ),
-          //                     Expanded(
-          //                       child: ListView(
-          //                         children: [
-          //                           Container(
-          //                             // margin:
-          //                             //     EdgeInsets.fromLTRB(16.0, 250.0, 16.0, 16.0),
-          //                             decoration: BoxDecoration(
-          //                                 color: Customcolor.background,
-          //                                 borderRadius: BorderRadius.circular(5.0)),
-          //                             padding: const EdgeInsets.all(16.0),
-          //                             child: Column(
-          //                               crossAxisAlignment: CrossAxisAlignment.start,
-          //                               children: <Widget>[
-          //                                 Divider(),
-          //                                 SizedBox(
-          //                                   height: 15.0,
-          //                                 ),
-          //                                 Text(
-          //                                     _messageAvailable[index].programname,
-          //                                     textAlign: TextAlign.justify,
-          //                                     style: TextStyle(
-          //                                         color: Customcolor.colorblack,
-          //                                         fontSize: 14,
-          //                                         fontWeight: FontWeight.w400)),
-          //                                 SizedBox(height: 10.0),
-          //                                 SizedBox(
-          //                                   height: 15,
-          //                                 ),
-          //                                 Padding(
-          //                                   padding: const EdgeInsets.only(
-          //                                       right: 60, left: 60),
-          //                                   child: Image.asset(
-          //                                     "assets/newImages/flowers_footer.png",
-          //                                   ),
-          //                                 ),
-          //                                 SizedBox(
-          //                                   height: 10,
-          //                                 )
-          //                               ],
-          //                             ),
-          //                           ),
-          //                         ],
-          //                       ),
-          //                     ),
-          //                   ],
-          //                 ),
-          //               );
-          //             },
-          //           ),
-
-          //           Padding(
-          //             padding: const EdgeInsets.only(top: 100, right: 20),
-          //             child: Align(
-          //               alignment: Alignment.topRight,
-
-          //                             child: Icon(
-          //                 Icons.navigate_next,
-          //               ),
-          //             ),
-          //           ),
-
-          //         ],
-          //       )
+         
 
           ),
     );
@@ -264,7 +146,7 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                             placeholder:
                                                 'assets/newImages/placeholder_3.jpg',
                                             image: Constantstring.baseUrl +
-                                                product.image,
+                                                product.image!,
                                             fit: BoxFit.cover,
                                             height: 150,
                                           ),
@@ -288,10 +170,10 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                               Center(
                                 child: Html(
                                   data: """${product.shortDescription} """,
-                                  onLinkTap: (url, renderContext, attributes,
+                                  onLinkTap: (url, attributes,
                                       element) {
                                     print("Opening $url...");
-                                    ShowDialogs.launchURL(url);
+                                    ShowDialogs.launchURL(url!);
                                   },
                                   style: {
                                     "body": Style(
@@ -300,6 +182,23 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                     ),
                                     "tr": Customcolor.tableboderstyle(context),
                                   },
+                                   extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                   // style: {
                                   //   "body": Style(
                                   //       textAlign: TextAlign.center,
@@ -326,15 +225,32 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
                                     ),
                                     Html(
                                       data: """${product.pageContent} """,
-                                      onLinkTap: (url, renderContext,
+                                      onLinkTap: (url,
                                           attributes, element) {
                                         print("Opening $url...");
-                                        ShowDialogs.launchURL(url);
+                                        ShowDialogs.launchURL(url!);
                                       },
                                       style: {
                                         "tr": Customcolor.tableboderstyle(
                                             context),
                                       },
+                                       extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                     ),
                                     SizedBox(height: 10.0),
                                     SizedBox(
@@ -495,20 +411,20 @@ class MessageFromLeadershipState extends State<MessageFromLeadership> {
           print(response);
           print('Resp : $resp');
           GlobalLists.leadershipTeamResp.clear();
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.leadershipTeamResp = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
+              GlobalLists.leadershipTeamResp = resp.data!.list!;
+              Constantstring.baseUrl = resp.baseUrl!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
         },
       );
     } else {

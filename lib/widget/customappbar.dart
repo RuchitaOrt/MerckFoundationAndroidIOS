@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+
 import 'package:merckfoundation22dec/searchscreen/searchcategory.dart';
 
 class CustomAppBar extends PreferredSize {
   // final Widget child;
-  final double height;
-  final Function onTapval;
-  final int index;
+  final double? height;
+  final VoidCallback? onTapval;
+  final int? index;
   CustomAppBar(this.onTapval, this.index,
-      {@required this.height = kToolbarHeight});
+      { this.height = kToolbarHeight, }): super(
+          preferredSize:  Size.fromHeight(height!)
+             ,
+          child: AppBar(
+            title: Text( "")));
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
-  Size get preferredSize => Size.fromHeight(height);
+  Size get preferredSize => Size.fromHeight(height!);
 
   @override
   Widget build(BuildContext context) {
@@ -164,10 +169,10 @@ class CustomAppBar extends PreferredSize {
 class CustomAppBarWebview extends PreferredSize {
   // final Widget child;
   final double height;
-  final Function onTapval;
+  final VoidCallback onTapval;
   final int index;
   CustomAppBarWebview(this.onTapval, this.index,
-      {@required this.height = kToolbarHeight});
+      {@required this.height = kToolbarHeight, required super.preferredSize, required super.child});
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Size get preferredSize => Size.fromHeight(height);

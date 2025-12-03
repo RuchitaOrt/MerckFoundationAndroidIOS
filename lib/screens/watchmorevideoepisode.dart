@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
+
 
 import 'package:merckfoundation22dec/model/GetEpisodeSeasonwiseResponse.dart';
 import 'package:merckfoundation22dec/model/newsLettersArticlesResp.dart';
@@ -15,18 +15,17 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:social_share_plugin/social_share_plugin.dart';
 
 class WatchmoreVideoEpisode extends StatefulWidget {
   final dynamic apiurl;
   final dynamic season;
   final dynamic title;
-  const WatchmoreVideoEpisode({Key key, this.apiurl, this.season, this.title})
+  const WatchmoreVideoEpisode({Key? key, this.apiurl, this.season, this.title})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -38,7 +37,7 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   // List<ListElement> list = [];
   ScrollController _sc = new ScrollController();
-  GetEpisodeSeasonwiseResponse resp;
+  late GetEpisodeSeasonwiseResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -188,9 +187,9 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
                   child: GestureDetector(
                     onTap: () {
                       var storykey = GlobalLists
-                          .seasonwiseepisodeList[index].videoLink
+                          .seasonwiseepisodeList[index].videoLink!
                           .substring(GlobalLists.seasonwiseepisodeList[index]
-                                  .videoLink.length -
+                                  .videoLink!.length -
                               11);
                       ShowDialogs.youtubevideolink(
                           "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
@@ -225,7 +224,7 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
                                             placeholder:
                                                 'assets/newImages/placeholder_3.jpg',
                                             image:
-                                                "https://img.youtube.com/vi/${GlobalLists.seasonwiseepisodeList[index].videoLink.substring(GlobalLists.seasonwiseepisodeList[index].videoLink.length - 11)}/mqdefault.jpg",
+                                                "https://img.youtube.com/vi/${GlobalLists.seasonwiseepisodeList[index].videoLink!.substring(GlobalLists.seasonwiseepisodeList[index].videoLink!.length - 11)}/mqdefault.jpg",
                                             fit: BoxFit.fill,
                                           ),
                                         ),
@@ -271,7 +270,7 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
                                     children: [
                                       Text(
                                         GlobalLists.seasonwiseepisodeList[index]
-                                            .episodeName,
+                                            .episodeName!,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                             color: Customcolor.colorblack,
@@ -483,24 +482,29 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
                         children: [
                           //
                           GestureDetector(
-                            onTap: () async {
+                            onTap: ()  {
                               print("on tap fb");
-                              await SocialSharePlugin.shareToFeedFacebookLink(
-                                quote: "",
-                                url: sharelink,
-                                onSuccess: (_) {
-                                  print('FACEBOOK SUCCESS');
-                                  return;
-                                },
-                                onCancel: () {
-                                  print('FACEBOOK CANCELLED');
-                                  return;
-                                },
-                                onError: (error) {
-                                  print('FACEBOOK ERROR $error');
-                                  return;
-                                },
-                              );
+                              //changes 6june
+                               ShowDialogs.shareToFacebook(sharelink!);
+                              //  ShowDialogs.launchFacebook(
+                              //  sharelink,
+                              //   "550280998481446");
+                              // await SocialSharePlugin.shareToFeedFacebookLink(
+                              //   quote: "",
+                              //   url: sharelink,
+                              //   onSuccess: (_) {
+                              //     print('FACEBOOK SUCCESS');
+                              //     return;
+                              //   },
+                              //   onCancel: () {
+                              //     print('FACEBOOK CANCELLED');
+                              //     return;
+                              //   },
+                              //   onError: (error) {
+                              //     print('FACEBOOK ERROR $error');
+                              //     return;
+                              //   },
+                              // );
                             },
                             child: Image.asset(
                               "assets/newImages/facebooknew.png",
@@ -513,18 +517,22 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
                             width: 7,
                           ),
                           GestureDetector(
-                            onTap: () async {
-                              await SocialSharePlugin.shareToTwitterLink(
-                                  text: "",
-                                  url: sharelink,
-                                  onSuccess: (_) {
-                                    print('TWITTER SUCCESS');
-                                    return;
-                                  },
-                                  onCancel: () {
-                                    print('TWITTER CANCELLED');
-                                    return;
-                                  });
+                            onTap: ()  {
+                              //changes 6june
+                              ShowDialogs.shareToTwitter("Merck Foundation",sharelink!);
+                              //   ShowDialogs.launchTwitter(
+                              // sharelink);
+                              // await SocialSharePlugin.shareToTwitterLink(
+                              //     text: "",
+                              //     url: sharelink,
+                              //     onSuccess: (_) {
+                              //       print('TWITTER SUCCESS');
+                              //       return;
+                              //     },
+                              //     onCancel: () {
+                              //       print('TWITTER CANCELLED');
+                              //       return;
+                              //     });
                             },
                             child: Image.asset(
                               "assets/newImages/twitternew.png",
@@ -537,7 +545,7 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
                           ),
                           GestureDetector(
                             onTap: () async {
-                              ShowDialogs.launchLinkdin(sharelink);
+                              ShowDialogs.launchLinkdin(sharelink!);
                             },
                             child: Image.asset(
                               "assets/newImages/linkedinnew.png",
@@ -550,7 +558,7 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              ShowDialogs.launchWhatsappshare(sharelink);
+                              ShowDialogs.launchWhatsappshare(sharelink!);
 
                               // :
                               //  SocialShare
@@ -592,7 +600,7 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
       APIManager().apiRequest(context, api, (response) async {
         setState(() {
           GetEpisodeSeasonwiseResponse resp = response;
-          GlobalLists.seasonwiseepisodeList = resp.episodes;
+          GlobalLists.seasonwiseepisodeList = resp.episodes!;
         });
 
         //48
@@ -687,7 +695,7 @@ class WatchmoreVideoEpisodeState extends State<WatchmoreVideoEpisode> {
 // import 'package:merckfoundation22dec/widget/showdailog.dart';
 // import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 // import 'package:merckfoundation22dec/widget/slidercontainer.dart';
-// import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 // import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 // import 'package:merckfoundation22dec/screens/dashboard.dart';
 // import 'package:merckfoundation22dec/widget/filterdrawer.dart';

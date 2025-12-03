@@ -6,17 +6,19 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/AutoResizeWebView.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class NotiDetailpage extends StatefulWidget {
-  final String id;
+  final String? id;
 
   const NotiDetailpage({
-    Key key,
+    Key? key,
     this.id,
   }) : super(key: key);
   @override
@@ -27,13 +29,13 @@ class NotiDetailpage extends StatefulWidget {
 
 class DetailpageState extends State<NotiDetailpage>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
   void initState() {
     super.initState();
-    getnotificationdetail(widget.id);
+    getnotificationdetail(widget.id!);
     _controller = new AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
@@ -44,14 +46,16 @@ class DetailpageState extends State<NotiDetailpage>
   Widget build(BuildContext context) {
     return WillPopScope(
       // ignore: missing_return
-      onWillPop: () {
+      onWillPop: () async{
         Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (BuildContext context) => Dashboard(
                       index: 0,
                     )));
+                return false;   
       },
+      
       child: Scaffold(
           backgroundColor: Customcolor.background,
           appBar: InnerCustomAppBar(
@@ -100,9 +104,9 @@ class DetailpageState extends State<NotiDetailpage>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  GlobalLists.notificationlist[0].title == null
+                                  GlobalLists.notificationlist[0].title! == null
                                       ? ""
-                                      : GlobalLists.notificationlist[0].title,
+                                      : GlobalLists.notificationlist[0].title!,
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontSize: ResponsiveFlutter.of(context)
@@ -126,6 +130,40 @@ class DetailpageState extends State<NotiDetailpage>
                                     : HtmlWidget(
                                         
                                             """${GlobalLists.notificationlist[0].details} """,
+                                             customWidgetBuilder: (element) {
+              if (element.localName == 'video') {
+                final src = element.children.firstWhere((e) => e.localName == 'source').attributes['src'];
+                if (src != null && src.contains('youtube.com')) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: src,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else  if (element.localName == 'iframe') {
+                final iframeSrc = element.attributes['src'];
+
+                // If the iframe is a YouTube video, handle it
+                if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: iframeSrc,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else if (element.localName == 'table') {
+     
+        return  AutoResizeWebView(htmlContent: element.outerHtml,);
+       
+      }
+              return null;
+            },
                                      
                                        
                                       ),
@@ -181,19 +219,19 @@ class DetailpageState extends State<NotiDetailpage>
         print(response);
         print('Resp : $resp');
 
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
 
         if (resp.success == true) {
           setState(() {
-            GlobalLists.notificationlist = resp.list;
+            GlobalLists.notificationlist = resp.list!;
             // GlobalLists.awarddetallisting[0].title
           });
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
         }
       }, (error) {
         print('ERR msg is $error');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
       }, jsonval: json);
     } else {
       ShowDialogs.showToast("Please check internet connection");

@@ -11,7 +11,7 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/model/CountrylistResponse.dart';
@@ -46,7 +46,7 @@ class MerckFoundationTestimonialState
   int page = 10;
   int offset = 0;
   bool _isLoading = true;
-  MerckTestimonialResponse resp;
+  late MerckTestimonialResponse resp;
 
   @override
   void initState() {
@@ -84,12 +84,12 @@ class MerckFoundationTestimonialState
                   setState(() {
                     GlobalLists.merckTestimonialList.add(
                         merckTestimonialResp.ListElement(
-                            id: resp.data.list[i].id,
-                            videoDesc: resp.data.list[i].videoDesc,
-                            videoLink: resp.data.list[i].videoLink,
-                            countryId: resp.data.list[i].countryId,
-                            categoryId: resp.data.list[i].categoryId,
-                            year: resp.data.list[i].status));
+                            id: resp.data!.list![i].id,
+                            videoDesc: resp.data!.list![i].videoDesc,
+                            videoLink: resp.data!.list![i].videoLink,
+                            countryId: resp.data!.list![i].countryId,
+                            categoryId: resp.data!.list![i].categoryId,
+                            year: resp.data!.list![i].status));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -97,7 +97,7 @@ class MerckFoundationTestimonialState
                 }
 
                 offset = totalcount;
-                int remem = resp.data.list.length - totalcount;
+                int remem = resp.data!.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -116,7 +116,7 @@ class MerckFoundationTestimonialState
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -142,7 +142,7 @@ class MerckFoundationTestimonialState
           onTapvalfilter: () {
             print("videokk");
             // _scaffoldKey1.currentState.openDrawer();
-            _scaffoldKey1.currentState.openEndDrawer();
+            _scaffoldKey1.currentState!.openEndDrawer();
           },
           onTapval: () {
             // Navigator.pop(context);
@@ -235,11 +235,11 @@ class MerckFoundationTestimonialState
                                           //             )));
                                           var storykey = GlobalLists
                                               .merckTestimonialList[index]
-                                              .videoLink
+                                              .videoLink!
                                               .substring(GlobalLists
                                                       .merckTestimonialList[
                                                           index]
-                                                      .videoLink
+                                                      .videoLink!
                                                       .length -
                                                   11);
                                           ShowDialogs.youtubevideolink(
@@ -281,7 +281,7 @@ class MerckFoundationTestimonialState
                                                         image:
                                                             new DecorationImage(
                                                           image: new NetworkImage(
-                                                              'https://img.youtube.com/vi/${GlobalLists.merckTestimonialList[index].videoLink.substring(GlobalLists.merckTestimonialList[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                              'https://img.youtube.com/vi/${GlobalLists.merckTestimonialList[index].videoLink!.substring(GlobalLists.merckTestimonialList[index].videoLink!.length - 11)}/mqdefault.jpg'),
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
@@ -295,7 +295,7 @@ class MerckFoundationTestimonialState
                                                       GlobalLists
                                                           .merckTestimonialList[
                                                               index]
-                                                          .videoDesc,
+                                                          .videoDesc!,
                                                       textAlign:
                                                           TextAlign.center,
                                                       overflow:
@@ -391,15 +391,28 @@ class MerckFoundationTestimonialState
 
   Future<void> _launchInWebViewWithJavaScript(String url) async {
     if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
+      final Uri uri = Uri.parse(url);
+      await launchUrl(
+        uri,
+         mode: LaunchMode.externalApplication,
+  webViewConfiguration: WebViewConfiguration(enableJavaScript: true,)
+        // forceSafariVC: true,
+        // forceWebView: true,
+        // enableJavaScript: true,
       );
     } else {
       throw 'Could not launch $url';
     }
+    // if (await canLaunch(url)) {
+    //   await launch(
+    //     url,
+    //     forceSafariVC: true,
+    //     forceWebView: true,
+    //     enableJavaScript: true,
+    //   );
+    // } else {
+    //   throw 'Could not launch $url';
+    // }
   }
 
   getMerckTestimonial() async {
@@ -422,17 +435,17 @@ class MerckFoundationTestimonialState
             setState(() {
               //  GlobalLists.merckTestimonialList = resp.data.list;
               print("here");
-              if (resp.data.list.length < 10) {
-                for (int i = offset; i < resp.data.list.length; i++) {
+              if (resp.data!.list!.length < 10) {
+                for (int i = offset; i < resp.data!.list!.length; i++) {
                   setState(() {
                     GlobalLists.merckTestimonialList.add(
                         merckTestimonialResp.ListElement(
-                            id: resp.data.list[i].id,
-                            videoDesc: resp.data.list[i].videoDesc,
-                            videoLink: resp.data.list[i].videoLink,
-                            countryId: resp.data.list[i].countryId,
-                            categoryId: resp.data.list[i].categoryId,
-                            year: resp.data.list[i].status));
+                            id: resp.data!.list![i].id,
+                            videoDesc: resp.data!.list![i].videoDesc,
+                            videoLink: resp.data!.list![i].videoLink,
+                            countryId: resp.data!.list![i].countryId,
+                            categoryId: resp.data!.list![i].categoryId,
+                            year: resp.data!.list![i].status));
                   });
                 }
               } else {
@@ -440,18 +453,18 @@ class MerckFoundationTestimonialState
                   setState(() {
                     GlobalLists.merckTestimonialList.add(
                         merckTestimonialResp.ListElement(
-                            id: resp.data.list[i].id,
-                            videoDesc: resp.data.list[i].videoDesc,
-                            videoLink: resp.data.list[i].videoLink,
-                            countryId: resp.data.list[i].countryId,
-                            categoryId: resp.data.list[i].categoryId,
-                            year: resp.data.list[i].status));
+                            id: resp.data!.list![i].id,
+                            videoDesc: resp.data!.list![i].videoDesc,
+                            videoLink: resp.data!.list![i].videoLink,
+                            countryId: resp.data!.list![i].countryId,
+                            categoryId: resp.data!.list![i].categoryId,
+                            year: resp.data!.list![i].status));
                   });
                 }
               }
 
               offset = totalcount;
-              int remem = resp.data.list.length - totalcount;
+              int remem = resp.data!.list!.length - totalcount;
               print("remem");
               print(remem);
               if (remem < 10) {
@@ -471,7 +484,7 @@ class MerckFoundationTestimonialState
             setState(() {
               _isLoading = false;
             });
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -508,10 +521,10 @@ class MerckFoundationTestimonialState
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.countrylisting = resp.data.list;
+              GlobalLists.countrylisting = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -542,10 +555,10 @@ class MerckFoundationTestimonialState
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.categorylisting = resp.data.list;
+              GlobalLists.categorylisting = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

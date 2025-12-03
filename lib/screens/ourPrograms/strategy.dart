@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:merckfoundation22dec/model/StrategyResponse.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/model/subproaboutmmtmResponse.dart'
@@ -16,7 +13,6 @@ import 'package:merckfoundation22dec/model/subproaboutmmtmResponse.dart'
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:responsive_flutter/responsive_flutter.dart';
 
 class StrategyDetails extends StatefulWidget {
   @override
@@ -105,7 +101,7 @@ class OurProgramstrategyState extends State<StrategyDetails> {
     );
   }
 
-  Future<http.Response> getmmtmapi() async {
+  Future<http.Response?> getmmtmapi() async {
     print("mmtm api");
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -115,14 +111,14 @@ class OurProgramstrategyState extends State<StrategyDetails> {
       );
       print("response");
       print(response);
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         var res = json.decode(response.body);
         print("ff");
         print(res);
         aboutmmtm.SubProgramabotmmtmResponse homepageres =
             aboutmmtm.SubProgramabotmmtmResponse.fromJson(res);
 
-        Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> section1 = homepageres.middleArea!;
 
         print(section1);
         print(section1['1']);
@@ -147,7 +143,7 @@ class OurProgramstrategyState extends State<StrategyDetails> {
             "content".toLowerCase()) {
           print("hi");
           GlobalLists.homecontentlist =
-              homepageres.middleArea['1'].content.list;
+              homepageres.middleArea!['1']!.content!.list!;
           print(GlobalLists.homecontentlist.length);
         }
 
@@ -180,13 +176,30 @@ class OurProgramstrategyState extends State<StrategyDetails> {
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url, renderContext, attributes, element) {
+            onLinkTap: (url, attributes, element) {
               print("Opening $url...");
-              ShowDialogs.launchURL(url);
+              ShowDialogs.launchURL(url!);
             },
             style: {
               "tr": Customcolor.tableboderstyle(context),
             },
+             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
           ),
         );
       }

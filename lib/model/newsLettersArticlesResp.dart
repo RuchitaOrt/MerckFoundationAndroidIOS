@@ -1,102 +1,109 @@
-// To parse this JSON data, do
-//
-//     final newsletterArticleResponse = newsletterArticleResponseFromJson(jsonString);
 
 import 'dart:convert';
 
-NewsletterArticleResponse newsletterArticleResponseFromJson(String str) => NewsletterArticleResponse.fromJson(json.decode(str));
+NewsletterArticleResponse newsletterArticleResponseFromJson(String str) =>
+    NewsletterArticleResponse.fromJson(json.decode(str));
 
-String newsletterArticleResponseToJson(NewsletterArticleResponse data) => json.encode(data.toJson());
+String newsletterArticleResponseToJson(NewsletterArticleResponse data) =>
+    json.encode(data.toJson());
 
 class NewsletterArticleResponse {
-    NewsletterArticleResponse({
-        this.success,
-        this.msg,
-        this.data,
-        this.baseUrl,
-    });
+  String? success;
+  String? msg;
+  Data? data;
+  String? baseUrl;
 
-    String success;
-    String msg;
-    Data data;
-    String baseUrl;
+  NewsletterArticleResponse({
+    this.success,
+    this.msg,
+    this.data,
+    this.baseUrl,
+  });
 
-    factory NewsletterArticleResponse.fromJson(Map<String, dynamic> json) => NewsletterArticleResponse(
+  factory NewsletterArticleResponse.fromJson(Map<String, dynamic> json) =>
+      NewsletterArticleResponse(
         success: json["success"],
         msg: json["msg"],
         baseUrl: json['base_url'],
-       data: Data.fromJson(json["data"]),
-    );
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "success": success,
         "msg": msg,
-        "data": data.toJson(),
-        "base_url": baseUrl
-    };
+        "data": data?.toJson(),
+        "base_url": baseUrl,
+      };
 }
 
 class Data {
-    Data({
-        this.list,
-    });
+  List<ListElement>? list;
 
-    List<ListElement> list;
+  Data({this.list});
 
-    factory Data.fromJson(Map<String, dynamic> json) => Data(
-        list: List<ListElement>.from(json["list"].map((x) => ListElement.fromJson(x))),
-    );
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        list: json["list"] == null
+            ? []
+            : List<ListElement>.from(
+                json["list"].map((x) => ListElement.fromJson(x))),
+      );
 
-    Map<String, dynamic> toJson() => {
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
-    };
+  Map<String, dynamic> toJson() => {
+        "list": list == null
+            ? []
+            : List<dynamic>.from(list!.map((x) => x.toJson())),
+      };
 }
 
 class ListElement {
-    ListElement({
-        this.id,
-        this.title,
-        this.shortDescription,
-        this.details,
-        this.detailPageUrl,
-        this.image,
-        this.altTag,
-        this.metaKeyword,
-        this.metaDescription,
-        this.status,
-        this.createdAt,
-        this.updatedAt,
-    });
+  String? id;
+  String? title;
+  String? shortDescription;
+  String? details;
+  String? detailPageUrl;
+  String? image;
+  String? altTag;
+  String? metaKeyword;
+  String? metaDescription;
+  String? status;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
-    String id;
-    String title;
-    String shortDescription;
-    String details;
-    String detailPageUrl;
-    String image;
-    String altTag;
-    String metaKeyword;
-    String metaDescription;
-    String status;
-    DateTime createdAt;
-    DateTime updatedAt;
+  ListElement({
+    this.id,
+    this.title,
+    this.shortDescription,
+    this.details,
+    this.detailPageUrl,
+    this.image,
+    this.altTag,
+    this.metaKeyword,
+    this.metaDescription,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+  });
 
-    factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
+  factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
-        title: json["title"] == null? "": json["title"],
+        title: json["title"] ?? "",
         shortDescription: json["short_description"],
         details: json["details"],
-        detailPageUrl: json["detail_page_url"] == null? "": json["detail_page_url"],
-        image: json["image"] == null? "" : json["image"],
+        detailPageUrl: json["detail_page_url"] ?? "",
+        image: json["image"] ?? "",
         altTag: json["alt_tag"],
         metaKeyword: json["meta_keyword"],
         metaDescription: json["meta_description"],
         status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-    );
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "title": title,
         "short_description": shortDescription,
@@ -107,7 +114,120 @@ class ListElement {
         "meta_keyword": metaKeyword,
         "meta_description": metaDescription,
         "status": status,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-    };
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+      };
 }
+// // To parse this JSON data, do
+// //
+// //     final newsletterArticleResponse = newsletterArticleResponseFromJson(jsonString);
+
+// import 'dart:convert';
+
+// NewsletterArticleResponse newsletterArticleResponseFromJson(String str) => NewsletterArticleResponse.fromJson(json.decode(str));
+
+// String newsletterArticleResponseToJson(NewsletterArticleResponse data) => json.encode(data.toJson());
+
+// class NewsletterArticleResponse {
+//     NewsletterArticleResponse({
+//         this.success,
+//         this.msg,
+//         this.data,
+//         this.baseUrl,
+//     });
+
+//     String success;
+//     String msg;
+//     Data data;
+//     String baseUrl;
+
+//     factory NewsletterArticleResponse.fromJson(Map<String, dynamic> json) => NewsletterArticleResponse(
+//         success: json["success"],
+//         msg: json["msg"],
+//         baseUrl: json['base_url'],
+//        data: Data.fromJson(json["data"]),
+//     );
+
+//     Map<String, dynamic> toJson() => {
+//         "success": success,
+//         "msg": msg,
+//         "data": data.toJson(),
+//         "base_url": baseUrl
+//     };
+// }
+
+// class Data {
+//     Data({
+//         this.list,
+//     });
+
+//     List<ListElement> list;
+
+//     factory Data.fromJson(Map<String, dynamic> json) => Data(
+//         list: List<ListElement>.from(json["list"].map((x) => ListElement.fromJson(x))),
+//     );
+
+//     Map<String, dynamic> toJson() => {
+//         "list": List<dynamic>.from(list.map((x) => x.toJson())),
+//     };
+// }
+
+// class ListElement {
+//     ListElement({
+//         this.id,
+//         this.title,
+//         this.shortDescription,
+//         this.details,
+//         this.detailPageUrl,
+//         this.image,
+//         this.altTag,
+//         this.metaKeyword,
+//         this.metaDescription,
+//         this.status,
+//         this.createdAt,
+//         this.updatedAt,
+//     });
+
+//     String id;
+//     String title;
+//     String shortDescription;
+//     String details;
+//     String detailPageUrl;
+//     String image;
+//     String altTag;
+//     String metaKeyword;
+//     String metaDescription;
+//     String status;
+//     DateTime createdAt;
+//     DateTime updatedAt;
+
+//     factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
+//         id: json["id"],
+//         title: json["title"] == null? "": json["title"],
+//         shortDescription: json["short_description"],
+//         details: json["details"],
+//         detailPageUrl: json["detail_page_url"] == null? "": json["detail_page_url"],
+//         image: json["image"] == null? "" : json["image"],
+//         altTag: json["alt_tag"],
+//         metaKeyword: json["meta_keyword"],
+//         metaDescription: json["meta_description"],
+//         status: json["status"],
+//         createdAt: DateTime.parse(json["created_at"]),
+//         updatedAt: DateTime.parse(json["updated_at"]),
+//     );
+
+//     Map<String, dynamic> toJson() => {
+//         "id": id,
+//         "title": title,
+//         "short_description": shortDescription,
+//         "details": details,
+//         "detail_page_url": detailPageUrl,
+//         "image": image,
+//         "alt_tag": altTag,
+//         "meta_keyword": metaKeyword,
+//         "meta_description": metaDescription,
+//         "status": status,
+//         "created_at": createdAt.toIso8601String(),
+//         "updated_at": updatedAt.toIso8601String(),
+//     };
+// }

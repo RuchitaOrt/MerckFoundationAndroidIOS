@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
+
 
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/model/digitalProgramResponse.dart';
+import 'package:merckfoundation22dec/screens/FlipBookScreen.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -12,18 +15,21 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/material.dart';
+// import 'package:page_turn/page_turn.dart';
 
 // ignore: must_be_immutable
 class WatchDigitalLibrary extends StatefulWidget {
-  String appBarTitle;
+  dynamic appBarTitle;
   final dynamic apiurl;
-  final String digitallink;
+  final dynamic digitallink;
 
   WatchDigitalLibrary({
-    Key key,
+    Key? key,
     this.apiurl,
     this.digitallink,
   }) : super(key: key);
@@ -33,7 +39,7 @@ class WatchDigitalLibrary extends StatefulWidget {
 
 class _DigitalLibraryState extends State<WatchDigitalLibrary> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
-  DigitalProgramResponse resp;
+  late DigitalProgramResponse resp;
   final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
   ScrollController _sc = new ScrollController();
 
@@ -66,7 +72,7 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
         onTapvalfilter: () {
           print("videokk");
           // _scaffoldKey1.currentState.openDrawer();
-          _scaffoldKey1.currentState.openEndDrawer();
+          _scaffoldKey1.currentState!.openEndDrawer();
         },
         onTapval: () {
           // Navigator.push(
@@ -140,11 +146,35 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                                       ),
                                       child: GestureDetector(
                                         onTap: () {
-                                          _launchURL(GlobalLists
-                                                  .programdigitalcontentbaseurl +
+                                          print("DIGITAl");
+                                          print("DIGITAl ${GlobalLists
+                                                  .programdigitalcontentpdfurl +
                                               GlobalLists
                                                   .digitallibraryviewlist[index]
-                                                  .document);
+                                                  .document!}");
+            //                                       Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => FlipbookWebView()),
+            // );
+//             convertPdfToImages(GlobalLists
+//                                                   .programdigitalcontentbaseurl +
+//                                               GlobalLists
+//                                                   .digitallibraryviewlist[index]
+//                                                   .document).then((value) {
+                                                    
+// Navigator.push(
+//   context,
+//   MaterialPageRoute(builder: (context) => FlipBookScreen(pages: value)),
+// );
+
+            // });
+            // //2025
+                                          _launchURL(
+                                            GlobalLists.programdigitalcontentpdfurl +
+                                            // "https://merck.oneroof.tech/merck/flipbook-proxy/digital_library/"+
+                                              GlobalLists
+                                                  .digitallibraryviewlist[index]
+                                                  .document!);
                                         },
                                         child: Container(
                                           color: Colors.transparent,
@@ -186,7 +216,7 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                                                               GlobalLists
                                                                   .digitallibraryviewlist[
                                                                       index]
-                                                                  .image),
+                                                                  .image!),
                                                       fit: BoxFit.contain,
                                                     ),
                                                   ),
@@ -200,7 +230,7 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                                                     GlobalLists
                                                         .digitallibraryviewlist[
                                                             index]
-                                                        .title,
+                                                        .title!,
                                                     textAlign: TextAlign.center,
                                                     overflow:
                                                         TextOverflow.ellipsis,
@@ -280,15 +310,15 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                 // list = new List();
                 // list = resp.data.list;
                 //totalcount 10
-                if (resp.list.length < 10) {
-                  for (int i = offset; i < resp.list.length; i++) {
+                if (resp.list!.length < 10) {
+                  for (int i = offset; i < resp.list!.length; i++) {
                     setState(() {
                       GlobalLists.digitallibraryviewlist.add(ListClass(
-                          id: resp.list[i].id,
-                          categoryType: resp.list[i].categoryType,
-                          title: resp.list[i].title,
-                          image: resp.list[i].image,
-                          document: resp.list[i].document));
+                          id: resp.list![i].id,
+                          categoryType: resp.list![i].categoryType,
+                          title: resp.list![i].title,
+                          image: resp.list![i].image,
+                          document: resp.list![i].document));
                     });
 
                     // GlobalLists.newsLettersList.add(resp.data.list);
@@ -297,11 +327,11 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                   for (int i = offset; i < totalcount; i++) {
                     setState(() {
                       GlobalLists.digitallibraryviewlist.add(ListClass(
-                          id: resp.list[i].id,
-                          categoryType: resp.list[i].categoryType,
-                          title: resp.list[i].title,
-                          image: resp.list[i].image,
-                          document: resp.list[i].document));
+                          id: resp.list![i].id,
+                          categoryType: resp.list![i].categoryType,
+                          title: resp.list![i].title,
+                          image: resp.list![i].image,
+                          document: resp.list![i].document));
                     });
 
                     // GlobalLists.newsLettersList.add(resp.data.list);
@@ -309,7 +339,7 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                 }
 
                 offset = totalcount;
-                int remem = resp.list.length - totalcount;
+                int remem = resp.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -318,7 +348,8 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                   totalcount = totalcount + 10;
                 }
                 // // GlobalLists.newsLettersList = resp.data.list;
-                GlobalLists.programdigitalcontentbaseurl = resp.baseUrl;
+                GlobalLists.programdigitalcontentbaseurl = resp.baseUrl!;
+GlobalLists.programdigitalcontentpdfurl=resp.pdfUrl!;
                 print("-----------------------------------");
                 print(totalcount);
                 //    print(GlobalLists.newsLettersList.length);
@@ -328,7 +359,7 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -338,17 +369,34 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
       }
     }
   }
+Future<void> _launchURL(String urlIs) async {
+  final Uri uri = Uri.parse(urlIs);
 
-  _launchURL(String urlIs) async {
-    var url = urlIs;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+  if (!await launchUrl(
+    uri,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw 'Could not launch $uri';
   }
+}
+// void showFlipbook(BuildContext context) async {
+//   String url = "https://merck-foundation.com/merckfoundation/public/uploads/digital_library/1656412954_b2be045662b6b261026a.pdf";
+  
+//   String pdfPath = await downloadPDF(url);
+//   if (pdfPath.isEmpty) return;
 
+//   List<PdfPageImage> pdfImages = (await convertPdfToImages(pdfPath)).cast<PdfPageImage>();
+//  List<Image> images = pdfImages
+//     .map((e) => Image(image: MemoryImage(e.imageIfAvailable as Uint8List)))
+//     .toList();
+// Navigator.push(
+//   context,
+//   MaterialPageRoute(builder: (context) => FlipBookScreen(pages: images)),
+// );
+
+// }
   getprogramdigitallib(dynamic api) async {
+    print("API NIKHIL ${api}");
     var status1 = await ConnectionDetector.checkInternetConnection();
     if (status1) {
       print(api);
@@ -362,35 +410,36 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
         // Navigator.of(_keyLoader.currentContext).pop();
         if (resp.success == "True") {
           print(resp.list);
-          GlobalLists.programdigitalcontentbaseurl = resp.baseUrl;
+          GlobalLists.programdigitalcontentbaseurl = resp.baseUrl!;
+          GlobalLists.programdigitalcontentpdfurl=resp.pdfUrl!;
           setState(() {
             print("here");
-            if (resp.list.length < 10) {
-              for (int i = offset; i < resp.list.length; i++) {
+            if (resp.list!.length < 10) {
+              for (int i = offset; i < resp.list!.length; i++) {
                 setState(() {
                   GlobalLists.digitallibraryviewlist.add(ListClass(
-                      id: resp.list[i].id,
-                      categoryType: resp.list[i].categoryType,
-                      title: resp.list[i].title,
-                      image: resp.list[i].image,
-                      document: resp.list[i].document));
+                      id: resp.list![i].id,
+                      categoryType: resp.list![i].categoryType,
+                      title: resp.list![i].title,
+                      image: resp.list![i].image,
+                      document: resp.list![i].document));
                 });
               }
             } else {
               for (int i = offset; i < totalcount; i++) {
                 setState(() {
                   GlobalLists.digitallibraryviewlist.add(ListClass(
-                      id: resp.list[i].id,
-                      categoryType: resp.list[i].categoryType,
-                      title: resp.list[i].title,
-                      image: resp.list[i].image,
-                      document: resp.list[i].document));
+                      id: resp.list![i].id,
+                      categoryType: resp.list![i].categoryType,
+                      title: resp.list![i].title,
+                      image: resp.list![i].image,
+                      document: resp.list![i].document));
                 });
               }
             }
 
             offset = totalcount;
-            int remem = resp.list.length - totalcount;
+            int remem = resp.list!.length - totalcount;
             print("remem");
             print(remem);
             if (remem < 10) {
@@ -417,7 +466,7 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
           //               photosList: GlobalLists.programgallerylist,
           //             )));
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
           setState(() {
             _isLoading = false;
           });
@@ -436,4 +485,51 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
       ShowDialogs.showToast("Please check internet connection");
     }
   }
+
+// Future<List<Image>> convertPdfToImages(String filePath) async {
+//   final document = await PdfDocument.openFile(filePath);
+//   List<Image> images = [];
+
+//   for (int i = 0; i < document.pageCount; i++) {
+//     final page = await document.getPage(i + 1);
+//     final image = await page.render();
+
+//     if (image.imageIfAvailable != null) {
+//       images.add(Image(image: MemoryImage(image.imageIfAvailable as Uint8List)));
+//     }
+
+//   }
+
+//   await document.dispose(); // Properly dispose of the document
+
+//   return images;
+// }
+
+// Future<String> downloadPDF(String url) async {
+//   final directory = await getApplicationDocumentsDirectory();
+//   final filePath = '${directory.path}/downloaded.pdf';
+
+//   try {
+//     await Dio().download(url, filePath);
+//     return filePath;
+//   } catch (e) {
+//     print("Download failed: $e");
+//     return "";
+//   }
+// }
 }
+
+// class FlipBookScreen extends StatelessWidget {
+//   final List<Image> pages;
+
+//   FlipBookScreen({ this.pages});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: PageTurn(
+//         children: pages.map((image) => Center(child: image)).toList(),
+//       ),
+//     );
+//   }
+// }

@@ -9,10 +9,12 @@ import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/AutoResizeWebView.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../model/PoliticalDeutrality.dart';
 
@@ -26,7 +28,7 @@ class political_deutrality_declaration extends StatefulWidget {
 class political_deutrality_declarationState
     extends State<political_deutrality_declaration>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   final GlobalKey<State> skey = new GlobalKey<State>();
 
   @override
@@ -96,7 +98,41 @@ class political_deutrality_declarationState
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: HtmlWidget(
-                                    GlobalLists.political[0].pageContent),
+                                    GlobalLists.political[0].pageContent!,
+                                     customWidgetBuilder: (element) {
+              if (element.localName == 'video') {
+                final src = element.children.firstWhere((e) => e.localName == 'source').attributes['src'];
+                if (src != null && src.contains('youtube.com')) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: src,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else  if (element.localName == 'iframe') {
+                final iframeSrc = element.attributes['src'];
+
+                // If the iframe is a YouTube video, handle it
+                if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: iframeSrc,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else if (element.localName == 'table') {
+     
+        return  AutoResizeWebView(htmlContent: element.outerHtml,);
+       
+      }
+              return null;
+            },),
                               ),
 
                               // Padding(
@@ -162,19 +198,19 @@ class political_deutrality_declarationState
           print(response);
           print('Resp : $resp');
 
-          Navigator.of(skey.currentContext).pop();
+          Navigator.of(skey.currentContext!).pop();
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.political = resp.data.list;
+              GlobalLists.political = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(skey.currentContext).pop();
+          Navigator.of(skey.currentContext!).pop();
         },
       );
     } else {

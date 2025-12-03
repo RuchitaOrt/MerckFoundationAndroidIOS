@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:merckfoundation22dec/widget/slidercontainer.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
@@ -44,7 +41,7 @@ class VideolibraryState extends State<Videolibrary> {
   int page = 10;
   int offset = 0;
   bool _isLoading = true;
-  GetVideoLibraryResponse resp;
+  late GetVideoLibraryResponse resp;
 
   final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
   @override
@@ -82,12 +79,12 @@ class VideolibraryState extends State<Videolibrary> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.videolibrary.add(videolibrayResp.ListElement(
-                        id: resp.data.list[i].id,
-                        videoDesc: resp.data.list[i].videoDesc,
-                        videoLink: resp.data.list[i].videoLink,
-                        countryId: resp.data.list[i].countryId,
-                        categoryId: resp.data.list[i].categoryId,
-                        year: resp.data.list[i].status));
+                        id: resp.data!.list![i].id,
+                        videoDesc: resp.data!.list![i].videoDesc,
+                        videoLink: resp.data!.list![i].videoLink,
+                        countryId: resp.data!.list![i].countryId,
+                        categoryId: resp.data!.list![i].categoryId,
+                        year: resp.data!.list![i].status));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -95,7 +92,7 @@ class VideolibraryState extends State<Videolibrary> {
                 }
 
                 offset = totalcount;
-                int remem = resp.data.list.length - totalcount;
+                int remem = resp.data!.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -114,7 +111,7 @@ class VideolibraryState extends State<Videolibrary> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -140,7 +137,7 @@ class VideolibraryState extends State<Videolibrary> {
           onTapvalfilter: () {
             print("videokk");
             // _scaffoldKey1.currentState.openDrawer();
-            _scaffoldKey1.currentState.openEndDrawer();
+            _scaffoldKey1.currentState!.openEndDrawer();
           },
           onTapval: () {
             //  Navigator.pop(context);
@@ -228,10 +225,10 @@ class VideolibraryState extends State<Videolibrary> {
                                           //                   .videoLink,
                                           //             )));
                                           var storykey = GlobalLists
-                                              .videolibrary[index].videoLink
+                                              .videolibrary[index].videoLink!
                                               .substring(GlobalLists
                                                       .videolibrary[index]
-                                                      .videoLink
+                                                      .videoLink!
                                                       .length -
                                                   11);
                                           ShowDialogs.youtubevideolink(
@@ -278,7 +275,7 @@ class VideolibraryState extends State<Videolibrary> {
                                                         image:
                                                             new DecorationImage(
                                                           image: new NetworkImage(
-                                                              'https://img.youtube.com/vi/${GlobalLists.videolibrary[index].videoLink.substring(GlobalLists.videolibrary[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                              'https://img.youtube.com/vi/${GlobalLists.videolibrary[index].videoLink!.substring(GlobalLists.videolibrary[index].videoLink!.length - 11)}/mqdefault.jpg'),
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
@@ -291,7 +288,7 @@ class VideolibraryState extends State<Videolibrary> {
                                                     child: Text(
                                                       GlobalLists
                                                           .videolibrary[index]
-                                                          .videoDesc,
+                                                          .videoDesc!,
                                                       textAlign:
                                                           TextAlign.center,
                                                       overflow:
@@ -404,34 +401,34 @@ class VideolibraryState extends State<Videolibrary> {
           if (resp.success == "True") {
             setState(() {
               print("here");
-              if (resp.data.list.length < 10) {
-                for (int i = offset; i < resp.data.list.length; i++) {
+              if (resp.data!.list!.length < 10) {
+                for (int i = offset; i < resp.data!.list!.length; i++) {
                   setState(() {
                     GlobalLists.videolibrary.add(videolibrayResp.ListElement(
-                        id: resp.data.list[i].id,
-                        videoDesc: resp.data.list[i].videoDesc,
-                        videoLink: resp.data.list[i].videoLink,
-                        countryId: resp.data.list[i].countryId,
-                        categoryId: resp.data.list[i].categoryId,
-                        year: resp.data.list[i].status));
+                        id: resp.data!.list![i].id,
+                        videoDesc: resp.data!.list![i].videoDesc,
+                        videoLink: resp.data!.list![i].videoLink,
+                        countryId: resp.data!.list![i].countryId,
+                        categoryId: resp.data!.list![i].categoryId,
+                        year: resp.data!.list![i].status));
                   });
                 }
               } else {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.videolibrary.add(videolibrayResp.ListElement(
-                        id: resp.data.list[i].id,
-                        videoDesc: resp.data.list[i].videoDesc,
-                        videoLink: resp.data.list[i].videoLink,
-                        countryId: resp.data.list[i].countryId,
-                        categoryId: resp.data.list[i].categoryId,
-                        year: resp.data.list[i].status));
+                        id: resp.data!.list![i].id,
+                        videoDesc: resp.data!.list![i].videoDesc,
+                        videoLink: resp.data!.list![i].videoLink,
+                        countryId: resp.data!.list![i].countryId,
+                        categoryId: resp.data!.list![i].categoryId,
+                        year: resp.data!.list![i].status));
                   });
                 }
               }
 
               offset = totalcount;
-              int remem = resp.data.list.length - totalcount;
+              int remem = resp.data!.list!.length - totalcount;
               print("remem");
               print(remem);
               if (remem < 10) {
@@ -451,7 +448,7 @@ class VideolibraryState extends State<Videolibrary> {
             setState(() {
               _isLoading = false;
             });
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -488,10 +485,10 @@ class VideolibraryState extends State<Videolibrary> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.countrylisting = resp.data.list;
+              GlobalLists.countrylisting = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -504,18 +501,7 @@ class VideolibraryState extends State<Videolibrary> {
     }
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+
 
   getcategorylist() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
@@ -535,10 +521,10 @@ class VideolibraryState extends State<Videolibrary> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.categorylisting = resp.data.list;
+              GlobalLists.categorylisting = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

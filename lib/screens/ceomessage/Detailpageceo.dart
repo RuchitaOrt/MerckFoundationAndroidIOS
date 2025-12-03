@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/utility/GlobalLists.dart';
+
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class Detailpageceo extends StatefulWidget {
-  final List list;
-  final String imageurl;
-  final int index;
+   final List? list;
+  final String? imageurl;
+  final int? index;
 
-  const Detailpageceo({Key key, this.list, this.imageurl, this.index})
+  const Detailpageceo({Key? key, this.list, this.imageurl, this.index})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -23,7 +21,7 @@ class Detailpageceo extends StatefulWidget {
 
 class DetailpageceoState extends State<Detailpageceo>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+ late AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
@@ -52,8 +50,8 @@ class DetailpageceoState extends State<Detailpageceo>
           },
           index: 2,
           sharelink:
-              Constantstring.shareceodetailpage + widget.list[widget.index].id,
-          title: widget.list[widget.index].leaderName,
+              Constantstring.shareceodetailpage + widget.list![widget.index!].id,
+          title: widget.list![widget.index!].leaderName,
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -75,10 +73,10 @@ class DetailpageceoState extends State<Detailpageceo>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Html(
-                          data: """${widget.list[widget.index].leaderLang} """,
-                          onLinkTap: (url, renderContext, attributes, element) {
+                          data: """${widget.list![widget.index!].leaderLang} """,
+                          onLinkTap: (url, attributes, element) {
                             print("Opening $url...");
-                            ShowDialogs.launchURL(url);
+                            ShowDialogs.launchURL(url!);
                           },
                           style: {
                             "body": Style(
@@ -86,6 +84,23 @@ class DetailpageceoState extends State<Detailpageceo>
                             ),
                             "tr": Customcolor.tableboderstyle(context),
                           },
+                           extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                         ),
                         Center(
                           child: Container(
@@ -95,8 +110,8 @@ class DetailpageceoState extends State<Detailpageceo>
                                 borderRadius: BorderRadius.circular(8)),
                             child: FadeInImage.assetNetwork(
                               placeholder: 'assets/newImages/placeholder_3.jpg',
-                              image: widget.imageurl +
-                                  widget.list[widget.index].image,
+                              image: widget.imageurl! +
+                                  widget.list![widget.index!].image,
                               fit: BoxFit.cover,
                               height: 150,
                             ),
@@ -105,11 +120,11 @@ class DetailpageceoState extends State<Detailpageceo>
                         Center(
                           child: Html(
                             data:
-                                """${widget.list[widget.index].leaderName} """,
+                                """${widget.list![widget.index!].leaderName} """,
                             onLinkTap:
-                                (url, renderContext, attributes, element) {
+                                (url, attributes, element) {
                               print("Opening $url...");
-                              ShowDialogs.launchURL(url);
+                              ShowDialogs.launchURL(url!);
                             },
                             style: {
                               "body": Style(
@@ -119,21 +134,55 @@ class DetailpageceoState extends State<Detailpageceo>
                                   fontSize: FontSize.larger),
                               "tr": Customcolor.tableboderstyle(context),
                             },
+                             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                           ),
                         ),
                         Center(
                           child: Html(
                             data:
-                                """${widget.list[widget.index].shortBiodata} """,
+                                """${widget.list![widget.index!].shortBiodata} """,
                             onLinkTap:
-                                (url, renderContext, attributes, element) {
+                                (url, attributes, element) {
                               print("Opening $url...");
-                              ShowDialogs.launchURL(url);
+                              ShowDialogs.launchURL(url!);
                             },
                             style: {
                               "body": Style(textAlign: TextAlign.center),
                               "tr": Customcolor.tableboderstyle(context),
                             },
+                             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                           ),
                         ),
                         Container(
@@ -152,15 +201,32 @@ class DetailpageceoState extends State<Detailpageceo>
                               ),
                               Html(
                                 data:
-                                    """${widget.list[widget.index].detailBiodata} """,
+                                    """${widget.list![widget.index!].detailBiodata} """,
                                 onLinkTap:
-                                    (url, renderContext, attributes, element) {
+                                    (url, attributes, element) {
                                   print("Opening $url...");
-                                  ShowDialogs.launchURL(url);
+                                  ShowDialogs.launchURL(url!);
                                 },
                                 style: {
                                   "tr": Customcolor.tableboderstyle(context),
                                 },
+                                 extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                               ),
                               SizedBox(height: 10.0),
                               SizedBox(

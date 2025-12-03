@@ -11,7 +11,7 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
@@ -22,7 +22,7 @@ import 'package:merckfoundation22dec/model/viewmoreMediaResponse.dart'
 class ViewmoreMedia extends StatefulWidget {
   final dynamic apiurl;
 
-  const ViewmoreMedia({Key key, this.apiurl}) : super(key: key);
+  const ViewmoreMedia({Key? key, this.apiurl}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return ViewMediaState();
@@ -32,7 +32,7 @@ class ViewmoreMedia extends StatefulWidget {
 class ViewMediaState extends State<ViewmoreMedia> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   ScrollController _sc = new ScrollController();
-  ViewmoremediaResponse resp;
+  late ViewmoremediaResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -66,14 +66,14 @@ class ViewMediaState extends State<ViewmoreMedia> {
                 // list = resp.data.list;
                 //totalcount 10
 
-                for (int i = offset; i < resp.list.length; i++) {
+                for (int i = offset; i < resp.list!.length; i++) {
                   setState(() {
                     GlobalLists.viewmoremedialist.add(viewmmtmedia.ListElement(
-                        title: resp.list[i].title,
-                        id: resp.list[i].id,
-                        description: resp.list[i].description,
-                        mediaUrl: resp.list[i].mediaUrl,
-                        image: resp.list[i].image));
+                        title: resp.list![i].title,
+                        id: resp.list![i].id,
+                        description: resp.list![i].description,
+                        mediaUrl: resp.list![i].mediaUrl,
+                        image: resp.list![i].image));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -81,7 +81,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
                 }
 
                 offset = totalcount;
-                int remem = resp.list.length - totalcount;
+                int remem = resp.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -90,7 +90,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
                   totalcount = totalcount + 10;
                 }
                 // // GlobalLists.newsLettersList = resp.data.list;
-                Constantstring.baseUrl = resp.baseUrl;
+                Constantstring.baseUrl = resp.baseUrl!;
                 print("-----------------------------------");
                 print(totalcount);
               });
@@ -99,7 +99,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -110,14 +110,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
     }
   }
 
-  _launchURL(String urlIs) async {
-    var url = urlIs;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +166,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
                             child: GestureDetector(
                               onTap: () {
                                 ShowDialogs.launchURL(GlobalLists
-                                    .viewmoremedialist[index].mediaUrl);
+                                    .viewmoremedialist[index].mediaUrl!);
                                 // Navigator.push(
                                 //     context,
                                 //     MaterialPageRoute(
@@ -209,7 +202,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
                                               image: Constantstring.baseUrl +
                                                   GlobalLists
                                                       .viewmoremedialist[index]
-                                                      .image,
+                                                      .image!,
                                               fit: BoxFit.cover,
                                               height: 80,
                                               width: 80,
@@ -222,7 +215,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
                                             child: Text(
                                               GlobalLists
                                                   .viewmoremedialist[index]
-                                                  .title,
+                                                  .title!,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -302,16 +295,16 @@ class ViewMediaState extends State<ViewmoreMedia> {
           if (resp.success == "True") {
             setState(() {
               // GlobalLists.merckinMediaList = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
-              if (resp.list.length < 10) {
-                for (int i = offset; i < resp.list.length; i++) {
+              Constantstring.baseUrl = resp.baseUrl!;
+              if (resp.list!.length < 10) {
+                for (int i = offset; i < resp.list!.length; i++) {
                   setState(() {
                     GlobalLists.viewmoremedialist.add(viewmmtmedia.ListElement(
-                        title: resp.list[i].title,
-                        id: resp.list[i].id,
-                        description: resp.list[i].description,
-                        mediaUrl: resp.list[i].mediaUrl,
-                        image: resp.list[i].image));
+                        title: resp.list![i].title,
+                        id: resp.list![i].id,
+                        description: resp.list![i].description,
+                        mediaUrl: resp.list![i].mediaUrl,
+                        image: resp.list![i].image));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -321,11 +314,11 @@ class ViewMediaState extends State<ViewmoreMedia> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.viewmoremedialist.add(viewmmtmedia.ListElement(
-                        title: resp.list[i].title,
-                        id: resp.list[i].id,
-                        description: resp.list[i].description,
-                        mediaUrl: resp.list[i].mediaUrl,
-                        image: resp.list[i].image));
+                        title: resp.list![i].title,
+                        id: resp.list![i].id,
+                        description: resp.list![i].description,
+                        mediaUrl: resp.list![i].mediaUrl,
+                        image: resp.list![i].image));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -334,7 +327,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
               }
 
               offset = totalcount;
-              int remem = resp.list.length - totalcount;
+              int remem = resp.list!.length - totalcount;
               print("remem");
               print(remem);
               if (remem < 10) {
@@ -343,7 +336,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
                 totalcount = totalcount + 10;
               }
               // // GlobalLists.newsLettersList = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
+              Constantstring.baseUrl = resp.baseUrl!;
               print("-----------------------------------");
               print(totalcount);
               // print(GlobalLists.merckinMediaList.length);
@@ -356,7 +349,7 @@ class ViewMediaState extends State<ViewmoreMedia> {
             setState(() {
               _isLoading = false;
             });
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

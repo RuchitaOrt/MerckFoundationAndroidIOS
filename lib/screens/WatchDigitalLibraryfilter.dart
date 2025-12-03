@@ -12,29 +12,30 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class WatchDigitalLibraryfilter extends StatefulWidget {
-  String appBarTitle;
+  dynamic appBarTitle;
   final dynamic apiurl;
-  final String digitallink;
+  final dynamic digitallink;
 
   WatchDigitalLibraryfilter({
-    Key key,
+    Key? key,
     this.apiurl,
     this.digitallink,
   }) : super(key: key);
   @override
-  _WatchDigitalLibraryfilterState createState() => _WatchDigitalLibraryfilterState();
+  _WatchDigitalLibraryfilterState createState() =>
+      _WatchDigitalLibraryfilterState();
 }
 
 class _WatchDigitalLibraryfilterState extends State<WatchDigitalLibraryfilter> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
-  DigitalProgramResponse resp;
- final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
+  late DigitalProgramResponse resp;
+  final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
   ScrollController _sc = new ScrollController();
 
   int totalcount = 10;
@@ -54,20 +55,20 @@ class _WatchDigitalLibraryfilterState extends State<WatchDigitalLibraryfilter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       key: _scaffoldKey1,
-        endDrawer: Theme(
-          data: Theme.of(context)
-              .copyWith(canvasColor: Colors.white, primaryColor: Colors.white),
-          child: AppDrawerfilter(
-            index: 4,
-          ),
+      key: _scaffoldKey1,
+      endDrawer: Theme(
+        data: Theme.of(context)
+            .copyWith(canvasColor: Colors.white, primaryColor: Colors.white),
+        child: AppDrawerfilter(
+          index: 4,
         ),
+      ),
       appBar: InnerCustomAppBar(
-         onTapvalfilter: () {
-            print("videokk");
-            // _scaffoldKey1.currentState.openDrawer();
-            _scaffoldKey1.currentState.openEndDrawer();
-          },
+        onTapvalfilter: () {
+          print("videokk");
+          // _scaffoldKey1.currentState.openDrawer();
+          _scaffoldKey1.currentState!.openEndDrawer();
+        },
         onTapval: () {
           Navigator.push(
               context,
@@ -75,17 +76,17 @@ class _WatchDigitalLibraryfilterState extends State<WatchDigitalLibraryfilter> {
                   builder: (BuildContext context) => Dashboard(
                         index: 0,
                       )));
-         // Navigator.pop(context);
+          // Navigator.pop(context);
         },
         index: 2,
-         forfilterindes: 4,
+        forfilterindes: 4,
         sharelink: widget.digitallink,
         title: "Digital Library",
         titleImg: "assets/newImages/news_logo.png",
-       trallingImg1: "assets/newImages/share.png",
-                 //trallingImg1: "assets/newImages/filter.png",
+        trallingImg1: "assets/newImages/share.png",
+        //trallingImg1: "assets/newImages/filter.png",
         trallingImg2: "assets/newImages/search.png",
-   
+
         height: 85,
       ),
       backgroundColor: Customcolor.background,
@@ -96,145 +97,132 @@ class _WatchDigitalLibraryfilterState extends State<WatchDigitalLibraryfilter> {
             shrinkWrap: true,
             controller: _sc,
             children: [
-              (GlobalLists.filterdigitallibrarylist.length == 0)?Container(child:Center(child: Text("No Result Found"))):
-                 ListView(
+              (GlobalLists.filterdigitallibrarylist.length == 0)
+                  ? Container(child: Center(child: Text("No Result Found")))
+                  : ListView(
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      children: [
+                        GridView.count(
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
-                          children: [
-                            GridView.count(
-                              shrinkWrap: true,
-                              physics: ScrollPhysics(),
-                              padding: const EdgeInsets.all(5),
-                              crossAxisSpacing: 0,
-                              mainAxisSpacing: 2,
-                              crossAxisCount: 2,
-                              childAspectRatio: 0.9,
-                              children: List.generate(
-                                  GlobalLists.filterdigitallibrarylist.length,
-                                  (index) {
-                               
-                                return Padding(
-                                  padding: const EdgeInsets.only(right: 2.0),
-                                  child: Card(
-                                      elevation: 2,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(1),
-                                        ),
-                                      ),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          _launchURL(GlobalLists
-                                                  .filterdigitallibrarylist[index]
-                                                  .document);
-                                        },
-                                        child: Container(
-                                          color: Colors.transparent,
-                                          width:
-                                              SizeConfig.blockSizeHorizontal * 50,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Padding(
-                                                padding: const EdgeInsets.all(8.0),
-                                                child: Container(
-                                                  width: SizeConfig
-                                                          .blockSizeHorizontal *
-                                                      100,
-                                                  height:
-                                                      SizeConfig.blockSizeVertical *
-                                                          16,
-                                                  // width:
-                                                  //     SizeConfig.blockSizeHorizontal *
-                                                  //         100,
-                                                  // height: 150,
+                          padding: const EdgeInsets.all(5),
+                          crossAxisSpacing: 0,
+                          mainAxisSpacing: 2,
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.9,
+                          children: List.generate(
+                              GlobalLists.filterdigitallibrarylist.length,
+                              (index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 2.0),
+                              child: Card(
+                                  elevation: 2,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(1),
+                                    ),
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      _launchURL(GlobalLists
+                                          .filterdigitallibrarylist[index]
+                                          .pdfUrl!);
+                                    },
+                                    child: Container(
+                                      color: Colors.transparent,
+                                      width:
+                                          SizeConfig.blockSizeHorizontal * 50,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              width: SizeConfig
+                                                      .blockSizeHorizontal *
+                                                  100,
+                                              height:
+                                                  SizeConfig.blockSizeVertical *
+                                                      16,
+                                              // width:
+                                              //     SizeConfig.blockSizeHorizontal *
+                                              //         100,
+                                              // height: 150,
 
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(5),
-                                                    // border: Border.all(
-                                                    //   width: 1,
-                                                    // ),
-                                                    image: new DecorationImage(
-                                                      image: new NetworkImage(
-                                                          GlobalLists
-                                                              .filterdigitallibrarylist[
-                                                                  index]
-                                                              .image),
-                                                      fit: BoxFit.contain,
-                                                    ),
-                                                  ),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                // border: Border.all(
+                                                //   width: 1,
+                                                // ),
+                                                image: new DecorationImage(
+                                                  image: new NetworkImage(
+                                                      GlobalLists
+                                                          .filterdigitallibrarylist[
+                                                              index]
+                                                          .image!),
+                                                  fit: BoxFit.contain,
                                                 ),
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.all(4.0),
-                                                child: Center(
-                                                  child: Text(
-                                                    GlobalLists
-                                                        .filterdigitallibrarylist[
-                                                            index]
-                                                        .title,
-                                                    textAlign: TextAlign.center,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize:
-                                                            ResponsiveFlutter.of(
-                                                                    context)
-                                                                .fontSize(1.4),
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                    maxLines: 3,
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(height: 5),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      )),
-                                );
-                                // }
-                              }),
-                            ),
-                           
-                          ],
+                                          Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: Center(
+                                              child: Text(
+                                                GlobalLists
+                                                    .filterdigitallibrarylist[
+                                                        index]
+                                                    .title!,
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize:
+                                                        ResponsiveFlutter.of(
+                                                                context)
+                                                            .fontSize(1.4),
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                                maxLines: 3,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 5),
+                                        ],
+                                      ),
+                                    ),
+                                  )),
+                            );
+                            // }
+                          }),
                         ),
-
-                          SizedBox(
-                  height: 10,
-                ),
-
-
-                 Padding(
-                    padding: const EdgeInsets.only(right: 0, left: 0),
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Image.asset(
-                        "assets/newImages/flowers_footer.png",
-                        height: 170,
-                      ),
+                      ],
                     ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/newImages/flowers_footer.png",
+                    height: 170,
                   ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                 
-     
-
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
             ],
           ),
-
-           Align(
-             alignment: Alignment.bottomCenter,
-   child: Bottomcardlink()),
+          Align(alignment: Alignment.bottomCenter, child: Bottomcardlink()),
         ],
-
-          
-
       ),
     );
   }
@@ -260,19 +248,14 @@ class _WatchDigitalLibraryfilterState extends State<WatchDigitalLibraryfilter> {
                 // list = new List();
                 // list = resp.data.list;
                 //totalcount 10
-                if (resp.list.length < 10) {
-                 
-                    // GlobalLists.newsLettersList.add(resp.data.list);
-
-                 
+                if (resp.list!.length < 10) {
+                  // GlobalLists.newsLettersList.add(resp.data.list);
                 } else {
-                  for (int i = offset; i < totalcount; i++) {
-                   
-                  }
+                  for (int i = offset; i < totalcount; i++) {}
                 }
 
                 offset = totalcount;
-                int remem = resp.list.length - totalcount;
+                int remem = resp.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -281,7 +264,7 @@ class _WatchDigitalLibraryfilterState extends State<WatchDigitalLibraryfilter> {
                   totalcount = totalcount + 10;
                 }
                 // // GlobalLists.newsLettersList = resp.data.list;
-                GlobalLists.programdigitalcontentbaseurl = resp.baseUrl;
+                GlobalLists.programdigitalcontentbaseurl = resp.baseUrl!;
                 print("-----------------------------------");
                 print(totalcount);
                 //    print(GlobalLists.newsLettersList.length);
@@ -291,7 +274,7 @@ class _WatchDigitalLibraryfilterState extends State<WatchDigitalLibraryfilter> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -302,15 +285,24 @@ class _WatchDigitalLibraryfilterState extends State<WatchDigitalLibraryfilter> {
     }
   }
 
-  _launchURL(String urlIs) async {
-    var url = urlIs;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  // _launchURL(String urlIs) async {
+  //   var url = urlIs;
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
+Future<void> _launchURL(String urlIs) async {
+  final Uri uri = Uri.parse(urlIs);
 
+  if (!await launchUrl(
+    uri,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw 'Could not launch $uri';
+  }
+}
   getprogramdigitallib(dynamic api) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
     if (status1) {
@@ -325,21 +317,17 @@ class _WatchDigitalLibraryfilterState extends State<WatchDigitalLibraryfilter> {
         // Navigator.of(_keyLoader.currentContext).pop();
         if (resp.success == "True") {
           print(resp.list);
-          GlobalLists.programdigitalcontentbaseurl = resp.baseUrl;
+          GlobalLists.programdigitalcontentbaseurl = resp.baseUrl!;
           setState(() {
             print("here");
-            if (resp.list.length < 10) {
-              for (int i = offset; i < resp.list.length; i++) {
-                
-              }
+            if (resp.list!.length < 10) {
+              for (int i = offset; i < resp.list!.length; i++) {}
             } else {
-              for (int i = offset; i < totalcount; i++) {
-               
-              }
+              for (int i = offset; i < totalcount; i++) {}
             }
 
             offset = totalcount;
-            int remem = resp.list.length - totalcount;
+            int remem = resp.list!.length - totalcount;
             print("remem");
             print(remem);
             if (remem < 10) {
@@ -366,7 +354,7 @@ class _WatchDigitalLibraryfilterState extends State<WatchDigitalLibraryfilter> {
           //               photosList: GlobalLists.programgallerylist,
           //             )));
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
           setState(() {
             _isLoading = false;
           });

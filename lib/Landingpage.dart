@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 
 class Landingpage extends StatefulWidget {
   static final String path = "lib/src/pages/login/login7.dart";
@@ -111,7 +111,7 @@ class _LandingpageState extends State<Landingpage> {
               // textColor: Colors.white,
               //padding: EdgeInsets.all(8.0),
               style: ElevatedButton.styleFrom(
-                  primary: Customcolor.colorPink,
+                  backgroundColor: Customcolor.colorPink,
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(8)),
                   side: BorderSide(color: Colors.red),

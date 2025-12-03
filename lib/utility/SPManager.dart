@@ -14,7 +14,7 @@ class SPManager {
   Future<String> getAuthToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String val;
-    val = prefs.getString(this.authToken) ?? null;
+    val = (prefs.getString(this.authToken) ?? "");
     return val;
   }
 }

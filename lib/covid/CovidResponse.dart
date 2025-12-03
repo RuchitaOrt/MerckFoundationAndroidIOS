@@ -18,7 +18,7 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -26,22 +26,22 @@ import 'package:flip_card/flip_card.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Description {
-  final String title;
-  final String detail;
+  final String? title;
+  final String? detail;
 
   Description({this.title, this.detail});
 }
 
 class Video {
-  final String videoLink;
-  final String videoDesc;
+  final String? videoLink;
+  final String? videoDesc;
 
   Video({this.videoLink, this.videoDesc});
 }
 
 class Newsletter {
-  final String imge;
-  final String title;
+  final String? imge;
+  final String? title;
 
   Newsletter({this.imge, this.title});
 }
@@ -55,7 +55,7 @@ class CovidResponse extends StatefulWidget {
 
 class CovidResponseState extends State<CovidResponse>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   double imgHeight = 50;
   String _platformVersion = 'Unknown';
@@ -137,12 +137,12 @@ class CovidResponseState extends State<CovidResponse>
   }
 
   Future<void> initPlatformState() async {
-    String platformVersion;
+    String? platformVersion;
 
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _platformVersion = platformVersion!;
     });
   }
 
@@ -242,7 +242,7 @@ class CovidResponseState extends State<CovidResponse>
                                           TextSpan(
                                             text: "${index + 1}" +
                                                 ".  " +
-                                                list[index].title,
+                                                list[index].title!,
                                             style: TextStyle(
                                               color: Customcolor.colorVoilet,
                                               fontSize: 14,
@@ -472,7 +472,7 @@ class CovidResponseState extends State<CovidResponse>
                                           child: FadeInImage.assetNetwork(
                                             placeholder:
                                                 'assets/newImages/placeholder_3.jpg',
-                                            image: newslist[index].imge,
+                                            image: newslist[index].imge!,
                                             fit: BoxFit.fill,
                                           ),
                                         ),
@@ -485,7 +485,7 @@ class CovidResponseState extends State<CovidResponse>
                                               SizeConfig.blockSizeHorizontal *
                                                   80,
                                           child: Text(
-                                            newslist[index].title,
+                                            newslist[index].title!,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                                 color: Colors.black87,
@@ -606,14 +606,14 @@ class CovidResponseState extends State<CovidResponse>
           //   media.currentState.controller.reverse();
           // }
           if (status == false) {
-            if (youth.currentState.isFront == false) {
-              youth.currentState.toggleCard();
+            if (youth.currentState?.isFront == false) {
+              youth.currentState?.toggleCard();
             }
-            if (health.currentState.isFront == false) {
-              health.currentState.toggleCard();
+            if (health.currentState?.isFront == false) {
+              health.currentState?.toggleCard();
             }
-            if (communitysupport.currentState.isFront == false) {
-              communitysupport.currentState.toggleCard();
+            if (communitysupport.currentState?.isFront == false) {
+              communitysupport.currentState?.toggleCard();
             }
           }
         },
@@ -684,16 +684,29 @@ class CovidResponseState extends State<CovidResponse>
   }
 
   Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
+     if (await canLaunch(url)) {
+      final Uri uri = Uri.parse(url);
+      await launchUrl(
+        uri,
+         mode: LaunchMode.externalApplication,
+  webViewConfiguration: WebViewConfiguration(enableJavaScript: true,)
+        // forceSafariVC: true,
+        // forceWebView: true,
+        // enableJavaScript: true,
       );
     } else {
       throw 'Could not launch $url';
     }
+    // if (await canLaunch(url)) {
+    //   await launch(
+    //     url,
+    //     forceSafariVC: true,
+    //     forceWebView: true,
+    //     enableJavaScript: true,
+    //   );
+    // } else {
+    //   throw 'Could not launch $url';
+    // }
   }
 
   _childrenyouth(context) {
@@ -708,14 +721,14 @@ class CovidResponseState extends State<CovidResponse>
         onFlipDone: (status) {
           print(status);
           if (status == false) {
-            if (media.currentState.isFront == false) {
-              media.currentState.toggleCard();
+            if (media.currentState?.isFront == false) {
+              media.currentState?.toggleCard();
             }
-            if (health.currentState.isFront == false) {
-              health.currentState.toggleCard();
+            if (health.currentState?.isFront == false) {
+              health.currentState?.toggleCard();
             }
-            if (communitysupport.currentState.isFront == false) {
-              communitysupport.currentState.toggleCard();
+            if (communitysupport.currentState?.isFront == false) {
+              communitysupport.currentState?.toggleCard();
             }
           }
         },
@@ -801,14 +814,14 @@ class CovidResponseState extends State<CovidResponse>
         onFlipDone: (status) {
           print(status);
           if (status == false) {
-            if (youth.currentState.isFront == false) {
-              youth.currentState.toggleCard();
+            if (youth.currentState?.isFront == false) {
+              youth.currentState?.toggleCard();
             }
-            if (health.currentState.isFront == false) {
-              health.currentState.toggleCard();
+            if (health.currentState?.isFront == false) {
+              health.currentState?.toggleCard();
             }
-            if (media.currentState.isFront == false) {
-              media.currentState.toggleCard();
+            if (media.currentState?.isFront == false) {
+              media.currentState?.toggleCard();
             }
           }
         },
@@ -891,14 +904,14 @@ class CovidResponseState extends State<CovidResponse>
         onFlipDone: (status) {
           print(status);
           if (status == false) {
-            if (youth.currentState.isFront == false) {
-              youth.currentState.toggleCard();
+            if (youth.currentState?.isFront == false) {
+              youth.currentState?.toggleCard();
             }
-            if (media.currentState.isFront == false) {
-              media.currentState.toggleCard();
+            if (media.currentState?.isFront == false) {
+              media.currentState?.toggleCard();
             }
-            if (communitysupport.currentState.isFront == false) {
-              communitysupport.currentState.toggleCard();
+            if (communitysupport.currentState?.isFront == false) {
+              communitysupport.currentState?.toggleCard();
             }
           }
         },
@@ -1054,11 +1067,11 @@ class CovidResponseState extends State<CovidResponse>
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.videolibrary = resp.data.list;
+              GlobalLists.videolibrary = resp.data!.list!;
               print(GlobalLists.videolibrary.length);
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -1089,12 +1102,12 @@ class CovidResponseState extends State<CovidResponse>
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.newsLettersList = resp.data.list;
-              GlobalLists.homeceomsgbaseurl = resp.baseUrl;
+              GlobalLists.newsLettersList = resp.data!.list!;
+              GlobalLists.homeceomsgbaseurl = resp.baseUrl!;
               print(GlobalLists.newsLettersList.length);
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

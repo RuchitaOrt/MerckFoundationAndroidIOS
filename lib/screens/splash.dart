@@ -21,9 +21,9 @@ import 'package:package_info/package_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SplashScreen extends StatefulWidget {
-  final String token;
+  final dynamic token;
 
-  const SplashScreen({Key key, this.token}) : super(key: key);
+  const SplashScreen({Key? key, this.token}) : super(key: key);
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -49,8 +49,8 @@ class _SplashScreenState extends State<SplashScreen> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       // fetch data
       getCurrentVersionCount();
-      //
-      getversion();
+      //31stmarch
+       getversion();
 
       await initPlatformState();
       // await gettokenapi(widget.token);
@@ -139,7 +139,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Container(
                   width: SizeConfig.blockSizeHorizontal * 55,
                   child: Text(
-                    "version 1.0.24",
+                    "version 1.0.36",
                     style: TextStyle(
                       color: Colors.black87,
                     ),
@@ -203,15 +203,19 @@ class _SplashScreenState extends State<SplashScreen> {
   checkmethod() {}
 
   void fetchRemoteConfig(BuildContext context) async {
+    print("CUREENT $currentVersion");
+     print("CUREENT $serverVersionCount");
+    print(currentVersion);
+        print(serverVersionCount);
     if (Platform.isAndroid) {
-      if (currentVersion != serverVersionCount) {
-        showUpdateAlertDialog(context, "Update App",
-            "A new Version is available on Playstore", "Update", appLink, true);
-        print("showpopup");
-        // loadpopup(context);
-      } else {
+      // if (currentVersion != serverVersionCount) {
+      //   showUpdateAlertDialog(context, "Update App",
+      //       "A new Version is available on Playstore", "Update", appLink, true);
+      //   print("showpopup");
+      //   // loadpopup(context);
+      // } else {
         loadData();
-      }
+      //  }
     } else {
       print("ios current version $currentVersion");
       print("ios server version $iosServerVersionCount");
@@ -240,23 +244,63 @@ class _SplashScreenState extends State<SplashScreen> {
     );
     Widget continueButton = ElevatedButton(
       child: Text(downloadButtonText),
-      onPressed: () {
-        Navigator.pop(context);
-        if (Platform.isAndroid) {
-          try {
-            launch("market://details?id=de.merck.foundation");
-            //  updateversion();
-          } on PlatformException catch (e) {
-            launch(appLink);
-          } finally {
-            launch(appLink);
-          }
-        } else {
-          LaunchReview.launch(writeReview: false, iOSAppId: "1535584997");
+      onPressed: () async {
+  Navigator.pop(context);
 
-          // launch("https://apps.apple.com/in/app/merck-foundation/id1535584997");
-        }
-      },
+  if (Platform.isAndroid) {
+    final Uri playStoreAppUri =
+        Uri.parse("market://details?id=de.merck.foundation");
+
+    final Uri playStoreWebUri =
+        Uri.parse("https://play.google.com/store/apps/details?id=de.merck.foundation");
+
+    try {
+      // Try opening Play Store app
+      bool launched = await launchUrl(
+        playStoreAppUri,
+        mode: LaunchMode.externalApplication,
+      );
+
+      if (!launched) {
+        // Fallback → open Play Store in browser
+        await launchUrl(
+          playStoreWebUri,
+          mode: LaunchMode.externalApplication,
+        );
+      }
+    } catch (e) {
+      // Final fallback
+      await launchUrl(
+        playStoreWebUri,
+        mode: LaunchMode.externalApplication,
+      );
+    }
+  } else {
+    // iOS App Store
+    LaunchReview.launch(
+      writeReview: false,
+      iOSAppId: "1535584997",
+    );
+  }
+}
+
+      // onPressed: () {
+      //   Navigator.pop(context);
+      //   if (Platform.isAndroid) {
+      //     try {
+      //       launch("market://details?id=de.merck.foundation");
+      //       //  updateversion();
+      //     } on PlatformException catch (e) {
+      //       launch(appLink);
+      //     } finally {
+      //       launch(appLink);
+      //     }
+      //   } else {
+      //     LaunchReview.launch(writeReview: false, iOSAppId: "1535584997");
+
+      //     // launch("https://apps.apple.com/in/app/merck-foundation/id1535584997");
+      //   }
+      // },
     );
 
     // set up the AlertDialog
@@ -285,14 +329,17 @@ class _SplashScreenState extends State<SplashScreen> {
         barrierDismissible: false,
         barrierLabel: '',
         context: context,
-        pageBuilder: (context, animation1, animation2) {});
+          pageBuilder: (context, animation1, animation2) {
+    return Center(child: alert); // ✅ return a non-null Widget
+  })
+       ;
 
     // show the dialog
   }
 
   onDoneLoading() async {
     SPManager().getAuthToken().then((value) async {
-      if (value == null)
+      if (value != "")
         // Navigator.pushReplacement(
         //     context, MaterialPageRoute(builder: (context) => Welcome()));
         Navigator.pushReplacement(
@@ -326,12 +373,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
           if (resp.success == true) {
             setState(() {
-              serverVersionCount = resp.list.version;
-              iosServerVersionCount = resp.list.iosVersion;
-              fetchRemoteConfig(context);
+              serverVersionCount = resp.list!.version!;
+              iosServerVersionCount = resp.list!.iosVersion!;
+              
+               fetchRemoteConfig(context);
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

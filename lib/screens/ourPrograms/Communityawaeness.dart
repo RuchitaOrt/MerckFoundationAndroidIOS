@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/AutoResizeWebView.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -14,6 +13,8 @@ import 'package:merckfoundation22dec/model/subproaboutmmtmResponse.dart'
     as aboutmmtm;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:webview_flutter/webview_flutter.dart';
 
 class CommunityAwareness extends StatefulWidget {
   @override
@@ -112,7 +113,7 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
     );
   }
 
-  Future<http.Response> getmmtmapi() async {
+  Future<http.Response?> getmmtmapi() async {
     print("mmtm api");
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -123,14 +124,14 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
       print(APIManager.subprogramcommunityawareness);
       print("response");
       print(response);
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         var res = json.decode(response.body);
         print("ff");
         print(res);
         aboutmmtm.SubProgramabotmmtmResponse homepageres =
             aboutmmtm.SubProgramabotmmtmResponse.fromJson(res);
 
-        Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> section1 = homepageres.middleArea!;
 
         print(section1);
         print(section1['1']);
@@ -155,7 +156,7 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
             "content".toLowerCase()) {
           print("hi");
           GlobalLists.homecontentlist =
-              homepageres.middleArea['1'].content.list;
+              homepageres.middleArea!['1']!.content!.list!;
           print(
               'GlobalLists.homecontentlist.length${GlobalLists.homecontentlist[0].pageContent}');
         }
@@ -191,18 +192,43 @@ class OurProgramstrategyState extends State<CommunityAwareness> {
           // Check if list is not empty
           listofwiget.add(HtmlWidget(
             """${GlobalLists.homecontentlist[0].pageContent} """,
+             customWidgetBuilder: (element) {
+              if (element.localName == 'video') {
+                final src = element.children.firstWhere((e) => e.localName == 'source').attributes['src'];
+                if (src != null && src.contains('youtube.com')) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: src,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else  if (element.localName == 'iframe') {
+                final iframeSrc = element.attributes['src'];
+
+                // If the iframe is a YouTube video, handle it
+                if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: iframeSrc,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else if (element.localName == 'table') {
+     
+        return  AutoResizeWebView(htmlContent: element.outerHtml,);
+       
+      }
+              return null;
+            },
             textStyle: TextStyle(fontSize: 12),
           )
-              // Html(
-              //   data: """${GlobalLists.homecontentlist[0].pageContent} """,
-              //   onLinkTap: (url) {
-              //     print("Opening $url...");
-              //     ShowDialogs.launchURL(url);
-              //   },
-              //   style: {
-              //     "tr": Customcolor.tableboderstyle(context),
-              //   },
-              // ),
+       
               );
         } else {
           // Handle case when homecontentlist is empty

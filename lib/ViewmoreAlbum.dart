@@ -9,7 +9,7 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -25,13 +25,13 @@ import 'package:http/http.dart' as http;
 // ignore: must_be_immutable
 class ViewmoreAlbum extends StatefulWidget {
   final dynamic apiurl;
-  String appBarTitle;
+  dynamic appBarTitle;
   final dynamic sharelink;
   final dynamic albumurl;
   final dynamic albumtitle;
 
   ViewmoreAlbum(
-      {Key key, this.apiurl, this.sharelink, this.albumurl, this.albumtitle})
+      {Key? key, this.apiurl, this.sharelink, this.albumurl, this.albumtitle})
       : super(key: key);
   @override
   _viewmoremmtmaState createState() => _viewmoremmtmaState();
@@ -40,7 +40,7 @@ class ViewmoreAlbum extends StatefulWidget {
 class _viewmoremmtmaState extends State<ViewmoreAlbum> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   ScrollController _sc = new ScrollController();
-  CreategallerymobileResponse resp;
+  late CreategallerymobileResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -79,10 +79,10 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.viewmorealbum.add(album.ListElement(
-                      id: resp.list[i].id,
-                      photo: resp.list[i].photo,
-                      photoCategoryId: resp.list[i].photoCategoryId,
-                      photoDescription: resp.list[i].photoDescription,
+                      id: resp.list![i].id,
+                      photo: resp.list![i].photo,
+                      photoCategoryId: resp.list![i].photoCategoryId,
+                      photoDescription: resp.list![i].photoDescription,
                     ));
                   });
 
@@ -90,7 +90,7 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                 }
 
                 offset = totalcount;
-                int remem = resp.list.length - totalcount;
+                int remem = resp.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -99,7 +99,7 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                   totalcount = totalcount + 10;
                 }
                 // // GlobalLists.newsLettersList = resp.data.list;
-                Constantstring.baseUrl = resp.baseUrl;
+                Constantstring.baseUrl = resp.baseUrl!;
                 print("-----------------------------------");
                 print(totalcount);
                 //    print(GlobalLists.newsLettersList.length);
@@ -196,7 +196,7 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                                             context: context,
                                             image: Constantstring.baseUrl +
                                                 GlobalLists
-                                                    .viewmorealbum[index].photo,
+                                                    .viewmorealbum[index].photo!,
                                             description: GlobalLists
                                                 .viewmorealbum[index]
                                                 .photoDescription,
@@ -241,7 +241,7 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                                                               GlobalLists
                                                                   .viewmorealbum[
                                                                       index]
-                                                                  .photo),
+                                                                  .photo!),
                                                       fit: BoxFit.fill,
                                                     ),
                                                   ),
@@ -253,7 +253,7 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
                                                 child: Text(
                                                   GlobalLists
                                                       .viewmorealbum[index]
-                                                      .photoDescription,
+                                                      .photoDescription!,
                                                   textAlign: TextAlign.center,
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -332,16 +332,16 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
       resp = creategallerymobileResponseFromJson(response.body);
       if (response.statusCode == 200) {
         if (res['success'] == "true") {
-          Constantstring.baseUrl = resp.baseUrl;
+          Constantstring.baseUrl = resp.baseUrl!;
           // GlobalLists.videoviewmoreambasdarslist = resp.list;
-          if (resp.list.length < 10) {
-            for (int i = offset; i < resp.list.length; i++) {
+          if (resp.list!.length < 10) {
+            for (int i = offset; i < resp.list!.length; i++) {
               setState(() {
                 GlobalLists.viewmorealbum.add(album.ListElement(
-                  id: resp.list[i].id,
-                  photo: resp.list[i].photo,
-                  photoCategoryId: resp.list[i].photoCategoryId,
-                  photoDescription: resp.list[i].photoDescription,
+                  id: resp.list![i].id,
+                  photo: resp.list![i].photo,
+                  photoCategoryId: resp.list![i].photoCategoryId,
+                  photoDescription: resp.list![i].photoDescription,
                 ));
               });
             }
@@ -349,17 +349,17 @@ class _viewmoremmtmaState extends State<ViewmoreAlbum> {
             for (int i = offset; i < totalcount; i++) {
               setState(() {
                 GlobalLists.viewmorealbum.add(album.ListElement(
-                  id: resp.list[i].id,
-                  photo: resp.list[i].photo,
-                  photoCategoryId: resp.list[i].photoCategoryId,
-                  photoDescription: resp.list[i].photoDescription,
+                  id: resp.list![i].id,
+                  photo: resp.list![i].photo,
+                  photoCategoryId: resp.list![i].photoCategoryId,
+                  photoDescription: resp.list![i].photoDescription,
                 ));
               });
             }
           }
 
           offset = totalcount;
-          int remem = resp.list.length - totalcount;
+          int remem = resp.list!.length - totalcount;
           print("remem");
           print(remem);
           if (remem < 10) {

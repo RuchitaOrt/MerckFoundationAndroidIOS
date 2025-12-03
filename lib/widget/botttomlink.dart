@@ -4,7 +4,7 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 class Bottomcardlink extends StatelessWidget {
   const Bottomcardlink({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

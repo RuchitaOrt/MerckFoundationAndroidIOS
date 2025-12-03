@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+
 import 'package:screenshot/screenshot.dart';
 
 class Communitysupport extends StatefulWidget {
@@ -17,7 +18,7 @@ class Communitysupport extends StatefulWidget {
 
 class CommunitysupportState extends State<Communitysupport>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   double imgHeight = 50;
   String _platformVersion = 'Unknown';

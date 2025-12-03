@@ -80,16 +80,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
               ],
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(right: 0, left: 0),
-          //   child: Align(
-          //     alignment: Alignment.topRight,
-          //     child: Image.asset(
-          //       "assets/newImages/flowers_footer.png",
-          //       height: 170,
-          //     ),
-          //   ),
-          // ),
+          
           SizedBox(
             height: 10,
           ),
@@ -113,7 +104,7 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
     );
   }
 
-  Future<http.Response> getmmtmapi() async {
+  Future<http.Response?> getmmtmapi() async {
     print("mmtm api");
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -123,14 +114,14 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
       );
       print("response");
       print(response);
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         var res = json.decode(response.body);
         print("ff");
         print(res);
         berna.EmpowerinBernaResponse homepageres =
             berna.EmpowerinBernaResponse.fromJson(res);
 
-        Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> section1 = homepageres.middleArea!;
 
         // print(section1);
         print("section1['1'] :- ${section1['1']}");
@@ -158,14 +149,14 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
         if (middlevideoname.toString().toLowerCase() ==
             "videos".toLowerCase()) {
           print("hill");
-          GlobalLists.homevideolist = homepageres.middleArea['2'].videos.list;
+          GlobalLists.homevideolist = homepageres.middleArea!['2']!.videos!.list!;
           print(GlobalLists.homevideolist.length);
         }
         if (middlecontentname.toString().toLowerCase() ==
             "content".toLowerCase()) {
           print("hi");
           GlobalLists.homecontentlist =
-              homepageres.middleArea['1'].content.list;
+              homepageres.middleArea!['1']!.content!.list!;
           print(GlobalLists.homecontentlist.length);
         }
 
@@ -394,13 +385,30 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url, renderContext, attributes, element) {
+            onLinkTap: (url, attributes, element) {
               print("Opening $url...");
-              ShowDialogs.launchURL(url);
+              ShowDialogs.launchURL(url!);
             },
             style: {
               "tr": Customcolor.tableboderstyle(context),
             },
+             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
           ),
         );
       }
@@ -501,16 +509,4 @@ class EmpoweringBernaState extends State<EmpoweringBerna> {
     return listofwiget;
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 }

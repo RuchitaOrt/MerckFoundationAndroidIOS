@@ -1,8 +1,9 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+// import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/widget/CustomeSwiper.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
@@ -18,7 +19,7 @@ class CallforApplication extends StatefulWidget {
   final dynamic sharelink;
   final dynamic index;
 
-  const CallforApplication({Key key, this.apiurl, this.sharelink, this.index})
+  const CallforApplication({Key? key, this.apiurl, this.sharelink, this.index})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -28,8 +29,8 @@ class CallforApplication extends StatefulWidget {
 
 class CallApplicationState extends State<CallforApplication>
     with SingleTickerProviderStateMixin {
-  ScrollController _scrollViewController;
-  TabController _tabController;
+  late ScrollController _scrollViewController;
+   TabController? _tabController;
   List images = [
     "assets/newImages/cfa1.png",
     "assets/newImages/m3.png",
@@ -53,18 +54,20 @@ class CallApplicationState extends State<CallforApplication>
   @override
   void dispose() {
     _scrollViewController.dispose();
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
-  _launchURL(String urlIs) async {
-    var url = urlIs;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+  Future<void> _launchURL(String urlIs) async {
+  final Uri uri = Uri.parse(urlIs);
+
+  if (!await launchUrl(
+    uri,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw 'Could not launch $uri';
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -174,113 +177,46 @@ class CallApplicationState extends State<CallforApplication>
       child: SingleChildScrollView(
         child: Column(
           children: [
+            //16june2025
             Container(
-              height: 350,
-              child: Swiper(
-                fade: 0.0,
-                onIndexChanged: (val) {
-                  setState(() {
-                    _current1 = val;
-                  });
-                },
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: [
-                      Container(
-                        height: 350,
-                        child: Card(
-                          //elevation: 5,
-                          //color: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Column(
-                            children: <Widget>[
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    _launchURL(Constantstring.baseUrl +
-                                        GlobalLists
-                                            .upcomingevent[index].pdfFile);
-                                  },
-                                  child: Container(
-                                    //  color: Colors.amber,
-                                    width: double.infinity,
-                                    //height: 350,
-                                    child: FadeInImage.assetNetwork(
-                                      placeholder:
-                                          'assets/newImages/placeholder_3.jpg',
-                                      image: Constantstring.baseUrl +
-                                          GlobalLists
-                                              .upcomingevent[index].appImg,
-                                      fit: BoxFit.cover,
-                                      //  height: 410
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-                itemCount: GlobalLists.upcomingevent.length,
-                viewportFraction: 0.7,
-                layout: SwiperLayout.DEFAULT,
-                scale: 0.9,
-                itemHeight: 410,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20, bottom: 20),
-              child: new DotsIndicator(
-                dotsCount: GlobalLists.upcomingevent.length,
-                position: double.parse("$_current1"),
-                decorator: DotsDecorator(
-                  size: const Size.square(9.0),
-                  activeSize: const Size(25.0, 9.0),
-                  color: Customcolor.ligthpink,
-                  spacing: EdgeInsets.only(right: 3),
-                  activeColor: Customcolor.pink_col,
-                  activeShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0)),
-                ),
-              ),
-            ),
-            ListTile(
-              // subtitle: Text("awesome image caption"),
-              title: Text(
-                GlobalLists.upcomingevent[_current1].title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17),
-              ),
-            ),
-            SizedBox(
-              height: 15,
+              // height: 350,
+              child: 
+          
+             CustomSwiper(imageUrls: GlobalLists.upcomingevent,),
+             
             ),
             // Padding(
-            //   padding: const EdgeInsets.only(right: 60, left: 60),
-            //   child: Image.asset(
-            //     "assets/newImages/flowers_footer.png",
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 0, left: 0),
-            //   child: Align(
-            //     alignment: Alignment.topRight,
-            //     child: Image.asset(
-            //       "assets/newImages/flowers_footer.png",
-            //       height: 170,
+            //   padding: const EdgeInsets.only(top: 20, bottom: 20),
+            //   child: new DotsIndicator(
+            //     dotsCount: GlobalLists.upcomingevent.length,
+            //     position: double.parse("$_current1"),
+            //     decorator: DotsDecorator(
+            //       size: const Size.square(9.0),
+            //       activeSize: const Size(25.0, 9.0),
+            //       color: Customcolor.ligthpink,
+            //       spacing: EdgeInsets.only(right: 3),
+            //       activeColor: Customcolor.pink_col,
+            //       activeShape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(5.0)),
             //     ),
             //   ),
             // ),
+
+            // ListTile(
+            //   // subtitle: Text("awesome image caption"),
+            //   title: Text(
+            //     GlobalLists.upcomingevent[_current1].title,
+            //     textAlign: TextAlign.center,
+            //     style: TextStyle(
+            //         color: Colors.black87,
+            //         fontWeight: FontWeight.w600,
+            //         fontSize: 17),
+            //   ),
+            // ),
             // SizedBox(
-            //   height: 10,
-            // )
+            //   height: 15,
+            // ),
+           
 
             Padding(
               padding: const EdgeInsets.only(right: 0, left: 0),
@@ -310,115 +246,9 @@ class CallApplicationState extends State<CallforApplication>
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 350,
-              child: Swiper(
-                fade: 0.0,
-                onIndexChanged: (val) {
-                  setState(() {
-                    _current = val;
-                  });
-                },
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: [
-                      Container(
-                        height: 350,
-                        child: Card(
-                          //elevation: 5,
-                          //color: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Column(
-                            children: <Widget>[
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    _launchURL(Constantstring.baseUrl +
-                                        GlobalLists.pastevent[index].pdfFile);
-                                  },
-                                  child: Container(
-                                    //  color: Colors.amber,
-                                    width: double.infinity,
-                                    //height: 350,
-                                    child: FadeInImage.assetNetwork(
-                                      placeholder:
-                                          'assets/newImages/placeholder_3.jpg',
-                                      image: Constantstring.baseUrl +
-                                          GlobalLists.pastevent[index].appImg,
-                                      fit: BoxFit.cover,
-                                      //  height: 410
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-                itemCount: GlobalLists.pastevent.length,
-                viewportFraction: 0.7,
-                layout: SwiperLayout.DEFAULT,
-                scale: 0.9,
-                itemHeight: 410,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20, bottom: 20),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                physics: ScrollPhysics(),
-                child: DotsIndicator(
-                  dotsCount: GlobalLists.pastevent.length,
-                  position:  double.parse("$_current"),
-                  decorator: DotsDecorator(
-                    size: const Size.square(9.0),
-                    activeSize: const Size(25.0, 9.0),
-                    color: Customcolor.ligthpink,
-                    spacing: EdgeInsets.only(right: 3),
-                    activeColor: Customcolor.pink_col,
-                    activeShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
-                  ),
-                ),
-              ),
-            ),
-            ListTile(
-              // subtitle: Text("awesome image caption"),
-              title: Text(
-                GlobalLists.pastevent[_current1].title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17),
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 60, left: 60),
-            //   child: Image.asset(
-            //     "assets/newImages/flowers_footer.png",
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 0, left: 0),
-            //   child: Align(
-            //     alignment: Alignment.topRight,
-            //     child: Image.asset(
-            //       "assets/newImages/flowers_footer.png",
-            //       height: 170,
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // )
+            //16june2025
+           CustomSwiper(imageUrls: GlobalLists.pastevent,),
+            
 
             Padding(
               padding: const EdgeInsets.only(right: 0, left: 0),
@@ -439,154 +269,6 @@ class CallApplicationState extends State<CallforApplication>
       ),
     );
   }
-
-  // Widget pastEvents() {
-  //   return Container(
-  //     height: 340,
-  //     // color: Colors.grey.shade800,
-  //     padding: EdgeInsets.only(left: 8, right: 8, top: 8),
-  //     child: SingleChildScrollView(
-  //       child: Column(
-  //         children: [
-  //           Container(
-  //             height: 350,
-  //             child: Expanded(
-  //               child: Swiper(
-  //                 onIndexChanged: (val) {
-  //                   setState(() {
-  //                     _current = val;
-  //                   });
-  //                 },
-  //                 fade: 0.0,
-  //                 itemBuilder: (BuildContext context, int index) {
-  //                   // return Column(
-  //                   //   children: <Widget>[
-  //                   //     Expanded(
-  //                   //       child: GestureDetector(
-  //                   //         onTap: () {
-  //                   //           _launchURL(Constantstring.baseUrl +
-  //                   //               GlobalLists.pastevent[index].pdfFile);
-  //                   //         },
-  //                   //         child: Container(
-  //                   //           width: double.infinity,
-  //                   //           child: FadeInImage.assetNetwork(
-  //                   //             placeholder:
-  //                   //                 'assets/newImages/placeholder_3.jpg',
-  //                   //             image: Constantstring.baseUrl +
-  //                   //                 GlobalLists.pastevent[index].appImg,
-  //                   //             fit: BoxFit.cover,
-  //                   //             height: 80,
-  //                   //           ),
-  //                   //         ),
-  //                   //       ),
-  //                   //     ),
-  //                   //   ],
-  //                   // );
-  //                   return Container(
-  //                     height: 350,
-  //                     child: Card(
-  //                       //elevation: 5,
-  //                       //color: Colors.transparent,
-  //                       shape: RoundedRectangleBorder(
-  //                           borderRadius: BorderRadius.circular(10)),
-  //                       child: Column(
-  //                         children: <Widget>[
-  //                           Expanded(
-  //                             child: GestureDetector(
-  //                               onTap: () {
-  //                                 _launchURL(Constantstring.baseUrl +
-  //                                     GlobalLists.pastevent[index].pdfFile);
-  //                               },
-  //                               child: Container(
-  //                                 //  color: Colors.amber,
-  //                                 width: double.infinity,
-  //                                 //height: 350,
-  //                                 child: FadeInImage.assetNetwork(
-  //                                   placeholder:
-  //                                       'assets/newImages/placeholder_3.jpg',
-  //                                   image: Constantstring.baseUrl +
-  //                                       GlobalLists.pastevent[index].appImg,
-  //                                   fit: BoxFit.cover,
-  //                                   //  height: 410
-  //                                 ),
-  //                               ),
-  //                             ),
-  //                           ),
-  //                         ],
-  //                       ),
-  //                     ),
-  //                   );
-  //                 },
-  //                 itemCount: GlobalLists.pastevent.length,
-  //                 viewportFraction: 0.7,
-  //                 layout: SwiperLayout.DEFAULT,
-  //                 scale: 0.9,
-  //                 // pagination: SwiperPagination(
-  //                 //   builder: new DotSwiperPaginationBuilder(
-  //                 //       color: Customcolor.ligthpink,
-  //                 //       activeColor: Customcolor.pink_col),
-  //                 // ),
-  //               ),
-  //             ),
-  //           ),
-  //           Padding(
-  //             padding: const EdgeInsets.only(top: 20, bottom: 20),
-  //             child: SingleChildScrollView(
-  //               scrollDirection: Axis.horizontal,
-  //               physics: ScrollPhysics(),
-  //               child: new DotsIndicator(
-  //                 dotsCount: GlobalLists.pastevent.length,
-  //                 position: double.parse("$_current"),
-  //                 decorator: DotsDecorator(
-  //                   size: const Size.square(9.0),
-  //                   activeSize: const Size(25.0, 9.0),
-  //                   color: Customcolor.ligthpink,
-  //                   spacing: EdgeInsets.only(right: 3),
-  //                   activeColor: Customcolor.pink_col,
-  //                   activeShape: RoundedRectangleBorder(
-  //                       borderRadius: BorderRadius.circular(5.0)),
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //           ListTile(
-  //             // subtitle: Text("awesome image caption"),
-  //             title: Text(
-  //               GlobalLists.pastevent[_current].title,
-  //               textAlign: TextAlign.center,
-  //               style: TextStyle(
-  //                   color: Colors.black87,
-  //                   fontWeight: FontWeight.w600,
-  //                   fontSize: 17),
-  //             ),
-  //           ),
-  //           SizedBox(
-  //             height: 15,
-  //           ),
-  //           // Padding(
-  //           //   padding: const EdgeInsets.only(right: 60, left: 60),
-  //           //   child: Image.asset(
-  //           //     "assets/newImages/flowers_footer.png",
-  //           //   ),
-  //           // ),
-  //           Padding(
-  //             padding: const EdgeInsets.only(right: 0, left: 0),
-  //             child: Align(
-  //               alignment: Alignment.topRight,
-  //               child: Image.asset(
-  //                 "assets/newImages/flowers_footer.png",
-  //                 height: 170,
-  //               ),
-  //             ),
-  //           ),
-  //           SizedBox(
-  //             height: 10,
-  //           )
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 
   getcallforapp(dynamic api) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
@@ -614,6 +296,7 @@ class CallApplicationState extends State<CallforApplication>
               }
 
               Constantstring.baseUrl = resp.baseUrl;
+              Constantstring.pdfUrl = resp.pdfUrl;
             });
           } else {
             ShowDialogs.showToast(resp.msg);
@@ -621,7 +304,7 @@ class CallApplicationState extends State<CallforApplication>
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
         },
       );
     } else {

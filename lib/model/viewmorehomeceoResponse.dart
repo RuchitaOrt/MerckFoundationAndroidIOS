@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final viewmorehomeceo = viewmorehomeceoFromJson(jsonString);
-
 import 'dart:convert';
 
 Viewmorehomeceo viewmorehomeceoFromJson(String str) =>
@@ -19,11 +15,11 @@ class Viewmorehomeceo {
     this.data,
   });
 
-  String baseUrl;
-  int objectCount;
-  String success;
-  String msg;
-  Data data;
+  String? baseUrl;
+  int? objectCount;
+  String? success;
+  String? msg;
+  Data? data;
 
   factory Viewmorehomeceo.fromJson(Map<String, dynamic> json) =>
       Viewmorehomeceo(
@@ -31,7 +27,7 @@ class Viewmorehomeceo {
         objectCount: json["object_count"],
         success: json["success"],
         msg: json["msg"],
-        data: Data.fromJson(json["data"]),
+        data: json["data"] != null ? Data.fromJson(json["data"]) : null,
       );
 
   Map<String, dynamic> toJson() => {
@@ -39,24 +35,26 @@ class Viewmorehomeceo {
         "object_count": objectCount,
         "success": success,
         "msg": msg,
-        "data": data.toJson(),
+        "data": data?.toJson(),
       };
 }
 
 class Data {
-  Data({
-    this.list,
-  });
+  Data({this.list});
 
-  List<ListElement> list;
+  List<ListElement>? list;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        list: List<ListElement>.from(
-            json["list"].map((x) => ListElement.fromJson(x))),
+        list: json["list"] != null
+            ? List<ListElement>.from(
+                json["list"].map((x) => ListElement.fromJson(x)))
+            : [],
       );
 
   Map<String, dynamic> toJson() => {
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "list": list != null
+            ? List<dynamic>.from(list!.map((x) => x.toJson()))
+            : [],
       };
 }
 
@@ -77,19 +75,19 @@ class ListElement {
     this.updatedAt,
   });
 
-  String id;
-  String articleType;
-  String title;
-  String shortDescription;
-  String details;
-  String detailPageUrl;
-  String image;
-  AltTag altTag;
-  String metaKeyword;
-  String metaDescription;
-  String status;
-  DateTime createdAt;
-  DateTime updatedAt;
+  String? id;
+  String? articleType;
+  String? title;
+  String? shortDescription;
+  String? details;
+  String? detailPageUrl;
+  String? image;
+  AltTag? altTag;
+  String? metaKeyword;
+  String? metaDescription;
+  String? status;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
   factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
@@ -103,8 +101,12 @@ class ListElement {
         metaKeyword: json["meta_keyword"],
         metaDescription: json["meta_description"],
         status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"] != null
+            ? DateTime.tryParse(json["created_at"])
+            : null,
+        updatedAt: json["updated_at"] != null
+            ? DateTime.tryParse(json["updated_at"])
+            : null,
       );
 
   Map<String, dynamic> toJson() => {
@@ -119,8 +121,8 @@ class ListElement {
         "meta_keyword": metaKeyword,
         "meta_description": metaDescription,
         "status": status,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
       };
 }
 
@@ -133,26 +135,22 @@ enum AltTag {
 final altTagValues = EnumValues({
   "CEO of Merck Foundation, Dr. Rasha Kelej":
       AltTag.CEO_OF_MERCK_FOUNDATION_DR_RASHA_KELEJ,
+  "Winners of Merck Foundation MMTM Awards 2020":
+      AltTag.WINNERS_OF_MERCK_FOUNDATION_MMTM_AWARDS_2020,
   "CEO of Merck Foundation, Dr. Rasha Kelej & Namibia First Lady ":
       AltTag.CEO_OF_MERCK_FOUNDATION_DR_RASHA_KELEJ_NAMIBIA_FIRST_LADY,
-  "Winners of Merck Foundation MMTM Awards 2020":
-      AltTag.WINNERS_OF_MERCK_FOUNDATION_MMTM_AWARDS_2020
 });
 
 class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
+  final Map<String, T> map;
+  late final Map<T, String> reverseMap;
 
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
+  EnumValues(this.map) {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
   }
-}
 
+  Map<T, String> get reverse => reverseMap;
+}
 
 // // To parse this JSON data, do
 // //

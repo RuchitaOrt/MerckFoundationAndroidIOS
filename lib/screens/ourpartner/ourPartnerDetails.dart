@@ -6,7 +6,7 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/model/ourPartnerResponse.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 
@@ -18,7 +18,7 @@ import 'package:merckfoundation22dec/model/ourPartnerObjectivesResp.dart'
 
 class Ourpatnerdetail extends StatefulWidget {
   const Ourpatnerdetail({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -29,7 +29,7 @@ class Ourpatnerdetail extends StatefulWidget {
 
 class OurpatnerdetailState extends State<Ourpatnerdetail> {
   ScrollController _sc = new ScrollController();
-  OurpartnerResponse resp;
+  late OurpartnerResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -69,17 +69,17 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.ourPartnerList.add(ListElement(
-                        id: resp.data.list[i].id,
-                        title: resp.data.list[i].title,
-                        webUrl: resp.data.list[i].webUrl,
-                        image: resp.data.list[i].image));
+                        id: resp.data!.list![i].id,
+                        title: resp.data!.list![i].title,
+                        webUrl: resp.data!.list![i].webUrl,
+                        image: resp.data!.list![i].image));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
                 }
 
                 offset = totalcount;
-                int remem = resp.data.list.length - totalcount;
+                int remem = resp.data!.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -88,7 +88,7 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                   totalcount = totalcount + 10;
                 }
                 // // GlobalLists.newsLettersList = resp.data.list;
-                Constantstring.baseUrl = resp.baseUrl;
+                Constantstring.baseUrl = resp.baseUrl!;
                 print("-----------------------------------");
                 print(totalcount);
                 //    print(GlobalLists.newsLettersList.length);
@@ -98,7 +98,7 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -146,13 +146,30 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                     child: Html(
                       data:
                           """${GlobalLists.ourPartnerObjectives[0].pageContent} """,
-                      onLinkTap: (url, renderContext, attributes, element) {
+                      onLinkTap: (url, attributes, element) {
                         print("Opening $url...");
-                        ShowDialogs.launchURL(url);
+                        ShowDialogs.launchURL(url!);
                       },
                       style: {
                         "tr": Customcolor.tableboderstyle(context),
                       },
+                       extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                     ),
                   ),
             SizedBox(
@@ -204,7 +221,7 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                                       //             )));
 
                                       ShowDialogs.launchURL(GlobalLists
-                                          .ourPartnerList[index].webUrl);
+                                          .ourPartnerList[index].webUrl!);
                                     },
                                     child: Card(
                                         shape: RoundedRectangleBorder(
@@ -247,7 +264,7 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                                                             GlobalLists
                                                                 .ourPartnerList[
                                                                     index]
-                                                                .image,
+                                                                .image!,
                                                     fit: BoxFit.contain,
                                                   ),
                                                 ),
@@ -259,7 +276,7 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
                                                   child: Text(
                                                     GlobalLists
                                                         .ourPartnerList[index]
-                                                        .title,
+                                                        .title!,
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       color: Customcolor
@@ -344,31 +361,31 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
           if (resp.success == "True") {
             setState(() {
               print("here");
-              Constantstring.baseUrl = resp.baseUrl;
-              if (resp.data.list.length < 10) {
-                for (int i = offset; i < resp.data.list.length; i++) {
+              Constantstring.baseUrl = resp.baseUrl!;
+              if (resp.data!.list!.length < 10) {
+                for (int i = offset; i < resp.data!.list!.length; i++) {
                   setState(() {
                     GlobalLists.ourPartnerList.add(ListElement(
-                        id: resp.data.list[i].id,
-                        title: resp.data.list[i].title,
-                        webUrl: resp.data.list[i].webUrl,
-                        image: resp.data.list[i].image));
+                        id: resp.data!.list![i].id,
+                        title: resp.data!.list![i].title,
+                        webUrl: resp.data!.list![i].webUrl,
+                        image: resp.data!.list![i].image));
                   });
                 }
               } else {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.ourPartnerList.add(ListElement(
-                        id: resp.data.list[i].id,
-                        title: resp.data.list[i].title,
-                        webUrl: resp.data.list[i].webUrl,
-                        image: resp.data.list[i].image));
+                        id: resp.data!.list![i].id,
+                        title: resp.data!.list![i].title,
+                        webUrl: resp.data!.list![i].webUrl,
+                        image: resp.data!.list![i].image));
                   });
                 }
               }
 
               offset = totalcount;
-              int remem = resp.data.list.length - totalcount;
+              int remem = resp.data!.list!.length - totalcount;
               print("remem");
               print(remem);
               if (remem < 10) {
@@ -385,7 +402,7 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
               _isLoading = false;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -416,10 +433,10 @@ class OurpatnerdetailState extends State<Ourpatnerdetail> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.ourPartnerObjectives = resp.data.list;
+              GlobalLists.ourPartnerObjectives = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

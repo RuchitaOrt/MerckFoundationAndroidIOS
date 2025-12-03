@@ -1,22 +1,19 @@
 import 'dart:convert';
 
-import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/style.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
-import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/AutoResizeWebView.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -30,10 +27,10 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/MerckFellowship.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/watchmorevideoambaassadar.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class MerckFellowship extends StatefulWidget {
   @override
@@ -68,7 +65,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
     "assets/newImages/leader1.png",
     "assets/newImages/leader2.png",
   ];
-  CarouselSlider carouselSlider;
+  late CarouselSlider carouselSlider;
 
   bool iscall = true;
   bool islibrary = false;
@@ -77,8 +74,8 @@ class OurProgramsDetailsState extends State<MerckFellowship>
   String expandedName = "Upcoming Events";
 
   final List<Tab> tabs = <Tab>[];
-  final CarouselController callAppCarouselController = CarouselController();
-  TabController _tabController;
+  final CarouselSliderController callAppCarouselController = CarouselSliderController();
+  TabController? _tabController;
 
   final CarouselController _controller = CarouselController();
 
@@ -92,7 +89,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -457,103 +454,6 @@ class OurProgramsDetailsState extends State<MerckFellowship>
         child: getdigitallib(context));
   }
 
-  Widget merckmorethanmother() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-        right: 10,
-        top: 10,
-      ),
-      child: Card(
-        elevation: 5,
-        // height: 1800,
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
-          child: Swiper.children(
-            autoplay: false,
-            loop: true,
-            control: SwiperControl(
-                iconNext: Icons.arrow_forward_ios,
-                iconPrevious: Icons.arrow_back_ios,
-                size: 20,
-                color: Customcolor.darkblue_col),
-            children: <Widget>[
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/cfa1.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_4.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_6.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
   // Widget slider(BuildContext context) {
   //   return Stack(
@@ -833,38 +733,143 @@ class OurProgramsDetailsState extends State<MerckFellowship>
       }
       if (typewidet[i] == "content") {
         listofwiget.add(
-            html.HtmlWidget('${GlobalLists.homecontentlist[0].pageContent}')
-            // html.HtmlWidget(
-            //   '${GlobalLists.homecontentlist[0].pageContent}',
-            //   onTapUrl: (url) {
-            //     print("Opening $url...");
-            //     ShowDialogs.launchURL(url);
-            //   },
-            //   textStyle: TextStyle(fontSize: 16),
-            //   // Add any additional styling or configuration here
-            // ),
+  html.HtmlWidget(
+    '${GlobalLists.homecontentlist[0].pageContent}',
+    customWidgetBuilder: (element) {
+      if (element.localName == 'iframe' || element.localName == 'video') {
+        final src = element.localName == 'iframe'
+            ? element.attributes['src']
+            : element.children
+                .firstWhere((e) => e.localName == 'source')
+                .attributes['src'];
 
-            // Html(
-            //   data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            //   onLinkTap: (url) {
-            //     print("Opening $url...");
-            //     ShowDialogs.launchURL(url);
-            //   },
-            //   style: {
-            //     "tr": Customcolor.tableboderstyle(context),
-            //   },
-            // ),
+        if (src != null && src.contains('youtube.com')) {
+          return SizedBox(
+            height: 300,
+            width: double.infinity,
+            child: WebView(
+              initialUrl: Uri.dataFromString(
+                '<html><body style="margin:0;padding:0;"><iframe width="100%" height="100%" src="$src" frameborder="0" allowfullscreen></iframe></body></html>',
+                mimeType: 'text/html',
+              ).toString(),
+              javascriptMode: JavascriptMode.unrestricted,
+            ),
+          );
+        }
+      } 
+      else if (element.localName == 'table') {
+        //3dec2025
+  final modifiedHtml = """
+  <html>
+  <head>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      td, th {
+        padding: 8px;
+        vertical-align: middle;
+        text-align: center;
+      }
+      img {
+ max-width: 100%;
+  height: auto;
+  display: inline-block;
+  vertical-align: text-bottom; 
+}
+      iframe, embed {
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    ${element.outerHtml}
+  </body>
+  </html>
+  """;
 
-            //     Html(
-            //   data: GlobalLists.homecontentlist[0].pageContent ?? "",
-            //   onLinkTap: (url) {
-            //     print("Opening $url...");
-            //     ShowDialogs.launchURL(url);
-            //   },
-            // )
+  return AutoResizeWebView(htmlContent: modifiedHtml);
+}
+
+      // else if (element.localName == 'table') {
+     
+      //   return  AutoResizeWebView(htmlContent: element.outerHtml,);
+       
+      // }
+
+      return null;
+    },
+  ),
+
             );
         //tables
       }
+      // if (typewidet[i] == "content") {
+      //   listofwiget.add(
+      //       html.HtmlWidget('${GlobalLists.homecontentlist[0].pageContent}',
+      //        customWidgetBuilder: (element) {
+      //         if (element.localName == 'video') {
+      //           final src = element.children.firstWhere((e) => e.localName == 'source').attributes['src'];
+      //           if (src != null && src.contains('youtube.com')) {
+      //             return SizedBox(
+      //               height: 300,
+      //               width: double.infinity,
+      //               child: WebView(
+      //                 initialUrl: src,
+      //                 javascriptMode: JavascriptMode.unrestricted,
+      //               ),
+      //             );
+      //           }
+      //         }else  if (element.localName == 'iframe') {
+      //           final iframeSrc = element.attributes['src'];
+
+      //           // If the iframe is a YouTube video, handle it
+      //           if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+      //             return SizedBox(
+      //               height: 300,
+      //               width: double.infinity,
+      //               child: WebView(
+      //                 initialUrl: iframeSrc,
+      //                 javascriptMode: JavascriptMode.unrestricted,
+      //               ),
+      //             );
+      //           }
+      //         }
+      //         return null;
+      //       },)
+      //       // html.HtmlWidget(
+      //       //   '${GlobalLists.homecontentlist[0].pageContent}',
+      //       //   onTapUrl: (url) {
+      //       //     print("Opening $url...");
+      //       //     ShowDialogs.launchURL(url);
+      //       //   },
+      //       //   textStyle: TextStyle(fontSize: 16),
+      //       //   // Add any additional styling or configuration here
+      //       // ),
+
+      //       // Html(
+      //       //   data: """${GlobalLists.homecontentlist[0].pageContent} """,
+      //       //   onLinkTap: (url) {
+      //       //     print("Opening $url...");
+      //       //     ShowDialogs.launchURL(url);
+      //       //   },
+      //       //   style: {
+      //       //     "tr": Customcolor.tableboderstyle(context),
+      //       //   },
+      //       // ),
+
+      //       //     Html(
+      //       //   data: GlobalLists.homecontentlist[0].pageContent ?? "",
+      //       //   onLinkTap: (url) {
+      //       //     print("Opening $url...");
+      //       //     ShowDialogs.launchURL(url);
+      //       //   },
+      //       // )
+      //       );
+      //   //tables
+      // }
       if (typewidet[i] == "latest_updates") {
         listofwiget.add(
           Padding(
@@ -1038,6 +1043,23 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                                     fontWeight: FontWeight.w500),
                                 "tr": Customcolor.tableboderstyle(context),
                               },
+                               extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                             ),
                           ),
                           // SizedBox(
@@ -1057,6 +1079,23 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                                     fontWeight: FontWeight.w500),
                                 "tr": Customcolor.tableboderstyle(context),
                               },
+                               extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                             ),
                           ),
                         ],
@@ -1573,7 +1612,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
     );
   }
 
-  Future<http.Response> getmmtmapi() async {
+  Future<http.Response?> getmmtmapi() async {
     print("mmtm api");
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -1583,7 +1622,7 @@ class OurProgramsDetailsState extends State<MerckFellowship>
       );
       print("response");
       print(response);
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         var res = json.decode(response.body);
         print("ff");
         print(res);
@@ -1637,67 +1676,24 @@ class OurProgramsDetailsState extends State<MerckFellowship>
           if (middlecategoryname.toString().toLowerCase() ==
               "Videos".toLowerCase()) {
             GlobalLists.homevideolist =
-                homepageres.middleArea[middleareakey[i]].videos.list;
+                homepageres.middleArea[middleareakey[i]]!.videos!.list;
             print(GlobalLists.homevideolist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "content".toLowerCase()) {
             GlobalLists.homecontentlist =
-                homepageres.middleArea[middleareakey[i]].content.list;
+                homepageres.middleArea[middleareakey[i]]!.content!.list;
             print(GlobalLists.homecontentlist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "testimonial".toLowerCase()) {
             GlobalLists.mmttestimoniallist =
-                homepageres.middleArea[middleareakey[i]].testimonial.list;
+                homepageres.middleArea[middleareakey[i]]!.testimonial!.list;
             print(GlobalLists.mmttestimoniallist.length);
             GlobalLists.mmttestimonialbaseurl =
-                homepageres.middleArea[middleareakey[i]].testimonial.baseUrl;
+                homepageres.middleArea[middleareakey[i]]!.testimonial!.baseUrl;
           }
         }
 
-        ///////right section
-        // List<String> rigthareakey = [];
-        // lastsection.keys.forEach((element) {
-        //   rigthareakey.add(element.toString());
-        // });
-        // print(middleareakey);
-        // for (int i = 0; i < lastsection.length; i++) {
-        //   //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-        //   //  print(categoryKeys.videos.type);
-        //   dynamic rightsection = res['Right_area'][rigthareakey[i]];
-        //   print("TKey: ${rightsection.keys.first}");
-        //   var rightsectioncategoryname = rightsection.keys.first;
-
-        //   setState(() {
-        //     typewidetofrightsection.add(rightsectioncategoryname);
-        //     _tabController = new TabController(
-        //         vsync: this, length: typewidetofrightsection.length);
-        //     print(typewidetofrightsection);
-        //   });
-
-        //   if (rightsectioncategoryname.toString().toLowerCase() ==
-        //       "call_for_app".toLowerCase()) {
-        //     GlobalLists.homecallforapp =
-        //         homepageres.rightArea[rigthareakey[i]].callForApp.list;
-        //     GlobalLists.homeCallForAppBaseURL =
-        //         homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
-        //     print(GlobalLists.homecallforapp.length);
-        //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
-        //       "mmtm".toLowerCase()) {
-        //     GlobalLists.homemmtm =
-        //         homepageres.rightArea[rigthareakey[i]].mmtm.list;
-        //     print(GlobalLists.homemmtm.length);
-        //     GlobalLists.homeMMTMBaseURL =
-        //         homepageres.rightArea[rigthareakey[i]].mmtm.baseUrl;
-        //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
-        //       "digital_library".toLowerCase()) {
-        //     GlobalLists.homedigitallib =
-        //         homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
-        //     GlobalLists.homeDigitalLibraryBaseURL =
-        //         homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
-        //     print(GlobalLists.homedigitallib.length);
-        //   }
-        // }
-
+  
         setState(() {
           isMiddleSectionLoaded = true;
           //   isrightSectionLoaded = true;
@@ -1721,18 +1717,6 @@ class OurProgramsDetailsState extends State<MerckFellowship>
     }
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
   getprogramgallery() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
@@ -1745,11 +1729,11 @@ class OurProgramsDetailsState extends State<MerckFellowship>
 
         print(response);
         print('Resp : $resp');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
         if (resp.success == "True".toLowerCase()) {
           print(resp.list);
-          GlobalLists.programgallerybaseurl = resp.baseUrl;
-          GlobalLists.programgallerylist = resp.list;
+          GlobalLists.programgallerybaseurl = resp.baseUrl!;
+          GlobalLists.programgallerylist = resp.list!;
           print(GlobalLists.programgallerylist);
           // GlobalLists.awarddetallisting[0].title
 
@@ -1761,11 +1745,11 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                         photosList: GlobalLists.programgallerylist,
                       )));
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
         }
       }, (error) {
         print('ERR msg is $error');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
       }, jsonval: json);
     } else {
       ShowDialogs.showToast("Please check internet connection");

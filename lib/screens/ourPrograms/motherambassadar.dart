@@ -16,7 +16,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -115,7 +115,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
     );
   }
 
-  Future<http.Response> getmmtmapi() async {
+  Future<http.Response?> getmmtmapi() async {
     print("mmtm api");
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -128,14 +128,14 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
       print(APIManager.subprogrammmtmambasadar);
       print("APICALL");
       print(response);
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         var res = json.decode(response.body);
         print("ff");
         print(res);
         SubprommtmambassadarResponse homepageres =
             SubprommtmambassadarResponse.fromJson(res);
 
-        Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> section1 = homepageres.middleArea!;
 
         // print(section1);
         // print(section1['1']);
@@ -158,36 +158,37 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
           if (middlecategoryname.toString().toLowerCase() ==
               "Videos".toLowerCase()) {
             GlobalLists.homevideolist =
-                homepageres.middleArea[middleareakey[i]].videos.list;
+                homepageres.middleArea![middleareakey[i]]!.videos!.list!;
             print(GlobalLists.homevideolist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "content".toLowerCase()) {
             GlobalLists.homecontentlist =
-                homepageres.middleArea[middleareakey[i]].content.list;
+                homepageres.middleArea![middleareakey[i]]!.content!.list!;
             print(GlobalLists.homecontentlist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "gallery".toLowerCase()) {
             GlobalLists.homegallerybaseurl =
-                homepageres.middleArea[middleareakey[i]].gallery.baseUrl;
+                homepageres.middleArea![middleareakey[i]]!.gallery!.baseUrl!;
             GlobalLists.homegallerylist =
-                homepageres.middleArea[middleareakey[i]].gallery.list;
+                homepageres.middleArea![middleareakey[i]]!.gallery!.list!;
             print(GlobalLists.homegallerylist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "mmtm".toLowerCase()) {
             //  if (homepageres.middleArea['${i + 1}'].ambasdars != null) {
             GlobalLists.ambasdarsbaseurl =
-                homepageres.middleArea[middleareakey[i]].mmtm.baseUrl;
+                homepageres.middleArea![middleareakey[i]]!.mmtm!.baseUrl!;
             GlobalLists.ambasdarslist =
-                homepageres.middleArea[middleareakey[i]].mmtm.list;
+                homepageres.middleArea![middleareakey[i]]!.mmtm!.list!;
+           
             //}
             print(GlobalLists.ambasdarslist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "mmtm_amb_former".toLowerCase()) {
             //  if (homepageres.middleArea['${i + 1}'].ambasdars != null) {
             GlobalLists.ambasdarsformerbaseurl =
-                homepageres.middleArea[middleareakey[i]].mmtmAmbFormer.baseUrl;
+                homepageres.middleArea![middleareakey[i]]!.mmtmAmbFormer!.baseUrl!;
             GlobalLists.ambasdarsformerlist =
-                homepageres.middleArea[middleareakey[i]].mmtmAmbFormer.list;
+                homepageres.middleArea![middleareakey[i]]!.mmtmAmbFormer!.list!;
             //}
             print("FOrmer");
             print(GlobalLists.ambasdarsformerlist.length);
@@ -277,42 +278,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                               maxLines: 3,
                             ),
                           ),
-                          // Align(
-                          //   alignment: Alignment.bottomCenter,
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.only(
-                          //         left: 10, right: 10, bottom: 10),
-                          //     child: Row(
-                          //       crossAxisAlignment: CrossAxisAlignment.end,
-                          //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //       children: [
-                          //         Column(
-                          //           mainAxisAlignment: MainAxisAlignment.end,
-                          //           crossAxisAlignment:
-                          //               CrossAxisAlignment.start,
-                          //           children: [
-                          //             // Container(
-                          //             //   width:
-                          //             //       SizeConfig.blockSizeHorizontal * 80,
-                          //             //   child: Text(
-                          //             //     GlobalLists.homegallerylist[index].title,
-                          //             //     overflow: TextOverflow.ellipsis,
-                          //             //     style: TextStyle(
-                          //             //         color: Colors.white,
-                          //             //         fontSize: 14,
-                          //             //         fontWeight: FontWeight.w700),
-                          //             //     maxLines: 3,
-                          //             //   ),
-                          //             // ),
-                          //             SizedBox(
-                          //               height: 8,
-                          //             )
-                          //           ],
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
+                         
                         ],
                       ),
                     ),
@@ -384,46 +350,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                       //   height: SizeConfig.blockSizeVertical * 30,
                                     ),
                                   ),
-                                  // Positioned(
-                                  //   top: SizeConfig.blockSizeVertical * 18,
-                                  //   // alignment: Alignment.bottomCenter,
-                                  //   child: Padding(
-                                  //     padding: const EdgeInsets.only(
-                                  //         left: 10, right: 10, bottom: 20),
-                                  //     child: Row(
-                                  //       crossAxisAlignment: CrossAxisAlignment.end,
-                                  //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  //       children: [
-                                  //         Column(
-                                  //           mainAxisAlignment:
-                                  //               MainAxisAlignment.end,
-                                  //           crossAxisAlignment:
-                                  //               CrossAxisAlignment.start,
-                                  //           children: [
-                                  //             Container(
-                                  //               width:
-                                  //                   SizeConfig.blockSizeHorizontal *
-                                  //                       80,
-                                  //               child: Text(
-                                  //                 GlobalLists.homevideolist[index]
-                                  //                     .videoDesc,
-                                  //                 overflow: TextOverflow.ellipsis,
-                                  //                 style: TextStyle(
-                                  //                     color: Colors.white,
-                                  //                     fontSize: 14,
-                                  //                     fontWeight: FontWeight.w700),
-                                  //                 maxLines: 3,
-                                  //               ),
-                                  //             ),
-                                  //             SizedBox(
-                                  //               height: 25,
-                                  //             )
-                                  //           ],
-                                  //         ),
-                                  //       ],
-                                  //     ),
-                                  //   ),
-                                  // ),
+                                
                                   Padding(
                                     padding:
                                         EdgeInsets.only(top: 70, left: 120),
@@ -503,13 +430,30 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url, renderContext, attributes, element) {
+            onLinkTap: (url, attributes, element) {
               print("Opening $url...");
-              ShowDialogs.launchURL(url);
+              ShowDialogs.launchURL(url!);
             },
             style: {
               "tr": Customcolor.tableboderstyle(context),
             },
+             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
           ),
         );
       }
@@ -660,28 +604,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                 childAspectRatio: 0.9, //0.85,
                 children:
                     List.generate(GlobalLists.ambasdarslist.length, (index) {
-                  // if (GlobalLists.viewmoremmtmlist.length - 1 == index &&
-                  //     _isLoading) {
-                  //   return Center(
-                  //     child: CircularProgressIndicator(),
-                  //   );
-                  // } else {
-// String userInput = '2,2,2';
-// List<double> listOfNumbers = userInput.split(',').map((e) => double.parse(e)).toList();
-// double result = 1;
-// //The below is assuming you want to multiple them with each other. But you can basically now perform any operations them.
-// listOfNumbers.forEach((e) => result = e * result);
-// print(result); // => prints 8
-                  // List<String> splits = GlobalLists.ambasdarslist[index]
-                  //     .photoDescription
-                  //     .split(GlobalLists.ambasdarslist[index]
-                  //         .photoDescription
-                  //         .substring(GlobalLists.ambasdarslist[index]
-                  //             .photoDescription
-                  //             .lastIndexOf(",")));
-                  // List<String> splitslast =
-                  //     GlobalLists.ambasdarslist[index].photoDescription.split(",");
-//main
+            
                   List<String> splits = GlobalLists
                       .ambasdarslist[index].photoDescription
                       .split(GlobalLists.ambasdarslist[index].photoDescription
@@ -703,9 +626,12 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                         ),
                         child: GestureDetector(
                           onTap: () {
+                            print(Constantstring.baseUrl +
+                                                GlobalLists.ambasdarslist[index]
+                                                    .photo);
                             ShowDialogs.showImageDialog(
                               context: context,
-                              image: Constantstring.baseUrl +
+                              image: GlobalLists.ambasdarsbaseurl +
                                   GlobalLists.ambasdarslist[index].photo,
                               description: GlobalLists
                                   .ambasdarslist[index].photoDescription,
@@ -735,7 +661,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                       // ),
                                       image: new DecorationImage(
                                         image: new NetworkImage(
-                                            Constantstring.baseUrl +
+                                            GlobalLists.ambasdarsbaseurl +
                                                 GlobalLists.ambasdarslist[index]
                                                     .photo),
                                         fit: BoxFit.fill,
@@ -743,6 +669,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                     ),
                                   ),
                                 ),
+                          
                                 Center(
                                   child: Padding(
                                     padding: const EdgeInsets.all(4.0),
@@ -809,290 +736,13 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                           ),
                         )),
                   );
-                  //         return
-                  //         Column(children: [
-                  //             Container(
-                  //   // width: SizeConfig.blockSizeHorizontal * 50,
-                  //   height: 230,
-                  //   child: FadeInImage.assetNetwork(
-                  //     placeholder: 'assets/newImages/placeholder_3.jpg',
-                  //     image:
-                  //         "${GlobalLists.ambasdarsbaseurl + GlobalLists.ambasdarslist[index].photo}",
-                  //     fit: BoxFit.contain,
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 20,
-                  // ),
-                  // Center(
-                  //   child: GestureDetector(
-                  //     onTap: () {
-                  //       print(
-                  //           GlobalLists.ambasdarslist[index].albumNameId);
-                  //       ambasssadarimageviewmore(
-                  //           GlobalLists.ambasdarslist[index].albumNameId);
-                  //     },
-                  //     child: Container(
-                  //       width: 120,
-                  //       height: 40,
-                  //       decoration: BoxDecoration(
-                  //           color: Colors.amber,
-                  //           borderRadius: BorderRadius.circular(5)),
-                  //       child: Center(
-                  //         child: Text(
-                  //           "View All",
-                  //           style: TextStyle(
-                  //               color: Customcolor.colorBlue,
-                  //               fontSize: 15,
-                  //               fontWeight: FontWeight.w500),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  //         ],);
-                  //  Padding(
-                  //   padding: const EdgeInsets.only(right: 2.0),
-                  //   child: Card(
-                  //       elevation: 2,
-                  //       shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.all(
-                  //           Radius.circular(1),
-                  //         ),
-                  //       ),
-                  //       child: GestureDetector(
-                  //         onTap: () {
-                  //           ShowDialogs.showImageDialog(
-                  //             context: context,
-                  //             image: Constantstring.baseUrl +
-                  //                 GlobalLists.ambasdarslist[index].photo,
-                  //             description:
-                  //                 GlobalLists.ambasdarslist[index].photoDescription,
-                  //           );
-                  //         },
-                  //         child: Container(
-                  //           color: Colors.transparent,
-                  //           width:
-                  //               SizeConfig.blockSizeHorizontal *
-                  //                   50,
-                  //           child: Column(
-                  //             mainAxisAlignment:
-                  //                 MainAxisAlignment.start,
-                  //             crossAxisAlignment:
-                  //                 CrossAxisAlignment.start,
-                  //             children: <Widget>[
-                  //               Padding(
-                  //                 padding:
-                  //                     const EdgeInsets.all(8.0),
-                  //                 child: Container(
-                  //                   // width:
-                  //                   //     SizeConfig.blockSizeHorizontal *
-                  //                   //         100,
-                  //                   // height: 150,
-                  //                   width: SizeConfig
-                  //                           .blockSizeHorizontal *
-                  //                       100,
-                  //                   height: SizeConfig
-                  //                           .blockSizeVertical *
-                  //                      25,// 16,
-                  //                   decoration: BoxDecoration(
-                  //                     borderRadius:
-                  //                         BorderRadius.circular(
-                  //                             5),
-                  //                     // border: Border.all(
-                  //                     //   width: 1,
-                  //                     // ),
-                  //                     image: new DecorationImage(
-                  //                       image: new NetworkImage(
-                  //                           Constantstring
-                  //                                   .baseUrl +
-                  //                               GlobalLists.ambasdarslist[index]
-                  //                                   .photo),
-                  //                       fit: BoxFit.fill,
-                  //                     ),
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //               Center(
-                  //                 child: Padding(
-                  //                   padding:
-                  //                       const EdgeInsets.all(4.0),
-                  //                   child: Column(
-                  //                     children: [
-                  //                       Text(
-                  //                         splits[0],
-                  //                         textAlign:
-                  //                             TextAlign.center,
-                  //                         overflow:
-                  //                             TextOverflow.ellipsis,
-                  //                         style: TextStyle(
-                  //                             color: Customcolor
-                  //                                 .pink_col,
-                  //                             fontSize:
-                  //                                 ResponsiveFlutter
-                  //                                         .of(
-                  //                                             context)
-                  //                                     .fontSize(
-                  //                                         1.4),
-                  //                             fontWeight:
-                  //                                 FontWeight.w500),
-                  //                         maxLines: 3,
-                  //                       ),
-                  //                       Text(
-                  //                         splitslast[
-                  //                             splitslast.length -
-                  //                                 1],
-                  //                         textAlign:
-                  //                             TextAlign.center,
-                  //                         overflow:
-                  //                             TextOverflow.ellipsis,
-                  //                         style: TextStyle(
-                  //                             color: Customcolor
-                  //                                 .text_darkblue,
-                  //                             fontSize:
-                  //                                 ResponsiveFlutter
-                  //                                         .of(
-                  //                                             context)
-                  //                                     .fontSize(
-                  //                                         1.4),
-                  //                             fontWeight:
-                  //                                 FontWeight.w500),
-                  //                         maxLines: 2,
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //               SizedBox(height: 5),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       )),
-                  // );
-                  // }
+                 
                 }),
               ),
-              // _isLoading
-              //     ? Center(
-              //         child: Padding(
-              //         padding: const EdgeInsets.only(
-              //             top: 10, bottom: 10),
-              //         child: CircularProgressIndicator(),
-              //       ))
-              //     : Container()
+             
             ],
           ),
-          // child: CustomHorizontalCard(
-          //   index: 1,
-          //   cardImage: "assets/newImages/ourvison.png",
-          //   cardTitle: "Ambassadors of  a Mother",
-          //   cardsubtitle: "",
-          //   btnTitle: "View More",
-          //   showviewmore: 1,
-          //   isheading: 1,
-          //   titleColor: Customcolor.colorPink,
-          //   onbtnTap: () {},
-          //   heigthoflist: SizeConfig.blockSizeVertical * 100,//43
-          //   titleImg: "assets/newImages/flowers-3.png",
-          //   list: ListView.builder(
-          //     itemCount: GlobalLists.ambasdarslist.length,
-          //     scrollDirection: Axis.vertical,//Axis.horizontal,
-          //     itemBuilder: (BuildContext context, int index) {
-          //       return GestureDetector(
-          //         onTap: () {
-          //           // Navigator.push(
-          //           //     context,
-          //           //     MaterialPageRoute(
-          //           //         builder: (BuildContext context) => Detailpage(
-          //           //               indexIs: index,
-          //           //               callfrom: 2,
-          //           //             )));
-          //         },
-          //         child: Padding(
-          //           padding: const EdgeInsets.only(right: 8, left: 10),
-          //           child: Column(
-          //             children: [
-          //               Container(
-          //                 // width: SizeConfig.blockSizeHorizontal * 50,
-          //                 height: 260,
-          //                 child: FadeInImage.assetNetwork(
-          //                   placeholder: 'assets/newImages/placeholder_3.jpg',
-          //                   image:
-          //                       "${GlobalLists.ambasdarsbaseurl + GlobalLists.ambasdarslist[index].photo}",
-          //                   fit: BoxFit.contain,
-          //                 ),
-          //               ),
-          //               SizedBox(
-          //                 height: 20,
-          //               ),
-          //               Center(
-          //                 child: GestureDetector(
-          //                   onTap: () {
-          //                     print(
-          //                         GlobalLists.ambasdarslist[index].albumNameId);
-          //                     ambasssadarimageviewmore(
-          //                         GlobalLists.ambasdarslist[index].albumNameId);
-          //                   },
-          //                   child: Container(
-          //                     width: 120,
-          //                     height: 40,
-          //                     decoration: BoxDecoration(
-          //                         color: Colors.amber,
-          //                         borderRadius: BorderRadius.circular(5)),
-          //                     child: Center(
-          //                       child: Text(
-          //                         "View All",
-          //                         style: TextStyle(
-          //                             color: Customcolor.colorBlue,
-          //                             fontSize: 15,
-          //                             fontWeight: FontWeight.w500),
-          //                       ),
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ),
-          //               // Align(
-          //               //   alignment: Alignment.bottomCenter,
-          //               //   child: Padding(
-          //               //     padding: const EdgeInsets.only(
-          //               //         left: 10, right: 10, bottom: 10),
-          //               //     child: Row(
-          //               //       crossAxisAlignment: CrossAxisAlignment.end,
-          //               //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //               //       children: [
-          //               //         Column(
-          //               //           mainAxisAlignment: MainAxisAlignment.end,
-          //               //           crossAxisAlignment: CrossAxisAlignment.start,
-          //               //           children: [
-          //               //             Container(
-          //               //               width:
-          //               //                   SizeConfig.blockSizeHorizontal * 80,
-          //               //               child: Text(
-          //               //                 GlobalLists.homeceomsglist[index].title,
-          //               //                 overflow: TextOverflow.ellipsis,
-          //               //                 style: TextStyle(
-          //               //                     color: Colors.white,
-          //               //                     fontSize: 14,
-          //               //                     fontWeight: FontWeight.w700),
-          //               //                 maxLines: 3,
-          //               //               ),
-          //               //             ),
-          //               //             SizedBox(
-          //               //               height: 8,
-          //               //             )
-          //               //           ],
-          //               //         ),
-          //               //       ],
-          //               //     ),
-          //               //   ),
-          //               // ),
-          //             ],
-          //           ),
-          //         ),
-          //       );
-          //     },
-          //   ),
-          // ),
+         
         ));
       }
       if (typewidet[i] == "mmtm_amb_former") {
@@ -1117,22 +767,6 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                       ),
                     )
 
-                    // TextSpan(
-                    //   text: cardTitle,
-                    //   style: TextStyle(
-                    //     color: titleColor,
-                    //     fontSize: 17,
-                    //     fontWeight: FontWeight.w700,
-                    //   ),
-                    // ),
-                    // WidgetSpan(
-                    //   alignment: PlaceholderAlignment.bottom,
-                    //   child: Image.asset(
-                    //     titleImg,
-                    //     width: 40,
-                    //     height: 25,
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
@@ -1173,7 +807,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                           onTap: () {
                             ShowDialogs.showImageDialog(
                               context: context,
-                              image: Constantstring.baseUrl +
+                              image: GlobalLists.ambasdarsformerbaseurl +
                                   GlobalLists.ambasdarsformerlist[index].photo,
                               description: GlobalLists
                                   .ambasdarsformerlist[index].photoDescription,
@@ -1201,9 +835,10 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                                       // border: Border.all(
                                       //   width: 1,
                                       // ),
+                                      //22jan
                                       image: new DecorationImage(
                                         image: new NetworkImage(
-                                            Constantstring.baseUrl +
+                                           GlobalLists.ambasdarsformerbaseurl +
                                                 GlobalLists
                                                     .ambasdarsformerlist[index]
                                                     .photo),
@@ -1281,409 +916,22 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
                         )),
                   );
 
-                  //        return Column(children: [
-                  //          Container(
-                  //   // width: SizeConfig.blockSizeHorizontal * 50,
-                  //   height: 160,
-                  //   child: FadeInImage.assetNetwork(
-                  //     placeholder: 'assets/newImages/placeholder_3.jpg',
-                  //     image:
-                  //         "${GlobalLists.ambasdarsformerbaseurl + GlobalLists.ambasdarsformerlist[index].photo}",
-                  //     fit: BoxFit.contain,
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 20,
-                  // ),
-                  // Center(
-                  //   child: GestureDetector(
-                  //     onTap: () {
-                  //       print(
-                  //           GlobalLists.ambasdarsformerlist[index].albumNameId);
-                  //       ambasssadarimageviewmore(
-                  //           GlobalLists.ambasdarsformerlist[index].albumNameId);
-                  //     },
-                  //     child: Container(
-                  //       width: 120,
-                  //       height: 40,
-                  //       decoration: BoxDecoration(
-                  //           color: Colors.amber,
-                  //           borderRadius: BorderRadius.circular(5)),
-                  //       child: Center(
-                  //         child: Text(
-                  //           "View All",
-                  //           style: TextStyle(
-                  //               color: Customcolor.colorBlue,
-                  //               fontSize: 15,
-                  //               fontWeight: FontWeight.w500),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  //        ],);
-                  //         // }
+               
+                 
                 }),
               ),
-              // _isLoading
-              //     ? Center(
-              //         child: Padding(
-              //         padding: const EdgeInsets.only(
-              //             top: 10, bottom: 10),
-              //         child: CircularProgressIndicator(),
-              //       ))
-              //     : Container()
+              
             ],
           ),
-          //   child: CustomHorizontalCard(
-          //     index: 1,
-          //     cardImage: "assets/newImages/ourvison.png",
-          //     cardTitle: "Former African First Ladies and Ambassadors of Merck Foundation More Than a Mother",
-          //     cardsubtitle: "",
-          //     btnTitle: "View More",
-          //     showviewmore: 1,
-          //     isheading: 1,
-          //     titleColor: Customcolor.colorPink,
-          //     onbtnTap: () {},
-          //     heigthoflist: SizeConfig.blockSizeVertical * 43,
-          //     titleImg: "assets/newImages/flowers-3.png",
-          //     list: ListView.builder(
-          //       itemCount: GlobalLists.ambasdarsformerlist.length,
-          //       scrollDirection: Axis.horizontal,
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return GestureDetector(
-          //           onTap: () {
-
-          //           },
-          //           child: Padding(
-          //             padding: const EdgeInsets.only(right: 8, left: 10),
-          //             child: Column(
-          //               children: [
-          //                 Container(
-          //                   // width: SizeConfig.blockSizeHorizontal * 50,
-          //                   height: 260,
-          //                   child: FadeInImage.assetNetwork(
-          //                     placeholder: 'assets/newImages/placeholder_3.jpg',
-          //                     image:
-          //                         "${GlobalLists.ambasdarsformerbaseurl + GlobalLists.ambasdarsformerlist[index].photo}",
-          //                     fit: BoxFit.contain,
-          //                   ),
-          //                 ),
-          //                 SizedBox(
-          //                   height: 20,
-          //                 ),
-          //                 Center(
-          //                   child: GestureDetector(
-          //                     onTap: () {
-          //                       print(
-          //                           GlobalLists.ambasdarsformerlist[index].albumNameId);
-          //                       ambasssadarimageviewmore(
-          //                           GlobalLists.ambasdarsformerlist[index].albumNameId);
-          //                     },
-          //                     child: Container(
-          //                       width: 120,
-          //                       height: 40,
-          //                       decoration: BoxDecoration(
-          //                           color: Colors.amber,
-          //                           borderRadius: BorderRadius.circular(5)),
-          //                       child: Center(
-          //                         child: Text(
-          //                           "View All",
-          //                           style: TextStyle(
-          //                               color: Customcolor.colorBlue,
-          //                               fontSize: 15,
-          //                               fontWeight: FontWeight.w500),
-          //                         ),
-          //                       ),
-          //                     ),
-          //                   ),
-          //                 ),
-
-          //               ],
-          //             ),
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //   ),
+         
         ));
       }
 
-      // if (typewidet[i] == "mmtm") {
-      //   listofwiget.add(Padding(
-      //     padding: const EdgeInsets.only(left: 10, top: 10),
-      //     child: CustomHorizontalCard(
-      //       index: 1,
-      //       cardImage: "assets/newImages/ourvison.png",
-      //       cardTitle: "Ambassadors of Merck Foundation More Than a Mother",
-      //       cardsubtitle: "",
-      //       btnTitle: "View More",
-      //       showviewmore: 1,
-      //       isheading: 1,
-      //       titleColor: Customcolor.pink_col,
-      //       onbtnTap: () {},
-      //       heigthoflist: SizeConfig.blockSizeVertical * 45,
-      //       titleImg: "assets/newImages/flowers-3.png",
-      //       list: ListView.builder(
-      //         itemCount: GlobalLists.ambasdarslist.length,
-      //         scrollDirection: Axis.horizontal,
-      //         itemBuilder: (BuildContext context, int index) {
-      //           return GestureDetector(
-      //             onTap: () {
-      //               // Navigator.push(
-      //               //     context,
-      //               //     MaterialPageRoute(
-      //               //         builder: (BuildContext context) => Detailpage(
-      //               //               indexIs: index,
-      //               //               callfrom: 2,
-      //               //             )));
-      //             },
-      //             child: Padding(
-      //               padding: const EdgeInsets.only(right: 8, left: 10),
-      //               child: Column(
-      //                 children: [
-      //                   Container(
-      //                     //  width: SizeConfig.blockSizeHorizontal * 80,
-      //                     height: SizeConfig.blockSizeVertical * 36,
-      //                     child: FadeInImage.assetNetwork(
-      //                       placeholder: 'assets/newImages/placeholder_3.jpg',
-      //                       image:
-      //                           "${GlobalLists.ambasdarsbaseurl + GlobalLists.ambasdarslist[index].photo}",
-      //                       fit: BoxFit.contain,
-      //                     ),
-      //                   ),
-      //                   SizedBox(
-      //                     height: 20,
-      //                   ),
-      //                   Center(
-      //                     child: GestureDetector(
-      //                       onTap: () {
-      //                         print(
-      //                             GlobalLists.ambasdarslist[index].albumNameId);
-      //                         ambasssadarimageviewmore(
-      //                             GlobalLists.ambasdarslist[index].albumNameId);
-      //                       },
-      //                       child: Container(
-      //                         width: 120,
-      //                         height: 40,
-      //                         decoration: BoxDecoration(
-      //                             color: Colors.amber,
-      //                             borderRadius: BorderRadius.circular(5)),
-      //                         child: Center(
-      //                           child: Text(
-      //                             "View All",
-      //                             style: TextStyle(
-      //                                 color: Customcolor.colorBlue,
-      //                                 fontSize: 15,
-      //                                 fontWeight: FontWeight.w500),
-      //                           ),
-      //                         ),
-      //                       ),
-      //                     ),
-      //                   ),
-      //                   // Align(
-      //                   //   alignment: Alignment.bottomCenter,
-      //                   //   child: Padding(
-      //                   //     padding: const EdgeInsets.only(
-      //                   //         left: 10, right: 10, bottom: 10),
-      //                   //     child: Row(
-      //                   //       crossAxisAlignment: CrossAxisAlignment.end,
-      //                   //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //                   //       children: [
-      //                   //         Column(
-      //                   //           mainAxisAlignment: MainAxisAlignment.end,
-      //                   //           crossAxisAlignment: CrossAxisAlignment.start,
-      //                   //           children: [
-      //                   //             Container(
-      //                   //               width:
-      //                   //                   SizeConfig.blockSizeHorizontal * 80,
-      //                   //               child: Text(
-      //                   //                 GlobalLists.homeceomsglist[index].title,
-      //                   //                 overflow: TextOverflow.ellipsis,
-      //                   //                 style: TextStyle(
-      //                   //                     color: Colors.white,
-      //                   //                     fontSize: 14,
-      //                   //                     fontWeight: FontWeight.w700),
-      //                   //                 maxLines: 3,
-      //                   //               ),
-      //                   //             ),
-      //                   //             SizedBox(
-      //                   //               height: 8,
-      //                   //             )
-      //                   //           ],
-      //                   //         ),
-      //                   //       ],
-      //                   //     ),
-      //                   //   ),
-      //                   // ),
-      //                 ],
-      //               ),
-      //             ),
-      //           );
-      //         },
-      //       ),
-      //     ),
-      //   ));
-      // }
-      //  if (typewidet[i] == "mmtm_amb_former") {
-      //    print("comein former");
-      //    print( GlobalLists.ambasdarsformerlist.length);
-      //   listofwiget.add(Padding(
-      //     padding: const EdgeInsets.only(left: 10, top: 10),
-      //     child: CustomHorizontalCard(
-      //       index: 1,
-      //       cardImage: "assets/newImages/ourvison.png",
-      //       cardTitle: "Former African First Ladies and Ambassadors of Merck Foundation More Than a Mother",
-      //       cardsubtitle: "",
-      //       btnTitle: "View More",
-      //       isheading: 1,
-      //       showviewmore: 1,
-      //       titleColor: Customcolor.pink_col,
-      //       onbtnTap: () {},
-      //       heigthoflist: SizeConfig.blockSizeVertical * 45,
-      //       titleImg: "assets/newImages/flowers-3.png",
-      //       list: ListView.builder(
-      //         itemCount: GlobalLists.ambasdarsformerlist.length,
-      //         scrollDirection: Axis.horizontal,
-      //         itemBuilder: (BuildContext context, int index) {
-      //           return GestureDetector(
-      //             onTap: () {
-      //               // Navigator.push(
-      //               //     context,
-      //               //     MaterialPageRoute(
-      //               //         builder: (BuildContext context) => Detailpage(
-      //               //               indexIs: index,
-      //               //               callfrom: 2,
-      //               //             )));
-      //             },
-      //             child: Padding(
-      //               padding: const EdgeInsets.only(right: 8, left: 10),
-      //               child: Column(
-      //                 children: [
-      //                   Container(
-      //                     //  width: SizeConfig.blockSizeHorizontal * 80,
-      //                     height: SizeConfig.blockSizeVertical * 36,
-      //                     child: FadeInImage.assetNetwork(
-      //                       placeholder: 'assets/newImages/placeholder_3.jpg',
-      //                       image:
-      //                           "${GlobalLists.ambasdarsformerbaseurl + GlobalLists.ambasdarsformerlist[index].photo}",
-      //                       fit: BoxFit.contain,
-      //                     ),
-      //                   ),
-      //                   SizedBox(
-      //                     height: 20,
-      //                   ),
-      //                   Center(
-      //                     child: GestureDetector(
-      //                       onTap: () {
-      //                         print(
-      //                             GlobalLists.ambasdarsformerlist[index].albumNameId);
-      //                         ambasssadarimageviewmore(
-      //                             GlobalLists.ambasdarsformerlist[index].albumNameId);
-      //                       },
-      //                       child: Container(
-      //                         width: 120,
-      //                         height: 40,
-      //                         decoration: BoxDecoration(
-      //                             color: Colors.amber,
-      //                             borderRadius: BorderRadius.circular(5)),
-      //                         child: Center(
-      //                           child: Text(
-      //                             "View All",
-      //                             style: TextStyle(
-      //                                 color: Customcolor.colorBlue,
-      //                                 fontSize: 15,
-      //                                 fontWeight: FontWeight.w500),
-      //                           ),
-      //                         ),
-      //                       ),
-      //                     ),
-      //                   ),
-      //                   // Align(
-      //                   //   alignment: Alignment.bottomCenter,
-      //                   //   child: Padding(
-      //                   //     padding: const EdgeInsets.only(
-      //                   //         left: 10, right: 10, bottom: 10),
-      //                   //     child: Row(
-      //                   //       crossAxisAlignment: CrossAxisAlignment.end,
-      //                   //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //                   //       children: [
-      //                   //         Column(
-      //                   //           mainAxisAlignment: MainAxisAlignment.end,
-      //                   //           crossAxisAlignment: CrossAxisAlignment.start,
-      //                   //           children: [
-      //                   //             Container(
-      //                   //               width:
-      //                   //                   SizeConfig.blockSizeHorizontal * 80,
-      //                   //               child: Text(
-      //                   //                 GlobalLists.homeceomsglist[index].title,
-      //                   //                 overflow: TextOverflow.ellipsis,
-      //                   //                 style: TextStyle(
-      //                   //                     color: Colors.white,
-      //                   //                     fontSize: 14,
-      //                   //                     fontWeight: FontWeight.w700),
-      //                   //                 maxLines: 3,
-      //                   //               ),
-      //                   //             ),
-      //                   //             SizedBox(
-      //                   //               height: 8,
-      //                   //             )
-      //                   //           ],
-      //                   //         ),
-      //                   //       ],
-      //                   //     ),
-      //                   //   ),
-      //                   // ),
-      //                 ],
-      //               ),
-      //             ),
-      //           );
-      //         },
-      //       ),
-      //     ),
-      //   ));
-      // }
+    
     }
     return listofwiget;
   }
 
-  // ambasssadarvideoviewmore(String categoryid) async {
-  //   var status = await ConnectionDetector.checkInternetConnection();
-
-  //   if (status) {
-  //     dynamic bodyData = {
-  //       'category_id': categoryid,
-  //     };
-
-  //     // String body = json.encode(bodyData);
-  //     print(bodyData);
-  //     var response = await fetchPostWithBodyResponse(
-  //       APIManager.ambasadarvideoapi,
-  //       bodyData,
-  //     );
-
-  //     var res = json.decode(response.body);
-  //     print("res");
-  //     print(res);
-  //     AmbassdarvideoResponse resp =
-  //         ambassdarvideoResponseFromJson(response.body);
-  //     if (response.statusCode == 200) {
-  //       if (res['success'] == true) {
-  //         GlobalLists.videoviewmoreambasdarslist = resp.list;
-  //       } else {
-  //         setState(() {
-  //           ShowDialogs.showToast(res['msg']);
-  //         });
-  //       }
-  //     } else {
-  //       ShowDialogs.showToast("Server Not Responding");
-  //     }
-  //   } else {
-  //     setState(() {
-  //       ShowDialogs.showToast("Please check Internet Connection.");
-  //     });
-  //   }
-  // }
 
   ambasssadarimageviewmore(String albumid) async {
     var status = await ConnectionDetector.checkInternetConnection();
@@ -1732,18 +980,7 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
     }
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  
 
   Future<http.Response> fetchPostWithBodyResponse(
       String url, dynamic body) async {
@@ -1758,817 +995,3 @@ class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
     return response;
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:merckfoundation22dec/screens/dashboard.dart';
-// import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
-// import 'package:merckfoundation22dec/widget/botttomlink.dart';
-// import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
-
-// import 'package:merckfoundation22dec/widget/customcolor.dart';
-// import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
-
-// import 'package:http/http.dart' as http;
-// import 'package:merckfoundation22dec/utility/APIManager.dart';
-// import 'package:merckfoundation22dec/utility/GlobalLists.dart';
-// import 'package:merckfoundation22dec/model/subprogrammmtmambassadar.dart';
-// import 'dart:convert';
-// import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-// import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
-// import 'package:merckfoundation22dec/widget/showdailog.dart';
-// import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-// import 'package:url_launcher/url_launcher.dart';
-// import 'package:flutter_html/flutter_html.dart';
-// import 'package:merckfoundation22dec/utility/APIManager.dart';
-// import 'package:http/io_client.dart';
-// import 'dart:io';
-// import 'package:merckfoundation22dec/model/AmbassadarImageViewall.dart';
-
-// import 'package:merckfoundation22dec/Ambassadarmmtmimage.dart';
-// import 'package:merckfoundation22dec/watchmorevideoambaassadar.dart';
-
-// class MotherAmbassadarDetails extends StatefulWidget {
-//   @override
-//   State<StatefulWidget> createState() {
-//     return MotherAmbassadarState();
-//   }
-// }
-
-// class MotherAmbassadarState extends State<MotherAmbassadarDetails> {
-//   List images = [
-//     "assets/newImages/img1.png",
-//     "assets/newImages/m3.png",
-//     "assets/newImages/cfa1.png"
-//   ];
-//   List paravalue = [
-//     "Breaking the Stigma around infertile couples in general and infertile women in particular.",
-//     "Empowering Girls and Women in Education in general and in STEM in particular.",
-//     "Improving access to quality & equitable healthcare solutions.",
-//   ];
-
-//   List typewidet = [];
-//   bool isMiddleSectionLoaded = false;
-//   List<Widget> listofwiget = [];
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     getmmtmapi();
-//     super.initState();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Customcolor.background,
-//       appBar: InnerCustomAppBar(
-//         onTapval: () {
-//           Navigator.pop(context);
-//           // Navigator.push(
-//           //     context,
-//           //     MaterialPageRoute(
-//           //         builder: (BuildContext context) => Dashboard(
-//           //               index: 1,
-//           //             )));
-//         },
-//         index: 2,
-//         sharelink: Constantstring.merckambassadar,
-//         title: "Merck Foundation More Than A Mother Ambassadors",
-//         titleImg: "assets/newImages/our_programsLogo.png",
-//         trallingImg1: "assets/newImages/share.png",
-//         trallingImg2: "assets/newImages/search.png",
-//         height: 85,
-//       ),
-//       body: ListView(
-//          shrinkWrap: true,
-//          //  crossAxisAlignment: CrossAxisAlignment.start,
-//          children: [
-//            Padding(
-//                padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
-
-//              child: Visibility(
-//                visible: isMiddleSectionLoaded,
-//                replacement: Center(child: CircularProgressIndicator()),
-//                child: ListView(
-//                    shrinkWrap: true,
-//                    physics: ScrollPhysics(),
-//                    // scrollDirection: Axis.horizontal,
-//                    children: list(),
-
-//                    ),
-//              ),
-//            ),
-
-//              Padding(
-//                  padding: const EdgeInsets.only(right: 0, left: 0),
-//                  child: Align(
-//                    alignment: Alignment.topRight,
-//                    child: Image.asset(
-//                      "assets/newImages/flowers_footer.png",
-//                      height: 170,
-//                    ),
-//                  ),
-//                ),
-//                SizedBox(
-//                  height: 10,
-//                ),
-//                Bottomcardlink(),
-//          ],
-//        ),
-//     );
-//   }
-
-//   Future<http.Response> getmmtmapi() async {
-//     print("mmtm api");
-//     var status1 = await ConnectionDetector.checkInternetConnection();
-
-//     if (status1) {
-//       var response = await APIManager.fetchget(
-//         encoding: APIManager.subprogrammmtmambasadar,
-//       );
-//       print("response");
-//       print(response);
-//       if (response.statusCode == 200) {
-//         var res = json.decode(response.body);
-//         print("ff");
-//         print(res);
-//         SubprommtmambassadarResponse homepageres =
-//             SubprommtmambassadarResponse.fromJson(res);
-
-//         Map<String, dynamic> section1 = homepageres.middleArea;
-
-//         // print(section1);
-//         // print(section1['1']);
-//         List<String> middleareakey = [];
-//         section1.keys.forEach((element) {
-//           middleareakey.add(element.toString());
-//         });
-//         for (int i = 0; i < section1.length; i++) {
-//           //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-//           //  print(categoryKeys.videos.type);
-//           dynamic section = res['middle_area'][middleareakey[i]];
-//           print("TKey: ${section.keys.first}");
-//           var middlecategoryname = section.keys.first;
-
-//           // setState(() {
-//           typewidet.add(middlecategoryname);
-
-//           print(typewidet);
-//           //  });
-//           if (middlecategoryname.toString().toLowerCase() ==
-//               "Videos".toLowerCase()) {
-//             GlobalLists.homevideolist =
-//                 homepageres.middleArea[middleareakey[i]].videos.list;
-//             print(GlobalLists.homevideolist.length);
-//           } else if (middlecategoryname.toString().toLowerCase() ==
-//               "content".toLowerCase()) {
-//             GlobalLists.homecontentlist =
-//                 homepageres.middleArea[middleareakey[i]].content.list;
-//             print(GlobalLists.homecontentlist.length);
-//           } else if (middlecategoryname.toString().toLowerCase() ==
-//               "gallery".toLowerCase()) {
-//             GlobalLists.homegallerybaseurl =
-//                 homepageres.middleArea[middleareakey[i]].gallery.baseUrl;
-//             GlobalLists.homegallerylist =
-//                 homepageres.middleArea[middleareakey[i]].gallery.list;
-//             print(GlobalLists.homegallerylist.length);
-//           } else if (middlecategoryname.toString().toLowerCase() ==
-//               "mmtm".toLowerCase()) {
-//             //  if (homepageres.middleArea['${i + 1}'].ambasdars != null) {
-//             GlobalLists.ambasdarsbaseurl =
-//                 homepageres.middleArea[middleareakey[i]].mmtm.baseUrl;
-//             GlobalLists.ambasdarslist =
-//                 homepageres.middleArea[middleareakey[i]].mmtm.list;
-//             //}
-//             print(GlobalLists.ambasdarslist.length);
-//           }
-//         }
-
-//         setState(() {
-//           isMiddleSectionLoaded = true;
-//         });
-
-//         return response;
-//       } else {
-//         setState(() {
-//           isMiddleSectionLoaded = true;
-//         });
-
-//         ShowDialogs.showToast(GlobalLists.serverresp);
-//       }
-//     } else {
-//       setState(() {
-//         isMiddleSectionLoaded = true;
-//       });
-
-//       ShowDialogs.showToast("Please check internet connection");
-//     }
-//   }
-
-//   List<Widget> list() {
-//     listofwiget.clear();
-//     for (int i = 0; i < typewidet.length; i++) {
-//       if (typewidet[i] == "gallery") {
-//         listofwiget.add(
-//           Padding(
-//             padding: const EdgeInsets.only(left: 8, top: 10),
-//             child: CustomHorizontalCard(
-//               index: 1,
-//               cardImage: "assets/newImages/ourvison.png",
-//               isheading: 1,
-//               cardTitle:
-//                   "Acknowledging the efforts of First Ladies as Ambassador of Merck More Than a Mother",
-//               showviewmore: 1,
-//               btnTitle: "View More",
-//               titleColor: Customcolor.pink_col,
-//               titleImg: "assets/newImages/flowers-3.png",
-//               //heigthoflist: SizeConfig.safeBlockVertical * 35,
-//               onbtnTap: () {
-//                 //  getprogramgallery();
-//               },
-//               list: ListView.builder(
-//                 itemCount: GlobalLists.homegallerylist.length,
-//                 scrollDirection: Axis.horizontal,
-//                 itemBuilder: (BuildContext context, int index) {
-//                   return GestureDetector(
-//                     onTap: () {
-//                       ShowDialogs.showImageDialog(
-//                         context: context,
-//                         image: GlobalLists.homegallerybaseurl +
-//                             GlobalLists.homegallerylist[index].photo,
-//                         description:
-//                             GlobalLists.homegallerylist[index].photoDescription,
-//                       );
-//                     },
-//                     child: Padding(
-//                       padding: const EdgeInsets.only(right: 5, left: 5),
-//                       child: Stack(
-//                         children: [
-//                           Container(
-//                             //width: SizeConfig.blockSizeHorizontal * 80,
-//                             child: FadeInImage.assetNetwork(
-//                               placeholder: 'assets/newImages/placeholder_3.jpg',
-//                               image:
-//                                   "${GlobalLists.homegallerybaseurl + GlobalLists.homegallerylist[index].photo}",
-//                               fit: BoxFit.contain,
-//                             ),
-//                           ),
-//                           Align(
-//                             alignment: Alignment.bottomCenter,
-//                             child: Padding(
-//                               padding: const EdgeInsets.only(
-//                                   left: 10, right: 10, bottom: 10),
-//                               child: Row(
-//                                 crossAxisAlignment: CrossAxisAlignment.end,
-//                                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Column(
-//                                     mainAxisAlignment: MainAxisAlignment.end,
-//                                     crossAxisAlignment:
-//                                         CrossAxisAlignment.start,
-//                                     children: [
-//                                       // Container(
-//                                       //   width:
-//                                       //       SizeConfig.blockSizeHorizontal * 80,
-//                                       //   child: Text(
-//                                       //     GlobalLists.homegallerylist[index].title,
-//                                       //     overflow: TextOverflow.ellipsis,
-//                                       //     style: TextStyle(
-//                                       //         color: Colors.white,
-//                                       //         fontSize: 14,
-//                                       //         fontWeight: FontWeight.w700),
-//                                       //     maxLines: 3,
-//                                       //   ),
-//                                       // ),
-//                                       SizedBox(
-//                                         height: 8,
-//                                       )
-//                                     ],
-//                                   ),
-//                                 ],
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   );
-//                 },
-//               ),
-//             ),
-//           ),
-//         );
-//       }
-//       if (typewidet[i] == "videos") {
-//         listofwiget.add(
-//           Padding(
-//             padding: const EdgeInsets.only(left: 8, top: 10),
-//             child: CustomHorizontalCard(
-//               index: 1,
-//               cardImage: "assets/newImages/gallery.png",
-//               cardsubtitle: "",
-//               isheading: 1,
-//               cardTitle:
-//                   "Watch below some of the latest videos of Dr. Rasha Kelej and the the First Ladies of Africa, Ambassadors of Merck More Than a Mother",
-//               btnTitle: "Watch More",
-//               showviewmore: 1,
-//               onbtnTap: () {
-//                 // Navigator.push(
-//                 //     context,
-//                 //     MaterialPageRoute(
-//                 //         builder: (BuildContext context) => Videolibrary()));
-//               },
-//               titleColor: Customcolor.pink_col,
-//               titleImg: "assets/newImages/flowers-3.png",
-//               heigthoflist: SizeConfig.blockSizeVertical * 38,
-//               list: ListView.builder(
-//                 itemCount: GlobalLists.homevideolist.length,
-//                 scrollDirection: Axis.horizontal,
-//                 itemBuilder: (BuildContext context, int index) {
-//                   return Column(
-//                     //  mainAxisAlignment: Ma.end,
-//                     //    mainAxisAlignment: MainAxisAlignment.end,
-//                     children: [
-//                       GestureDetector(
-//                         onTap: () {
-//                           var storykey = GlobalLists
-//                               .homevideolist[index].videoLink
-//                               .substring(GlobalLists
-//                                       .homevideolist[index].videoLink.length -
-//                                   11);
-//                           ShowDialogs.youtubevideolink(
-//                               "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-//                           // _launchInWebViewWithJavaScript(
-//                           //     "https://www.youtube.com/watch?v=${storykey}?rel=0&autoplay=1");
-//                         },
-//                         child: Column(
-//                           children: [
-//                             Padding(
-//                               padding: const EdgeInsets.only(
-//                                   right: 8, left: 10, bottom: 10),
-//                               child: Stack(
-//                                 children: [
-//                                   Container(
-//                                     width: SizeConfig.blockSizeHorizontal * 86,
-//                                     height: SizeConfig.blockSizeVertical * 24,
-//                                     child: FadeInImage.assetNetwork(
-//                                       placeholder:
-//                                           'assets/newImages/placeholder_3.jpg',
-//                                       image:
-//                                           "https://img.youtube.com/vi/${GlobalLists.homevideolist[index].videoLink.substring(GlobalLists.homevideolist[index].videoLink.length - 11)}/mqdefault.jpg",
-//                                       fit: BoxFit.fill,
-//                                       //   height: SizeConfig.blockSizeVertical * 30,
-//                                     ),
-//                                   ),
-//                                   // Positioned(
-//                                   //   top: SizeConfig.blockSizeVertical * 18,
-//                                   //   // alignment: Alignment.bottomCenter,
-//                                   //   child: Padding(
-//                                   //     padding: const EdgeInsets.only(
-//                                   //         left: 10, right: 10, bottom: 20),
-//                                   //     child: Row(
-//                                   //       crossAxisAlignment: CrossAxisAlignment.end,
-//                                   //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                   //       children: [
-//                                   //         Column(
-//                                   //           mainAxisAlignment:
-//                                   //               MainAxisAlignment.end,
-//                                   //           crossAxisAlignment:
-//                                   //               CrossAxisAlignment.start,
-//                                   //           children: [
-//                                   //             Container(
-//                                   //               width:
-//                                   //                   SizeConfig.blockSizeHorizontal *
-//                                   //                       80,
-//                                   //               child: Text(
-//                                   //                 GlobalLists.homevideolist[index]
-//                                   //                     .videoDesc,
-//                                   //                 overflow: TextOverflow.ellipsis,
-//                                   //                 style: TextStyle(
-//                                   //                     color: Colors.white,
-//                                   //                     fontSize: 14,
-//                                   //                     fontWeight: FontWeight.w700),
-//                                   //                 maxLines: 3,
-//                                   //               ),
-//                                   //             ),
-//                                   //             SizedBox(
-//                                   //               height: 25,
-//                                   //             )
-//                                   //           ],
-//                                   //         ),
-//                                   //       ],
-//                                   //     ),
-//                                   //   ),
-//                                   // ),
-//                                   Padding(
-//                                     padding: EdgeInsets.only(top: 70, left: 120),
-//                                     child: Center(
-//                                         child: Image.asset(
-//                                             "assets/newImages/pause.png")),
-//                                   )
-//                                 ],
-//                               ),
-//                             ),
-
-//                            SizedBox(
-//                                             height: 7,
-//                                           ),
-
-//                        Container(
-//                                             width:
-//                                                 SizeConfig.blockSizeHorizontal *
-//                                                     80,
-//                                             child: Text(
-//                                               GlobalLists.homevideolist[index]
-//                                                   .videoDesc,
-//                                               overflow: TextOverflow.ellipsis,
-//                                               style: TextStyle(
-//                                                   color: Colors.black87,
-//                                                   fontSize: 14,
-//                                                   fontWeight: FontWeight.w700),
-//                                               maxLines: 2,
-//                                             ),
-//                                           ),
-//                                           SizedBox(
-//                                             height: 5,
-//                                           )
-
-//                           ],
-//                         ),
-//                       ),
-//                       Center(
-//                         child: GestureDetector(
-//                           onTap: () {
-//                             Navigator.push(
-//                                 context,
-//                                 MaterialPageRoute(
-//                                     builder: (BuildContext context) =>
-//                                         WatchmoreVideoambassdar(
-//                                           categoryid: GlobalLists
-//                                               .homevideolist[index].categoryId,
-//                                           api: APIManager.ambasadarvideoapi,
-//                                           type: "ambassadar",
-//                                           headertitle: "Videos",
-//                                         )));
-//                             // ambasssadarvideoviewmore(
-//                             //     GlobalLists.homevideolist[index].categoryId);
-//                           },
-//                           child: Container(
-//                             width: 180,
-//                             height: 40,
-//                             decoration: BoxDecoration(
-//                                 color: Colors.amber,
-//                                 borderRadius: BorderRadius.circular(5)),
-//                             child: Center(
-//                               child: Text(
-//                                 "Watch More Videos",
-//                                 textAlign: TextAlign.center,
-//                                 style: TextStyle(
-//                                     color: Customcolor.colorBlue,
-//                                     fontSize: 15,
-//                                     fontWeight: FontWeight.w500),
-//                               ),
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                         ],
-//                   );
-//                 },
-//               ),
-//             ),
-//           ),
-//         );
-//       }
-//       if (typewidet[i] == "content") {
-//         listofwiget.add(
-//           Html(
-//             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-//                 onLinkTap:(url) {
-//               print("Opening $url...");
-//               ShowDialogs.launchURL(url);
-//             },
-//           ),
-//         );
-//       }
-//       if (typewidet[i] == "latest_updates") {
-//         listofwiget.add(
-//           Padding(
-//             padding: const EdgeInsets.only(left: 10, top: 10),
-//             child: CustomHorizontalCard(
-//               index: 1,
-//               cardImage: "assets/newImages/ourvison.png",
-//               cardsubtitle: "Latest ",
-//               cardTitle: "Updates",
-//               btnTitle: "View More",
-//               titleColor: Customcolor.pink_col,
-//               onbtnTap: () {
-//                 Navigator.push(
-//                     context,
-//                     MaterialPageRoute(
-//                         builder: (BuildContext context) =>
-//                             Dashboard(index: 3)));
-//               },
-//               titleImg: "assets/newImages/flowers-3.png",
-//               list: ListView.builder(
-//                 itemCount: GlobalLists.homeceomsglist.length,
-//                 scrollDirection: Axis.horizontal,
-//                 itemBuilder: (BuildContext context, int index) {
-//                   return GestureDetector(
-//                     onTap: () {
-//                       Navigator.push(
-//                           context,
-//                           MaterialPageRoute(
-//                               builder: (BuildContext context) => Detailpage(
-//                                     indexIs: index,
-//                                     callfrom: 2,
-//                                   )));
-//                     },
-//                     child: Padding(
-//                       padding: const EdgeInsets.only(right: 8, left: 10),
-//                       child: Stack(
-//                         children: [
-//                           Container(
-//                             width: SizeConfig.blockSizeHorizontal * 86,
-//                             child: FadeInImage.assetNetwork(
-//                               placeholder: 'assets/newImages/placeholder_3.jpg',
-//                               image:
-//                                   "${GlobalLists.homeceomsgbaseurl + GlobalLists.homeceomsglist[index].image}",
-//                               fit: BoxFit.fill,
-//                             ),
-//                           ),
-//                           Align(
-//                             alignment: Alignment.bottomCenter,
-//                             child: Padding(
-//                               padding: const EdgeInsets.only(
-//                                   left: 0, right: 10, bottom: 10),
-//                               child: Row(
-//                                 crossAxisAlignment: CrossAxisAlignment.end,
-//                                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Column(
-//                                     mainAxisAlignment: MainAxisAlignment.end,
-//                                     crossAxisAlignment:
-//                                         CrossAxisAlignment.start,
-//                                     children: [
-//                                       Container(
-//                                         width:
-//                                             SizeConfig.blockSizeHorizontal * 80,
-//                                         child: Text(
-//                                           GlobalLists
-//                                               .homeceomsglist[index].title,
-//                                           overflow: TextOverflow.ellipsis,
-//                                           style: TextStyle(
-//                                               color: Colors.white,
-//                                               fontSize: 14,
-//                                               fontWeight: FontWeight.w700),
-//                                           maxLines: 3,
-//                                         ),
-//                                       ),
-//                                       SizedBox(
-//                                         height: 8,
-//                                       )
-//                                     ],
-//                                   ),
-//                                 ],
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   );
-//                 },
-//               ),
-//             ),
-//           ),
-//         );
-//       }
-//       if (typewidet[i] == "mmtm") {
-//         listofwiget.add(Padding(
-//           padding: const EdgeInsets.only(left: 10, top: 10),
-//           child: CustomHorizontalCard(
-//             index: 1,
-//             cardImage: "assets/newImages/ourvison.png",
-//             cardTitle: "",
-//             cardsubtitle: "",
-//             btnTitle: "View More",
-//             showviewmore: 1,
-//             titleColor: Customcolor.pink_col,
-//             onbtnTap: () {},
-//             heigthoflist: SizeConfig.blockSizeVertical * 43,
-//             titleImg: "assets/newImages/flowers-3.png",
-//             list: ListView.builder(
-//               itemCount: GlobalLists.ambasdarslist.length,
-//               scrollDirection: Axis.horizontal,
-//               itemBuilder: (BuildContext context, int index) {
-//                 return GestureDetector(
-//                   onTap: () {
-//                     // Navigator.push(
-//                     //     context,
-//                     //     MaterialPageRoute(
-//                     //         builder: (BuildContext context) => Detailpage(
-//                     //               indexIs: index,
-//                     //               callfrom: 2,
-//                     //             )));
-//                   },
-//                   child: Padding(
-//                     padding: const EdgeInsets.only(right: 8, left: 10),
-//                     child: Column(
-//                       children: [
-//                         Container(
-//                           // width: SizeConfig.blockSizeHorizontal * 50,
-//                           height: 260,
-//                           child: FadeInImage.assetNetwork(
-//                             placeholder: 'assets/newImages/placeholder_3.jpg',
-//                             image:
-//                                 "${GlobalLists.ambasdarsbaseurl + GlobalLists.ambasdarslist[index].photo}",
-//                             fit: BoxFit.contain,
-//                           ),
-//                         ),
-//                         SizedBox(
-//                           height: 20,
-//                         ),
-//                         Center(
-//                           child: GestureDetector(
-//                             onTap: () {
-//                               print(
-//                                   GlobalLists.ambasdarslist[index].albumNameId);
-//                               ambasssadarimageviewmore(
-//                                   GlobalLists.ambasdarslist[index].albumNameId);
-//                             },
-//                             child: Container(
-//                               width: 120,
-//                               height: 40,
-//                               decoration: BoxDecoration(
-//                                   color: Colors.amber,
-//                                   borderRadius: BorderRadius.circular(5)),
-//                               child: Center(
-//                                 child: Text(
-//                                   "View All",
-//                                   style: TextStyle(
-//                                       color: Customcolor.colorBlue,
-//                                       fontSize: 15,
-//                                       fontWeight: FontWeight.w500),
-//                                 ),
-//                               ),
-//                             ),
-//                           ),
-//                         ),
-//                         // Align(
-//                         //   alignment: Alignment.bottomCenter,
-//                         //   child: Padding(
-//                         //     padding: const EdgeInsets.only(
-//                         //         left: 10, right: 10, bottom: 10),
-//                         //     child: Row(
-//                         //       crossAxisAlignment: CrossAxisAlignment.end,
-//                         //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                         //       children: [
-//                         //         Column(
-//                         //           mainAxisAlignment: MainAxisAlignment.end,
-//                         //           crossAxisAlignment: CrossAxisAlignment.start,
-//                         //           children: [
-//                         //             Container(
-//                         //               width:
-//                         //                   SizeConfig.blockSizeHorizontal * 80,
-//                         //               child: Text(
-//                         //                 GlobalLists.homeceomsglist[index].title,
-//                         //                 overflow: TextOverflow.ellipsis,
-//                         //                 style: TextStyle(
-//                         //                     color: Colors.white,
-//                         //                     fontSize: 14,
-//                         //                     fontWeight: FontWeight.w700),
-//                         //                 maxLines: 3,
-//                         //               ),
-//                         //             ),
-//                         //             SizedBox(
-//                         //               height: 8,
-//                         //             )
-//                         //           ],
-//                         //         ),
-//                         //       ],
-//                         //     ),
-//                         //   ),
-//                         // ),
-//                       ],
-//                     ),
-//                   ),
-//                 );
-//               },
-//             ),
-//           ),
-//         ));
-//       }
-//     }
-//     return listofwiget;
-//   }
-
-//   // ambasssadarvideoviewmore(String categoryid) async {
-//   //   var status = await ConnectionDetector.checkInternetConnection();
-
-//   //   if (status) {
-//   //     dynamic bodyData = {
-//   //       'category_id': categoryid,
-//   //     };
-
-//   //     // String body = json.encode(bodyData);
-//   //     print(bodyData);
-//   //     var response = await fetchPostWithBodyResponse(
-//   //       APIManager.ambasadarvideoapi,
-//   //       bodyData,
-//   //     );
-
-//   //     var res = json.decode(response.body);
-//   //     print("res");
-//   //     print(res);
-//   //     AmbassdarvideoResponse resp =
-//   //         ambassdarvideoResponseFromJson(response.body);
-//   //     if (response.statusCode == 200) {
-//   //       if (res['success'] == true) {
-//   //         GlobalLists.videoviewmoreambasdarslist = resp.list;
-//   //       } else {
-//   //         setState(() {
-//   //           ShowDialogs.showToast(res['msg']);
-//   //         });
-//   //       }
-//   //     } else {
-//   //       ShowDialogs.showToast("Server Not Responding");
-//   //     }
-//   //   } else {
-//   //     setState(() {
-//   //       ShowDialogs.showToast("Please check Internet Connection.");
-//   //     });
-//   //   }
-//   // }
-
-//   ambasssadarimageviewmore(String albumid) async {
-//     var status = await ConnectionDetector.checkInternetConnection();
-
-//     if (status) {
-//       dynamic bodyData = {
-//         'album_id': albumid,
-//       };
-
-//       // String body = json.encode(bodyData);
-//       print(bodyData);
-//       var response = await fetchPostWithBodyResponse(
-//         APIManager.ambasadarimageapi,
-//         bodyData,
-//       );
-
-//       var res = json.decode(response.body);
-//       print("res");
-//       print(res);
-//       AmbassdarImageResponse resp =
-//           ambassdarImageResponseFromJson(response.body);
-//       if (response.statusCode == 200) {
-//         GlobalLists.viewmoreambasdarslist = resp.list;
-//         GlobalLists.viewmoreambasdarsbaseurl = resp.baseUrl;
-//         if (res['success'] == true) {
-//           Navigator.push(
-//               context,
-//               MaterialPageRoute(
-//                   builder: (context) => AmbassadarmmtmImagePage(
-//                         baseURL: GlobalLists.viewmoreambasdarsbaseurl,
-//                         index: 0,
-//                         photosList: GlobalLists.viewmoreambasdarslist,
-//                       )));
-//         } else {
-//           setState(() {
-//             ShowDialogs.showToast(res['msg']);
-//           });
-//         }
-//       } else {
-//         ShowDialogs.showToast("Server Not Responding");
-//       }
-//     } else {
-//       setState(() {
-//         ShowDialogs.showToast("Please check Internet Connection.");
-//       });
-//     }
-//   }
-
-//   Future<void> _launchInWebViewWithJavaScript(String url) async {
-//     if (await canLaunch(url)) {
-//       await launch(
-//         url,
-//         forceSafariVC: true,
-//         forceWebView: true,
-//         enableJavaScript: true,
-//       );
-//     } else {
-//       throw 'Could not launch $url';
-//     }
-//   }
-
-//   Future<http.Response> fetchPostWithBodyResponse(
-//       String url, dynamic body) async {
-//     IOClient ioClient = new IOClient();
-
-//     HttpClient client = new HttpClient();
-
-//     ioClient = new IOClient(client);
-//     final response = await ioClient.post(url, body: body);
-//     print('pit stop');
-//     return response;
-//   }
-// }

@@ -10,7 +10,7 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
@@ -20,7 +20,7 @@ import 'package:merckfoundation22dec/model/merckFoundationMediaResp.dart'
 class MerckFoundationMedia extends StatefulWidget {
   final dynamic apiurl;
 
-  const MerckFoundationMedia({Key key, this.apiurl}) : super(key: key);
+  const MerckFoundationMedia({Key? key, this.apiurl}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return MerckFoundationMediaState();
@@ -30,7 +30,7 @@ class MerckFoundationMedia extends StatefulWidget {
 class MerckFoundationMediaState extends State<MerckFoundationMedia> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   ScrollController _sc = new ScrollController();
-  MerckinMediaResponse resp;
+  late MerckinMediaResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -63,16 +63,16 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                 // list = new List();
                 // list = resp.data.list;
                 //totalcount 10
-                if (resp.data.list.length < 10) {
-                  for (int i = offset; i < resp.data.list.length; i++) {
+                if (resp.data!.list!.length < 10) {
+                  for (int i = offset; i < resp.data!.list!.length; i++) {
                     setState(() {
                       GlobalLists.merckinMediaList.add(
                           merckMediaresp.ListElement(
-                              title: resp.data.list[i].title,
-                              id: resp.data.list[i].id,
-                              description: resp.data.list[i].description,
-                              mediaUrl: resp.data.list[i].mediaUrl,
-                              image: resp.data.list[i].image));
+                              title: resp.data!.list![i].title,
+                              id: resp.data!.list![i].id,
+                              description: resp.data!.list![i].description,
+                              mediaUrl: resp.data!.list![i].mediaUrl,
+                              image: resp.data!.list![i].image));
                     });
 
                     // GlobalLists.newsLettersList.add(resp.data.list);
@@ -83,11 +83,11 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                     setState(() {
                       GlobalLists.merckinMediaList.add(
                           merckMediaresp.ListElement(
-                              title: resp.data.list[i].title,
-                              id: resp.data.list[i].id,
-                              description: resp.data.list[i].description,
-                              mediaUrl: resp.data.list[i].mediaUrl,
-                              image: resp.data.list[i].image));
+                              title: resp.data!.list![i].title,
+                              id: resp.data!.list![i].id,
+                              description: resp.data!.list![i].description,
+                              mediaUrl: resp.data!.list![i].mediaUrl,
+                              image: resp.data!.list![i].image));
                     });
 
                     // GlobalLists.newsLettersList.add(resp.data.list);
@@ -96,7 +96,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                 }
 
                 offset = totalcount;
-                int remem = resp.data.list.length - totalcount;
+                int remem = resp.data!.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -105,7 +105,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                   totalcount = totalcount + 10;
                 }
                 // // GlobalLists.newsLettersList = resp.data.list;
-                Constantstring.baseUrl = resp.baseUrl;
+                Constantstring.baseUrl = resp.baseUrl!;
                 print("-----------------------------------");
                 print(totalcount);
                 print(GlobalLists.newsReleaseList.length);
@@ -115,7 +115,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -126,15 +126,24 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
     }
   }
 
-  _launchURL(String urlIs) async {
-    var url = urlIs;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  // _launchURL(String urlIs) async {
+  //   var url = urlIs;
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
+Future<void> _launchURL(String urlIs) async {
+  final Uri uri = Uri.parse(urlIs);
 
+  if (!await launchUrl(
+    uri,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw 'Could not launch $uri';
+  }
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -190,7 +199,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                             child: GestureDetector(
                               onTap: () {
                                 ShowDialogs.launchURL(GlobalLists
-                                    .merckinMediaList[index].mediaUrl);
+                                    .merckinMediaList[index].mediaUrl!);
                                 // Navigator.push(
                                 //     context,
                                 //     MaterialPageRoute(
@@ -226,7 +235,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                                               image: Constantstring.baseUrl +
                                                   GlobalLists
                                                       .merckinMediaList[index]
-                                                      .image,
+                                                      .image!,
                                               fit: BoxFit.cover,
                                               height: 80,
                                               width: 80,
@@ -239,7 +248,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                                             child: Text(
                                               GlobalLists
                                                   .merckinMediaList[index]
-                                                  .title,
+                                                  .title!,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -318,15 +327,15 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
           if (resp.success == "True") {
             setState(() {
               // GlobalLists.merckinMediaList = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
+              Constantstring.baseUrl = resp.baseUrl!;
               for (int i = offset; i < totalcount; i++) {
                 setState(() {
                   GlobalLists.merckinMediaList.add(merckMediaresp.ListElement(
-                      title: resp.data.list[i].title,
-                      id: resp.data.list[i].id,
-                      description: resp.data.list[i].description,
-                      mediaUrl: resp.data.list[i].mediaUrl,
-                      image: resp.data.list[i].image));
+                      title: resp.data!.list![i].title,
+                      id: resp.data!.list![i].id,
+                      description: resp.data!.list![i].description,
+                      mediaUrl: resp.data!.list![i].mediaUrl,
+                      image: resp.data!.list![i].image));
                 });
 
                 // GlobalLists.newsLettersList.add(resp.data.list);
@@ -334,7 +343,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
               }
 
               offset = totalcount;
-              int remem = resp.data.list.length - totalcount;
+              int remem = resp.data!.list!.length - totalcount;
               print("remem");
               print(remem);
               if (remem < 10) {
@@ -343,7 +352,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
                 totalcount = totalcount + 10;
               }
               // // GlobalLists.newsLettersList = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
+              Constantstring.baseUrl = resp.baseUrl!;
               print("-----------------------------------");
               print(totalcount);
               print(GlobalLists.merckinMediaList.length);
@@ -356,7 +365,7 @@ class MerckFoundationMediaState extends State<MerckFoundationMedia> {
             setState(() {
               _isLoading = false;
             });
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

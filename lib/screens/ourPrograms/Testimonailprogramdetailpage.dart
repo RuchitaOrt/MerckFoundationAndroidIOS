@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
+
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
@@ -9,10 +9,10 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 
 class Testimonialprogramdetailpage extends StatefulWidget {
-  final int index;
-  final String baseurl;
+  final int? index;
+  final String? baseurl;
   const Testimonialprogramdetailpage({
-    Key key,
+    Key? key,
     this.index,
     this.baseurl,
   }) : super(key: key);
@@ -24,7 +24,7 @@ class Testimonialprogramdetailpage extends StatefulWidget {
 
 class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
@@ -53,8 +53,8 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
           },
           index: 2,
           sharelink: Constantstring.sharetestimonialdetailpage +
-              GlobalLists.mmttestimoniallist[widget.index].detailPageUrl,
-          title: GlobalLists.mmttestimoniallist[widget.index].testimonialName,
+              GlobalLists.mmttestimoniallist[widget.index!].detailPageUrl,
+          title: GlobalLists.mmttestimoniallist[widget.index!].testimonialName,
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -96,9 +96,9 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                               borderRadius: BorderRadius.circular(10)),
                           child: FadeInImage.assetNetwork(
                             placeholder: 'assets/newImages/placeholder_3.jpg',
-                            image: widget.baseurl +
+                            image: widget.baseurl! +
                                 GlobalLists
-                                    .mmttestimoniallist[widget.index].image,
+                                    .mmttestimoniallist[widget.index!].image,
                             fit: BoxFit.fill,
                             imageScale: 1,
                             height: 150,
@@ -107,10 +107,10 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                       ),
                       Html(
                         data:
-                            """${GlobalLists.mmttestimoniallist[widget.index].testimonialName} """,
-                        onLinkTap: (url, renderContext, attributes, element) {
+                            """${GlobalLists.mmttestimoniallist[widget.index!].testimonialName} """,
+                        onLinkTap: (url, attributes, element) {
                           print("Opening $url...");
-                          ShowDialogs.launchURL(url);
+                          ShowDialogs.launchURL(url!);
                         },
                         // style: {
                         //   "body": Style(textAlign: TextAlign.start),
@@ -123,30 +123,81 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                               fontWeight: FontWeight.w500),
                           "tr": Customcolor.tableboderstyle(context),
                         },
+                         extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                       ),
                       Html(
                         data:
-                            """${GlobalLists.mmttestimoniallist[widget.index].departmentName} """,
-                        onLinkTap: (url, renderContext, attributes, element) {
+                            """${GlobalLists.mmttestimoniallist[widget.index!].departmentName} """,
+                        onLinkTap: (url, attributes, element) {
                           print("Opening $url...");
-                          ShowDialogs.launchURL(url);
+                          ShowDialogs.launchURL(url!);
                         },
                         style: {
                           "body": Style(textAlign: TextAlign.start),
                           "tr": Customcolor.tableboderstyle(context),
                         },
+                         extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                       ),
                       Html(
                         data:
-                            """${GlobalLists.mmttestimoniallist[widget.index].details} """,
-                        onLinkTap: (url, renderContext, attributes, element) {
+                            """${GlobalLists.mmttestimoniallist[widget.index!].details} """,
+                        onLinkTap: (url, attributes, element) {
                           print("Opening $url...");
-                          ShowDialogs.launchURL(url);
+                          ShowDialogs.launchURL(url!);
                         },
                         style: {
                           "body": Style(textAlign: TextAlign.start),
                           "tr": Customcolor.tableboderstyle(context),
                         },
+                         extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                       ),
                     ],
                   )),

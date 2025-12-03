@@ -6,15 +6,15 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 
 class Videofilter extends StatefulWidget {
-  final String apptitle;
-  final int filterindex;
-  const Videofilter({Key key, this.apptitle, this.filterindex})
+  final String? apptitle;
+  final int? filterindex;
+  const Videofilter({Key? key, this.apptitle, this.filterindex})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -51,14 +51,14 @@ class VideofilterState extends State<Videofilter> {
           data: Theme.of(context)
               .copyWith(canvasColor: Colors.white, primaryColor: Colors.white),
           child: AppDrawerfilter(
-            index: widget.filterindex,
+            index: widget.filterindex!,
           ),
         ),
         appBar: InnerCustomAppBar(
           onTapvalfilter: () {
             print("videokk");
             // _scaffoldKey1.currentState.openDrawer();
-            _scaffoldKey1.currentState.openEndDrawer();
+            _scaffoldKey1.currentState!.openEndDrawer();
           },
           onTapval: () {
             Navigator.pop(context);
@@ -81,7 +81,7 @@ class VideofilterState extends State<Videofilter> {
                       ? Constantstring.sharemerckmedia
                       : Constantstring.sharestories,
           // forfilterindes: 3,
-          title: widget.apptitle,
+          title: widget.apptitle!,
           titleImg: "assets/newImages/ourstoriesLogo.png",
          // trallingImg1: "assets/newImages/filter.png",
           trallingImg2: "assets/newImages/search.png",
@@ -129,10 +129,10 @@ class VideofilterState extends State<Videofilter> {
                                       //                   .videoLink,
                                       //             )));
                                       var storykey = GlobalLists
-                                          .filterdatalisting[index].videoLink
+                                          .filterdatalisting[index].videoLink!
                                           .substring(GlobalLists
                                                   .filterdatalisting[index]
-                                                  .videoLink
+                                                  .videoLink!
                                                   .length -
                                               11);
                                       ShowDialogs.youtubevideolink(
@@ -167,7 +167,7 @@ class VideofilterState extends State<Videofilter> {
                                                     // ),
                                                     image: new DecorationImage(
                                                       image: new NetworkImage(
-                                                          'https://img.youtube.com/vi/${GlobalLists.filterdatalisting[index].videoLink.substring(GlobalLists.filterdatalisting[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                          'https://img.youtube.com/vi/${GlobalLists.filterdatalisting[index].videoLink!.substring(GlobalLists.filterdatalisting[index].videoLink!.length - 11)}/mqdefault.jpg'),
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
@@ -178,7 +178,7 @@ class VideofilterState extends State<Videofilter> {
                                                 child: Text(
                                                   GlobalLists
                                                       .filterdatalisting[index]
-                                                      .videoDesc,
+                                                      .videoDesc!,
                                                   textAlign: TextAlign.center,
                                                   overflow: TextOverflow.ellipsis,
                                                   style: TextStyle(

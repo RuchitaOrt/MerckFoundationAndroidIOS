@@ -6,14 +6,16 @@ import 'package:merckfoundation22dec/model/OurawardResponse.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/AutoResizeWebView.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/model/OurawarddetailResponse.dart';
 import 'package:merckfoundation22dec/ourawarddetail.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class Ouraward extends StatefulWidget {
   @override
@@ -29,7 +31,7 @@ class ourawardState extends State<Ouraward> {
     "Merck more than a mother Fashion Award"
   ];
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
-  Color color;
+  Color? color;
   @override
   void initState() {
     // TODO: implement initState
@@ -114,6 +116,40 @@ class ourawardState extends State<Ouraward> {
                                 HtmlWidget(
                                   
                                       """${GlobalLists.awardlisting[index].title} """,
+                                       customWidgetBuilder: (element) {
+              if (element.localName == 'video') {
+                final src = element.children.firstWhere((e) => e.localName == 'source').attributes['src'];
+                if (src != null && src.contains('youtube.com')) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: src,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else  if (element.localName == 'iframe') {
+                final iframeSrc = element.attributes['src'];
+
+                // If the iframe is a YouTube video, handle it
+                if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: iframeSrc,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else if (element.localName == 'table') {
+     
+        return  AutoResizeWebView(htmlContent: element.outerHtml,);
+       
+      }
+              return null;
+            },
                                  
                                  
                                 ),
@@ -138,8 +174,8 @@ class ourawardState extends State<Ouraward> {
                                       onTap: () {
                                         getawarddetail(
                                           GlobalLists
-                                              .awardlisting[index].pageUrl,
-                                          GlobalLists.awardlisting[index].id,
+                                              .awardlisting[index].pageUrl!,
+                                          GlobalLists.awardlisting[index].id!,
                                           // GlobalLists.awardlisting[index].year,
                                         );
                                       },
@@ -235,19 +271,19 @@ class ourawardState extends State<Ouraward> {
           print(response);
           print('Resp : $resp');
 
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.awardlisting = resp.data.list;
+              GlobalLists.awardlisting = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
         },
       );
     } else {
@@ -271,11 +307,11 @@ class ourawardState extends State<Ouraward> {
         print(response);
         print('Resp : $resp');
 
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
 
         if (resp.success == "True") {
           setState(() {
-            GlobalLists.awarddetallisting = resp.data.list;
+            GlobalLists.awarddetallisting = resp.data!.list!;
             // GlobalLists.awarddetallisting[0].title
             Navigator.push(
                 context,
@@ -287,11 +323,11 @@ class ourawardState extends State<Ouraward> {
                         )));
           });
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
         }
       }, (error) {
         print('ERR msg is $error');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
       }, jsonval: json);
     } else {
       ShowDialogs.showToast("Please check internet connection");

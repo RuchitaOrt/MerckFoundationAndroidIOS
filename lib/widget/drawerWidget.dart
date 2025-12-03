@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 
 class DrawerWidget extends StatelessWidget {
-  String image;
-  String value;
+  dynamic image;
+  dynamic value;
   var controllervalue;
   var keyboardtype;
-  Function onTapfun;
+  VoidCallback? onTapfun;
   var width;
   var heigth;
 
   DrawerWidget(
-      {Key key, this.image, this.value, this.onTapfun, this.width, this.heigth})
+      {Key? key, this.image, this.value, this.onTapfun, this.width, this.heigth})
       : super(key: key);
 
   @override

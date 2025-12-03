@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 
 class FormLabel extends StatelessWidget {
-  String text;
+  dynamic text;
   Color labelColor;
   double fontSize;
   TextAlign textAlignment;
-  int maxLines;
-  FontWeight fontweight;
-  String fontfamily;
+  int? maxLines;
+  FontWeight? fontweight;
+  dynamic fontfamily;
 
   FormLabel(
-      {Key key,
+      {Key? key,
       this.text,
       this.labelColor = Colors.white,
       this.fontSize = 15,

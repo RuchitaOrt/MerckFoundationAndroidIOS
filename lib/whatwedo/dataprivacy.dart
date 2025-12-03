@@ -20,7 +20,7 @@ class OurDataprivacy extends StatefulWidget {
 
 class OurDataprivacyState extends State<OurDataprivacy>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
@@ -53,7 +53,7 @@ class OurDataprivacyState extends State<OurDataprivacy>
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
-          height: 85,
+          height: 85, 
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: Stack(
@@ -78,13 +78,30 @@ class OurDataprivacyState extends State<OurDataprivacy>
                                 data:
                                     """${GlobalLists.dataprivacy[0].pageContent} """,
                                 onLinkTap:
-                                    (url, renderContext, attributes, element) {
+                                    (url, attributes, element) {
                                   print("Opening $url...");
-                                  ShowDialogs.launchURL(url);
+                                  ShowDialogs.launchURL(url!);
                                 },
                                 style: {
                                   "tr": Customcolor.tableboderstyle(context),
                                 },
+                                 extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                 // style: {
                                 //   "body": Style(
                                 //     fontSize: FontSize(
@@ -157,19 +174,19 @@ class OurDataprivacyState extends State<OurDataprivacy>
           print(response);
           print('Resp : $resp');
 
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.dataprivacy = resp.data.list;
+              GlobalLists.dataprivacy = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
         },
       );
     } else {

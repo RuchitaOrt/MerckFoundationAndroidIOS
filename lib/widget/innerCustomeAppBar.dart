@@ -1,29 +1,30 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/searchscreen/searchcategory.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+
 import 'package:screenshot/screenshot.dart';
-import 'package:social_share_plugin/social_share_plugin.dart';
+
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 
 class InnerCustomAppBar extends PreferredSize {
   // final Widget child;
   final double height;
-  final Function onTapval;
-  final int index;
-  final String title;
-  final String titleImg;
-  final String trallingImg1;
-  final String trallingImg2;
-  final Function onTapvalfilter;
-  final int forfilterindes;
-  final String sharelink;
-  final String titleshowingindex;
+  final VoidCallback? onTapval;
+  final int? index;
+  final dynamic title;
+  final dynamic titleImg;
+  final dynamic trallingImg1;
+  final dynamic trallingImg2;
+  final VoidCallback? onTapvalfilter;
+  final int? forfilterindes;
+  final dynamic sharelink;
+  final dynamic titleshowingindex;
 
   InnerCustomAppBar(
       {this.sharelink,
@@ -36,7 +37,12 @@ class InnerCustomAppBar extends PreferredSize {
       this.trallingImg2,
       this.forfilterindes,
       this.titleshowingindex,
-      @required this.height = kToolbarHeight});
+      @required this.height = kToolbarHeight}): super(
+          preferredSize: titleshowingindex == "1"
+              ? Size.fromHeight(height)
+              : Size.fromHeight(120),
+          child: AppBar(
+            title: Text(title ?? "")));
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Size get preferredSize =>
@@ -176,7 +182,13 @@ class InnerCustomAppBar extends PreferredSize {
                                                   children: [
                                                     //
                                                     GestureDetector(
-                                                      onTap: () async {
+                                                      onTap: ()  {
+                                                        //changes 6june
+                              //                            ShowDialogs.launchFacebook(
+                              //  sharelink,
+                              //   "550280998481446");
+
+                               ShowDialogs.shareToFacebook(sharelink);
                                                         print("on tap fb");
                                                         // Platform.isAndroid
                                                         //     ? FlutterShareMe()
@@ -186,26 +198,26 @@ class InnerCustomAppBar extends PreferredSize {
                                                         //             msg: "msg")
                                                         //     :
 
-                                                        await SocialSharePlugin
-                                                            .shareToFeedFacebookLink(
-                                                          quote: "",
-                                                          url: sharelink,
-                                                          onSuccess: (_) {
-                                                            print(
-                                                                'FACEBOOK SUCCESS');
-                                                            return;
-                                                          },
-                                                          onCancel: () {
-                                                            print(
-                                                                'FACEBOOK CANCELLED');
-                                                            return;
-                                                          },
-                                                          onError: (error) {
-                                                            print(
-                                                                'FACEBOOK ERROR $error');
-                                                            return;
-                                                          },
-                                                        );
+                                                        // await SocialSharePlugin
+                                                        //     .shareToFeedFacebookLink(
+                                                        //   quote: "",
+                                                        //   url: sharelink,
+                                                        //   onSuccess: (_) {
+                                                        //     print(
+                                                        //         'FACEBOOK SUCCESS');
+                                                        //     return;
+                                                        //   },
+                                                        //   onCancel: () {
+                                                        //     print(
+                                                        //         'FACEBOOK CANCELLED');
+                                                        //     return;
+                                                        //   },
+                                                        //   onError: (error) {
+                                                        //     print(
+                                                        //         'FACEBOOK ERROR $error');
+                                                        //     return;
+                                                        //   },
+                                                        // );
                                                       },
                                                       child: Image.asset(
                                                         "assets/newImages/facebooknew.png",
@@ -218,7 +230,7 @@ class InnerCustomAppBar extends PreferredSize {
                                                       width: 7,
                                                     ),
                                                     GestureDetector(
-                                                      onTap: () async {
+                                                      onTap: ()  {
                                                         // Platform.isAndroid
                                                         //     ? await FlutterShareMe()
                                                         //         .shareToTwitter(
@@ -226,21 +238,23 @@ class InnerCustomAppBar extends PreferredSize {
                                                         //                 sharelink,
                                                         //             msg:
                                                         //                 "Share"):
-
-                                                        await SocialSharePlugin
-                                                            .shareToTwitterLink(
-                                                                text: "",
-                                                                url: sharelink,
-                                                                onSuccess: (_) {
-                                                                  print(
-                                                                      'TWITTER SUCCESS');
-                                                                  return;
-                                                                },
-                                                                onCancel: () {
-                                                                  print(
-                                                                      'TWITTER CANCELLED');
-                                                                  return;
-                                                                });
+  // ShowDialogs.launchTwitter(
+  //                             sharelink);
+  ShowDialogs.shareToTwitter("Merck Foundation",sharelink);
+                                                        // await SocialSharePlugin
+                                                        //     .shareToTwitterLink(
+                                                        //         text: "",
+                                                        //         url: sharelink,
+                                                        //         onSuccess: (_) {
+                                                        //           print(
+                                                        //               'TWITTER SUCCESS');
+                                                        //           return;
+                                                        //         },
+                                                        //         onCancel: () {
+                                                        //           print(
+                                                        //               'TWITTER CANCELLED');
+                                                        //           return;
+                                                        //         });
                                                       },
                                                       child: Image.asset(
                                                         "assets/newImages/twitternew.png",
@@ -365,27 +379,31 @@ class InnerCustomAppBar extends PreferredSize {
                                                     //             url: sharelink,
                                                     //             msg: "msg")
                                                     //     :
-
-                                                    await SocialSharePlugin
-                                                        .shareToFeedFacebookLink(
-                                                      quote: "",
-                                                      url: sharelink,
-                                                      onSuccess: (_) {
-                                                        print(
-                                                            'FACEBOOK SUCCESS');
-                                                        return;
-                                                      },
-                                                      onCancel: () {
-                                                        print(
-                                                            'FACEBOOK CANCELLED');
-                                                        return;
-                                                      },
-                                                      onError: (error) {
-                                                        print(
-                                                            'FACEBOOK ERROR $error');
-                                                        return;
-                                                      },
-                                                    );
+                                                    //chnages 6june
+//  ShowDialogs.launchFacebook(
+//                                sharelink,
+//                                 "550280998481446");
+ ShowDialogs.shareToFacebook(sharelink);
+                                                    // await SocialSharePlugin
+                                                    //     .shareToFeedFacebookLink(
+                                                    //   quote: "",
+                                                    //   url: sharelink,
+                                                    //   onSuccess: (_) {
+                                                    //     print(
+                                                    //         'FACEBOOK SUCCESS');
+                                                    //     return;
+                                                    //   },
+                                                    //   onCancel: () {
+                                                    //     print(
+                                                    //         'FACEBOOK CANCELLED');
+                                                    //     return;
+                                                    //   },
+                                                    //   onError: (error) {
+                                                    //     print(
+                                                    //         'FACEBOOK ERROR $error');
+                                                    //     return;
+                                                    //   },
+                                                    // );
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/facebooknew.png",
@@ -398,27 +416,30 @@ class InnerCustomAppBar extends PreferredSize {
                                                   width: 7,
                                                 ),
                                                 GestureDetector(
-                                                  onTap: () async {
+                                                  onTap: ()  {
                                                     // Platform.isAndroid
                                                     //     ? await FlutterShareMe()
                                                     //         .shareToTwitter(
                                                     //             url: sharelink,
                                                     //             msg: "Share")
                                                     // :
-                                                    await SocialSharePlugin
-                                                        .shareToTwitterLink(
-                                                            text: "",
-                                                            url: sharelink,
-                                                            onSuccess: (_) {
-                                                              print(
-                                                                  'TWITTER SUCCESS');
-                                                              return;
-                                                            },
-                                                            onCancel: () {
-                                                              print(
-                                                                  'TWITTER CANCELLED');
-                                                              return;
-                                                            });
+                              //                         ShowDialogs.launchTwitter(
+                              // sharelink);
+                              ShowDialogs.shareToTwitter("Merck Foundation",sharelink);
+                                                    // await SocialSharePlugin
+                                                    //     .shareToTwitterLink(
+                                                    //         text: "",
+                                                    //         url: sharelink,
+                                                    //         onSuccess: (_) {
+                                                    //           print(
+                                                    //               'TWITTER SUCCESS');
+                                                    //           return;
+                                                    //         },
+                                                    //         onCancel: () {
+                                                    //           print(
+                                                    //               'TWITTER CANCELLED');
+                                                    //           return;
+                                                    //         });
                                                   },
                                                   child: Image.asset(
                                                     "assets/newImages/twitternew.png",
@@ -676,13 +697,13 @@ class InnerCustomAppBar extends PreferredSize {
 class InnerMsgfromleadershipCustomAppBar extends PreferredSize {
   // final Widget child;
   final double height;
-  final Function onTapval;
-  final int index;
-  final String title;
-  final String titleImg;
-  final String trallingImg1;
-  final String trallingImg2;
-  final Function onTapvalfilter;
+  final VoidCallback? onTapval;
+  final int? index;
+  final dynamic title;
+  final dynamic titleImg;
+  final dynamic trallingImg1;
+  final dynamic trallingImg2;
+  final VoidCallback? onTapvalfilter;
 
   InnerMsgfromleadershipCustomAppBar(
       {this.onTapvalfilter,
@@ -692,7 +713,11 @@ class InnerMsgfromleadershipCustomAppBar extends PreferredSize {
       this.titleImg,
       this.trallingImg1,
       this.trallingImg2,
-      @required this.height = kToolbarHeight});
+      @required this.height = kToolbarHeight}): super(
+          preferredSize:  Size.fromHeight(height)
+              ,
+          child: AppBar(
+            title: Text(title ?? "")));
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -1049,13 +1074,13 @@ class InnerMsgfromleadershipCustomAppBar extends PreferredSize {
 class InnerAluminsCustomAppBar extends PreferredSize {
   // final Widget child;
   final double height;
-  final Function onTapval;
-  final int index;
-  final String title;
-  final String titleImg;
-  final String trallingImg1;
-  final String trallingImg2;
-  final Function onTapvalfilter;
+  final VoidCallback? onTapval;
+  final int? index;
+  final dynamic title;
+  final dynamic titleImg;
+  final dynamic trallingImg1;
+  final dynamic trallingImg2;
+  final VoidCallback? onTapvalfilter;
 
   InnerAluminsCustomAppBar(
       {this.onTapvalfilter,
@@ -1065,7 +1090,11 @@ class InnerAluminsCustomAppBar extends PreferredSize {
       this.titleImg,
       this.trallingImg1,
       this.trallingImg2,
-      @required this.height = kToolbarHeight});
+      @required this.height = kToolbarHeight}) :super(
+          preferredSize:Size.fromHeight(height)
+            ,
+          child: AppBar(
+            title: Text(title ?? "")));
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Size get preferredSize => Size.fromHeight(height);

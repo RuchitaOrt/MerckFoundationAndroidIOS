@@ -21,28 +21,53 @@ class ShowDialogs {
     );
   }
 
-  static openThreadsApp(String url) async {
-    if (await canLaunch(Constantstring.threadsUrlScheme)) {
-      // If the Threads app is installed, open it
-      await launch(Constantstring.threadsUrlScheme);
-    } else {
-      // If the Threads app is not installed, open the store
-      if (Platform.isIOS) {
-        if (await canLaunch(url)) {
-          await launch(url);
-        }
-      } else if (Platform.isAndroid) {
-        if (await canLaunch(url)) {
-          await launch(url);
-        }
-      }
-    }
-  }
+  // static openThreadsApp(String url) async {
+  //   if (await canLaunch(Constantstring.threadsUrlScheme)) {
+  //     // If the Threads app is installed, open it
+  //     await launch(Constantstring.threadsUrlScheme);
+  //   } else {
+  //     // If the Threads app is not installed, open the store
+  //     if (Platform.isIOS) {
+  //       if (await canLaunch(url)) {
+  //         await launch(url);
+  //       }
+  //     } else if (Platform.isAndroid) {
+  //       if (await canLaunch(url)) {
+  //         await launch(url);
+  //       }
+  //     }
+  //   }
+  // }
+static Future<void> openThreadsApp(String url) async {
+  final Uri appUri = Uri.parse(Constantstring.threadsUrlScheme);   // threads://
+  final Uri storeUri = Uri.parse(url);                             // App Store / Play Store URL
 
+  try {
+    // Try opening the Threads app
+    bool launched = await launchUrl(
+      appUri,
+      mode: LaunchMode.externalApplication,
+    );
+
+    if (!launched) {
+      // Fallback → open store
+      await launchUrl(
+        storeUri,
+        mode: LaunchMode.externalApplication,
+      );
+    }
+  } catch (e) {
+    // Final fallback
+    await launchUrl(
+      storeUri,
+      mode: LaunchMode.externalApplication,
+    );
+  }
+}
   static showImageDialog(
-      {BuildContext context, String image, String description}) {
+      {BuildContext? context, String? image, String? description}) {
     showDialog(
-      context: context,
+      context: context!,
       builder: (_) => Dialog(
         elevation: 0,
         insetPadding: EdgeInsets.all(0),
@@ -55,7 +80,7 @@ class ShowDialogs {
               child: PhotoView(
                 backgroundDecoration: BoxDecoration(color: Colors.transparent),
                 initialScale: PhotoViewComputedScale.covered,
-                imageProvider: NetworkImage(image, scale: 0.4),
+                imageProvider: NetworkImage(image!, scale: 0.4),
               ),
             ),
             Expanded(
@@ -64,7 +89,7 @@ class ShowDialogs {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                description,
+                description!,
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
@@ -96,122 +121,263 @@ class ShowDialogs {
   }
 
 //yuotube link
-  static Future<void> youtubevideolink(String videourl) async {
-    if (await canLaunch(videourl)) {
-      await launch(videourl);
-    } else {
-      // Handle the error, e.g., show an error dialog or message
-      print('Could not launch $videourl');
-    }
-  }
+//   static Future<void> youtubevideolink(String videourl) async {
+//     if (await canLaunch(videourl)) {
+//       await launch(videourl);
+//     } else {
+//       // Handle the error, e.g., show an error dialog or message
+//       print('Could not launch $videourl');
+//     }
+//   }
 
-  static _launchURL(String videourl) async {
-    if (await canLaunch(videourl)) {
-      print("Launching URL: $videourl");
-      await launch(videourl, forceSafariVC: false, forceWebView: false);
-    } else {
-      throw 'Could not launch $videourl';
-    }
-  }
 
-  static void launchURLemail(String mail) async {
-    final Uri params = Uri(
-      scheme: 'mailto',
-      path: mail,
+//   static void launchURLemail(String mail) async {
+//     final Uri params = Uri(
+//       scheme: 'mailto',
+//       path: mail,
+//     );
+//     String url = params.toString();
+//     if (await canLaunch(url)) {
+//       await launch(url);
+//     } else {
+//       print('Could not launch $url');
+//     }
+//   }
+
+//   static launchFacebook(String url, String pageId) async {
+//     String fbProtocolUrl;
+//     if (Platform.isIOS) {
+//       fbProtocolUrl = "fb://profile/$pageId"; //'fb://profile/1053979038068008';
+//     } else {
+//       fbProtocolUrl = 'fb://page/$pageId';
+//     }
+
+//     String fallbackUrl = url;
+
+//     try {
+//       bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
+
+//       if (!launched) {
+//         await launch(fallbackUrl, forceSafariVC: false);
+//       }
+//     } catch (e) {
+//       await launch(fallbackUrl, forceSafariVC: false);
+//     }
+//   }
+// static Future<void> shareToFacebook(String shareUrl) async {
+//   final url = Uri.parse("https://www.facebook.com/sharer/sharer.php?u=$shareUrl");
+//   if (await canLaunchUrl(url)) {
+//     await launchUrl(url, mode: LaunchMode.externalApplication);
+//   } else {
+//     print('Could not launch Facebook share');
+//   }
+// }
+// static Future<void> shareToTwitter(String text, String shareUrl) async {
+//   final tweetText = Uri.encodeComponent(text);
+//   final tweetUrl = Uri.encodeComponent(shareUrl);
+//   final url = Uri.parse("https://twitter.com/intent/tweet?text=$tweetText&url=$tweetUrl");
+
+//   if (await canLaunchUrl(url)) {
+//     await launchUrl(url, mode: LaunchMode.externalApplication);
+//   } else {
+//     print('Could not launch Twitter share');
+//   }
+// }
+  // static launchInstagram(String url, String username) async {
+  //   String fbProtocolUrl;
+
+  //   fbProtocolUrl = 'instagram://user?username=$username';
+
+  //   String fallbackUrl = url;
+
+  //   try {
+  //     bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
+
+  //     if (!launched) {
+  //       await launch(fallbackUrl, forceSafariVC: false);
+  //     }
+  //   } catch (e) {
+  //     await launch(fallbackUrl, forceSafariVC: false);
+  //   }
+  // }
+static Future<void> youtubevideolink(String videourl) async {
+  final Uri uri = Uri.parse(videourl);
+
+  if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+    print('Could not launch $uri');
+  }
+}
+static Future<void> launchURLemail(String mail) async {
+  final Uri uri = Uri(
+    scheme: 'mailto',
+    path: mail,
+  );
+
+  if (!await launchUrl(uri)) {
+    print('Could not launch $uri');
+  }
+}
+static Future<void> launchFacebook(String url, String pageId) async {
+  final Uri fbAppUri = Platform.isIOS
+      ? Uri.parse("fb://profile/$pageId")
+      : Uri.parse("fb://page/$pageId");
+
+  final Uri fbWebUri = Uri.parse(url);
+
+  try {
+    bool launched = await launchUrl(
+      fbAppUri,
+      mode: LaunchMode.externalApplication,
     );
-    String url = params.toString();
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      print('Could not launch $url');
+
+    if (!launched) {
+      await launchUrl(
+        fbWebUri,
+        mode: LaunchMode.externalApplication,
+      );
     }
+  } catch (e) {
+    await launchUrl(
+      fbWebUri,
+      mode: LaunchMode.externalApplication,
+    );
   }
+}
+static Future<void> shareToFacebook(String shareUrl) async {
+  final Uri url = Uri.parse(
+      "https://www.facebook.com/sharer/sharer.php?u=$shareUrl");
 
-  static launchFacebook(String url, String pageId) async {
-    String fbProtocolUrl;
-    if (Platform.isIOS) {
-      fbProtocolUrl = "fb://profile/$pageId"; //'fb://profile/1053979038068008';
-    } else {
-      fbProtocolUrl = 'fb://page/$pageId';
-    }
-
-    String fallbackUrl = url;
-
-    try {
-      bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
-
-      if (!launched) {
-        await launch(fallbackUrl, forceSafariVC: false);
-      }
-    } catch (e) {
-      await launch(fallbackUrl, forceSafariVC: false);
-    }
+  if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+    print('Could not launch Facebook share');
   }
+}
+static Future<void> shareToTwitter(String text, String shareUrl) async {
+  final String tweetText = Uri.encodeComponent(text);
+  final String tweetUrl = Uri.encodeComponent(shareUrl);
 
-  static launchInstagram(String url, String username) async {
-    String fbProtocolUrl;
+  final Uri url = Uri.parse(
+      "https://twitter.com/intent/tweet?text=$tweetText&url=$tweetUrl");
 
-    fbProtocolUrl = 'instagram://user?username=$username';
-
-    String fallbackUrl = url;
-
-    try {
-      bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
-
-      if (!launched) {
-        await launch(fallbackUrl, forceSafariVC: false);
-      }
-    } catch (e) {
-      await launch(fallbackUrl, forceSafariVC: false);
-    }
+  if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+    print('Could not launch Twitter share');
   }
+}
 
-  static launchTwitter(String url) async {
-    String fbProtocolUrl;
+static Future<void> launchInstagram(String url, String username) async {
+  final Uri instaAppUri = Uri.parse('instagram://user?username=$username');
+  final Uri instaWebUri = Uri.parse(url);
 
-    fbProtocolUrl = 'twitter://user?screen_name=merckfoundation';
+  // Try opening Instagram app
+  try {
+    bool launched = await launchUrl(
+      instaAppUri,
+      mode: LaunchMode.externalApplication,
+    );
 
-    String fallbackUrl = url;
-
-    try {
-      bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
-
-      if (!launched) {
-        await launch(fallbackUrl, forceSafariVC: false);
-      }
-    } catch (e) {
-      await launch(fallbackUrl, forceSafariVC: false);
+    if (!launched) {
+      // Fallback → open browser
+      await launchUrl(
+        instaWebUri,
+        mode: LaunchMode.externalApplication,
+      );
     }
+  } catch (e) {
+    // If error → open in browser anyway
+    await launchUrl(
+      instaWebUri,
+      mode: LaunchMode.externalApplication,
+    );
   }
+}
 
-  static launchLinkdin(String url) async {
-    String fbProtocolUrl;
+  // static launchTwitter(String url) async {
+  //   String fbProtocolUrl;
 
-    fbProtocolUrl =
-        'https://www.linkedin.com/shareArticle/?mini=true&url=${url}';
+  //   fbProtocolUrl = 'twitter://user?screen_name=merckfoundation';
 
-    String fallbackUrl = url;
+  //   String fallbackUrl = url;
 
-    try {
-      bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
+  //   try {
+  //     bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
 
-      if (!launched) {
-        await launch(fallbackUrl, forceSafariVC: false);
-      }
-    } catch (e) {
-      await launch(fallbackUrl, forceSafariVC: false);
-    }
-  }
+  //     if (!launched) {
+  //       await launch(fallbackUrl, forceSafariVC: false);
+  //     }
+  //   } catch (e) {
+  //     await launch(fallbackUrl, forceSafariVC: false);
+  //   }
+  // }
+
+  // static launchLinkdin(String url) async {
+  //   String fbProtocolUrl;
+
+  //   fbProtocolUrl =
+  //       'https://www.linkedin.com/shareArticle/?mini=true&url=${url}';
+
+  //   String fallbackUrl = url;
+
+  //   try {
+  //     bool launched = await launch(fbProtocolUrl, forceSafariVC: false);
+
+  //     if (!launched) {
+  //       await launch(fallbackUrl, forceSafariVC: false);
+  //     }
+  //   } catch (e) {
+  //     await launch(fallbackUrl, forceSafariVC: false);
+  //   }
+  // }
 
 //follow link to specific app
-  static Future<void> followuslink(String url, String msg) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      // Handle the error, e.g., show an error dialog or message
-      print('Could not launch $url');
+  // static Future<void> followuslink(String url, String msg) async {
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     // Handle the error, e.g., show an error dialog or message
+  //     print('Could not launch $url');
+  //   }
+  // }
+  static Future<void> launchTwitter(String url) async {
+  final Uri twitterAppUri =
+      Uri.parse('twitter://user?screen_name=merckfoundation');
+
+  final Uri twitterWebUri = Uri.parse(url);
+
+  try {
+    bool launched = await launchUrl(
+      twitterAppUri,
+      mode: LaunchMode.externalApplication,
+    );
+
+    if (!launched) {
+      await launchUrl(
+        twitterWebUri,
+        mode: LaunchMode.externalApplication,
+      );
     }
+  } catch (e) {
+    await launchUrl(
+      twitterWebUri,
+      mode: LaunchMode.externalApplication,
+    );
   }
+}
+
+  static Future<void> launchLinkdin(String url) async {
+  final Uri linkedInUri = Uri.parse(
+      'https://www.linkedin.com/shareArticle/?mini=true&url=$url');
+
+  if (!await launchUrl(linkedInUri, mode: LaunchMode.externalApplication)) {
+    print("Could not launch LinkedIn link");
+  }
+}
+
+static Future<void> followuslink(String url, String msg) async {
+  final Uri uri = Uri.parse(url);
+
+  if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+    print('Could not launch $uri');
+  }
+}
 
   static youtbeicon(BuildContext context) {
     Positioned(
@@ -263,39 +429,73 @@ class ShowDialogs {
         fontSize: 16.0);
   }
 
-  static Future<void> launchURL(String urlIs) async {
-    var url = urlIs;
-    print("Attempting to launch URL: $url");
+  // static Future<void> launchURL(String urlIs) async {
+  //   var url = urlIs;
+  //   print("Attempting to launch URL: $url");
 
-    try {
-      if (await canLaunch(url)) {
-        print("Launching URL: $url");
-        await launch(url, forceSafariVC: false, forceWebView: false);
-      } else {
-        print("Cannot launch URL: $url using universal link");
-        await launch(url); // Try launching without specific options
-      }
-    } catch (e) {
-      print("Error launching URL: $e");
-      throw 'Could not launch $url';
-    }
-  }
+  //   try {
+  //     if (await canLaunch(url)) {
+  //       print("Launching URL: $url");
+  //       await launch(url, forceSafariVC: false, forceWebView: false);
+  //     } else {
+  //       print("Cannot launch URL: $url using universal link");
+  //       await launch(url); // Try launching without specific options
+  //     }
+  //   } catch (e) {
+  //     print("Error launching URL: $e");
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
-  static launchWhatsappshare(String msg) async {
-    print("on launch");
-    var url; //= "whatsapp://send?text=$msg";
-    if (Platform.isIOS) {
-      url = "https://wa.me/?ext=$msg";
+  // static launchWhatsappshare(String msg) async {
+  //   print("on launch");
+  //   var url; //= "whatsapp://send?text=$msg";
+  //   if (Platform.isIOS) {
+  //     url = "https://wa.me/?ext=$msg";
+  //   }else
+  //   {
+  //      url= "whatsapp://send?text=$msg";
+  //   }
+  //   // else {
+  //   //   return "whatsapp://send?phone=$phone&text=${Uri.encodeFull(message)}";
+  //   // }
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
+static Future<void> launchURL(String urlIs) async {
+  print(urlIs);
+  final Uri uri = Uri.parse(urlIs);
+  print("Attempting to launch URL: $uri");
+
+  try {
+    final bool launched = await launchUrl(
+      uri,
+      mode: LaunchMode.externalApplication,
+    );
+
+    if (!launched) {
+      print("Fallback launch failed: $uri");
+      throw "Could not launch $uri";
     }
-    // else {
-    //   return "whatsapp://send?phone=$phone&text=${Uri.encodeFull(message)}";
-    // }
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+  } catch (e) {
+    print("Error launching URL: $e");
+    throw "Could not launch $uri";
   }
+}
+static Future<void> launchWhatsappshare(String msg) async {
+  print("Launching WhatsApp share");
+
+  final Uri uri = Platform.isIOS
+      ? Uri.parse("https://wa.me/?text=${Uri.encodeComponent(msg)}")
+      : Uri.parse("whatsapp://send?text=${Uri.encodeComponent(msg)}");
+
+  if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+    throw "Could not launch $uri";
+  }
+}
 
   static void bottomlink(BuildContext context) {
     Container(
@@ -374,7 +574,7 @@ class ShowDialogs {
                     //    borderRadius: new BorderRadius.circular(30.0)),
                     //color: Colors.orange,
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.orange,
+                      backgroundColor: Colors.orange,
                       shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(30)),
                     ),
@@ -456,7 +656,7 @@ class ShowDialogs {
                     //   borderRadius: new BorderRadius.circular(30.0)),
                     //color: Colors.orange,
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.orange,
+                      backgroundColor: Colors.orange,
                       shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(30)),
                     ),
@@ -579,7 +779,7 @@ class ShowDialogs {
                       child: ElevatedButton(
                         // padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 0.0),
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
+                          backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(15)),
                         ),
@@ -605,7 +805,7 @@ class ShowDialogs {
                         //padding: EdgeInsets.fromLTRB(60.0, 10.0, 60.0, 10.0),
                         //    padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 0.0),
                         style: ElevatedButton.styleFrom(
-                          primary: Customcolor.colorBlue,
+                          backgroundColor: Customcolor.colorBlue,
                           shape: RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(15)),
                         ),
@@ -728,7 +928,7 @@ class ShowDialogs {
                         //  borderRadius: new BorderRadius.circular(15.0)),
                         //color: Colors.white,
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.orange,
+                          backgroundColor: Colors.orange,
                           shape: RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(30)),
                         ),
@@ -754,7 +954,7 @@ class ShowDialogs {
                         //   borderRadius: new BorderRadius.circular(15.0)),
                         //color: Customcolor.colorBlue,
                         style: ElevatedButton.styleFrom(
-                          primary: Customcolor.colorBlue,
+                          backgroundColor: Customcolor.colorBlue,
                           shape: RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(15)),
                         ),

@@ -4,12 +4,11 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
 
 class VideoPlayer extends StatefulWidget {
-  final String videoUrl;
+  final String? videoUrl;
 
-  const VideoPlayer({Key key, this.videoUrl}) : super(key: key);
+  const VideoPlayer({Key? key, this.videoUrl}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -26,18 +25,7 @@ class WebPageState extends State<VideoPlayer> {
     //     "https://www.youtube.com/watch?v=XP-4BiWsuaQ");
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +78,7 @@ class WebPageState extends State<VideoPlayer> {
 
                   // ),
                   child: Text(
-                    widget.videoUrl,
+                    widget.videoUrl!,
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

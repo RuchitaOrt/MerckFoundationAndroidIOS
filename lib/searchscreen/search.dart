@@ -13,22 +13,22 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
+
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
 
 class Search extends StatefulWidget {
   //1-video 2-News_Release
 
-  final int categorytype;
-  final String baseurl;
+  final int? categorytype;
+  final String? baseurl;
 
-  const Search({Key key, this.categorytype, this.baseurl}) : super(key: key);
+  const Search({Key? key, this.categorytype, this.baseurl}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return SearchState();
@@ -36,9 +36,9 @@ class Search extends StatefulWidget {
 }
 
 class SearchState extends State<Search> with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
-  Color color;
+  late Color color;
   @override
   void initState() {
     super.initState();
@@ -585,7 +585,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                             .showImageDialog(
                                                           context: context,
                                                           image: widget
-                                                                  .baseurl +
+                                                                  .baseurl! +
                                                               GlobalLists
                                                                       .searchphotolisting[
                                                                   index]['photo'],
@@ -636,7 +636,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                                   image:
                                                                       new DecorationImage(
                                                                     image: new NetworkImage(widget
-                                                                            .baseurl +
+                                                                            .baseurl! +
                                                                         GlobalLists.searchphotolisting[index]
                                                                             [
                                                                             'photo']),
@@ -978,13 +978,13 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                                         data:
                                                                             """${GlobalLists.searchawardlisting[index]['title']} """,
                                                                         onLinkTap: (url,
-                                                                            renderContext,
+                                                                            
                                                                             attributes,
                                                                             element) {
                                                                           print(
                                                                               "Opening $url...");
                                                                           ShowDialogs.launchURL(
-                                                                              url);
+                                                                              url!);
                                                                         },
                                                                         style: {
                                                                           "body": Style(
@@ -995,6 +995,23 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                                                           "tr":
                                                                               Customcolor.tableboderstyle(context),
                                                                         },
+                                                                         extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                                                       ),
                                                                       SizedBox(
                                                                         height:
@@ -1068,15 +1085,24 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
         ));
   }
 
-  _launchURL(String urlIs) async {
-    var url = urlIs;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  // _launchURL(String urlIs) async {
+  //   var url = urlIs;
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
+  Future<void> _launchURL(String urlIs) async {
+  final Uri uri = Uri.parse(urlIs);
 
+  if (!await launchUrl(
+    uri,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw 'Could not launch $uri';
+  }
+}
   getawarddetail(String pageurl, String awardid) async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -1091,11 +1117,11 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
         print(response);
         print('Resp : $resp');
 
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
 
         if (resp.success == "True") {
           setState(() {
-            GlobalLists.awarddetallisting = resp.data.list;
+            GlobalLists.awarddetallisting = resp.data!.list!;
             // GlobalLists.awarddetallisting[0].title
             Navigator.push(
                 context,
@@ -1107,11 +1133,11 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                         )));
           });
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
         }
       }, (error) {
         print('ERR msg is $error');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
       }, jsonval: json);
     } else {
       ShowDialogs.showToast("Please check internet connection");

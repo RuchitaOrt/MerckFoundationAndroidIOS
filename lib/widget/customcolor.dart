@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_html/style.dart';
+import 'package:flutter_html/flutter_html.dart';
+
 
 class Customcolor {
  static Style tableboderstyle(BuildContext context) {
@@ -10,7 +11,7 @@ class Customcolor {
     double topBottomPadding = screenWidth > 600 ? 12 : 8;
 
     return Style(
-      padding: EdgeInsets.only(left: leftPadding, top: topBottomPadding, bottom: topBottomPadding, right: 0),
+      padding: HtmlPaddings.only(left: leftPadding, top: topBottomPadding, bottom: topBottomPadding, right: 0),
       border: Border.all(color: Customcolor.tablebordercolor, width: 0.5),
     );
   }
@@ -111,7 +112,7 @@ class Constantstring {
 //Follow Rasha
   static String followrashainsta = "https://www.instagram.com/rasha_kelej/";
   static String followrashafacebook =
-      "https://www.facebook.com/watch/KelejRasha/";
+      "https://www.facebook.com/KelejRasha/";
   static String followrashatwitter = "https://twitter.com/Rashakelej";
   static String followerashayoutube =
       "https://www.youtube.com/channel/UCO_bN_T_NodcOYwcPjknaog";
@@ -321,6 +322,7 @@ class Constantstring {
   static String followmsg = "follow us";
   static String emptyData = "No Data Found";
   static String baseUrl = "";
+  static String pdfUrl = "";
   static double tabheight = 500;
   static double callimageheight = 300;
   static double callimagewidth = 220;

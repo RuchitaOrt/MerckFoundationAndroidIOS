@@ -6,7 +6,7 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,7 +22,7 @@ class MMTMProgram extends StatefulWidget {
 class MMTMProgramState extends State<MMTMProgram> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   ScrollController _sc = new ScrollController();
-  mmtm.GetMmtmResponse resp;
+  late mmtm.GetMmtmResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -60,12 +60,12 @@ class MMTMProgramState extends State<MMTMProgram> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.mmtmlist.add(mmtm.Datum(
-                        id: resp.data[i].id,
-                        videoDesc: resp.data[i].videoDesc,
-                        videoLink: resp.data[i].videoLink,
-                        countryId: resp.data[i].countryId,
-                        categoryId: resp.data[i].categoryId,
-                        year: resp.data[i].status));
+                        id: resp.data![i].id,
+                        videoDesc: resp.data![i].videoDesc,
+                        videoLink: resp.data![i].videoLink,
+                        countryId: resp.data![i].countryId,
+                        categoryId: resp.data![i].categoryId,
+                        year: resp.data![i].status));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -73,7 +73,7 @@ class MMTMProgramState extends State<MMTMProgram> {
                 }
 
                 offset = totalcount;
-                int remem = resp.data.length - totalcount;
+                int remem = resp.data!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -92,7 +92,7 @@ class MMTMProgramState extends State<MMTMProgram> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -171,10 +171,10 @@ class MMTMProgramState extends State<MMTMProgram> {
                                       child: GestureDetector(
                                         onTap: () {
                                           var storykey = GlobalLists
-                                              .mmtmlist[index].videoLink
+                                              .mmtmlist[index].videoLink!
                                               .substring(GlobalLists
                                                       .mmtmlist[index]
-                                                      .videoLink
+                                                      .videoLink!
                                                       .length -
                                                   11);
                                           ShowDialogs.youtubevideolink(
@@ -219,7 +219,7 @@ class MMTMProgramState extends State<MMTMProgram> {
                                                     // ),
                                                     image: new DecorationImage(
                                                       image: new NetworkImage(
-                                                          'https://img.youtube.com/vi/${GlobalLists.mmtmlist[index].videoLink.substring(GlobalLists.mmtmlist[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                          'https://img.youtube.com/vi/${GlobalLists.mmtmlist[index].videoLink!.substring(GlobalLists.mmtmlist[index].videoLink!.length - 11)}/mqdefault.jpg'),
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
@@ -230,7 +230,7 @@ class MMTMProgramState extends State<MMTMProgram> {
                                                     const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   GlobalLists.mmtmlist[index]
-                                                      .videoDesc,
+                                                      .videoDesc!,
                                                   textAlign: TextAlign.center,
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -295,18 +295,6 @@ class MMTMProgramState extends State<MMTMProgram> {
         ));
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
   getmmtm() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
@@ -330,34 +318,34 @@ class MMTMProgramState extends State<MMTMProgram> {
             // });
             setState(() {
               print("here");
-              if (resp.data.length < 10) {
-                for (int i = offset; i < resp.data.length; i++) {
+              if (resp.data!.length < 10) {
+                for (int i = offset; i < resp.data!.length; i++) {
                   setState(() {
                     GlobalLists.mmtmlist.add(mmtm.Datum(
-                        id: resp.data[i].id,
-                        videoDesc: resp.data[i].videoDesc,
-                        videoLink: resp.data[i].videoLink,
-                        countryId: resp.data[i].countryId,
-                        categoryId: resp.data[i].categoryId,
-                        year: resp.data[i].status));
+                        id: resp.data![i].id,
+                        videoDesc: resp.data![i].videoDesc,
+                        videoLink: resp.data![i].videoLink,
+                        countryId: resp.data![i].countryId,
+                        categoryId: resp.data![i].categoryId,
+                        year: resp.data![i].status));
                   });
                 }
               } else {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.mmtmlist.add(mmtm.Datum(
-                        id: resp.data[i].id,
-                        videoDesc: resp.data[i].videoDesc,
-                        videoLink: resp.data[i].videoLink,
-                        countryId: resp.data[i].countryId,
-                        categoryId: resp.data[i].categoryId,
-                        year: resp.data[i].status));
+                        id: resp.data![i].id,
+                        videoDesc: resp.data![i].videoDesc,
+                        videoLink: resp.data![i].videoLink,
+                        countryId: resp.data![i].countryId,
+                        categoryId: resp.data![i].categoryId,
+                        year: resp.data![i].status));
                   });
                 }
               }
 
               offset = totalcount;
-              int remem = resp.data.length - totalcount;
+              int remem = resp.data!.length - totalcount;
               print("remem");
               print(remem);
               if (remem < 10) {
@@ -374,7 +362,7 @@ class MMTMProgramState extends State<MMTMProgram> {
               _isLoading = false;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

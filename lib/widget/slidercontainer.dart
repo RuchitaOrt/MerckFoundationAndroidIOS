@@ -3,15 +3,15 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 
 class Slidercard extends StatelessWidget {
-  final String cardTitle;
-  final String cardImage;
-  final String subTitle;
+  final String? cardTitle;
+  final String? cardImage;
+  final String? subTitle;
 
   const Slidercard({
-    Key key,
+    Key? key,
     this.cardTitle,
     this.cardImage,
     this.subTitle,
@@ -24,7 +24,7 @@ class Slidercard extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           image: DecorationImage(
-              image: NetworkImage(cardImage), fit: BoxFit.cover)),
+              image: NetworkImage(cardImage!), fit: BoxFit.cover)),
       width: SizeConfig.blockSizeHorizontal * 100,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -41,7 +41,7 @@ class Slidercard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     FormLabel(
-                        text: cardTitle,
+                        text: cardTitle!,
                         labelColor: Customcolor.pink_col,
                         fontSize: ResponsiveFlutter.of(context).fontSize(1.6),
                         maxLines: 2,
@@ -51,7 +51,7 @@ class Slidercard extends StatelessWidget {
                       height: 2,
                     ),
                     FormLabel(
-                        text: subTitle,
+                        text: subTitle!,
                         labelColor: Customcolor.colorBlue,
                         fontSize: ResponsiveFlutter.of(context).fontSize(1.4),
                         fontweight: FontWeight.bold,

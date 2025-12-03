@@ -14,7 +14,7 @@
     },
     "UAT": {
         
-        "hostUrl":  "https://merckuat.ortdemo.com/api/",
+        "hostUrl":  "https://merck.oneroof.tech/merck/api/",
      
         "timeout": 120,
         "retry": 3

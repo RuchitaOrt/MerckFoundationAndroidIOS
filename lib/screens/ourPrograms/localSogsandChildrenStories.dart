@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 
 import 'package:merckfoundation22dec/model/LocalsongResponde.dart';
@@ -18,7 +18,7 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:http/http.dart' as http;
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
@@ -84,7 +84,8 @@ class LocalSongsandChildrenStoriesState
                   shrinkWrap: true,
                   physics: ScrollPhysics(),
                   // scrollDirection: Axis.horizontal,
-                  children: list()),
+                  children: list()
+                  ),
             ),
           ),
           // Padding(
@@ -122,6 +123,7 @@ class LocalSongsandChildrenStoriesState
   List<Widget> list() {
     listofwiget.clear();
     for (int i = 0; i < typewidet.length; i++) {
+      print(typewidet[i]);
       if (typewidet[i] == "gallery") {
         listofwiget.add(
           Padding(
@@ -363,24 +365,41 @@ class LocalSongsandChildrenStoriesState
             children: [
               Html(
                 data: """${GlobalLists.homecontentlist[0].pageContent} """,
-                onLinkTap: (url, renderContext, attributes, element) {
+                onLinkTap: (url, attributes, element) {
                   print("Opening $url...");
-                  ShowDialogs.launchURL(url);
+                  ShowDialogs.launchURL(url!);
                 },
                 style: {
                   "tr": Customcolor.tableboderstyle(context),
                 },
+                 extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
               ),
-              Html(
+         GlobalLists.homecontentlist.length>1?      Html(
                 data: """${GlobalLists.homecontentlist[1].pageContent} """,
-                onLinkTap: (url, renderContext, attributes, element) {
+                onLinkTap: (url, attributes, element) {
                   print("Opening $url...");
-                  ShowDialogs.launchURL(url);
+                  ShowDialogs.launchURL(url!);
                 },
                 style: {
                   "tr": Customcolor.tableboderstyle(context),
                 },
-              ),
+              ):Container(),
             ],
           ),
         );
@@ -478,169 +497,170 @@ class LocalSongsandChildrenStoriesState
           ),
         );
       }
-      if (typewidet[i] == "digital_library") {
-        listofwiget.add(
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                FormLabel(
-                  text: "Children Stories",
-                  labelColor: Customcolor.text_blue,
-                  fontSize: ResponsiveFlutter.of(context).fontSize(2),
-                  maxLines: 2,
-                  textAlignment: TextAlign.left,
-                  fontweight: FontWeight.w800,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                FormLabel(
-                  text:
-                      "Merck Foundation in partnership with African First Ladies, launched a children storybook to emphasize strong family values of love and respect from young age which will reflect on eliminating the stigma of infertility and resulted domestic violence in the future. The storybooks have been localized for each country to have a better connect with the young readers.",
-                  labelColor: Colors.black,
-                  fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
-                  textAlignment: TextAlign.justify,
-                  maxLines: 2,
-                  fontweight: FontWeight.w400,
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 340,
-                  // color: Colors.grey.shade800,
-                  //  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Swiper(
-                          fade: 0.0,
-                          itemBuilder: (BuildContext context, int index) {
-                            return GestureDetector(
-                              onTap: () {
-                                print("pdf");
-                                print(GlobalLists
-                                    .programdigitalcontentlist[index].document);
-                                ShowDialogs.launchURL(
-                                    GlobalLists.programdigitalcontentbaseurl +
-                                        GlobalLists
-                                            .programdigitalcontentlist[index]
-                                            .document);
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (BuildContext context) =>
-                                //             VideoPlayer(
-                                //               videoUrl: GlobalLists
-                                //                       .programdigitalcontentbaseurl +
-                                //                   GlobalLists
-                                //                       .programdigitalcontentlist[
-                                //                           index]
-                                //                       .document,
-                                //             )));
-                              },
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Card(
-                                      elevation: 5,
-                                      color: Colors.white,
-                                      child: Column(
-                                        children: <Widget>[
-                                          Container(
-                                            padding: EdgeInsets.all(6),
-                                            width:
-                                                SizeConfig.blockSizeHorizontal *
-                                                    60,
-                                            child: Text(
-                                              GlobalLists
-                                                  .programdigitalcontentlist[
-                                                      index]
-                                                  .title,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                  color: Colors.black54,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w700),
-                                              maxLines: 3,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              // height: SizeConfig.blockSizeVertical * 40,
-                                              width: double.infinity,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                              child: FadeInImage.assetNetwork(
-                                                placeholder:
-                                                    'assets/newImages/placeholder_3.jpg',
-                                                image:
-                                                    "${GlobalLists.programdigitalcontentbaseurl + GlobalLists.programdigitalcontentlist[index].image}",
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                          itemCount:
-                              GlobalLists.programdigitalcontentlist.length,
-                          viewportFraction: 0.7,
-                          layout: SwiperLayout.DEFAULT,
+      //16june2025
+      // if (typewidet[i] == "digital_library") {
+      //   listofwiget.add(
+      //     Padding(
+      //       padding: const EdgeInsets.all(8.0),
+      //       child: Column(
+      //         crossAxisAlignment: CrossAxisAlignment.start,
+      //         children: [
+      //           SizedBox(
+      //             height: 10,
+      //           ),
+      //           FormLabel(
+      //             text: "Children Stories",
+      //             labelColor: Customcolor.text_blue,
+      //             fontSize: ResponsiveFlutter.of(context).fontSize(2),
+      //             maxLines: 2,
+      //             textAlignment: TextAlign.left,
+      //             fontweight: FontWeight.w800,
+      //           ),
+      //           SizedBox(
+      //             height: 10,
+      //           ),
+      //           FormLabel(
+      //             text:
+      //                 "Merck Foundation in partnership with African First Ladies, launched a children storybook to emphasize strong family values of love and respect from young age which will reflect on eliminating the stigma of infertility and resulted domestic violence in the future. The storybooks have been localized for each country to have a better connect with the young readers.",
+      //             labelColor: Colors.black,
+      //             fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
+      //             textAlignment: TextAlign.justify,
+      //             maxLines: 2,
+      //             fontweight: FontWeight.w400,
+      //           ),
+      //           SizedBox(
+      //             height: 16,
+      //           ),
+      //           Container(
+      //             height: 340,
+      //             // color: Colors.grey.shade800,
+      //             //  padding: EdgeInsets.all(16.0),
+      //             child: Column(
+      //               children: [
+      //                 Expanded(
+      //                   child: Swiper(
+      //                     fade: 0.0,
+      //                     itemBuilder: (BuildContext context, int index) {
+      //                       return GestureDetector(
+      //                         onTap: () {
+      //                           print("pdf");
+      //                           print(GlobalLists
+      //                               .programdigitalcontentlist[index].document);
+      //                           ShowDialogs.launchURL(
+      //                               GlobalLists.programdigitalcontentpdfurl +
+      //                                   GlobalLists
+      //                                       .programdigitalcontentlist[index]
+      //                                       .document);
+      //                           // Navigator.push(
+      //                           //     context,
+      //                           //     MaterialPageRoute(
+      //                           //         builder: (BuildContext context) =>
+      //                           //             VideoPlayer(
+      //                           //               videoUrl: GlobalLists
+      //                           //                       .programdigitalcontentbaseurl +
+      //                           //                   GlobalLists
+      //                           //                       .programdigitalcontentlist[
+      //                           //                           index]
+      //                           //                       .document,
+      //                           //             )));
+      //                         },
+      //                         child: Column(
+      //                           children: [
+      //                             Expanded(
+      //                               child: Card(
+      //                                 elevation: 5,
+      //                                 color: Colors.white,
+      //                                 child: Column(
+      //                                   children: <Widget>[
+      //                                     Container(
+      //                                       padding: EdgeInsets.all(6),
+      //                                       width:
+      //                                           SizeConfig.blockSizeHorizontal *
+      //                                               60,
+      //                                       child: Text(
+      //                                         GlobalLists
+      //                                             .programdigitalcontentlist[
+      //                                                 index]
+      //                                             .title,
+      //                                         overflow: TextOverflow.ellipsis,
+      //                                         style: TextStyle(
+      //                                             color: Colors.black54,
+      //                                             fontSize: 14,
+      //                                             fontWeight: FontWeight.w700),
+      //                                         maxLines: 3,
+      //                                       ),
+      //                                     ),
+      //                                     Expanded(
+      //                                       child: Container(
+      //                                         // height: SizeConfig.blockSizeVertical * 40,
+      //                                         width: double.infinity,
+      //                                         decoration: BoxDecoration(
+      //                                           borderRadius:
+      //                                               BorderRadius.circular(10),
+      //                                         ),
+      //                                         child: FadeInImage.assetNetwork(
+      //                                           placeholder:
+      //                                               'assets/newImages/placeholder_3.jpg',
+      //                                           image:
+      //                                               "${GlobalLists.programdigitalcontentbaseurl + GlobalLists.programdigitalcontentlist[index].image}",
+      //                                           fit: BoxFit.fill,
+      //                                         ),
+      //                                       ),
+      //                                     ),
+      //                                   ],
+      //                                 ),
+      //                               ),
+      //                             ),
+      //                           ],
+      //                         ),
+      //                       );
+      //                     },
+      //                     itemCount:
+      //                         GlobalLists.programdigitalcontentlist.length,
+      //                     viewportFraction: 0.7,
+      //                     layout: SwiperLayout.DEFAULT,
 
-                          scale: 0.9,
-                          //outer: true,
-                          //  itemWidth: 300.0,
-                          //itemHeight: 400,
-                          //itemHeight: 300,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                // Center(
-                //   child: Container(
-                //     width: 120,
-                //     height: 40,
-                //     decoration: BoxDecoration(
-                //         color: Colors.amber,
-                //         borderRadius: BorderRadius.circular(5)),
-                //     child: Center(
-                //       child: Text(
-                //         "Watch More",
-                //         style: TextStyle(
-                //             color: Customcolor.colorBlue,
-                //             fontSize: 15,
-                //             fontWeight: FontWeight.w500),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-              ],
-            ),
-          ),
-        );
-      }
+      //                     scale: 0.9,
+      //                     //outer: true,
+      //                     //  itemWidth: 300.0,
+      //                     //itemHeight: 400,
+      //                     //itemHeight: 300,
+      //                   ),
+      //                 ),
+      //               ],
+      //             ),
+      //           ),
+      //           SizedBox(
+      //             height: 10,
+      //           ),
+      //           // Center(
+      //           //   child: Container(
+      //           //     width: 120,
+      //           //     height: 40,
+      //           //     decoration: BoxDecoration(
+      //           //         color: Colors.amber,
+      //           //         borderRadius: BorderRadius.circular(5)),
+      //           //     child: Center(
+      //           //       child: Text(
+      //           //         "Watch More",
+      //           //         style: TextStyle(
+      //           //             color: Customcolor.colorBlue,
+      //           //             fontSize: 15,
+      //           //             fontWeight: FontWeight.w500),
+      //           //       ),
+      //           //     ),
+      //           //   ),
+      //           // ),
+      //         ],
+      //       ),
+      //     ),
+      //   );
+      // }
     }
     return listofwiget;
   }
 
-  Future<http.Response> getmmtmapi() async {
+  Future<http.Response?> getmmtmapi() async {
     print("mmtm api");
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -650,13 +670,13 @@ class LocalSongsandChildrenStoriesState
       );
       print("response");
       print(response);
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         var res = json.decode(response.body);
         print("ff");
         print(res);
         LocalsongResponse homepageres = LocalsongResponse.fromJson(res);
 
-        Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> section1 = homepageres.middleArea!;
 
         for (int i = 0; i < section1.length; i++) {
           //  MiddleArea categoryKeys = section1[(i + 1).toString()];
@@ -673,19 +693,21 @@ class LocalSongsandChildrenStoriesState
           if (middlecategoryname.toString().toLowerCase() ==
               "Videos".toLowerCase()) {
             GlobalLists.homevideolist =
-                homepageres.middleArea['${i + 1}'].videos.list;
+                homepageres.middleArea!['${i + 1}']!.videos!.list!;
             print(GlobalLists.homevideolist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "content".toLowerCase()) {
             GlobalLists.homecontentlist =
-                homepageres.middleArea['${i + 1}'].content.list;
+                homepageres.middleArea!['${i + 1}']!.content!.list!;
             print(GlobalLists.homecontentlist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "digital_library".toLowerCase()) {
             GlobalLists.programdigitalcontentbaseurl =
-                homepageres.middleArea['${i + 1}'].digitalLibrary.baseUrl;
+                homepageres.middleArea!['${i + 1}']!.digitalLibrary!.baseUrl!;
+                  GlobalLists.programdigitalcontentpdfurl =
+                homepageres.middleArea!['${i + 1}']!.digitalLibrary!.pdfUrl!;
             GlobalLists.programdigitalcontentlist =
-                homepageres.middleArea['${i + 1}'].digitalLibrary.list;
+                homepageres.middleArea!['${i + 1}']!.digitalLibrary!.list!;
             print(GlobalLists.programdigitalcontentlist.length);
           }
         }
@@ -711,16 +733,5 @@ class LocalSongsandChildrenStoriesState
     }
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+ 
 }

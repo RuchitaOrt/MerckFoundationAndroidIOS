@@ -24,7 +24,7 @@ class Searchcategory extends StatefulWidget {
 
 class SearchcategoryState extends State<Searchcategory>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   bool isexpanded = false;
   List searchcategorylist = [
@@ -238,7 +238,7 @@ class SearchcategoryState extends State<Searchcategory>
     );
   }
 
-  Future<String> search() async {
+  Future<String?> search() async {
     var status = await ConnectionDetector.checkInternetConnection();
 
     if (status) {
@@ -266,7 +266,7 @@ class SearchcategoryState extends State<Searchcategory>
       print(res);
       //1-video 2-News_Release 3-Article 4-Events 5-Testimonials 6-Photo  7-Media 8-ceomeaasage 9-award
       if (response.statusCode == 200) {
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
         if (res['success'] == "True") {
           if (categoryController.text == "Video") {
             setState(() {
@@ -387,12 +387,12 @@ class SearchcategoryState extends State<Searchcategory>
         }
       } else {
         ShowDialogs.showToast("Server Not Responding");
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
       }
     } else {
       setState(() {
         ShowDialogs.showToast("Please check Internet Connection.");
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
       });
     }
   }

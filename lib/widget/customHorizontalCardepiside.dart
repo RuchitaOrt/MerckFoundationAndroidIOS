@@ -4,22 +4,22 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 class CustomHorizontalCardEpisode extends StatelessWidget {
-  final String cardTitle;
-  final String cardImage;
-  final String subTitle;
-  final String btnTitle;
-  final Color titleColor;
-  final String titleImg;
-  final int index;
-  final int showviewmore;
-  final Function onbtnTap;
-  final Widget list;
+  final dynamic cardTitle;
+  final dynamic cardImage;
+  final dynamic subTitle;
+  final dynamic btnTitle;
+  final Color? titleColor;
+  final dynamic titleImg;
+  final int? index;
+  final int ?showviewmore;
+  final VoidCallback? onbtnTap;
+  final Widget? list;
   final heigthoflist;
-  final String cardsubtitle;
-  final int isheading;
+  final dynamic cardsubtitle;
+  final int ?isheading;
 
   const CustomHorizontalCardEpisode(
-      {Key key,
+      {Key? key,
       this.cardTitle,
       this.cardImage,
       this.subTitle,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
@@ -15,7 +16,7 @@ class Testimonialprogramviewmore extends StatefulWidget {
   final dynamic apiurl;
   final dynamic sharelink;
   const Testimonialprogramviewmore({
-    Key key,
+    Key? key,
     this.apiurl,
     this.sharelink,
   }) : super(key: key);
@@ -27,7 +28,7 @@ class Testimonialprogramviewmore extends StatefulWidget {
 
 class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
@@ -101,49 +102,110 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
                                     ),
                                   ),
                                   Html(
-                                      data:
-                                          """${GlobalLists.testimonialprolist[index].testimonialName} """,
-                                      onLinkTap: (url, renderContext,
-                                          attributes, element) {
-                                        print("Opening $url...");
-                                        ShowDialogs.launchURL(url);
-                                      },
-                                      style: {
-                                        "body": Style(
-                                            fontSize: FontSize(17.0),
-                                            color: Customcolor.colorBlue,
-                                            textAlign: TextAlign.start,
-                                            fontWeight: FontWeight.w500),
-                                        "tr": Customcolor.tableboderstyle(
-                                            context),
-                                      }),
-                                  Html(
                                     data:
-                                        """${GlobalLists.testimonialprolist[index].departmentName} """,
-                                    onLinkTap: (url, renderContext, attributes,
-                                        element) {
+                                        """${GlobalLists.testimonialprolist[index].testimonialName} """,
+                                    onLinkTap: (url, attributes, element) {
                                       print("Opening $url...");
-                                      ShowDialogs.launchURL(url);
+                                      ShowDialogs.launchURL(url!);
                                     },
                                     style: {
-                                      "body": Style(textAlign: TextAlign.start),
+                                      "body": Style(
+                                          fontSize: FontSize(17.0),
+                                          color: Customcolor.colorBlue,
+                                          textAlign: TextAlign.start,
+                                          fontWeight: FontWeight.w500),
                                       "tr":
                                           Customcolor.tableboderstyle(context),
                                     },
+                                    extensions: [
+                                      TagExtension(
+                                        tagsToExtend: {"img"},
+                                        builder: (ExtensionContext context) {
+                                          final src =
+                                              context.attributes['src'] ?? '';
+                                          return Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 8.0),
+                                            child: Image.network(
+                                              src,
+                                              width: double.infinity,
+                                              fit: BoxFit.contain,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Icon(Icons.broken_image),
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    ],
                                   ),
+                                  HtmlWidget(
+                                    """${GlobalLists.testimonialprolist[index].departmentName} """,
+                                  ),
+                                  //                               Html(
+                                  //                                 data:
+                                  //                                     """${GlobalLists.testimonialprolist[index].departmentName} """,
+                                  //                                 onLinkTap: (url, attributes,
+                                  //                                     element) {
+                                  //                                   print("Opening $url...");
+                                  //                                   ShowDialogs.launchURL(url!);
+                                  //                                 },
+                                  //                                 style: {
+                                  //                                   "body": Style(textAlign: TextAlign.start),
+                                  //                                   "tr":
+                                  //                                       Customcolor.tableboderstyle(context),
+                                  //                                 },
+                                  //                                  extensions: [
+                                  //   TagExtension(
+                                  //     tagsToExtend: {"img"},
+                                  //     builder: (ExtensionContext context) {
+                                  //       final src = context.attributes['src'] ?? '';
+                                  //       return Padding(
+                                  //         padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                  //         child: Image.network(
+                                  //           src,
+                                  //           width: double.infinity,
+                                  //           fit: BoxFit.contain,
+                                  //           errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+                                  //         ),
+                                  //       );
+                                  //     },
+                                  //   )
+                                  // ],
+                                  //                               ),
                                   Html(
                                     data:
                                         """${GlobalLists.testimonialprolist[index].details} """,
-                                    onLinkTap: (url, renderContext, attributes,
-                                        element) {
+                                    onLinkTap: (url, attributes, element) {
                                       print("Opening $url...");
-                                      ShowDialogs.launchURL(url);
+                                      ShowDialogs.launchURL(url!);
                                     },
                                     style: {
                                       "body": Style(textAlign: TextAlign.start),
                                       "tr":
                                           Customcolor.tableboderstyle(context),
                                     },
+                                    extensions: [
+                                      TagExtension(
+                                        tagsToExtend: {"img"},
+                                        builder: (ExtensionContext context) {
+                                          final src =
+                                              context.attributes['src'] ?? '';
+                                          return Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 8.0),
+                                            child: Image.network(
+                                              src,
+                                              width: double.infinity,
+                                              fit: BoxFit.contain,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Icon(Icons.broken_image),
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    ],
                                   ),
                                 ],
                               ));
@@ -196,20 +258,20 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
           print(response);
           print('Resp : $resp');
 
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.testimonialprolist = resp.list;
-              GlobalLists.testimonialprobaseurl = resp.baseUrl;
+              GlobalLists.testimonialprolist = resp.list!;
+              GlobalLists.testimonialprobaseurl = resp.baseUrl!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
         },
       );
     } else {

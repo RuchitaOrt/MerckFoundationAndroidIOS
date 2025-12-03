@@ -8,7 +8,7 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
@@ -16,7 +16,7 @@ import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 class NewsPage extends StatefulWidget {
   final dynamic apiurl;
 
-  const NewsPage({Key key, this.apiurl}) : super(key: key);
+  const NewsPage({Key? key, this.apiurl}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return NewsState();
@@ -27,7 +27,7 @@ class NewsState extends State<NewsPage> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   // List<ListElement> list = [];
   ScrollController _sc = new ScrollController();
-  NewsletterArticleResponse resp;
+  late NewsletterArticleResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -85,19 +85,19 @@ class NewsState extends State<NewsPage> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.newsLettersList.add(ListElement(
-                        image: resp.data.list[i].image,
-                        title: resp.data.list[i].title,
-                        id: resp.data.list[i].id,
-                        shortDescription: resp.data.list[i].shortDescription,
-                        details: resp.data.list[i].details,
-                        detailPageUrl: resp.data.list[i].detailPageUrl));
+                        image: resp.data!.list![i].image,
+                        title: resp.data!.list![i].title,
+                        id: resp.data!.list![i].id,
+                        shortDescription: resp.data!.list![i].shortDescription,
+                        details: resp.data!.list![i].details,
+                        detailPageUrl: resp.data!.list![i].detailPageUrl));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
                 }
 
                 offset = totalcount;
-                int remem = resp.data.list.length - totalcount;
+                int remem = resp.data!.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -106,7 +106,7 @@ class NewsState extends State<NewsPage> {
                   totalcount = totalcount + 10;
                 }
                 // // GlobalLists.newsLettersList = resp.data.list;
-                Constantstring.baseUrl = resp.baseUrl;
+                Constantstring.baseUrl = resp.baseUrl!;
                 print("-----------------------------------");
                 print(totalcount);
                 print(GlobalLists.newsLettersList.length);
@@ -116,7 +116,7 @@ class NewsState extends State<NewsPage> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -216,7 +216,7 @@ class NewsState extends State<NewsPage> {
                                                 image: Constantstring.baseUrl +
                                                     GlobalLists
                                                         .newsLettersList[index]
-                                                        .image,
+                                                        .image!,
                                                 fit: BoxFit.cover,
                                                 height: 80,
                                                 width: 80,
@@ -231,7 +231,7 @@ class NewsState extends State<NewsPage> {
                                                   Text(
                                                     GlobalLists
                                                         .newsLettersList[index]
-                                                        .title,
+                                                        .title!,
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     style: TextStyle(
@@ -312,7 +312,7 @@ class NewsState extends State<NewsPage> {
         (response) async {
           resp = response;
           print(resp);
-          print(resp.data.list.length); //48
+          print(resp.data!.list!.length); //48
 
           //        Navigator.of(_keyLoader.currentContext).pop();
 
@@ -322,16 +322,16 @@ class NewsState extends State<NewsPage> {
               // list = new List();
               // list = resp.data.list;
               //totalcount 10
-              if (resp.data.list.length < 10) {
-                for (int i = offset; i < resp.data.list.length; i++) {
+              if (resp.data!.list!.length < 10) {
+                for (int i = offset; i < resp.data!.list!.length; i++) {
                   setState(() {
                     GlobalLists.newsLettersList.add(ListElement(
-                        image: resp.data.list[i].image,
-                        title: resp.data.list[i].title,
-                        id: resp.data.list[i].id,
-                        shortDescription: resp.data.list[i].shortDescription,
-                        details: resp.data.list[i].details,
-                        detailPageUrl: resp.data.list[i].detailPageUrl));
+                        image: resp.data!.list![i].image,
+                        title: resp.data!.list![i].title,
+                        id: resp.data!.list![i].id,
+                        shortDescription: resp.data!.list![i].shortDescription,
+                        details: resp.data!.list![i].details,
+                        detailPageUrl: resp.data!.list![i].detailPageUrl));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -340,12 +340,12 @@ class NewsState extends State<NewsPage> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.newsLettersList.add(ListElement(
-                        image: resp.data.list[i].image,
-                        title: resp.data.list[i].title,
-                        id: resp.data.list[i].id,
-                        shortDescription: resp.data.list[i].shortDescription,
-                        details: resp.data.list[i].details,
-                        detailPageUrl: resp.data.list[i].detailPageUrl));
+                        image: resp.data!.list![i].image,
+                        title: resp.data!.list![i].title,
+                        id: resp.data!.list![i].id,
+                        shortDescription: resp.data!.list![i].shortDescription,
+                        details: resp.data!.list![i].details,
+                        detailPageUrl: resp.data!.list![i].detailPageUrl));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -353,7 +353,7 @@ class NewsState extends State<NewsPage> {
               }
 
               offset = totalcount;
-              int remem = resp.data.list.length - totalcount;
+              int remem = resp.data!.list!.length - totalcount;
               print("remem");
               print(remem);
               if (remem < 10) {
@@ -362,7 +362,7 @@ class NewsState extends State<NewsPage> {
                 totalcount = totalcount + 10;
               }
               // // GlobalLists.newsLettersList = resp.data.list;
-              Constantstring.baseUrl = resp.baseUrl;
+              Constantstring.baseUrl = resp.baseUrl!;
               print("-----------------------------------");
               print(totalcount);
               print(GlobalLists.newsLettersList.length);
@@ -372,7 +372,7 @@ class NewsState extends State<NewsPage> {
               _isLoading = false;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
             setState(() {
               _isLoading = false;
             });

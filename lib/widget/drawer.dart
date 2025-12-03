@@ -27,7 +27,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
 import 'package:merckfoundation22dec/widget/pdfviewpage.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../model/yearwisephotogallery.dart';
@@ -60,7 +60,7 @@ class _AppDrawerState extends State<AppDrawer> {
       if (name != expansionName) expansionState[name] = false;
     });
     setState(() {
-      if (!expansionState[expansionName]) expansionState[expansionName] = true;
+      if (!expansionState[expansionName]!) expansionState[expansionName] = true;
     });
   }
 
@@ -167,7 +167,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         .copyWith(dividerColor: Colors.transparent),
                     child: ExpansionTile(
                       key: GlobalKey(),
-                      initiallyExpanded: expansionState['Who We Are'],
+                      initiallyExpanded: expansionState['Who We Are']!,
                       title: Container(
                         padding: EdgeInsets.all(0),
                         child: new Row(
@@ -253,7 +253,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         .copyWith(dividerColor: Colors.transparent),
                     child: ExpansionTile(
                       key: GlobalKey(),
-                      initiallyExpanded: expansionState['What We Do'],
+                      initiallyExpanded: expansionState['What We Do']!,
                       title: Container(
                         padding: EdgeInsets.all(2),
                         child: new Row(
@@ -388,7 +388,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         .copyWith(dividerColor: Colors.transparent),
                     child: ExpansionTile(
                       key: GlobalKey(),
-                      initiallyExpanded: expansionState['Media & Events'],
+                      initiallyExpanded: expansionState['Media & Events']!,
                       title: Container(
                         padding: EdgeInsets.all(2),
                         child: new Row(
@@ -678,12 +678,12 @@ class _AppDrawerState extends State<AppDrawer> {
         (response) async {
           YearwisePhotogalleryResponse resp = response;
 
-          Navigator.of(_photoload.currentContext).pop();
+          Navigator.of(_photoload.currentContext!).pop();
 
           if (resp.success == "true") {
             setState(() {
-              yearwisephotlist = resp.list;
-              Constantstring.baseUrl = resp.baseUrl;
+              yearwisephotlist = resp.list!;
+              Constantstring.baseUrl = resp.baseUrl!;
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -694,12 +694,12 @@ class _AppDrawerState extends State<AppDrawer> {
                           )));
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(_photoload.currentContext).pop();
+          Navigator.of(_photoload.currentContext!).pop();
         },
       );
     } else {

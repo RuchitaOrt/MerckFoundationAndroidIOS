@@ -19,9 +19,9 @@ import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
 class AppDrawerfilter extends StatefulWidget {
-  final int index;
+  final int? index;
 
-  const AppDrawerfilter({Key key, this.index}) : super(key: key);
+  const AppDrawerfilter({Key? key, this.index}) : super(key: key);
   @override
   _AppDrawerfilterState createState() => _AppDrawerfilterState();
 }
@@ -438,9 +438,9 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                         onTap: () {
                           setState(() {
                             countryController.text =
-                                GlobalLists.countrylisting[index].countryName;
+                                GlobalLists.countrylisting[index].countryName!;
                             countryid =
-                                GlobalLists.countrylisting[index].countryId;
+                                GlobalLists.countrylisting[index].countryId!;
                             iscountryexpanded = false;
                           });
                         },
@@ -448,7 +448,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                           color: Colors.white,
                           width: SizeConfig.blockSizeHorizontal * 100,
                           child: Text(
-                            GlobalLists.countrylisting[index].countryName,
+                            GlobalLists.countrylisting[index].countryName!,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
@@ -530,12 +530,12 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                         onTap: () {
                           setState(() {
                             languageController.text =
-                                GlobalLists.filterlanglisting[index].language;
+                                GlobalLists.filterlanglisting[index].language!;
                             GlobalLists.digitallanguage =
-                                GlobalLists.filterlanglisting[index].language;
-                            langid = GlobalLists.filterlanglisting[index].id;
+                                GlobalLists.filterlanglisting[index].language!;
+                            langid = GlobalLists.filterlanglisting[index].id!;
                             GlobalLists.digitallanguageid =
-                                GlobalLists.filterlanglisting[index].id;
+                                GlobalLists.filterlanglisting[index].id!;
                             islanexpanded = false;
                             print("languageid");
                             print(langid);
@@ -552,7 +552,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                                 vertical:
                                     0), // Added padding to maintain spacing
                             child: Text(
-                              GlobalLists.filterlanglisting[index].language,
+                              GlobalLists.filterlanglisting[index].language!,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -593,8 +593,8 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                         onTap: () {
                           setState(() {
                             videocategoryController.text =
-                                GlobalLists.categorylisting[index].categoryName;
-                            catid = GlobalLists.categorylisting[index].id;
+                                GlobalLists.categorylisting[index].categoryName!;
+                            catid = GlobalLists.categorylisting[index].id!;
                             isvideocategoryexpanded = false;
                             countryController.text = "";
                             getcountrylist(catid);
@@ -604,7 +604,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                           color: Colors.white,
                           width: SizeConfig.blockSizeHorizontal * 100,
                           child: Text(
-                            GlobalLists.categorylisting[index].categoryName,
+                            GlobalLists.categorylisting[index].categoryName!,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
@@ -679,16 +679,16 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                               setState(() {
                                 digitalcategoryController.text = GlobalLists
                                     .filterdigitalcatlisting[index]
-                                    .categoryName;
+                                    .categoryName!;
                                 catid = GlobalLists
-                                    .filterdigitalcatlisting[index].id;
+                                    .filterdigitalcatlisting[index].id!;
                                 isdigitalcategoryexpanded = false;
                                 languageController.text = "";
                                 GlobalLists.digitallanguage = "";
                                 GlobalLists.digitallanguageid = "";
                                 GlobalLists.digitalcategory = GlobalLists
                                     .filterdigitalcatlisting[index]
-                                    .categoryName;
+                                    .categoryName!;
                                 GlobalLists.digitalcategoryid = GlobalLists
                                     .filterdigitalcatlisting[index].id
                                     .toString();
@@ -700,7 +700,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                               width: SizeConfig.blockSizeHorizontal * 100,
                               child: Text(
                                 GlobalLists.filterdigitalcatlisting[index]
-                                    .categoryName,
+                                    .categoryName!,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,
@@ -805,7 +805,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
         if (resp.success == "True") {
           setState(() {
             //  ShowDialogs.showToast(resp.msg);
-            GlobalLists.filterdatalisting = resp.data.list;
+            GlobalLists.filterdatalisting = resp.data!.list!;
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -815,7 +815,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
                         )));
           });
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
           setState(() {
             isfilterLoaded = true;
           });
@@ -857,10 +857,10 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.countrylisting = resp.data.list;
+              GlobalLists.countrylisting = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -893,14 +893,14 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.filterlanglisting = resp.data.list;
+              GlobalLists.filterlanglisting = resp.data!.list!;
               //  languageController.text =
               //                   GlobalLists.filterlanglisting[0].language;
               //               langid =
               //                   GlobalLists.filterlanglisting[0].id;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -932,10 +932,10 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.filterdigitalcatlisting = resp.data.list;
+              GlobalLists.filterdigitalcatlisting = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
@@ -972,13 +972,13 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
 
           //if (resp.status == true) {
           setState(() {
-            GlobalLists.filterdigitallibrarylist = resp.digitalLibraryList;
+            GlobalLists.filterdigitallibrarylist = resp.digitalLibraryList!;
             print("lengthresponse");
             print(GlobalLists.filterdigitallibrarylist.length);
             //Navigator.pop(context);
-            if (resp.categoryList.length > 0) {
+            if (resp.categoryList!.length > 0) {
               GlobalLists.filterdigitalcatlisting.clear();
-              resp.categoryList.forEach((element) {
+              resp.categoryList!.forEach((element) {
                 GlobalLists.filterdigitalcatlisting.add(dg.ListElement(
                     categoryName: element.categoryName,
                     catgSlug: element.catgSlug,
@@ -1011,7 +1011,7 @@ class _AppDrawerfilterState extends State<AppDrawerfilter> {
               GlobalLists.filterlanglisting.clear();
               languageController.text = "";
               langid = "";
-              resp.languageList.forEach((element) {
+              resp.languageList!.forEach((element) {
                 GlobalLists.filterlanglisting.add(lang.ListElement(
                     id: element.id,
                     language: element.language,

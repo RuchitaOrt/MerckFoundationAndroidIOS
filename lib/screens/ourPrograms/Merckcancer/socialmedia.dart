@@ -6,7 +6,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:social_share_plugin/social_share_plugin.dart';
+
 
 class SocialMedia extends StatefulWidget {
   @override
@@ -181,24 +181,24 @@ class SocialMediaState extends State<SocialMedia> {
                       SizedBox(
                         width: 7,
                       ),
-                      GestureDetector(
-                        onTap: () async {
-                          // Platform.isAndroid
-                          //     ? await FlutterShareMe().openinsta(
-                          //         url:
-                          //             'https://www.facebook.com/Merckmorethanapatient/',
-                          //         msg: "Share")
-                          //     : 
-                              ShowDialogs.launchInstagram(
-                                  "https://www.facebook.com/Merckmorethanapatient/",
-                                  "Merckmorethanapatient");
-                        },
-                        child: Image.asset(
-                          "assets/newImages/instagram.png",
-                          height: imgHeight,
-                          width: imgHeight,
-                        ),
-                      ),
+                      // GestureDetector(
+                      //   onTap: () async {
+                      //     // Platform.isAndroid
+                      //     //     ? await FlutterShareMe().openinsta(
+                      //     //         url:
+                      //     //             'https://www.facebook.com/Merckmorethanapatient/',
+                      //     //         msg: "Share")
+                      //     //     : 
+                      //         ShowDialogs.launchInstagram(
+                      //             "https://www.facebook.com/Merckmorethanapatient/",
+                      //             "Merckmorethanapatient");
+                      //   },
+                      //   child: Image.asset(
+                      //     "assets/newImages/instagram.png",
+                      //     height: imgHeight,
+                      //     width: imgHeight,
+                      //   ),
+                      // ),
                       SizedBox(
                         width: 7,
                       ),

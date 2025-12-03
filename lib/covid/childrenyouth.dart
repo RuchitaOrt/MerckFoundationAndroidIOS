@@ -15,7 +15,7 @@ class Childrenyouth extends StatefulWidget {
 
 class ChildrenyouthState extends State<Childrenyouth>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   double imgHeight = 50;
   String _platformVersion = 'Unknown';

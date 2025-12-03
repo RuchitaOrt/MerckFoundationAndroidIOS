@@ -19,7 +19,7 @@ class Ourlegaldisclimer extends StatefulWidget {
 
 class OurlegaldisclimerState extends State<Ourlegaldisclimer>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   @override
@@ -78,13 +78,30 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
                                 data:
                                     """${GlobalLists.legaldisclaimer[0].pageContent} """,
                                 onLinkTap:
-                                    (url, renderContext, attributes, element) {
+                                    (url, attributes, element) {
                                   print("Opening $url...");
-                                  ShowDialogs.launchURL(url);
+                                  ShowDialogs.launchURL(url!);
                                 },
                                 style: {
                                   "tr": Customcolor.tableboderstyle(context),
                                 },
+                                 extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                 // style: {
                                 //   "body": Style(
                                 //     fontSize: FontSize(
@@ -156,19 +173,19 @@ class OurlegaldisclimerState extends State<Ourlegaldisclimer>
           LegaldisclaimerResponse resp = response;
           print(response);
           print('Resp : $resp');
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.legaldisclaimer = resp.data.list;
+              GlobalLists.legaldisclaimer = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
         },
       );
     } else {

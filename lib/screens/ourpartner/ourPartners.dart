@@ -70,13 +70,30 @@ class OurpatnerState extends State<Ourpatner> {
                             data:
                                 """${GlobalLists.ourPartnerObjectives[0].pageContent} """,
                             onLinkTap:
-                                (url, renderContext, attributes, element) {
+                                (url, attributes, element) {
                               print("Opening $url...");
-                              ShowDialogs.launchURL(url);
+                              ShowDialogs.launchURL(url!);
                             },
                             style: {
                               "tr": Customcolor.tableboderstyle(context),
                             },
+                             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                           ),
                         ),
                         Padding(
@@ -84,7 +101,7 @@ class OurpatnerState extends State<Ourpatner> {
                               left: 90, right: 90, bottom: 20, top: 20),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                primary: Customcolor.text_blue,
+                                backgroundColor: Customcolor.text_blue,
                                 minimumSize: Size(38, 40),
                                 shape: RoundedRectangleBorder(
                                     side: BorderSide(
@@ -111,50 +128,7 @@ class OurpatnerState extends State<Ourpatner> {
                             },
                           ),
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(
-                        //       left: 90, right: 90, bottom: 20, top: 20),
-                        //   child: ElevatedButton(
-                        //     color: Customcolor.text_blue,
-                        //     shape: RoundedRectangleBorder(
-                        //         side: BorderSide(color: Customcolor.text_blue),
-                        //         borderRadius: BorderRadius.circular(5)),
-                        //     child: Text(
-                        //       "View Partners",
-                        //       style: TextStyle(color: Colors.white),
-                        //     ),
-                        //     minWidth: 38,
-                        //     height: 40,
-                        //     onPressed: () {
-                        //       // getOurPartnerData();
-                        //       Navigator.push(
-                        //           context,
-                        //           MaterialPageRoute(
-                        //               builder: (BuildContext context) =>
-                        //                   Ourpatnerdetail()));
-                        //     },
-                        //   ),
-                        // ),
-                        // Padding(
-                        //   padding:
-                        //       const EdgeInsets.only(right: 60, left: 60, top: 20),
-                        //   child: Image.asset(
-                        //     "assets/newImages/flowers_footer.png",
-                        //   ),
-                        // ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(right: 0, left: 0),
-                        //   child: Align(
-                        //     alignment: Alignment.topRight,
-                        //     child: Image.asset(
-                        //       "assets/newImages/flowers_footer.png",
-                        //       height: 170,
-                        //     ),
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 10,
-                        // )
+                       
                       ],
                     ),
             ],
@@ -176,19 +150,19 @@ class OurpatnerState extends State<Ourpatner> {
           print(response);
           print('Resp : $resp');
           GlobalLists.ourPartnerObjectives.clear();
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.ourPartnerObjectives = resp.data.list;
+              GlobalLists.ourPartnerObjectives = resp.data!.list!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
         },
       );
     } else {

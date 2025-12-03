@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/widget/AutoResizeWebView.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 
 import 'package:merckfoundation22dec/widget/showdailog.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class Homeceomessage extends StatefulWidget {
-  final String detail;
-  final String title;
-  final String detailpageurl;
+  final String? detail;
+  final String? title;
+  final String? detailpageurl;
 
-  const Homeceomessage({Key key, this.detail, this.title, this.detailpageurl})
+  const Homeceomessage({Key? key, this.detail, this.title, this.detailpageurl})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -25,7 +27,7 @@ class Homeceomessage extends StatefulWidget {
 
 class OurVisionState extends State<Homeceomessage>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   double imgHeight = 50;
   String _platformVersion = 'Unknown';
@@ -42,12 +44,12 @@ class OurVisionState extends State<Homeceomessage>
   }
 
   Future<void> initPlatformState() async {
-    String platformVersion;
+    String? platformVersion;
 
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _platformVersion = platformVersion!;
     });
   }
 
@@ -70,7 +72,7 @@ class OurVisionState extends State<Homeceomessage>
           index: 2,
           titleshowingindex: "1",
           sharelink:
-              Constantstring.shareceohomeeodetailpage + widget.detailpageurl,
+              Constantstring.shareceohomeeodetailpage + widget.detailpageurl!,
           title: "Ceo Message",
           titleImg: "assets/newImages/vision_logo.png",
           trallingImg1: "assets/newImages/share.png",
@@ -94,7 +96,40 @@ class OurVisionState extends State<Homeceomessage>
                       children: [
                         HtmlWidget(
                           """${widget.title} """,
-                        
+                         customWidgetBuilder: (element) {
+              if (element.localName == 'video') {
+                final src = element.children.firstWhere((e) => e.localName == 'source').attributes['src'];
+                if (src != null && src.contains('youtube.com')) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: src,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else  if (element.localName == 'iframe') {
+                final iframeSrc = element.attributes['src'];
+
+                // If the iframe is a YouTube video, handle it
+                if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: iframeSrc,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else if (element.localName == 'table') {
+     
+        return  AutoResizeWebView(htmlContent: element.outerHtml,);
+       
+      }
+              return null;
+            },
                          
                         ),
                         SizedBox(
@@ -102,23 +137,43 @@ class OurVisionState extends State<Homeceomessage>
                         ),
                         // _buildHtmlContent(context, widget.detail),
 
-                        HtmlWidget(widget.detail),
+                        HtmlWidget(widget.detail!,
+                         customWidgetBuilder: (element) {
+              if (element.localName == 'video') {
+                final src = element.children.firstWhere((e) => e.localName == 'source').attributes['src'];
+                if (src != null && src.contains('youtube.com')) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: src,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else  if (element.localName == 'iframe') {
+                final iframeSrc = element.attributes['src'];
 
-                        // Html(
-                        //   data: widget.detail ??
-                        //       "", // Ensure widget.detail is not null
-                        //   onLinkTap: (url) {
-                        //     print("Opening $url...");
-                        //     ShowDialogs.launchURL(url);
-                        //   },
-                        //   // onError: (error) {
-                        //   //   print("HTML Error: $error");
-                        //   //   // Handle error gracefully (e.g., show a fallback UI)
-                        //   // },
-                        //   style: {
-                        //     "tr": Customcolor.tableboderstyle(context),
-                        //   },
-                        // ),
+                // If the iframe is a YouTube video, handle it
+                if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+                  return SizedBox(
+                    height: 300,
+                    width: double.infinity,
+                    child: WebView(
+                      initialUrl: iframeSrc,
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
+                  );
+                }
+              }else if (element.localName == 'table') {
+     
+        return  AutoResizeWebView(htmlContent: element.outerHtml,);
+       
+      }
+              return null;
+            },),
+
+                      
 
                         SizedBox(
                           height: 5,
@@ -166,22 +221,23 @@ class OurVisionState extends State<Homeceomessage>
         ));
   }
 
-  Widget _buildHtmlContent(BuildContext context, String htmlContent) {
-    if (htmlContent == null || htmlContent.isEmpty) {
-      return Text("No content available"); // Fallback UI
-    }
+  // Widget _buildHtmlContent(BuildContext context, String htmlContent) {
+  //   if (htmlContent == null || htmlContent.isEmpty) {
+  //     return Text("No content available"); // Fallback UI
+  //   }
 
-    try {
-      // Attempt to parse the HTML content
-      return HtmlWidget(
-       htmlContent,
+  //   try {
+  //     // Attempt to parse the HTML content
+  //     return HtmlWidget(
+  //      htmlContent,
+       
      
        
-      );
-    } catch (e) {
-      print("HTML Error: $e");
-      // Fallback UI in case of an error
-      return Text("Failed to load content");
-    }
-  }
+  //     );
+  //   } catch (e) {
+  //     print("HTML Error: $e");
+  //     // Fallback UI in case of an error
+  //     return Text("Failed to load content");
+  //   }
+  // }
 }

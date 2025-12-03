@@ -22,7 +22,7 @@ class ContactusState extends State<AnnualReport> {
       backgroundColor: Customcolor.background,
       appBar: InnerCustomAppBar(
         onTapval: () {
-       //   Navigator.pop(context);
+          //   Navigator.pop(context);
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -56,33 +56,25 @@ class ContactusState extends State<AnnualReport> {
                     ),
                   ),
                 ),
-
-
-
-                    SizedBox(
-              height: 60,
-            ),
-
-              Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Image.asset(
-                    "assets/newImages/flowers_footer.png",
-                    height: 170,
+                SizedBox(
+                  height: 60,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 0, left: 0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "assets/newImages/flowers_footer.png",
+                      height: 170,
+                    ),
                   ),
                 ),
-              ),
-
-
-           
               ],
             ),
           ),
-
           Align(
             alignment: Alignment.bottomCenter,
-            child:   Bottomcardlink(),
+            child: Bottomcardlink(),
           )
         ],
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
+
 import 'package:merckfoundation22dec/model/LeadershipResponse.dart';
 import 'package:merckfoundation22dec/screens/ceomessage/Detailpageceo.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -13,7 +13,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 
 class Ceomessage extends StatefulWidget {
   @override
@@ -85,7 +85,7 @@ class CeomessageState extends State<Ceomessage> {
                                     placeholder:
                                         'assets/newImages/placeholder_3.jpg',
                                     image: Constantstring.baseUrl +
-                                        GlobalLists.ceolisting[index].image,
+                                        GlobalLists.ceolisting[index].image!,
                                     fit: BoxFit.cover,
                                     height: 150,
                                   ),
@@ -95,9 +95,9 @@ class CeomessageState extends State<Ceomessage> {
                                 data:
                                     """${GlobalLists.ceolisting[index].leaderName} """,
                                 onLinkTap:
-                                    (url, renderContext, attributes, element) {
+                                    (url, attributes, element) {
                                   print("Opening $url...");
-                                  ShowDialogs.launchURL(url);
+                                  ShowDialogs.launchURL(url!);
                                 },
                                 style: {
                                   "body": Style(
@@ -107,19 +107,50 @@ class CeomessageState extends State<Ceomessage> {
                                       fontSize: FontSize.larger),
                                   "tr": Customcolor.tableboderstyle(context),
                                 },
+                                 extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                               ),
                               Html(
                                 data:
                                     """${GlobalLists.ceolisting[index].shortBiodata} """,
                                 onLinkTap:
-                                    (url, renderContext, attributes, element) {
+                                    (url, attributes, element) {
                                   print("Opening $url...");
-                                  ShowDialogs.launchURL(url);
+                                  ShowDialogs.launchURL(url!);
                                 },
                                 style: {
                                   "body": Style(textAlign: TextAlign.start),
                                   "tr": Customcolor.tableboderstyle(context),
                                 },
+                                 extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Image.network(
+            src,
+           // width: double.infinity,
+            fit: BoxFit.contain,
+            errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+          );
+        },
+      )
+    ],
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -136,10 +167,10 @@ class CeomessageState extends State<Ceomessage> {
                                 },
                                 child: Html(
                                   data: "((View Bio))",
-                                  onLinkTap: (url, renderContext, attributes,
+                                  onLinkTap: (url, attributes,
                                       element) {
                                     print("Opening $url...");
-                                    ShowDialogs.launchURL(url);
+                                    ShowDialogs.launchURL(url!);
                                   },
                                   style: {
                                     "body": Style(
@@ -149,6 +180,23 @@ class CeomessageState extends State<Ceomessage> {
                                         fontWeight: FontWeight.w600),
                                     "tr": Customcolor.tableboderstyle(context),
                                   },
+                                   extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                 ),
                               ),
                             ],
@@ -202,7 +250,7 @@ class CeomessageState extends State<Ceomessage> {
                                             'assets/newImages/placeholder_3.jpg',
                                         image: Constantstring.baseUrl +
                                             GlobalLists
-                                                .boardoftrust[index].image,
+                                                .boardoftrust[index].image!,
                                         fit: BoxFit.cover,
                                         height: 150,
                                       ),
@@ -211,14 +259,14 @@ class CeomessageState extends State<Ceomessage> {
                                   Html(
                                     data:
                                         """${GlobalLists.boardoftrust[index].leaderName} """,
-                                    onLinkTap: (url, renderContext, attributes,
+                                    onLinkTap: (url, attributes,
                                         element) {
                                       print("Opening $url...");
-                                      ShowDialogs.launchURL(url);
+                                      ShowDialogs.launchURL(url!);
                                     },
                                     style: {
                                       "body": Style(
-                                          padding: EdgeInsets.all(0),
+                                          padding: HtmlPaddings.all(0),
                                           textAlign: TextAlign.start,
                                           color: Customcolor.violet_col,
                                           fontWeight: FontWeight.bold,
@@ -226,20 +274,54 @@ class CeomessageState extends State<Ceomessage> {
                                       "tr":
                                           Customcolor.tableboderstyle(context),
                                     },
+                                     extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                   ),
                                   Html(
                                     data:
                                         """${GlobalLists.boardoftrust[index].shortBiodata} """,
-                                    onLinkTap: (url, renderContext, attributes,
+                                    onLinkTap: (url, attributes,
                                         element) {
                                       print("Opening $url...");
-                                      ShowDialogs.launchURL(url);
+                                      ShowDialogs.launchURL(url!);
                                     },
                                     style: {
                                       "body": Style(textAlign: TextAlign.start),
                                       "tr":
                                           Customcolor.tableboderstyle(context),
                                     },
+                                     extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                   ),
                                   GestureDetector(
                                     onTap: () {
@@ -257,10 +339,10 @@ class CeomessageState extends State<Ceomessage> {
                                     },
                                     child: Html(
                                       data: "((View Bio))",
-                                      onLinkTap: (url, renderContext,
+                                      onLinkTap: (url,
                                           attributes, element) {
                                         print("Opening $url...");
-                                        ShowDialogs.launchURL(url);
+                                        ShowDialogs.launchURL(url!);
                                       },
                                       style: {
                                         "body": Style(
@@ -271,6 +353,23 @@ class CeomessageState extends State<Ceomessage> {
                                         "tr": Customcolor.tableboderstyle(
                                             context),
                                       },
+                                       extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                                     ),
                                   ),
                                   SizedBox(
@@ -337,22 +436,22 @@ class CeomessageState extends State<Ceomessage> {
           print(response);
           print('Resp : $resp');
 
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.ceolisting = resp.data.ceo;
+              GlobalLists.ceolisting = resp.data!.ceo!;
               GlobalLists.boardoftrust =
-                  resp.data.boardOfTrusteesOfMerckFoundation;
-              Constantstring.baseUrl = resp.baseUrl;
+                  resp.data!.boardOfTrusteesOfMerckFoundation!;
+              Constantstring.baseUrl = resp.baseUrl!;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {
           print('ERR msg is $error');
-          Navigator.of(_keyLoader.currentContext).pop();
+          Navigator.of(_keyLoader.currentContext!).pop();
         },
       );
     } else {

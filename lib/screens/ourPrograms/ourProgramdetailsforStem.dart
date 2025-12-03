@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:adv_fab/adv_fab.dart';
+// import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:merckfoundation22dec/ViewmoreAlbum.dart';
 import 'package:merckfoundation22dec/model/our_gallery_detail_response.dart';
@@ -12,24 +12,25 @@ import 'package:merckfoundation22dec/screens/our_gallery_detail.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
+import 'package:merckfoundation22dec/widget/CustomAdvFab.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/drawerWidget.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 
 class OurProgramStem extends StatefulWidget {
   OurProgramStem(
-      {Key key, this.title, this.indexpass, this.innertitle, this.innerdetail})
+      {Key? key, this.title, this.indexpass, this.innertitle, this.innerdetail})
       : super(key: key);
 
-  final String title;
-  final int indexpass;
-  final String innertitle;
-  final String innerdetail;
+  final String? title;
+  final int? indexpass;
+  final String? innertitle;
+  final String? innerdetail;
 
   @override
   _MyHomePageState createState() => _MyHomePageState(this.indexpass);
@@ -38,18 +39,20 @@ class OurProgramStem extends StatefulWidget {
 Map<String, bool> expansionState = Map();
 
 class _MyHomePageState extends State<OurProgramStem> {
-  final int indexpass;
-  AdvFabController mabialaFABController;
+  final int? indexpass;
+  final GlobalKey<CustomAdvFabState> fabKey = GlobalKey<CustomAdvFabState>();
+
+  // AdvFabController mabialaFABController;
 
   // var expansionList = [
   //   "4th Edition of UNESCO-MARS",
   // ];
   void closeOpenExpansionList(expansionName) {
     GlobalLists.stemprogramlistsubmenu.forEach((name) {
-      if (name != expansionName) expansionState[name.menuName] = false;
+      if (name != expansionName) expansionState[name.menuName!] = false;
     });
     setState(() {
-      if (!expansionState[expansionName]) expansionState[expansionName] = true;
+      if (!expansionState[expansionName]!) expansionState[expansionName] = true;
     });
   }
 
@@ -62,785 +65,515 @@ class _MyHomePageState extends State<OurProgramStem> {
     super.initState();
 
     getstemprogram();
-    mabialaFABController = AdvFabController();
+    // mabialaFABController = AdvFabController();
   }
 
   setData() {
     GlobalLists.stemprogramlistsubmenu.forEach((name) {
-      expansionState.putIfAbsent(name.menuName, () => false);
+      expansionState.putIfAbsent(name.menuName!, () => false);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: AdvFabBottomBarBody(
-          screens: <Widget>[
-            widget.indexpass == 2
+      body: widget.indexpass == 2
                 ? StemInnerPages(
                     title: widget.innertitle,
                     details: widget.innerdetail,
                   )
-                : Merckstemprogram()
-          ],
-          controller: mabialaFABController,
-        ),
+                : Merckstemprogram(),
+//         body: AdvFabBottomBarBody(
+//           screens: <Widget>[
+//             widget.indexpass == 2
+//                 ? StemInnerPages(
+//                     title: widget.innertitle,
+//                     details: widget.innerdetail,
+//                   )
+//                 : Merckstemprogram()
+//           ],
+//           controller: mabialaFABController,
+//         ),
 
         ///[SEtting up the floating action button]
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 40),
-          child: AdvFab(
-            showLogs: true,
-            floatingActionButtonExpendedWidth: 80,
-            onFloatingActionButtonTapped: () {
-              mabialaFABController.setExpandedWidgetConfiguration(
-                showLogs: true,
-                heightToExpandTo: 44,
-                expendedBackgroundColor: Customcolor.programyellow,
-                withChild: Padding(
-                  padding: const EdgeInsets.all(0.0),
-                  child: Container(
-                    width: (MediaQuery.of(context).size.width) * 50,
+          child: 
+           CustomAdvFab(
+          icon: Icons.menu,
+           key: fabKey,
+          iconColor: 
+          Customcolor.text_darkblue,
+          backgroundColor: Customcolor.programyellow,
+          expandedContent: 
+Padding(
+  padding: const EdgeInsets.all(0.0),
+  child: ListView(
+    shrinkWrap: true,
+    //  crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      ListView.builder(
+        itemCount: GlobalLists
+            .stemprogramlistsubmenu.length,
+        shrinkWrap: true,
+        physics: ScrollPhysics(),
+        itemBuilder:
+            (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.only(
+                bottom: 5, left: 4, right: 4),
+            child: Column(
+              children: [
+                GlobalLists
+                            .stemprogramlistsubmenu[
+                                index]
+                            .children!
+                            .length ==
+                        0
+                    ? GestureDetector(
+                        onTap: () {
+                          print('stream');
+                        fabKey.currentState?.collapse();
+                          if (GlobalLists
+                              .stemprogramlistsubmenu[
+                                  index]
+                              .menuUrl!
+                              .contains(".pdf")) {
+                            print("pdf");
+                            ShowDialogs.launchURL(
+                                GlobalLists
+                                    .stemprogramlistsubmenu[
+                                        index]
+                                    .menuUrl!);
+                          } else if (GlobalLists
+                              .stemprogramlistsubmenu[
+                                  index]
+                              .menuUrl!
+                              .contains(".png")) {
+                            print("pdf");
+                            ShowDialogs.launchURL(
+                                GlobalLists
+                                    .stemprogramlistsubmenu[
+                                        index]
+                                    .menuUrl!);
+                          } else if (GlobalLists
+                              .stemprogramlistsubmenu[
+                                  index]
+                              .menuUrl!
+                              .contains(
+                                  "Application-Form")) {
+                            print(
+                                "Application-Form");
+                            ShowDialogs.launchURL(
+                                GlobalLists
+                                    .stemprogramlistsubmenu[
+                                        index]
+                                    .menuUrl!);
+                          } else if (GlobalLists
+                              .stemprogramlistsubmenu[
+                                  index]
+                              .menuUrl!
+                              .contains(".jpg")) {
+                            print("pdf");
+                            ShowDialogs.launchURL(
+                                GlobalLists
+                                    .stemprogramlistsubmenu[
+                                        index]
+                                    .menuUrl!);
+                          } else if (GlobalLists
+                              .stemprogramlistsubmenu[
+                                  index]
+                              .menuUrl!
+                              .contains(".jpeg")) {
+                            print("pdf");
+                            ShowDialogs.launchURL(
+                                GlobalLists
+                                    .stemprogramlistsubmenu[
+                                        index]
+                                    .menuUrl!);
+                          } else if (GlobalLists
+                                  .stemprogramlistsubmenu[
+                                      index]
+                                  .menuUrl ==
+                              "Photos") {
+                            print("call api here");
+                            String menuurl = GlobalLists
+                                .stemprogramlistsubmenu[
+                                    index]
+                                .menuUrl!;
+                            //
+                            List<String> splits =
+                                menuurl.split('/');
+                            print("last elemt");
+                            print(splits[
+                                splits.length - 1]);
+                            String pageurl = splits[
+                                splits.length - 1];
 
-                    ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
-                    ///in the next line we use 20%
-                    height: Platform.isAndroid
-                        ? 330
-                        : SizeConfig.blockSizeVertical * 40,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        GestureDetector(
-                            onTap: () {
-                              mabialaFABController
-                                  .setExpandedWidgetConfiguration(
-                                showLogs: true,
-                                heightToExpandTo: 60,
-                                expendedBackgroundColor:
-                                    Customcolor.programyellow,
-                                withChild: Container(
-                                  width:
-                                      (MediaQuery.of(context).size.width) * 50,
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext
+                                            context) =>
+                                        ViewmoreAlbum(
+                                          apiurl: APIManager
+                                              .viewmorealbum,
+                                          albumtitle:
+                                              pageurl,
+                                          sharelink: GlobalLists
+                                              .stemprogramlistsubmenu[
+                                                  index]
+                                              .menuUrl,
+                                          albumurl:
+                                              pageurl
+                                                  .trim(),
+                                        ))).then((onValue){
+ fabKey.currentState?.collapse();
+ setState(() {});
+        });
+                          } else if (GlobalLists
+                                  .stemprogramlistsubmenu[
+                                      index]
+                                  .menuName ==
+                              "Photo") {
+                            print("call api here");
+                            String menuurl = GlobalLists
+                                .stemprogramlistsubmenu[
+                                    index]
+                                .menuUrl!;
+                            //
+                            List<String> splits =
+                                menuurl.split('/');
+                            print("last elemt");
+                            print(splits[
+                                splits.length - 1]);
+                            String pageurl = splits[
+                                splits.length - 1];
 
-                                  ///[IMPORTANT]: the height percentage shall be less than [heightToExpandTo]
-                                  ///in the next line we use 20%
-                                  height: Platform.isAndroid
-                                      ? 330
-                                      : Platform.isAndroid
-                                          ? 330
-                                          : SizeConfig.blockSizeVertical * 40,
-                                  child: ListView(
-                                    shrinkWrap: true,
-                                    // crossAxisAlignment:
-                                    //     CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      GestureDetector(
-                                          onTap: () {},
-                                          child: Align(
-                                              alignment: Alignment.topRight,
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10, top: 10),
-                                                child: Icon(
-                                                  Icons.close,
-                                                  color: Customcolor.colorBlue,
-                                                ),
-                                              ))),
-                                      Expanded(
-                                          flex: 5,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(0.0),
-                                            child: ListView(
-                                              shrinkWrap: true,
-                                              //  crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                ListView.builder(
-                                                  itemCount: GlobalLists
-                                                      .stemprogramlistsubmenu
-                                                      .length,
-                                                  shrinkWrap: true,
-                                                  physics: ScrollPhysics(),
-                                                  itemBuilder:
-                                                      (BuildContext context,
-                                                          int index) {
-                                                    return Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              bottom: 5,
-                                                              left: 4,
-                                                              right: 4),
-                                                      child: Column(
-                                                        children: [
-                                                          GlobalLists
-                                                                      .stemprogramlistsubmenu[
-                                                                          index]
-                                                                      .children
-                                                                      .length ==
-                                                                  0
-                                                              ? Column(
-                                                                  // mainAxisAlignment:
-                                                                  //     MainAxisAlignment.start,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    FormLabel(
-                                                                      text: GlobalLists
-                                                                          .stemprogramlistsubmenu[
-                                                                              index]
-                                                                          .menuName,
-                                                                      labelColor:
-                                                                          Customcolor
-                                                                              .text_darkblue,
-                                                                      fontweight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontSize: ResponsiveFlutter.of(
-                                                                              context)
-                                                                          .fontSize(
-                                                                              1.8),
-                                                                      textAlignment:
-                                                                          TextAlign
-                                                                              .start,
-                                                                    ),
-                                                                    Divider(
-                                                                      color: Colors
-                                                                          .black,
-                                                                    )
-                                                                  ],
-                                                                )
-                                                              : Container(
-                                                                  width: SizeConfig
-                                                                          .blockSizeHorizontal *
-                                                                      100,
-                                                                  color: GlobalLists
-                                                                              .stemprogramlistsubmenu[
-                                                                                  index]
-                                                                              .children
-                                                                              .length ==
-                                                                          0
-                                                                      ? Colors
-                                                                          .transparent
-                                                                      : index % 3 ==
-                                                                              0
-                                                                          ? Color(
-                                                                              0xffC1DEA4)
-                                                                          : index % 3 == 1
-                                                                              ? Color(0xffA9E2FC)
-                                                                              : index % 3 == 2
-                                                                                  ? Color(0xffE0C0CB)
-                                                                                  : Color(0xffC1DEA4),
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext
+                                            context) =>
+                                        ViewmoreAlbum(
+                                          apiurl: APIManager
+                                              .viewmorealbum,
+                                          albumtitle:
+                                              pageurl,
+                                          sharelink: GlobalLists
+                                              .stemprogramlistsubmenu[
+                                                  index]
+                                              .menuUrl,
+                                          albumurl:
+                                              pageurl
+                                                  .trim(),
+                                        ))).then((onValue){
+ fabKey.currentState?.collapse();
+ setState(() {});
+        });
+                          } else if (GlobalLists
+                                  .stemprogramlistsubmenu[
+                                      index]
+                                  .menuName ==
+                              "Photo Gallery") {
+                            print("call api here");
+                            String menuurl = GlobalLists
+                                .stemprogramlistsubmenu[
+                                    index]
+                                .menuUrl!;
 
-                                                                  // Color(
-                                                                  //     0xffC1DEA4),
+                            List<String> splits =
+                                menuurl.split('/');
+                            print("last elemt");
+                            print(splits[
+                                splits.length - 1]);
+                            String pageurl = splits[
+                                splits.length - 1];
+                            print(pageurl);
+                            getphotodetail(pageurl);
+                          } else {
+                            print("detail");
+                            getsteminnerapi(GlobalLists
+                                .stemprogramlistsubmenu[
+                                    index]
+                                .menuUrl!);
+                          }
+                        },
+                        child: Column(
+                          // mainAxisAlignment:
+                          //     MainAxisAlignment.start,
+                          crossAxisAlignment:
+                              CrossAxisAlignment
+                                  .start,
+                          children: [
+                            FormLabel(
+                              text: GlobalLists
+                                  .stemprogramlistsubmenu[
+                                      index]
+                                  .menuName,
+                              labelColor: Customcolor
+                                  .text_darkblue,
+                              fontweight:
+                                  FontWeight.w600,
+                              fontSize:
+                                  ResponsiveFlutter
+                                          .of(
+                                              context)
+                                      .fontSize(
+                                          1.8),
+                              textAlignment:
+                                  TextAlign.start,
+                            ),
+                            Divider(
+                              color: Colors.black54,
+                            )
+                          ],
+                        ),
+                      )
+                    : Container(
+                        width: SizeConfig
+                                .blockSizeHorizontal *
+                            100,
+                        color: GlobalLists
+                                    .stemprogramlistsubmenu[
+                                        index]
+                                    .children!
+                                    .length ==
+                                0
+                            ? Colors.transparent
+                            : index % 3 == 0
+                                ? Color(0xffA9E2FC)
+                                : index % 3 == 1
+                                    ? Color(
+                                        0xffC1DEA4)
+                                    : index % 3 == 2
+                                        ? Color(
+                                            0xffE0C0CB)
+                                        : Color(
+                                            0xffC1DEA4),
 
-                                                                  child: Theme(
-                                                                    data: Theme.of(
-                                                                            context)
-                                                                        .copyWith(
-                                                                      dividerColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                    ),
-                                                                    child:
-                                                                        ExpansionTile(
-                                                                      backgroundColor: GlobalLists.stemprogramlistsubmenu[index].children.length ==
-                                                                              0
-                                                                          ? Colors
-                                                                              .transparent
-                                                                          : index % 3 == 0
-                                                                              ? Color(0xffA9E2FC)
-                                                                              : index % 3 == 1
-                                                                                  ? Color(0xffC1DEA4)
-                                                                                  : index % 3 == 2
-                                                                                      ? Color(0xffE0C0CB)
-                                                                                      : Color(0xffC1DEA4),
+                        //Color(0xffC1DEA4),
+                        child: Theme(
+                          data: Theme.of(context)
+                              .copyWith(
+                            dividerColor:
+                                Colors.transparent,
+                          ),
+                          child: ExpansionTile(
+                            backgroundColor: GlobalLists
+                                        .stemprogramlistsubmenu[
+                                            index]
+                                        .children!
+                                        .length ==
+                                    0
+                                ? Colors.transparent
+                                : index % 3 == 0
+                                    ? Color(
+                                        0xffA9E2FC)
+                                    : index % 3 == 1
+                                        ? Color(
+                                            0xffC1DEA4)
+                                        : index % 3 ==
+                                                2
+                                            ? Color(
+                                                0xffE0C0CB)
+                                            : Color(
+                                                0xffC1DEA4),
 
-                                                                      // Color(
-                                                                      //     0xffC1DEA4),
-                                                                      // trailing: null,
-                                                                      tilePadding:
-                                                                          EdgeInsets.all(
-                                                                              0.0),
-                                                                      key:
-                                                                          GlobalKey(),
-                                                                      initiallyExpanded: expansionState[GlobalLists
-                                                                          .stemprogramlistsubmenu[
-                                                                              index]
-                                                                          .menuName],
-                                                                      title:
-                                                                          Container(
-                                                                        // color: Color(0xffC1DEA4),
-                                                                        //  padding: EdgeInsets.zero,
-                                                                        child:
-                                                                            FormLabel(
-                                                                          text: GlobalLists
-                                                                              .stemprogramlistsubmenu[index]
-                                                                              .menuName,
-                                                                          labelColor:
-                                                                              Customcolor.text_darkblue,
-                                                                          fontweight:
-                                                                              FontWeight.w600,
-                                                                          fontSize:
-                                                                              ResponsiveFlutter.of(context).fontSize(1.8),
-                                                                        ),
-                                                                      ),
-                                                                      onExpansionChanged:
-                                                                          ((newState) {
-                                                                        expansionState[GlobalLists
-                                                                            .stemprogramlistsubmenu[index]
-                                                                            .menuName] = newState;
-                                                                        if (newState)
-                                                                          closeOpenExpansionList(GlobalLists
-                                                                              .stemprogramlistsubmenu[index]
-                                                                              .menuName);
-                                                                      }),
-                                                                      children: <
-                                                                          Widget>[
-                                                                        GlobalLists.stemprogramlistsubmenu[index].children.length !=
-                                                                                0
-                                                                            ? ListView.builder(
-                                                                                itemCount: GlobalLists.stemprogramlistsubmenu[index].children.length,
-                                                                                shrinkWrap: true,
-                                                                                physics: ScrollPhysics(),
-                                                                                itemBuilder: (BuildContext context, int indexchildren) {
-                                                                                  return Padding(
-                                                                                    padding: const EdgeInsets.only(left: 8, right: 8, bottom: 6),
-                                                                                    child: Column(
-                                                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                      children: [
-                                                                                        GestureDetector(
-                                                                                            onTap: () {},
-                                                                                            child: FormLabel(
-                                                                                              text: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName,
-                                                                                              labelColor: Customcolor.text_darkblue,
-                                                                                              fontweight: FontWeight.w600,
-                                                                                              fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
-                                                                                            )),
-                                                                                        Divider(
-                                                                                          color: Colors.black,
-                                                                                        )
-                                                                                      ],
-                                                                                    ),
-                                                                                  );
-                                                                                },
-                                                                              )
-                                                                            : Container(),
-// ;                                                  Divider(
-//                                                     color:
-//                                                         Customcolor.colorBlue,
-//                                                   ),
-//                                                   SizedBox(
-//                                                     height: 5,
-//                                                   ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          ))
-                                    ],
-                                  ),
-                                ),
-                              );
-                              mabialaFABController.isCollapsed
-                                  ? mabialaFABController.expandFAB()
-                                  : mabialaFABController.collapseFAB();
-                            },
-                            child: Align(
-                                alignment: Alignment.topRight,
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(right: 10, top: 10),
-                                  child: Icon(
-                                    Icons.close,
-                                    color: Customcolor.colorBlue,
-                                  ),
-                                ))),
-                        //here need to do code
-                        Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: const EdgeInsets.all(0.0),
-                              child: ListView(
-                                shrinkWrap: true,
-                                //  crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ListView.builder(
-                                    itemCount: GlobalLists
-                                        .stemprogramlistsubmenu.length,
-                                    shrinkWrap: true,
-                                    physics: ScrollPhysics(),
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(
-                                            bottom: 5, left: 4, right: 4),
-                                        child: Column(
-                                          children: [
-                                            GlobalLists
-                                                        .stemprogramlistsubmenu[
-                                                            index]
-                                                        .children
-                                                        .length ==
-                                                    0
-                                                ? GestureDetector(
-                                                    onTap: () {
-                                                      print('stream');
-                                                      mabialaFABController
-                                                          .collapseFAB();
-                                                      if (GlobalLists
-                                                          .stemprogramlistsubmenu[
-                                                              index]
-                                                          .menuUrl
-                                                          .contains(".pdf")) {
-                                                        print("pdf");
-                                                        ShowDialogs.launchURL(
-                                                            GlobalLists
-                                                                .stemprogramlistsubmenu[
-                                                                    index]
-                                                                .menuUrl);
-                                                      } else if (GlobalLists
-                                                          .stemprogramlistsubmenu[
-                                                              index]
-                                                          .menuUrl
-                                                          .contains(".png")) {
-                                                        print("pdf");
-                                                        ShowDialogs.launchURL(
-                                                            GlobalLists
-                                                                .stemprogramlistsubmenu[
-                                                                    index]
-                                                                .menuUrl);
-                                                      } else if (GlobalLists
-                                                          .stemprogramlistsubmenu[
-                                                              index]
-                                                          .menuUrl
-                                                          .contains(
-                                                              "Application-Form")) {
-                                                        print(
-                                                            "Application-Form");
-                                                        ShowDialogs.launchURL(
-                                                            GlobalLists
-                                                                .stemprogramlistsubmenu[
-                                                                    index]
-                                                                .menuUrl);
-                                                      } else if (GlobalLists
-                                                          .stemprogramlistsubmenu[
-                                                              index]
-                                                          .menuUrl
-                                                          .contains(".jpg")) {
-                                                        print("pdf");
-                                                        ShowDialogs.launchURL(
-                                                            GlobalLists
-                                                                .stemprogramlistsubmenu[
-                                                                    index]
-                                                                .menuUrl);
-                                                      } else if (GlobalLists
-                                                          .stemprogramlistsubmenu[
-                                                              index]
-                                                          .menuUrl
-                                                          .contains(".jpeg")) {
-                                                        print("pdf");
-                                                        ShowDialogs.launchURL(
-                                                            GlobalLists
-                                                                .stemprogramlistsubmenu[
-                                                                    index]
-                                                                .menuUrl);
-                                                      } else if (GlobalLists
-                                                              .stemprogramlistsubmenu[
-                                                                  index]
-                                                              .menuUrl ==
-                                                          "Photos") {
-                                                        print("call api here");
-                                                        String menuurl = GlobalLists
-                                                            .stemprogramlistsubmenu[
-                                                                index]
-                                                            .menuUrl;
-                                                        //
-                                                        List<String> splits =
-                                                            menuurl.split('/');
-                                                        print("last elemt");
-                                                        print(splits[
-                                                            splits.length - 1]);
-                                                        String pageurl = splits[
-                                                            splits.length - 1];
-
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (BuildContext
-                                                                        context) =>
-                                                                    ViewmoreAlbum(
-                                                                      apiurl: APIManager
-                                                                          .viewmorealbum,
-                                                                      albumtitle:
-                                                                          pageurl,
-                                                                      sharelink: GlobalLists
-                                                                          .stemprogramlistsubmenu[
-                                                                              index]
-                                                                          .menuUrl,
-                                                                      albumurl:
-                                                                          pageurl
-                                                                              .trim(),
-                                                                    )));
-                                                      } else if (GlobalLists
-                                                              .stemprogramlistsubmenu[
-                                                                  index]
-                                                              .menuName ==
-                                                          "Photo") {
-                                                        print("call api here");
-                                                        String menuurl = GlobalLists
-                                                            .stemprogramlistsubmenu[
-                                                                index]
-                                                            .menuUrl;
-                                                        //
-                                                        List<String> splits =
-                                                            menuurl.split('/');
-                                                        print("last elemt");
-                                                        print(splits[
-                                                            splits.length - 1]);
-                                                        String pageurl = splits[
-                                                            splits.length - 1];
-
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (BuildContext
-                                                                        context) =>
-                                                                    ViewmoreAlbum(
-                                                                      apiurl: APIManager
-                                                                          .viewmorealbum,
-                                                                      albumtitle:
-                                                                          pageurl,
-                                                                      sharelink: GlobalLists
-                                                                          .stemprogramlistsubmenu[
-                                                                              index]
-                                                                          .menuUrl,
-                                                                      albumurl:
-                                                                          pageurl
-                                                                              .trim(),
-                                                                    )));
-                                                      } else if (GlobalLists
-                                                              .stemprogramlistsubmenu[
-                                                                  index]
-                                                              .menuName ==
-                                                          "Photo Gallery") {
-                                                        print("call api here");
-                                                        String menuurl = GlobalLists
-                                                            .stemprogramlistsubmenu[
-                                                                index]
-                                                            .menuUrl;
-
-                                                        List<String> splits =
-                                                            menuurl.split('/');
-                                                        print("last elemt");
-                                                        print(splits[
-                                                            splits.length - 1]);
-                                                        String pageurl = splits[
-                                                            splits.length - 1];
-                                                        print(pageurl);
-                                                        getphotodetail(pageurl);
-                                                      } else {
-                                                        print("detail");
-                                                        getsteminnerapi(GlobalLists
-                                                            .stemprogramlistsubmenu[
-                                                                index]
-                                                            .menuUrl);
-                                                      }
-                                                    },
-                                                    child: Column(
-                                                      // mainAxisAlignment:
-                                                      //     MainAxisAlignment.start,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        FormLabel(
-                                                          text: GlobalLists
-                                                              .stemprogramlistsubmenu[
-                                                                  index]
-                                                              .menuName,
-                                                          labelColor: Customcolor
-                                                              .text_darkblue,
-                                                          fontweight:
-                                                              FontWeight.w600,
-                                                          fontSize:
-                                                              ResponsiveFlutter
-                                                                      .of(
-                                                                          context)
-                                                                  .fontSize(
-                                                                      1.8),
-                                                          textAlignment:
-                                                              TextAlign.start,
-                                                        ),
-                                                        Divider(
-                                                          color: Colors.black,
-                                                        )
-                                                      ],
-                                                    ),
-                                                  )
-                                                : Container(
-                                                    width: SizeConfig
-                                                            .blockSizeHorizontal *
-                                                        100,
-                                                    color: GlobalLists
-                                                                .stemprogramlistsubmenu[
-                                                                    index]
-                                                                .children
-                                                                .length ==
-                                                            0
-                                                        ? Colors.transparent
-                                                        : index % 3 == 0
-                                                            ? Color(0xffA9E2FC)
-                                                            : index % 3 == 1
-                                                                ? Color(
-                                                                    0xffC1DEA4)
-                                                                : index % 3 == 2
-                                                                    ? Color(
-                                                                        0xffE0C0CB)
-                                                                    : Color(
-                                                                        0xffC1DEA4),
-
-                                                    //Color(0xffC1DEA4),
-                                                    child: Theme(
-                                                      data: Theme.of(context)
-                                                          .copyWith(
-                                                        dividerColor:
-                                                            Colors.transparent,
-                                                      ),
-                                                      child: ExpansionTile(
-                                                        backgroundColor: GlobalLists
-                                                                    .stemprogramlistsubmenu[
-                                                                        index]
-                                                                    .children
-                                                                    .length ==
-                                                                0
-                                                            ? Colors.transparent
-                                                            : index % 3 == 0
-                                                                ? Color(
-                                                                    0xffA9E2FC)
-                                                                : index % 3 == 1
-                                                                    ? Color(
-                                                                        0xffC1DEA4)
-                                                                    : index % 3 ==
-                                                                            2
-                                                                        ? Color(
-                                                                            0xffE0C0CB)
-                                                                        : Color(
-                                                                            0xffC1DEA4),
-
-                                                        //Color(0xffC1DEA4),
-                                                        // trailing: null,
-                                                        tilePadding:
-                                                            EdgeInsets.all(0.0),
-                                                        key: GlobalKey(),
-                                                        initiallyExpanded:
-                                                            expansionState[
-                                                                GlobalLists
-                                                                    .stemprogramlistsubmenu[
-                                                                        index]
-                                                                    .menuName],
-                                                        title: Container(
-                                                          // color: Color(0xffC1DEA4),
-                                                          //  padding: EdgeInsets.zero,
-                                                          child: FormLabel(
-                                                            text: GlobalLists
-                                                                .stemprogramlistsubmenu[
-                                                                    index]
-                                                                .menuName,
-                                                            labelColor: Customcolor
-                                                                .text_darkblue,
-                                                            fontweight:
-                                                                FontWeight.w600,
-                                                            fontSize:
-                                                                ResponsiveFlutter.of(
-                                                                        context)
-                                                                    .fontSize(
-                                                                        1.8),
-                                                          ),
-                                                        ),
-                                                        onExpansionChanged:
-                                                            ((newState) {
-                                                          expansionState[GlobalLists
-                                                              .stemprogramlistsubmenu[
-                                                                  index]
-                                                              .menuName] = newState;
-                                                          if (newState)
-                                                            closeOpenExpansionList(
-                                                                GlobalLists
-                                                                    .stemprogramlistsubmenu[
-                                                                        index]
-                                                                    .menuName);
-                                                        }),
-                                                        children: <Widget>[
-                                                          GlobalLists
-                                                                      .stemprogramlistsubmenu[
-                                                                          index]
-                                                                      .children
-                                                                      .length !=
-                                                                  0
-                                                              ? ListView
-                                                                  .builder(
-                                                                  itemCount: GlobalLists
-                                                                      .stemprogramlistsubmenu[
-                                                                          index]
-                                                                      .children
-                                                                      .length,
-                                                                  shrinkWrap:
-                                                                      true,
-                                                                  physics:
-                                                                      ScrollPhysics(),
-                                                                  itemBuilder:
-                                                                      (BuildContext
-                                                                              context,
-                                                                          int indexchildren) {
-                                                                    return Padding(
-                                                                      padding: const EdgeInsets
-                                                                              .only(
-                                                                          left:
-                                                                              8,
-                                                                          right:
-                                                                              8,
-                                                                          bottom:
-                                                                              6),
-                                                                      child:
-                                                                          Column(
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          GestureDetector(
-                                                                              onTap: () {
-
-                                                                                
-                                                                                mabialaFABController.collapseFAB();
-                                                                                if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".pdf")) {
-                                                                                  print("pdf");
-                                                                                  ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".png")) {
-                                                                                  print("pdf");
-                                                                                  ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".jpg")) {
-                                                                                  print("pdf");
-                                                                                  ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl.contains(".jpeg")) {
-                                                                                  print("pdf");
-                                                                                  ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName == "Photos") {
-                                                                                  print("call api here");
-                                                                                  String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
-                                                                                  //
-                                                                                  List<String> splits = menuurl.split('/');
-                                                                                  print("last elemt");
-                                                                                  print(splits[splits.length - 1]);
-                                                                                  String pageurl = splits[splits.length - 1];
-
-                                                                                  Navigator.push(
-                                                                                      context,
-                                                                                      MaterialPageRoute(
-                                                                                          builder: (BuildContext context) => ViewmoreAlbum(
-                                                                                                apiurl: APIManager.viewmorealbum,
-                                                                                                albumtitle: pageurl,
-                                                                                                sharelink: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl,
-                                                                                                albumurl: pageurl.trim(),
-                                                                                              )));
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName == "Photo") {
-                                                                                  print("call api here");
-                                                                                  String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
-                                                                                  //
-                                                                                  List<String> splits = menuurl.split('/');
-                                                                                  print("last elemt");
-                                                                                  print(splits[splits.length - 1]);
-                                                                                  String pageurl = splits[splits.length - 1];
-
-                                                                                  Navigator.push(
-                                                                                      context,
-                                                                                      MaterialPageRoute(
-                                                                                          builder: (BuildContext context) => ViewmoreAlbum(
-                                                                                                apiurl: APIManager.viewmorealbum,
-                                                                                                albumtitle: pageurl,
-                                                                                                sharelink: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl,
-                                                                                                albumurl: pageurl.trim(),
-                                                                                              )));
-                                                                                } else if (GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName == "Photo Gallery") {
-                                                                                  print("call api here");
-                                                                                  String menuurl = GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl;
-
-                                                                                  List<String> splits = menuurl.split('/');
-                                                                                  print("last elemt");
-                                                                                  print(splits[splits.length - 1]);
-                                                                                  String pageurl = splits[splits.length - 1];
-                                                                                  print(pageurl);
-                                                                                  getphotodetail(pageurl);
-                                                                                } else {
-                                                                                  print("detail");
-                                                                                  getsteminnerapi(GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuUrl);
-                                                                                }
-                                                                              },
-                                                                              child: Container(
-                                                                                color: Colors.transparent,
-                                                                                child: FormLabel(
-                                                                                  text: GlobalLists.stemprogramlistsubmenu[index].children[indexchildren].menuName,
-                                                                                  labelColor: Customcolor.text_darkblue,
-                                                                                  fontweight: FontWeight.w600,
-                                                                                  fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
-                                                                                ),
-                                                                              )),
-                                                                          Divider(
-                                                                            color:
-                                                                                Colors.black,
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                )
-                                                              : Container(),
-// ;                                                  Divider(
-//                                                     color:
-//                                                         Customcolor.colorBlue,
-//                                                   ),
-//                                                   SizedBox(
-//                                                     height: 5,
-//                                                   ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ],
+                            //Color(0xffC1DEA4),
+                            // trailing: null,
+                            tilePadding:
+                                EdgeInsets.all(0.0),
+                            key: GlobalKey(),
+                            initiallyExpanded:
+                                expansionState[
+                                    GlobalLists
+                                        .stemprogramlistsubmenu[
+                                            index]
+                                        .menuName]!,
+                            title: Container(
+                              // color: Color(0xffC1DEA4),
+                              //  padding: EdgeInsets.zero,
+                              child: FormLabel(
+                                text: GlobalLists
+                                    .stemprogramlistsubmenu[
+                                        index]
+                                    .menuName,
+                                labelColor: Customcolor
+                                    .text_darkblue,
+                                fontweight:
+                                    FontWeight.w600,
+                                fontSize:
+                                    ResponsiveFlutter.of(
+                                            context)
+                                        .fontSize(
+                                            1.8),
                               ),
-                            ))
-                      ],
-                    ),
-                  ),
-                ),
-              );
-              mabialaFABController.isCollapsed
-                  ? mabialaFABController.expandFAB()
-                  : mabialaFABController.collapseFAB();
-            },
-            floatingActionButtonIcon: Icons.menu,
+                            ),
+                            onExpansionChanged:
+                                ((newState) {
+                              expansionState[GlobalLists
+                                  .stemprogramlistsubmenu[
+                                      index]
+                                  .menuName!] = newState;
+                              if (newState)
+                                closeOpenExpansionList(
+                                    GlobalLists
+                                        .stemprogramlistsubmenu[
+                                            index]
+                                        .menuName);
+                            }),
+                            children: <Widget>[
+                              GlobalLists
+                                          .stemprogramlistsubmenu[
+                                              index]
+                                          .children!
+                                          .length !=
+                                      0
+                                  ? ListView
+                                      .builder(
+                                      itemCount: GlobalLists
+                                          .stemprogramlistsubmenu[
+                                              index]
+                                          .children!
+                                          .length,
+                                      shrinkWrap:
+                                          true,
+                                      physics:
+                                          ScrollPhysics(),
+                                      itemBuilder:
+                                          (BuildContext
+                                                  context,
+                                              int indexchildren) {
+                                        return Padding(
+                                          padding: const EdgeInsets
+                                                  .only(
+                                              left:
+                                                  8,
+                                              right:
+                                                  8,
+                                              bottom:
+                                                  6),
+                                          child:
+                                              Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              GestureDetector(
+                                                  onTap: () {
 
-            floatingActionButtonIconColor: Customcolor.colorBlue,
-            navigationBarIconActiveColor: Colors.pink,
-            navigationBarIconInactiveColor: Colors.pink[200].withOpacity(0.6),
-            collapsedColor: Customcolor.programyellow,
-            // useAsFloatingSpaceBar: useFloatingSpaceBar,
-            useAsFloatingActionButton: useAsFloatingActionButton,
-            //useAsNavigationBar: useNavigationBar,
-            controller: mabialaFABController,
-            animationDuration: Duration(milliseconds: 150),
-          ),
+                                                    
+                                                    // mabialaFABController.collapseFAB();
+                                                    if (GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!.contains(".pdf")) {
+                                                      print("pdf");
+                                                      ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!);
+                                                    } else if (GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!.contains(".png")) {
+                                                      print("pdf");
+                                                      ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!);
+                                                    } else if (GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!.contains(".jpg")) {
+                                                      print("pdf");
+                                                      ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!);
+                                                    } else if (GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!.contains(".jpeg")) {
+                                                      print("pdf");
+                                                      ShowDialogs.launchURL(GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!);
+                                                    } else if (GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuName == "Photos") {
+                                                      print("call api here");
+                                                      String menuurl = GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!;
+                                                      //
+                                                      List<String> splits = menuurl.split('/');
+                                                      print("last elemt");
+                                                      print(splits[splits.length - 1]);
+                                                      String pageurl = splits[splits.length - 1];
+
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (BuildContext context) => ViewmoreAlbum(
+                                                                    apiurl: APIManager.viewmorealbum,
+                                                                    albumtitle: pageurl,
+                                                                    sharelink: GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl,
+                                                                    albumurl: pageurl.trim(),
+                                                                  ))).then((onValue){
+ fabKey.currentState?.collapse();
+ setState(() {});
+        });
+                                                    } else if (GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuName == "Photo") {
+                                                      print("call api here");
+                                                      String menuurl = GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!;
+                                                      //
+                                                      List<String> splits = menuurl.split('/');
+                                                      print("last elemt");
+                                                      print(splits[splits.length - 1]);
+                                                      String pageurl = splits[splits.length - 1];
+
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (BuildContext context) => ViewmoreAlbum(
+                                                                    apiurl: APIManager.viewmorealbum,
+                                                                    albumtitle: pageurl,
+                                                                    sharelink: GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl,
+                                                                    albumurl: pageurl.trim(),
+                                                                  ))).then((onValue){
+ fabKey.currentState?.collapse();
+ setState(() {});
+        });
+                                                    } else if (GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuName == "Photo Gallery") {
+                                                      print("call api here");
+                                                      String menuurl = GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!;
+
+                                                      List<String> splits = menuurl.split('/');
+                                                      print("last elemt");
+                                                      print(splits[splits.length - 1]);
+                                                      String pageurl = splits[splits.length - 1];
+                                                      print(pageurl);
+                                                      getphotodetail(pageurl);
+                                                    } else {
+                                                      print("detail");
+                                                      getsteminnerapi(GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuUrl!);
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    color: Colors.transparent,
+                                                    child: FormLabel(
+                                                      text: GlobalLists.stemprogramlistsubmenu[index].children![indexchildren].menuName,
+                                                      labelColor: Customcolor.text_darkblue,
+                                                      fontweight: FontWeight.w600,
+                                                      fontSize: ResponsiveFlutter.of(context).fontSize(1.8),
+                                                    ),
+                                                  )),
+                                              Divider(
+                                                color:
+                                                    Colors.black54,
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    )
+                                  : Container(),
+// ;                                                  Divider(
+//                                                     color:
+//                                                         Customcolor.colorBlue,
+//                                                   ),
+//                                                   SizedBox(
+//                                                     height: 5,
+//                                                   ),
+                            ],
+                          ),
+                        ),
+                      ),
+              ],
+            ),
+          );
+        },
+      ),
+    ],
+  ),
+)
+
+
+        ),
         )
         // This trailing comma makes auto-formatting nicer for build methods.
         );
@@ -871,7 +604,7 @@ class _MyHomePageState extends State<OurProgramStem> {
                         )));
           });
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
         }
       }, (error) {
         print('ERR msg is $error');
@@ -901,13 +634,13 @@ class _MyHomePageState extends State<OurProgramStem> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.stemprogramlistsubmenu = resp.data.list;
+              GlobalLists.stemprogramlistsubmenu = resp.data!.list!;
               print("stemlength");
               print(GlobalLists.stemprogramlistsubmenu.length);
               setData();
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

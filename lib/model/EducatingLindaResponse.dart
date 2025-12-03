@@ -17,9 +17,9 @@ class EducatingLindaResponse {
     this.rightArea,
   });
 
-  Map<String, MiddleArea> middleArea;
-  List<SliderArea> sliderArea;
-  Map<String, RightArea> rightArea;
+  Map<String, MiddleArea>? middleArea;
+  List<SliderArea>? sliderArea;
+  Map<String, RightArea>? rightArea;
 
   factory EducatingLindaResponse.fromJson(Map<String, dynamic> json) =>
       EducatingLindaResponse(
@@ -32,10 +32,10 @@ class EducatingLindaResponse {
       );
 
   Map<String, dynamic> toJson() => {
-        "middle_area": Map.from(middleArea)
+        "middle_area": Map.from(middleArea!)
             .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
-        "slider_area": List<dynamic>.from(sliderArea.map((x) => x.toJson())),
-        "Right_area": Map.from(rightArea)
+        "slider_area": List<dynamic>.from(sliderArea!.map((x) => x.toJson())),
+        "Right_area": Map.from(rightArea!)
             .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
       };
 }
@@ -47,9 +47,9 @@ class MiddleArea {
     this.gallery,
   });
 
-  Content content;
-  Videos videos;
-  Mmtm gallery;
+  Content? content;
+  Videos? videos;
+  Mmtm? gallery;
 
   factory MiddleArea.fromJson(Map<String, dynamic> json) => MiddleArea(
         content:
@@ -60,9 +60,9 @@ class MiddleArea {
       );
 
   Map<String, dynamic> toJson() => {
-        "content": content == null ? null : content.toJson(),
-        "videos": videos == null ? null : videos.toJson(),
-        "gallery": gallery == null ? null : gallery.toJson(),
+        "content": content == null ? null : content!.toJson(),
+        "videos": videos == null ? null : videos!.toJson(),
+        "gallery": gallery == null ? null : gallery!.toJson(),
       };
 }
 
@@ -72,8 +72,8 @@ class Content {
     this.baseUrl,
   });
 
-  List<ContentList> list;
-  String baseUrl;
+  List<ContentList>? list;
+  String? baseUrl;
 
   factory Content.fromJson(Map<String, dynamic> json) => Content(
         list: List<ContentList>.from(
@@ -82,7 +82,7 @@ class Content {
       );
 
   Map<String, dynamic> toJson() => {
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "list": List<dynamic>.from(list!.map((x) => x.toJson())),
         "base_url": baseUrl,
       };
 }
@@ -105,20 +105,20 @@ class ContentList {
     this.updatedAt,
   });
 
-  String id;
-  String contentType;
-  String pageContent;
-  String title;
-  String shortDescription;
+  dynamic id;
+  dynamic contentType;
+  dynamic pageContent;
+  dynamic title;
+  dynamic shortDescription;
   dynamic image;
-  String altText;
-  String url;
-  String utubeUrl;
-  String metaKeyword;
-  String metaDescription;
-  String status;
-  DateTime createdAt;
-  DateTime updatedAt;
+  dynamic altText;
+  dynamic url;
+  dynamic utubeUrl;
+  dynamic metaKeyword;
+  dynamic metaDescription;
+  dynamic status;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
   factory ContentList.fromJson(Map<String, dynamic> json) => ContentList(
         id: json["id"],
@@ -150,8 +150,8 @@ class ContentList {
         "meta_keyword": metaKeyword,
         "meta_description": metaDescription,
         "status": status,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt!.toIso8601String(),
+        "updated_at": updatedAt!.toIso8601String(),
       };
 }
 
@@ -161,8 +161,8 @@ class Mmtm {
     this.baseUrl,
   });
 
-  List<MmtmList> list;
-  String baseUrl;
+  List<MmtmList>? list;
+  dynamic baseUrl;
 
   factory Mmtm.fromJson(Map<String, dynamic> json) => Mmtm(
         list:
@@ -171,7 +171,7 @@ class Mmtm {
       );
 
   Map<String, dynamic> toJson() => {
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "list": List<dynamic>.from(list!.map((x) => x.toJson())),
         "base_url": baseUrl,
       };
 }
@@ -192,18 +192,18 @@ class MmtmList {
     this.position,
   });
 
-  String id;
-  String photo;
-  String photoCategoryId;
-  String albumNameId;
-  String photoDescription;
-  String altTag;
-  String year;
-  String featuredImage;
-  String status;
-  String createdAt;
-  String updatedAt;
-  String position;
+  dynamic id;
+  dynamic photo;
+  dynamic photoCategoryId;
+  dynamic albumNameId;
+  dynamic photoDescription;
+  dynamic altTag;
+  dynamic year;
+  dynamic featuredImage;
+  dynamic status;
+  dynamic createdAt;
+  dynamic updatedAt;
+  dynamic position;
 
   factory MmtmList.fromJson(Map<String, dynamic> json) => MmtmList(
         id: json["id"],
@@ -241,7 +241,7 @@ class Videos {
     this.list,
   });
 
-  List<VideosList> list;
+  List<VideosList>? list;
 
   factory Videos.fromJson(Map<String, dynamic> json) => Videos(
         list: List<VideosList>.from(
@@ -249,7 +249,7 @@ class Videos {
       );
 
   Map<String, dynamic> toJson() => {
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "list": List<dynamic>.from(list!.map((x) => x.toJson())),
       };
 }
 
@@ -266,15 +266,15 @@ class VideosList {
     this.updatedAt,
   });
 
-  String id;
-  String videoLink;
-  String videoDesc;
-  String countryId;
-  String categoryId;
-  String year;
-  String status;
-  String createdAt;
-  String updatedAt;
+  dynamic id;
+  dynamic videoLink;
+  dynamic videoDesc;
+  dynamic countryId;
+  dynamic categoryId;
+  dynamic year;
+  dynamic status;
+  dynamic createdAt;
+  dynamic updatedAt;
 
   factory VideosList.fromJson(Map<String, dynamic> json) => VideosList(
         id: json["id"],
@@ -308,9 +308,9 @@ class RightArea {
     this.digitalLibrary,
   });
 
-  CallForApp callForApp;
-  Mmtm mmtm;
-  DigitalLibrary digitalLibrary;
+  CallForApp? callForApp;
+  Mmtm? mmtm;
+  DigitalLibrary? digitalLibrary;
 
   factory RightArea.fromJson(Map<String, dynamic> json) => RightArea(
         callForApp: json["call_for_app"] == null
@@ -323,10 +323,10 @@ class RightArea {
       );
 
   Map<String, dynamic> toJson() => {
-        "call_for_app": callForApp == null ? null : callForApp.toJson(),
-        "mmtm": mmtm == null ? null : mmtm.toJson(),
+        "call_for_app": callForApp == null ? null : callForApp!.toJson(),
+        "mmtm": mmtm == null ? null : mmtm!.toJson(),
         "digital_library":
-            digitalLibrary == null ? null : digitalLibrary.toJson(),
+            digitalLibrary == null ? null : digitalLibrary!.toJson(),
       };
 }
 
@@ -336,8 +336,8 @@ class CallForApp {
     this.baseUrl,
   });
 
-  List<CallForAppList> list;
-  String baseUrl;
+  List<CallForAppList>? list;
+  dynamic baseUrl;
 
   factory CallForApp.fromJson(Map<String, dynamic> json) => CallForApp(
         list: List<CallForAppList>.from(
@@ -346,7 +346,7 @@ class CallForApp {
       );
 
   Map<String, dynamic> toJson() => {
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "list": List<dynamic>.from(list!.map((x) => x.toJson())),
         "base_url": baseUrl,
       };
 }
@@ -366,17 +366,17 @@ class CallForAppList {
     this.updatedAt,
   });
 
-  String id;
-  String title;
-  String eventType;
-  DateTime eventStartDate;
-  DateTime eventEndDate;
-  String pdfFile;
-  String appImg;
-  String altText;
-  String status;
-  String createdAt;
-  String updatedAt;
+  dynamic id;
+  dynamic title;
+  dynamic eventType;
+  DateTime? eventStartDate;
+  DateTime? eventEndDate;
+  dynamic pdfFile;
+  dynamic appImg;
+  dynamic altText;
+  dynamic status;
+  dynamic createdAt;
+  dynamic updatedAt;
 
   factory CallForAppList.fromJson(Map<String, dynamic> json) => CallForAppList(
         id: json["id"],
@@ -397,9 +397,9 @@ class CallForAppList {
         "title": title,
         "event_type": eventType,
         "event_start_date":
-            "${eventStartDate.year.toString().padLeft(4, '0')}-${eventStartDate.month.toString().padLeft(2, '0')}-${eventStartDate.day.toString().padLeft(2, '0')}",
+            "${eventStartDate!.year.toString().padLeft(4, '0')}-${eventStartDate!.month.toString().padLeft(2, '0')}-${eventStartDate!.day.toString().padLeft(2, '0')}",
         "event_end_date":
-            "${eventEndDate.year.toString().padLeft(4, '0')}-${eventEndDate.month.toString().padLeft(2, '0')}-${eventEndDate.day.toString().padLeft(2, '0')}",
+            "${eventEndDate!.year.toString().padLeft(4, '0')}-${eventEndDate!.month.toString().padLeft(2, '0')}-${eventEndDate!.day.toString().padLeft(2, '0')}",
         "pdf_file": pdfFile,
         "app_img": appImg,
         "alt_text": altText,
@@ -413,20 +413,24 @@ class DigitalLibrary {
   DigitalLibrary({
     this.list,
     this.baseUrl,
+    this.pdfUrl,
   });
 
-  List<DigitalLibraryList> list;
-  String baseUrl;
+  List<DigitalLibraryList>? list;
+  dynamic baseUrl;
+   dynamic pdfUrl;
 
   factory DigitalLibrary.fromJson(Map<String, dynamic> json) => DigitalLibrary(
         list: List<DigitalLibraryList>.from(
             json["list"].map((x) => DigitalLibraryList.fromJson(x))),
         baseUrl: json["base_url"],
+         pdfUrl: json["pdf_url"],
       );
 
   Map<String, dynamic> toJson() => {
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "list": List<dynamic>.from(list!.map((x) => x.toJson())),
         "base_url": baseUrl,
+        "pdf_url": pdfUrl,
       };
 }
 
@@ -443,15 +447,15 @@ class DigitalLibraryList {
     this.updatedAt,
   });
 
-  String id;
-  String categoryType;
-  String title;
-  String image;
-  String altText;
-  String document;
-  String status;
-  String createdAt;
-  String updatedAt;
+  dynamic id;
+  dynamic categoryType;
+  dynamic title;
+  dynamic image;
+  dynamic altText;
+  dynamic document;
+  dynamic status;
+  dynamic createdAt;
+  dynamic updatedAt;
 
   factory DigitalLibraryList.fromJson(Map<String, dynamic> json) =>
       DigitalLibraryList(
@@ -484,14 +488,14 @@ class SliderArea {
     this.slider,
   });
 
-  Slider slider;
+  Slider? slider;
 
   factory SliderArea.fromJson(Map<String, dynamic> json) => SliderArea(
         slider: Slider.fromJson(json["slider"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "slider": slider.toJson(),
+        "slider": slider!.toJson(),
       };
 }
 
@@ -501,8 +505,8 @@ class Slider {
     this.baseUrl,
   });
 
-  List<SliderList> list;
-  String baseUrl;
+  List<SliderList>? list;
+  dynamic baseUrl;
 
   factory Slider.fromJson(Map<String, dynamic> json) => Slider(
         list: List<SliderList>.from(
@@ -511,7 +515,7 @@ class Slider {
       );
 
   Map<String, dynamic> toJson() => {
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "list": List<dynamic>.from(list!.map((x) => x.toJson())),
         "base_url": baseUrl,
       };
 }
@@ -530,16 +534,16 @@ class SliderList {
     this.updatedAt,
   });
 
-  String id;
-  String menuId;
-  String imageTitle;
-  String imageDesc;
-  String links;
-  String image;
-  String altText;
-  String status;
-  DateTime createdAt;
-  DateTime updatedAt;
+  dynamic id;
+  dynamic menuId;
+  dynamic imageTitle;
+  dynamic imageDesc;
+  dynamic links;
+  dynamic image;
+  dynamic altText;
+  dynamic status;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
   factory SliderList.fromJson(Map<String, dynamic> json) => SliderList(
         id: json["id"],
@@ -563,7 +567,7 @@ class SliderList {
         "image": image,
         "alt_text": altText,
         "status": status,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt!.toIso8601String(),
+        "updated_at": updatedAt!.toIso8601String(),
       };
 }

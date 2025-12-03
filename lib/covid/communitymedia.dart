@@ -9,7 +9,7 @@ import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+
 
 class CommunityMedia extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class CommunityMedia extends StatefulWidget {
 
 class CommunityMediaState extends State<CommunityMedia>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   double imgHeight = 50;
   String _platformVersion = 'Unknown';
@@ -114,7 +114,7 @@ class CommunityMediaState extends State<CommunityMedia>
                             child: Container(
                                 width: SizeConfig.blockSizeHorizontal * 80,
                                 child: Image.network(
-                                  _productsAvailable1[index].programname,
+                                  _productsAvailable1[index].programname!,
                                   height: 50,
                                   fit: BoxFit.fill,
                                 )
@@ -1083,57 +1083,7 @@ Radio</span></span></span></p>
                         SizedBox(
                           height: 20,
                         ),
-                        // RichText(
-                        //   textAlign: TextAlign.justify,
-                        //   text: TextSpan(
-                        //     children: [
-                        //       TextSpan(
-                        //         text: "Theme:",
-                        //         style: TextStyle(
-                        //           color: Colors.black,
-                        //           fontSize: 14,
-                        //           fontWeight: FontWeight.bold,
-                        //         ),
-                        //       ),
-                        //       TextSpan(
-                        //         text:
-                        //             "‘Raising Awareness on how to Stay Safe and Keep Physically and Mentally Healthy during Coronavirus Lockdown with the aim to separate facts from myths and misconceptions.'",
-                        //         style: TextStyle(
-                        //           color: Colors.black54,
-                        //           fontSize: 14,
-                        //           fontWeight: FontWeight.w500,
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
-                        //need some text gere
-                        //                   Html(
-                        //                     data:
-                        //                         """<p><b>Theme:</b> ‘Raising Awareness on how to Stay Safe and Keep Physically and Mentally Healthy during Coronavirus Lockdown with the aim to separate facts from myths and misconceptions.'</p>
-                        // <h5>Who can apply?</h5>
-                        // <p>Journalists from print, online, radio and multimedia platforms.</p>
-                        // <h5>Last date of submission:</h5>
-                        // <p>Entries can be submitted till <b>30th June 2020.</b></p>
-                        // <p>The last date of submission for Latin American Countries is <b>31st August 2020</b></p>
-                        // <p>The last date of submission for Asian Countries is <b>31st August 2020 </b></p>
-                        // <p>Submitted entries must be published in a public domain before the deadline.</p>
-                        // <p>Please share the evidence through submitting link / scanned copy of the print copy with your submission.</p>
-                        // <h5>How to apply?</h5>
-                        // <p>Entries can be submitted via email to: <a href="mailto:info@merck-foundation.com">info@merck-foundation.com</a></p>
-                        // Asian Countries and Latin America can submit applications on: <a href="mailto:submit@merck-foundation.com">submit@merck-foundation.com</a>  """,
-                        //                         onLinkTap:(url) {
-                        //                       print("Opening $url...");
-                        //                     },
-                        //                     // style: {
-                        //                     //   "body": Style(
-                        //                     //     fontSize: FontSize(
-                        //                     //         ResponsiveFlutter.of(context).fontSize(2.2)),
-                        //                     //     fontWeight: FontWeight.w600,
-                        //                     //     color: Customcolor.pink_col,
-                        //                     //   ),
-                        //                     // },
-                        //                   ),
+                       
                         SizedBox(
                           height: 20,
                         ),
@@ -1146,73 +1096,7 @@ Radio</span></span></span></p>
                         SizedBox(
                           height: 20,
                         ),
-                        // FormLabel(
-                        //   text:
-                        //       "Click here to download call for application for English Speaking African Countries",
-                        //   labelColor: Colors.black54,
-                        //   fontSize: 14,
-                        //   fontweight: FontWeight.w500,
-                        //   textAlignment: TextAlign.center,
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                        // FormLabel(
-                        //   text:
-                        //       "Special awards will be selected for young emerging talents who are able to show outstanding potential through their submissions on regular basis.",
-                        //   labelColor: Colors.black54,
-                        //   fontSize: 14,
-                        //   fontweight: FontWeight.w500,
-                        //   textAlignment: TextAlign.start,
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                        // FormLabel(
-                        //   text:
-                        //       "Special awards will be selected for young emerging talents who are able to show outstanding potential through their submissions on regular basis.",
-                        //   labelColor: Colors.black54,
-                        //   fontSize: 14,
-                        //   fontweight: FontWeight.w500,
-                        //   textAlignment: TextAlign.start,
-                        // ),
-                        // RichText(
-                        //   textAlign: TextAlign.justify,
-                        //   text: TextSpan(
-                        //     children: [
-                        //       TextSpan(
-                        //         text:
-                        //             "Merck Foundation together with its partners (The First Ladies of Africa and Journalist societies and Associations ) announce the calls for applications for the",
-                        //         style: TextStyle(
-                        //           color: Colors.black54,
-                        //           fontSize: 14,
-                        //           fontWeight: FontWeight.w500,
-                        //         ),
-                        //       ),
-                        //       TextSpan(
-                        //         text:
-                        //             " ‘STAY AT HOME’ Media Recognition Awards ",
-                        //         style: TextStyle(
-                        //           color: Colors.black,
-                        //           fontSize: 14,
-                        //           fontWeight: FontWeight.bold,
-                        //         ),
-                        //       ),
-                        //       TextSpan(
-                        //         text:
-                        //             "through a public press release address to African Media as well as through the Merck Foundation and partners’ website and social media channels.",
-                        //         style: TextStyle(
-                        //           color: Colors.black54,
-                        //           fontSize: 14,
-                        //           fontWeight: FontWeight.w500,
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
+                       
                         Center(
                           child: Image.asset(
                             "assets/newImages/three.jpg",
@@ -1222,23 +1106,7 @@ Radio</span></span></span></p>
                         SizedBox(
                           height: 20,
                         ),
-                        // Center(
-                        //   child: FormLabel(
-                        //     text:
-                        //         "Click here to download call for application for Portuguese Speaking African Countries",
-                        //     labelColor: Colors.black54,
-                        //     fontSize: 14,
-                        //     fontweight: FontWeight.w500,
-                        //     textAlignment: TextAlign.center,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
+                      
                         Center(
                           child: Image.asset(
                             "assets/newImages/four.jpg",
@@ -1248,22 +1116,7 @@ Radio</span></span></span></p>
                         SizedBox(
                           height: 20,
                         ),
-                        // Center(
-                        //   child: FormLabel(
-                        //     text:
-                        //         "Click here to Download Call for Application for Latin America English version",
-                        //     labelColor: Colors.black54,
-                        //     fontSize: 14,
-                        //     fontweight: FontWeight.w500,
-                        //     textAlignment: TextAlign.center,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
+                      
                         Center(
                           child: Image.asset(
                             "assets/newImages/five.jpg",
@@ -1273,83 +1126,7 @@ Radio</span></span></span></p>
                         SizedBox(
                           height: 20,
                         ),
-                        // Center(
-                        //   child: FormLabel(
-                        //     text:
-                        //         "Click here to Download Call for Application for Latin America Spanish version",
-                        //     labelColor: Colors.black54,
-                        //     fontSize: 14,
-                        //     fontweight: FontWeight.w500,
-                        //     textAlignment: TextAlign.center,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-
-                        // Center(
-                        //   child: Image.asset(
-                        //     "assets/newImages/six.png",
-                        //     height: 290,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                        // Center(
-                        //   child: FormLabel(
-                        //     text:
-                        //         "Click here to Download Call for Application for Latin America Portuguese version",
-                        //     labelColor: Colors.black54,
-                        //     fontSize: 14,
-                        //     fontweight: FontWeight.w500,
-                        //     textAlignment: TextAlign.center,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                        // FormLabel(
-                        //   text: "“STAY at HOME” Media Recognition Committee:",
-                        //   labelColor: Colors.black,
-                        //   fontSize: 14,
-                        //   fontweight: FontWeight.w500,
-                        //   textAlignment: TextAlign.center,
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                        // FormLabel(
-                        //   text:
-                        //       "The committee is formed to select the winners in an unbiased manner, based on evaluating the quality of information included to sensitize the communities about about Coronavirus and sensitize communities how to stay safe and keep Healthy physical and Mentally during coronavirus lockdown or restricted movement in a way that regular community member can comprehend.",
-                        //   labelColor: Colors.black54,
-                        //   fontSize: 14,
-                        //   fontweight: FontWeight.w500,
-                        //   textAlignment: TextAlign.center,
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-
-                        // Center(
-                        //   child: Image.asset(
-                        //     "assets/newImages/seven.png",
-                        //     height: 290,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                        // Center(
-                        //   child: FormLabel(
-                        //     text:
-                        //         "Click here to download call for application for Asian Countries",
-                        //     labelColor: Colors.black54,
-                        //     fontSize: 14,
-                        //     fontweight: FontWeight.w500,
-                        //     textAlignment: TextAlign.center,
-                        //   ),
-                        // ),
+                       
 
                         SizedBox(
                           height: 20,

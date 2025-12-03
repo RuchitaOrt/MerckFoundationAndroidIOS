@@ -3,16 +3,13 @@ import 'dart:convert';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/style.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'package:merckfoundation22dec/GalleryProgram.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/merckFoundationMedia.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
 import 'package:merckfoundation22dec/model/GalleryProgram.dart';
-import 'package:merckfoundation22dec/model/MMTMMainResponse.dart';
 import 'package:merckfoundation22dec/model/cncersubprogramcommunityawareness.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
@@ -32,7 +29,7 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/model/MerckFellowship.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/watchmorevideoambaassadar.dart';
 
@@ -69,7 +66,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
     "assets/newImages/leader1.png",
     "assets/newImages/leader2.png",
   ];
-  CarouselSlider carouselSlider;
+  late CarouselSlider carouselSlider;
 
   bool iscall = true;
   bool islibrary = false;
@@ -78,8 +75,8 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
   String expandedName = "Upcoming Events";
 
   final List<Tab> tabs = <Tab>[];
-  final CarouselController callAppCarouselController = CarouselController();
-  TabController _tabController;
+  final CarouselSliderController callAppCarouselController = CarouselSliderController();
+   TabController? _tabController;
 
   final CarouselController _controller = CarouselController();
 
@@ -93,7 +90,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -509,103 +506,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
         child: getdigitallib(context));
   }
 
-  Widget merckmorethanmother() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-        right: 10,
-        top: 10,
-      ),
-      child: Card(
-        elevation: 5,
-        // height: 1800,
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
-          child: Swiper.children(
-            autoplay: false,
-            loop: true,
-            control: SwiperControl(
-                iconNext: Icons.arrow_forward_ios,
-                iconPrevious: Icons.arrow_back_ios,
-                size: 20,
-                color: Customcolor.darkblue_col),
-            children: <Widget>[
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/cfa1.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_4.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_6.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+
 
   // Widget slider(BuildContext context) {
   //   return Stack(
@@ -979,13 +880,30 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url, renderContext, attributes, element) {
+            onLinkTap: (url, attributes, element) {
               print("Opening $url...");
-              ShowDialogs.launchURL(url);
+              ShowDialogs.launchURL(url!);
             },
             style: {
               "tr": Customcolor.tableboderstyle(context),
             },
+             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
           ),
         );
       }
@@ -1165,30 +1083,53 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                                         SizedBox(
                                           height: 12,
                                         ),
-                                        FormLabel(
-                                          text: GlobalLists
-                                              .mmttestimoniallist[index]
-                                              .testimonialName,
-                                          labelColor: Customcolor.colorPink,
-                                          fontSize: 17,
-                                          maxLines: 1,
-                                          fontweight: FontWeight.w700,
+                                        SizedBox(
+                                           width: SizeConfig.blockSizeHorizontal * 80,
+                                          child: FormLabel(
+                                            text: GlobalLists
+                                                .mmttestimoniallist[index]
+                                                .testimonialName,
+                                            labelColor: Customcolor.colorPink,
+                                            fontSize: 17,
+                                            maxLines: 1,
+                                            fontweight: FontWeight.w700,
+                                          ),
                                         ),
                                         SizedBox(
                                           height: 4,
                                         ),
-                                        Html(
-                                          data: GlobalLists
-                                              .mmttestimoniallist[index]
-                                              .departmentName,
-                                          style: {
-                                            "body": Style(
-                                                fontSize: FontSize(13.0),
-                                                color: Colors.black87,
-                                                fontWeight: FontWeight.w600),
-                                            "tr": Customcolor.tableboderstyle(
-                                                context),
-                                          },
+                                        SizedBox(
+                                           width: SizeConfig.blockSizeHorizontal * 80,
+                                          child: Html(
+                                            data: GlobalLists
+                                                .mmttestimoniallist[index]
+                                                .departmentName,
+                                            style: {
+                                              "body": Style(
+                                                  fontSize: FontSize(13.0),
+                                                  color: Colors.black87,
+                                                  fontWeight: FontWeight.w600),
+                                              "tr": Customcolor.tableboderstyle(
+                                                  context),
+                                            },
+                                             extensions: [
+                                                TagExtension(
+                                                  tagsToExtend: {"img"},
+                                                  builder: (ExtensionContext context) {
+                                                    final src = context.attributes['src'] ?? '';
+                                                    return Padding(
+                                                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                                      child: Image.network(
+                                                        src,
+                                                        width: double.infinity,
+                                                        fit: BoxFit.contain,
+                                                        errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+                                                      ),
+                                                    );
+                                                  },
+                                                )
+                                              ],
+                                          ),
                                         ),
                                         // FormLabel(
                                         //   text: GlobalLists
@@ -1202,14 +1143,17 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                                         SizedBox(
                                           height: 7,
                                         ),
-                                        FormLabel(
-                                          text: GlobalLists
-                                              .mmttestimoniallist[index]
-                                              .shortDescription,
-                                          labelColor: Colors.black54,
-                                          fontSize: 13,
-                                          fontweight: FontWeight.w500,
-                                          maxLines: 4,
+                                        SizedBox(
+                                           width: SizeConfig.blockSizeHorizontal * 80,
+                                          child: FormLabel(
+                                            text: GlobalLists
+                                                .mmttestimoniallist[index]
+                                                .shortDescription,
+                                            labelColor: Colors.black54,
+                                            fontSize: 13,
+                                            fontweight: FontWeight.w500,
+                                            maxLines: 4,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -1616,7 +1560,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
     );
   }
 
-  Future<http.Response> getmmtmapi() async {
+  Future<http.Response?> getmmtmapi() async {
     print("mmtm api");
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -1626,14 +1570,14 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
       );
       print("response");
       print(response);
-      if (response.statusCode == 200) {
-        var res = json.decode(response.body);
+      if (response!.statusCode == 200) {
+        var res = json.decode(response.body!);
         print("ff");
         print(res);
         CancersubprogramcommunityawaremnessResponse homepageres =
             CancersubprogramcommunityawaremnessResponse.fromJson(res);
-        GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
-        slidersection = homepageres.sliderArea[0].slider.list;
+        GlobalLists.sliderurl = homepageres.sliderArea![0].slider!.baseUrl!;
+        slidersection = homepageres.sliderArea![0].slider!.list!;
 
         slidersection.forEach((element) {
           _productsAvailable.add({
@@ -1653,7 +1597,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
         print("sliderprogramsection");
         print(slidersection.length);
 
-        Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> section1 = homepageres.middleArea!;
 
         print(section1);
         print(section1['1']);
@@ -1678,12 +1622,12 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
           if (middlecategoryname.toString().toLowerCase() ==
               "Videos".toLowerCase()) {
             GlobalLists.homevideolist =
-                homepageres.middleArea[middleareakey[i]].videos.list;
+                homepageres.middleArea![middleareakey[i]]!.videos!.list!;
             print(GlobalLists.homevideolist.length);
           } else if (middlecategoryname.toString().toLowerCase() ==
               "content".toLowerCase()) {
             GlobalLists.homecontentlist =
-                homepageres.middleArea[middleareakey[i]].content.list;
+                homepageres.middleArea![middleareakey[i]]!.content!.list!;
             print(GlobalLists.homecontentlist.length);
           }
         }
@@ -1711,19 +1655,7 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
     }
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
+ 
   getprogramgallery() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
     if (status1) {
@@ -1735,11 +1667,11 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
 
         print(response);
         print('Resp : $resp');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
         if (resp.success == "True".toLowerCase()) {
           print(resp.list);
-          GlobalLists.programgallerybaseurl = resp.baseUrl;
-          GlobalLists.programgallerylist = resp.list;
+          GlobalLists.programgallerybaseurl = resp.baseUrl!;
+          GlobalLists.programgallerylist = resp.list!;
           print(GlobalLists.programgallerylist);
           // GlobalLists.awarddetallisting[0].title
 
@@ -1751,11 +1683,11 @@ class OurProgramsDetailsState extends State<Merckcancercommunityawareness>
                         photosList: GlobalLists.programgallerylist,
                       )));
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
         }
       }, (error) {
         print('ERR msg is $error');
-        Navigator.of(_keyLoader.currentContext).pop();
+        Navigator.of(_keyLoader.currentContext!).pop();
       }, jsonval: json);
     } else {
       ShowDialogs.showToast("Please check internet connection");

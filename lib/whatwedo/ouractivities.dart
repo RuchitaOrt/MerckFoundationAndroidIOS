@@ -15,7 +15,7 @@ import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/whatwedo/ouractivtydetail.dart';
 
 class OurActivity extends StatefulWidget {
@@ -28,7 +28,7 @@ class OurActivity extends StatefulWidget {
 class OurActivityState extends State<OurActivity> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   ScrollController _sc = new ScrollController();
-  listdata.OurActivityResponse resp;
+  late listdata.OurActivityResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -68,18 +68,18 @@ class OurActivityState extends State<OurActivity> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.ourActivitiesData.add(listdata.ListElement(
-                        id: resp.data.list[i].id,
-                        title: resp.data.list[i].title,
-                        image: resp.data.list[i].image,
-                        detailPageUrl: resp.data.list[i].detailPageUrl,
-                        details: resp.data.list[i].details));
+                        id: resp.data!.list![i].id,
+                        title: resp.data!.list![i].title,
+                        image: resp.data!.list![i].image,
+                        detailPageUrl: resp.data!.list![i].detailPageUrl,
+                        details: resp.data!.list![i].details));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
                 }
 
                 offset = totalcount;
-                int remem = resp.data.list.length - totalcount;
+                int remem = resp.data!.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -98,7 +98,7 @@ class OurActivityState extends State<OurActivity> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -150,16 +150,34 @@ class OurActivityState extends State<OurActivity> {
                 )
               : Padding(
                   padding: const EdgeInsets.only(top: 5, left: 20, right: 20),
-                  child: Html(
+                  child:
+                   Html(
                     data:
                         """${GlobalLists.ourActivitiesObjectives[0].pageContent} """,
-                    onLinkTap: (url, renderContext, attributes, element) {
+                    onLinkTap: (url, attributes, element) {
                       print("Opening $url...");
-                      ShowDialogs.launchURL(url);
+                      ShowDialogs.launchURL(url!);
                     },
                     style: {
                       "tr": Customcolor.tableboderstyle(context),
                     },
+                     extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
                     // style: {
                     //   "body": Style(
                     //     fontSize: FontSize(
@@ -584,18 +602,18 @@ class OurActivityState extends State<OurActivity> {
           OurActivityObjectiveResponse resp = response;
           print(response);
 
-          print('Resp : ${resp.data.list}');
+          print('Resp : ${resp.data!.list!}');
 
           if (resp.success == "True") {
             print("Inside in oureActoivityobjectiveResponse");
             setState(() {
-              GlobalLists.ourActivitiesObjectives = resp.data.list;
+              GlobalLists.ourActivitiesObjectives = resp.data!.list!;
             });
 
             // print(
             //     "GlobalLists.ourActivitiesData[0].details${GlobalLists.ourActivitiesData[].details}");
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
             //   Navigator.of(_keyLoader.currentContext).pop();
           }
         },
@@ -630,13 +648,13 @@ class OurActivityState extends State<OurActivity> {
             Constantstring.baseUrl = resp.baseUrl;
             print('--------------');
 
-            if (resp.data.list?.length < 10) {
-              for (int i = offset; i < resp.data.list.length; i++) {
+            if (resp.data!.list!.length < 10) {
+              for (int i = offset; i < resp.data!.list!.length; i++) {
                 setState(() {
                   GlobalLists.ourActivitiesData.add(listdata.ListElement(
-                    id: resp.data.list[i].id,
-                    title: resp.data.list[i].title,
-                    image: resp.data.list[i].image,
+                    id: resp.data!.list![i].id,
+                    title: resp.data!.list![i].title,
+                    image: resp.data!.list![i].image,
                   ));
                 });
               }
@@ -644,17 +662,17 @@ class OurActivityState extends State<OurActivity> {
               for (int i = offset; i < totalcount; i++) {
                 setState(() {
                   GlobalLists.ourActivitiesData.add(listdata.ListElement(
-                      id: resp.data.list[i].id,
-                      title: resp.data.list[i].title,
-                      image: resp.data.list[i].image,
-                      detailPageUrl: resp.data.list[i].detailPageUrl,
-                      details: resp.data.list[i].details));
+                      id: resp.data!.list![i].id,
+                      title: resp.data!.list![i].title,
+                      image: resp.data!.list![i].image,
+                      detailPageUrl: resp.data!.list![i].detailPageUrl,
+                      details: resp.data!.list![i].details));
                 });
               }
             }
 
             offset = totalcount;
-            int remem = resp.data.list.length - totalcount;
+            int remem = resp.data!.list!.length - totalcount;
             print("remem");
             print(remem);
             if (remem < 10) {
@@ -670,7 +688,7 @@ class OurActivityState extends State<OurActivity> {
               _isLoading = false;
             });
           } else {
-            ShowDialogs.showToast(resp.msg);
+            ShowDialogs.showToast(resp.msg!);
           }
         },
         (error) {

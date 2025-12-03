@@ -9,7 +9,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:merckfoundation22dec/model/AmbassadarVideoviewall.dart';
@@ -20,13 +20,13 @@ import 'package:http/http.dart' as http;
 
 //ambassadar,empowering berna,local song,encology,fellowship,community,merck patient
 class WatchmoreVideoambassdar extends StatefulWidget {
-  final String categoryid;
+  final String? categoryid;
   final dynamic api;
-  final String type;
-  final String headertitle;
+  final String? type;
+  final String? headertitle;
 
   const WatchmoreVideoambassdar(
-      {Key key, this.categoryid, this.api, this.type, this.headertitle})
+      {Key? key, this.categoryid, this.api, this.type, this.headertitle})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -38,7 +38,7 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   ScrollController _sc = new ScrollController();
-  AmbassdarvideoResponse resp;
+  late AmbassdarvideoResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -49,7 +49,7 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
 
     super.initState();
     GlobalLists.videoviewmoreambasdarslist.clear();
-    ambasssadarvideoviewmore(widget.categoryid, widget.api, widget.type);
+    ambasssadarvideoviewmore(widget.categoryid!, widget.api, widget.type!);
     _sc = new ScrollController()..addListener(_scrollListener);
   }
 
@@ -84,7 +84,7 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
                           videoLink: resp.list[i].videoLink,
                           countryId: resp.list[i].countryId,
                           categoryId: resp.list[i].categoryId,
-                          year: resp.list[i].status));
+                          year: resp.list[i].status!));
                     });
                   }
                 });
@@ -150,7 +150,7 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
           },
           index: 1,
           // forfilterindes: 3,
-          title: widget.headertitle,
+          title: widget.headertitle!,
           titleImg: "assets/newImages/ourstoriesLogo.png",
           trallingImg1: "assets/newImages/share.png",
           trallingImg2: "assets/newImages/search.png",
@@ -391,7 +391,7 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
                     videoLink: resp.list[i].videoLink,
                     countryId: resp.list[i].countryId,
                     categoryId: resp.list[i].categoryId,
-                    year: resp.list[i].status));
+                    year: resp.list[i].status!));
               });
             }
           } else {
@@ -403,7 +403,7 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
                     videoLink: resp.list[i].videoLink,
                     countryId: resp.list[i].countryId,
                     categoryId: resp.list[i].categoryId,
-                    year: resp.list[i].status));
+                    year: resp.list[i].status!));
               });
             }
           }
@@ -443,11 +443,14 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
 
   Future<void> _launchInWebViewWithJavaScript(String url) async {
     if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
+      final Uri uri = Uri.parse(url);
+      await launchUrl(
+        uri,
+         mode: LaunchMode.externalApplication,
+  webViewConfiguration: WebViewConfiguration(enableJavaScript: true,)
+        // forceSafariVC: true,
+        // forceWebView: true,
+        // enableJavaScript: true,
       );
     } else {
       throw 'Could not launch $url';

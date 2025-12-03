@@ -3,11 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videolibray.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/videoplayer.dart';
-import 'package:merckfoundation22dec/model/GetFertilityContentResp.dart';
-import 'package:merckfoundation22dec/model/GetFertilityTestimonialResp.dart';
-import 'package:merckfoundation22dec/model/GetFertilityVideosResp.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -15,7 +10,6 @@ import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customHorizontalCard.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
@@ -122,7 +116,7 @@ class MerckFertilityState extends State<MerckFertility> {
     );
   }
 
-  Future<http.Response> getmmtmapi() async {
+  Future<http.Response?> getmmtmapi() async {
     print("mmtm api");
     var status1 = await ConnectionDetector.checkInternetConnection();
 
@@ -132,14 +126,14 @@ class MerckFertilityState extends State<MerckFertility> {
       );
       print("response");
       print(response);
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         var res = json.decode(response.body);
         print("ff");
         print(res);
         fertility.FertilityembrologyResponse homepageres =
             fertility.FertilityembrologyResponse.fromJson(res);
 
-        Map<String, dynamic> section1 = homepageres.middleArea;
+        Map<String, dynamic> section1 = homepageres.middleArea!;
 
         print(section1);
         print(section1['1']);
@@ -165,14 +159,14 @@ class MerckFertilityState extends State<MerckFertility> {
         if (middlevideoname.toString().toLowerCase() ==
             "videos".toLowerCase()) {
           print("hill");
-          GlobalLists.homevideolist = homepageres.middleArea['3'].videos.list;
+          GlobalLists.homevideolist = homepageres.middleArea!['3']!.videos!.list!;
           print(GlobalLists.homevideolist.length);
         }
         if (middlecontentname.toString().toLowerCase() ==
             "content".toLowerCase()) {
           print("hi");
           GlobalLists.homecontentlist =
-              homepageres.middleArea['1'].content.list;
+              homepageres.middleArea!['1']!.content!.list!;
           print(GlobalLists.homecontentlist.length);
         }
 
@@ -437,13 +431,30 @@ class MerckFertilityState extends State<MerckFertility> {
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url, renderContext, attributes, element) {
+            onLinkTap: (url, attributes, element) {
               print("Opening $url...");
-              ShowDialogs.launchURL(url);
+              ShowDialogs.launchURL(url!);
             },
             style: {
               "tr": Customcolor.tableboderstyle(context),
             },
+             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
           ),
         );
       }
@@ -544,16 +555,5 @@ class MerckFertilityState extends State<MerckFertility> {
     return listofwiget;
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  
 }

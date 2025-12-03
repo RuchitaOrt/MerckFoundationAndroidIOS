@@ -15,7 +15,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
@@ -26,8 +26,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class programclass {
-  final String programname;
-  final Color colors;
+  final String? programname;
+  final Color? colors;
 
   programclass({this.programname, this.colors});
 }
@@ -40,7 +40,7 @@ class Ourprogram extends StatefulWidget {
 class _OurProgramState extends State<Ourprogram> {
   TextStyle style = TextStyle(fontFamily: 'Roboto', fontSize: 16.0);
   bool checkedValue = false;
-  CarouselSlider carouselSlider;
+  late CarouselSlider carouselSlider;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int _current = 0;
   List<dynamic> slidersection = [];
@@ -73,37 +73,11 @@ class _OurProgramState extends State<Ourprogram> {
     programclass(
         programname: "Merck Foundation Educating Linda Program",
         colors: Customcolor.prog6),
-    // programclass(
-    //     programname: "Merck Foundation Sustainability Initiative   ",
-    //     colors: Customcolor.prog7),
+
     programclass(
         programname: "Merck Foundation Africa Asia Luminary      ",
         colors: Customcolor.prog8),
-    // programclass(
-    //     programname: "Merck Foundation More Than A Mother         ",
-    //     colors: Customcolor.prog1),
-    // programclass(
-    //     programname: "Merck Foundation Cancer Access Program     ",
-    //     colors: Customcolor.prog2),
-    // programclass(
-    //     programname:
-    //         "Merck Foundation Capacity Advancement & Nationwide Diabetes Blue Points Program",
-    //     colors: Customcolor.prog3),
-    // programclass(
-    //     programname: "Merck Foundation First Ladies Initiative Summit",
-    //     colors: Customcolor.prog4),
-    // programclass(
-    //     programname: "Merck Foundation STEM Program                  ",
-    //     colors: Customcolor.prog5),
-    // programclass(
-    //     programname: "Merck Foundation Educating Linda Program",
-    //     colors: Customcolor.prog6),
-    // programclass(
-    //     programname: "Merck Foundation Sustainability Initiative   ",
-    //     colors: Customcolor.prog7),
-    // programclass(
-    //     programname: "Merck Foundation Africa Asia Luminary      ",
-    //     colors: Customcolor.prog8),
+   
   ];
 
   @override
@@ -181,7 +155,7 @@ class _OurProgramState extends State<Ourprogram> {
     );
   }
 
-  Future<http.Response> gethomeapi() async {
+  Future<http.Response?> gethomeapi() async {
     var status1 = await ConnectionDetector.checkInternetConnection();
 
     if (status1) {
@@ -191,13 +165,13 @@ class _OurProgramState extends State<Ourprogram> {
       );
       print("response");
       print(response);
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         var res = json.decode(response.body);
         print("ff");
         print(res);
         HomepageResponse homepageres = HomepageResponse.fromJson(res);
-        GlobalLists.sliderurl = homepageres.sliderArea[0].slider.baseUrl;
-        slidersection = homepageres.sliderArea[0].slider.list;
+        GlobalLists.sliderurl = homepageres.sliderArea![0].slider!.baseUrl!;
+        slidersection = homepageres.sliderArea![0].slider!.list!;
         slidersection.forEach((element) {
           _productsAvailable.add({
             "id": element.id,
@@ -256,104 +230,7 @@ class _OurProgramState extends State<Ourprogram> {
                 child: FadeInAnimation(
                   child: GestureDetector(
                     onTap: () {
-                      // if (index == 0) {
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) => OurProgram(
-                      //                 indexpass: 0,
-                      //               )));
-                      // } else if (index == 1) {
-                      //   // Navigator.push(
-                      //   //     context,
-                      //   //     MaterialPageRoute(
-                      //   //         builder: (BuildContext context) => OurProgram(
-                      //   //               indexpass: 1,
-                      //   //             )));
-                      //   //for cancer index is from 21 to 27
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) =>
-                      //               OurProgramcancerlist(
-                      //                 indexpass: 21,
-                      //               )));
-                      // } else if (index == 2) {
-                      //   // Navigator.push(
-                      //   //     context,
-                      //   //     MaterialPageRoute(
-                      //   //         builder: (BuildContext context) => OurProgram(
-                      //   //               indexpass: 2,
-                      //   //             )));
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) =>
-                      //               OurProgramSevenlist(
-                      //                 indexpass: 1,
-                      //               )));
-                      // } else if (index == 3) {
-                      //   // Navigator.push(
-                      //   //     context,
-                      //   //     MaterialPageRoute(
-                      //   //         builder: (BuildContext context) => OurProgram(
-                      //   //               indexpass: 12,
-                      //   //             )));
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) =>
-                      //               OurProgramSevenlist(
-                      //                 indexpass: 2,
-                      //               )));
-                      // } else if (index == 6) {
-                      //   // Navigator.push(
-                      //   //     context,
-                      //   //     MaterialPageRoute(
-                      //   //         builder: (BuildContext context) => OurProgram(
-                      //   //               indexpass: 13,
-                      //   //             )));
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) =>
-                      //               OurProgramSevenlist(
-                      //                 indexpass: 4,
-                      //               )));
-                      // } else if (index == 4) {
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) =>
-                      //               OurProgramStem()));
-                      // } else if (index == 5) {
-                      //   // Navigator.push(
-                      //   //     context,
-                      //   //     MaterialPageRoute(
-                      //   //         builder: (BuildContext context) => OurProgram(
-                      //   //               indexpass: 14,
-                      //   //             )));
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) =>
-                      //               OurProgramSevenlist(
-                      //                 indexpass: 3,
-                      //               )));
-                      // } else if (index == 7) {
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) =>
-                      //               OurProgramAfrica()));
-                      //   // Navigator.push(
-                      //   //     context,
-                      //   //     MaterialPageRoute(
-                      //   //         builder: (BuildContext context) =>
-                      //   //             OurProgramSevenlist(
-                      //   //               indexpass: 4,
-                      //   //             )));
-                      // }
+                     
                        if (index == 0) {
                         Navigator.push(
                             context,
@@ -500,7 +377,7 @@ class _OurProgramState extends State<Ourprogram> {
                                 child: Center(
                                   child: FormLabel(
                                     text:
-                                        _productsAvailable1[index].programname,
+                                        _productsAvailable1[index].programname!,
                                     labelColor: Colors.white,
                                     fontSize: ResponsiveFlutter.of(context)
                                         .fontSize(1.9),

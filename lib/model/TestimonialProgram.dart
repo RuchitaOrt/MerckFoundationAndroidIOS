@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final testimonialprogramResponse = testimonialprogramResponseFromJson(jsonString);
-
 import 'dart:convert';
 
 TestimonialprogramResponse testimonialprogramResponseFromJson(String str) =>
@@ -18,25 +14,29 @@ class TestimonialprogramResponse {
     this.list,
   });
 
-  String baseUrl;
-  String success;
-  String msg;
-  List<ListElement> list;
+  String? baseUrl;
+  String? success;
+  String? msg;
+  List<ListElement>? list;
 
   factory TestimonialprogramResponse.fromJson(Map<String, dynamic> json) =>
       TestimonialprogramResponse(
         baseUrl: json["base_url"],
         success: json["success"],
         msg: json["msg"],
-        list: List<ListElement>.from(
-            json["list"].map((x) => ListElement.fromJson(x))),
+        list: json["list"] != null
+            ? List<ListElement>.from(
+                json["list"].map((x) => ListElement.fromJson(x)))
+            : [],
       );
 
   Map<String, dynamic> toJson() => {
         "base_url": baseUrl,
         "success": success,
         "msg": msg,
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
+        "list": list != null
+            ? List<dynamic>.from(list!.map((x) => x.toJson()))
+            : [],
       };
 }
 
@@ -57,19 +57,19 @@ class ListElement {
     this.updatedAt,
   });
 
-  String id;
-  String testimonialName;
-  String departmentName;
-  String shortDescription;
-  String details;
-  String detailPageUrl;
-  String image;
-  String altText;
-  String metaKeyword;
-  String metaDescription;
-  String status;
-  DateTime createdAt;
-  DateTime updatedAt;
+  String? id;
+  String? testimonialName;
+  String? departmentName;
+  String? shortDescription;
+  String? details;
+  String? detailPageUrl;
+  String? image;
+  String? altText;
+  String? metaKeyword;
+  String? metaDescription;
+  String? status;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
   factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
         id: json["id"],
@@ -83,8 +83,12 @@ class ListElement {
         metaKeyword: json["meta_keyword"],
         metaDescription: json["meta_description"],
         status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"] != null
+            ? DateTime.tryParse(json["created_at"])
+            : null,
+        updatedAt: json["updated_at"] != null
+            ? DateTime.tryParse(json["updated_at"])
+            : null,
       );
 
   Map<String, dynamic> toJson() => {
@@ -99,8 +103,8 @@ class ListElement {
         "meta_keyword": metaKeyword,
         "meta_description": metaDescription,
         "status": status,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
       };
 }
 
@@ -172,7 +176,7 @@ class ListElement {
 //   String image;
 //   String altText;
 //   String metaKeyword;
-//   MetaDescription metaDescription;
+//   String metaDescription;
 //   String status;
 //   DateTime createdAt;
 //   DateTime updatedAt;
@@ -187,7 +191,7 @@ class ListElement {
 //         image: json["image"],
 //         altText: json["alt_text"],
 //         metaKeyword: json["meta_keyword"],
-//         metaDescription: metaDescriptionValues.map[json["meta_description"]],
+//         metaDescription: json["meta_description"],
 //         status: json["status"],
 //         createdAt: DateTime.parse(json["created_at"]),
 //         updatedAt: DateTime.parse(json["updated_at"]),
@@ -203,28 +207,9 @@ class ListElement {
 //         "image": image,
 //         "alt_text": altText,
 //         "meta_keyword": metaKeyword,
-//         "meta_description": metaDescriptionValues.reverse[metaDescription],
+//         "meta_description": metaDescription,
 //         "status": status,
 //         "created_at": createdAt.toIso8601String(),
 //         "updated_at": updatedAt.toIso8601String(),
 //       };
-// }
-
-// enum MetaDescription { TEST, EMPTY }
-
-// final metaDescriptionValues =
-//     EnumValues({"": MetaDescription.EMPTY, "test": MetaDescription.TEST});
-
-// class EnumValues<T> {
-//   Map<String, T> map;
-//   Map<T, String> reverseMap;
-
-//   EnumValues(this.map);
-
-//   Map<T, String> get reverse {
-//     if (reverseMap == null) {
-//       reverseMap = map.map((k, v) => new MapEntry(v, k));
-//     }
-//     return reverseMap;
-//   }
 // }

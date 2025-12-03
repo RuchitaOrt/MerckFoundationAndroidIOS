@@ -1,416 +1,416 @@
-import 'package:flutter/material.dart';
-import 'package:merckfoundation22dec/screens/dashboard.dart';
-import 'package:merckfoundation22dec/utility/UtilityFile.dart';
-import 'package:merckfoundation22dec/widget/customcolor.dart';
-import 'package:merckfoundation22dec/widget/formLabel.dart';
-import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:flutter/material.dart';
+// import 'package:merckfoundation22dec/screens/dashboard.dart';
+// import 'package:merckfoundation22dec/utility/UtilityFile.dart';
+// import 'package:merckfoundation22dec/widget/customcolor.dart';
+// import 'package:merckfoundation22dec/widget/formLabel.dart';
+// import 'package:merckfoundation22dec/widget/sizeConfig.dart';
+// import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 
-class LoginPage extends StatefulWidget {
-  static final String path = "lib/src/pages/login/login7.dart";
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
+// class LoginPage extends StatefulWidget {
+//   static final String path = "lib/src/pages/login/login7.dart";
+//   @override
+//   _LoginPageState createState() => _LoginPageState();
+// }
 
-class _LoginPageState extends State<LoginPage> {
-  TextStyle style = TextStyle(fontFamily: 'Roboto', fontSize: 16.0);
-  bool checkedValue = false;
+// class _LoginPageState extends State<LoginPage> {
+//   TextStyle style = TextStyle(fontFamily: 'Roboto', fontSize: 16.0);
+//   bool checkedValue = false;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+//   @override
+//   void initState() {
+//     // TODO: implement initState
+//     super.initState();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: ListView(
-        shrinkWrap: true,
-        physics: ScrollPhysics(),
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              ClipPath(
-                clipper: WaveClipper2(),
-                child: Container(
-                  child: Column(),
-                  width: double.infinity,
-                  height: 300,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [Color(0x22fe494d), Color(0x22fe494d)])),
-                ),
-              ),
-              ClipPath(
-                clipper: WaveClipper3(),
-                child: Container(
-                  child: Column(),
-                  width: double.infinity,
-                  height: 300,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [Color(0x44fe494d), Color(0x44fe494d)])),
-                ),
-              ),
-              ClipPath(
-                clipper: WaveClipper1(),
-                child: Container(
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 20,
-                      ),
-                      // Icon(
-                      //   Icons.fastfood,
-                      //   color: Colors.white,
-                      //   size: 60,
-                      // ),
-                      Image.asset(
-                        "assets/newImages/top_bar_logo.png",
-                        width: 140,
-                        height: 58,
-                      ),
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.white,
+//       body: ListView(
+//         shrinkWrap: true,
+//         physics: ScrollPhysics(),
+//         children: <Widget>[
+//           Stack(
+//             children: <Widget>[
+//               ClipPath(
+//                 clipper: WaveClipper2(),
+//                 child: Container(
+//                   child: Column(),
+//                   width: double.infinity,
+//                   height: 300,
+//                   decoration: BoxDecoration(
+//                       gradient: LinearGradient(
+//                           colors: [Color(0x22fe494d), Color(0x22fe494d)])),
+//                 ),
+//               ),
+//               ClipPath(
+//                 clipper: WaveClipper3(),
+//                 child: Container(
+//                   child: Column(),
+//                   width: double.infinity,
+//                   height: 300,
+//                   decoration: BoxDecoration(
+//                       gradient: LinearGradient(
+//                           colors: [Color(0x44fe494d), Color(0x44fe494d)])),
+//                 ),
+//               ),
+//               ClipPath(
+//                 clipper: WaveClipper1(),
+//                 child: Container(
+//                   child: Column(
+//                     children: <Widget>[
+//                       SizedBox(
+//                         height: 20,
+//                       ),
+//                       // Icon(
+//                       //   Icons.fastfood,
+//                       //   color: Colors.white,
+//                       //   size: 60,
+//                       // ),
+//                       Image.asset(
+//                         "assets/newImages/top_bar_logo.png",
+//                         width: 140,
+//                         height: 58,
+//                       ),
 
-                      SizedBox(height: 10),
+//                       SizedBox(height: 10),
 
-                      FormLabel(
-                        text: 'The Philanthropic arm of Merck KGaA',
-                        fontSize: ResponsiveFlutter.of(context).fontSize(1.7),
-                        labelColor: Customcolor.colorPink,
-                        fontweight: FontWeight.w400,
-                      ),
-                      SizedBox(height: 30),
+//                       FormLabel(
+//                         text: 'The Philanthropic arm of Merck KGaA',
+//                         fontSize: ResponsiveFlutter.of(context).fontSize(1.7),
+//                         labelColor: Customcolor.colorPink,
+//                         fontweight: FontWeight.w400,
+//                       ),
+//                       SizedBox(height: 30),
 
-                      Text(
-                        "Login",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 30),
-                      ),
-                    ],
-                  ),
-                  width: double.infinity,
-                  height: 300,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [Color(0xff532E92), Color(0xff532E92)])),
-                ),
-              ),
-            ],
-          ),
+//                       Text(
+//                         "Login",
+//                         style: TextStyle(
+//                             color: Colors.white,
+//                             fontWeight: FontWeight.w700,
+//                             fontSize: 30),
+//                       ),
+//                     ],
+//                   ),
+//                   width: double.infinity,
+//                   height: 300,
+//                   decoration: BoxDecoration(
+//                       gradient: LinearGradient(
+//                           colors: [Color(0xff532E92), Color(0xff532E92)])),
+//                 ),
+//               ),
+//             ],
+//           ),
 
-          Container(
-            width: SizeConfig.blockSizeHorizontal * 97,
-            //    height: SizeConfig.blockSizeVertical * 50,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 10, right: 10, bottom: 30, top: 0),
-              child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0)),
-                  elevation: 5.0,
-                  color: Colors.white,
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: <Widget>[
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
-                              child: Container(
-                                height: 40,
-                                child: TextField(
-                                  obscureText: false,
-                                  style: style,
-                                  decoration: InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
-                                    hintText: "Email (Optional)",
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5.0)),
-                                    prefixIcon: Image.asset(
-                                      'assets/images/mail_icon@2x.png',
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8, top: 5),
-                              child: Container(
-                                  child: ElevatedButton(
-                                      // here toggle the bool value so that when you click
-                                      // on the whole item, it will reflect changes in Checkbox
-                                      onPressed: () => setState(
-                                          () => checkedValue = !checkedValue),
-                                      child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            SizedBox(
-                                                height: 20.0,
-                                                width: 20.0,
-                                                child: Checkbox(
-                                                    value: checkedValue,
-                                                    onChanged: (value) {
-                                                      setState(() =>
-                                                          checkedValue = value);
-                                                    })),
-                                            // You can play with the width to adjust your
-                                            // desired spacing
-                                            SizedBox(width: 10.0),
-                                            Text("I agree to Terms of use",
-                                                style: TextStyle(
-                                                    color: Colors.grey[500]))
-                                          ]))),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, top: 25, bottom: 30),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  height: 40,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      // Navigator.of(context).push(
-                                      //     MaterialPageRoute(
-                                      //         builder:
-                                      //             (BuildContext context) =>
-                                      //                 Home()));
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  Dashboard(index: 0)));
-                                    },
-                                          style: ElevatedButton.styleFrom(                              shape: RoundedRectangleBorder(borderRadius:
-                               new BorderRadius.circular(10)),  ),
+//           Container(
+//             width: SizeConfig.blockSizeHorizontal * 97,
+//             //    height: SizeConfig.blockSizeVertical * 50,
+//             child: Padding(
+//               padding: const EdgeInsets.only(
+//                   left: 10, right: 10, bottom: 30, top: 0),
+//               child: Card(
+//                   shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.circular(15.0)),
+//                   elevation: 5.0,
+//                   color: Colors.white,
+//                   child: ListView(
+//                     shrinkWrap: true,
+//                     children: <Widget>[
+//                       Column(
+//                           crossAxisAlignment: CrossAxisAlignment.center,
+//                           mainAxisAlignment: MainAxisAlignment.center,
+//                           children: <Widget>[
+//                             Padding(
+//                               padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
+//                               child: Container(
+//                                 height: 40,
+//                                 child: TextField(
+//                                   obscureText: false,
+//                                   style: style,
+//                                   decoration: InputDecoration(
+//                                     contentPadding:
+//                                         EdgeInsets.fromLTRB(20.0, 5, 20.0, 5),
+//                                     hintText: "Email (Optional)",
+//                                     border: OutlineInputBorder(
+//                                         borderRadius:
+//                                             BorderRadius.circular(5.0)),
+//                                     prefixIcon: Image.asset(
+//                                       'assets/images/mail_icon@2x.png',
+//                                     ),
+//                                   ),
+//                                 ),
+//                               ),
+//                             ),
+//                             Padding(
+//                               padding: const EdgeInsets.only(left: 8, top: 5),
+//                               child: Container(
+//                                   child: ElevatedButton(
+//                                       // here toggle the bool value so that when you click
+//                                       // on the whole item, it will reflect changes in Checkbox
+//                                       onPressed: () => setState(
+//                                           () => checkedValue = !checkedValue),
+//                                       child: Row(
+//                                           mainAxisAlignment:
+//                                               MainAxisAlignment.start,
+//                                           children: [
+//                                             SizedBox(
+//                                                 height: 20.0,
+//                                                 width: 20.0,
+//                                                 child: Checkbox(
+//                                                     value: checkedValue,
+//                                                     onChanged: (value) {
+//                                                       setState(() =>
+//                                                           checkedValue = value);
+//                                                     })),
+//                                             // You can play with the width to adjust your
+//                                             // desired spacing
+//                                             SizedBox(width: 10.0),
+//                                             Text("I agree to Terms of use",
+//                                                 style: TextStyle(
+//                                                     color: Colors.grey[500]))
+//                                           ]))),
+//                             ),
+//                             Padding(
+//                               padding: const EdgeInsets.only(
+//                                   left: 20, right: 20, top: 25, bottom: 30),
+//                               child: Container(
+//                                   decoration: BoxDecoration(
+//                                       borderRadius: BorderRadius.circular(5)),
+//                                   height: 40,
+//                                   child: ElevatedButton(
+//                                     onPressed: () {
+//                                       // Navigator.of(context).push(
+//                                       //     MaterialPageRoute(
+//                                       //         builder:
+//                                       //             (BuildContext context) =>
+//                                       //                 Home()));
+//                                       Navigator.pushReplacement(
+//                                           context,
+//                                           MaterialPageRoute(
+//                                               builder: (context) =>
+//                                                   Dashboard(index: 0)));
+//                                     },
+//                                           style: ElevatedButton.styleFrom(                              shape: RoundedRectangleBorder(borderRadius:
+//                                new BorderRadius.circular(10)),  ),
 
-                                   // shape: RoundedRectangleBorder(
-                                    //    borderRadius:
-                                      //      BorderRadius.circular(10.0)),
-                                 //   padding: const EdgeInsets.all(0.0),
-                                    child: Ink(
-                                      decoration: const BoxDecoration(
-                                        color: Customcolor.colorVoilet,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0)),
-                                      ),
-                                      child: Container(
-                                        constraints: const BoxConstraints(
-                                            minWidth: 88.0,
-                                            minHeight:
-                                                36.0), // min sizes for Material buttons
-                                        alignment: Alignment.center,
-                                        child: const Text(
-                                          'Submit',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                    ),
-                                  )),
-                            ),
-                          ]),
-                    ],
-                  )),
-            ),
-          ),
-          // Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 32),
-          //   child: Material(
-          //     elevation: 2.0,
-          //     borderRadius: BorderRadius.all(Radius.circular(30)),
-          //     child: TextField(
-          //       onChanged: (String value) {},
-          //       cursorColor: Colors.deepOrange,
-          //       decoration: InputDecoration(
-          //           hintText: "Email",
-          //           prefixIcon: Material(
-          //             elevation: 0,
-          //             borderRadius: BorderRadius.all(Radius.circular(30)),
-          //             child: Icon(
-          //               Icons.email,
-          //               color: Colors.red,
-          //             ),
-          //           ),
-          //           border: InputBorder.none,
-          //           contentPadding:
-          //               EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
-          //     ),
-          //   ),
-          // ),
-          // SizedBox(
-          //   height: 20,
-          // ),
-          // Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 32),
-          //   child: Material(
-          //     elevation: 2.0,
-          //     borderRadius: BorderRadius.all(Radius.circular(30)),
-          //     child: TextField(
-          //       onChanged: (String value) {},
-          //       cursorColor: Colors.deepOrange,
-          //       decoration: InputDecoration(
-          //           hintText: "Password",
-          //           prefixIcon: Material(
-          //             elevation: 0,
-          //             borderRadius: BorderRadius.all(Radius.circular(30)),
-          //             child: Icon(
-          //               Icons.lock,
-          //               color: Colors.red,
-          //             ),
-          //           ),
-          //           border: InputBorder.none,
-          //           contentPadding:
-          //               EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
-          //     ),
-          //   ),
-          // ),
-          // SizedBox(
-          //   height: 25,
-          // ),
-          // Padding(
-          //     padding: EdgeInsets.symmetric(horizontal: 32),
-          //     child: Container(
-          //       decoration: BoxDecoration(
-          //           borderRadius: BorderRadius.all(Radius.circular(100)),
-          //           color: Color(0xffff3a5a)),
-          //       child: FlatButton(
-          //         child: Text(
-          //           "Login",
-          //           style: TextStyle(
-          //               color: Colors.white,
-          //               fontWeight: FontWeight.w700,
-          //               fontSize: 18),
-          //         ),
-          //         onPressed: () {},
-          //       ),
-          //     )),
-          // SizedBox(
-          //   height: 20,
-          // ),
-          // Center(
-          //   child: Text(
-          //     "FORGOT PASSWORD ?",
-          //     style: TextStyle(
-          //         color: Colors.red, fontSize: 12, fontWeight: FontWeight.w700),
-          //   ),
-          // ),
-          // SizedBox(
-          //   height: 40,
-          // ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: <Widget>[
-          //     Text(
-          //       "Don't have an Account ? ",
-          //       style: TextStyle(
-          //           color: Colors.black,
-          //           fontSize: 12,
-          //           fontWeight: FontWeight.normal),
-          //     ),
-          //     Text("Sign Up ",
-          //         style: TextStyle(
-          //             color: Colors.red,
-          //             fontWeight: FontWeight.w500,
-          //             fontSize: 12,
-          //             decoration: TextDecoration.underline)),
-          //   ],
-          // )
-        ],
-      ),
-    );
-  }
-}
+//                                    // shape: RoundedRectangleBorder(
+//                                     //    borderRadius:
+//                                       //      BorderRadius.circular(10.0)),
+//                                  //   padding: const EdgeInsets.all(0.0),
+//                                     child: Ink(
+//                                       decoration: const BoxDecoration(
+//                                         color: Customcolor.colorVoilet,
+//                                         borderRadius: BorderRadius.all(
+//                                             Radius.circular(10.0)),
+//                                       ),
+//                                       child: Container(
+//                                         constraints: const BoxConstraints(
+//                                             minWidth: 88.0,
+//                                             minHeight:
+//                                                 36.0), // min sizes for Material buttons
+//                                         alignment: Alignment.center,
+//                                         child: const Text(
+//                                           'Submit',
+//                                           textAlign: TextAlign.center,
+//                                           style: TextStyle(
+//                                               color: Colors.white,
+//                                               fontWeight: FontWeight.w500,
+//                                               fontSize: 18),
+//                                         ),
+//                                       ),
+//                                     ),
+//                                   )),
+//                             ),
+//                           ]),
+//                     ],
+//                   )),
+//             ),
+//           ),
+//           // Padding(
+//           //   padding: EdgeInsets.symmetric(horizontal: 32),
+//           //   child: Material(
+//           //     elevation: 2.0,
+//           //     borderRadius: BorderRadius.all(Radius.circular(30)),
+//           //     child: TextField(
+//           //       onChanged: (String value) {},
+//           //       cursorColor: Colors.deepOrange,
+//           //       decoration: InputDecoration(
+//           //           hintText: "Email",
+//           //           prefixIcon: Material(
+//           //             elevation: 0,
+//           //             borderRadius: BorderRadius.all(Radius.circular(30)),
+//           //             child: Icon(
+//           //               Icons.email,
+//           //               color: Colors.red,
+//           //             ),
+//           //           ),
+//           //           border: InputBorder.none,
+//           //           contentPadding:
+//           //               EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
+//           //     ),
+//           //   ),
+//           // ),
+//           // SizedBox(
+//           //   height: 20,
+//           // ),
+//           // Padding(
+//           //   padding: EdgeInsets.symmetric(horizontal: 32),
+//           //   child: Material(
+//           //     elevation: 2.0,
+//           //     borderRadius: BorderRadius.all(Radius.circular(30)),
+//           //     child: TextField(
+//           //       onChanged: (String value) {},
+//           //       cursorColor: Colors.deepOrange,
+//           //       decoration: InputDecoration(
+//           //           hintText: "Password",
+//           //           prefixIcon: Material(
+//           //             elevation: 0,
+//           //             borderRadius: BorderRadius.all(Radius.circular(30)),
+//           //             child: Icon(
+//           //               Icons.lock,
+//           //               color: Colors.red,
+//           //             ),
+//           //           ),
+//           //           border: InputBorder.none,
+//           //           contentPadding:
+//           //               EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
+//           //     ),
+//           //   ),
+//           // ),
+//           // SizedBox(
+//           //   height: 25,
+//           // ),
+//           // Padding(
+//           //     padding: EdgeInsets.symmetric(horizontal: 32),
+//           //     child: Container(
+//           //       decoration: BoxDecoration(
+//           //           borderRadius: BorderRadius.all(Radius.circular(100)),
+//           //           color: Color(0xffff3a5a)),
+//           //       child: FlatButton(
+//           //         child: Text(
+//           //           "Login",
+//           //           style: TextStyle(
+//           //               color: Colors.white,
+//           //               fontWeight: FontWeight.w700,
+//           //               fontSize: 18),
+//           //         ),
+//           //         onPressed: () {},
+//           //       ),
+//           //     )),
+//           // SizedBox(
+//           //   height: 20,
+//           // ),
+//           // Center(
+//           //   child: Text(
+//           //     "FORGOT PASSWORD ?",
+//           //     style: TextStyle(
+//           //         color: Colors.red, fontSize: 12, fontWeight: FontWeight.w700),
+//           //   ),
+//           // ),
+//           // SizedBox(
+//           //   height: 40,
+//           // ),
+//           // Row(
+//           //   mainAxisAlignment: MainAxisAlignment.center,
+//           //   children: <Widget>[
+//           //     Text(
+//           //       "Don't have an Account ? ",
+//           //       style: TextStyle(
+//           //           color: Colors.black,
+//           //           fontSize: 12,
+//           //           fontWeight: FontWeight.normal),
+//           //     ),
+//           //     Text("Sign Up ",
+//           //         style: TextStyle(
+//           //             color: Colors.red,
+//           //             fontWeight: FontWeight.w500,
+//           //             fontSize: 12,
+//           //             decoration: TextDecoration.underline)),
+//           //   ],
+//           // )
+//         ],
+//       ),
+//     );
+//   }
+// }
 
-class WaveClipper1 extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path();
-    path.lineTo(0.0, size.height - 50);
+// class WaveClipper1 extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     final path = Path();
+//     path.lineTo(0.0, size.height - 50);
 
-    var firstEndPoint = Offset(size.width * 0.6, size.height - 29 - 50);
-    var firstControlPoint = Offset(size.width * .25, size.height - 60 - 50);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstEndPoint.dx, firstEndPoint.dy);
+//     var firstEndPoint = Offset(size.width * 0.6, size.height - 29 - 50);
+//     var firstControlPoint = Offset(size.width * .25, size.height - 60 - 50);
+//     path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+//         firstEndPoint.dx, firstEndPoint.dy);
 
-    var secondEndPoint = Offset(size.width, size.height - 60);
-    var secondControlPoint = Offset(size.width * 0.84, size.height - 50);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondEndPoint.dx, secondEndPoint.dy);
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
+//     var secondEndPoint = Offset(size.width, size.height - 60);
+//     var secondControlPoint = Offset(size.width * 0.84, size.height - 50);
+//     path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+//         secondEndPoint.dx, secondEndPoint.dy);
+//     path.lineTo(size.width, size.height);
+//     path.lineTo(size.width, 0);
+//     path.close();
+//     return path;
+//   }
 
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
-  }
-}
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) {
+//     return false;
+//   }
+// }
 
-class WaveClipper3 extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path();
-    path.lineTo(0.0, size.height - 50);
+// class WaveClipper3 extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     final path = Path();
+//     path.lineTo(0.0, size.height - 50);
 
-    var firstEndPoint = Offset(size.width * 0.6, size.height - 15 - 50);
-    var firstControlPoint = Offset(size.width * .25, size.height - 60 - 50);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstEndPoint.dx, firstEndPoint.dy);
+//     var firstEndPoint = Offset(size.width * 0.6, size.height - 15 - 50);
+//     var firstControlPoint = Offset(size.width * .25, size.height - 60 - 50);
+//     path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+//         firstEndPoint.dx, firstEndPoint.dy);
 
-    var secondEndPoint = Offset(size.width, size.height - 40);
-    var secondControlPoint = Offset(size.width * 0.84, size.height - 30);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondEndPoint.dx, secondEndPoint.dy);
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
+//     var secondEndPoint = Offset(size.width, size.height - 40);
+//     var secondControlPoint = Offset(size.width * 0.84, size.height - 30);
+//     path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+//         secondEndPoint.dx, secondEndPoint.dy);
+//     path.lineTo(size.width, size.height);
+//     path.lineTo(size.width, 0);
+//     path.close();
+//     return path;
+//   }
 
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
-  }
-}
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) {
+//     return false;
+//   }
+// }
 
-class WaveClipper2 extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path();
-    path.lineTo(0.0, size.height - 50);
+// class WaveClipper2 extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     final path = Path();
+//     path.lineTo(0.0, size.height - 50);
 
-    var firstEndPoint = Offset(size.width * .7, size.height - 40);
-    var firstControlPoint = Offset(size.width * .25, size.height);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstEndPoint.dx, firstEndPoint.dy);
+//     var firstEndPoint = Offset(size.width * .7, size.height - 40);
+//     var firstControlPoint = Offset(size.width * .25, size.height);
+//     path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+//         firstEndPoint.dx, firstEndPoint.dy);
 
-    var secondEndPoint = Offset(size.width, size.height - 45);
-    var secondControlPoint = Offset(size.width * 0.84, size.height - 50);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondEndPoint.dx, secondEndPoint.dy);
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
+//     var secondEndPoint = Offset(size.width, size.height - 45);
+//     var secondControlPoint = Offset(size.width * 0.84, size.height - 50);
+//     path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+//         secondEndPoint.dx, secondEndPoint.dy);
+//     path.lineTo(size.width, size.height);
+//     path.lineTo(size.width, 0);
+//     path.close();
+//     return path;
+//   }
 
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
-  }
-}
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) {
+//     return false;
+//   }
+// }

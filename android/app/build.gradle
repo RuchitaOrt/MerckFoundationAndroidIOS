@@ -27,7 +27,7 @@
  apply plugin: 'com.google.gms.google-services'
 
  android {
-     compileSdkVersion 29
+     compileSdkVersion 34
 
      sourceSets {
          main.java.srcDirs += 'src/main/kotlin'
@@ -41,8 +41,8 @@
          // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
          applicationId "de.merck.foundation"
          minSdkVersion 21
-         targetSdkVersion 29
-         versionCode flutterVersionCode.toInteger()
+         targetSdkVersion 35
+         versionCode 37
          versionName flutterVersionName
          multiDexEnabled true
      }
@@ -54,6 +54,8 @@
             // signingConfig signingConfigs.release
              //  shrinkResources false
              //     minifyEnabled false
+             minifyEnabled false
+             shrinkResources false
                  signingConfig signingConfigs.debug
          }
      }
@@ -68,6 +70,7 @@
      implementation platform('com.google.firebase:firebase-bom:27.1.0')
      implementation 'com.google.firebase:firebase-analytics'
        implementation 'com.google.android.gms:play-services-auth:19.0.0'
-       
+     implementation 'androidx.multidex:multidex:2.0.1'
+     implementation 'com.facebook.android:facebook-android-sdk:17.0.0'
 
  }

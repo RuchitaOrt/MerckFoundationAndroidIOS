@@ -4,22 +4,22 @@ import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 
 class CustomeCard extends StatefulWidget {
-  final String cardTitle;
-  final String cardImage;
-  final String subTitle;
-  final String cardsubtitle;
-  final String btnTitle;
-  final Color titleColor;
-  final String titleImg;
-  final int index;
-  final String buttontitle;
-  final Color buttontitlecolor;
-  final Function onBtnTap;
-  final Function oncardtap;
-  final int youtubeicon;
+  final dynamic cardTitle;
+  final dynamic cardImage;
+  final dynamic subTitle;
+  final dynamic cardsubtitle;
+  final dynamic btnTitle;
+  final Color? titleColor;
+  final dynamic titleImg;
+  final int? index;
+  final dynamic buttontitle;
+  final Color? buttontitlecolor;
+  final VoidCallback? onBtnTap;
+  final VoidCallback?  oncardtap;
+  final int? youtubeicon;
 
   const CustomeCard(
-      {Key key,
+      {Key? key,
       this.cardTitle,
       this.cardImage,
       this.subTitle,

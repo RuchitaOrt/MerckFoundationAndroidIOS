@@ -221,7 +221,9 @@ class GlobalLists {
   static String homegallerybaseurl = "";
   static String homeceomsgbaseurl = "";
   static String homeCallForAppBaseURL = "";
+    static String homeCallForAppPDFURL = "";
   static String homeDigitalLibraryBaseURL = "";
+   static String homeDigitalLibraryPdfURL = "";
   static String homeMMTMBaseURL = "";
   static String homeafricashowbaseurl = "";
 
@@ -257,6 +259,8 @@ class GlobalLists {
   //digital content
   static List<dynamic> programdigitalcontentlist = [];
   static String programdigitalcontentbaseurl = "";
+  
+static String programdigitalcontentpdfurl = "";
 
   //ambasadar
   // static List<dynamic> ambasdarslist = [];

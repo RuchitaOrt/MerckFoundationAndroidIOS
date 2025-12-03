@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
+
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 
 class CustomeCardforTestimoniallist extends StatefulWidget {
-  final String cardTitle;
-  final String cardImage;
-  final String subTitle;
-  final String btnTitle;
-  final String cardsubtitle;
-  final Color titleColor;
-  final String titleImg;
-  final int index;
-  final String buttontitle;
-  final Color buttontitlecolor;
-  final Function onBtnTap;
-  final Function oncardtap;
-  final String testimonialname;
-  final String departmentname;
+  final dynamic cardTitle;
+  final dynamic cardImage;
+  final dynamic subTitle;
+  final dynamic btnTitle;
+  final dynamic cardsubtitle;
+  final Color? titleColor;
+  final dynamic titleImg;
+  final int? index;
+  final dynamic buttontitle;
+  final Color? buttontitlecolor;
+  final VoidCallback? onBtnTap;
+  final VoidCallback? oncardtap;
+  final dynamic testimonialname;
+  final dynamic departmentname;
 
   const CustomeCardforTestimoniallist(
-      {Key key,
+      {Key? key,
       this.cardTitle,
       this.cardImage,
       this.subTitle,
@@ -99,6 +99,23 @@ class CustomCardState extends State<CustomeCardforTestimoniallist> {
                   fontWeight: FontWeight.w500),
                    "tr": Customcolor.tableboderstyle(context),
             },
+             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
           ),
           Text(
             widget.subTitle,

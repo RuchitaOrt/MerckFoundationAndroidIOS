@@ -3,7 +3,7 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -13,13 +13,13 @@ import 'dart:convert';
 
 // ignore: must_be_immutable
 class GalleryProgram extends StatefulWidget {
-  final List<dynamic> photosList;
+  final List<dynamic>? photosList;
 
-  final String baseURL;
+  final dynamic baseURL;
   final dynamic apiurl;
-  String appBarTitle;
+  dynamic appBarTitle;
 
-  GalleryProgram({Key key, this.photosList, this.baseURL, this.apiurl})
+  GalleryProgram({Key? key, this.photosList, this.baseURL, this.apiurl})
       : super(key: key);
   @override
   _GalleryProgramState createState() => _GalleryProgramState();
@@ -28,7 +28,7 @@ class GalleryProgram extends StatefulWidget {
 class _GalleryProgramState extends State<GalleryProgram> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   ScrollController _sc = new ScrollController();
-  GalleryProgramResponse resp;
+  late GalleryProgramResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -66,10 +66,10 @@ class _GalleryProgramState extends State<GalleryProgram> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.programgallerylist.add(ListElement(
-                      id: resp.list[i].id,
-                      photo: resp.list[i].photo,
-                      photoCategoryId: resp.list[i].photoCategoryId,
-                      photoDescription: resp.list[i].photoDescription,
+                      id: resp.list![i].id,
+                      photo: resp.list![i].photo,
+                      photoCategoryId: resp.list![i].photoCategoryId,
+                      photoDescription: resp.list![i].photoDescription,
                     ));
                   });
 
@@ -77,7 +77,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                 }
 
                 offset = totalcount;
-                int remem = resp.list.length - totalcount;
+                int remem = resp.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -96,7 +96,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -311,17 +311,17 @@ class _GalleryProgramState extends State<GalleryProgram> {
         // Navigator.of(_keyLoader.currentContext).pop();
         if (resp.success == "True".toLowerCase()) {
           print(resp.list);
-          GlobalLists.programgallerybaseurl = resp.baseUrl;
+          GlobalLists.programgallerybaseurl = resp.baseUrl!;
           setState(() {
             print("here");
-            if (resp.list.length < 10) {
-              for (int i = offset; i < resp.list.length; i++) {
+            if (resp.list!.length < 10) {
+              for (int i = offset; i < resp.list!.length; i++) {
                 setState(() {
                   GlobalLists.programgallerylist.add(ListElement(
-                    id: resp.list[i].id,
-                    photo: resp.list[i].photo,
-                    photoCategoryId: resp.list[i].photoCategoryId,
-                    photoDescription: resp.list[i].photoDescription,
+                    id: resp.list![i].id,
+                    photo: resp.list![i].photo,
+                    photoCategoryId: resp.list![i].photoCategoryId,
+                    photoDescription: resp.list![i].photoDescription,
                   ));
                 });
               }
@@ -329,17 +329,17 @@ class _GalleryProgramState extends State<GalleryProgram> {
               for (int i = offset; i < totalcount; i++) {
                 setState(() {
                   GlobalLists.programgallerylist.add(ListElement(
-                    id: resp.list[i].id,
-                    photo: resp.list[i].photo,
-                    photoCategoryId: resp.list[i].photoCategoryId,
-                    photoDescription: resp.list[i].photoDescription,
+                    id: resp.list![i].id,
+                    photo: resp.list![i].photo,
+                    photoCategoryId: resp.list![i].photoCategoryId,
+                    photoDescription: resp.list![i].photoDescription,
                   ));
                 });
               }
             }
 
             offset = totalcount;
-            int remem = resp.list.length - totalcount;
+            int remem = resp.list!.length - totalcount;
             print("remem");
             print(remem);
             if (remem < 10) {
@@ -367,7 +367,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
           //               photosList: GlobalLists.programgallerylist,
           //             )));
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
           setState(() {
             _isLoading = false;
           });

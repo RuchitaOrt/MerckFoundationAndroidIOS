@@ -10,7 +10,7 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
 import 'package:merckfoundation22dec/widget/sizeConfig.dart';
 import 'package:merckfoundation22dec/widget/slidercontainer.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/widget/filterdrawer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -20,11 +20,11 @@ import 'package:merckfoundation22dec/model/videoProgramResponse.dart'
 
 class WatchmoreVideolibrary extends StatefulWidget {
   final dynamic apiurl;
-  final String headertitle;
-  final String sharelink;
+  final dynamic headertitle;
+  final dynamic sharelink;
 
   const WatchmoreVideolibrary(
-      {Key key, this.apiurl, this.headertitle, this.sharelink})
+      {Key? key, this.apiurl, this.headertitle, this.sharelink})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -36,7 +36,7 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
 
   ScrollController _sc = new ScrollController();
-  watchvideo.VideoProgramResponse resp;
+  late watchvideo.VideoProgramResponse resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
@@ -76,12 +76,12 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
                 for (int i = offset; i < totalcount; i++) {
                   setState(() {
                     GlobalLists.watchvideolibrary.add(watchvideo.ListElement(
-                        id: resp.list[i].id,
-                        videoDesc: resp.list[i].videoDesc,
-                        videoLink: resp.list[i].videoLink,
-                        countryId: resp.list[i].countryId,
-                        categoryId: resp.list[i].categoryId,
-                        year: resp.list[i].status));
+                        id: resp.list![i].id,
+                        videoDesc: resp.list![i].videoDesc,
+                        videoLink: resp.list![i].videoLink,
+                        countryId: resp.list![i].countryId,
+                        categoryId: resp.list![i].categoryId,
+                        year: resp.list![i].status));
                   });
 
                   // GlobalLists.newsLettersList.add(resp.data.list);
@@ -89,7 +89,7 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
                 }
 
                 offset = totalcount;
-                int remem = resp.list.length - totalcount;
+                int remem = resp.list!.length - totalcount;
                 print("remem");
                 print(remem);
                 if (remem < 10) {
@@ -108,7 +108,7 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
                 _isLoading = false;
               });
             } else {
-              ShowDialogs.showToast(resp.msg);
+              ShowDialogs.showToast(resp.msg!);
               setState(() {
                 _isLoading = false;
               });
@@ -220,11 +220,11 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
                                               //             )));
                                               var storykey = GlobalLists
                                                   .watchvideolibrary[index]
-                                                  .videoLink
+                                                  .videoLink!
                                                   .substring(GlobalLists
                                                           .watchvideolibrary[
                                                               index]
-                                                          .videoLink
+                                                          .videoLink!
                                                           .length -
                                                       11);
                                               ShowDialogs.youtubevideolink(
@@ -269,7 +269,7 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
                                                             image:
                                                                 new DecorationImage(
                                                               image: new NetworkImage(
-                                                                  'https://img.youtube.com/vi/${GlobalLists.watchvideolibrary[index].videoLink.substring(GlobalLists.watchvideolibrary[index].videoLink.length - 11)}/mqdefault.jpg'),
+                                                                  'https://img.youtube.com/vi/${GlobalLists.watchvideolibrary[index].videoLink!.substring(GlobalLists.watchvideolibrary[index].videoLink!.length - 11)}/mqdefault.jpg'),
                                                               fit: BoxFit.cover,
                                                             ),
                                                           ),
@@ -283,7 +283,7 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
                                                           GlobalLists
                                                               .watchvideolibrary[
                                                                   index]
-                                                              .videoDesc,
+                                                              .videoDesc!,
                                                           textAlign:
                                                               TextAlign.center,
                                                           overflow: TextOverflow
@@ -384,34 +384,34 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
           // GlobalLists.programgallerybaseurl = resp.baseUrl;
           setState(() {
             print("here");
-            if (resp.list.length < 10) {
-              for (int i = offset; i < resp.list.length; i++) {
+            if (resp.list!.length < 10) {
+              for (int i = offset; i < resp.list!.length; i++) {
                 setState(() {
                   GlobalLists.watchvideolibrary.add(watchvideo.ListElement(
-                      id: resp.list[i].id,
-                      videoDesc: resp.list[i].videoDesc,
-                      videoLink: resp.list[i].videoLink,
-                      countryId: resp.list[i].countryId,
-                      categoryId: resp.list[i].categoryId,
-                      year: resp.list[i].status));
+                      id: resp.list![i].id,
+                      videoDesc: resp.list![i].videoDesc,
+                      videoLink: resp.list![i].videoLink,
+                      countryId: resp.list![i].countryId,
+                      categoryId: resp.list![i].categoryId,
+                      year: resp.list![i].status));
                 });
               }
             } else {
               for (int i = offset; i < totalcount; i++) {
                 setState(() {
                   GlobalLists.watchvideolibrary.add(watchvideo.ListElement(
-                      id: resp.list[i].id,
-                      videoDesc: resp.list[i].videoDesc,
-                      videoLink: resp.list[i].videoLink,
-                      countryId: resp.list[i].countryId,
-                      categoryId: resp.list[i].categoryId,
-                      year: resp.list[i].status));
+                      id: resp.list![i].id,
+                      videoDesc: resp.list![i].videoDesc,
+                      videoLink: resp.list![i].videoLink,
+                      countryId: resp.list![i].countryId,
+                      categoryId: resp.list![i].categoryId,
+                      year: resp.list![i].status));
                 });
               }
             }
 
             offset = totalcount;
-            int remem = resp.list.length - totalcount;
+            int remem = resp.list!.length - totalcount;
             print("remem");
             print(remem);
             if (remem < 10) {
@@ -438,7 +438,7 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
           //               photosList: GlobalLists.programgallerylist,
           //             )));
         } else {
-          ShowDialogs.showToast(resp.msg);
+          ShowDialogs.showToast(resp.msg!);
           setState(() {
             _isLoading = false;
           });
@@ -458,16 +458,4 @@ class VideolibraryState extends State<WatchmoreVideolibrary> {
     }
   }
 
-  Future<void> _launchInWebViewWithJavaScript(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 }

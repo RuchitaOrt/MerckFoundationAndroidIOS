@@ -2,7 +2,7 @@ import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/utility/APIManager.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
@@ -36,17 +36,17 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
   List<Widget> listofwiget = [];
   List typewidetofrightsection = [];
   List<Widget> listoftabwiget = [];
-  CarouselSlider carouselSlider;
+  late CarouselSlider carouselSlider;
 
   final List<Tab> tabs = <Tab>[];
-  TabController _tabController;
+  TabController? _tabController;
 
   bool isrightSectionLoaded = false;
   List typewidet = [];
   bool expandClick = false;
   String expandedName = "Upcoming Events";
 
-  final CarouselController callAppCarouselController = CarouselController();
+  final CarouselSliderController callAppCarouselController = CarouselSliderController();
 
   final CarouselController _controller = CarouselController();
   @override
@@ -188,10 +188,11 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
           Align(alignment: Alignment.bottomCenter, child: Bottomcardlink())
         ],
       ),
+      
     );
   }
 
-  Future<http.Response> getmmtmapi() async {
+  Future<http.Response?> getmmtmapi() async {
     print("mmtm api");
     print("cancerobjective");
     var status1 = await ConnectionDetector.checkInternetConnection();
@@ -202,7 +203,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
       );
       print("response");
       print(response);
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         var res = json.decode(response.body);
         print("ff");
         print(res);
@@ -225,55 +226,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
           print(typewidet);
         });
         GlobalLists.homecontentlist = homepageres.middleArea.the1.content.list;
-        // GlobalLists.homevideolist.clear();
-        // GlobalLists.homecontentlist.clear();
-        // print("hi");
-
-        // if (middlecontentname.toString().toLowerCase() == "content".toLowerCase()) {
-        //   print("hi");
-        //   GlobalLists.homecontentlist = homepageres.middleArea.the1.content.list;
-        //   print(GlobalLists.homecontentlist.length);
-        // }
-        /////right section
-        // List<String> rigthareakey = [];
-        //  print("----------------------");
-        // print(lastsection);
-        // lastsection.keys.forEach((element) {
-        //   rigthareakey.add(element.toString());
-        // });
-
-        // for (int i = 0; i < lastsection.length; i++) {
-        //   //  MiddleArea categoryKeys = section1[(i + 1).toString()];
-        //   //  print(categoryKeys.videos.type);
-        //   dynamic rightsection = res['Right_area'][rigthareakey[i]];
-        //   print(rightsection);
-        //   // print("TKey: ${rightsection.keys.first}");
-        //   var rightsectioncategoryname = rightsection.keys.first;
-
-        //   setState(() {
-        //     typewidetofrightsection.add(rightsectioncategoryname);
-
-        //     print(typewidetofrightsection);
-        //     _tabController = new TabController(
-        //         vsync: this, length: typewidetofrightsection.length);
-        //   });
-
-        //   if (rightsectioncategoryname.toString().toLowerCase() ==
-        //       "call_for_app".toLowerCase()) {
-        //     GlobalLists.homecallforapp =
-        //         homepageres.rightArea[rigthareakey[i]].callForApp.list;
-        //     GlobalLists.homeCallForAppBaseURL =
-        //         homepageres.rightArea[rigthareakey[i]].callForApp.baseUrl;
-        //     print(GlobalLists.homecallforapp.length);
-        //   } else if (rightsectioncategoryname.toString().toLowerCase() ==
-        //       "digital_library".toLowerCase()) {
-        //     GlobalLists.homedigitallib =
-        //         homepageres.rightArea[rigthareakey[i]].digitalLibrary.list;
-        //     GlobalLists.homeDigitalLibraryBaseURL =
-        //         homepageres.rightArea[rigthareakey[i]].digitalLibrary.baseUrl;
-        //     print(GlobalLists.homedigitallib.length);
-        //   }
-        // }
+       
         setState(() {
           isMiddleSectionLoaded = true;
           //  isrightSectionLoaded = true;
@@ -909,103 +862,7 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
         child: getdigitallib(context));
   }
 
-  Widget merckmorethanmother() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-        right: 10,
-        top: 10,
-      ),
-      child: Card(
-        elevation: 5,
-        // height: 1800,
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
-          child: Swiper.children(
-            autoplay: false,
-            loop: true,
-            control: SwiperControl(
-                iconNext: Icons.arrow_forward_ios,
-                iconPrevious: Icons.arrow_back_ios,
-                size: 20,
-                color: Customcolor.darkblue_col),
-            children: <Widget>[
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/cfa1.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_4.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        right: 40.0,
-                        left: 30,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset(
-                            "assets/newImages/poster_6.png",
-                            height: 300,
-                            fit: BoxFit.fill,
-                          ))),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text("UNESCO-MARS 2020",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ))
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+
 
   List<Widget> list() {
     print("list");
@@ -1015,13 +872,30 @@ class CancerobjectiveDetailsState extends State<CancerobjectiveDetails>
         listofwiget.add(
           Html(
             data: """${GlobalLists.homecontentlist[0].pageContent} """,
-            onLinkTap: (url, renderContext, attributes, element) {
+            onLinkTap: (url, attributes, element) {
               print("Opening $url...");
-              ShowDialogs.launchURL(url);
+              ShowDialogs.launchURL(url!);
             },
             style: {
               "tr": Customcolor.tableboderstyle(context),
             },
+             extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
           ),
         );
       }

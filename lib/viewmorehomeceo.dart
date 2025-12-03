@@ -9,7 +9,7 @@ import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/utility/checkInternetconnection.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/widget/showdailog.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
+import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/innerCustomeAppBar.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
@@ -19,7 +19,7 @@ import 'package:merckfoundation22dec/widget/botttomlink.dart';
 class viewmoreHomeceo extends StatefulWidget {
   final dynamic apiurl;
 
-  const viewmoreHomeceo({Key key, this.apiurl}) : super(key: key);
+  const viewmoreHomeceo({Key? key, this.apiurl}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return HomeceoState();
@@ -30,13 +30,13 @@ class HomeceoState extends State<viewmoreHomeceo> {
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   // List<ListElement> list = [];
   ScrollController _sc = new ScrollController();
-  Viewmorehomeceo resp;
+  late Viewmorehomeceo resp;
   int totalcount = 10;
   int page = 10;
   int offset = 0;
   bool _isLoading = true;
   int pagenoforceo = 1;
-  int totallengthofceo;
+  int? totallengthofceo;
   List _productsAvailable = [
     "assets/newImages/img3.jpg",
     "assets/newImages/img4.jpg",
@@ -74,7 +74,7 @@ class HomeceoState extends State<viewmoreHomeceo> {
         setState(() {
           pagenoforceo = pagenoforceo + 1;
         });
-        if (GlobalLists.homeceoList.length < totallengthofceo) {
+        if (GlobalLists.homeceoList.length < totallengthofceo!) {
           getNewsLetteranArticles(pagenoforceo);
         }
       }
@@ -243,7 +243,7 @@ class HomeceoState extends State<viewmoreHomeceo> {
                                                 image: Constantstring.baseUrl +
                                                     GlobalLists
                                                         .homeceoList[index]
-                                                        .image,
+                                                        .image!,
                                                 fit: BoxFit.cover,
                                                 height: 80,
                                                 width: 80,
@@ -258,7 +258,7 @@ class HomeceoState extends State<viewmoreHomeceo> {
                                                   Text(
                                                     GlobalLists
                                                         .homeceoList[index]
-                                                        .title,
+                                                        .title!,
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     style: TextStyle(
@@ -339,9 +339,9 @@ class HomeceoState extends State<viewmoreHomeceo> {
       //   context,
       //   api,
       //   (response) async {
-      var res = json.decode(response.body);
+      var res = json.decode(response!.body);
       resp = Viewmorehomeceo.fromJson(res);
-      print(resp.data.list.length);
+      print(resp.data!.list!.length);
       // print(resp);
       // print(resp.data.list.length); //48
 
@@ -350,12 +350,12 @@ class HomeceoState extends State<viewmoreHomeceo> {
         _isLoading = false;
       });
       if (resp.success == "True") {
-        Constantstring.baseUrl = resp.baseUrl;
+        Constantstring.baseUrl = resp.baseUrl!;
         setState(() {
           totallengthofceo = resp.objectCount;
         });
-        for (int i = 0; i < resp.data.list.length; i++) {
-          ListElement element = resp.data.list[i];
+        for (int i = 0; i < resp.data!.list!.length; i++) {
+          ListElement element = resp.data!.list![i];
           setState(() {
             GlobalLists.homeceoList.add(element);
           });
