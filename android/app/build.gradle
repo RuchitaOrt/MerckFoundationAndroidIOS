@@ -42,7 +42,7 @@
          applicationId "de.merck.foundation"
          minSdkVersion 21
          targetSdkVersion 35
-         versionCode 37
+         versionCode 38
          versionName flutterVersionName
          multiDexEnabled true
      }
