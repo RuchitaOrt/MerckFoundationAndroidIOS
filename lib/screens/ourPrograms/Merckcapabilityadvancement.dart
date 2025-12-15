@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -1772,39 +1773,45 @@ class MerckCapabilityadvancementState extends State<MerckCapabilityadvancement>
                           // SizedBox(
                           //   height: 5,
                           // ),
+                          
                           SizedBox(
                              width: SizeConfig.blockSizeHorizontal * 80,
-                            child: Html(
-                              data: GlobalLists
-                                  .mmttestimoniallist[index].departmentName,
-                              style: {
-                                "body": Style(
-                                    fontSize: FontSize(14.0),
-                                    color: Customcolor.colorBlue,
-                                    //   lineHeight: 1.0,
+                            child: 
+                            HtmlWidget(
+                                    """${GlobalLists.mmttestimoniallist[index].departmentName} """,
+                                    
+                                  ),
+                            // Html(
+                            //   data: GlobalLists
+                            //       .mmttestimoniallist[index].departmentName,
+                            //   style: {
+                            //     "body": Style(
+                            //         fontSize: FontSize(14.0),
+                            //         color: Customcolor.colorBlue,
+                            //         //   lineHeight: 1.0,
                             
-                                    //textAlign: TextAlign.center,
-                                    fontWeight: FontWeight.w500),
-                                "tr": Customcolor.tableboderstyle(context),
-                              },
-                               extensions: [
-                                  TagExtension(
-                                    tagsToExtend: {"img"},
-                                    builder: (ExtensionContext context) {
-                                      final src = context.attributes['src'] ?? '';
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                        child: Image.network(
-                                          src,
-                                          width: double.infinity,
-                                          fit: BoxFit.contain,
-                                          errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
-                                        ),
-                                      );
-                                    },
-                                  )
-                                ],
-                            ),
+                            //         //textAlign: TextAlign.center,
+                            //         fontWeight: FontWeight.w500),
+                            //     "tr": Customcolor.tableboderstyle(context),
+                            //   },
+                            //    extensions: [
+                            //       TagExtension(
+                            //         tagsToExtend: {"img"},
+                            //         builder: (ExtensionContext context) {
+                            //           final src = context.attributes['src'] ?? '';
+                            //           return Padding(
+                            //             padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            //             child: Image.network(
+                            //               src,
+                            //               width: double.infinity,
+                            //               fit: BoxFit.contain,
+                            //               errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+                            //             ),
+                            //           );
+                            //         },
+                            //       )
+                            //     ],
+                            // ),
                           ),
                         ],
                       ),

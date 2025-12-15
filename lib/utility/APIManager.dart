@@ -657,7 +657,9 @@ class APIManager {
         break;
       case API.watchvideosubstain:
         apiPathString =
-            "watch_program_videos/merck-foundation-sustainability-initiative/1";
+        "WatchMoreCancerSubProgramVideos/testimonials-merck-foundation-alumni-mf-nationwide-diabetes-hypertension-blue-points-program";
+            //  "watch_program_videos/merck-foundation-sustainability-initiative/1";
+            //"watch_program_videos/testimonials-merck-foundation-alumni-mf-nationwide-diabetes-hypertension-blue-points-program";
         break;
       case API.watchvdeoducation:
         apiPathString =

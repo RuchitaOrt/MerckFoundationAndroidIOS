@@ -212,7 +212,7 @@ class _GalleryProgramState extends State<GalleryProgram> {
                                                       100,
                                                   height: SizeConfig
                                                           .blockSizeVertical *
-                                                      16,
+                                                      14,
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(

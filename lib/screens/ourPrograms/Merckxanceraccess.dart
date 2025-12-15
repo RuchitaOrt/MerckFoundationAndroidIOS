@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -842,20 +843,25 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
         );
       }
       if (typewidet[i] == "awards") {
+        print("GlobalLists.merckcancerawardlist.length");
+        print( GlobalLists.merckcancerawardlist.length);
+       print(GlobalLists.merckcancerawardlist);
         listofwiget.add(
-          Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
-            child: CustomHorizontalCard(
+        GlobalLists.merckcancerawardlist.length==0?Container():  Padding(
+            padding: const EdgeInsets.only(left: 10, top: 2),
+            child:
+             CustomHorizontalCard(
               index: 1,
               cardImage: "assets/newImages/ourvison.png",
-              cardsubtitle: "",
-              cardTitle: "",
+             cardsubtitle: "Our ",
+              cardTitle: "Awards  ",
               showviewmore: 1,
               btnTitle: "View More",
               titleColor: Customcolor.pink_col,
               titleImg: "assets/newImages/flowers-3.png",
               heigthoflist: 140.0,
-              list: ListView.builder(
+              list: 
+              ListView.builder(
                 itemCount: GlobalLists.merckcancerawardlist.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
@@ -878,8 +884,9 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                   } else if (index % 7 == 7) {
                     color = Customcolor.prog8;
                   }
-
-                  return Padding(
+              
+                  return 
+                  Padding(
                     padding:
                         const EdgeInsets.only(left: 8, right: 8, bottom: 0),
                     child: GestureDetector(
@@ -899,41 +906,42 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Html(
-                                data:
-                                    """${GlobalLists.merckcancerawardlist[index].title} """,
-                                onLinkTap:
-                                    (url, attributes, element) {
-                                  print("Opening $url...");
-                                  ShowDialogs.launchURL(url!);
-                                },
-                                style: {
-                                  "body": Style(
-                                      textAlign: TextAlign.start,
-                                      color:
-                                          Colors.white, //Customcolor.pink_col,
-                                      fontSize: FontSize.large,
-                                      fontWeight: FontWeight.w500),
-                                  "tr": Customcolor.tableboderstyle(context),
-                                },
-                                 extensions: [
-      TagExtension(
-        tagsToExtend: {"img"},
-        builder: (ExtensionContext context) {
-          final src = context.attributes['src'] ?? '';
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Image.network(
-              src,
-              width: double.infinity,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
-            ),
-          );
-        },
-      )
-    ],
-                              ),
+                              Text(GlobalLists.merckcancerawardlist[index].title),
+              //                 Html(
+              //                   data:
+              //                       """${GlobalLists.merckcancerawardlist[index].title} """,
+              //                   onLinkTap:
+              //                       (url, attributes, element) {
+              //                     print("Opening $url...");
+              //                     ShowDialogs.launchURL(url!);
+              //                   },
+              //                   style: {
+              //                     "body": Style(
+              //                         textAlign: TextAlign.start,
+              //                         color:
+              //                             Colors.white, //Customcolor.pink_col,
+              //                         fontSize: FontSize.large,
+              //                         fontWeight: FontWeight.w500),
+              //                     "tr": Customcolor.tableboderstyle(context),
+              //                   },
+              //                    extensions: [
+              //       TagExtension(
+              //         tagsToExtend: {"img"},
+              //         builder: (ExtensionContext context) {
+              //           final src = context.attributes['src'] ?? '';
+              //           return Padding(
+              //             padding: const EdgeInsets.symmetric(vertical: 8.0),
+              //             child: Image.network(
+              // src,
+              // width: double.infinity,
+              // fit: BoxFit.contain,
+              // errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+              //             ),
+              //           );
+              //         },
+              //       )
+              //     ],
+              //                 ),
                               SizedBox(
                                 height: 10,
                               ),
@@ -1028,7 +1036,7 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                                       ),
                                     ),
                                   ),
-
+              
                                   // Image.asset(
                                   //   "assets/images/trophy.png",
                                   //   width: 70,
@@ -1382,74 +1390,103 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
                           ),
                           SizedBox(
                              width: SizeConfig.blockSizeHorizontal * 86,
-                            child: Html(
-                              data: GlobalLists
-                                  .mmttestimoniallist[index].testimonialName,
-                              style: {
-                                "body": Style(
-                                    fontSize: FontSize(14.0),
-                                    color: Colors.black87,
-                                    //   lineHeight: 1.0,
+                            child:
+                            HtmlWidget(
+  GlobalLists.mmttestimoniallist[index].testimonialName,
+
+  // --- Styling ---
+  textStyle: TextStyle(
+    fontSize: 14,
+    color: Colors.black87,
+    fontWeight: FontWeight.w500,
+  ),
+
+  // --- Custom Image Handling (replaces TagExtension) ---
+  factoryBuilder: () => _CustomWidgetFactory(),
+)
+
+                            //  Html(
+                            //   data: GlobalLists
+                            //       .mmttestimoniallist[index].testimonialName,
+                            //   style: {
+                            //     "body": Style(
+                            //         fontSize: FontSize(14.0),
+                            //         color: Colors.black87,
+                            //         //   lineHeight: 1.0,
                             
-                                    //textAlign: TextAlign.center,
-                                    fontWeight: FontWeight.w500),
-                                "tr": Customcolor.tableboderstyle(context),
-                              },
-                               extensions: [
-                                  TagExtension(
-                                    tagsToExtend: {"img"},
-                                    builder: (ExtensionContext context) {
-                                      final src = context.attributes['src'] ?? '';
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                        child: Image.network(
-                                          src,
-                                          width: double.infinity,
-                                          fit: BoxFit.contain,
-                                          errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
-                                        ),
-                                      );
-                                    },
-                                  )
-                                ],
-                            ),
+                            //         //textAlign: TextAlign.center,
+                            //         fontWeight: FontWeight.w500),
+                            //     "tr": Customcolor.tableboderstyle(context),
+                            //   },
+                            //    extensions: [
+                            //       TagExtension(
+                            //         tagsToExtend: {"img"},
+                            //         builder: (ExtensionContext context) {
+                            //           final src = context.attributes['src'] ?? '';
+                            //           return Padding(
+                            //             padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            //             child: Image.network(
+                            //               src,
+                            //               width: double.infinity,
+                            //               fit: BoxFit.contain,
+                            //               errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+                            //             ),
+                            //           );
+                            //         },
+                            //       )
+                            //     ],
+                            // ),
                           ),
                           // SizedBox(
                           //   height: 5,
                           // ),
                           SizedBox(
                              width: SizeConfig.blockSizeHorizontal * 86,
-                            child: Html(
-                              data: GlobalLists
-                                  .mmttestimoniallist[index].departmentName,
-                              style: {
-                                "body": Style(
-                                    fontSize: FontSize(14.0),
-                                    color: Customcolor.colorBlue,
-                                    //  lineHeight: 1.0,
+                            child: 
+                             HtmlWidget(
+  GlobalLists.mmttestimoniallist[index].departmentName,
+
+  // --- Styling ---
+  textStyle: TextStyle(
+    fontSize: 14,
+    color: Colors.black87,
+    fontWeight: FontWeight.w500,
+  ),
+
+  // --- Custom Image Handling (replaces TagExtension) ---
+  factoryBuilder: () => _CustomWidgetFactory(),
+)
+                            // Html(
+                            //   data: GlobalLists
+                            //       .mmttestimoniallist[index].departmentName,
+                            //   style: {
+                            //     "body": Style(
+                            //         fontSize: FontSize(14.0),
+                            //         color: Customcolor.colorBlue,
+                            //         //  lineHeight: 1.0,
                             
-                                    //textAlign: TextAlign.center,
-                                    fontWeight: FontWeight.w500),
-                                "tr": Customcolor.tableboderstyle(context),
-                              },
-                               extensions: [
-                                  TagExtension(
-                                    tagsToExtend: {"img"},
-                                    builder: (ExtensionContext context) {
-                                      final src = context.attributes['src'] ?? '';
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                        child: Image.network(
-                                          src,
-                                          width: double.infinity,
-                                          fit: BoxFit.contain,
-                                          errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
-                                        ),
-                                      );
-                                    },
-                                  )
-                                ],
-                            ),
+                            //         //textAlign: TextAlign.center,
+                            //         fontWeight: FontWeight.w500),
+                            //     "tr": Customcolor.tableboderstyle(context),
+                            //   },
+                            //    extensions: [
+                            //       TagExtension(
+                            //         tagsToExtend: {"img"},
+                            //         builder: (ExtensionContext context) {
+                            //           final src = context.attributes['src'] ?? '';
+                            //           return Padding(
+                            //             padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            //             child: Image.network(
+                            //               src,
+                            //               width: double.infinity,
+                            //               fit: BoxFit.contain,
+                            //               errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+                            //             ),
+                            //           );
+                            //         },
+                            //       )
+                            //     ],
+                            // ),
                           ),
                         ],
                       ),
@@ -2619,5 +2656,26 @@ class MerckCanceraccessState extends State<MerckCanceraccess>
     } else {
       ShowDialogs.showToast("Please check internet connection");
     }
+  }
+}
+class _CustomWidgetFactory extends WidgetFactory {
+  @override
+  Widget? buildImage(BuildMetadata meta, Object? provider) {
+    final src = meta.element.attributes['src'] ?? "";
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Image.network(
+            src,
+            width: constraints.maxWidth, // FIX: no infinite width
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) =>
+                const Icon(Icons.broken_image),
+          );
+        },
+      ),
+    );
   }
 }

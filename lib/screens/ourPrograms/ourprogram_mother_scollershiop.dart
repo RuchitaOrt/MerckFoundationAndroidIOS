@@ -23,6 +23,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class OurProgramMotherScollership extends StatefulWidget {
   @override
@@ -427,6 +428,7 @@ class OurProgramMotherScollershipState
             // ),
 
             HtmlWidget('${GlobalLists.homecontentlist[0].pageContent}',
+            
              customWidgetBuilder: (element) {
               if (element.localName == 'video') {
                 final src = element.children.firstWhere((e) => e.localName == 'source').attributes['src'];
@@ -440,27 +442,66 @@ class OurProgramMotherScollershipState
                     ),
                   );
                 }
-              }else  if (element.localName == 'iframe') {
-                final iframeSrc = element.attributes['src'];
+              }
+              else if (element.localName == 'iframe') {
+      final iframeSrc = element.attributes['src'];
 
-                // If the iframe is a YouTube video, handle it
-                if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
-                  return SizedBox(
-                    height: 300,
-                    width: double.infinity,
-                    child: WebView(
-                      initialUrl: iframeSrc,
-                      javascriptMode: JavascriptMode.unrestricted,
-                    ),
-                  );
-                }
-              }else if (element.localName == 'table') {
+      if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+        final videoId = YoutubePlayer.convertUrlToId(iframeSrc);
+
+        if (videoId != null) {
+          return YoutubePlayer(
+            controller: YoutubePlayerController(
+              initialVideoId: videoId,
+              flags: YoutubePlayerFlags(
+                autoPlay: false,
+                disableDragSeek: false,
+                loop: false,
+                enableCaption: true,
+              ),
+            ),
+            showVideoProgressIndicator: true,
+          );
+        }
+      }
+    }
+//            else if (element.localName == 'table') {
+//   return SizedBox(
+//     height: 400, // AutoResizeWebView alternative
+//     width: double.infinity,
+//     child: WebView(
+//       initialUrl: Uri.dataFromString(
+//         """
+//         <html>
+//           <head>
+//             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//           </head>
+//           <body>${element.outerHtml}</body>
+//         </html>
+//         """,
+//         mimeType: 'text/html',
+//         encoding: Encoding.getByName('utf-8'),
+//       ).toString(),
+//       javascriptMode: JavascriptMode.unrestricted,
+
+//       // 👇 THIS IS THE FIX – INTERCEPT LINK CLICKS
+//       navigationDelegate: (NavigationRequest request) {
+//         // This captures ANY <a href=""> link inside the table
+//         ShowDialogs.launchURL(request.url);
+//         return NavigationDecision.prevent; // Prevent WebView from opening it
+//       },
+//     ),
+//   );
+// }
+  
+              else if (element.localName == 'table') {
      
         return  AutoResizeWebView(htmlContent: element.outerHtml,);
        
       }
               return null;
-            },));
+            },)
+            );
       }
       if (typewidet[i] == "latest_updates") {
         listofwiget.add(

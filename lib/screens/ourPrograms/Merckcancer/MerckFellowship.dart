@@ -1067,36 +1067,50 @@ class OurProgramsDetailsState extends State<MerckFellowship>
                           // ),
                           Container(
                             width: SizeConfig.blockSizeHorizontal * 80,
-                            child: Html(
-                              data: GlobalLists
-                                  .mmttestimoniallist[index].departmentName,
-                              style: {
-                                "body": Style(
-                                    fontSize: FontSize(14.0),
-                                    color: Customcolor.colorBlue,
+                            child:
+                             html.HtmlWidget(
+  GlobalLists.mmttestimoniallist[index].departmentName,
 
-                                    //textAlign: TextAlign.center,
-                                    fontWeight: FontWeight.w500),
-                                "tr": Customcolor.tableboderstyle(context),
-                              },
-                               extensions: [
-      TagExtension(
-        tagsToExtend: {"img"},
-        builder: (ExtensionContext context) {
-          final src = context.attributes['src'] ?? '';
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Image.network(
-              src,
-              width: double.infinity,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
-            ),
-          );
-        },
-      )
-    ],
-                            ),
+  // --- Styling ---
+  textStyle: TextStyle(
+    fontSize: 14,
+    color: Colors.black87,
+    fontWeight: FontWeight.w500,
+  ),
+
+  // --- Custom Image Handling (replaces TagExtension) ---
+  factoryBuilder: () => _CustomWidgetFactory(),
+)
+    //                          Html(
+    //                           data: GlobalLists
+    //                               .mmttestimoniallist[index].departmentName,
+    //                           style: {
+    //                             "body": Style(
+    //                                 fontSize: FontSize(14.0),
+    //                                 color: Customcolor.colorBlue,
+
+    //                                 //textAlign: TextAlign.center,
+    //                                 fontWeight: FontWeight.w500),
+    //                             "tr": Customcolor.tableboderstyle(context),
+    //                           },
+    //                            extensions: [
+    //   TagExtension(
+    //     tagsToExtend: {"img"},
+    //     builder: (ExtensionContext context) {
+    //       final src = context.attributes['src'] ?? '';
+    //       return Padding(
+    //         padding: const EdgeInsets.symmetric(vertical: 8.0),
+    //         child: Image.network(
+    //           src,
+    //           width: double.infinity,
+    //           fit: BoxFit.contain,
+    //           errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+    //         ),
+    //       );
+    //     },
+    //   )
+    // ],
+    //                         ),
                           ),
                         ],
                       ),
@@ -1754,5 +1768,26 @@ class OurProgramsDetailsState extends State<MerckFellowship>
     } else {
       ShowDialogs.showToast("Please check internet connection");
     }
+  }
+}
+class _CustomWidgetFactory extends html.WidgetFactory {
+  @override
+  Widget? buildImage(html.BuildMetadata meta, Object? provider) {
+    final src = meta.element.attributes['src'] ?? "";
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Image.network(
+            src,
+            width: constraints.maxWidth, // FIX: no infinite width
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) =>
+                const Icon(Icons.broken_image),
+          );
+        },
+      ),
+    );
   }
 }

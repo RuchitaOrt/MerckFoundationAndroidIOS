@@ -3,6 +3,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import 'package:merckfoundation22dec/screens/dashboard.dart';
+import 'package:merckfoundation22dec/screens/our_gallery_detail.dart';
 import 'package:merckfoundation22dec/utility/GlobalLists.dart';
 import 'package:merckfoundation22dec/widget/botttomlink.dart';
 import 'package:merckfoundation22dec/widget/customcolor.dart';
@@ -90,16 +91,25 @@ class TestimonialprogramviewmoreState extends State<Testimonialprogramviewmore>
                                     decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(10)),
-                                    child: FadeInImage.assetNetwork(
-                                      placeholder:
-                                          'assets/newImages/placeholder_3.jpg',
-                                      image: GlobalLists.testimonialprobaseurl +
+                                    child:SafeNetworkImage(
+    url:
+    GlobalLists.testimonialprobaseurl +
                                           GlobalLists
                                               .testimonialprolist[index].image,
-                                      fit: BoxFit.fill,
-                                      imageScale: 1,
-                                      height: 150,
-                                    ),
+    placeholder: "assets/newImages/placeholder_3.jpg",
+  ),
+                                    
+                                    //  FadeInImage.assetNetwork(
+                                    //   placeholder:
+                                    //       'assets/newImages/placeholder_3.jpg',
+                                    //   image:
+                                    // GlobalLists.testimonialprobaseurl +
+                                    //       GlobalLists
+                                    //           .testimonialprolist[index].image,
+                                    //   fit: BoxFit.fill,
+                                    //   imageScale: 1,
+                                    //   height: 150,
+                                    // ),
                                   ),
                                   Html(
                                     data:

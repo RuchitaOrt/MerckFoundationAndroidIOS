@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -395,17 +396,20 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Follow Merck Foundation "More Than a Mother" Movement on',
-
-                ///"Follow Merck Foundation More Than a Mother on",
-                textAlign: TextAlign.start,
-                maxLines: 2,
-                style: TextStyle(
-                    fontSize: 11, //ResponsiveFlutter.of(context).fontSize(1.7),
-                    fontWeight: FontWeight.w700,
-                    fontFamily: AppFonts.normal,
-                    color: Colors.black87),
+              Container(
+                width: SizeConfig.blockSizeHorizontal*90,
+                child: Text(
+                  'Follow Merck Foundation "More Than a Mother" Movement on',
+                
+                  ///"Follow Merck Foundation More Than a Mother on",
+                  textAlign: TextAlign.start,
+                  maxLines: 2,
+                  style: TextStyle(
+                      fontSize: 11, //ResponsiveFlutter.of(context).fontSize(1.7),
+                      fontWeight: FontWeight.w700,
+                      fontFamily: AppFonts.normal,
+                      color: Colors.black87),
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -1301,7 +1305,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
               cardsubtitle: "Our ",
               cardTitle: "Videos",
               btnTitle: "Watch More",
-              heigthoflist: SizeConfig.blockSizeVertical * 34,
+              heigthoflist: SizeConfig.blockSizeVertical * 37,
               onbtnTap: () {
                 Navigator.push(
                     context,
@@ -1357,43 +1361,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                                   fit: BoxFit.fill,
                                 ),
                               ),
-                              // Align(
-                              //   alignment: Alignment.bottomCenter,
-                              //   child: Padding(
-                              //     padding: const EdgeInsets.only(
-                              //         left: 0, right: 10, bottom: 10, top: 5),
-                              //     child: Row(
-                              //       crossAxisAlignment: CrossAxisAlignment.end,
-                              //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              //       children: [
-                              //         Column(
-                              //           mainAxisAlignment: MainAxisAlignment.end,
-                              //           crossAxisAlignment:
-                              //               CrossAxisAlignment.start,
-                              //           children: [
-                              //             Container(
-                              //               width:
-                              //                   SizeConfig.blockSizeHorizontal * 80,
-                              //               child: Text(
-                              //                 GlobalLists
-                              //                     .homevideolist[index].videoDesc,
-                              //                 overflow: TextOverflow.ellipsis,
-                              //                 style: TextStyle(
-                              //                     color: Colors.black87,
-                              //                     fontSize: 14,
-                              //                     fontWeight: FontWeight.w700),
-                              //                 maxLines: 3,
-                              //               ),
-                              //             ),
-                              //             SizedBox(
-                              //               height: 5,
-                              //             )
-                              //           ],
-                              //         ),
-                              //       ],
-                              //     ),
-                              //   ),
-                              // ),
+                             
                               Padding(
                                 padding: EdgeInsets.only(left: 120, top: 70),
                                 child: Center(
@@ -1404,7 +1372,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                           ),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 1,
                         ),
                         Container(
                           padding: const EdgeInsets.only(left: 9),
@@ -1419,9 +1387,9 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                             maxLines: 3,
                           ),
                         ),
-                        SizedBox(
-                          height: 5,
-                        )
+                        // SizedBox(
+                        //   height: 5,
+                        // )
                       ],
                     ),
                   );
@@ -1607,7 +1575,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                             ),
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 0,
                           ),
 
                           Container(
@@ -1622,46 +1590,10 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                               maxLines: 3,
                             ),
                           ),
-                          SizedBox(
-                            height: 8,
-                          )
-                          // Align(
-                          //   alignment: Alignment.bottomCenter,
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.only(
-                          //         left: 10, right: 10, bottom: 10),
-                          //     child: Row(
-                          //       crossAxisAlignment: CrossAxisAlignment.end,
-                          //       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //       children: [
-                          //         Column(
-                          //           mainAxisAlignment: MainAxisAlignment.end,
-                          //           crossAxisAlignment:
-                          //               CrossAxisAlignment.start,
-                          //           children: [
-                          //             Container(
-                          //               width:
-                          //                   SizeConfig.blockSizeHorizontal * 80,
-                          //               child: Text(
-                          //                 GlobalLists
-                          //                     .mmtmmedialist[index].title,
-                          //                 overflow: TextOverflow.ellipsis,
-                          //                 style: TextStyle(
-                          //                     color: Colors.white,
-                          //                     fontSize: 14,
-                          //                     fontWeight: FontWeight.w700),
-                          //                 maxLines: 3,
-                          //               ),
-                          //             ),
-                          //             SizedBox(
-                          //               height: 8,
-                          //             )
-                          //           ],
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
+                          // SizedBox(
+                          //   height: 8,
+                          // )
+                         
                         ],
                       ),
                     ),
@@ -1681,7 +1613,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
             cardsubtitle: "Merck Foundation ",
             cardTitle: "Alumini Testimonials  ",
             titleColor: Customcolor.pink_col,
-            heigthoflist: SizeConfig.blockSizeVertical * 40,
+             heigthoflist: SizeConfig.blockSizeVertical * 48,
             onbtnTap: () {
               Navigator.push(
                   context,
@@ -1754,21 +1686,36 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
                         // ),
                         SizedBox(
                            width: SizeConfig.blockSizeHorizontal * 86,
-                          child: Html(
-                            data: GlobalLists
-                                .mmttestimoniallist[index].departmentName,
-                            style: {
-                              "body": Style(
-                                  //  lineHeight: 1.0,
-                                  fontSize: FontSize(14.0),
-                                  color: Customcolor.colorBlue,
+                          child: 
+                          HtmlWidget(
+  GlobalLists.mmttestimoniallist[index].departmentName,
+
+  // --- Styling ---
+  textStyle: TextStyle(
+    fontSize: 14,
+    color: Colors.black87,
+    fontWeight: FontWeight.w500,
+    
+  ),
+
+  // --- Custom Image Handling (replaces TagExtension) ---
+  factoryBuilder: () => _CustomWidgetFactory(),
+)
+                          // Html(
+                          //   data: GlobalLists
+                          //       .mmttestimoniallist[index].departmentName,
+                          //   style: {
+                          //     "body": Style(
+                          //         //  lineHeight: 1.0,
+                          //         fontSize: FontSize(14.0),
+                          //         color: Customcolor.colorBlue,
                           
-                                  //textAlign: TextAlign.center,
-                                  fontWeight: FontWeight.w500),
-                              "tr": Customcolor.tableboderstyle(context),
-                            },
+                          //         //textAlign: TextAlign.center,
+                          //         fontWeight: FontWeight.w500),
+                          //     "tr": Customcolor.tableboderstyle(context),
+                          //   },
                                                  
-                          ),
+                          // ),
                         ),
                       ],
                     ),
@@ -2085,3 +2032,24 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
   }
 }
 
+class _CustomWidgetFactory extends WidgetFactory {
+  @override
+  Widget? buildImage(BuildMetadata meta, Object? provider) {
+    final src = meta.element.attributes['src'] ?? "";
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Image.network(
+            src,
+            width: constraints.maxWidth, // FIX: no infinite width
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) =>
+                const Icon(Icons.broken_image),
+          );
+        },
+      ),
+    );
+  }
+}

@@ -290,7 +290,7 @@ class VideolibraryState extends State<WatchmoreVideoambassdar> {
                                                       maxLines: 3,
                                                     ),
                                                   ),
-                                                  SizedBox(height: 5),
+                                                  SizedBox(height: 2),
                                                 ],
                                               ),
                                             ),

@@ -1240,7 +1240,7 @@ class FirstLadiesInitiativeDetailsState
                                 ),
                               ),
                               SizedBox(
-                                height: 7,
+                                height: 2,
                               ),
                               // Align(
                               //   alignment: Alignment.bottomCenter,
@@ -1289,7 +1289,7 @@ class FirstLadiesInitiativeDetailsState
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(left: 9, top: 7),
+                          padding: EdgeInsets.only(left: 9, top: 2),
                           width: SizeConfig.blockSizeHorizontal * 80,
                           child: Text(
                             GlobalLists.homevideolist[index].videoDesc,
@@ -1302,7 +1302,7 @@ class FirstLadiesInitiativeDetailsState
                           ),
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 6,
                         )
                       ],
                     ),

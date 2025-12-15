@@ -18,6 +18,7 @@ import 'package:merckfoundation22dec/model/viewmorehomeceoResponse.dart';
 import 'dart:convert';
 
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class NewsPageDashboard extends StatefulWidget {
   final dynamic apiurl;
@@ -154,19 +155,49 @@ class NewsState extends State<NewsPageDashboard> {
                                     child: Row(
                                       children: [
                                         ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          child: FadeInImage.assetNetwork(
-                                            placeholder:
-                                                'assets/placeholder.jpg',
-                                            image: Constantstring.baseUrl +
-                                                GlobalLists
-                                                    .homeceoList[index].image!,
-                                            fit: BoxFit.cover,
-                                            height: 80,
-                                            width: 80,
-                                          ),
-                                        ),
+  borderRadius: BorderRadius.circular(8),
+  child: SizedBox(
+    height: 80,
+    width: 80,
+    child: Image.network(
+      Constantstring.baseUrl + GlobalLists.homeceoList[index].image!,
+      fit: BoxFit.cover,
+
+      // Load image efficiently and avoid overflow
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+
+        return Image.asset(
+          'assets/placeholder.jpg',
+          fit: BoxFit.cover,
+        );
+      },
+
+      // Crucial: Prevent layout collapse when HTTP fails
+      errorBuilder: (context, error, stackTrace) {
+        return Image.asset(
+          'assets/placeholder.jpg',
+          fit: BoxFit.cover,
+        );
+      },
+    ),
+  ),
+)
+,
+                                        // ClipRRect(
+                                        //   borderRadius:
+                                        //       BorderRadius.circular(8),
+                                        //   child: FadeInImage.assetNetwork(
+                                        //     placeholder:
+                                        //         'assets/placeholder.jpg',
+                                        //     image: Constantstring.baseUrl +
+                                        //         GlobalLists
+                                        //             .homeceoList[index].image!,
+                                        //     fit: BoxFit.cover,
+                                        //     height: 80,
+                                        //     width: 80,
+                                        //   ),
+                                        // ),
                                         SizedBox(width: 10),
                                         Expanded(
                                           child: Column(
@@ -190,20 +221,43 @@ class NewsState extends State<NewsPageDashboard> {
                   );
                 }
               }else  if (element.localName == 'iframe') {
-                final iframeSrc = element.attributes['src'];
+      final iframeSrc = element.attributes['src'];
 
-                // If the iframe is a YouTube video, handle it
-                if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
-                  return SizedBox(
-                    height: 300,
-                    width: double.infinity,
-                    child: WebView(
-                      initialUrl: iframeSrc,
-                      javascriptMode: JavascriptMode.unrestricted,
-                    ),
-                  );
-                }
-              }else if (element.localName == 'table') {
+      if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+        final videoId = YoutubePlayer.convertUrlToId(iframeSrc);
+
+        if (videoId != null) {
+          return YoutubePlayer(
+            controller: YoutubePlayerController(
+              initialVideoId: videoId,
+              flags: YoutubePlayerFlags(
+                autoPlay: false,
+                disableDragSeek: false,
+                loop: false,
+                enableCaption: true,
+              ),
+            ),
+            showVideoProgressIndicator: true,
+          );
+        }
+      }
+    }
+              // if (element.localName == 'iframe') {
+              //   final iframeSrc = element.attributes['src'];
+
+              //   // If the iframe is a YouTube video, handle it
+              //   if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+              //     return SizedBox(
+              //       height: 300,
+              //       width: double.infinity,
+              //       child: WebView(
+              //         initialUrl: iframeSrc,
+              //         javascriptMode: JavascriptMode.unrestricted,
+              //       ),
+              //     );
+              //   }
+              // }
+              else if (element.localName == 'table') {
      
         return  AutoResizeWebView(htmlContent: element.outerHtml,);
        

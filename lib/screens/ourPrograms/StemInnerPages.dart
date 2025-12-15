@@ -7,6 +7,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class StemInnerPages extends StatefulWidget {
   final String? title;
@@ -112,21 +113,45 @@ class StemInnerPagesState extends State<StemInnerPages>
                     ),
                   );
                 }
-              }else  if (element.localName == 'iframe') {
-                final iframeSrc = element.attributes['src'];
+              }else  
+              if (element.localName == 'iframe') {
+      final iframeSrc = element.attributes['src'];
 
-                // If the iframe is a YouTube video, handle it
-                if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
-                  return SizedBox(
-                    height: 300,
-                    width: double.infinity,
-                    child: WebView(
-                      initialUrl: iframeSrc,
-                      javascriptMode: JavascriptMode.unrestricted,
-                    ),
-                  );
-                }
-              }else if (element.localName == 'table') {
+      if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+        final videoId = YoutubePlayer.convertUrlToId(iframeSrc);
+
+        if (videoId != null) {
+          return YoutubePlayer(
+            controller: YoutubePlayerController(
+              initialVideoId: videoId,
+              flags: YoutubePlayerFlags(
+                autoPlay: false,
+                disableDragSeek: false,
+                loop: false,
+                enableCaption: true,
+              ),
+            ),
+            showVideoProgressIndicator: true,
+          );
+        }
+      }
+    }
+              // if (element.localName == 'iframe') {
+              //   final iframeSrc = element.attributes['src'];
+
+              //   // If the iframe is a YouTube video, handle it
+              //   if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+              //     return SizedBox(
+              //       height: 300,
+              //       width: double.infinity,
+              //       child: WebView(
+              //         initialUrl: iframeSrc,
+              //         javascriptMode: JavascriptMode.unrestricted,
+              //       ),
+              //     );
+              //   }
+              // }
+              else if (element.localName == 'table') {
      
         return  AutoResizeWebView(htmlContent: element.outerHtml,);
        
@@ -215,21 +240,45 @@ class HtmlWidgetExample extends StatelessWidget {
                     ),
                   );
                 }
-              }else  if (element.localName == 'iframe') {
-                final iframeSrc = element.attributes['src'];
+              }else 
+              if (element.localName == 'iframe') {
+      final iframeSrc = element.attributes['src'];
 
-                // If the iframe is a YouTube video, handle it
-                if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
-                  return SizedBox(
-                    height: 300,
-                    width: double.infinity,
-                    child: WebView(
-                      initialUrl: iframeSrc,
-                      javascriptMode: JavascriptMode.unrestricted,
-                    ),
-                  );
-                }
-              }else if (element.localName == 'table') {
+      if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+        final videoId = YoutubePlayer.convertUrlToId(iframeSrc);
+
+        if (videoId != null) {
+          return YoutubePlayer(
+            controller: YoutubePlayerController(
+              initialVideoId: videoId,
+              flags: YoutubePlayerFlags(
+                autoPlay: false,
+                disableDragSeek: false,
+                loop: false,
+                enableCaption: true,
+              ),
+            ),
+            showVideoProgressIndicator: true,
+          );
+        }
+      }
+    }
+              //  if (element.localName == 'iframe') {
+              //   final iframeSrc = element.attributes['src'];
+
+              //   // If the iframe is a YouTube video, handle it
+              //   if (iframeSrc != null && iframeSrc.contains("youtube.com")) {
+              //     return SizedBox(
+              //       height: 300,
+              //       width: double.infinity,
+              //       child: WebView(
+              //         initialUrl: iframeSrc,
+              //         javascriptMode: JavascriptMode.unrestricted,
+              //       ),
+              //     );
+              //   }
+              // }
+              else if (element.localName == 'table') {
      
         return  AutoResizeWebView(htmlContent: element.outerHtml,);
        

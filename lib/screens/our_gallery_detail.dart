@@ -148,20 +148,32 @@ class _OurGalleryDetailsPageState extends State<OurGalleryDetailsPage> {
                     children: [
                       Stack(
                         children: [
-                          Container(
-                            width: SizeConfig.blockSizeHorizontal * 50,
-                            height: SizeConfig.blockSizeHorizontal * 50,
-                            child: FadeInImage.assetNetwork(
-                              placeholder: 'assets/newImages/placeholder_3.jpg',
-                              image: galleryDetailsResponse!.baseUrl! +
-                                  galleryDetailsResponse!
-                                      .list![galleryDetailsResponse!.list!.keys!
-                                          .elementAt(i)]![index]
-                                      .photo!,
-                              fit: BoxFit.contain,
-                              // width: SizeConfig.blockSizeHorizontal * 20,
-                            ),
-                          ),
+                        Container(
+  width: SizeConfig.blockSizeHorizontal * 50,
+  height: SizeConfig.blockSizeHorizontal * 50,
+  color: Colors.grey.shade200, // fallback background so it never appears blank
+  child: SafeNetworkImage(
+    url: galleryDetailsResponse!.baseUrl! +
+        galleryDetailsResponse!
+            .list![galleryDetailsResponse!.list!.keys!.elementAt(i)]![index]
+            .photo!,
+    placeholder: "assets/newImages/placeholder_3.jpg",
+  ),
+)
+                          // Container(
+                          //   width: SizeConfig.blockSizeHorizontal * 50,
+                          //   height: SizeConfig.blockSizeHorizontal * 50,
+                          //   child: FadeInImage.assetNetwork(
+                          //     placeholder: 'assets/newImages/placeholder_3.jpg',
+                          //     image: galleryDetailsResponse!.baseUrl! +
+                          //         galleryDetailsResponse!
+                          //             .list![galleryDetailsResponse!.list!.keys!
+                          //                 .elementAt(i)]![index]
+                          //             .photo!,
+                          //     fit: BoxFit.contain,
+                          //     // width: SizeConfig.blockSizeHorizontal * 20,
+                          //   ),
+                          // ),
                           // Align(
                           //   alignment: Alignment.bottomCenter,
                           //   child: Padding(
@@ -371,6 +383,50 @@ class CustomCard extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+class SafeNetworkImage extends StatelessWidget {
+  final String url;
+  final String placeholder;
+  final BoxFit fit;
+
+  const SafeNetworkImage({
+    Key? key,
+    required this.url,
+    required this.placeholder,
+    this.fit = BoxFit.cover,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // If empty or null-like → show placeholder
+    if (url.isEmpty ||
+        url.endsWith("/null") ||
+        url.contains("null") ||
+        url.trim().isEmpty) {
+      return Image.asset(placeholder, fit: fit);
+    }
+
+    return Image.network(
+      url,
+      fit: fit,
+      // While loading → show placeholder
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+
+        return Image.asset(
+          placeholder,
+          fit: fit,
+        );
+      },
+      // On error → show placeholder
+      errorBuilder: (context, error, stackTrace) {
+        return Image.asset(
+          placeholder,
+          fit: fit,
+        );
+      },
     );
   }
 }

@@ -242,7 +242,7 @@ class _DigitalLibraryState extends State<WatchDigitalLibrary> {
                                                                 .fontSize(1.4),
                                                         fontWeight:
                                                             FontWeight.w500),
-                                                    maxLines: 3,
+                                                    maxLines: 2,
                                                   ),
                                                 ),
                                               ),
