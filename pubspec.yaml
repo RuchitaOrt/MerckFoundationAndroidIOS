@@ -99,7 +99,7 @@ description: A new Flutter project.
 
 publish_to: "none"
 
-version: 1.0.38
+version: 1.0.40
 
 environment:
   sdk: ^3.6.1
