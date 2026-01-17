@@ -70,15 +70,7 @@ class CustomCardState extends State<CustomeCard> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                // WidgetSpan(
-                //   alignment: PlaceholderAlignment.bottom,
-                //   child: Image.asset(
-                //     //  widget.titleImg,
-                //     "",
-                //     width: 40,
-                //     height: 25,
-                //   ),
-                // ),
+               
               ],
             ),
           ),
@@ -106,20 +98,7 @@ class CustomCardState extends State<CustomeCard> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            // Expanded(
-                            //   child: Text(
-                            //     widget.subTitle,
-                            //     overflow: TextOverflow.ellipsis,
-                            //     maxLines: 2,
-                            //     style: TextStyle(
-                            //         fontSize: 17,
-                            //         color: Colors.white,
-                            //         fontWeight: FontWeight.w500),
-                            //     // fontSize: 17,
-                            //     // labelColor: Colors.white,
-                            //     // fontweight: FontWeight.w500,
-                            //   ),
-                            // ),
+                          
                             GestureDetector(
                               onTap: widget.onBtnTap,
                               child: Container(

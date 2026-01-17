@@ -251,7 +251,7 @@ Future<void> _launchURL(String urlIs) async {
                          Row(
                            mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.call,color: Colors.white,),
+               Icon(Icons.call,color: Colors.white,), 
                 SizedBox(
                     width: 8,
                 ),

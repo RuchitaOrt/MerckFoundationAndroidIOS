@@ -3,46 +3,57 @@ import 'package:merckfoundation22dec/widget/customcolor.dart';
 import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 
 class DrawerWidget extends StatelessWidget {
-  dynamic image;
-  dynamic value;
-  var controllervalue;
-  var keyboardtype;
-  VoidCallback? onTapfun;
-  var width;
-  var heigth;
+  final String? image;
+  final String value;
+  final VoidCallback? onTapfun;
 
-  DrawerWidget(
-      {Key? key, this.image, this.value, this.onTapfun, this.width, this.heigth})
-      : super(key: key);
+  const DrawerWidget({
+    Key? key,
+    this.image,
+    required this.value,
+    this.onTapfun,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: EdgeInsets.all(5),
-      // margin: EdgeInsets.fromLTRB(20, 3, 3, 3),
-      child: GestureDetector(
-        onTap: onTapfun,
-        child: new Row(
-          children: <Widget>[
-            // Image.asset(
-            //   image,
-            //   width: 40,
-            //   height: 40,
-            // ),
-             image==''?Container( width: 43,
-              height: 40,):  Image.asset(
-              image,
-              width: 40,
-              height: 40,
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(value,
+    final responsive = ResponsiveFlutter.of(context);
+
+    return GestureDetector(
+      onTap: onTapfun,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: responsive.height(1.5),
+          horizontal: responsive.width(3),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Image
+            if (image != null && image!.isNotEmpty)
+              Image.asset(
+                image!,
+                width: responsive.width(6), // responsive width
+                height: responsive.width(6),
+                fit: BoxFit.contain,
+              )
+            else
+              SizedBox(width: responsive.width(6), height: responsive.width(6)),
+
+            SizedBox(width: responsive.width(3)),
+
+            // Text
+            Expanded(
+              child: Text(
+                value,
                 style: TextStyle(
-                    color: Customcolor.text_darkblue,
-                    fontSize: ResponsiveFlutter.of(context).fontSize(2),
-                    fontWeight: FontWeight.w700)),
+                  color: Customcolor.text_darkblue,
+                  fontSize: responsive.fontSize(2),
+                  fontWeight: FontWeight.w700,
+                ),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ],
         ),
       ),

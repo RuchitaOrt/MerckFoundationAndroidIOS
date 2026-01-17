@@ -107,7 +107,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       home: isroomfound
           ? NotiDetailpage(id: roomid)
           : SplashScreen(token: GlobalLists.fcmtokenvalue),
-      navigatorKey: navigatorKey, // Assigning the navigatorKey
+      navigatorKey: navigatorKey, 
     );
   }
 }

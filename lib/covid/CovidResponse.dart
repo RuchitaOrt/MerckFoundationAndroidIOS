@@ -3,7 +3,6 @@ import 'package:merckfoundation22dec/covid/childrenyouth.dart';
 import 'package:merckfoundation22dec/covid/communitysupport.dart';
 import 'package:merckfoundation22dec/covid/communitymedia.dart';
 import 'package:merckfoundation22dec/covid/Healthcare.dart';
-import 'package:merckfoundation22dec/mediascreen.dart/Detailpage.dart';
 import 'package:merckfoundation22dec/model/newsLettersArticlesResp.dart';
 import 'package:merckfoundation22dec/model/videoLibraryResponse.dart';
 import 'package:merckfoundation22dec/screens/dashboard.dart';
@@ -21,7 +20,6 @@ import 'package:screenshot/screenshot.dart';
 import 'package:merckfoundation22dec/utility/ResponsiveFlutter.dart';
 import 'package:merckfoundation22dec/widget/formLabel.dart';
 import 'package:merckfoundation22dec/mediascreen.dart/news.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:url_launcher/url_launcher.dart';
 

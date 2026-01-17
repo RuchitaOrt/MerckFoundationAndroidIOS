@@ -217,6 +217,7 @@ static Future<void> launchURLemail(String mail) async {
     print('Could not launch $uri');
   }
 }
+
 static Future<void> launchFacebook(String url, String pageId) async {
   final Uri fbAppUri = Platform.isIOS
       ? Uri.parse("fb://profile/$pageId")

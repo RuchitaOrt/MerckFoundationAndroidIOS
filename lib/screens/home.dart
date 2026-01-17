@@ -120,13 +120,33 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   List<Staticlistclass> _ourstaticlist = [
     Staticlistclass(imagename: 'assets/newImages/Ambassador_st.png'),
     Staticlistclass(imagename: 'assets/newImages/Scholarships.png'),
+
     Staticlistclass(imagename: 'assets/newImages/Ministera_st.png'),
+            Staticlistclass(imagename: 'assets/newImages/schoolgirl_st.png'),
+
+
     Staticlistclass(imagename: 'assets/newImages/media.png'),
+//awrad
+ Staticlistclass(imagename: 'assets/newImages/awards.png'),
     Staticlistclass(imagename: 'assets/newImages/Songs_st.png'),
     Staticlistclass(imagename: 'assets/newImages/StoryBooks_st.png'),
+
     Staticlistclass(imagename: 'assets/newImages/Animation_st.png'),
-    Staticlistclass(imagename: 'assets/newImages/schoolgirl_st.png'),
+
     Staticlistclass(imagename: 'assets/newImages/SocialMedia_st.png'),
+
+
+    
+
+    //  Staticlistclass(imagename: 'assets/newImages/Ambassador_st.png'),
+    // Staticlistclass(imagename: 'assets/newImages/Scholarships.png'),
+    // Staticlistclass(imagename: 'assets/newImages/Ministera_st.png'),
+    // Staticlistclass(imagename: 'assets/newImages/media.png'),
+    // Staticlistclass(imagename: 'assets/newImages/Songs_st.png'),
+    // Staticlistclass(imagename: 'assets/newImages/StoryBooks_st.png'),
+    // Staticlistclass(imagename: 'assets/newImages/Animation_st.png'),
+    // Staticlistclass(imagename: 'assets/newImages/schoolgirl_st.png'),
+    // Staticlistclass(imagename: 'assets/newImages/SocialMedia_st.png'),
   ];
   
   late AnimationController _controller;
@@ -228,24 +248,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             //child: null,
             child: AppDrawer(),
           ),
-          // bottomNavigationBar: Container(
-          //   child: Text(
-          //     "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
-          //   ),
-          // ),
+         
           body:
-              //  Container(
-              //   padding: EdgeInsets.all(20.0),
-              //   child: FutureBuilder(
-              //       future: gethomeapi(),
-              //       builder: (context, snapshot) {
-              //         if (snapshot.hasData) {
-              //           return ListView(children: list());
-              //         } else {
-              //           return CircularProgressIndicator();
-              //         }
-              //       }),
-              // ),
+              
               Container(
             width: double.infinity,
             height: double.infinity,
@@ -280,12 +285,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (BuildContext context) => NotiDetailpage(
-                              //               id: "10",
-                              //             )));
+                             
                             },
                             child: Container(
                               width: SizeConfig.blockSizeHorizontal * 90,
@@ -456,7 +456,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               fontFamily: AppFonts.normalnew),
                         ),
                         TextSpan(
-                          text: "(as of June 2025)",
+                          text: "(as of December 2025))",
                           style: TextStyle(
                             color: Customcolor.pink_col,
                             fontSize: ResponsiveFlutter.of(context)
@@ -550,71 +550,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           tabs: tabs,
                           controller: _tabController,
                         ),
-//                         Material(
-//   color: Customcolor.background,
-//   elevation: 0,
-//   child: Container(
-//     padding: EdgeInsets.zero, // removes any extra spacing
-//     margin: EdgeInsets.zero,
-//     decoration: BoxDecoration(
-//       color: Customcolor.background,
-//       border: Border(
-//         bottom: BorderSide.none,
-//       ),
-//     ),
-//     child: TabBar(
-//       controller: _tabController,
-//       isScrollable: true,
-//       indicatorPadding: EdgeInsets.zero,
-//       labelPadding: EdgeInsets.symmetric(horizontal: 12), // Adjust if needed
-//       unselectedLabelColor: Colors.black54,
-//       labelColor: Colors.black,
-//       indicatorSize: TabBarIndicatorSize.tab,
-//       indicatorWeight: 0,
-//       indicator: BubbleTabIndicator(
-//         indicatorHeight: 35.0,
-//         indicatorRadius: 5,
-//         indicatorColor: Customcolor.pinkbg.withOpacity(0.4),
-//         tabBarIndicatorSize: TabBarIndicatorSize.tab,
-//       ),
-//       tabs: tabs,
-//     ),
-//   ),
-// ),
-
-                        // Material(
-                        //   color: Customcolor.background,
-                        //   elevation: 0, // removes default drop shadow
-                        //   shadowColor: Colors.transparent, // just in case
-                        //   child: Container(
-                        //     decoration: BoxDecoration(
-                        //       //  color: Colors.grey, 
-                        //          color: Customcolor.background,
-                        //       border: Border(
-                        //         bottom: BorderSide.none,
-                        //       ),
-                              
-                        //     ),
-                        //     child: TabBar(
-                        //       indicatorPadding: EdgeInsets.all(0),
-                        //       //automaticIndicatorColorAdjustment: false,
-                        //       isScrollable: true,
-                        //       unselectedLabelColor:Customcolor.background,
-                        //       labelColor: Colors.black,
-                        //       indicatorSize: TabBarIndicatorSize.tab,
-                        //       indicatorWeight: 0,
-                        //       indicator: BubbleTabIndicator(
-                        //         indicatorHeight: 35.0,
-                        //         indicatorRadius: 5,
-                        //         indicatorColor:
-                        //             Customcolor.pinkbg.withOpacity(0.4),
-                        //         tabBarIndicatorSize: TabBarIndicatorSize.tab,
-                        //       ),
-                        //       tabs: tabs,
-                        //       controller: _tabController,
-                        //     ),
-                        //   ),
-                        // ),
+//                       
                       
                         Expanded(
                           flex: 3,
@@ -622,22 +558,14 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                               physics: ScrollPhysics(),
                               controller: _tabController,
                               children: tablist()
-                              // callforApplication(),
-                              // digitalLibrary(),
-                              // merckmorethanmother()
+                              
                               ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.only(right: 60, left: 60),
-                //   child: Image.asset(
-                //     "assets/newImages/flowers_footer.png",
-                //   ),
-                // ),
-
+              
                 SizedBox(
                   height: 10,
                 ),
@@ -656,14 +584,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   height: 10,
                 ),
                 Bottomcardlink(),
-                // Container(
-                //   child: Text(
-                //     "© Merck Foundation is a German non-profit organization with limited liability, established in 31 May 2017",
-                //     style:
-                //         TextStyle(color: Customcolor.colorBlue, fontSize: 12),
-                //     textAlign: TextAlign.center,
-                //   ),
-                // ),
+              
               ],
             ),
           ),
@@ -741,36 +662,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     color: Colors.white,
                     child: Column(
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.all(10.0),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Expanded(
-                        //           child: Text(
-                        //         expandedName,
-                        //         style: TextStyle(
-                        //             fontSize: 18,
-                        //             fontWeight: FontWeight.w700,
-                        //             color: Colors.black),
-                        //       )),
-                        //       GestureDetector(
-                        //         onTap: () {
-                        //           print("in tap");
-                        //           setState(() {
-                        //             expandClick = !expandClick;
-                        //           });
-                        //         },
-                        //         child: Image.asset(
-                        //           "assets/newImages/expand_more.png",
-                        //           width: 30,
-                        //           height: 30,
-                        //         ),
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
-                        //  expandClick ? eventDropdown() : Container(),
+                       
                         SizedBox(
                           height: 10,
                         ),
@@ -861,13 +753,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                                         builder: (context) => Dashboard(
                                               index: 4,
                                             )));
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (BuildContext context) =>
-                                //             CallforApplication(
-                                //               apiurl: API.watchcallhome,
-                                //             )));
+                               
                               },
                               child: Container(
                                 width: 120,
@@ -1520,75 +1406,12 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                           subTitle: product['image_desc'],
                         );
 
-                        // new Container(
-                        //   decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(8),
-                        //       image: DecorationImage(
-                        //           image: NetworkImage(
-                        //               "http://merckfoundation.org/merck/public/uploads/slider/" +
-                        //                   product['image']),
-                        //           fit: BoxFit.cover)),
-                        //   width: SizeConfig.blockSizeHorizontal * 100,
-                        //   child: Column(
-                        //     mainAxisAlignment: MainAxisAlignment.start,
-                        //     children: <Widget>[
-                        //       Padding(
-                        //         padding:
-                        //             const EdgeInsets.only(right: 0, bottom: 15),
-                        //         child: Container(
-                        //           color: Colors.white.withOpacity(0.5),
-                        //           width: SizeConfig.blockSizeHorizontal * 100,
-                        //           child: Padding(
-                        //             padding: const EdgeInsets.only(
-                        //                 left: 10, right: 10, top: 5, bottom: 5),
-                        //             child: Column(
-                        //               mainAxisAlignment:
-                        //                   MainAxisAlignment.center,
-                        //               children: <Widget>[
-                        //                 FormLabel(
-                        //                     text: product['image_title'],
-                        //                     labelColor: Customcolor.pink_col,
-                        //                     fontSize:
-                        //                         ResponsiveFlutter.of(context)
-                        //                             .fontSize(1.4),
-                        //                     maxLines: 2,
-                        //                     fontweight: FontWeight.bold,
-                        //                     textAlignment: TextAlign.center),
-                        //                 SizedBox(
-                        //                   height: 2,
-                        //                 ),
-                        //                 FormLabel(
-                        //                     text: product['image_desc'],
-                        //                     labelColor: Customcolor.colorBlue,
-                        //                     fontSize:
-                        //                         ResponsiveFlutter.of(context)
-                        //                             .fontSize(1.2),
-                        //                     fontweight: FontWeight.bold,
-                        //                     textAlignment: TextAlign.center),
-                        //               ],
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // );
                       },
                     );
                   }).toList(),
                 ),
               ),
-              // new DotsIndicator(
-              //   dotsCount: _productsAvailable.length,
-              //   position: double.parse("$_current"),
-              //   decorator: DotsDecorator(
-              //     size: const Size.square(9.0),
-              //     activeSize: const Size(18.0, 9.0),
-              //     activeColor: Customcolor.colorBlue,
-              //     activeShape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(5.0)),
-              //   ),
-              // ),
+             
             ],
           ),
         ],
@@ -1624,12 +1447,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (BuildContext context) => NotiDetailpage(
-                      //               id: "10",
-                      //             )));
+                    
                     },
                     child: Text("Follow Us",
                         textAlign: TextAlign.start,
@@ -1804,18 +1622,6 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     );
   }
 
-  // Future<void> _launchInWebViewWithJavaScript(String url) async {
-  //   if (await canLaunch(url)) {
-  //     await launch(
-  //       url,
-  //       forceSafariVC: true,
-  //       forceWebView: true,
-  //       enableJavaScript: true,
-  //     );
-  //   } else {
-  //     throw 'Could not launch $url';
-  //   }
-  // }
 Future<void> _launchInWebViewWithJavaScript(String url) async {
     if (await canLaunch(url)) {
       final Uri uri = Uri.parse(url);
@@ -1849,13 +1655,6 @@ Future<void> _launchInWebViewWithJavaScript(String url) async {
             }
           });
 
-          // if (resp.success == "True") {
-          //   setState(() {
-          //    Constantstring.homeheader=resp.
-          //   });
-          // } else {
-          //   ShowDialogs.showToast(resp.msg);
-          // }
         },
         (error) {
           print('ERR msg is $error');
@@ -1891,75 +1690,6 @@ Future<void> _launchInWebViewWithJavaScript(String url) async {
       ShowDialogs.showToast("Please check internet connection");
     }
   }
-  // Widget newSlider(BuildContext context) {
-  //   return Stack(
-  //     children: <Widget>[
-  //       Column(
-  //         children: <Widget>[
-  //           Container(
-  //             child: carouselSlider = CarouselSlider(
-  //               options: CarouselOptions(
-  //                 viewportFraction: 1.0,
-  //                 height: 350,
-  //                 autoPlay: false,
-  //                 onPageChanged: (index, reason) {
-  //                   setState(() {
-  //                     _current1 = index;
-  //                   });
-  //                 },
-  //               ),
-  //               items: _productsAvailable1.map((product) {
-  //                 return new Builder(
-  //                   builder: (BuildContext context) {
-  //                     return new GridView.count(
-  //                       crossAxisCount: 2,
-  //                       crossAxisSpacing: 10.0,
-  //                       mainAxisSpacing: 10.0,
-  //                       shrinkWrap: true,
-  //                       scrollDirection: Axis.horizontal,
-  //                       children: List.generate(
-  //                         4,
-  //                         (index) {
-  //                           return Padding(
-  //                             padding: const EdgeInsets.all(10.0),
-  //                             child: Container(
-  //                               decoration: BoxDecoration(
-  //                                 image: DecorationImage(
-  //                                   image: AssetImage(
-  //                                       "assets/images/logo_nav1.png"),
-  //                                   fit: BoxFit.cover,
-  //                                 ),
-  //                                 borderRadius: BorderRadius.all(
-  //                                   Radius.circular(20.0),
-  //                                 ),
-  //                               ),
-  //                             ),
-  //                           );
-  //                         },
-  //                       ),
-  //                     );
-  //                   },
-  //                 );
-  //               }).toList(),
-  //             ),
-  //           ),
-  //           new DotsIndicator(
-  //             dotsCount: _productsAvailable1.length,
-  //             position: double.parse("$_current1"),
-  //             decorator: DotsDecorator(
-  //               size: const Size.square(9.0),
-  //               activeSize: const Size(18.0, 9.0),
-  //               activeColor: Customcolor.colorBlue,
-  //               activeShape: RoundedRectangleBorder(
-  //                   borderRadius: BorderRadius.circular(5.0)),
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ],
-  //   );
-  // }
-
   Widget ourlist() {
     //print(_ourlist.length);
 
@@ -2046,73 +1776,7 @@ Future<void> _launchInWebViewWithJavaScript(String url) async {
                                     OurPolicy()));
                       }
                     },
-                    // onTap: () {
-                    //   if (index == 0) {
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (BuildContext context) =>
-                    //                 OurVision()));
-                    //   } else if (index == 1) {
-                    //     //our program
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (BuildContext context) => Dashboard(
-                    //                   index: 1,
-                    //                 )));
-                    //   } else if (index == 2) {
-                    //     //news article
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (BuildContext context) => Dashboard(
-                    //                   index: 3,
-                    //                 )));
-                    //   } else if (index == 3) {
-                    //     //our award
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (BuildContext context) => Ouraward()));
-                    //   } else if (index == 4) {
-                    //     //our mission
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (BuildContext context) =>
-                    //                 OurMission()));
-                    //   } else if (index == 5) {
-                    //     //  media & events
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (BuildContext context) =>
-                    //                 MerckFoundationMedia(
-                    //                   apiurl: API.merckfoundationinmedia,
-                    //                 )));
-                    //     // Navigator.push(
-                    //     //     context,
-                    //     //     MaterialPageRoute(
-                    //     //         builder: (BuildContext context) => Dashboard(
-                    //     //               index: 3,
-                    //     //             )));
-                    //   } else if (index == 6) {
-                    //     //covid response
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (BuildContext context) =>
-                    //                 CovidResponse()));
-                    //   } else if (index == 7) {
-                    //     //our polcies
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (BuildContext context) =>
-                    //                 OurPolicy()));
-                    //   }
-                    // },
+                 
                     child: Container(
                       width: 100,
                       decoration: BoxDecoration(
@@ -2133,7 +1797,7 @@ Future<void> _launchInWebViewWithJavaScript(String url) async {
   }
 
   Widget ourstaticlist() {
-    //print(_ourlist.length);
+   
     return Column(
       children: [
         GridView.count(
@@ -2145,20 +1809,7 @@ Future<void> _launchInWebViewWithJavaScript(String url) async {
           crossAxisCount: 2,
           childAspectRatio: 0.97,
           children: List.generate(_ourstaticlist.length, (index) {
-            // if (GlobalLists.digitallibraryviewlist.length - 1 ==
-
-            //         index &&
-
-            //     _isLoading) {
-
-            //   return Center(
-
-            //     child: CircularProgressIndicator(),
-
-            //   );
-
-            // } else {
-
+          
             return Padding(
                 padding: const EdgeInsets.only(right: 10.0),
                 child: Container(
@@ -2168,28 +1819,10 @@ Future<void> _launchInWebViewWithJavaScript(String url) async {
                     ),
                     child: Image.asset(_ourstaticlist[index].imagename!)));
 
-            // }
+           
           }),
         ),
-//  Padding(
 
-//                                       padding: const EdgeInsets.only(right: 2.0),
-
-//                                       child:  Container(
-
-//                           width: 170,
-
-//                           decoration: BoxDecoration(
-
-//                             borderRadius: BorderRadius.circular(8),
-
-//                           ),
-
-//                           child: Image.asset('assets/newImages/SocialMedia_st.png')
-
-//                         )
-
-//  )
       ],
     );
   }
@@ -2465,112 +2098,7 @@ Future<void> _launchInWebViewWithJavaScript(String url) async {
               },
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(left: 10, top: 10),
-          //   child: CustomHorizontalCard(
-          //     index: 1,
-          //     cardImage: "assets/newImages/mqdefault.png",
-          //     cardTitle: "Alumini Testimonials  ",
-          //     titleColor: Customcolor.pink_col,
-          //     onbtnTap: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (BuildContext context) =>
-          //                   Testimonialprogramviewmore(
-          //                     apiurl: API.testiomonailpro,
-          //                   )));
-          //     },
-          //     btnTitle: "View More",
-          //     titleImg: "assets/newImages/flowers-3.png",
-          //     list: Padding(
-          //       padding: const EdgeInsets.only(left: 8, right: 8),
-          //       child: GestureDetector(
-          //         onTap: () {
-          //           Navigator.push(
-          //               context,
-          //               MaterialPageRoute(
-          //                   builder: (BuildContext context) =>
-          //                       Testimonialprogramdetailpage(
-          //                         index: 0,
-          //                         baseurl: GlobalLists.mmttestimonialbaseurl,
-          //                       )));
-          //         },
-          //         child: Container(
-          //           height: SizeConfig.blockSizeVertical * 15,
-          //           width: SizeConfig.blockSizeHorizontal * 90,
-          //           decoration: BoxDecoration(
-          //               borderRadius: BorderRadius.circular(5),
-          //               color: Colors.white),
-          //           child: Row(
-          //             children: [
-          //               Padding(
-          //                 padding: const EdgeInsets.only(
-          //                     top: 5, bottom: 3, left: 8, right: 8),
-          //                 child: Container(
-          //                   // height: 220,
-          //                   width: 100,
-          //                   decoration: BoxDecoration(
-          //                     //color: Colors.amber,
-          //                     borderRadius: BorderRadius.circular(10),
-          //                   ),
-          //                   child: FadeInImage.assetNetwork(
-          //                     placeholder: 'assets/newImages/placeholder_3.jpg',
-          //                     image:
-          //                         "${GlobalLists.mmttestimonialbaseurl + GlobalLists.mmttestimoniallist[0].image}",
-          //                     fit: BoxFit.cover,
-          //                   ),
-          //                 ),
-          //               ),
-          //               Expanded(
-          //                 child: ListView(
-          //                   shrinkWrap: true,
-          //                   // crossAxisAlignment:
-          //                   //     CrossAxisAlignment.start,
-          //                   children: [
-          //                     SizedBox(
-          //                       height: 12,
-          //                     ),
-          //                     FormLabel(
-          //                       text: GlobalLists
-          //                           .mmttestimoniallist[0].testimonialName,
-          //                       labelColor: Customcolor.colorPink,
-          //                       fontSize: 17,
-          //                       maxLines: 1,
-          //                       fontweight: FontWeight.w700,
-          //                     ),
-          //                     SizedBox(
-          //                       height: 4,
-          //                     ),
-          //                     FormLabel(
-          //                       text: GlobalLists
-          //                           .mmttestimoniallist[0].departmentName,
-          //                       labelColor: Colors.black87,
-          //                       fontSize: 13,
-          //                       fontweight: FontWeight.w600,
-          //                       maxLines: 2,
-          //                     ),
-          //                     SizedBox(
-          //                       height: 7,
-          //                     ),
-          //                     FormLabel(
-          //                       text: GlobalLists
-          //                           .mmttestimoniallist[0].shortDescription,
-          //                       labelColor: Colors.black54,
-          //                       fontSize: 13,
-          //                       fontweight: FontWeight.w500,
-          //                       maxLines: 4,
-          //                     ),
-          //                   ],
-          //                 ),
-          //               )
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
+  
         );
       }
     }
