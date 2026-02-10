@@ -293,7 +293,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 06c414a21b122396a26847c523d5c370f8325df5
   FirebaseRemoteConfig: b873a427a48159082361343a85649eed3f5377ea
   FirebaseSharedSwift: 20530f495084b8d840f78a100d8c5ee613375f6e
-  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_inappwebview_ios: b89ba3482b96fb25e00c967aae065701b66e9b99
   flutter_local_notifications: ef18f0537538fcd18e9106b3ddc91cc10b4e579a
   fluttertoast: 2c67e14dce98bbdb200df9e1acf610d7a6264ea1
