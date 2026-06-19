@@ -190,8 +190,9 @@ class GlobalLists {
   static List<lang.ListElement> filterlanglisting = [];
 
   //leadership
-  static List<ceolist.BoardOfTrusteesOfMerckFoundation> ceolisting = [];
-  static List<ceolist.BoardOfTrusteesOfMerckFoundation> boardoftrust = [];
+  static List<ceolist.Leader> ceolisting = [];
+  static List<ceolist.Leader> boardoftrust = [];
+    static List<ceolist.Leader> chairmanOfBoard= [];
 
   //ouraward
   static List<awardlist.ListElement> awardlisting = [];

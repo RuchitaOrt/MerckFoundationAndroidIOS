@@ -36,9 +36,14 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
       duration: const Duration(milliseconds: 250),
     );
   }
-
+String cleanHtml(String html) {
+  return html
+      .replaceAll(RegExp(r'margin-[^:]+:[^;"]+;?'), '')
+      .replaceAll(RegExp(r'line-height:[^;"]+;?'), '');
+}
   @override
   Widget build(BuildContext context) {
+    print(GlobalLists.mmttestimoniallist[widget.index!].departmentName);
     return Scaffold(
         backgroundColor: Customcolor.background,
         appBar: InnerCustomAppBar(
@@ -120,6 +125,7 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                               fontSize: FontSize(17.0),
                               color: Customcolor.colorBlue,
                               textAlign: TextAlign.start,
+                              
                               fontWeight: FontWeight.w500),
                           "tr": Customcolor.tableboderstyle(context),
                         },
@@ -143,7 +149,8 @@ class TestimonialprogramdetailState extends State<Testimonialprogramdetailpage>
                       ),
                       Html(
                         data:
-                            """${GlobalLists.mmttestimoniallist[widget.index!].departmentName} """,
+                        cleanHtml("${GlobalLists.mmttestimoniallist[widget.index!].departmentName}"),
+                            // """${GlobalLists.mmttestimoniallist[widget.index!].departmentName} """,
                         onLinkTap: (url, attributes, element) {
                           print("Opening $url...");
                           ShowDialogs.launchURL(url!);

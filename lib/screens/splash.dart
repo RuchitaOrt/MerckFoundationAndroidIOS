@@ -139,7 +139,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Container(
                   width: SizeConfig.blockSizeHorizontal * 55,
                   child: Text(
-                    "version 1.0.40",
+                    "version 1.0.41",
                     style: TextStyle(
                       color: Colors.black87,
                     ),

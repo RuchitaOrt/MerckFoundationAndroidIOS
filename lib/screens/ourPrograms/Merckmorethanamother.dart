@@ -1701,21 +1701,7 @@ class OurProgramsDetailsState extends State<OurProgramDetails>
   // --- Custom Image Handling (replaces TagExtension) ---
   factoryBuilder: () => _CustomWidgetFactory(),
 )
-                          // Html(
-                          //   data: GlobalLists
-                          //       .mmttestimoniallist[index].departmentName,
-                          //   style: {
-                          //     "body": Style(
-                          //         //  lineHeight: 1.0,
-                          //         fontSize: FontSize(14.0),
-                          //         color: Customcolor.colorBlue,
                           
-                          //         //textAlign: TextAlign.center,
-                          //         fontWeight: FontWeight.w500),
-                          //     "tr": Customcolor.tableboderstyle(context),
-                          //   },
-                                                 
-                          // ),
                         ),
                       ],
                     ),

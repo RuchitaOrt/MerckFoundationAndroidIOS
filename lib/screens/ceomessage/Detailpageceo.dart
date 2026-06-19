@@ -72,36 +72,36 @@ class DetailpageceoState extends State<Detailpageceo>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Html(
-                          data: """${widget.list![widget.index!].leaderLang} """,
-                          onLinkTap: (url, attributes, element) {
-                            print("Opening $url...");
-                            ShowDialogs.launchURL(url!);
-                          },
-                          style: {
-                            "body": Style(
-                              textAlign: TextAlign.right,
-                            ),
-                            "tr": Customcolor.tableboderstyle(context),
-                          },
-                           extensions: [
-      TagExtension(
-        tagsToExtend: {"img"},
-        builder: (ExtensionContext context) {
-          final src = context.attributes['src'] ?? '';
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Image.network(
-              src,
-              width: double.infinity,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
-            ),
-          );
-        },
-      )
-    ],
-                        ),
+    //              Html(
+    //                       data: """${widget.list![widget.index!].leaderLang} """,
+    //                       onLinkTap: (url, attributes, element) {
+    //                         print("Opening $url...");
+    //                         ShowDialogs.launchURL(url!);
+    //                       },
+    //                       style: {
+    //                         "body": Style(
+    //                           textAlign: TextAlign.right,
+    //                         ),
+    //                         "tr": Customcolor.tableboderstyle(context),
+    //                       },
+    //                        extensions: [
+    //   TagExtension(
+    //     tagsToExtend: {"img"},
+    //     builder: (ExtensionContext context) {
+    //       final src = context.attributes['src'] ?? '';
+    //       return Padding(
+    //         padding: const EdgeInsets.symmetric(vertical: 8.0),
+    //         child: Image.network(
+    //           src,
+    //           // width: double.infinity,
+    //           fit: BoxFit.contain,
+    //           errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+    //         ),
+    //       );
+    //     },
+    //   )
+    // ],
+    //                     ),
                         Center(
                           child: Container(
                             height: 200,
@@ -143,7 +143,7 @@ class DetailpageceoState extends State<Detailpageceo>
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Image.network(
               src,
-              width: double.infinity,
+              // width: double.infinity,
               fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
             ),
@@ -175,7 +175,7 @@ class DetailpageceoState extends State<Detailpageceo>
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Image.network(
               src,
-              width: double.infinity,
+              // width: double.infinity,
               fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
             ),

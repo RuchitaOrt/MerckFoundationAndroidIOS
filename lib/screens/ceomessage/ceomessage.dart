@@ -142,6 +142,7 @@ class CeomessageState extends State<Ceomessage> {
         tagsToExtend: {"img"},
         builder: (ExtensionContext context) {
           final src = context.attributes['src'] ?? '';
+         
           return Image.network(
             src,
            // width: double.infinity,
@@ -213,7 +214,175 @@ class CeomessageState extends State<Ceomessage> {
                         children: [
                           //Text("Board of Trustees of Merck Foundation"),
 
-                          Padding(
+                    GlobalLists.chairmanOfBoard.isNotEmpty?      Padding(
+                            padding: const EdgeInsets.only(
+                                top: 30, bottom: 25, left: 5),
+                            child: FormLabel(
+                              text: "Chairman of Merck Foundation Board of Trustees",
+                              labelColor: Customcolor.pink_col,
+                              fontSize:
+                                  ResponsiveFlutter.of(context).fontSize(2),
+                              maxLines: 2,
+                              fontweight: FontWeight.w800,
+                              textAlignment: TextAlign.left,
+                            ),
+                          ):Container(),
+
+//chairman of trust
+
+ ListView.builder(
+                            itemCount: GlobalLists.chairmanOfBoard.length,
+                            scrollDirection: Axis.vertical,
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 8, bottom: 6),
+                                    child: Container(
+                                      height: 200,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder:
+                                            'assets/newImages/placeholder_3.jpg',
+                                        image: Constantstring.baseUrl +
+                                            GlobalLists
+                                                .boardoftrust[index].image!,
+                                        fit: BoxFit.cover,
+                                        height: 150,
+                                      ),
+                                    ),
+                                  ),
+                                  Html(
+                                    data:
+                                        """${GlobalLists.chairmanOfBoard[index].leaderName} """,
+                                    onLinkTap: (url, attributes,
+                                        element) {
+                                      print("Opening $url...");
+                                      ShowDialogs.launchURL(url!);
+                                    },
+                                    style: {
+                                      "body": Style(
+                                          padding: HtmlPaddings.all(0),
+                                          textAlign: TextAlign.start,
+                                          color: Customcolor.violet_col,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: FontSize.larger),
+                                      "tr":
+                                          Customcolor.tableboderstyle(context),
+                                    },
+                                     extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              // width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
+                                  ),
+                                  Html(
+                                    data:
+                                        """${GlobalLists.chairmanOfBoard[index].shortBiodata} """,
+                                    onLinkTap: (url, attributes,
+                                        element) {
+                                      print("Opening $url...");
+                                      ShowDialogs.launchURL(url!);
+                                    },
+                                    style: {
+                                      "body": Style(textAlign: TextAlign.start),
+                                      "tr":
+                                          Customcolor.tableboderstyle(context),
+                                    },
+                                     extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              // width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  Detailpageceo(
+                                                    list: GlobalLists
+                                                        .chairmanOfBoard,
+                                                    imageurl:
+                                                        Constantstring.baseUrl,
+                                                    index: index,
+                                                  )));
+                                    },
+                                    child: Html(
+                                      data: "((View Bio))",
+                                      onLinkTap: (url,
+                                          attributes, element) {
+                                        print("Opening $url...");
+                                        ShowDialogs.launchURL(url!);
+                                      },
+                                      style: {
+                                        "body": Style(
+                                            textAlign: TextAlign.start,
+                                            color: Customcolor.pink_col,
+                                            fontSize: FontSize.larger,
+                                            fontWeight: FontWeight.w600),
+                                        "tr": Customcolor.tableboderstyle(
+                                            context),
+                                      },
+                                       extensions: [
+      TagExtension(
+        tagsToExtend: {"img"},
+        builder: (ExtensionContext context) {
+          final src = context.attributes['src'] ?? '';
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Image.network(
+              src,
+              // width: double.infinity,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image),
+            ),
+          );
+        },
+      )
+    ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  )
+                                ],
+                              );
+                            },
+                          ),
+ GlobalLists.boardoftrust.isNotEmpty? Padding(
                             padding: const EdgeInsets.only(
                                 top: 30, bottom: 25, left: 5),
                             child: FormLabel(
@@ -225,8 +394,9 @@ class CeomessageState extends State<Ceomessage> {
                               fontweight: FontWeight.w800,
                               textAlignment: TextAlign.left,
                             ),
-                          ),
+                          ):Container(),
 
+//board of trust
                           ListView.builder(
                             itemCount: GlobalLists.boardoftrust.length,
                             scrollDirection: Axis.vertical,
@@ -379,6 +549,8 @@ class CeomessageState extends State<Ceomessage> {
                               );
                             },
                           ),
+
+                          
                         ],
                       ),
                     ),
@@ -440,9 +612,10 @@ class CeomessageState extends State<Ceomessage> {
 
           if (resp.success == "True") {
             setState(() {
-              GlobalLists.ceolisting = resp.data!.ceo!;
+              GlobalLists.ceolisting = resp.data.ceo!;
               GlobalLists.boardoftrust =
-                  resp.data!.boardOfTrusteesOfMerckFoundation!;
+                  resp.data!.trusteesBoard!;
+                  GlobalLists.chairmanOfBoard= resp.data!.chairmanOfBoard!;
               Constantstring.baseUrl = resp.baseUrl!;
             });
           } else {
